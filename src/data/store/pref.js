@@ -16,7 +16,7 @@ module.exports = {
 			window.navigator.browserLanguage ||
 			window.navigator.systemLanguage ||
 			'en-us',
-		proofingFormat: 'Paperthin',
+		proofingFormat: 'Chatbottery', // 'Paperthin',
 		welcomeSeen: false,
 	},
 

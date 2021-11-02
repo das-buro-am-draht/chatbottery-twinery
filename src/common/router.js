@@ -183,14 +183,14 @@ TwineRouter.beforeEach(transition => {
 	or redirect() will stop any other logic in the function.
 	*/
 
-	const welcomeSeen = store.state.pref.welcomeSeen;
+	// const welcomeSeen = store.state.pref.welcomeSeen;
 
-	if (transition.to.path === '/welcome' || welcomeSeen) {
+	// if (transition.to.path === '/welcome' || welcomeSeen) {
 		transition.next();
-	}
-	else {
-		transition.redirect('/welcome');
-	}
+	// }
+	// else {
+		// transition.redirect('/welcome');
+	// }
 });
 
 module.exports = TwineRouter;

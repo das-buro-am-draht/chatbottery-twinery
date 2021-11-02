@@ -20,7 +20,7 @@ const config = (module.exports = {
 			'dist',
 			useCdn ? 'web-cdn' : useElectron ? 'web-electron' : 'web'
 		),
-		filename: 'twine.js'
+		filename: 'editor.js'
 	},
 	module: {
 		rules: [
@@ -70,7 +70,7 @@ const config = (module.exports = {
 	},
 	plugins: [
 		new CopyPlugin([
-			{from: 'src/common/img/favicon.ico', to: 'rsrc/favicon.ico'},
+			{from: 'src/common/img/favicon.png', to: 'rsrc/favicon.png'},
 			{from: 'icons/ios-icon-180.png', to: 'rsrc/ios-icon-180.png'},
 			{from: 'story-formats/', to: 'story-formats/'},
 			{from: 'src/locale/view/img', to: 'rsrc/'},
@@ -84,7 +84,7 @@ const config = (module.exports = {
 			minify: isRelease && {collapseWhitespace: true},
 			cdn: useCdn
 		}),
-		new MiniCssExtractPlugin({filename: 'twine.css'}),
+		new MiniCssExtractPlugin({filename: 'editor.css'}),
 		new PoPlugin({
 			src: 'src/locale/po/*.po',
 			dest: 'locale',

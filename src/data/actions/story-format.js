@@ -176,7 +176,7 @@ const actions = (module.exports = {
 		*/
 
 		const builtinFormats = [
-			{
+	/*	{
 				name: 'Chapbook',
 				url: 'story-formats/chapbook-1.2.1/format.js',
 				version: '1.2.1',
@@ -230,6 +230,12 @@ const actions = (module.exports = {
 				version: '2.34.1',
 				userAdded: false
 			}
+	*/	{
+				name: 'Chatbottery',
+				url: 'https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v8.js',
+				version: '8.0.1',
+				userAdded: false
+			}
 		];
 
 		builtinFormats.forEach(builtin => {
@@ -251,15 +257,19 @@ const actions = (module.exports = {
 
 		if (typeof store.state.pref.defaultFormat !== 'object') {
 			setPref(store, 'defaultFormat', {
-				name: 'Harlowe',
-				version: '3.2.3'
+				name: 'Chatbottery',
+				version: '8.0.1',
+				// name: 'Harlowe',
+				// version: '3.2.3'
 			});
 		}
 
 		if (typeof store.state.pref.proofingFormat !== 'object') {
 			setPref(store, 'proofingFormat', {
-				name: 'Paperthin',
-				version: '1.0.0'
+				name: 'Chatbottery',
+				version: '8.0.1',
+				// name: 'Paperthin',
+				// version: '1.0.0'
 			});
 		}
 

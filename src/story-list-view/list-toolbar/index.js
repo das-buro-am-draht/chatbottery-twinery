@@ -83,7 +83,7 @@ module.exports = Vue.extend({
 		},
 
 		showHelp() {
-			window.open('https://twinery.org/2guide');
+			window.open('https://docu.chatbottery.com/#/'); // https://twinery.org/2guide');
 		},
 
 		showLocale() {
