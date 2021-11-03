@@ -13,14 +13,14 @@ msgstr ""
 "Language: pt_PT\n"
 
 #: src/dialogs/about/index.html
-msgid "About Twine"
-msgstr "Sobre o Twine"
+msgid "About Chatbottery"
+msgstr "Sobre o Chatbottery"
 
 #: src/dialogs/about/index.html
 msgid ""
-"Twine is an open-source tool for telling interactive, nonlinear stories."
+"Chatbottery is an open-source tool for telling interactive, nonlinear stories."
 msgstr ""
-"O Twine é uma ferramenta de código-fonte aberto para contar histórias "
+"O Chatbottery é uma ferramenta de código-fonte aberto para contar histórias "
 "interativas e não-lineares."
 
 #: src/dialogs/about/index.html
@@ -35,8 +35,8 @@ msgstr ""
 "incluindo as de natureza comercial."
 
 #: src/dialogs/about/index.html
-msgid "Help Twine Grow With A Donation"
-msgstr "Ajude o Twine a crescer com uma doação"
+msgid "Help Chatbottery Grow With A Donation"
+msgstr "Ajude o Chatbottery a crescer com uma doação"
 
 #: src/dialogs/about/index.html
 msgid "Source Code Repository"
@@ -84,17 +84,17 @@ msgstr "Ícone \"Sorriso\" projetado por dimitrov jelio do Noun Project"
 
 #: src/dialogs/app-donation/index.html
 msgid ""
-"If you love Twine as much as I do, please consider helping it grow with a "
-"donation. Twine is an open source project that will always be free to use "
-"&mdash; and with your help, Twine will continue to thrive."
+"If you love Chatbottery as much as I do, please consider helping it grow with a "
+"donation. Chatbottery is an open source project that will always be free to use "
+"&mdash; and with your help, Chatbottery will continue to thrive."
 msgstr ""
-"Se gosta tanto do Twine como eu, então, ajude-o a crescer com uma doação. O "
-"Twine é um projeto de código-fonte aberto que será sempre de utilização "
+"Se gosta tanto do Chatbottery como eu, então, ajude-o a crescer com uma doação. O "
+"Chatbottery é um projeto de código-fonte aberto que será sempre de utilização "
 "gratuita &mdash; e com a sua ajuda, poderá continuar a prosperar."
 
 #: src/dialogs/app-donation/index.html
-msgid "Chris Klimas, Twine creator"
-msgstr "Chris Klimas, o criador do Twine"
+msgid "Chris Klimas, Chatbottery creator"
+msgstr "Chris Klimas, o criador do Chatbottery"
 
 #: src/dialogs/app-donation/index.html
 msgid "No Thanks"
@@ -107,12 +107,12 @@ msgstr "Doar"
 #: src/dialogs/app-donation/index.html
 msgid ""
 "This message will only be shown to you once.&lt;br&gt;If you'd like to "
-"donate to Twine development in the future, you can do so at &lt;a href=\\"
+"donate to Chatbottery development in the future, you can do so at &lt;a href=\\"
 "\"http:\\/\\/twinery.org/donate\\\" target=\\\"_blank\\\"&gt;http://twinery."
 "org/donate&lt;/a&gt;."
 msgstr ""
 "Esta mensagem só lhe será apresentada uma única vez.&lt;br&gt;Se quiser "
-"fazer fazer um donativo para apoiar o desenvolvimento do Twine no futuro, "
+"fazer fazer um donativo para apoiar o desenvolvimento do Chatbottery no futuro, "
 "pode fazê-lo &lt;a href=\\\"http:\\/\\/twinery.org/donate\\\" target=\\"
 "\"_blank\\\"&gt;http://twinery.org/donate&lt;/a&gt;."
 
@@ -275,8 +275,8 @@ msgstr ""
 "padrão da sua história."
 
 #: src/locale/view/index.html
-msgid "Please choose which language you would like to use with Twine."
-msgstr "Quer trabalhar no Twine em que língua?"
+msgid "Please choose which language you would like to use with Chatbottery."
+msgstr "Quer trabalhar no Chatbottery em que língua?"
 
 #: src/nw/patches/welcome-view/replacement-template.html src/welcome/index.html
 msgid "Hi!"
@@ -284,10 +284,10 @@ msgstr "Olá!"
 
 #: src/nw/patches/welcome-view/replacement-template.html src/welcome/index.html
 msgid ""
-"Twine is an open-source tool for telling interactive, nonlinear stories. "
+"Chatbottery is an open-source tool for telling interactive, nonlinear stories. "
 "There are a few things you should know before you get started."
 msgstr ""
-"O Twine é uma ferramenta de código-fonte aberto para contar histórias "
+"O Chatbottery é uma ferramenta de código-fonte aberto para contar histórias "
 "interativas e não-lineares. Há algumas coisas que é melhor saber antes de "
 "começar."
 
@@ -305,31 +305,31 @@ msgstr "É a primeira vez aqui?"
 
 #: src/nw/patches/welcome-view/replacement-template.html
 msgid ""
-"&lt;strong&gt;If you've never used Twine before,&lt;/strong&gt; then "
+"&lt;strong&gt;If you've never used Chatbottery before,&lt;/strong&gt; then "
 "welcome! The &lt;a href=\\\"http://twinery.org/2guide\\\" target=\\\"_blank\\"
-"\"&gt;Twine 2 Guide&lt;/a&gt; and the official wiki in general, are a great "
+"\"&gt;Chatbottery 2 Guide&lt;/a&gt; and the official wiki in general, are a great "
 "place to learn. Keep in mind that some articles on the wiki at large were "
-"written for Twine 1, which is a little bit different than this version. But "
+"written for Chatbottery 1, which is a little bit different than this version. But "
 "most of the concepts are the same."
 msgstr ""
-"&lt;strong&gt;Se nunca usou o Twine antes,&lt;/strong&gt; então, seja bem-"
+"&lt;strong&gt;Se nunca usou o Chatbottery antes,&lt;/strong&gt; então, seja bem-"
 "vindo(a)! O &lt;a href=\\\"http://twinery.org/2guide\\\" target=\\\"_blank\\"
-"\"&gt;Guia do Twine 2&lt;/a&gt; e a wiki oficial são, normalmente, ótimos "
+"\"&gt;Guia do Chatbottery 2&lt;/a&gt; e a wiki oficial são, normalmente, ótimos "
 "recursos para aprender. Tenha presente que muitos dos artigos da wiki foram "
-"escritos para o Twine 1, que é um pouco diferente desta versão. Mas a "
+"escritos para o Chatbottery 1, que é um pouco diferente desta versão. Mas a "
 "maioria dos conceitos é a mesma."
 
 #: src/nw/patches/welcome-view/replacement-template.html src/welcome/index.html
 msgid ""
-"&lt;strong&gt;If you have used Twine 1 before,&lt;/strong&gt; the guide also "
+"&lt;strong&gt;If you have used Chatbottery 1 before,&lt;/strong&gt; the guide also "
 "has details on what has changed in this version. Chief among them is a new "
-"default story format, Harlowe. But if you find you prefer the Twine 1 "
+"default story format, Harlowe. But if you find you prefer the Chatbottery 1 "
 "scripting syntax, try using SugarCube instead."
 msgstr ""
-"&lt;strong&gt;Se já usou o Twine 1 antes,&lt;/strong&gt; o guia poderá dar-"
+"&lt;strong&gt;Se já usou o Chatbottery 1 antes,&lt;/strong&gt; o guia poderá dar-"
 "lhe mais informações sobre o que mudou nesta nova versão. A principal "
 "alteração é o novo formato de história por defeito, o Harlowe. Mas se achar "
-"que prefere a sintaxe da linguagem do Twine 1, pode continuar a usar o "
+"que prefere a sintaxe da linguagem do Chatbottery 1, pode continuar a usar o "
 "formato SugarCube."
 
 #: src/nw/patches/welcome-view/replacement-template.html src/welcome/index.html
@@ -342,35 +342,35 @@ msgstr "O seu trabalho é guardado automaticamente."
 
 #: src/nw/patches/welcome-view/replacement-template.html
 msgid ""
-"There's now a folder named Twine in your Documents folder. Inside that is a "
-"Stories folder, where all your work will be saved. Twine saves as you work, "
+"There's now a folder named Chatbottery in your Documents folder. Inside that is a "
+"Stories folder, where all your work will be saved. Chatbottery saves as you work, "
 "so you don't have to worry about remembering to save it yourself. You can "
 "always open the folder your stories are saved to by using the &lt;b&gt;Show "
-"Library&lt;/b&gt; item in the &lt;b&gt;Twine&lt;/b&gt; menu."
+"Library&lt;/b&gt; item in the &lt;b&gt;Chatbottery&lt;/b&gt; menu."
 msgstr ""
-"Foi criada uma pasta chamada Twine na sua pasta de Documentos. Lá dentro "
-"está a pasta \"Histórias\", onde todo o seu trabalho será guardado. O Twine "
+"Foi criada uma pasta chamada Chatbottery na sua pasta de Documentos. Lá dentro "
+"está a pasta \"Histórias\", onde todo o seu trabalho será guardado. O Chatbottery "
 "vai guardando o documento enquanto trabalha, portanto não tem de se "
 "preocupar em guardá-lo. Pode sempre abrir a pasta onde as suas histórias são "
 "guardadas, usando o item de &lt;b&gt;Mostrar Biblioteca&lt;/b&gt; no menu do "
-"&lt;b&gt;Twine&lt;/b&gt;."
+"&lt;b&gt;Chatbottery&lt;/b&gt;."
 
 #: src/nw/patches/welcome-view/replacement-template.html
 msgid ""
-"Because Twine is always saving your work, the files in your story library "
-"will be locked from editing while Twine is open."
+"Because Chatbottery is always saving your work, the files in your story library "
+"will be locked from editing while Chatbottery is open."
 msgstr ""
-"Como o Twine está sempre a guardar o seu trabalho, os ficheiros na sua "
+"Como o Chatbottery está sempre a guardar o seu trabalho, os ficheiros na sua "
 "biblioteca de histórias ficarão trancados e não poderão ser editados "
-"enquanto o Twine estiver aberto."
+"enquanto o Chatbottery estiver aberto."
 
 #: src/nw/patches/welcome-view/replacement-template.html src/welcome/index.html
 msgid "That's it!"
 msgstr "E é isto!"
 
 #: src/nw/patches/welcome-view/replacement-template.html src/welcome/index.html
-msgid "Thanks for reading, and have fun with Twine."
-msgstr "Obrigado pela atenção, e divirta-se com o Twine."
+msgid "Thanks for reading, and have fun with Chatbottery."
+msgstr "Obrigado pela atenção, e divirta-se com o Chatbottery."
 
 #: src/nw/patches/welcome-view/replacement-template.html src/welcome/index.html
 msgid "Go to the Story List"
@@ -436,16 +436,16 @@ msgstr "Nome"
 
 #: src/story-list-view/index.html
 msgid ""
-"There are no stories saved in Twine right now. To get started, you can "
+"There are no stories saved in Chatbottery right now. To get started, you can "
 "either create a new story or import an existing one from a file."
 msgstr ""
-"Neste momento, não há histórias gravadas no Twine. Para começar, crie uma "
+"Neste momento, não há histórias gravadas no Chatbottery. Para começar, crie uma "
 "nova história ou importe uma de um ficheiro."
 
 #: src/story-list-view/list-toolbar/index.html src/nw/directories.js:69
 #: src/nw/menus.js:17 src/nw/menus.js:39
-msgid "Twine"
-msgstr "Twine"
+msgid "Chatbottery"
+msgstr "Chatbottery"
 
 #: src/story-list-view/list-toolbar/index.html
 msgid "Story"
@@ -493,18 +493,18 @@ msgstr "Apagar a história"
 
 #: src/welcome/index.html
 msgid ""
-"&lt;strong&gt;If you've never used Twine before,&lt;/strong&gt; then "
+"&lt;strong&gt;If you've never used Chatbottery before,&lt;/strong&gt; then "
 "welcome! The &lt;a href=\\\"http://twinery.org/2guide\\\" target=\\\"_blank\\"
-"\"&gt;Twine 2 Guide&lt;/a&gt; and the official wiki in general, are a great "
+"\"&gt;Chatbottery 2 Guide&lt;/a&gt; and the official wiki in general, are a great "
 "place to learn. Keep in mind that some articles on the wiki were "
-"written for Twine 1, which is a little bit different than this version. But "
+"written for Chatbottery 1, which is a little bit different than this version. But "
 "most of the concepts are the same."
 msgstr ""
-"&lt;strong&gt;Se nunca usou o Twine antes,&lt;/strong&gt; então, seja bem-"
+"&lt;strong&gt;Se nunca usou o Chatbottery antes,&lt;/strong&gt; então, seja bem-"
 "vindo(a)! O &lt;a href=\\\"http://twinery.org/2guide\\\" target=\\\"_blank\\"
-"\"&gt;Guia do Twine 2&lt;/a&gt; e a wiki oficial são, normalmente, ótimos "
+"\"&gt;Guia do Chatbottery 2&lt;/a&gt; e a wiki oficial são, normalmente, ótimos "
 "recursos para aprender. Tenha presente que muitos dos artigos da wiki foram "
-"escritos para o Twine 1, que é um pouco diferente desta versão. Mas a "
+"escritos para o Chatbottery 1, que é um pouco diferente desta versão. Mas a "
 "maioria dos conceitos é a mesma."
 
 #: src/welcome/index.html
@@ -513,11 +513,11 @@ msgstr "O seu trabalho é gravado apenas no seu navegador."
 
 #: src/welcome/index.html
 msgid ""
-"That means you don't need to create an account to use Twine 2, and "
+"That means you don't need to create an account to use Chatbottery 2, and "
 "everything you create isn't stored on a server somewhere else &mdash; it "
 "stays right in your browser."
 msgstr ""
-"Isto significa que não precisa de criar uma conta para usar o Twine 2 e que "
+"Isto significa que não precisa de criar uma conta para usar o Chatbottery 2 e que "
 "tudo o que criar não fica alojado num servidor sabe-se lá onde &mdash; mas "
 "fica guardado aqui no seu navegador."
 
@@ -529,7 +529,7 @@ msgid ""
 "briefcase\\\"&gt;&lt;/i&gt;&nbsp;&lt;strong&gt;Archive&lt;/strong&gt; button "
 "often. You can also publish individual stories to files using the &lt;i "
 "class=\\\"fa fa-cog\\\"&gt;&lt;/i&gt; menu on each story in the story list. "
-"Both archive and story files can always be re-imported into Twine."
+"Both archive and story files can always be re-imported into Chatbottery."
 msgstr ""
 "Duas coisas &lt;b&gt;muito importantes&lt;/b&gt;de que não se deve esquecer. "
 "Como o seu trabalho é apenas guardado no navegador, se lhe limpar o "
@@ -539,7 +539,7 @@ msgstr ""
 "frequentemente. Também pode passar histórias individuais para ficheiros, "
 "usando o menu &lt;i class=\\\"fa fa-cog\\\"&gt;&lt;/i&gt; em cada história "
 "da lista de histórias. Tanto os arquivos como os ficheiros da história podem "
-"ser sempre reimportados para o Twine."
+"ser sempre reimportados para o Chatbottery."
 
 #: src/welcome/index.html
 msgid ""
@@ -588,9 +588,9 @@ msgstr "Faça duplo-clique nesta passagem para editá-la."
 #. L10n: The <span> will have a version number, i.e. 2.0.6, interpolated into it.
 #: src/dialogs/app-update/index.js:40
 msgid ""
-"A new version of Twine, <span class=\"version\"></span>, has been released."
+"A new version of Chatbottery, <span class=\"version\"></span>, has been released."
 msgstr ""
-"Foi lançada uma nova versão do Twine, a versão <span class=\"version\"></"
+"Foi lançada uma nova versão do Chatbottery, a versão <span class=\"version\"></"
 "span>."
 
 #: src/dialogs/app-update/index.js:44
@@ -769,8 +769,8 @@ msgid "A story with this name already exists."
 msgstr "Já existe uma história com esse nome."
 
 #: src/story-list-view/list-toolbar/index.js:60
-msgid "Twine Archive.html"
-msgstr "Twine Archive.html"
+msgid "Chatbottery Archive.html"
+msgstr "Chatbottery Archive.html"
 
 #: src/story-list-view/story-item/item-menu/index.js:84
 msgid "Delete Forever"

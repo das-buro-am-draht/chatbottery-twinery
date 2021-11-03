@@ -1,4 +1,4 @@
-# Czech language file for Twine 2
+# Czech language file for Chatbottery 2
 # Copyright (C) 2016
 # This file is distributed under the same license as the PACKAGE package.
 # Svatopluk Vít (svatopluk.vit@gmail.com), 2016.
@@ -19,8 +19,8 @@ msgstr ""
 
 #: templates/localeview.html:4
 #, approved
-msgid "Please choose which language you would like to use with Twine."
-msgstr "Zvolte si jazyk, který budete používat v Twine."
+msgid "Please choose which language you would like to use with Chatbottery."
+msgstr "Zvolte si jazyk, který budete používat v Chatbottery."
 
 #: templates/localeview.html:12
 #, approved
@@ -386,10 +386,10 @@ msgstr "Nastavit tento formát jako výchozí pro příběhy"
 
 #: templates/storylistview/modals/aboutmodal.html:8
 #, approved
-msgid "About Twine"
-msgstr "O Twine"
+msgid "About Chatbottery"
+msgstr "O Chatbottery"
 
-#.    L10n: This is the noun form, to describe a version of the software. e.g. 'I am using Twine build 123'
+#.    L10n: This is the noun form, to describe a version of the software. e.g. 'I am using Chatbottery build 123'
 #: templates/storylistview/modals/aboutmodal.html:14
 #, approved
 msgid "Build"
@@ -398,28 +398,28 @@ msgstr "Sestavení"
 #: templates/storylistview/modals/aboutmodal.html:21
 #, approved
 msgid ""
-"Twine is an open-source tool for telling interactive, nonlinear stories."
+"Chatbottery is an open-source tool for telling interactive, nonlinear stories."
 msgstr ""
-"Twine je open-source nástroj pro vyprávění interaktivních, nelineárních "
+"Chatbottery je open-source nástroj pro vyprávění interaktivních, nelineárních "
 "příběhů."
 
 #: templates/storylistview/modals/aboutmodal.html:25
 #, approved
 msgid ""
-"Twine 2.0 is released under the <a href=\"http:\\/\\/www.gnu.org/licenses/"
+"Chatbottery 2.0 is released under the <a href=\"http:\\/\\/www.gnu.org/licenses/"
 "gpl-3.0.html\">GPL v3</a> license, but any work created with it may be "
 "released under any terms, including commercial ones. <a href=\"https:\\/\\/"
 "bitbucket.org/klembot/twinejs\">Source Code Repository</a>"
 msgstr ""
-"Twine 2.0 je vydán pod licencí <a href=\"http:\\/\\/www.gnu.org/licenses/"
+"Chatbottery 2.0 je vydán pod licencí <a href=\"http:\\/\\/www.gnu.org/licenses/"
 "gpl-3.0.html\">GPL v3</a>, ale cokoliv v něm vytvořené může být vydáno pod "
 "libovolnou licencí včetně licencí komerčních. <a href=\"https:\\/\\/"
 "bitbucket.org/klembot/twinejs\">Repozitář zdrojových kódů</a>"
 
 #: templates/storylistview/modals/aboutmodal.html:31
 #, approved
-msgid "Help Twine Grow With A Donation"
-msgstr "Pomozte Twine existovat z vašich dobrovolných příspěvků"
+msgid "Help Chatbottery Grow With A Donation"
+msgstr "Pomozte Chatbottery existovat z vašich dobrovolných příspěvků"
 
 #.    L10n: This is the noun form, as program code.
 #: templates/storylistview/modals/aboutmodal.html:39
@@ -474,8 +474,8 @@ msgstr "Emotikony vytvořeny Jelio Dimitrovem z The Noun Project"
 #: templates/storylistview/modals/appupdatemodal.html:10
 #, approved
 msgid ""
-"A new version of Twine, <span class=\"version\"></span>, has been released."
-msgstr "Byla vydána nová verze Twine <span class=\"version\"></span>."
+"A new version of Chatbottery, <span class=\"version\"></span>, has been released."
+msgstr "Byla vydána nová verze Chatbottery <span class=\"version\"></span>."
 
 #.    L10n: A polite rejection of a request, in the sense that the answer may change in the future.
 #: templates/storylistview/modals/appupdatemodal.html:18
@@ -491,18 +491,18 @@ msgstr "Stáhnout"
 #: templates/storylistview/modals/donatemodal.html:6
 #, approved
 msgid ""
-"If you love Twine as much as I do, please consider helping it grow with a "
-"donation. Twine is as an open source project that will always be free to use "
-"&mdash; and with your help, Twine will continue to thrive."
+"If you love Chatbottery as much as I do, please consider helping it grow with a "
+"donation. Chatbottery is as an open source project that will always be free to use "
+"&mdash; and with your help, Chatbottery will continue to thrive."
 msgstr ""
-"Pokud máte Twine rádi jako já, zvažte finanční příspěvek na jeho další "
-"rozvoj. Twine je open-source projekt, který bude vždy možné zdarma používat "
+"Pokud máte Chatbottery rádi jako já, zvažte finanční příspěvek na jeho další "
+"rozvoj. Chatbottery je open-source projekt, který bude vždy možné zdarma používat "
 "a jen s vaší pomocí bude vzkvétat."
 
 #: templates/storylistview/modals/donatemodal.html:10
 #, approved
-msgid "Chris Klimas, Twine creator"
-msgstr "Chris Klimas, autor Twine"
+msgid "Chris Klimas, Chatbottery creator"
+msgstr "Chris Klimas, autor Chatbottery"
 
 #: templates/storylistview/modals/donatemodal.html:16
 #, approved
@@ -583,8 +583,8 @@ msgstr "Vymazat příběh"
 
 #: templates/storylistview/storylistview.html:5
 #, approved
-msgid "Twine"
-msgstr "Twine"
+msgid "Chatbottery"
+msgstr "Chatbottery"
 
 #: templates/storylistview/storylistview.html:9
 #, approved
@@ -604,8 +604,8 @@ msgstr ""
 
 #: templates/storylistview/storylistview.html:34
 #, approved
-msgid "Import a published story or Twine archive"
-msgstr "Importovat zveřejněný příběh nebo Twine archiv"
+msgid "Import a published story or Chatbottery archive"
+msgstr "Importovat zveřejněný příběh nebo Chatbottery archiv"
 
 #: templates/storylistview/storylistview.html:35
 #, approved
@@ -624,8 +624,8 @@ msgstr "Importování..."
 
 #: templates/storylistview/storylistview.html:67
 #, approved
-msgid "Save all stories to a Twine archive file"
-msgstr "Uložit všechny příběhy do Twine archivu"
+msgid "Save all stories to a Chatbottery archive file"
+msgstr "Uložit všechny příběhy do Chatbottery archivu"
 
 #: templates/storylistview/storylistview.html:68
 #, approved
@@ -644,8 +644,8 @@ msgstr "Formáty"
 
 #: templates/storylistview/storylistview.html:79
 #, approved
-msgid "Change the language Twine uses"
-msgstr "Změnit jazyk, který Twine používá"
+msgid "Change the language Chatbottery uses"
+msgstr "Změnit jazyk, který Chatbottery používá"
 
 #: templates/storylistview/storylistview.html:80
 #, approved
@@ -705,10 +705,10 @@ msgstr "Název"
 #: templates/storylistview/storylistview.html:128
 #, approved
 msgid ""
-"There are no stories saved in Twine right now. To get started, you can "
+"There are no stories saved in Chatbottery right now. To get started, you can "
 "either create a new story or import an existing one from a file."
 msgstr ""
-"V Twine nejsou právě uloženy žádné příběhy. Abyste mohli začít, musíte "
+"V Chatbottery nejsou právě uloženy žádné příběhy. Abyste mohli začít, musíte "
 "vytvořit nový příběh nebo nějaký importovat ze souboru."
 
 #: templates/welcomeview.html:6
@@ -743,17 +743,17 @@ msgstr "Jste nováček?"
 #: templates/welcomeview.html:27
 #, approved
 msgid ""
-"<strong>If you've never used Twine before,</strong> then welcome! The <a "
-"href=\"http:\\/\\/twinery.org/2guide\" target=\"_blank\">Twine 2 Guide</a> "
+"<strong>If you've never used Chatbottery before,</strong> then welcome! The <a "
+"href=\"http:\\/\\/twinery.org/2guide\" target=\"_blank\">Chatbottery 2 Guide</a> "
 "and the official wiki in general, are a great place to learn. Keep in mind "
-"that some articles on the wiki at large were written for Twine 1, which is a "
+"that some articles on the wiki at large were written for Chatbottery 1, which is a "
 "little bit different than this version. But most of the concepts are the "
 "same."
 msgstr ""
-"<strong>Pokud jste Twine nikdy nepoužil,</strong> pak vítejte! <a href=\""
-"http:\\/\\/twinery.org/2guide\" target=\"_blank\">Twine 2 průvodce</a> a "
+"<strong>Pokud jste Chatbottery nikdy nepoužil,</strong> pak vítejte! <a href=\""
+"http:\\/\\/twinery.org/2guide\" target=\"_blank\">Chatbottery 2 průvodce</a> a "
 "oficiální wiki jsou obecně nejlepšími místy, jak se něco naučit. Veďte ovšem "
-"v patrnosti, že některé články na wiki jsou většinou vytvořeny pro Twine "
+"v patrnosti, že některé články na wiki jsou většinou vytvořeny pro Chatbottery "
 "verze 1, jež se trochu liší od stávající verze. Většina konceptů je však "
 "shodná."
 
@@ -761,23 +761,23 @@ msgstr ""
 #, approved
 msgid ""
 "You can also get help over at the <a href=\"http:\\/\\/twinery.org/forum\" "
-"target=\"_blank\">Twine forum</a>, too."
+"target=\"_blank\">Chatbottery forum</a>, too."
 msgstr ""
 "Pomoc můžete také získat na <a href=\"http:\\/\\/twinery.org/forum\" target="
-"\"_blank\">Twine fóru</a>."
+"\"_blank\">Chatbottery fóru</a>."
 
 #: templates/welcomeview.html:35
 #, approved
 msgid ""
-"<strong>If you have used Twine 1 before,</strong> the guide also has details "
+"<strong>If you have used Chatbottery 1 before,</strong> the guide also has details "
 "on what has changed in this version. Chief among them is a new default story "
-"format, Harlowe. But if you find you prefer the Twine 1 scripting syntax, "
+"format, Harlowe. But if you find you prefer the Chatbottery 1 scripting syntax, "
 "try using SugarCube instead."
 msgstr ""
-"<strong>Pokud jste Twine 1 již předtím používali,</strong> najdete v "
+"<strong>Pokud jste Chatbottery 1 již předtím používali,</strong> najdete v "
 "průvodci i popis toho, co bylo v nové verzi změněno. Hlavní změnou je asi "
 "výchozí formát příběhu Harlowe. Pokud ale dáváte přednost skriptovací "
-"syntaxi Twine 1, použijte místo toho SugarCube."
+"syntaxi Chatbottery 1, použijte místo toho SugarCube."
 
 #: templates/welcomeview.html:39 templates/welcomeview.html:63
 #: templates/welcomeviewnw.html:23
@@ -793,11 +793,11 @@ msgstr "Vaše práce je uložena pouze v prohlížeči."
 #: templates/welcomeview.html:51
 #, approved
 msgid ""
-"That means you don't need to create an account to use Twine 2, and "
+"That means you don't need to create an account to use Chatbottery 2, and "
 "everything you create isn't stored on a server somewhere else &mdash; it "
 "stays right in your browser."
 msgstr ""
-"To znamená, že není nutno vytvářet účet pro používání Twine 2 a všechno co "
+"To znamená, že není nutno vytvářet účet pro používání Chatbottery 2 a všechno co "
 "vytvoříte, není ukládáno někam na server &mdash; zůstává to ve vašem "
 "prohlížeči. "
 
@@ -810,7 +810,7 @@ msgid ""
 "i>&nbsp;<strong>Archive</strong> button often. You can also publish "
 "individual stories to files using the <i class=\"fa fa-cog\"></i> menu on "
 "each story in the story list. Both archive and story files can always be re-"
-"imported into Twine."
+"imported into Chatbottery."
 msgstr ""
 "Musíte si zapamatovat dvě <b>velmi důležité</b> věci. Protože je vaše práce "
 "ukládána pouze ve vašem prohlížeči a pokud vyčistíte jeho uložená data, o "
@@ -818,7 +818,7 @@ msgstr ""
 "tlačítko <i class=\"fa fa-briefcase\"></i>&nbsp;<strong>Archiv</strong>. "
 "Můžete také zveřejnit jednotlivé příběhy do souboru s využitím <i class=\"fa "
 "fa-cog\"></i> nabídky na každém příběhu v seznamu příběhů. Jak archiv tak "
-"soubor s příběhem mohou být kdykoliv importovány do Twine."
+"soubor s příběhem mohou být kdykoliv importovány do Chatbottery."
 
 #: templates/welcomeview.html:59
 #, approved
@@ -839,8 +839,8 @@ msgstr "A to je vše!"
 
 #: templates/welcomeview.html:75
 #, approved
-msgid "Thanks for reading, and have fun with Twine."
-msgstr "Děkuji za pozornost a přeji vám mnoho legrace s Twine."
+msgid "Thanks for reading, and have fun with Chatbottery."
+msgstr "Děkuji za pozornost a přeji vám mnoho legrace s Chatbottery."
 
 #: templates/welcomeview.html:79
 #, approved
@@ -855,35 +855,35 @@ msgstr "Vaše práce je automaticky ukládána."
 #: templates/welcomeviewnw.html:11
 #, approved
 msgid ""
-"There's now a folder named Twine in your Documents folder. Inside that is a "
-"Stories folder, where all your work will be saved. Twine saves as you work, "
+"There's now a folder named Chatbottery in your Documents folder. Inside that is a "
+"Stories folder, where all your work will be saved. Chatbottery saves as you work, "
 "so you don't have to worry about remembering to save it yourself. You can "
 "always open the folder your stories are saved to by using the <b>Show "
-"Library</b> item in the <b>Twine</b> menu."
+"Library</b> item in the <b>Chatbottery</b> menu."
 msgstr ""
-"Ve vaší složce dokumentů je nyní složka Twine. Uvnitř je složka s příběhy, "
-"kam se ukládá vaše rozpracovaná práce. Twine vše průběžně ukládá, takže se o "
+"Ve vaší složce dokumentů je nyní složka Chatbottery. Uvnitř je složka s příběhy, "
+"kam se ukládá vaše rozpracovaná práce. Chatbottery vše průběžně ukládá, takže se o "
 "to nemusíte nějak zvlášť starat. Složku s uloženými příběhy můžete kdykoliv "
 "zobrazit s pomocí položky <b>Zobrazit knihovnu</b> z nabídky aplikace "
-"<b>Twine</b>."
+"<b>Chatbottery</b>."
 
 #: templates/welcomeviewnw.html:15
 #, approved
 msgid ""
-"Because Twine is always saving your work, the files in your story library "
-"will be locked from editing while Twine is open."
+"Because Chatbottery is always saving your work, the files in your story library "
+"will be locked from editing while Chatbottery is open."
 msgstr ""
-"Protože Twine vaši práci neustále ukládá, budou všechny soubory ve složce s "
-"příběhy uzamčeny s nemožností zápisu, pokud je Twine otevřeno."
+"Protože Chatbottery vaši práci neustále ukládá, budou všechny soubory ve složce s "
+"příběhy uzamčeny s nemožností zápisu, pokud je Chatbottery otevřeno."
 
 #: templates/welcomeviewnw.html:19
 #, approved
 msgid ""
-"If you'd like to open a Twine story file you received from someone else, you "
+"If you'd like to open a Chatbottery story file you received from someone else, you "
 "can import it into your library using the <i class=\"icon-upload-alt\"></i> "
 "<b>Import From File</b> link in the story list."
 msgstr ""
-"Pokud chcete otevřít soubor s Twine příběhem od někoho jiného, můžete jej "
+"Pokud chcete otevřít soubor s Chatbottery příběhem od někoho jiného, můžete jej "
 "naimportovat do knihovny použitím odkazu <i class=\"icon-upload-alt\"></i> "
 "<b>Importovat ze souboru</b> v seznamu příběhů."
 
@@ -902,8 +902,8 @@ msgstr "Při zveřejnění příběhu se vyskytla chyba. (%s)"
 
 #: js/app.js:314
 #, approved
-msgid "Twine Archive.html"
-msgstr "Twine Archive.html"
+msgid "Chatbottery Archive.html"
+msgstr "Chatbottery Archive.html"
 
 #.    L10n: An internal error. %s is a bad sort criterion.
 #: js/collections/storycollection.js:35
@@ -1028,15 +1028,15 @@ msgstr "/Documents"
 msgid "/My\\ Documents"
 msgstr "/My\\ Documents"
 
-#.    L10n: '/Twine' is a suitable name for Twine-related files to exist
+#.    L10n: '/Chatbottery' is a suitable name for Chatbottery-related files to exist
 #.    under on the user's hard drive. '/Stories' is a suitable name for
 #.    story files specifically. If you need to use a space in this name,
 #.    then it should have two backslashes in front of it. Regardless,
 #.    this must have a single forward slash (/) as its first character.
 #: js/nwui.js:260 js/nwui.js:264
 #, approved
-msgid "/Twine"
-msgstr "/Twine"
+msgid "/Chatbottery"
+msgstr "/Chatbottery"
 
 #: js/nwui.js:260
 #, approved

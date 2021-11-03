@@ -37,7 +37,7 @@ module.exports = () => {
 		},
 		{
 			role: 'help',
-			submenu: [{label: 'Twine Guide', click: openHelp}]
+			submenu: [{label: 'Chatbottery Guide', click: openHelp}]
 		}
 	];
 

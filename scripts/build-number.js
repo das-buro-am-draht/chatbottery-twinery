@@ -16,7 +16,7 @@ const BuildNumber = (module.exports = {
 			JSON.stringify({
 				number: BuildNumber.number,
 				version: twine.version,
-				url: 'https://twinery.org'
+				url: 'https://chatbottery.com'
 			}),
 			{encoding: 'utf8'},
 			() => console.log('Wrote dist/2.json.')

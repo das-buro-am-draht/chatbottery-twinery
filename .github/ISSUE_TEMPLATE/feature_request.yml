@@ -1,5 +1,5 @@
 name: Feature Request
-description: Suggest a feature for Twine
+description: Suggest a feature for Chatbottery
 labels: [enhancement]
 body:
     - type: markdown

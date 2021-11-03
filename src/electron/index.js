@@ -107,7 +107,7 @@ app.on('ready', () => {
 			return updateDataToHydrate();
 		})
 		.then(() => {
-			startupTask = 'setting up the Twine window';
+			startupTask = 'setting up the Chatbottery window';
 			initMenuBar();
 
 			const win = new BrowserWindow(

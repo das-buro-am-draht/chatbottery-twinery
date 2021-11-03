@@ -8,12 +8,12 @@
 			</button>
 		</li>
 		<li>
-			<button class="block" @click="importFile" title="{{ 'Import a published story or Twine archive' | say }}">
+			<button class="block" @click="importFile" title="{{ 'Import a published story or Chatbottery archive' | say }}">
 				<i class="fa fa-upload"></i> {{'Import From File' | say}}
 			</button>
 		</li>
 		<li>
-			<button class="block" @click="saveArchive" title="{{'Save all stories to a Twine archive file' | say }}">
+			<button class="block" @click="saveArchive" title="{{'Save all stories to a Chatbottery archive file' | say }}">
 				<i class="fa fa-briefcase"></i> {{ 'Archive' | say}}
 			</button>
 		</li>
@@ -23,7 +23,7 @@
 			</button>
 		</li>
 		<li>
-			<button class="block" @click="showLocale" title="{{'Change the language Twine uses' | say }}">
+			<button class="block" @click="showLocale" title="{{'Change the language Chatbottery uses' | say }}">
 				<i class="fa fa-comment-o"></i> {{ 'Language' | say }}
 			</button>
 		</li>
@@ -43,10 +43,11 @@
 			<quota-gauge></quota-gauge>
 		</p>
 
-		<p>
+		<p>{{'Version' | say }} <span>{{ appInfo.version }}</span></p>
+		<!-- <p>
 			{{'version' | say }} <button class="link" @click="showAbout">{{ appInfo.version }}</button>
 			<br>
 			<a href="https://twinery.org/2bugs" target="_blank"><i class="fa fa-bug"></i> {{'Report a bug' | say }}</a>
-		</p>
+		</p> -->
 	</footer>
 </nav>

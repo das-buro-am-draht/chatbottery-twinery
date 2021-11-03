@@ -20,8 +20,8 @@ msgstr ""
 "X-Poedit-Bookmarks: -1,131,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: templates/localeview.html:4
-msgid "Please choose which language you would like to use with Twine."
-msgstr "Lütfen, Twine için kullanmak istediğiniz dili seçin."
+msgid "Please choose which language you would like to use with Chatbottery."
+msgstr "Lütfen, Chatbottery için kullanmak istediğiniz dili seçin."
 
 #: templates/localeview.html:12
 msgid "English"
@@ -331,36 +331,36 @@ msgid "Set this format as default for stories"
 msgstr "Öyküler için bu biçimi varsayılan yap"
 
 #: templates/storylistview/modals/aboutmodal.html:8
-msgid "About Twine"
-msgstr "Twine Hakkında"
+msgid "About Chatbottery"
+msgstr "Chatbottery Hakkında"
 
-#. L10n: This is the noun form, to describe a version of the software. e.g. 'I am using Twine build 123'
+#. L10n: This is the noun form, to describe a version of the software. e.g. 'I am using Chatbottery build 123'
 #: templates/storylistview/modals/aboutmodal.html:14
 msgid "Build"
 msgstr "Yapım"
 
 #: templates/storylistview/modals/aboutmodal.html:21
 msgid ""
-"Twine is an open-source tool for telling interactive, nonlinear stories."
+"Chatbottery is an open-source tool for telling interactive, nonlinear stories."
 msgstr ""
-"Twine, kullanıcı etkileşimli ve örgülü hikayeler anlatmaya yarayan açık "
+"Chatbottery, kullanıcı etkileşimli ve örgülü hikayeler anlatmaya yarayan açık "
 "kaynaklı bir araçtır."
 
 #: templates/storylistview/modals/aboutmodal.html:25
 msgid ""
-"Twine 2.0 is released under the <a href=\"http:\\/\\/www.gnu.org/licenses/"
+"Chatbottery 2.0 is released under the <a href=\"http:\\/\\/www.gnu.org/licenses/"
 "gpl-3.0.html\">GPL v3</a> license, but any work created with it may be "
 "released under any terms, including commercial ones. <a href=\"https:\\/\\/"
 "bitbucket.org/klembot/twinejs\">Source Code Repository</a>"
 msgstr ""
-"Twine 2 <a href=\"http:\\/\\/www.gnu.org/licenses/gpl-3.0.html\">GPL v3</a> "
+"Chatbottery 2 <a href=\"http:\\/\\/www.gnu.org/licenses/gpl-3.0.html\">GPL v3</a> "
 "lisansı ile piyasaya sürülmüştür, fakat bu araçla yaratılan her eser (ticari "
 "eserler dahil) istenilen her koşulla yayımlanabilir. <a href=\"https:\\/\\/"
 "bitbucket.org/klembot/twinejs\">Kaynak Kod Deposu</a>"
 
 #: templates/storylistview/modals/aboutmodal.html:31
-msgid "Help Twine Grow With A Donation"
-msgstr "Twine'ın Büyümesine Bağış Yaparak Katkıda Bulunun"
+msgid "Help Chatbottery Grow With A Donation"
+msgstr "Chatbottery'ın Büyümesine Bağış Yaparak Katkıda Bulunun"
 
 # As this is only used for the about screen, I added "authors" to make it less vague for Turkish users.
 #. L10n: This is the noun form, as program code.
@@ -409,8 +409,8 @@ msgstr "Noun Projesinden Jelio Dimitrov tarafından tasarlanan Smile"
 #. L10n: The <span> will have a version number, i.e. 2.0.6, interpolated into it.
 #: templates/storylistview/modals/appupdatemodal.html:10
 msgid ""
-"A new version of Twine, <span class=\"version\"></span>, has been released."
-msgstr "Yeni bir Twine sürümü, <span class=\"version\"></span>, mevcut."
+"A new version of Chatbottery, <span class=\"version\"></span>, has been released."
+msgstr "Yeni bir Chatbottery sürümü, <span class=\"version\"></span>, mevcut."
 
 #. L10n: A polite rejection of a request, in the sense that the answer may change in the future.
 #: templates/storylistview/modals/appupdatemodal.html:18
@@ -423,17 +423,17 @@ msgstr "İndir"
 
 #: templates/storylistview/modals/donatemodal.html:6
 msgid ""
-"If you love Twine as much as I do, please consider helping it grow with a "
-"donation. Twine is as an open source project that will always be free to use "
-"&mdash; and with your help, Twine will continue to thrive."
+"If you love Chatbottery as much as I do, please consider helping it grow with a "
+"donation. Chatbottery is as an open source project that will always be free to use "
+"&mdash; and with your help, Chatbottery will continue to thrive."
 msgstr ""
-"Twine'ı benim sevdiğim kadar sevdiyseniz, lütfen bağışta bulunarak "
-"büyümesine yardımcı olun. Twine açık kaynaklı bir projedir ve kullanması her "
-"zaman bedava olacaktır. Ve yardımınızla Twine yaşamaya devam edecektir."
+"Chatbottery'ı benim sevdiğim kadar sevdiyseniz, lütfen bağışta bulunarak "
+"büyümesine yardımcı olun. Chatbottery açık kaynaklı bir projedir ve kullanması her "
+"zaman bedava olacaktır. Ve yardımınızla Chatbottery yaşamaya devam edecektir."
 
 #: templates/storylistview/modals/donatemodal.html:10
-msgid "Chris Klimas, Twine creator"
-msgstr "Twine'ın yaratıcısı, Chris Klimas"
+msgid "Chris Klimas, Chatbottery creator"
+msgstr "Chatbottery'ın yaratıcısı, Chris Klimas"
 
 #: templates/storylistview/modals/donatemodal.html:16
 msgid "Donate"
@@ -501,8 +501,8 @@ msgid "Delete Story"
 msgstr "Öyküyü Sil"
 
 #: templates/storylistview/storylistview.html:5
-msgid "Twine"
-msgstr "Twine"
+msgid "Chatbottery"
+msgstr "Chatbottery"
 
 #: templates/storylistview/storylistview.html:9
 msgid "Create a brand-new story"
@@ -517,8 +517,8 @@ msgid "What should your story be named?<br>(You can change this later.)"
 msgstr "Öykünün adını ne koymak istersiniz?<br>(Sonra değiştirebilirsiniz.)"
 
 #: templates/storylistview/storylistview.html:34
-msgid "Import a published story or Twine archive"
-msgstr "Yayımlanmış bir öyküyü veya Twine arşivini içe aktar"
+msgid "Import a published story or Chatbottery archive"
+msgstr "Yayımlanmış bir öyküyü veya Chatbottery arşivini içe aktar"
 
 #: templates/storylistview/storylistview.html:35
 msgid "Import From File"
@@ -533,8 +533,8 @@ msgid "Importing..."
 msgstr "İçe Aktarılıyor..."
 
 #: templates/storylistview/storylistview.html:67
-msgid "Save all stories to a Twine archive file"
-msgstr "Bütün öyküleri bir Twine arşiv dosyasına kaydet"
+msgid "Save all stories to a Chatbottery archive file"
+msgstr "Bütün öyküleri bir Chatbottery arşiv dosyasına kaydet"
 
 #: templates/storylistview/storylistview.html:68
 msgid "Archive"
@@ -549,8 +549,8 @@ msgid "Formats"
 msgstr "Biçimler"
 
 #: templates/storylistview/storylistview.html:79
-msgid "Change the language Twine uses"
-msgstr "Twine'ın kullandığı dili değiştirin"
+msgid "Change the language Chatbottery uses"
+msgstr "Chatbottery'ın kullandığı dili değiştirin"
 
 #: templates/storylistview/storylistview.html:80
 msgid "Language"
@@ -598,10 +598,10 @@ msgstr "Ad"
 
 #: templates/storylistview/storylistview.html:128
 msgid ""
-"There are no stories saved in Twine right now. To get started, you can "
+"There are no stories saved in Chatbottery right now. To get started, you can "
 "either create a new story or import an existing one from a file."
 msgstr ""
-"Şu an Twine'da kayıtlı hiçbir öykü yok. Başlamak için yeni bir öykü yaratın "
+"Şu an Chatbottery'da kayıtlı hiçbir öykü yok. Başlamak için yeni bir öykü yaratın "
 "veya var olan bir öyküyü içe aktarın."
 
 #: templates/welcomeview.html:6
@@ -610,10 +610,10 @@ msgstr "Merhaba!"
 
 #: templates/welcomeview.html:10
 msgid ""
-"Twine is an open-source tool for telling interactive, nonlinear stories. "
+"Chatbottery is an open-source tool for telling interactive, nonlinear stories. "
 "There are a few things you should know before you get started."
 msgstr ""
-"Twine, kullanıcı etkileşimli ve örgülü hikayeler anlatmaya yarayan açık "
+"Chatbottery, kullanıcı etkileşimli ve örgülü hikayeler anlatmaya yarayan açık "
 "kaynaklı bir araçtır. Başlamadan önce bilmeniz gereken birkaç şey var."
 
 #: templates/welcomeview.html:14
@@ -630,37 +630,37 @@ msgstr "Yeni misiniz?"
 
 #: templates/welcomeview.html:27
 msgid ""
-"<strong>If you've never used Twine before,</strong> then welcome! The <a "
-"href=\"http:\\/\\/twinery.org/2guide\" target=\"_blank\">Twine 2 Guide</a> "
+"<strong>If you've never used Chatbottery before,</strong> then welcome! The <a "
+"href=\"http:\\/\\/twinery.org/2guide\" target=\"_blank\">Chatbottery 2 Guide</a> "
 "and the official wiki in general, are a great place to learn. Keep in mind "
-"that some articles on the wiki at large were written for Twine 1, which is a "
+"that some articles on the wiki at large were written for Chatbottery 1, which is a "
 "little bit different than this version. But most of the concepts are the "
 "same."
 msgstr ""
-"<strong>Eğer daha önce Twine'ı kullanmadıysanız</strong> hoş geldiniz. <a "
-"href=\"http:\\/\\/twinery.org/2guide\" target=\"_blank\">Twine 2 Rehberi</a> "
-"ve resmi wiki sayfası genelde öğrenmek için iyidir. Bazı makalelerin Twine 1 "
+"<strong>Eğer daha önce Chatbottery'ı kullanmadıysanız</strong> hoş geldiniz. <a "
+"href=\"http:\\/\\/twinery.org/2guide\" target=\"_blank\">Chatbottery 2 Rehberi</a> "
+"ve resmi wiki sayfası genelde öğrenmek için iyidir. Bazı makalelerin Chatbottery 1 "
 "için yazıldığını aklınızda bulundurun, çünkü o sürüm bu sürümden biraz "
 "farklı. Fakat çoğu konsept aynı."
 
 #: templates/welcomeview.html:31
 msgid ""
 "You can also get help over at the <a href=\"http:\\/\\/twinery.org/forum\" "
-"target=\"_blank\">Twine forum</a>, too."
+"target=\"_blank\">Chatbottery forum</a>, too."
 msgstr ""
-"<a href=\"http:\\/\\/twinery.org/forum\" target=\"_blank\">Twine Forumu</"
+"<a href=\"http:\\/\\/twinery.org/forum\" target=\"_blank\">Chatbottery Forumu</"
 "a>'dan da yardım alabilirsiniz."
 
 #: templates/welcomeview.html:35
 msgid ""
-"<strong>If you have used Twine 1 before,</strong> the guide also has details "
+"<strong>If you have used Chatbottery 1 before,</strong> the guide also has details "
 "on what has changed in this version. Chief among them is a new default story "
-"format, Harlowe. But if you find you prefer the Twine 1 scripting syntax, "
+"format, Harlowe. But if you find you prefer the Chatbottery 1 scripting syntax, "
 "try using SugarCube instead."
 msgstr ""
-"<strong>Eğer Twine 1'ı daha önce kullandıysanız,</strong> rehberde bu "
+"<strong>Eğer Chatbottery 1'ı daha önce kullandıysanız,</strong> rehberde bu "
 "sürümde değişen detaylar da var. En önemli değişiklik yeni bir öykü biçimi "
-"var, Harlowe. Eğer Twine 1 kod biçimini tercih ediyorsanız SugarCube'u "
+"var, Harlowe. Eğer Chatbottery 1 kod biçimini tercih ediyorsanız SugarCube'u "
 "deneyin."
 
 #: templates/welcomeview.html:39 templates/welcomeview.html:63
@@ -674,11 +674,11 @@ msgstr "Eserleriniz sadece internet tarayıcınıza kaydedilir."
 
 #: templates/welcomeview.html:51
 msgid ""
-"That means you don't need to create an account to use Twine 2, and "
+"That means you don't need to create an account to use Chatbottery 2, and "
 "everything you create isn't stored on a server somewhere else &mdash; it "
 "stays right in your browser."
 msgstr ""
-"Bu, Twine 2'yi kullanmak için bir hesap oluşturmanız gerekmemektedir; ve "
+"Bu, Chatbottery 2'yi kullanmak için bir hesap oluşturmanız gerekmemektedir; ve "
 "yarattığınız hiçbir şey bir sunucuda saklanmamaktadır, internet "
 "tarayıcınızda kalır."
 
@@ -690,14 +690,14 @@ msgid ""
 "i>&nbsp;<strong>Archive</strong> button often. You can also publish "
 "individual stories to files using the <i class=\"fa fa-cog\"></i> menu on "
 "each story in the story list. Both archive and story files can always be re-"
-"imported into Twine."
+"imported into Chatbottery."
 msgstr ""
 "Hatırlamanız gereken <b>çok önemli iki</b> şey var. Öyküleriniz sadece "
 "tarayıcınızda kaydedildiği için kayıtlarını silerseniz bütün çalışmalarınızı "
 "kaybedersiniz. Bu iyi değil elbette. <i class=\"fa fa-briefcase\"></i>&nbsp;"
 "<strong>Arşiv</strong> düğmesini sık sık kullanmayı unutmayın. Ayrıca "
 "öykülerinizi <i class=\"fa fa-cog\"></i> menüsünü kullanarak "
-"yayımlayabilirsiniz. Arşiv ve öykü dosyalarını Twine'a içe aktarabilirsiniz."
+"yayımlayabilirsiniz. Arşiv ve öykü dosyalarını Chatbottery'a içe aktarabilirsiniz."
 
 #: templates/welcomeview.html:59
 msgid ""
@@ -714,8 +714,8 @@ msgid "That's it!"
 msgstr "Tamamdır!"
 
 #: templates/welcomeview.html:75
-msgid "Thanks for reading, and have fun with Twine."
-msgstr "Okuduğunuz için teşekkürler, Twine'ı güle güle kullanın."
+msgid "Thanks for reading, and have fun with Chatbottery."
+msgstr "Okuduğunuz için teşekkürler, Chatbottery'ı güle güle kullanın."
 
 #: templates/welcomeview.html:79
 msgid "Go to the Story List"
@@ -728,33 +728,33 @@ msgstr "Çalışmalarınız otomatik olarak kaydedilir."
 # Are the folders localized?
 #: templates/welcomeviewnw.html:11
 msgid ""
-"There's now a folder named Twine in your Documents folder. Inside that is a "
-"Stories folder, where all your work will be saved. Twine saves as you work, "
+"There's now a folder named Chatbottery in your Documents folder. Inside that is a "
+"Stories folder, where all your work will be saved. Chatbottery saves as you work, "
 "so you don't have to worry about remembering to save it yourself. You can "
 "always open the folder your stories are saved to by using the <b>Show "
-"Library</b> item in the <b>Twine</b> menu."
+"Library</b> item in the <b>Chatbottery</b> menu."
 msgstr ""
-"Artık \"Belgelerim\" dosyasında Twine adlı bir dosya var. Onun içinde "
-"Öyküler dosyası var, orada bütün çalışmalarınız kaydedilir.. Twine "
+"Artık \"Belgelerim\" dosyasında Chatbottery adlı bir dosya var. Onun içinde "
+"Öyküler dosyası var, orada bütün çalışmalarınız kaydedilir.. Chatbottery "
 "öykülerinizi otomatik olarak kaydeder, bu yüzden kaydetmeyi hatırlamanız "
-"gerekmez. Öykülerinizin kaydedildiği dosyayı her an görmek için <b>Twine</b> "
+"gerekmez. Öykülerinizin kaydedildiği dosyayı her an görmek için <b>Chatbottery</b> "
 "menüsünden <b>Kütüphaneyi Göster</b> düğmesine basabilirsiniz."
 
 #: templates/welcomeviewnw.html:15
 msgid ""
-"Because Twine is always saving your work, the files in your story library "
-"will be locked from editing while Twine is open."
+"Because Chatbottery is always saving your work, the files in your story library "
+"will be locked from editing while Chatbottery is open."
 msgstr ""
-"Twine hikayelerinizi sürekli kaydettiği için kütüphanedeki bütün dosyalar "
-"Twine açık olduğu sürece kilitli olacaktır."
+"Chatbottery hikayelerinizi sürekli kaydettiği için kütüphanedeki bütün dosyalar "
+"Chatbottery açık olduğu sürece kilitli olacaktır."
 
 #: templates/welcomeviewnw.html:19
 msgid ""
-"If you'd like to open a Twine story file you received from someone else, you "
+"If you'd like to open a Chatbottery story file you received from someone else, you "
 "can import it into your library using the <i class=\"icon-upload-alt\"></i> "
 "<b>Import From File</b> link in the story list."
 msgstr ""
-"Eğer başkasından aldığınız bir Twine öyküsünü açmak isterseniz <i class="
+"Eğer başkasından aldığınız bir Chatbottery öyküsünü açmak isterseniz <i class="
 "\"icon-upload-alt\"></i> <b>Dosyadan İçe Aktar</b> düğmesiyle öyküyü içe "
 "aktarabilirsiniz."
 
@@ -770,8 +770,8 @@ msgid "An error occurred while publishing your story. (%s)"
 msgstr "Öykünüz yayımlanırken bir hata oluştu. (%s)"
 
 #: js/app.js:314
-msgid "Twine Archive.html"
-msgstr "Twine Arşivi.html"
+msgid "Chatbottery Archive.html"
+msgstr "Chatbottery Arşivi.html"
 
 #. L10n: An internal error. %s is a bad sort criterion.
 #: js/collections/storycollection.js:35
@@ -876,14 +876,14 @@ msgstr "/Belgeler"
 msgid "/My\\ Documents"
 msgstr "/Belgelerim"
 
-#. L10n: '/Twine' is a suitable name for Twine-related files to exist
+#. L10n: '/Chatbottery' is a suitable name for Chatbottery-related files to exist
 #. under on the user's hard drive. '/Stories' is a suitable name for
 #. story files specifically. If you need to use a space in this name,
 #. then it should have two backslashes in front of it. Regardless,
 #. this must have a single forward slash (/) as its first character.
 #: js/nwui.js:260 js/nwui.js:264
-msgid "/Twine"
-msgstr "/Twine"
+msgid "/Chatbottery"
+msgstr "/Chatbottery"
 
 #: js/nwui.js:260
 msgid "/Stories"

@@ -1,5 +1,5 @@
 /*
-A function that checks for an update to Twine, and displays a confirm dialog
+A function that checks for an update to Chatbottery, and displays a confirm dialog
 asking the user to download it.
 */
 
@@ -9,7 +9,7 @@ const locale = require('../../locale');
 const { setPref } = require('../../data/actions/pref');
 
 /*
-How often we check for a new version of Twine, in milliseconds. This is
+How often we check for a new version of Chatbottery, in milliseconds. This is
 currently one day.
 */
 
@@ -43,7 +43,7 @@ module.exports = {
 							L10n: The <span> will have a version number, i.e.
 							2.0.6, interpolated into it.
 							*/
-							locale.say('A new version of Twine, <span class="version"></span>, has been released.').replace('><', '>' + version + '<'),
+							locale.say('A new version of Chatbottery, <span class="version"></span>, has been released.').replace('><', '>' + version + '<'),
 
 						buttonLabel:
 							'<i class="fa fa-download"></i>' +

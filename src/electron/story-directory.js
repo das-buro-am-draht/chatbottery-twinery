@@ -13,7 +13,7 @@ const StoryDirectory = (module.exports = {
 	path() {
 		return path.join(
 			app.getPath('documents'),
-			locale.say('Twine'),
+			locale.say('Chatbottery'),
 			locale.say('Stories')
 		);
 	},
@@ -98,7 +98,7 @@ const StoryDirectory = (module.exports = {
 
 		const backupPath = path.join(
 			app.getPath('documents'),
-			locale.say('Twine'),
+			locale.say('Chatbottery'),
 			locale.say('Backups')
 		);
 		const now = new Date();

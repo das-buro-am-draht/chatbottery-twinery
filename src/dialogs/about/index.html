@@ -1,8 +1,8 @@
 <modal-dialog id="aboutDialog" :origin="origin">
-	<span slot="title">{{ 'About Twine' | say }} {{ appInfo.version }}</span>
+	<span slot="title">{{ 'About Chatbottery' | say }} {{ appInfo.version }}</span>
 
 	<p>
-		{{ 'Twine is an open-source tool for telling interactive, nonlinear
+		{{ 'Chatbottery is an open-source tool for telling interactive, nonlinear
 		stories.' | say }}
 	</p>
 
@@ -15,14 +15,14 @@
 
 	<p>
 		{{ /* L10n: This is the noun form, to describe a version of the
-		software. e.g. 'I am using Twine build 123' */ 'Build' | say }} {{
+		software. e.g. 'I am using Chatbottery build 123' */ 'Build' | say }} {{
 		appInfo.buildNumber }}
 	</p>
 
 	<p>
 		<a href="http://twinery.org/donate" class="button primary">
 			<i class="fa fa-heart-o"></i>
-			{{ 'Help Twine Grow With A Donation' | say }}
+			{{ 'Help Chatbottery Grow With A Donation' | say }}
 		</a>
 	</p>
 

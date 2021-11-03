@@ -13,12 +13,12 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/dialogs/about/index.html
-msgid "About Twine"
-msgstr "关于 Twine"
+msgid "About Chatbottery"
+msgstr "关于 Chatbottery"
 
 #: src/dialogs/about/index.html
 msgid ""
-"Twine is an open-source tool for telling interactive, nonlinear stories."
+"Chatbottery is an open-source tool for telling interactive, nonlinear stories."
 msgstr "Twine是一个用于创作互动的非线性故事的开源工具."
 
 #: src/dialogs/about/index.html
@@ -32,7 +32,7 @@ msgstr ""
 "括商业应用程序。"
 
 #: src/dialogs/about/index.html
-msgid "Help Twine Grow With A Donation"
+msgid "Help Chatbottery Grow With A Donation"
 msgstr "通过捐赠帮助Twine开发"
 
 #: src/dialogs/about/index.html
@@ -77,16 +77,16 @@ msgstr ""
 
 #: src/dialogs/app-donation/index.html
 msgid ""
-"If you love Twine as much as I do, please consider helping it grow with a "
-"donation. Twine is an open source project that will always be free to use "
-"&mdash; and with your help, Twine will continue to thrive."
+"If you love Chatbottery as much as I do, please consider helping it grow with a "
+"donation. Chatbottery is an open source project that will always be free to use "
+"&mdash; and with your help, Chatbottery will continue to thrive."
 msgstr ""
 "如果你像我一样热爱Twine，请考虑通过捐赠帮助它成长。 Twine是一个永远免费使用的"
 "开源项目，在你的帮助下，Twine将继续蓬勃发展。"
 
 #: src/dialogs/app-donation/index.html
-msgid "Chris Klimas, Twine creator"
-msgstr "Chris Klimas, Twine 创作者"
+msgid "Chris Klimas, Chatbottery creator"
+msgstr "Chris Klimas, Chatbottery 创作者"
 
 #: src/dialogs/app-donation/index.html
 msgid "No Thanks"
@@ -99,7 +99,7 @@ msgstr "捐赠"
 #: src/dialogs/app-donation/index.html
 msgid ""
 "This message will only be shown to you once.&lt;br&gt;If you'd like to "
-"donate to Twine development in the future, you can do so at &lt;a href=\\"
+"donate to Chatbottery development in the future, you can do so at &lt;a href=\\"
 "\"http:\\/\\/twinery.org/donate\\\" target=\\\"_blank\\\"&gt;http://twinery."
 "org/donate&lt;/a&gt;."
 msgstr ""
@@ -257,7 +257,7 @@ msgid ""
 msgstr "这里输入的任何CSS都会覆盖故事的默认外观。"
 
 #: src/locale/view/index.html
-msgid "Please choose which language you would like to use with Twine."
+msgid "Please choose which language you would like to use with Chatbottery."
 msgstr "请选择您想要使用的语言。"
 
 #: src/nw/patches/welcome-view/replacement-template.html src/welcome/index.html
@@ -266,7 +266,7 @@ msgstr "(｡･∀･)ﾉﾞ嗨！"
 
 #: src/nw/patches/welcome-view/replacement-template.html src/welcome/index.html
 msgid ""
-"Twine is an open-source tool for telling interactive, nonlinear stories. "
+"Chatbottery is an open-source tool for telling interactive, nonlinear stories. "
 "There are a few things you should know before you get started."
 msgstr ""
 "Twine是一个开源的工具，用于展示互动的非线性故事。 在开始之前，你应该了解一些"
@@ -286,23 +286,23 @@ msgstr "新来的？"
 
 #: src/nw/patches/welcome-view/replacement-template.html
 msgid ""
-"&lt;strong&gt;If you've never used Twine before,&lt;/strong&gt; then "
+"&lt;strong&gt;If you've never used Chatbottery before,&lt;/strong&gt; then "
 "welcome! The &lt;a href=\\\"http://twinery.org/2guide\\\" target=\\\"_blank\\"
-"\"&gt;Twine 2 Guide&lt;/a&gt; and the official wiki in general, are a great "
+"\"&gt;Chatbottery 2 Guide&lt;/a&gt; and the official wiki in general, are a great "
 "place to learn. Keep in mind that some articles on the wiki at large were "
-"written for Twine 1, which is a little bit different than this version. But "
+"written for Chatbottery 1, which is a little bit different than this version. But "
 "most of the concepts are the same."
 msgstr ""
 "&lt;strong&gt;如果你以前从未使用过Twine，,&lt;/strong&gt; 那么欢迎使用！ 一般"
 "来说，&lt;a href=\\\"http://twinery.org/2guide\\\" target=\\\"_blank\\\"&gt;"
-"Twine 2 指南&lt;/a&gt;和官方wiki是学习的好地方。 请记住，维基上的一些文章是为"
-"Twine 1编写的，与这个版本有点不同。 但大部分概念都是一样的。"
+"Chatbottery 2 指南&lt;/a&gt;和官方wiki是学习的好地方。 请记住，维基上的一些文章是为"
+"Chatbottery 1编写的，与这个版本有点不同。 但大部分概念都是一样的。"
 
 #: src/nw/patches/welcome-view/replacement-template.html src/welcome/index.html
 msgid ""
-"&lt;strong&gt;If you have used Twine 1 before,&lt;/strong&gt; the guide also "
+"&lt;strong&gt;If you have used Chatbottery 1 before,&lt;/strong&gt; the guide also "
 "has details on what has changed in this version. Chief among them is a new "
-"default story format, Harlowe. But if you find you prefer the Twine 1 "
+"default story format, Harlowe. But if you find you prefer the Chatbottery 1 "
 "scripting syntax, try using SugarCube instead."
 msgstr ""
 "&lt;strong&gt;如果您之前使用过Twine 1，&lt;/strong&gt;s本指南还提供了有关此版"
@@ -320,23 +320,23 @@ msgstr "您的作品将自动保存。"
 
 #: src/nw/patches/welcome-view/replacement-template.html
 msgid ""
-"There's now a folder named Twine in your Documents folder. Inside that is a "
-"Stories folder, where all your work will be saved. Twine saves as you work, "
+"There's now a folder named Chatbottery in your Documents folder. Inside that is a "
+"Stories folder, where all your work will be saved. Chatbottery saves as you work, "
 "so you don't have to worry about remembering to save it yourself. You can "
 "always open the folder your stories are saved to by using the &lt;b&gt;Show "
-"Library&lt;/b&gt; item in the &lt;b&gt;Twine&lt;/b&gt; menu."
+"Library&lt;/b&gt; item in the &lt;b&gt;Chatbottery&lt;/b&gt; menu."
 msgstr ""
-"您的 Documents 文件夹中现在有一个名为 Twine 的文件夹。 里面是一个故事文件夹，"
-"所有的作品都将被保存。 Twine  自动为你保存作品，所以你不必担心自己忘记保存。 "
+"您的 Documents 文件夹中现在有一个名为 Chatbottery 的文件夹。 里面是一个故事文件夹，"
+"所有的作品都将被保存。 Chatbottery  自动为你保存作品，所以你不必担心自己忘记保存。 "
 "您可以随时使用 &lt;b&gtTwine&lt;/b&gt;菜单上的&lt;b&gt;打开故事库&lt;/b&gt;"
 "项，来打开您的故事库文件夹。"
 
 #: src/nw/patches/welcome-view/replacement-template.html
 msgid ""
-"Because Twine is always saving your work, the files in your story library "
-"will be locked from editing while Twine is open."
+"Because Chatbottery is always saving your work, the files in your story library "
+"will be locked from editing while Chatbottery is open."
 msgstr ""
-"由于 Twine 始终保存您的作品，因此在 Twine 打开时，故事库中的文件将被锁定而无"
+"由于 Chatbottery 始终保存您的作品，因此在 Chatbottery 打开时，故事库中的文件将被锁定而无"
 "法编辑。"
 
 #: src/nw/patches/welcome-view/replacement-template.html src/welcome/index.html
@@ -344,8 +344,8 @@ msgid "That's it!"
 msgstr "就是这样！"
 
 #: src/nw/patches/welcome-view/replacement-template.html src/welcome/index.html
-msgid "Thanks for reading, and have fun with Twine."
-msgstr "感谢您的阅读，希望 使用 Twine 愉快！"
+msgid "Thanks for reading, and have fun with Chatbottery."
+msgstr "感谢您的阅读，希望 使用 Chatbottery 愉快！"
 
 #: src/nw/patches/welcome-view/replacement-template.html src/welcome/index.html
 msgid "Go to the Story List"
@@ -437,15 +437,15 @@ msgstr "名称"
 
 #: src/story-list-view/index.html
 msgid ""
-"There are no stories saved in Twine right now. To get started, you can "
+"There are no stories saved in Chatbottery right now. To get started, you can "
 "either create a new story or import an existing one from a file."
 msgstr ""
-"在 Twine 中没有保存的故事。您可以创建一个新故事或从文件导入现有的故事。"
+"在 Chatbottery 中没有保存的故事。您可以创建一个新故事或从文件导入现有的故事。"
 
 #: src/story-list-view/list-toolbar/index.html src/nw/directories.js:69
 #: src/nw/menus.js:17 src/nw/menus.js:39
-msgid "Twine"
-msgstr "Twine"
+msgid "Chatbottery"
+msgstr "Chatbottery"
 
 #: src/story-list-view/list-toolbar/index.html
 msgid "Story"
@@ -493,17 +493,17 @@ msgstr "删除故事"
 
 #: src/welcome/index.html
 msgid ""
-"&lt;strong&gt;If you've never used Twine before,&lt;/strong&gt; then "
+"&lt;strong&gt;If you've never used Chatbottery before,&lt;/strong&gt; then "
 "welcome! The &lt;a href=\\\"http://twinery.org/2guide\\\" target=\\\"_blank\\"
-"\"&gt;Twine 2 Guide&lt;/a&gt; and the official wiki in general, are a great "
+"\"&gt;Chatbottery 2 Guide&lt;/a&gt; and the official wiki in general, are a great "
 "place to learn. Keep in mind that some articles on the wiki at larger were "
-"written for Twine 1, which is a little bit different than this version. But "
+"written for Chatbottery 1, which is a little bit different than this version. But "
 "most of the concepts are the same."
 msgstr ""
 "&lt;strong&gt;如果你以前从未使用过Twine，,&lt;/strong&gt; 那么欢迎使用！ 一般"
 "来说，&lt;a href=\\\"http://twinery.org/2guide\\\" target=\\\"_blank\\\"&gt;"
-"Twine 2 指南&lt;/a&gt;和官方wiki是学习的好地方。 请记住，维基上的一些文章是为"
-"Twine 1编写的，与这个版本有点不同。 但大部分概念都是一样的。"
+"Chatbottery 2 指南&lt;/a&gt;和官方wiki是学习的好地方。 请记住，维基上的一些文章是为"
+"Chatbottery 1编写的，与这个版本有点不同。 但大部分概念都是一样的。"
 
 #: src/welcome/index.html
 msgid "Your work is saved only in your browser."
@@ -511,7 +511,7 @@ msgstr "您的作品仅保存在浏览器中。"
 
 #: src/welcome/index.html
 msgid ""
-"That means you don't need to create an account to use Twine 2, and "
+"That means you don't need to create an account to use Chatbottery 2, and "
 "everything you create isn't stored on a server somewhere else &mdash; it "
 "stays right in your browser."
 msgstr ""
@@ -526,14 +526,14 @@ msgid ""
 "briefcase\\\"&gt;&lt;/i&gt;&nbsp;&lt;strong&gt;Archive&lt;/strong&gt; button "
 "often. You can also publish individual stories to files using the &lt;i "
 "class=\\\"fa fa-cog\\\"&gt;&lt;/i&gt; menu on each story in the story list. "
-"Both archive and story files can always be re-imported into Twine."
+"Both archive and story files can always be re-imported into Chatbottery."
 msgstr ""
 "不过，要记住两件&lt;b&gt;非常重要&lt;/b&gt;的事情。 由于您的作品仅保存在您的"
 "浏览器中，因此如果您清除了保存的数据，那么您将失去作品！ 不好。 请记住经常使"
 "用&lt;i class=\\\"fa fa-briefcase\\\"&gt;&lt;/i&gt;&nbsp;&lt;strong&gt;存档"
 "&lt;/strong&gt;按钮。 您还可以使用故事列表中每个故事的&lt;i class=\\\"fa fa-"
 "cog\\\"&gt;&lt;/i&gt; 菜单将单个故事发布到文件。 档案和故事文件都可以重新导入"
-"到 Twine 中。"
+"到 Chatbottery 中。"
 
 #: src/welcome/index.html
 msgid ""
@@ -585,8 +585,8 @@ msgstr "双击该段落进行编辑。"
 #. L10n: The <span> will have a version number, i.e. 2.0.6, interpolated into it.
 #: src/dialogs/app-update/index.js:46
 msgid ""
-"A new version of Twine, <span class=\"version\"></span>, has been released."
-msgstr "Twine 的新版本已发布，<span class=\"version\"></span>，请重新下载。"
+"A new version of Chatbottery, <span class=\"version\"></span>, has been released."
+msgstr "Chatbottery 的新版本已发布，<span class=\"version\"></span>，请重新下载。"
 
 #: src/dialogs/app-update/index.js:50
 msgid "Download"
@@ -775,8 +775,8 @@ msgid "A story with this name already exists."
 msgstr "这个名字的故事已经存在。"
 
 #: src/story-list-view/list-toolbar/index.js:65
-msgid "Twine Archive.html"
-msgstr "Twine Archive.html"
+msgid "Chatbottery Archive.html"
+msgstr "Chatbottery Archive.html"
 
 #: src/story-list-view/story-item/item-menu/index.js:87
 msgid "Delete Forever"

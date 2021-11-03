@@ -64,7 +64,7 @@ module.exports = Vue.extend({
 
 			saveFile(
 				publishArchive(this.existingStories, this.appInfo),
-				`${timestamp} ${locale.say('Twine Archive.html')}`
+				`${timestamp} ${locale.say('Chatbottery Archive.html')}`
 			);
 		},
 

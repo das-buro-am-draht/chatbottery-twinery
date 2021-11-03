@@ -1,14 +1,14 @@
 name: Bug Report
-description: Report a problem occurring in Twine
+description: Report a problem occurring in Chatbottery
 labels: [bug]
 body:
     - type: markdown
       attributes:
           value: |
-              Sorry to hear you are having problems with Twine!
+              Sorry to hear you are having problems with Chatbottery!
 
-                - Issues in this repository are for tracking problems with the Twine application. "How do I?" type questions are better answered on community resources like the Intfiction.org forums, Reddit, or Discord.
-                - If you are having problems with your Twine story when it is being played, then you should report the problem with the story format you are using, not here.
+                - Issues in this repository are for tracking problems with the Chatbottery application. "How do I?" type questions are better answered on community resources like the Intfiction.org forums, Reddit, or Discord.
+                - If you are having problems with your Chatbottery story when it is being played, then you should report the problem with the story format you are using, not here.
                 - In order for your issue to be addressed, someone else will need to be able to cause the bug to occur on their own computer in a predictable fashion. Otherwise, it will be impossible to tell if it was actually fixed when it's worked on. Please be as detailed as you can in your description below.
                 - Usually, new issues are reviewed around once a month. It may take longer.
                 - If work begins on your bug report, it will be added to a project in this repository. You can track the status of its implementation there.
@@ -41,14 +41,14 @@ body:
     - type: input
       id: version
       attributes:
-          label: Twine version number
+          label: Chatbottery version number
           placeholder: i.e. 2.3.4
       validations:
           required: true
     - type: dropdown
       id: web-or-desktop-app
       attributes:
-          label: Does this problem occur with the web version of Twine or the desktop app?
+          label: Does this problem occur with the web version of Chatbottery or the desktop app?
           options:
               - Desktop app
               - Web
@@ -70,7 +70,7 @@ body:
     - type: dropdown
       id: browser
       attributes:
-          label: If this problem is occurring with the web version of Twine, what browser does it occur on?
+          label: If this problem is occurring with the web version of Chatbottery, what browser does it occur on?
           options:
               - Brave
               - Chrome/Chromium
