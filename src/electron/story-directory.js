@@ -14,7 +14,7 @@ const StoryDirectory = (module.exports = {
 		return path.join(
 			app.getPath('documents'),
 			locale.say('Chatbottery'),
-			locale.say('Stories')
+			locale.say('Chatbots')
 		);
 	},
 

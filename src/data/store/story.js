@@ -17,7 +17,7 @@ function getStoryById(state, id) {
 	let story = state.stories.find(story => story.id === id);
 
 	if (!story) {
-		throw new Error(`No story exists with id ${id}`);
+		throw new Error(`No chatbot exists with id ${id}`);
 	}
 
 	return story;
@@ -27,7 +27,7 @@ function getPassageInStory(story, id) {
 	let passage = story.passages.find(passage => passage.id === id);
 
 	if (!passage) {
-		throw new Error(`No passage exists in this story with id ${id}`);
+		throw new Error(`No passage exists in this chatbot with id ${id}`);
 	}
 
 	return passage;

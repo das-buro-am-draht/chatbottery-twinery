@@ -48,7 +48,7 @@ module.exports = {
 				.catch(e => {
 					window.alert(
 						locale.say(
-							'An error occurred while publishing your story. (%s)',
+							'An error occurred while publishing your chatbot. (%s)',
 							e.message
 						)
 					);
@@ -71,7 +71,7 @@ module.exports = {
 				.catch(e => {
 					window.alert(
 						locale.say(
-							'An error occurred while publishing your story. (%s)',
+							'An error occurred while publishing your chatbot. (%s)',
 							e.message
 						)
 					);
@@ -94,7 +94,7 @@ module.exports = {
 				.catch(e => {
 					window.alert(
 						locale.say(
-							'An error occurred while publishing your story. (%s)',
+							'An error occurred while publishing your chatbot. (%s)',
 							e.message
 						)
 					);

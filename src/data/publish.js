@@ -15,7 +15,7 @@ const publish = module.exports = {
 
 	publishStoryWithFormat(appInfo, story, format, formatOptions, startId) {
 		if (!format.properties || !format.properties.source) {
-			throw new Error('Story format has no source property');
+			throw new Error('Chatbot format has no source property');
 		}
 
 		let output = format.properties.source;
@@ -76,13 +76,13 @@ const publish = module.exports = {
 		if (!startOptional) {
 			if (!startId) {
 				throw new Error(locale.say(
-					'There is no starting point set for this story.'
+					'There is no starting point set for this chatbot.'
 				));
 			}
 
 			if (!story.passages.find(p => p.id === startId)) {
 				throw new Error(locale.say(
-					'The passage set as starting point for this story does ' +
+					'The passage set as starting point for this chatbot does ' +
 					'not exist.'
 				));
 			}

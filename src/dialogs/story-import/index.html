@@ -26,7 +26,7 @@
 
 	<template v-if="status === 'choosing'">
 		<p>
-		{{ 'Some stories you are importing already exist in your library. Please choose which to replace. Any other stories in your file will be imported as well.' | say }}
+		{{ 'Some chatbots you are importing already exist in your library. Please choose which to replace. Any other stories in your file will be imported as well.' | say }}
 		</p>
 
 		<ul v-for="name in dupeNames" class="plain">
@@ -36,7 +36,7 @@
 		</ul>
 
 		<p class="buttons">
-			<button type="button" class="subtle" @click="close">{{ "Don't Import Any Stories" | say }}</button>
+			<button type="button" class="subtle" @click="close">{{ "Don't Import Any chatbots" | say }}</button>
 			<button type="button" :class="confirmClass" @click="replaceAndImport">
 				<i class="fa fa-check"></i>
 				{{ confirmLabel }}

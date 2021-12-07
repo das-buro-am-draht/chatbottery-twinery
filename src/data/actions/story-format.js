@@ -47,7 +47,7 @@ const actions = (module.exports = {
 				) {
 					reject(
 						new Error(
-							locale.say('this story format is already installed')
+							locale.say('this chatbot format is already installed')
 						)
 					);
 					return;
@@ -72,7 +72,7 @@ const actions = (module.exports = {
 					reject(
 						new Error(
 							locale.say(
-								'a more recent version of the story format &ldquo;%s&rdquo; is already installed',
+								'a more recent version of the chatbot format &ldquo;%s&rdquo; is already installed',
 								data.name
 							)
 						)
@@ -165,7 +165,7 @@ const actions = (module.exports = {
 		store.state.storyFormat.formats.forEach(format => {
 			if (typeof format.version !== 'string' || format.version === '') {
 				console.warn(
-					`Deleting unversioned story format ${format.name}`
+					`Deleting unversioned chatbot format ${format.name}`
 				);
 				actions.deleteFormat(store, format.id);
 			}
@@ -288,7 +288,7 @@ const actions = (module.exports = {
 
 			if (v.semver !== latestVersions[format.name][v.major].semver) {
 				console.warn(
-					`Deleting outdated story format ${format.name} ${v.semver}`
+					`Deleting outdated chatbot format ${format.name} ${v.semver}`
 				);
 				actions.deleteFormat(store, format.id);
 			}

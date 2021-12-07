@@ -6,6 +6,7 @@ const LocaleView = require('../locale/view');
 const StoryEditView = require('../story-edit-view');
 const StoryListView = require('../story-list-view');
 const WelcomeView = require('../welcome');
+const StartPageView = require('../start-page');
 const locale = require('../locale'); 
 const { getStoryPlayHtml, getStoryProofingHtml, getStoryTestHtml } = require('./story-html');
 const replaceUI = require('../ui/replace');
@@ -24,6 +25,10 @@ TwineRouter.map({
 
 	'/welcome': {
 		component: WelcomeView
+	},
+
+	'/start': {
+		component: StartPageView
 	},
 
 	/*
@@ -74,7 +79,7 @@ TwineRouter.map({
 					.catch(e => {
 						window.alert(
 							locale.say(
-								'An error occurred while publishing your story. (%s)',
+								'An error occurred while publishing your chatbot. (%s)',
 								e.message
 							)
 						);
@@ -95,7 +100,7 @@ TwineRouter.map({
 					.catch(e => {
 						window.alert(
 							locale.say(
-								'An error occurred while publishing your story. (%s)',
+								'An error occurred while publishing your chatbot. (%s)',
 								e.message
 							)
 						);
@@ -116,7 +121,7 @@ TwineRouter.map({
 					.catch(e => {
 						window.alert(
 							locale.say(
-								'An error occurred while publishing your story. (%s)',
+								'An error occurred while publishing your chatbot. (%s)',
 								e.message
 							)
 						);
@@ -141,7 +146,7 @@ TwineRouter.map({
 					.catch(e => {
 						window.alert(
 							locale.say(
-								'An error occurred while publishing your story. (%s)',
+								'An error occurred while publishing your chatbot. (%s)',
 								e.message
 							)
 						);

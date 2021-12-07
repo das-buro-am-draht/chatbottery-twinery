@@ -52,7 +52,7 @@ module.exports = Vue.extend({
 			.catch(e => {
 				notify(
 					locale.say(
-						'The story format &ldquo;%1$s&rdquo; could not ' +
+						'The chatbot format &ldquo;%1$s&rdquo; could not ' +
 						'be loaded (%2$s).',
 						nextFormat.name + ' ' + nextFormat.version,
 						e.message

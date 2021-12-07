@@ -20,7 +20,7 @@ module.exports = () => {
 		{
 			label: 'View',
 			submenu: [
-				{label: 'Show Story Library', click: revealStoryDirectory},
+				{label: 'Show Chatbot Library', click: revealStoryDirectory},
 				{type: 'separator'},
 				{role: 'resetzoom'},
 				{role: 'zoomin'},

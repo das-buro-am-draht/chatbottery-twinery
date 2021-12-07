@@ -53,12 +53,12 @@ module.exports = Vue.extend({
 
 		confirmLabel() {
 			if (this.toReplace.length === 0) {
-				return locale.say('Don\'t Replace Any Stories');
+				return locale.say('Don\'t Replace Any Chatbots');
 			}
 
 			return locale.sayPlural(
-				'Replace %d Story',
-				'Replace %d Stories',
+				'Replace %d Chatbot',
+				'Replace %d Chatbots',
 				this.toReplace.length
 			);
 		}

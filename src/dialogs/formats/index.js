@@ -71,7 +71,7 @@ module.exports = Vue.extend({
 								version: brokenFormat.version,
 								description:
 									locale.say(
-										'This story format could not be loaded (%1$s).',
+										'This chatbot format could not be loaded (%1$s).',
 										e.message
 									)
 							}
@@ -116,7 +116,7 @@ module.exports = Vue.extend({
 				})
 				.catch(e => {
 					this.error = locale.say(
-						'The story format at %1$s could not be added (%2$s).',
+						'The chatbot format at %1$s could not be added (%2$s).',
 						this.newFormatUrl,
 						e.message
 					);

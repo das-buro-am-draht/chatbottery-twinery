@@ -1,0 +1,86 @@
+<nav class="asideNavigation">
+    <header class="asideNavigation--header">
+        <h1 class="asideNavigation--logo">
+            <img src="../../common/img/logo-chatbottery.png" />
+        </h1>
+    </header>
+	<ul class="asideNavigation--list">
+		<li>
+			<button class="asideNavigation--item asideNavigation--item-active" title="Home">
+                <div class="asideNavigation--icon">
+                    <img src="../../common/img/home-icon.svg" />
+                </div>
+				<div class="asideNavigation--text">
+                    {{ 'Home' | say }}
+                </div>
+			</button>
+		</li>
+		<li>
+			<button class="asideNavigation--item" title="Chatbots">
+                <div class="asideNavigation--icon">
+                    <img src="../../common/img/chatbots-icon.svg" />
+                </div>
+                <div class="asideNavigation--text">
+                    {{ 'Chatbots' | say }}
+                </div>
+			</button>
+		</li>
+        <li>
+			<button class="asideNavigation--item" title="Live chats">
+                <div class="asideNavigation--icon">
+                    <img src="../../common/img/livechat-icon.svg" />
+                </div>
+                <div class="asideNavigation--text">
+                    {{ 'Live chats' | say }}
+                </div>
+                <div class="asideNavigation--redirect">
+                    <img src="../../common/img/new-window-icon.svg" />
+                </div>
+			</button>
+		</li>
+        <li>
+			<button class="asideNavigation--item" title="Documentation">
+                <div class="asideNavigation--icon">
+                    <img src="../../common/img/documentation-icon.svg" />
+                </div>
+                <div class="asideNavigation--text">
+                    {{ 'Documentation' | say }}
+                </div>
+                <div class="asideNavigation--redirect">
+                    <img src="../../common/img/new-window-icon.svg" />
+                </div>
+			</button>
+		</li>
+        <li>
+			<button class="asideNavigation--item" title="Help">
+                <div class="asideNavigation--icon">
+                    <img src="../../common/img/help-icon.svg" />
+                </div>
+                <div class="asideNavigation--text">
+                    {{ 'Help' | say }}
+                </div>
+			</button>
+		</li>
+	</ul>
+	<footer class="asideNavigation--footer">
+        <div class="asideNavigation--twinery">
+            <div class="asideNavigation--twinery-logo">
+                <img src="../../common/img/logo.svg" />
+            </div>
+            <div class="asideNavigation--description">Chatbottery Editor V.8.0 - Made with Twine, an open-source tool for telling interactive, nonlinear stories.</div>
+        </div>
+        <div class="asideNavigation--status">
+            <div class="asideNavigation--gauge">
+                <quota-gauge></quota-gauge>
+            </div>
+            <div class="asideNavigation--controls">
+                <div class="asideNavigation--browser">
+                    <img src="../../common/img/chrome-icon.svg" />
+                </div>
+                <div class="asideNavigation--localStorage">
+                    <img src="../../common/img/harddisk-icon.svg" />
+                </div>
+            </div>
+        </div>
+	</footer>
+</nav>

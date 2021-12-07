@@ -35,7 +35,7 @@ const story = module.exports = {
 
 	saveStory(transaction, story) {
 		if (!story.id) {
-			throw new Error('Story has no id');
+			throw new Error('Chatbot has no id');
 		}
 		
 		transaction.storyIds = commaList.addUnique(
@@ -63,7 +63,7 @@ const story = module.exports = {
 
 	deleteStory(transaction, story) {
 		if (!story.id) {
-			throw new Error('Story has no id');
+			throw new Error('Chatbot has no id');
 		}
 		
 		transaction.storyIds = commaList.remove(transaction.storyIds, story.id);
@@ -157,7 +157,7 @@ const story = module.exports = {
 			}
 			else {
 				console.warn(
-					`Could not parse story ${id}, skipping`,
+					`Could not parse chatbot ${id}, skipping`,
 					window.localStorage.getItem('twine-stories-' + id)
 				);
 			}
@@ -175,7 +175,7 @@ const story = module.exports = {
 
 				if (!newPassage || !newPassage.story) {
 					console.warn(
-						`Passage ${id} did not have parent story id, skipping`,
+						`Passage ${id} did not have parent chatbot id, skipping`,
 						newPassage
 					);
 					return;

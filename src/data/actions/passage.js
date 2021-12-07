@@ -20,7 +20,7 @@ const actions = module.exports = {
 		);
 
 		if (!story) {
-			throw new Error(`No story exists with id ${storyId}`);
+			throw new Error(`No chatbot exists with id ${storyId}`);
 		}
 
 		story.passages.forEach(p => {
@@ -54,7 +54,7 @@ const actions = module.exports = {
 		);
 
 		if (!story) {
-			throw new Error(`No story exists with id ${storyId}`);
+			throw new Error(`No chatbot exists with id ${storyId}`);
 		}
 
 		const passage = story.passages.find(
@@ -63,7 +63,7 @@ const actions = module.exports = {
 
 		if (!passage) {
 			throw new Error(
-				`No passage exists in this story with id ${passageId}`
+				`No passage exists in this chatbot with id ${passageId}`
 			);
 		}
 
@@ -202,7 +202,7 @@ const actions = module.exports = {
 		);
 
 		if (!story) {
-			throw new Error(`No story exists with id ${storyId}`);
+			throw new Error(`No chatbot exists with id ${storyId}`);
 		}
 
 		/*
