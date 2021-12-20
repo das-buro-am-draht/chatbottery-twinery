@@ -6,7 +6,14 @@
     </header>
 	<ul class="asideNavigation--list">
 		<li>
-			<button class="asideNavigation--item asideNavigation--item-active" title="Home">
+			<button
+            :class="[
+                'asideNavigation--item',
+                activeNavItem === 'home' ? 'asideNavigation--item-active' : '',
+                activeNavItem
+            ]"
+            @click="changeActiveNavItem('home')"
+            title="Home">
                 <div class="asideNavigation--icon">
                     <img src="../../common/img/home-icon.svg" />
                 </div>
@@ -16,7 +23,14 @@
 			</button>
 		</li>
 		<li>
-			<button class="asideNavigation--item" title="Chatbots">
+			<button
+            :class="[
+                'asideNavigation--item',
+                activeNavItem === 'chatbots' ? 'asideNavigation--item-active' : '',
+                activeNavItem
+            ]"
+            @click="changeActiveNavItem('chatbots')"
+            title="Chatbots">
                 <div class="asideNavigation--icon">
                     <img src="../../common/img/chatbots-icon.svg" />
                 </div>
@@ -26,7 +40,7 @@
 			</button>
 		</li>
         <li>
-			<button class="asideNavigation--item" title="Live chats">
+			<button class="asideNavigation--item" @click="openRedirect('https://chatbot-moderator.chatbottery.com/')" title="Live chats">
                 <div class="asideNavigation--icon">
                     <img src="../../common/img/livechat-icon.svg" />
                 </div>
@@ -39,7 +53,7 @@
 			</button>
 		</li>
         <li>
-			<button class="asideNavigation--item" title="Documentation">
+			<button class="asideNavigation--item" @click="openRedirect('https://docu.chatbottery.com/')" title="Documentation">
                 <div class="asideNavigation--icon">
                     <img src="../../common/img/documentation-icon.svg" />
                 </div>
@@ -52,7 +66,7 @@
 			</button>
 		</li>
         <li>
-			<button class="asideNavigation--item" title="Help">
+			<button class="asideNavigation--item" @click="openRedirect('mailto:support@chatbottery.com')" title="Help">
                 <div class="asideNavigation--icon">
                     <img src="../../common/img/help-icon.svg" />
                 </div>
@@ -74,12 +88,8 @@
                 <quota-gauge></quota-gauge>
             </div>
             <div class="asideNavigation--controls">
-                <div class="asideNavigation--browser">
-                    <img src="../../common/img/chrome-icon.svg" />
-                </div>
-                <div class="asideNavigation--localStorage">
-                    <img src="../../common/img/harddisk-icon.svg" />
-                </div>
+                <check-chrome></check-chrome>
+                <check-local-state></check-local-state>
             </div>
         </div>
 	</footer>

@@ -235,6 +235,18 @@ const actions = (module.exports = {
 				url: 'https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v8.js',
 				version: '8.0.1',
 				userAdded: false
+			},
+			{
+				name: 'Paperthin',
+				url: 'story-formats/paperthin-1.0.0/format.js',
+				version: '1.0.0',
+				userAdded: false
+			},
+			{
+				name: 'Illume',
+				url: 'story-formats/illume-1.0.5/format.js',
+				version: '1.0.5',
+				userAdded: false
 			}
 		];
 
@@ -266,10 +278,8 @@ const actions = (module.exports = {
 
 		if (typeof store.state.pref.proofingFormat !== 'object') {
 			setPref(store, 'proofingFormat', {
-				name: 'Chatbottery',
-				version: '8.0.1',
-				// name: 'Paperthin',
-				// version: '1.0.0'
+				name: 'Illume',
+				version: '1.0.5'
 			});
 		}
 

@@ -1,21 +1,13 @@
-/**
- Manages showing the starting page.
+// The side toolbar of a story list.
 
- @class StartPageView
- @extends Backbone.Marionette.ItemView
-**/
+const Vue = require("vue");
 
-'use strict';
-const Vue = require('vue');
-const {setPref} = require('../data/actions/pref');
-
-require('./index.less');
+require("./index.less");
 
 module.exports = Vue.extend({
-	template: require('./index.html'),
+	template: require("./index.html"),
 
 	data: () => ({
-		activeNavItem: 'home',
 		storyOrder: 'name',
 		storyOrderDir: 'asc'
 	}),
@@ -70,29 +62,18 @@ module.exports = Vue.extend({
 	},
 
 	methods: {
-		changeActiveNavItem(navItem) {
-			this.activeNavItem = navItem;
-		},
-
-		finish() {
-			this.setPref('welcomeSeen', true);
-			window.location.hash = '#stories';
-		},
 	},
 
 	components: {
-		'aside-navigation': require('./aside-navigation'),
-		'info-content': require('./info-content'),
-		'story-item': require('../story-list-view/story-item'),
-		'chatbots-content': require('./chatbots-content')
+		'story-item': require('../../story-list-view/story-item')
+	},
+
+	events: {
 	},
 
 	vuex: {
 		getters: {
 			stories: state => state.story.stories
 		},
-		actions: {
-			setPref
-		}
 	}
 });

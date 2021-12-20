@@ -1,0 +1,11 @@
+<div class="localStorage">
+    <img src="../../../common/img/harddisk-icon.svg" />
+    <div class="localStorage--status" v-if="localStorageActive"></div>
+    <div class="localStorage--error" v-if="!localStorageActive && promtVisible">
+        <h4 class="localStorage--headline">Warning</h4>
+        <div class="localStorage--close" @click="closePromt()">
+            <img src="../../../common/img/close-icon.svg" />
+        </div>
+        <p class="localStorage--description">You have to turn on your locale storage in order to to make the editor work properly. <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank">Learn more</a></p>
+    </div>
+</div>
