@@ -24,14 +24,5 @@
 			</button>
 		</footer>
 	</div>
-	<ul class="infoContent--list">
-		<li class="infoContent--item" v-for="item in news">
-			<date class="infoContent--date">{{ item.date }}</date>
-			<h3 class="infoContent--headline">{{ item.title }}</h3>
-			<p class="infoContent--item-description">{{ item.content }}</p>
-			<a :href="item.link" class="infoContent--read-more" target="_blank">
-				Read more
-			</a>
-		</li>
-	</ul>
+	<wordpress-news></wordpress-news>
 </div>

@@ -3,6 +3,7 @@
 const escape = require('lodash.escape');
 const Vue = require('vue');
 const FormatDialog = require('../../../dialogs/story-format');
+const FormatsDialog = require('../../../dialogs/formats');
 const JavaScriptEditor = require('../../../editors/javascript');
 const StatsDialog = require('../../../dialogs/story-stats');
 const StylesheetEditor = require('../../../editors/stylesheet');
@@ -86,9 +87,14 @@ module.exports = Vue.extend({
 		},
 
 		changeFormat(e) {
-			new FormatDialog({
-				data: {storyId: this.story.id, origin: e.target},
-				store: this.$store
+			// new FormatDialog({
+			// 	// data: {origin: e.target},
+			// 	data: {storyId: this.story.id, origin: e.target},
+			// 	store: this.$store
+			// }).$mountTo(document.body);
+			new FormatsDialog({
+				store: this.$store,
+				data: {origin: e.target}
 			}).$mountTo(document.body);
 		},
 

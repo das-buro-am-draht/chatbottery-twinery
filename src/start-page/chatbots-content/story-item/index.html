@@ -1,0 +1,33 @@
+<div class="story-item" :data-order="order">
+	<div class="preview-container">
+		<item-preview :hue="hue" :passages="story.passages" :edit="edit"></item-preview>
+		<div class="story-items--count">
+			{{story.passages.length}}
+		</div>
+	</div>
+	<div class="controls">
+		<button @click="edit" class="link story-name">
+			<h2>
+				{{ story.name }}
+			</h2>
+
+			<p class="smaller">
+				{{ lastUpdateFormatted }}
+			</p>
+		</button>
+
+		<button>
+			<!-- <i class="fa fa-cog"></i> -->
+			<div class="dots">
+				<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+			</div>
+			<item-menu :story="story"></item-menu>
+		</button>
+	</div>
+	<div class="story-item__plugins">
+		<div class="story-item__plug" v-for="item in plugins">
+			<i class="fa fa-check"></i>
+            <p class="story-item__plug-name">{{ item }}</p>
+        </div>
+	</div>
+</div> <!-- .story-item -->

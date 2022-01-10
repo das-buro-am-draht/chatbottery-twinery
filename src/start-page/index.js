@@ -14,8 +14,15 @@ require('./index.less');
 module.exports = Vue.extend({
 	template: require('./index.html'),
 
+	props: {
+		navItemProp: {
+			type: String,
+			required: true,
+		},
+	},
+
 	data: () => ({
-		activeNavItem: 'home',
+		activeNavItem: this.navItemProp || 'home',
 		storyOrder: 'name',
 		storyOrderDir: 'asc'
 	}),
@@ -71,6 +78,7 @@ module.exports = Vue.extend({
 
 	methods: {
 		changeActiveNavItem(navItem) {
+			console.log(this.navItemProp)
 			this.activeNavItem = navItem;
 		},
 
@@ -78,6 +86,13 @@ module.exports = Vue.extend({
 			this.setPref('welcomeSeen', true);
 			window.location.hash = '#stories';
 		},
+	},
+
+	activate: async function (done) {
+		console.log('ads')
+		console.log(this.navItemProp)
+
+		done();
 	},
 
 	components: {

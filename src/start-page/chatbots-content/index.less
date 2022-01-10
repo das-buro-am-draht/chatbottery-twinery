@@ -40,7 +40,7 @@
         display: flex;
         justify-content: flex-end;
     }
-    &--import-chatbot, &--new-chatbot {
+    &--import-chatbot {
         background: #fff;
         border: 5px solid #fb1557;
         border-radius: 15px;
@@ -62,21 +62,29 @@
             margin-left: 60px;
         }
     }
-    // &--new-chatbot {
-    //     background: #fb1557;
-    //     border: 5px solid #fb1557;
-    //     border-radius: 15px;
-    //     padding: 12px 15px;
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: center;
-    //     span {
-    //         color: #fff;
-    //         font-weight: 600;
-    //         font-size: 18px;
-    //     }
-    //     .icon {
-    //         margin-left: 60px;
-    //     }
-    // }
+    &--new-chatbot {
+        background: #fb1557;
+        border: 5px solid #fb1557;
+        border-radius: 15px;
+        padding: 12px 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+            color: #fff;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        .icon {
+            width: 36px;
+            height: 36px;
+            margin-left: 60px;
+            background-color: #fff;
+            mask-image: url("../../common/img/plus-icon.svg");
+            -webkit-mask-position: center;
+            mask-position: center;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+        }
+    }
 }

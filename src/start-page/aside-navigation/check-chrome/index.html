@@ -1,4 +1,9 @@
-<div class="chromeBrowser">
-    <img src="../../../common/img/chrome-icon.svg" />
-    <div class="chromeBrowser--status" v-if="chromeActive"></div>
+<div
+:class="[
+    'chromeBrowser',
+    chromeActive ? 'chromeBrowser-active' : ''
+]"
+>
+    <div class="chromeBrowser--icon"></div>
+    <div class="chromeBrowser--status"></div>
 </div>

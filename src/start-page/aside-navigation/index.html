@@ -5,71 +5,59 @@
         </h1>
     </header>
 	<ul class="asideNavigation--list">
-		<li>
+		<li
+        :class="[
+            'asideNavigation--item asideNavigation--item-home',
+            activeNavItem === 'home' ? 'asideNavigation--item-active' : ''
+        ]"
+        >
 			<button
-            :class="[
-                'asideNavigation--item',
-                activeNavItem === 'home' ? 'asideNavigation--item-active' : '',
-                activeNavItem
-            ]"
+            class="asideNavigation--button"
             @click="changeActiveNavItem('home')"
             title="Home">
-                <div class="asideNavigation--icon">
-                    <img src="../../common/img/home-icon.svg" />
-                </div>
+                <div class="asideNavigation--icon"></div>
 				<div class="asideNavigation--text">
                     {{ 'Home' | say }}
                 </div>
 			</button>
 		</li>
-		<li>
+		<li
+        :class="[
+            'asideNavigation--item asideNavigation--item-chatbots',
+            activeNavItem === 'chatbots' ? 'asideNavigation--item-active' : ''
+        ]"
+        >
 			<button
-            :class="[
-                'asideNavigation--item',
-                activeNavItem === 'chatbots' ? 'asideNavigation--item-active' : '',
-                activeNavItem
-            ]"
+            class="asideNavigation--button"
             @click="changeActiveNavItem('chatbots')"
             title="Chatbots">
-                <div class="asideNavigation--icon">
-                    <img src="../../common/img/chatbots-icon.svg" />
-                </div>
+                <div class="asideNavigation--icon"></div>
                 <div class="asideNavigation--text">
-                    {{ 'Chatbots' | say }}
+                    {{ 'Chatbots' | say }} ({{storiesLength}})
                 </div>
 			</button>
 		</li>
-        <li>
-			<button class="asideNavigation--item" @click="openRedirect('https://chatbot-moderator.chatbottery.com/')" title="Live chats">
-                <div class="asideNavigation--icon">
-                    <img src="../../common/img/livechat-icon.svg" />
-                </div>
+        <li class="asideNavigation--item asideNavigation--item-livechat">
+			<button class="asideNavigation--button" @click="openRedirect('https://chatbot-moderator.chatbottery.com/')" title="Live chats">
+                <div class="asideNavigation--icon"></div>
                 <div class="asideNavigation--text">
                     {{ 'Live chats' | say }}
                 </div>
-                <div class="asideNavigation--redirect">
-                    <img src="../../common/img/new-window-icon.svg" />
-                </div>
+                <div class="asideNavigation--redirect"></div>
 			</button>
 		</li>
-        <li>
-			<button class="asideNavigation--item" @click="openRedirect('https://docu.chatbottery.com/')" title="Documentation">
-                <div class="asideNavigation--icon">
-                    <img src="../../common/img/documentation-icon.svg" />
-                </div>
+        <li class="asideNavigation--item asideNavigation--item-documentation">
+			<button class="asideNavigation--button" @click="openRedirect('https://docu.chatbottery.com/')" title="Documentation">
+                <div class="asideNavigation--icon"></div>
                 <div class="asideNavigation--text">
                     {{ 'Documentation' | say }}
                 </div>
-                <div class="asideNavigation--redirect">
-                    <img src="../../common/img/new-window-icon.svg" />
-                </div>
+                <div class="asideNavigation--redirect"></div>
 			</button>
 		</li>
-        <li>
-			<button class="asideNavigation--item" @click="openRedirect('mailto:support@chatbottery.com')" title="Help">
-                <div class="asideNavigation--icon">
-                    <img src="../../common/img/help-icon.svg" />
-                </div>
+        <li class="asideNavigation--item asideNavigation--item-help">
+			<button class="asideNavigation--button" @click="openRedirect('mailto:support@chatbottery.com')" title="Help">
+                <div class="asideNavigation--icon"></div>
                 <div class="asideNavigation--text">
                     {{ 'Help' | say }}
                 </div>

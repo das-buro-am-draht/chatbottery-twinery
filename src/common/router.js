@@ -23,12 +23,22 @@ TwineRouter.map({
 		component: LocaleView
 	},
 
-	'/welcome': {
-		component: WelcomeView
-	},
+	// '/welcome': {
+	// 	component: WelcomeView
+	// },
 
 	'/start': {
-		component: StartPageView
+		component: StartPageView,
+		props: {
+			navItemProp: 'home',
+		}
+	},
+
+	'/stories': {
+		component: StartPageView,
+		props: {
+			navItemProp: 'chatbots',
+		}
 	},
 
 	/*
@@ -36,23 +46,23 @@ TwineRouter.map({
 	appropriate props to the components that do the actual work.
 	*/
 
-	'/stories': {
-		component: {
-			template:
-				'<div><story-list ' +
-				':previously-editing="previouslyEditing"></story-list></div>',
+	// '/stories': {
+	// 	component: {
+	// 		template:
+	// 			'<div><story-list ' +
+	// 			':previously-editing="previouslyEditing"></story-list></div>',
 
-			components: {'story-list': StoryListView},
+	// 		components: {'story-list': StoryListView},
 
-			data() {
-				return {
-					previouslyEditing: this.$route.params
-						? this.$route.params.previouslyEditing
-						: ''
-				};
-			}
-		}
-	},
+	// 		data() {
+	// 			return {
+	// 				previouslyEditing: this.$route.params
+	// 					? this.$route.params.previouslyEditing
+	// 					: ''
+	// 			};
+	// 		}
+	// 	}
+	// },
 
 	'/stories/:id': {
 		component: {

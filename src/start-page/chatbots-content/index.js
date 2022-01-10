@@ -1,6 +1,13 @@
 // The side toolbar of a story list.
 
 const Vue = require("vue");
+const { importStory } = require("../../data/actions/story");
+const locale = require('../../locale');
+const {prompt} = require('../../dialogs/prompt');
+const ImportDialog = require('../../dialogs/story-import');
+const {createStory} = require('../../data/actions/story');
+const blankbot = require('../../common/Blankbot.html');
+const importHTML = require('../../data/import');
 
 require("./index.less");
 
@@ -58,22 +65,86 @@ module.exports = Vue.extend({
 						`Don't know how to sort by "${this.storyOrder}"`
 					);
 			}
-		},
+		}
 	},
 
 	methods: {
+		createStoryPrompt(e) {
+			// Prompt for the new story name.
+
+			prompt({
+				message: locale.say(
+					'What should your chatbot be named?<br>(You can change this later.)'
+				),
+				buttonLabel: '<i class="fa fa-plus"></i> ' + locale.say('Add'),
+				buttonClass: 'create',
+				validator: name => {
+					if (
+						this.stories.find(story => story.name === name)
+					) {
+						return locale.say(
+							'A chatbot with this name already exists.'
+						);
+					}
+				},
+
+				origin: e.target
+			}).then(name => {
+				this.createStory({name});
+
+				/* Allow the appearance animation to complete. */
+
+				window.setTimeout(() => {
+					this.$dispatch(
+						'story-edit',
+						this.stories.find(story => story.name === name)
+							.id
+					);
+				}, 300);
+			});
+		},
+		importFile(e) {
+			new ImportDialog({
+				store: this.$store,
+				data: {origin: e.target}
+			}).$mountTo(document.body);
+		},
+		importBlankbot() {
+			const isBlankbot = this.stories.some(
+				orig => orig.name === "Blankbot"
+			);
+
+			if (!isBlankbot) {
+				const toImport = importHTML(blankbot) || [];
+				toImport.forEach(story => this.importStory(story));
+			}
+		}
+	},
+
+	activate: async function (done) {
+		await this.importBlankbot();
+
+		done();
 	},
 
 	components: {
-		'story-item': require('../../story-list-view/story-item')
+		'story-item': require('./story-item')
 	},
 
 	events: {
+		'story-edit'(id) {
+			this.$broadcast('story-edit', id);
+		},
 	},
 
 	vuex: {
+		actions: {
+			createStory,
+			importStory
+		},
+
 		getters: {
-			stories: state => state.story.stories
+			stories: state => state.story.stories,
 		},
 	}
 });

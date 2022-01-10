@@ -1,6 +1,12 @@
-<div class="localStorage">
-    <img src="../../../common/img/harddisk-icon.svg" />
-    <div class="localStorage--status" v-if="localStorageActive"></div>
+<div
+:class="[
+    'localStorage',
+    localStorageActive ? 'localStorage-active' : ''
+]"
+>
+    <div class="localStorage--icon"></div>
+    <!-- <img src="../../../common/img/harddisk-icon.svg" /> -->
+    <div class="localStorage--status"></div>
     <div class="localStorage--error" v-if="!localStorageActive && promtVisible">
         <h4 class="localStorage--headline">Warning</h4>
         <div class="localStorage--close" @click="closePromt()">

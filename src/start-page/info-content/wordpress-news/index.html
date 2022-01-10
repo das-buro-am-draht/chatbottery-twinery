@@ -1,0 +1,16 @@
+<div class="wordpress-news">
+    <ul class="wordpress-news--list" v-if="news.length > 0">
+        <li class="wordpress-news--item" v-for="item in news">
+            <date class="wordpress-news--date">{{ item.date }}</date>
+            <h3 class="wordpress-news--headline">{{ item.title }}</h3>
+            <p class="wordpress-news--item-description" v-html="item.content"></p>
+            <a :href="item.link" class="wordpress-news--read-more" target="_blank">
+                Read more
+            </a>
+        </li>
+    </ul>
+    <div class="wordpress-news--loader" v-else>
+        <img src="../../../common/img/animated-loader.svg" />
+        <p>Loading</p>
+    </div>
+</div>

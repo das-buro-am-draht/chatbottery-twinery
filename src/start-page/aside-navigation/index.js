@@ -7,6 +7,10 @@ require('./index.less');
 
 module.exports = Vue.extend({
 	template: require('./index.html'),
+
+	data: () => ({
+		storiesLength: null
+	}),
  
 	props: {
 		activeNavItem: {
@@ -25,6 +29,14 @@ module.exports = Vue.extend({
 		}
 	},
 
+	activate: function (done) {
+		const storiesLength = this.stories.length;
+
+		this.storiesLength = storiesLength;
+
+		done();
+	},
+
 	components: {
 		'quota-gauge': require('../../ui/quota-gauge'),
 		'check-local-state': require('./check-local-state'),
@@ -34,6 +46,10 @@ module.exports = Vue.extend({
 	vuex: {
 		actions: {
 			setPref
-		}
+		},
+
+		getters: {
+			stories: state => state.story.stories,
+		},
 	}
 });
