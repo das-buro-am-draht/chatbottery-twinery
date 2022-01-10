@@ -30,14 +30,14 @@ TwineRouter.map({
 	'/start': {
 		component: StartPageView,
 		props: {
-			navItemProp: 'home',
+			activeNavItemProp: 'home',
 		}
 	},
 
 	'/stories': {
 		component: StartPageView,
 		props: {
-			navItemProp: 'chatbots',
+			activeNavItemProp: 'chatbots',
 		}
 	},
 

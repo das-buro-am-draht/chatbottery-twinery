@@ -15,14 +15,14 @@ module.exports = Vue.extend({
 	template: require('./index.html'),
 
 	props: {
-		navItemProp: {
+		activeNavItemProp: {
 			type: String,
-			required: true,
+			default: 'home'
 		},
 	},
 
 	data: () => ({
-		activeNavItem: this.navItemProp || 'home',
+		activeNavItem: this.activeNavItemProp || 'home',
 		storyOrder: 'name',
 		storyOrderDir: 'asc'
 	}),
@@ -78,7 +78,7 @@ module.exports = Vue.extend({
 
 	methods: {
 		changeActiveNavItem(navItem) {
-			console.log(this.navItemProp)
+			console.log(this.activeNavItemProp)
 			this.activeNavItem = navItem;
 		},
 
@@ -90,7 +90,7 @@ module.exports = Vue.extend({
 
 	activate: async function (done) {
 		console.log('ads')
-		console.log(this.navItemProp)
+		console.log(this.activeNavItemProp)
 
 		done();
 	},
