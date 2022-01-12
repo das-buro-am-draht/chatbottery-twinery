@@ -24,8 +24,8 @@ module.exports = Vue.extend({
 		},
 	},
 
-	activate: async function (done) {
-		await this.isChrome();
+	activate: function (done) {
+		this.isChrome();
 		done();
 	},
 

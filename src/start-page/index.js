@@ -88,7 +88,7 @@ module.exports = Vue.extend({
 		},
 	},
 
-	activate: async function (done) {
+	activate: function (done) {
 		console.log('ads')
 		console.log(this.activeNavItemProp)
 

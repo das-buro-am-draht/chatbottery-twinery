@@ -121,8 +121,8 @@ module.exports = Vue.extend({
 		}
 	},
 
-	activate: async function (done) {
-		await this.importBlankbot();
+	activate: function (done) {
+		this.importBlankbot();
 
 		done();
 	},

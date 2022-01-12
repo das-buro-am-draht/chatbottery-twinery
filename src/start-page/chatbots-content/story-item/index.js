@@ -39,7 +39,7 @@ module.exports = Vue.extend({
 		},
 	},
 
-	activate: async function (done) {
+	activate: function (done) {
 		this.plugins = detectPlugins(this.story.script) || [];
 
 		done();

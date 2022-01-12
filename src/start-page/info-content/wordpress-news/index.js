@@ -27,12 +27,12 @@ module.exports = Vue.extend({
 		},
 	},
 
-	activate: async function (done) {
+	activate: function (done) {
 		const self = this;
 		const url =
 			"https://chatbottery.com/wp-json/wp/v2/posts?categories=11&_embed&filter[orderby]=date&order=desc";
 
-		await fetch(url, { method: "GET" }).then((response) => {
+		fetch(url, { method: "GET" }).then((response) => {
 			response
 				.json()
 				.then(data => {
@@ -43,9 +43,8 @@ module.exports = Vue.extend({
 					});
 					self.news = news;
 				});
-		});
-
-		done();
+		})
+		.then(() => done());
 	},
 
 	components: {},

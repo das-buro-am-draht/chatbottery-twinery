@@ -35,10 +35,10 @@ module.exports = Vue.extend({
 		}
 	},
 
-    activate: async function (done) {
-        await this.isLocalState();
-        done();
-    },
+	activate: function (done) {
+			this.isLocalState();
+			done();
+	},
 
 	components: {},
 
