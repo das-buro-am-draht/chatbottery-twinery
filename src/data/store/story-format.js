@@ -4,7 +4,7 @@ const uuid = require('tiny-uuid');
 const locale = require('../../locale');
 
 const formatDefaults = {
-	name: locale.say('Untitled Story Format'),
+	name: locale.say('Untitled Chatbot Format'),
 	version: '',
 	url: '',
 	userAdded: true,

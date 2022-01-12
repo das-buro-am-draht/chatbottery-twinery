@@ -99,11 +99,11 @@ app.on('ready', () => {
 		.then(data => (global.hydrate.storyFormats = data))
 		.catch(e => console.warn(e.message))
 		.then(() => {
-			startupTask = 'creating a story directory if needed';
+			startupTask = 'creating a chatbot directory if needed';
 			return createStoryDirectory();
 		})
 		.then(() => {
-			startupTask = 'loading your story library';
+			startupTask = 'loading your chatbot library';
 			return updateDataToHydrate();
 		})
 		.then(() => {

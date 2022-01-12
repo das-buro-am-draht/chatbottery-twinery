@@ -16,7 +16,7 @@ module.exports = {
 
 		if (!story) {
 			throw new Error(
-				locale.say('There is no story with ID %s.', storyId)
+				locale.say('There is no chatbot with ID %s.', storyId)
 			);
 		}
 
@@ -36,7 +36,7 @@ module.exports = {
 
 		if (!story) {
 			throw new Error(
-				locale.say('There is no story with ID %s.', storyId)
+				locale.say('There is no chatbot with ID %s.', storyId)
 			);
 		}
 
@@ -56,7 +56,7 @@ module.exports = {
 
 		if (!story) {
 			throw new Error(
-				locale.say('There is no story with ID %s.', storyId)
+				locale.say('There is no chatbot with ID %s.', storyId)
 			);
 		}
 

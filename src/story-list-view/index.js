@@ -115,8 +115,8 @@ module.exports = Vue.extend({
 
 		storyCountDesc() {
 			return locale.sayPlural(
-				'%d Story',
-				'%d Stories',
+				'%d Chatbot',
+				'%d Chatbots',
 				this.stories.length
 			);
 		}
@@ -210,6 +210,7 @@ module.exports = Vue.extend({
 		*/
 
 		'story-edit'(id) {
+			console.log('story-edit');
 			this.$broadcast('story-edit', id);
 		},
 

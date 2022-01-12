@@ -6,6 +6,7 @@ const LocaleView = require('../locale/view');
 const StoryEditView = require('../story-edit-view');
 const StoryListView = require('../story-list-view');
 const WelcomeView = require('../welcome');
+const StartPageView = require('../start-page');
 const locale = require('../locale'); 
 const { getStoryPlayHtml, getStoryProofingHtml, getStoryTestHtml } = require('./story-html');
 const replaceUI = require('../ui/replace');
@@ -22,8 +23,22 @@ TwineRouter.map({
 		component: LocaleView
 	},
 
-	'/welcome': {
-		component: WelcomeView
+	// '/welcome': {
+	// 	component: WelcomeView
+	// },
+
+	'/start': {
+		component: StartPageView,
+		props: {
+			activeNavItemProp: 'home',
+		}
+	},
+
+	'/stories': {
+		component: StartPageView,
+		props: {
+			activeNavItemProp: 'chatbots',
+		}
 	},
 
 	/*
@@ -31,23 +46,23 @@ TwineRouter.map({
 	appropriate props to the components that do the actual work.
 	*/
 
-	'/stories': {
-		component: {
-			template:
-				'<div><story-list ' +
-				':previously-editing="previouslyEditing"></story-list></div>',
+	// '/stories': {
+	// 	component: {
+	// 		template:
+	// 			'<div><story-list ' +
+	// 			':previously-editing="previouslyEditing"></story-list></div>',
 
-			components: {'story-list': StoryListView},
+	// 		components: {'story-list': StoryListView},
 
-			data() {
-				return {
-					previouslyEditing: this.$route.params
-						? this.$route.params.previouslyEditing
-						: ''
-				};
-			}
-		}
-	},
+	// 		data() {
+	// 			return {
+	// 				previouslyEditing: this.$route.params
+	// 					? this.$route.params.previouslyEditing
+	// 					: ''
+	// 			};
+	// 		}
+	// 	}
+	// },
 
 	'/stories/:id': {
 		component: {
@@ -74,7 +89,7 @@ TwineRouter.map({
 					.catch(e => {
 						window.alert(
 							locale.say(
-								'An error occurred while publishing your story. (%s)',
+								'An error occurred while publishing your chatbot. (%s)',
 								e.message
 							)
 						);
@@ -95,7 +110,7 @@ TwineRouter.map({
 					.catch(e => {
 						window.alert(
 							locale.say(
-								'An error occurred while publishing your story. (%s)',
+								'An error occurred while publishing your chatbot. (%s)',
 								e.message
 							)
 						);
@@ -116,7 +131,7 @@ TwineRouter.map({
 					.catch(e => {
 						window.alert(
 							locale.say(
-								'An error occurred while publishing your story. (%s)',
+								'An error occurred while publishing your chatbot. (%s)',
 								e.message
 							)
 						);
@@ -141,7 +156,7 @@ TwineRouter.map({
 					.catch(e => {
 						window.alert(
 							locale.say(
-								'An error occurred while publishing your story. (%s)',
+								'An error occurred while publishing your chatbot. (%s)',
 								e.message
 							)
 						);

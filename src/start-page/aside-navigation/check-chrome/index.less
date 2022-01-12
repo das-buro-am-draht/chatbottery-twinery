@@ -1,0 +1,34 @@
+.chromeBrowser {
+    width: 42px;
+    height: 28px;
+    padding: 0 7px;
+    position: relative;
+    &-active {
+        .chromeBrowser--icon {
+            background-color: #c3c6d1;
+        }
+        .chromeBrowser--status {
+            background: #16de5c;
+        }
+    }
+    &--icon {
+        width: 100%;
+        height: 100%;
+        background-color: #fb1557;
+        mask-image: url("../../../common/img/chrome-icon.svg");
+        -webkit-mask-position: center;
+        mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+    }
+    &--status {
+        content: "";
+        width: 5px;
+        height: 5px;
+        background: #fb1557;
+        border-radius: 2em;
+        position: absolute;
+        top: 0px;
+        right: 2px;
+    }
+}

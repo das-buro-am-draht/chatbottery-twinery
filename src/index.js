@@ -67,7 +67,7 @@ if (typeof userLocale === 'string') {
 			notify(
 				'Your locale preference has been reset to English due ' +
 					'to a technical problem.<br>Please change it with the ' +
-					'<b>Language</b> option in the story list.',
+					'<b>Language</b> option in the chatbot list.',
 				'danger'
 			);
 		});

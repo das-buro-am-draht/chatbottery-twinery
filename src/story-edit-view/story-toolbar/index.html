@@ -1,6 +1,6 @@
 <div class="toolbar main fullSlideUp fast">
 	<div class="left">
-		<a v-link="'/stories'" class="home subtle" title="{{ 'Go to the story list' | say }}"><i class="fa fa-home fa-lg"></i></a>
+		<a v-link="'/stories'" class="home subtle" title="{{ 'Go to the chatbot list' | say }}"><i class="fa fa-home fa-lg"></i></a>
 
 		<button class="storyName subtle">
 			<span class="storyNameVal">{{ story.name }}</span>
@@ -13,7 +13,7 @@
 		<story-search :story="story"></story-search>
 
 		<span class="zooms">
-			<button class="zoomSmall subtle" :class="{ active: zoomDesc === 'small' }" @click="setZoom('small')" title="{{ 'Show only story structure' | say }}">
+			<button class="zoomSmall subtle" :class="{ active: zoomDesc === 'small' }" @click="setZoom('small')" title="{{ 'Show only chatbot structure' | say }}">
 				<i class="fa fa-th fa-lg"></i>
 			</button>
 
@@ -26,13 +26,13 @@
 			</button>
 		</span>
 
-		<button class="subtle" @click="test" title="{{ 'Play this story in test mode' | say }}">
+		<button class="subtle" @click="test" title="{{ 'Play this chatbot in test mode' | say }}">
 			<i class="fa fa-bug fa-lg"></i>
 			<!-- L10n: The verb form, to try something or to check it for problems. -->
 			{{ 'Test' | say }}
 		</button>
 
-		<button class="subtle" @click="play" title="{{ 'Play this story' | say }}">
+		<button class="subtle" @click="play" title="{{ 'Play this chatbot' | say }}">
 			<i class="fa fa-play fa-lg"></i>
 			<!-- L10n: The verb form, as in playing a game. -->
 			{{ 'Play' | say }}

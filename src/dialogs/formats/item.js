@@ -51,7 +51,7 @@ module.exports = Vue.extend({
 			if (this.isDefault) {
 				confirm({
 					message:
-						locale.say('You may not remove the default story format. Please choose another one first.'),
+						locale.say('You may not remove the default chatbot format. Please choose another one first.'),
 					buttonLabel:
 						'<i class="fa fa-lg fa-check"></i> ' + locale.say('OK')
 				});

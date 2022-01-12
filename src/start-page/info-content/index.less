@@ -1,0 +1,110 @@
+.infoContent {
+	flex: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+    overflow: auto;
+	&--hero {
+        background: url("../../common/img/hero-background.svg") no-repeat;
+        background-size: cover;
+        background-position: center bottom;
+        padding: 25px 50px 90px;
+        position: relative;
+	}
+    &--header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 80px;
+    }
+    &--description {
+        font-size: 17px;
+        font-family: Roboto, serif;
+        font-weight: 400;
+        color: #fff;
+        .fa {
+            margin: 0 5px;
+        }
+        a {
+            color: #fff;
+            text-decoration: underline;
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+    &--nav-item {
+        color: #fff;
+        display: flex;
+        font-family: Roboto, serif;
+        padding: 0 10px;
+        &:hover {
+            color: #fff;
+        }
+    }
+    &--version {
+        font-family: SFUIText, serif;
+        font-weight: 300;
+        font-size: 26px;
+        letter-spacing: 18.35px;
+        color: #fff;
+        text-transform: uppercase;
+        margin-top: -10px;
+    }
+    &--redirect {
+        margin-left: 15px;
+    }
+    &--footer {
+        display: flex;
+        justify-content: flex-end;
+        margin: 10px 0 0;
+    }
+    &--new-chatbot {
+        background: rgba(255, 255, 255, 0.88);
+        border: 5px solid #fff;
+        border-radius: 15px;
+        padding: 12px 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+            color: #fb1557;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        .icon {
+            margin-left: 60px;
+        }
+    }
+    // &--list {
+    //     padding: 60px;
+    //     margin: 0px;
+    //     list-style: none;
+    // }
+    // &--date {
+    //     color: #fb1557;
+    //     font-weight: 600;
+    //     font-size: 14px;
+    // }
+    // &--headline {
+    //     color: #131336;
+    //     font-weight: 600;
+    //     font-family: Roboto, serif;
+    //     font-size: 27px;
+    //     margin: 5px 0 15px;
+    // }
+    // &--item-description {
+    //     color: #000;
+    //     line-height: 17px;
+    //     font-weight: 300;
+    //     width: 65%;
+    // }
+    // &--read-more {
+    //     color: #fb1557;
+    //     text-transform: uppercase;
+    //     font-weight: 600;
+    //     &:hover {
+    //         color: #fb1557;
+    //     }
+    // }
+}

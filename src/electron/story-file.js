@@ -99,7 +99,7 @@ const StoryFile = (module.exports = {
 				output = publishStoryWithFormat(appInfo, story, format);
 			} catch (e) {
 				console.warn(
-					`Failed to fully publish story (${
+					`Failed to fully publish chatbot (${
 						e.message
 					}). Attempting naked publish.`
 				);
@@ -118,7 +118,7 @@ const StoryFile = (module.exports = {
 			.then(() => fs.move(tempFilePath, savedFilePath, {overwrite: true}))
 			.then(lockStoryDirectory)
 			.catch(e => {
-				console.warn(`Error while saving story: ${e}`);
+				console.warn(`Error while saving chatbot: ${e}`);
 				error = e;
 				return lockStoryDirectory().then(Promise.reject(error));
 			});
@@ -143,7 +143,7 @@ const StoryFile = (module.exports = {
 			)
 			.then(lockStoryDirectory)
 			.catch(e => {
-				console.warn(`Error while deleting story: ${e}`);
+				console.warn(`Error while deleting chatbot: ${e}`);
 				error = e;
 				return lockStoryDirectory().then(Promise.reject(error));
 			});
@@ -182,7 +182,7 @@ ipcMain.on('save-story', (e, story, format, appInfo) =>
 			.then(() => e.sender.send('story-saved', story, format, appInfo))
 			.catch(e =>
 				dialog.showErrorBox(
-					say('An error occurred while saving a story.'),
+					say('An error occurred while saving a chatbot.'),
 					e.message
 				)
 			)
@@ -195,7 +195,7 @@ ipcMain.on('delete-story', (e, story) =>
 			.then(() => e.sender.send('story-deleted', story))
 			.catch(e =>
 				dialog.showErrorBox(
-					say('An error occurred while deleting a story.'),
+					say('An error occurred while deleting a chatbot.'),
 					e.message
 				)
 			)
@@ -208,7 +208,7 @@ ipcMain.on('rename-story', (e, oldStory, newStory) =>
 			.then(() => e.sender.send('story-renamed', oldStory, newStory))
 			.catch(e =>
 				dialog.showErrorBox(
-					say('An error occurred while renaming a story.'),
+					say('An error occurred while renaming a chatbot.'),
 					e.message
 				)
 			)
