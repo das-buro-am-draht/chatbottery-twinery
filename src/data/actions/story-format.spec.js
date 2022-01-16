@@ -63,7 +63,7 @@ describe('story format actions module', () => {
 			}
 		}
 
-		expect(created['chapbook-1.2.1']).to.exist;
+/*	expect(created['chapbook-1.2.1']).to.exist;
 		expect(created['chapbook-1.2.1'].url).to.equal(
 			'story-formats/chapbook-1.2.1/format.js'
 		);
@@ -109,6 +109,22 @@ describe('story format actions module', () => {
 			'story-formats/sugarcube-2.34.1/format.js'
 		);
 		expect(created['SugarCube-2.34.1'].userAdded).to.be.false;
+	*/
+		expect(created['Chatbottery-8.0.1']).to.exist;
+		expect(created['Chatbottery-8.0.1'].url).to.equal(
+			'https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v8.js'
+		);
+		expect(created['Chatbottery-8.0.1'].userAdded).to.be.false;
+		expect(created['Paperthin-1.0.0']).to.exist;
+		expect(created['Paperthin-1.0.0'].url).to.equal(
+			'story-formats/paperthin-1.0.0/format.js'
+		);
+		expect(created['Paperthin-1.0.0'].userAdded).to.be.false;
+		expect(created['Illume-1.0.5']).to.exist;
+		expect(created['Illume-1.0.5'].url).to.equal(
+			'story-formats/illume-1.0.5/format.js'
+		);
+		expect(created['Illume-1.0.5'].userAdded).to.be.false;
 	});
 
 	it('sets default formats with repairFormats()', () => {

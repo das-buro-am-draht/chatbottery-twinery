@@ -4,7 +4,7 @@ Story format-related actions.
 
 const jsonp = require('../jsonp');
 const semverUtils = require('semver-utils');
-const latestFormatVersions = require('../latest-format-versions');
+const { latestFormatVersions, formatVersion } = require('../format-versions');
 const locale = require('../../locale');
 const {setPref} = require('./pref');
 
@@ -100,34 +100,20 @@ const actions = (module.exports = {
 		string (e.g. if we ask for version 2.0.8, we may get 2.6.1).
 		*/
 
-		const majorVersion = semverUtils.parse(version).major;
-		const formats = store.state.storyFormat.formats.filter(
-			format =>
-				format.name === name &&
-				semverUtils.parse(format.version).major === majorVersion
-		);
-
-		if (formats.length === 0) {
-			throw new Error('No format is available named ' + name);
-		}
-
-		const format = formats.reduce((prev, current) => {
-			const pVer = semverUtils.parse(prev.version);
-			const pMinor = parseInt(pVer.minor);
-			const pPatch = parseInt(pVer.patch);
-			const cVer = semverUtils.parse(current.version);
-			const cMinor = parseInt(cVer.minor);
-			const cPatch = parseInt(cVer.patch);
-
-			if (cMinor <= pMinor && cPatch <= pPatch) {
-				return prev;
-			}
-
-			return current;
-		});
-
+		const formats = store.state.storyFormat.formats;
+		let format = formatVersion({
+			storyFormat: name,
+			storyFormatVersion: version
+		}, formats);
 		if (!format) {
-			throw new Error('No format is available for version ' + version);
+			// select the default story format
+			format = formatVersion({
+				storyFormat: store.state.pref.defaultFormat.name,
+				storyFormatVersion: store.state.pref.defaultFormat.version
+			}, formats);
+		}
+		if (!format) {
+			throw new Error(`No format is available for ${name} ${version}`);
 		}
 
 		return new Promise((resolve, reject) => {
@@ -176,7 +162,7 @@ const actions = (module.exports = {
 		*/
 
 		const builtinFormats = [
-	/*	{
+/*	{
 				name: 'Chapbook',
 				url: 'story-formats/chapbook-1.2.1/format.js',
 				version: '1.2.1',
@@ -270,9 +256,7 @@ const actions = (module.exports = {
 		if (typeof store.state.pref.defaultFormat !== 'object') {
 			setPref(store, 'defaultFormat', {
 				name: 'Chatbottery',
-				version: '8.0.1',
-				// name: 'Harlowe',
-				// version: '3.2.3'
+				version: '8.0.1'
 			});
 		}
 

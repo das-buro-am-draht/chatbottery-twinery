@@ -4,11 +4,15 @@ promise resolving to the stories that were imported, if any.
 */
 
 const Vue = require("vue");
+const semverUtils = require('semver-utils');
 const { deleteStory, importStory } = require("../../data/actions/story");
+const { createFormatFromUrl } = require("../../data/actions/story-format");
 const importHTML = require("../../data/import");
 const load = require("../../file/load");
 const locale = require("../../locale");
+const notify = require("../../ui/notify");
 const { thenable } = require("../../vue/mixins/thenable");
+const { formatVersion } = require("../../data/format-versions");
 
 module.exports = Vue.extend({
 	template: require("./index.html"),
@@ -77,6 +81,36 @@ module.exports = Vue.extend({
 			}
 		},
 
+		find(name) {
+			const stories = this.existingStories;
+			return stories.find(story => story.name === name);
+		},
+
+		_importStory(story) {
+			return Promise.resolve(this.storyFormats).then(formats => {
+				if (story.storyFormat === 'Chatbottery' && !formatVersion(story, formats)) {
+					const majorVersion = semverUtils.parse(story.storyFormatVersion).major;
+					if (majorVersion) {
+						return this.createFormatFromUrl(`https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v${majorVersion}.js`).then(() => {
+							notify(locale.say(
+								"Chatbottery format %s was loaded.",
+								majorVersion
+							));
+						});
+					}
+				}
+			}).then(() => {
+				this.importStory(story);
+				const importedStory = this.find(story.name);
+				if (importedStory.storyFormat !== story.storyFormat || importedStory.storyFormatVersion !== story.storyFormatVersion) {
+					notify(locale.say(
+						"Story format of imported story was changed to '%s'.",
+						importedStory.storyFormat + ' ' + importedStory.storyFormatVersion)
+					), 'danger';					
+				}
+			});
+		},
+
 		import(file) {
 			this.status = "working";
 
@@ -85,15 +119,11 @@ module.exports = Vue.extend({
 
 				this.dupeNames = this.toImport.reduce(
 					(list, story) => {
-						if (this.existingStories.find((orig) => orig.name === story.name)) {
+						if (this.find(story.name)) {
 							list.push(story.name);
 						}
-
 						return list;
-					},
-
-					[]
-				);
+					}, []);
 
 				if (this.dupeNames.length > 0) {
 					/* Ask the user to pick which ones to replace, if any. */
@@ -102,33 +132,26 @@ module.exports = Vue.extend({
 				} else {
 					/* Immediately run the import and close the dialog. */
 
-					this.toImport.forEach((story) => this.importStory(story));
-					this.close();
+					return Promise.all(this.toImport.map((story) => this._importStory(story)))
+						.then(() => this.close());
 				}
 			});
 		},
 
 		replaceAndImport() {
 			this.toReplace.forEach((name) => {
-				this.deleteStory(
-					this.existingStories.find((story) => story.name === name).id
-				);
+				this.deleteStory(this.find(name).id);
 			});
 
-			this.toImport.forEach((story) => {
+			Promise.all(this.toImport.map((story) => {
 				/*
 				If the user *didn't* choose to replace this story, skip it.
 				*/
 
-				if (
-					this.toReplace.indexOf(story.name) !== -1 ||
-					!this.existingStories.find((story) => story.name === name)
-				) {
-					this.importStory(story);
-				}
-
-				this.close();
-			});
+				if (this.toReplace.indexOf(story.name) !== -1 || !this.find(story.name)) {
+					return this._importStory(story);
+				}				
+			})).then(() => this.close());
 		},
 	},
 
@@ -142,10 +165,12 @@ module.exports = Vue.extend({
 		actions: {
 			deleteStory,
 			importStory,
+			createFormatFromUrl,
 		},
 
 		getters: {
 			existingStories: (state) => state.story.stories,
+			storyFormats: (state) => state.storyFormat.formats,			
 		},
 	},
 });

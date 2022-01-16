@@ -3,7 +3,7 @@ Story-related actions.
 */
 
 const semverUtils = require('semver-utils');
-const latestFormatVersions = require('../latest-format-versions');
+const { latestFormatVersions, formatVersion } = require('../format-versions');
 
 const actions = (module.exports = {
 	createStory(store, props) {
@@ -32,8 +32,13 @@ const actions = (module.exports = {
 		dispatch('DUPLICATE_STORY', id, newName);
 	},
 
-	importStory({dispatch}, toImport) {
-		dispatch('IMPORT_STORY', toImport);
+	importStory(store, toImport) {
+		const story = Object.assign({}, toImport);
+		if (!formatVersion(story, store.state.storyFormat.formats)) {
+			story.storyFormat = store.state.pref.defaultFormat.name;
+			story.storyFormatVersion = store.state.pref.defaultFormat.version;
+		}
+		store.dispatch('IMPORT_STORY', story);
 	},
 
 	setTagColorInStory(store, storyId, tagName, tagColor) {
