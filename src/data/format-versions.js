@@ -41,10 +41,10 @@ module.exports = {
 	 * @returns Latest story format that matches the story format props
 	 */
 
-	formatVersion: (story, formats) => {
+	formatVersion: (formats, name, version) => {
 		const filtered = formats.filter(format => 
-			format.name === story.storyFormat && 
-			semverUtils.parse(format.version).major === semverUtils.parse(story.storyFormatVersion).major);
+			format.name === name && 
+			semverUtils.parse(format.version).major === semverUtils.parse(version).major);
 		if (filtered.length === 0) {
 			return null;
 		} else {

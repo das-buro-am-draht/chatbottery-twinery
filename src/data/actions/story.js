@@ -34,7 +34,7 @@ const actions = (module.exports = {
 
 	importStory(store, toImport) {
 		const story = Object.assign({}, toImport);
-		if (!formatVersion(story, store.state.storyFormat.formats)) {
+		if (!formatVersion(store.state.storyFormat.formats, story.storyFormat, story.storyFormatVersion)) {
 			story.storyFormat = store.state.pref.defaultFormat.name;
 			story.storyFormatVersion = store.state.pref.defaultFormat.version;
 		}

@@ -88,7 +88,7 @@ module.exports = Vue.extend({
 
 		_importStory(story) {
 			return Promise.resolve(this.storyFormats).then(formats => {
-				if (story.storyFormat === 'Chatbottery' && !formatVersion(story, formats)) {
+				if (story.storyFormat === 'Chatbottery' && !formatVersion(formats, story.storyFormat, story.storyFormatVersion)) {
 					const majorVersion = semverUtils.parse(story.storyFormatVersion).major;
 					if (majorVersion) {
 						return this.createFormatFromUrl(`https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v${majorVersion}.js`).then(() => {

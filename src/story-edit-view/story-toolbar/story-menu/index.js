@@ -87,15 +87,14 @@ module.exports = Vue.extend({
 		},
 
 		changeFormat(e) {
-			// new FormatDialog({
-			// 	// data: {origin: e.target},
-			// 	data: {storyId: this.story.id, origin: e.target},
-			// 	store: this.$store
-			// }).$mountTo(document.body);
-			new FormatsDialog({
-				store: this.$store,
-				data: {origin: e.target}
+			new FormatDialog({
+				data: {storyId: this.story.id, origin: e.target},
+				store: this.$store
 			}).$mountTo(document.body);
+			// new FormatsDialog({
+			// 	store: this.$store,
+			// 	data: {origin: e.target}
+			// }).$mountTo(document.body);
 		},
 
 		toggleSnap() {

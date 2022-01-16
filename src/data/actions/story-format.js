@@ -101,16 +101,10 @@ const actions = (module.exports = {
 		*/
 
 		const formats = store.state.storyFormat.formats;
-		let format = formatVersion({
-			storyFormat: name,
-			storyFormatVersion: version
-		}, formats);
+		let format = formatVersion(formats, name, version);
 		if (!format) {
 			// select the default story format
-			format = formatVersion({
-				storyFormat: store.state.pref.defaultFormat.name,
-				storyFormatVersion: store.state.pref.defaultFormat.version
-			}, formats);
+			format = formatVersion(formats, store.state.pref.defaultFormat.name, store.state.pref.defaultFormat.version);
 		}
 		if (!format) {
 			throw new Error(`No format is available for ${name} ${version}`);
