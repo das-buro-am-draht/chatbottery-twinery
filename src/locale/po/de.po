@@ -1029,9 +1029,17 @@ msgstr "%d%% Speicherplatz frei"
 #~ msgid "&ldquo;%1$s&rdquo; could not be saved (%2$s)."
 #~ msgstr "&ldquo;%1$s&rdquo; konnte nicht gespeichert werden (%2$s)."
 
+#~ msgid "Chatbottery format %s was loaded."
+#~ msgstr ""
+#~ "Das Chatbottery-Format %s wurde geladen."
+
+#~ msgid "Story format of imported story was changed to '%s'."
+#~ msgstr ""
+#~ "Das Format des importierten Chatbots wurde in '%s' geändert."
+
 #~ msgid "An error occurred while publishing your story. (%s)"
 #~ msgstr ""
-#~ "Eine Fehler beim Veröffentlichen der Geschichte ist aufgetreten. (%s)"
+#~ "Ein Fehler beim Veröffentlichen der Geschichte ist aufgetreten. (%s)"
 
 #~ msgid "don't know how to sort stories by %s"
 #~ msgstr "es ist nicht möglich die Geschichten nach %s zu sortieren"
