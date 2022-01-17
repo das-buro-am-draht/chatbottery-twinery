@@ -4,13 +4,14 @@ let Vue = require('vue');
 const VueRouter = require('vue-router');
 const LocaleView = require('../locale/view');
 const StoryEditView = require('../story-edit-view');
-const StoryListView = require('../story-list-view');
-const WelcomeView = require('../welcome');
-const StartPageView = require('../start-page');
-const locale = require('../locale'); 
+// const StoryListView = require('../story-list-view');
+// const WelcomeView = require('../welcome');
+const HomeView = require('../home');
+const ChatbotsView = require('../chatbots');
+const locale = require('../locale');
 const { getStoryPlayHtml, getStoryProofingHtml, getStoryTestHtml } = require('./story-html');
 const replaceUI = require('../ui/replace');
-const store = require('../data/store');
+// const store = require('../data/store');
 
 Vue.use(VueRouter);
 
@@ -27,18 +28,12 @@ TwineRouter.map({
 	// 	component: WelcomeView
 	// },
 
-	'/start': {
-		component: StartPageView,
-		props: {
-			activeNavItemProp: 'home',
-		}
+	'/home': {
+		component: HomeView,
 	},
 
-	'/stories': {
-		component: StartPageView,
-		props: {
-			activeNavItemProp: 'chatbots',
-		}
+	'/chatbots': {
+		component: ChatbotsView,
 	},
 
 	/*
@@ -64,7 +59,7 @@ TwineRouter.map({
 	// 	}
 	// },
 
-	'/stories/:id': {
+	'/chatbots/:id': {
 		component: {
 			template: '<div><story-edit :story-id="id"></story-edit></div>',
 
@@ -81,7 +76,7 @@ TwineRouter.map({
 	they activate.
 	*/
 
-	'/stories/:id/play': {
+	'/chatbots/:id/play': {
 		component: {
 			ready() {
 				getStoryPlayHtml(this.$store, this.$route.params.id)
@@ -102,7 +97,7 @@ TwineRouter.map({
 		}
 	},
 
-	'/stories/:id/proof': {
+	'/chatbots/:id/proof': {
 		component: {
 			ready() {
 				getStoryProofingHtml(this.$store, this.$route.params.id)
@@ -123,7 +118,7 @@ TwineRouter.map({
 		}
 	},
 
-	'/stories/:id/test': {
+	'/chatbots/:id/test': {
 		component: {
 			ready() {
 				getStoryTestHtml(this.$store, this.$route.params.id)
@@ -144,7 +139,7 @@ TwineRouter.map({
 		}
 	},
 
-	'/stories/:storyId/test/:passageId': {
+	'/chatbots/:storyId/test/:passageId': {
 		component: {
 			ready() {
 				getStoryTestHtml(
@@ -173,7 +168,7 @@ TwineRouter.map({
 /* By default, show the story list. */
 
 TwineRouter.redirect({
-	'*': '/stories'
+	'*': '/home'
 });
 
 TwineRouter.beforeEach(transition => {
@@ -183,9 +178,9 @@ TwineRouter.beforeEach(transition => {
 	transition back to the story.
 	*/
 
-	if (transition.from.path && transition.to.path === '/stories') {
+	if (transition.from.path && transition.to.path === '/chatbots') {
 		const editingId =
-			transition.from.path.match('^/stories/([^\/]+)$');
+			transition.from.path.match('^/chatbots/([^\/]+)$');
 
 		if (editingId) {
 			transition.to.params.previouslyEditing = editingId[1];

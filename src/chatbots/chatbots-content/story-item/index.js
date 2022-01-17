@@ -117,7 +117,7 @@ module.exports = Vue.extend({
 				},
 			})
 				.$mountTo(this.$el)
-				.then(() => (window.location.hash = "#stories/" + this.story.id));
+				.then(() => (window.location.hash = "#chatbots/" + this.story.id));
 		},
 	},
 });

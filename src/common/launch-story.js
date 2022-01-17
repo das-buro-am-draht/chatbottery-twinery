@@ -54,7 +54,7 @@ module.exports = {
 					);
 				});
 		} else {
-			openWindow(`#stories/${storyId}/play`);
+			openWindow(`#chatbots/${storyId}/play`);
 		}
 	},
 
@@ -77,7 +77,7 @@ module.exports = {
 					);
 				});
 		} else {
-			openWindow(`#stories/${storyId}/proof`);
+			openWindow(`#chatbots/${storyId}/proof`);
 		}
 	},
 
@@ -101,9 +101,9 @@ module.exports = {
 				});
 		} else {
 			if (startPassageId) {
-				openWindow(`#stories/${storyId}/test/${startPassageId}`);
+				openWindow(`#chatbots/${storyId}/test/${startPassageId}`);
 			} else {
-				openWindow(`#stories/${storyId}/test`);
+				openWindow(`#chatbots/${storyId}/test`);
 			}
 		}
 	}

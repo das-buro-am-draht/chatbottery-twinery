@@ -96,10 +96,9 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'aside-navigation': require('./aside-navigation'),
+		'aside-navigation': require('../aside-navigation'),
 		'info-content': require('./info-content'),
-		'story-item': require('../story-list-view/story-item'),
-		'chatbots-content': require('./chatbots-content')
+		'story-item': require('../story-list-view/story-item')
 	},
 
 	vuex: {
