@@ -17,10 +17,6 @@ module.exports = Vue.extend({
 			type: String,
 			default: 'home'
 		},
-		changeActiveNavItem: {
-			type: Function,
-			default: () => {}
-		}
 	},
 
 	methods: {

@@ -21,7 +21,6 @@ module.exports = Vue.extend({
 
 	computed: {
 		sortedStories() {
-			// debugger;
 			/*
 			If we have no stories to sort, don't worry about it.
 			*/
@@ -106,22 +105,7 @@ module.exports = Vue.extend({
 			const isBlankbot = this.stories.some((orig) => orig.name === "Blankbot");
 
 			if (!isBlankbot) {
-				let blankbot = "";
-
-				// fetch(
-				// 	"https://pidoco.github.io/chatbot-drkk/blankbot/Blankbot.chatbottery"
-				// )
-				// 	.then((response) => response.text())
-				// 	.then((data) => {
-				// 		blankbot = data;
-				// 		return true;
-				// 	});
-
-				console.log(blankbot)
-
 				const toImport = importHTML(blankbot) || [];
-
-				console.log(toImport)
 				
 				toImport.forEach(story => this.importStory(story));
 			}
