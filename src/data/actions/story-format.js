@@ -212,8 +212,8 @@ const actions = (module.exports = {
 			}
 	*/	{
 				name: 'Chatbottery',
-				url: 'https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v8.js',
-				version: '8.0.1',
+				url: 'https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v9.js',
+				version: '9.1.2',
 				userAdded: false
 			},
 			{
@@ -243,18 +243,18 @@ const actions = (module.exports = {
 		});
 
 		/*
-		Set default formats if not already set, or if an unversioned preference
+		Set default formats allways regardless of saved value in local storage // formerly: if not already set, or if an unversioned preference
 		exists.
 		*/
 
-		if (typeof store.state.pref.defaultFormat !== 'object') {
+		{ // if (typeof store.state.pref.defaultFormat !== 'object') {
 			setPref(store, 'defaultFormat', {
 				name: 'Chatbottery',
-				version: '8.0.1'
+				version: '9.1.2'
 			});
 		}
 
-		if (typeof store.state.pref.proofingFormat !== 'object') {
+		{ // if (typeof store.state.pref.proofingFormat !== 'object') {
 			setPref(store, 'proofingFormat', {
 				name: 'Illume',
 				version: '1.0.5'
