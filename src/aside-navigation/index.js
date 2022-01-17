@@ -1,7 +1,7 @@
 // The side toolbar of a story list.
 
 const Vue = require('vue');
-const {setPref} = require('../../data/actions/pref');
+const {setPref} = require('../data/actions/pref');
 
 require('./index.less');
 
@@ -17,10 +17,6 @@ module.exports = Vue.extend({
 			type: String,
 			default: 'home'
 		},
-		changeActiveNavItem: {
-			type: Function,
-			default: () => {}
-		}
 	},
 
 	methods: {
@@ -38,7 +34,7 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'quota-gauge': require('../../ui/quota-gauge'),
+		'quota-gauge': require('../ui/quota-gauge'),
 		'check-local-state': require('./check-local-state'),
 		'check-chrome': require('./check-chrome')
 	},

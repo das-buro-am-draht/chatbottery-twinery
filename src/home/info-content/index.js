@@ -52,7 +52,7 @@ module.exports = Vue.extend({
 				const id = this.existingStories.find(story => story.name === name)
 				.id;
 
-				window.location.replace(`#!/stories/${id}`);
+				window.location.replace(`#!/chatbots/${id}`);
 
 				
 
@@ -70,7 +70,7 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'wordpress-news': require('./wordpress-news'),
+		'wordpress-news': require('../wordpress-news'),
 	},
 
 	events: {

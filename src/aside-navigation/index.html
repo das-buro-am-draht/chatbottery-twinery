@@ -1,7 +1,7 @@
 <nav class="asideNavigation">
     <header class="asideNavigation--header">
         <h1 class="asideNavigation--logo">
-            <img src="../../common/img/logo-chatbottery.png" />
+            <img src="../common/img/logo-chatbottery.png" />
         </h1>
     </header>
 	<ul class="asideNavigation--list">
@@ -13,7 +13,7 @@
         >
 			<button
             class="asideNavigation--button"
-            @click="changeActiveNavItem('home')"
+            v-link="'/home'"
             title="Home">
                 <div class="asideNavigation--icon"></div>
 				<div class="asideNavigation--text">
@@ -29,13 +29,14 @@
         >
 			<button
             class="asideNavigation--button"
-            @click="changeActiveNavItem('chatbots')"
+            v-link="'/chatbots'"
             title="Chatbots">
                 <div class="asideNavigation--icon"></div>
                 <div class="asideNavigation--text">
-                    {{ 'Chatbots' | say }} ({{storiesLength}})
+                    {{ 'Chatbots' | say }}
                 </div>
 			</button>
+            <!-- ({{storiesLength}}) -->
 		</li>
         <li class="asideNavigation--item asideNavigation--item-livechat">
 			<button class="asideNavigation--button" @click="openRedirect('https://chatbot-moderator.chatbottery.com/')" title="Live chats">
@@ -67,7 +68,7 @@
 	<footer class="asideNavigation--footer">
         <div class="asideNavigation--twinery">
             <div class="asideNavigation--twinery-logo">
-                <img src="../../common/img/logo.svg" />
+                <img src="../common/img/logo.svg" />
             </div>
             <div class="asideNavigation--description">Chatbottery Editor V.8.0 - Made with Twine, an open-source tool for telling interactive, nonlinear stories.</div>
         </div>
