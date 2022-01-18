@@ -45,8 +45,10 @@ module.exports = {
 		const filtered = formats.filter(format => 
 			format.name === name && 
 			semverUtils.parse(format.version).major === semverUtils.parse(version).major);
-		if (filtered.length === 0) {
+		if (!filtered.length) {
 			return null;
+		} else if (filtered.length === 1) {
+			return filtered[0];
 		} else {
 			return filtered.reduce((prev, current) => {
 				const pVer = semverUtils.parse(prev.version);
