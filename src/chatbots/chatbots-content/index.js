@@ -6,8 +6,10 @@ const locale = require("../../locale");
 const { prompt } = require("../../dialogs/prompt");
 const ImportDialog = require("../../dialogs/story-import");
 const { createStory } = require("../../data/actions/story");
-const blankbot = require('../../common/Blankbot.html');
+const blankbotHtml = require('../../common/Blankbot.html');
+const {version: blankbotVersion} = require('../../common/blankbot.json');
 const importHTML = require("../../data/import");
+const { deleteStory } = require("../../data/actions/story");
 
 require("./index.less");
 
@@ -66,6 +68,11 @@ module.exports = Vue.extend({
 	},
 
 	methods: {
+		find(name) {
+			const stories = this.stories;
+			return stories.find(story => story.name === name);
+		},
+
 		createStoryPrompt(e) {
 			// Prompt for the new story name.
 
@@ -103,18 +110,23 @@ module.exports = Vue.extend({
 		},
 		importBlankbot() {
 			const isBlankbot = this.stories.some((orig) => orig.name === "Blankbot");
+			const importedBlankbotVersion = window.localStorage.getItem('blankbot-import-version');
+			const isNewerBlankbot = blankbotVersion > importedBlankbotVersion;
 
-			if (!isBlankbot) {
-				const toImport = importHTML(blankbot) || [];
+			if (!isBlankbot || isNewerBlankbot) {
+				isBlankbot && this.deleteStory(this.find("Blankbot").id);
+				const toImport = importHTML(blankbotHtml) || [];
+
+				window.localStorage.removeItem('blankbot-import-version');
+				window.localStorage.setItem('blankbot-import-version', blankbotVersion);
 				
 				toImport.forEach(story => this.importStory(story));
 			}
 		},
 	},
 
-	activate: function (done) {
+	ready: function () {
 		this.importBlankbot();
-		done();
 	},
 
 	components: {
@@ -131,6 +143,7 @@ module.exports = Vue.extend({
 		actions: {
 			createStory,
 			importStory,
+			deleteStory,
 		},
 
 		getters: {
