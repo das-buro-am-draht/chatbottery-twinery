@@ -1,5 +1,5 @@
 <div id="storyEditView" :style="cssDimensions" class="{{ 'zoom-' + zoomDesc }}" @webkitmouseforcedown="onMouseForceDown" @wheel="onWheel" v-mouse-scrolling>
-	<chatbot-toolbar></chatbot-toolbar>
+	<chatbot-toolbar :story="story" :highlight-regexp="highlightRegexp" :zoom-desc="zoomDesc"></chatbot-toolbar>
 	
 	<div class="passages">
 		<marquee-selector :story="story"></marquee-selector>

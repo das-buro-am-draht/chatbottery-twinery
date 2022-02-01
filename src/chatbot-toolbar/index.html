@@ -1,0 +1,32 @@
+<div class="chatbot-toolbar">
+	<nav class="chatbot-toolbar__navigation">
+        <ul class="chatbot-toolbar__navigation-list">
+            <li class="chatbot-toolbar__navigation-item chatbot-toolbar__navigation-item--home">
+                <a v-link="'/chatbots'" title="{{ 'Go to the chatbot list' | say }}"><div class="icon"></div></a>
+            </li>
+            <dropdown :story="story"></dropdown>
+            <li class="chatbot-toolbar__navigation-item chatbot-toolbar__navigation-item--css" @click="editStyle">
+                <div class="button">Css</div>
+            </li>
+            <li class="chatbot-toolbar__navigation-item chatbot-toolbar__navigation-item--js"  @click="editScript">
+                <div class="button">Js</div>
+            </li>
+        </ul>
+    </nav>
+    <div class="chatbot-toolbar__view">
+        <story-search></story-search>
+        <div class="chatbot-toolbar__zoom">
+            <input v-model="sliderVal" class="chatbot-toolbar__range" type="range" id="zoom" name="zoom" min="0" max="2" @change="changeZoom">
+        </div>
+    </div>
+    <div class="chatbot-toolbar__actions">
+        <ul class="chatbot-toolbar__actions-list">
+            <!-- <li class="chatbot-toolbar__actions-item chatbot-toolbar__actions-item--download">
+                <div class="icon"></div>
+            </li> -->
+            <li class="chatbot-toolbar__actions-item chatbot-toolbar__actions-item--play" @click="play">
+                <div class="icon"></div>
+            </li>
+        </ul>
+    </div>
+</div>

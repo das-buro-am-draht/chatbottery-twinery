@@ -3,7 +3,7 @@
 let Vue = require('vue');
 const VueRouter = require('vue-router');
 const LocaleView = require('../locale/view');
-const StoryEditView = require('../story-edit-view');
+const ChatbotEditView = require('../chatbot-edit-view');
 // const StoryListView = require('../story-list-view');
 // const WelcomeView = require('../welcome');
 const HomeView = require('../home');
@@ -63,7 +63,7 @@ TwineRouter.map({
 		component: {
 			template: '<div><story-edit :story-id="id"></story-edit></div>',
 
-			components: {'story-edit': StoryEditView},
+			components: {'story-edit': ChatbotEditView},
 
 			data() {
 				return {id: this.$route.params.id};

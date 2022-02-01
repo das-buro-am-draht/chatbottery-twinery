@@ -1,0 +1,18 @@
+<li
+	:class="[
+		'chatbot-toolbar__navigation-item chatbot-toolbar__navigation-item--chatbot',
+		active ? 'chatbot-toolbar__navigation-item--active' : ''
+	]"
+	@click="toggleDropdown()"
+>
+	<div class="text">Corona Chatbot V.2</div>
+	<div class="dots">
+		<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+	</div>
+	<ul class="dropdown">
+		<li class="dropdown__item" @click="renameStory">Rename Chatbot</li>
+		<li class="dropdown__item" @click="storyStats">Chatbot Statistics</li>
+		<li class="dropdown__item" @click="publishStory">Publish to file</li>
+		<li class="dropdown__item" @click="proofStory">View proofing copy</li>
+	</ul>
+</li>

@@ -1,0 +1,28 @@
+.create-chatbot {
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	width: 113px;
+	height: 104px;
+	overflow: hidden;
+	.icon {
+		background: url("../common/img/new-chatbot-icon.svg") no-repeat center;
+		width: 48px;
+		height: 44px;
+		z-index: 5;
+		position: absolute;
+		bottom: 15px;
+		right: 18px;
+		cursor: pointer;
+	}
+	&:after {
+		background: #fff;
+		width: 226px;
+		height: 208px;
+		border-radius: 50%;
+		content: "";
+		position: absolute;
+		bottom: -104px;
+		right: -113px;
+	}
+}
