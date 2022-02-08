@@ -18,7 +18,7 @@ function arc(props) {
 }
 
 module.exports = Vue.extend({
-	template: '<path :d="pathString" class="marker-{{markerType}}"></path>',
+	template: '<path :d="pathString" class="marker-{{markerType}} marker-line-{{line}}"></path>',
 
 	props: {
 		/*
@@ -43,6 +43,11 @@ module.exports = Vue.extend({
 
 		end: {
 			type: Object,
+			required: false
+		},
+
+		line: {
+			type: String,
 			required: false
 		}
 	},

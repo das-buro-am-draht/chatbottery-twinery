@@ -1,0 +1,13 @@
+<li
+	:class="[
+		'chatbot-toolbar__actions-item chatbot-toolbar__actions-item--download',
+		active ? 'chatbot-toolbar__actions-item--active' : ''
+	]"
+	@click="toggleDropdown()"
+>
+	<div class="icon"></div>
+	<ul class="dropdown">
+		<li class="dropdown__item" @click="publishStory">Download html-File</li>
+		<li class="dropdown__item" @click="proofStory">Download Proof Copy</li>
+	</ul>
+</li>

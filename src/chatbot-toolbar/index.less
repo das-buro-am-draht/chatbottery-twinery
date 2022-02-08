@@ -23,6 +23,7 @@
 		top: 100%;
 		background: #4c4c4c;
 		width: 100%;
+		color: #fff;
 		&__item {
 			padding: 15px;
 			display: flex;
@@ -32,6 +33,18 @@
 				background: #000;
 				cursor: pointer;
 			}
+		}
+	}
+	.dots {
+		margin-left: 15px;
+		width: 23px;
+		height: 23px;
+		border-radius: 2em;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.fa {
+			margin-top: 1px;
 		}
 	}
 	&__navigation {
@@ -50,6 +63,9 @@
 			position: relative;
 			padding: 10px;
 			margin: 0 15px;
+			.dropdown {
+				width: 155px;
+			}
 			&--active {
 				background: #000;
 				.dropdown {
@@ -94,17 +110,8 @@
 					font-size: 17px;
 				}
 				.dots {
-					margin-left: 15px;
 					border: 2px solid #fff;
-					width: 23px;
-					height: 23px;
-					border-radius: 2em;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					.fa {
-						margin-top: 1px;
-					}
+					color: #fff;
 				}
 			}
 			&--css,
@@ -127,7 +134,7 @@
 					cursor: pointer;
 				}
 			}
-			&--css {
+			&--error {
 				.button {
 					color: #fb1557;
 					box-shadow: 0 0px 15px 0 #fb1557;
@@ -159,6 +166,18 @@
 			align-items: center;
 			cursor: pointer;
             margin: 0 5px;
+			position: relative;
+			.dropdown {
+				right: 0px;
+				left: auto;
+				width: 170px;
+			}
+			&--active {
+				background: #000;
+				.dropdown {
+					display: flex;
+				}
+			}
 			&--download {
 				.icon {
                     width: 28px;

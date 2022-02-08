@@ -7,10 +7,6 @@ const Vue = require('vue');
 const locale = require('../../locale');
 const {prompt} = require('../../dialogs/prompt');
 const StatsDialog = require('../../dialogs/story-stats');
-const save = require('../../file/save');
-const {publishStoryWithFormat} = require('../../data/publish');
-const {loadFormat} = require('../../data/actions/story-format');
-const {proofStory} = require('../../common/launch-story');
 
 require('./index.less');
 
@@ -50,31 +46,5 @@ module.exports = Vue.extend({
 				store: this.$store
 			}).$mountTo(document.body);
 		},
-		publishStory() {
-			this.loadFormat(
-				this.story.storyFormat,
-				this.story.storyFormatVersion
-			).then(format => {
-				save(
-					publishStoryWithFormat(this.appInfo, this.story, format),
-					this.story.name + '.html'
-				);
-			});
-		},
-		proofStory() {
-			proofStory(this.$store, this.story.id);
-		},
 	},
-
-	vuex: {
-		actions: {
-			loadFormat,
-		},
-
-		getters: {
-			// allFormats: state => state.storyFormat.formats,
-			appInfo: state => state.appInfo,
-			// defaultFormatName: state => state.pref.defaultFormat
-		}
-	}
 });

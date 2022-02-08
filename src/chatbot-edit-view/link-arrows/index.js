@@ -2,9 +2,8 @@
 Draws connector lines between passages.
 */
 
-const uniq = require('lodash.uniq');
 const Vue = require('vue');
-const linkParser = require('../../data/link-parser');
+const linkDivider = require('../../data/link-divider');
 
 require('./index.less');
 
@@ -46,7 +45,7 @@ module.exports = Vue.extend({
 		links() {
 			return this.passages.reduce(
 				(result, passage) => {
-					result[passage.name] = uniq(linkParser(passage.text, true));
+					result[passage.name] = linkDivider(passage.text, true);
 					return result;
 				},
 

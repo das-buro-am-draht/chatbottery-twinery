@@ -62,7 +62,7 @@ module.exports = Vue.extend({
 			return this.story.passages.reduce(
 				(links, passage) => [
 					...links,
-					...linkParser(passage.text).filter(
+					...linkParser.links(passage.text).filter(
 						link => links.indexOf(link) === -1
 					)
 				],
@@ -91,7 +91,7 @@ module.exports = Vue.extend({
 			/* This counts repeated links, unlike links(). */
 
 			return this.story.passages.reduce(
-				(count, passage) => count + linkParser(passage.text).length,
+				(count, passage) => count + linkParser.links(passage.text).length,
 				0
 			);
 		},

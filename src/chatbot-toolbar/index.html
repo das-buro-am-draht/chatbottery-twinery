@@ -4,7 +4,7 @@
             <li class="chatbot-toolbar__navigation-item chatbot-toolbar__navigation-item--home">
                 <a v-link="'/chatbots'" title="{{ 'Go to the chatbot list' | say }}"><div class="icon"></div></a>
             </li>
-            <dropdown :story="story"></dropdown>
+            <dropdown-file :story="story"></dropdown-file>
             <li class="chatbot-toolbar__navigation-item chatbot-toolbar__navigation-item--css" @click="editStyle">
                 <div class="button">Css</div>
             </li>
@@ -21,9 +21,7 @@
     </div>
     <div class="chatbot-toolbar__actions">
         <ul class="chatbot-toolbar__actions-list">
-            <!-- <li class="chatbot-toolbar__actions-item chatbot-toolbar__actions-item--download">
-                <div class="icon"></div>
-            </li> -->
+            <dropdown-download :story="story"></dropdown-download>
             <li class="chatbot-toolbar__actions-item chatbot-toolbar__actions-item--play" @click="play">
                 <div class="icon"></div>
             </li>

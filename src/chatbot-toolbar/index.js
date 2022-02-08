@@ -14,7 +14,7 @@ module.exports = Vue.extend({
 
 	data: () => ({
 		descriptions: ["small", "medium", "big"],
-		sliderVal: ""
+		sliderVal: "",
 	}),
 
 	props: {
@@ -30,27 +30,15 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		// 'story-menu': require('./story-menu'),
 		'story-search': require('./story-search'),
-		'dropdown': require('./dropdown'),
+		'dropdown-file': require('./dropdown-file'),
+		'dropdown-download': require('./dropdown-download'),
 	},
 
 	methods: {
-		// setZoom(description) {
-		// 	this.updateStory(this.story.id, {zoom: zoomMappings[description]});
-		// },
-
-		// test() {
-		// 	testStory(this.$store, this.story.id);
-		// },
-
 		play() {
 			playStory(this.$store, this.story.id);
 		},
-
-		// addPassage() {
-		// 	this.$dispatch('passage-create');
-		// }
 		editScript(e) {
 			/*
 			We have to manually inject the Vuex store, since the editors are
@@ -79,7 +67,7 @@ module.exports = Vue.extend({
 
 	vuex: {
 		actions: {
-			updateStory
-		}
+			updateStory,
+		},
 	}
 });
