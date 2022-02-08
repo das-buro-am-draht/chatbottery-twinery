@@ -18,10 +18,6 @@ module.exports = Vue.extend({
 		story: {
 			type: Object,
 			required: true
-		},
-		templateComponent: {
-			type: String,
-			required: true
 		}
 	},
 

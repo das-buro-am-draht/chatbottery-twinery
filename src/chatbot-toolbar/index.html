@@ -14,7 +14,7 @@
         </ul>
     </nav>
     <div class="chatbot-toolbar__view">
-        <story-search></story-search>
+        <story-search :story="story"></story-search>
         <div class="chatbot-toolbar__zoom">
             <input v-model="sliderVal" class="chatbot-toolbar__range" type="range" id="zoom" name="zoom" min="0" max="2" @change="changeZoom">
         </div>
