@@ -7,6 +7,8 @@ const Vue = require('vue');
 const locale = require('../../locale');
 const {prompt} = require('../../dialogs/prompt');
 const StatsDialog = require('../../dialogs/story-stats');
+// const FormatDialog = require('../../dialogs/story-format');
+const FormatsDialog = require('../../dialogs/formats');
 
 require('./index.less');
 
@@ -44,6 +46,16 @@ module.exports = Vue.extend({
 			new StatsDialog({
 				data: {storyId: this.story.id, origin: e.target},
 				store: this.$store
+			}).$mountTo(document.body);
+		},
+		changeFormat(e) {
+			// new FormatDialog({
+			// 	data: {storyId: this.story.id, origin: e.target},
+			// 	store: this.$store
+			// }).$mountTo(document.body);
+			new FormatsDialog({
+				store: this.$store,
+				data: {origin: e.target}
 			}).$mountTo(document.body);
 		},
 	},
