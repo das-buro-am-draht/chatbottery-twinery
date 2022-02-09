@@ -17,11 +17,18 @@
 		.marker-broken {
 			marker-end: url(#link-broken);
 		}
+
+		.marker-line-dashed {
+			stroke-dasharray: 6;
+		}
 	</style>
 
 	<template v-for="(start, startLinks) in links" track-by="$index">
-		<template v-for="end in startLinks" track-by="$index">
-			<link-arrow :start="positions[start]" :end="positions[end]"></link-arrow>
+		<template v-for="end in startLinks.goto" track-by="$index">
+			<link-arrow :start="positions[start]" :end="positions[end]" line="dashed"></link-arrow>
+		</template>
+		<template v-for="end in startLinks.actOrBtn" track-by="$index">
+			<link-arrow :start="positions[start]" :end="positions[end]" line="solid"></link-arrow>
 		</template>
 	</template>
 </svg>

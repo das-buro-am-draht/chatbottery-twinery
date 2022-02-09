@@ -144,8 +144,8 @@ const actions = module.exports = {
 
 		/* Determine how many passages we'll need to create. */
 
-		const oldLinks = linkParser(oldText, true);
-		const newLinks = linkParser(passage.text, true).filter(
+		const oldLinks = linkParser.links(oldText, true);
+		const newLinks = linkParser.links(passage.text, true).filter(
 			link => (oldLinks.indexOf(link) === -1) &&
 				!(story.passages.some(passage => passage.name === link))
 		);

@@ -4,7 +4,37 @@
 	right: 0px;
 	width: 113px;
 	height: 104px;
-	overflow: hidden;
+	&:hover {
+		.tooltip {
+			display: block;
+		}
+	}
+	.tooltip {
+		background: #fffff5; // #fffff5
+		position: absolute;
+		top: -10px;
+		right: 20px;
+		padding: 10px 15px;
+		color: #4c4c4c;
+		z-index: 30;
+		font-size: 13px;
+		letter-spacing: -0.23px;
+		white-space: nowrap;
+		display: none;
+		border-radius: 2px;
+		filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.22));
+		&:after {
+			width: 0;
+			height: 0;
+			border-left: 8px solid transparent;
+			border-right: 8px solid transparent;
+			border-top: 10px solid #fffff5;
+			content: "";
+			position: absolute;
+			bottom: -10px;
+			right: 7px;
+		}
+	}
 	.icon {
 		background: url("../common/img/new-chatbot-icon.svg") no-repeat center;
 		width: 48px;
