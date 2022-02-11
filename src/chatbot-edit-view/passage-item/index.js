@@ -116,7 +116,7 @@ module.exports = Vue.extend({
 			return {
 				left: left * zoom + 'px',
 				top: top * zoom + 'px',
-				width: width * zoom + 'px',
+				width: width * zoom * 1.45 + 'px',
 				height: height * zoom + 'px',
 				transform: this.passage.selected ?
 					'translate(' + this.screenDragOffsetX + 'px, ' +

@@ -8,20 +8,40 @@
 	cursor: default;
 	font-size: 85%;
 	padding: @len-small;
-	border: 1px solid transparent;
-	border-radius: 2px;
-	overflow: hidden;
-	.shadow-small;
+	border: 1px solid #909090;
+	border-radius: 7px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #626262;
+	&.start, &.start.selected {
+		background: #fb1557;
+		border: 1px solid #fb1557;
+		color: #fff;
+		border: 0px;
+	}
+	&.start.selected, &.selected  {
+		background: #fc2361;
+		border: 1px solid #fc2361;
+	}
+	&.selected {
+		color: #3a51fa;
+		border: 1px solid #b1baff;
+		background: #fff;
+	}
 
 	.icons {
 		display: flex;
 		justify-content: center;
 		align-self: center;
+		position: absolute;
+		top: -25px;
 	}
 
 	.icon {
 		position: relative;
 		display: flex;
+		margin: 0 2px;
 		&:before {
 			clear: both;
 			font-family: FontAwesome;
@@ -30,11 +50,11 @@
 			justify-content: center;
 			align-items: center;
 			border-radius: 50%;
-			border: 1px solid #fff;
+			border: 2px solid #fff;
 			background: #c10d41;
-			width: 1rem;
-			height: 1rem;
-			font-size: 90%;
+			width: 3rem;
+			height: 3rem;
+			font-size: 250%;
 		}
 		&--start:before {
 			content: "\F135";
@@ -76,6 +96,8 @@
 			flex-shrink: 1;
 			margin: @len-hairline;
 			border-radius: (@len-small * 0.75) / 2;
+			border-top-left-radius: 15px;
+			border-bottom-left-radius: 15px;
 			
 			& + div {
 				margin-top: 0;
@@ -107,11 +129,6 @@
 		}
 	}
 
-	&.selected {
-		border: @len-hairline solid lighten(@color-link, 30%);
-		background: lighten(@color-link, 55%);
-	}
-
 	&.highlighted {
 		border: @len-hairline solid lighten(@color-highlight, 15%);
 		background: lighten(@color-highlight, 40%);
@@ -129,6 +146,19 @@
 
 #storyEditView.zoom-medium .passage {
 	padding: @len-tiny;
+
+	.icons {
+		top: -13px;
+	}
+
+	.icon {
+		&:before {
+			width: 1.5rem;
+			height: 1.5rem;
+			font-size: 125%;
+			border: 1px solid #fff;
+		}
+	}
 
 	.frame {
 		height: 100%;
@@ -156,6 +186,20 @@
 
 #storyEditView.zoom-small .passage {
 	padding: 0;
+
+	.icons {
+		top: 3px;
+	}
+
+	.icon {
+		margin: 0px;
+		&:before {
+			width: .9rem;
+			height: .9rem;
+			font-size: 80%;
+			border: 1px solid #fff;
+		}
+	}
 
 	.frame {
 		height: 100%;
