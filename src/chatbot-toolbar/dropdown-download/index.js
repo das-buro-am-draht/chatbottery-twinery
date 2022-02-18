@@ -29,6 +29,9 @@ module.exports = Vue.extend({
 		toggleDropdown() {
 			this.active = !this.active;
 		},
+		closeDropdown() {
+			this.active = false;
+		},
 		publishStory() {
 			this.loadFormat(
 				this.story.storyFormat,

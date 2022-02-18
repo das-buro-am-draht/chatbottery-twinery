@@ -4,6 +4,7 @@
 		active ? 'chatbot-toolbar__navigation-item--active' : ''
 	]"
 	@click="toggleDropdown()"
+	v-click-outside="closeDropdown"
 >
 	<div class="text">{{ story.name }}</div>
 	<div class="dots">

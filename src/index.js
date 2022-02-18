@@ -14,10 +14,12 @@ everything.
 const localeFilters = require('./vue/filters/locale');
 const mountMixin = require('./vue/mixins/mount-to');
 const mouseScrollingDirective = require('./vue/directives/mouse-scrolling');
+const clickOutsideDirective = require('./vue/directives/click-outside');
 
 Vue.mixin(mountMixin);
 localeFilters.addTo(Vue);
 mouseScrollingDirective.addTo(Vue);
+clickOutsideDirective.addTo(Vue);
 
 const locale = require('./locale');
 const notify = require('./ui/notify');

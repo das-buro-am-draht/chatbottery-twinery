@@ -85,7 +85,7 @@ const actions = module.exports = {
 
 		const displacementDistance = (story.snapToGrid && gridSize) ?
 			0
-			: 10;
+			: 20;
 
 		/* Displace by other passages. */
 
@@ -152,16 +152,16 @@ const actions = module.exports = {
 
 		/* We center the new passages underneath this one. */
 
-		const newTop = passage.top + 100 * 1.5;
+		const newTop = passage.top + 150 * 1.5;
 
 		/*
 		We account for the total width of the new passages as both the width of
 		the passages themselves plus the spacing in between.
 		*/
 
-		const totalWidth = newLinks.length * 100 +
-			((newLinks.length - 1) * (100 / 2));
-		let newLeft = passage.left + (100 - totalWidth) / 2;
+		const totalWidth = newLinks.length * 150 +
+			((newLinks.length - 1) * (150 / 2));
+		let newLeft = passage.left + (150 - totalWidth) / 2;
 
 		newLinks.forEach(link => {
 			store.dispatch(
@@ -188,7 +188,7 @@ const actions = module.exports = {
 				console.warn('Could not locate newly-created passage in order to position it');
 			}
 
-			newLeft += 100 * 1.5;
+			newLeft += 150 * 1.5;
 		});
 	},
 

@@ -167,8 +167,6 @@ const storyStore = (module.exports = {
 			}
 
 			story.lastUpdate = new Date();
-			console.log(story);
-			console.log(story.passages);
 		},
 
 		UPDATE_PASSAGE_IN_STORY(state, storyId, passageId, props) {

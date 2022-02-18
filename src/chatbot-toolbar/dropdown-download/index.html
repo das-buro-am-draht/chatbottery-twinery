@@ -4,6 +4,7 @@
 		active ? 'chatbot-toolbar__actions-item--active' : ''
 	]"
 	@click="toggleDropdown()"
+	v-click-outside="closeDropdown"
 >
 	<div class="icon"></div>
 	<ul class="dropdown">
