@@ -116,7 +116,7 @@ module.exports = Vue.extend({
 			return {
 				left: left * zoom + 'px',
 				top: top * zoom + 'px',
-				width: width * zoom * 1.45 + 'px',
+				width: width * zoom + 'px',
 				height: height * zoom + 'px',
 				transform: this.passage.selected ?
 					'translate(' + this.screenDragOffsetX + 'px, ' +
@@ -168,6 +168,15 @@ module.exports = Vue.extend({
 
 			return escape(this.passage.text.substr(0, 99)) + '&hellip;';
 		},
+	},
+
+	ready() {
+		if (this.passage.width === 100) {
+			this.updatePassage(this.parentStory.id, this.passage.id, {
+				width: 150,
+			});
+			this.$dispatch('passage-position', this.passage, {});
+		}
 	},
 
 	methods: {

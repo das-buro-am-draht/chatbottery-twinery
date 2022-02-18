@@ -232,7 +232,7 @@ const storyStore = (module.exports = {
 		story: -1,
 		top: 0,
 		left: 0,
-		width: 100,
+		width: 150,
 		height: 100,
 		tags: [],
 		name: locale.say('Untitled Passage'),

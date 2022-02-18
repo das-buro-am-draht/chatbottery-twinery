@@ -83,7 +83,7 @@ module.exports = Vue.extend({
 			switch (value) {
 				case 'small':
 					this.updatePassage(this.parentStory.id, this.passage.id, {
-						width: 100,
+						width: 150,
 						height: 100
 					});
 					break;
@@ -97,7 +97,7 @@ module.exports = Vue.extend({
 
 				case 'tall':
 					this.updatePassage(this.parentStory.id, this.passage.id, {
-						width: 100,
+						width: 150,
 						height: 200
 					});
 					break;
