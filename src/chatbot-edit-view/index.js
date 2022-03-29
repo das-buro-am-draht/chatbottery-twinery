@@ -198,6 +198,35 @@ module.exports = Vue.extend({
 	},
 
 	methods: {
+		centerPosition() {
+			const selectedPassage = document.querySelector(".passage.selected");
+			const startPassage = document.querySelector(".passage.start");
+			const setPositions = (target) => {
+				const targetX = target.offsetLeft;
+				const targetY = target.offsetTop;
+				const windowHalfHeight = window.innerHeight / 2;
+				const windowHalfWidth = window.innerWidth / 2;
+				const calcX = targetX - windowHalfWidth;
+				const calcY = targetY - windowHalfHeight;
+				const x = calcX > 0 ? calcX : 0;
+				const y = calcY > 0 ? calcY : 0;
+
+				window.scroll(x, y);
+			};
+		
+			if (selectedPassage) {
+				setPositions(selectedPassage);
+				return;
+			}
+
+			if (startPassage) {
+				setPositions(startPassage);
+				return;
+			}
+		
+			window.scroll(0, 0);
+		},
+
 		resize() {
 			this.winWidth = window.innerWidth;
 			this.winHeight = window.innerHeight;
