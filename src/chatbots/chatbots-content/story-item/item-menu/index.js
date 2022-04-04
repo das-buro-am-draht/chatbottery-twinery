@@ -37,7 +37,7 @@ module.exports = Vue.extend({
 		**/
 
 		play() {
-			playStory(this.story.id);
+			playStory(this.$store, this.story.id);
 		},
 
 		/**
@@ -46,9 +46,9 @@ module.exports = Vue.extend({
 		 @method test
 		**/
 
-		test() {
-			testStory(this.story.id);
-		},
+		// test() {
+		// 	testStory(this.story.id);
+		// },
 
 		/**
 		 Downloads the story to a file.

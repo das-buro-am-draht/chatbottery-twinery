@@ -210,7 +210,6 @@ module.exports = Vue.extend({
 		*/
 
 		'story-edit'(id) {
-			console.log('story-edit');
 			this.$broadcast('story-edit', id);
 		},
 
