@@ -70,11 +70,19 @@
 		margin: 0;
 		text-align: center;
 	}
+	
+
 
 	.title {
 		position: relative;
 		z-index: 3;
 		font-weight: bold;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+		hyphens: auto;
+		word-break: break-word;
+		overflow: hidden;
 	}
 
 	.excerpt {
