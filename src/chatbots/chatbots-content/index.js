@@ -131,12 +131,21 @@ module.exports = Vue.extend({
 
 	components: {
 		"story-item": require("./story-item"),
+		'file-drag-n-drop': require('../../ui/file-drag-n-drop')
 	},
 
 	events: {
 		"story-edit"(id) {
 			this.$broadcast("story-edit", id);
 		},
+		'file-drag-n-drop'(files) {
+			new ImportDialog({
+				store: this.$store,
+				data: {
+					immediateImport: files[0]
+				}
+			}).$mountTo(document.body);
+		}
 	},
 
 	vuex: {
