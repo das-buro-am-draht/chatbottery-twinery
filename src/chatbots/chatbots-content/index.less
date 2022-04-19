@@ -3,7 +3,7 @@
 	height: 100vh;
     padding: 45px;
 	display: flex;
-    overflow: auto;
+    overflow: hidden;
     flex-direction: column;
     position: relative;
     &--headline {
@@ -34,6 +34,8 @@
     &--stories {
         width: 100%;
         display: flex;
+        flex-wrap: wrap;
+        overflow: auto;
     }
     &--footer {
         margin: 80px 0 0 0;
