@@ -9,6 +9,7 @@ const package = require('./package.json');
 const isRelease = process.env.NODE_ENV === 'production';
 const useCdn = process.env.USE_CDN === 'y';
 const useElectron = process.env.USE_ELECTRON === 'y';
+const output = useCdn ? 'web-cdn' : useElectron ? 'web-electron' : 'web';
 
 const config = (module.exports = {
 	mode: isRelease ? 'production' : 'development',
@@ -18,7 +19,7 @@ const config = (module.exports = {
 		path: path.join(
 			__dirname,
 			'dist',
-			useCdn ? 'web-cdn' : useElectron ? 'web-electron' : 'web'
+			output
 		),
 		filename: 'editor.js'
 	},
@@ -130,4 +131,13 @@ if (useCdn) {
 		'vue-router': 'VueRouter',
 		vuex: 'Vuex'
 	};
+}
+
+if (process.env.BRANCH === 'master') {
+	console.log('master');
+	config.plugins.push(new CopyPlugin([
+		{from: `dist/${output}/index.html`, to: 'editor.html'},
+		{from: 'src/construction/index.html', to: ''},
+		{from: 'src/construction/construction.gif', to: ''}
+	]));		
 }
