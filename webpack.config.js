@@ -83,7 +83,8 @@ const config = (module.exports = {
 			buildNumber: require('./scripts/build-number').number,
 			inject: false,
 			minify: isRelease && {collapseWhitespace: true},
-			cdn: useCdn
+			cdn: useCdn,
+			filename: process.env.BRANCH === 'master' ? 'editor.html' : 'index.html'
 		}),
 		new MiniCssExtractPlugin({filename: 'editor.css'}),
 		new PoPlugin({
@@ -136,7 +137,6 @@ if (useCdn) {
 if (process.env.BRANCH === 'master') {
 	console.log('master');
 	config.plugins.push(new CopyPlugin([
-		{from: `dist/${output}/index.html`, to: 'editor.html'},
 		{from: 'src/construction/index.html', to: ''},
 		{from: 'src/construction/construction.gif', to: ''}
 	]));		
