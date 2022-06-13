@@ -1,0 +1,51 @@
+<modal-dialog id="trackingModal" :origin="origin">
+	<h2 class="tracking__title">Tracking plugins:</h2>
+	<div class="tracking__error" v-if="!isTrackingPossible">Editor has detected that our JS code contains already scripts responsible for tracking. Please remove them before activating setting for tracking. <span class="tracking__goto-editor" @click="editScript">Open JS editor</span></div>
+	<div class="tracking__item">
+		<div class="tracking__headline">
+			<h4>Matomo</h4>
+		</div>
+		<div class="tracking__checkbox">
+			<input type="checkbox" id="matomoTracking" v-model="matomo">
+			<label for="matomoTracking">Activate Matomo Tracking</label>
+		</div>
+		<div v-if="matomo">
+			<div class="tracking__row">
+				<input type="text" id="matomoJSUrl" v-model="matomoJSUrl">
+				<label for="matomoJSUrl">Matomo JavaScript Url</label>
+			</div>
+			<div class="tracking__row">
+				<input type="text" id="matomoPHPUrl" v-model="matomoPHPUrl">
+				<label for="matomoPHPUrl">Matomo PHP Url</label>
+			</div>
+			<div class="tracking__row">
+				<input type="text" id="siteId" v-model="siteId">
+				<label for="siteId">Site ID</label>
+			</div>
+			<div class="tracking__row">
+				<input type="text" id="statiscticalArea" v-model="statiscticalArea">
+				<label for="statiscticalArea">Statistical area</label>
+			</div>
+			<div class="tracking__row tracking__checkbox">
+				<input type="checkbox" id="shouldStoreTrackingIdInCookies" v-model="shouldStoreTrackingIdInCookies">
+				<label for="shouldStoreTrackingIdInCookies">Storing tracking ID in cookies</label>
+			</div>
+		</div>
+	</div>
+	<div class="tracking__item">
+		<div class="tracking__headline">
+			<h4>Google Analytics</h4>
+		</div>
+		<input type="checkbox" id="googleAnalyticsTracking" v-model="google">
+		<label for="googleAnalyticsTracking">Google Analytics</label>
+	</div>
+	<div v-if="google">
+		<div>
+			<input type="text" id="googleAnalyticsJSUrl" v-model="googleAnalyticsJSUrl">
+			<label for="googleAnalyticsJSUrl">Google Analytics JavaScript Url</label>
+		</div>
+	</div>
+	<div class="tracking__save">
+		<button class="create" @click="save" :disabled="!isTrackingPossible">Save</button>
+	</div>
+</modal-dialog>
