@@ -110,11 +110,11 @@ describe('story format actions module', () => {
 		);
 		expect(created['SugarCube-2.34.1'].userAdded).to.be.false;
 	*/
-		expect(created['Chatbottery-9.1.2']).to.exist;
-		expect(created['Chatbottery-9.1.2'].url).to.equal(
+		expect(created['Chatbottery-9.4.1']).to.exist;
+		expect(created['Chatbottery-9.4.1'].url).to.equal(
 			'https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v9.js'
 		);
-		expect(created['Chatbottery-9.1.2'].userAdded).to.be.false;
+		expect(created['Chatbottery-9.4.1'].userAdded).to.be.false;
 		expect(created['Paperthin-1.0.0']).to.exist;
 		expect(created['Paperthin-1.0.0'].url).to.equal(
 			'story-formats/paperthin-1.0.0/format.js'
