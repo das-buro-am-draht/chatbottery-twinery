@@ -17,7 +17,6 @@ const getSettings = (story) => {
 			console.error(`Could not parse story data for ${story.id} from local storage.`, e);
 		}
 	}
-	const settings = (settingsJson && JSON.parse())
 }
 
 const publish = module.exports = {
