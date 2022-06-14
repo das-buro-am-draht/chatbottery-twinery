@@ -11,6 +11,8 @@ affects startup time in the Twine desktop app. This module moves data from the
 filesystem into local storage, and the app can't begin until it's done.
 */
 
+const { unescape } = require("lodash");
+
 /* HTML selectors used to find data in HTML format. */
 
 const selectors =  {
@@ -65,6 +67,9 @@ function domToObject(storyEl, forceLastUpdate) {
 		zoom:
 			storyEl.attributes.zoom ?
 				parseFloat(storyEl.attributes.zoom.value) : 1,
+		settings:
+			storyEl.attributes.settings && storyEl.attributes.settings.value ? 
+				JSON.parse(unescape(storyEl.attributes.settings.value)) : undefined,
 		tagColors:
 			Array.from(storyEl.querySelectorAll(selectors.tagColors))
 				.reduce(
@@ -114,7 +119,7 @@ function domToObject(storyEl, forceLastUpdate) {
 						text:
 							passageEl.textContent
 					};
-				})
+				}),
 	};
 }
 
