@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# deployment script while master is under construction
+
 rm -rf dist/web/*
 
 npm run build:web
