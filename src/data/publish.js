@@ -10,7 +10,19 @@ const isTrackingScript = require("../utils/isTrackingScript");
 const isTrackingScriptActivated = require("../utils/isTrackingScriptActivated");
 const prepareTrackingScript = require("../utils/prepareTrackingScript");
 
-const publish = (module.exports = {
+const getSettings = (story) => {
+	const data = localStorage.getItem(`twine-stories-${story.id}`);
+	if (data) {
+		try {
+			const json = JSON.parse(data);
+			return json.settings;
+		} catch(e) {
+			console.error(`Could not parse story data for ${story.id} from local storage.`, e);
+		}
+	}
+}
+
+const publish = module.exports = {
 	/*
 	Publishes a story with a story format. The format *must* be loaded before
 	this function is called.
@@ -137,6 +149,7 @@ const publish = (module.exports = {
 			`creator-version="${escape(appInfo.version)}" ` +
 			`ifid="${escape(story.ifid)}" ` +
 			`zoom="${escape(story.zoom)}" ` +
+			`settings="${escape(JSON.stringify(getSettings(story)))}" ` +
 			`format="${escape(story.storyFormat)}" ` +
 			`format-version="${escape(story.storyFormatVersion)}" ` +
 			`options="${escape(formatOptions)}" hidden>` +
@@ -169,4 +182,4 @@ const publish = (module.exports = {
 			`${escape(passage.text)}</tw-passagedata>`
 		);
 	},
-});
+}
