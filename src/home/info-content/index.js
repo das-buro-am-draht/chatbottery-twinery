@@ -85,7 +85,8 @@ module.exports = Vue.extend({
 		},
 
 		getters: {
-			existingStories: state => state.story.stories
+			appInfo: state => state.appInfo,
+			existingStories: state => state.story.stories,
 		}
 	},
 });
