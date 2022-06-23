@@ -1,14 +1,11 @@
 <modal-dialog id="trackingModal" :origin="origin" v-ref:modal>
-	<h2 class="tracking__title">Tracking plugins:</h2>
+	<h2 class="tracking__title">Tracking</h2>
 	<div class="tracking__error" v-if="!isTrackingPossible">Editor has detected that our JS code contains already scripts responsible for tracking. Please remove them before activating setting for tracking. <button class="tracking__goto-editor" @click="editScript">Open JS Editor</button></div>
 	<div class="tracking__items" v-if="isTrackingPossible">
 		<div class="tracking__item">
-			<div class="tracking__headline">
-				<h4>Matomo</h4>
-			</div>
 			<div class="tracking__checkbox">
 				<input type="checkbox" id="matomoTracking" v-model="matomo">
-				<label for="matomoTracking">Activate Matomo Tracking</label>
+				<label for="matomoTracking">Matomo</label>
 			</div>
 			<div v-if="matomo">
 				<div class="tracking__row">
@@ -47,9 +44,6 @@
 			</div>
 		</div>
 		<div class="tracking__item">
-			<div class="tracking__headline">
-				<h4>Google Analytics</h4>
-			</div>
 			<div class="tracking__checkbox">
 				<input type="checkbox" id="googleAnalyticsTracking" v-model="google">
 				<label for="googleAnalyticsTracking">Google Analytics</label>
