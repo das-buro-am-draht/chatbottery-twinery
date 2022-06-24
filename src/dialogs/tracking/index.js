@@ -3,7 +3,8 @@
 const Vue = require("vue");
 const JavaScriptEditor = require('../../editors/javascript');
 const { updateStory } = require("../../data/actions/story");
-const isTrackingScript = require("../../utils/isTrackingScript");
+const { isTrackingScript } = require("../../utils/tracking");
+const { isValidUrl } = require("../../utils/common");
 
 require("./index.less");
 
@@ -17,7 +18,7 @@ module.exports = Vue.extend({
 		googleAnalyticsJSUrl: "",
 		matomoPHPUrl: "",
 		siteId: "",
-		statiscticalArea: "",
+		statisticalArea: "",
 		browserHostToEnvironmentMap: {},
 		shouldStoreTrackingIdInCookies: false,
 		storyId: "",
@@ -37,6 +38,19 @@ module.exports = Vue.extend({
 		isTrackingPossible() {
 			return this.isScriptCodeReady();
 		},
+		isValidMatomoJSUrl() {
+			return this.matomoJSUrl && isValidUrl(this.matomoJSUrl);
+		},
+		isValidMatomoPHPUrl() {
+			return this.matomoPHPUrl && isValidUrl(this.matomoPHPUrl);
+		},
+		isValidGoogleAnalyticsJSUrl() {
+			return this.googleAnalyticsJSUrl && isValidUrl(this.googleAnalyticsJSUrl);
+		},
+		isValid() {
+			return (!this.matomo || (this.matomoJSUrl && isValidUrl(this.matomoJSUrl) && this.matomoPHPUrl && isValidUrl(this.matomoPHPUrl) && !!this.siteId))
+				  && (!this.google || (this.googleAnalyticsJSUrl && isValidUrl(this.googleAnalyticsJSUrl))) 
+		}
 	},
 
 	methods: {
@@ -65,21 +79,20 @@ module.exports = Vue.extend({
 		save() {
 			const isScriptCodeReady = this.isScriptCodeReady();
 
-			if (isScriptCodeReady && (this.google || this.matomo)) {
-				const tracking = {
-					matomo: this.matomo,
-					google: this.google,
-					matomoJSUrl: this.matomoJSUrl,
-					googleAnalyticsJSUrl: this.googleAnalyticsJSUrl,
-					matomoPHPUrl: this.matomoPHPUrl,
-					siteId: this.siteId,
-					statiscticalArea: this.statiscticalArea,
-					browserHostToEnvironmentMap: this.browserHostToEnvironmentMap,
-					shouldStoreTrackingIdInCookies: this.shouldStoreTrackingIdInCookies,
-				};
+			const tracking = (isScriptCodeReady && (this.google || this.matomo)) ? {
+				matomo: this.matomo,
+				google: this.google,
+				matomoJSUrl: this.matomoJSUrl,
+				googleAnalyticsJSUrl: this.googleAnalyticsJSUrl,
+				matomoPHPUrl: this.matomoPHPUrl,
+				siteId: this.siteId,
+				statisticalArea: this.statisticalArea,
+				browserHostToEnvironmentMap: this.browserHostToEnvironmentMap,
+				shouldStoreTrackingIdInCookies: this.shouldStoreTrackingIdInCookies,
+			} : undefined;
 
-				this.updateStory(this.storyId, { tracking });
-			}
+			this.updateStory(this.storyId, { tracking });
+			this.$refs.modal.close();
 		},
 
 		editScript(e) {
