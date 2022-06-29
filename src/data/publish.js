@@ -6,9 +6,11 @@ found at ../common/publish.js.
 
 const escape = require("lodash.escape");
 const locale = require("../locale");
-const isTrackingScript = require("../utils/isTrackingScript");
-const isTrackingScriptActivated = require("../utils/isTrackingScriptActivated");
-const prepareTrackingScript = require("../utils/prepareTrackingScript");
+const { 
+	isTrackingScript, 
+	isTrackingScriptActivated, 
+	prepareTrackingScript
+} = require("../utils/tracking");
 
 const getSettings = (story) => {
 	const data = localStorage.getItem(`twine-stories-${story.id}`);
