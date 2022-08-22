@@ -1,64 +1,64 @@
-<modal-dialog id="trackingModal" :origin="origin" v-ref:modal>
-	<h2 class="tracking__title">Tracking</h2>
-	<div class="tracking__error" v-if="!isTrackingPossible">Editor has detected that our JS code contains already scripts responsible for tracking. Please remove them before activating setting for tracking. <button class="tracking__goto-editor" @click="editScript">Open JS Editor</button></div>
-	<div class="tracking__items" v-if="isTrackingPossible">
-		<div class="tracking__item">
-			<div class="tracking__checkbox">
+<modal-dialog id="pluginModal" :origin="origin" v-ref:modal>
+	<h2 class="plugin__title">Plugins</h2>
+	<div class="plugin__error" v-if="!isTrackingPossible">Editor has detected that our JS code contains already scripts responsible for tracking. Please remove them before activating setting for tracking. <button class="plugin__goto-editor" @click="editScript">Open JS Editor</button></div>
+	<div class="plugin__items" v-if="isTrackingPossible">
+		<div class="plugin__item">
+			<div class="plugin__checkbox">
 				<input type="checkbox" id="matomoTracking" v-model="matomo">
 				<label for="matomoTracking">Matomo</label>
 			</div>
 			<div v-if="matomo">
-				<div class="tracking__row">
+				<div class="plugin__row">
 					<label for="matomoJSUrl">JavaScript Url</label>
-					<div class="tracking__input">
+					<div class="plugin__input">
 						<input type="text" id="matomoJSUrl" v-model="matomoJSUrl" title="Matomo JavaScript URL">
 						<p class="error" v-show="!isValidMatomoJSUrl">{{ 'Resource Locator must be a valid URL' | say}}</p>
 					</div>
 				</div>
-				<div class="tracking__row">
+				<div class="plugin__row">
 					<label for="matomoPHPUrl">PHP Url</label>
-					<div class="tracking__input">
+					<div class="plugin__input">
 						<input type="text" id="matomoPHPUrl" v-model="matomoPHPUrl" title="Matomo PHP URL">
 						<p class="error" v-show="!isValidMatomoPHPUrl">{{ 'Resource Locator must be a valid URL' | say}}</p>
 					</div>
 				</div>
-				<div class="tracking__row">
+				<div class="plugin__row">
 					<label for="siteId">Site ID</label>
-					<div class="tracking__input">
+					<div class="plugin__input">
 						<input type="text" id="siteId" v-model="siteId" title="Matomo Site ID">
 						<p class="error" v-show="!siteId">{{ 'Site ID must not be empty' | say}}</p>
 					</div>
 				</div>
-				<div class="tracking__row">
+				<div class="plugin__row">
 					<label for="statisticalArea">Statistical area</label>
-					<div class="tracking__input">
+					<div class="plugin__input">
 						<input type="text" id="statisticalArea" v-model="statisticalArea" title="Matomo Statistical Area">
 					</div>
 				</div>
-				<div class="tracking__row">
+				<div class="plugin__row">
 					<label for="shouldStoreTrackingIdInCookies">Store Tracking ID in Cookies</label>
-					<div class="tracking__input">
+					<div class="plugin__input">
 						<input type="checkbox" id="shouldStoreTrackingIdInCookies" v-model="shouldStoreTrackingIdInCookies" title="Store Tracking ID in Cookies">
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="tracking__item">
-			<div class="tracking__checkbox">
+		<div class="plugin__item">
+			<div class="plugin__checkbox">
 				<input type="checkbox" id="googleAnalyticsTracking" v-model="google">
 				<label for="googleAnalyticsTracking">Google Analytics</label>
 			</div>
 			<div v-if="google">
-				<div class="tracking__row">
+				<div class="plugin__row">
 					<label for="googleAnalyticsJSUrl">JavaScript Url</label>
-					<div class="tracking__input">
+					<div class="plugin__input">
 						<input type="text" id="googleAnalyticsJSUrl" v-model="googleAnalyticsJSUrl" title="Google Analytics JavaScript URL">
 						<p class="error" v-show="!isValidGoogleAnalyticsJSUrl">{{ 'Resource Locator must be a valid URL' | say}}</p>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="tracking__save">
+		<div class="plugin__save">
 			<button class="create" @click="save" :disabled="!isValid">Save</button>
 		</div>
 	</div>

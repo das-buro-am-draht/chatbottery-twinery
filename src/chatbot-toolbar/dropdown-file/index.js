@@ -7,7 +7,7 @@ const Vue = require("vue");
 const locale = require("../../locale");
 const { prompt } = require("../../dialogs/prompt");
 const StatsDialog = require("../../dialogs/story-stats");
-const TrackingDialog = require("../../dialogs/tracking");
+const PluginDialog = require("../../dialogs/plugin");
 // const FormatDialog = require('../../dialogs/story-format');
 const FormatsDialog = require("../../dialogs/formats");
 // const ClickOutside = require('vue-click-outside');
@@ -54,8 +54,8 @@ module.exports = Vue.extend({
 				store: this.$store,
 			}).$mountTo(document.body);
 		},
-		tracking(e) {
-			new TrackingDialog({
+		plugin(e) {
+			new PluginDialog({
 				data: { storyId: this.story.id, origin: e.target },
 				store: this.$store,
 			}).$mountTo(document.body);
