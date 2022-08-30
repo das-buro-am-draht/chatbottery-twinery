@@ -1,60 +1,93 @@
 <modal-dialog id="pluginModal" :origin="origin" v-ref:modal>
 	<h2 class="plugin__title">Plugins</h2>
-	<div class="plugin__error" v-if="!isTrackingPossible">Editor has detected that our JS code contains already scripts responsible for tracking. Please remove them before activating setting for tracking. <button class="plugin__goto-editor" @click="editScript">Open JS Editor</button></div>
-	<div class="plugin__items" v-if="isTrackingPossible">
+	<div class="plugin__items">
 		<div class="plugin__item">
 			<div class="plugin__checkbox">
-				<input type="checkbox" id="matomoTracking" v-model="matomo">
+				<input type="checkbox" id="googleAnalyticsTracking" v-model="google.enabled">
+				<label for="googleAnalyticsTracking">Google Analytics</label>
+			</div>
+		</div>
+		<div class="plugin__item">
+			<div class="plugin__checkbox">
+				<input type="checkbox" id="matomoTracking" v-model="matomo.enabled">
 				<label for="matomoTracking">Matomo</label>
 			</div>
-			<div v-if="matomo">
-				<div class="plugin__row">
-					<label for="matomoJSUrl">JavaScript Url</label>
-					<div class="plugin__input">
-						<input type="text" id="matomoJSUrl" v-model="matomoJSUrl" title="Matomo JavaScript URL">
-						<p class="error" v-show="!isValidMatomoJSUrl">{{ 'Resource Locator must be a valid URL' | say}}</p>
-					</div>
-				</div>
+			<div v-if="matomo.enabled">
 				<div class="plugin__row">
 					<label for="matomoPHPUrl">PHP Url</label>
 					<div class="plugin__input">
-						<input type="text" id="matomoPHPUrl" v-model="matomoPHPUrl" title="Matomo PHP URL">
+						<input type="text" id="matomoPHPUrl" v-model="matomo.phpUrl" title="Matomo PHP URL">
 						<p class="error" v-show="!isValidMatomoPHPUrl">{{ 'Resource Locator must be a valid URL' | say}}</p>
 					</div>
 				</div>
 				<div class="plugin__row">
 					<label for="siteId">Site ID</label>
 					<div class="plugin__input">
-						<input type="text" id="siteId" v-model="siteId" title="Matomo Site ID">
-						<p class="error" v-show="!siteId">{{ 'Site ID must not be empty' | say}}</p>
+						<input type="text" id="siteId" v-model="matomo.siteId" title="Matomo Site ID">
+						<p class="error" v-show="!matomo.siteId">{{ 'Site ID must not be empty' | say}}</p>
 					</div>
 				</div>
 				<div class="plugin__row">
 					<label for="statisticalArea">Statistical area</label>
 					<div class="plugin__input">
-						<input type="text" id="statisticalArea" v-model="statisticalArea" title="Matomo Statistical Area">
+						<input type="text" id="statisticalArea" v-model="matomo.statisticalArea" title="Matomo Statistical Area">
 					</div>
 				</div>
 				<div class="plugin__row">
 					<label for="shouldStoreTrackingIdInCookies">Store Tracking ID in Cookies</label>
 					<div class="plugin__input">
-						<input type="checkbox" id="shouldStoreTrackingIdInCookies" v-model="shouldStoreTrackingIdInCookies" title="Store Tracking ID in Cookies">
+						<input type="checkbox" id="shouldStoreTrackingIdInCookies" v-model="matomo.shouldStoreTrackingIdInCookies" title="Store Tracking ID in Cookies">
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="plugin__item">
 			<div class="plugin__checkbox">
-				<input type="checkbox" id="googleAnalyticsTracking" v-model="google">
-				<label for="googleAnalyticsTracking">Google Analytics</label>
+				<input type="checkbox" id="liveChat" v-model="chat.enabled">
+				<label for="liveChat">Live Chat</label>
 			</div>
-			<div v-if="google">
-				<div class="plugin__row">
-					<label for="googleAnalyticsJSUrl">JavaScript Url</label>
-					<div class="plugin__input">
-						<input type="text" id="googleAnalyticsJSUrl" v-model="googleAnalyticsJSUrl" title="Google Analytics JavaScript URL">
-						<p class="error" v-show="!isValidGoogleAnalyticsJSUrl">{{ 'Resource Locator must be a valid URL' | say}}</p>
-					</div>
+		</div>
+		<div v-if="chat.enabled">
+			<div class="plugin__row">
+				<label for="chatAppId">Application ID</label>
+				<div class="plugin__input">
+					<input type="text" id="chatAppId" v-model="chat.credentials.appId" title="Chat Application ID">
+					<p class="error" v-show="!chat.credentials.appId">{{ 'Application ID must not be empty' | say}}</p>
+				</div>
+			</div>
+			<div class="plugin__row">
+				<label for="chatAuthKey">Auth Key</label>
+				<div class="plugin__input">
+					<input type="text" id="chatAuthKey" v-model="chat.credentials.authKey" title="Chat Authorization Key">
+					<p class="error" v-show="!chat.credentials.authKey">{{ 'Authorization Key must not be empty' | say}}</p>
+				</div>
+			</div>
+			<div class="plugin__row">
+				<label for="chatAuthSecret">Authorization Secret</label>
+				<div class="plugin__input">
+					<input type="text" id="chatAuthSecret" v-model="chat.credentials.authSecret" title="Chat Authorization Secret">
+					<p class="error" v-show="!chat.credentials.authSecret">{{ 'Authorization Secret must not be empty' | say}}</p>
+				</div>
+			</div>
+			<div class="plugin__row">
+				<label for="chatAccountKey">Account Key</label>
+				<div class="plugin__input">
+					<input type="text" id="chatAccountKey" v-model="chat.credentials.accountKey" title="Chat Account Key">
+					<p class="error" v-show="!chat.credentials.accountKey">{{ 'Account Key must not be empty' | say}}</p>
+				</div>
+			</div>
+			<div class="plugin__row">
+				<label for="chatApi">API Endpoint</label>
+				<div class="plugin__input">
+					<input type="text" id="chatApi" v-model="chat.endpoints.api" title="Chat Endpoint API">
+					<p class="error" v-show="!chat.endpoints.api">{{ 'API Endpoint must not be empty' | say}}</p>
+				</div>
+			</div>
+			<div class="plugin__row">
+				<label for="chatSocket">Web Socket Endpoint</label>
+				<div class="plugin__input">
+					<input type="text" id="chatSocket" v-model="chat.endpoints.chat" title="Chat Web Socket Endpoint">
+					<p class="error" v-show="!chat.endpoints.chat">{{ 'Web Socket Endpoint must not be empty' | say}}</p>
 				</div>
 			</div>
 		</div>

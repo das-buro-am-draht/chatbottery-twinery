@@ -6,18 +6,12 @@ found at ../common/publish.js.
 
 const escape = require("lodash.escape");
 const locale = require("../locale");
-const { 
-	isTrackingScript, 
-	isTrackingScriptActivated, 
-	prepareTrackingScript
-} = require("../utils/tracking");
 
-const getSettings = (story) => {
+const getStoryData = (story) => {
 	const data = localStorage.getItem(`twine-stories-${story.id}`);
 	if (data) {
 		try {
-			const json = JSON.parse(data);
-			return json.settings;
+			return JSON.parse(data);
 		} catch(e) {
 			console.error(`Could not parse story data for ${story.id} from local storage.`, e);
 		}
@@ -129,20 +123,11 @@ const publish = (module.exports = {
 				)}"></tw-tag>`
 		);
 
-		const isScriptCodeReady = isTrackingScript(story.script);
-		const isTrackingReady = isTrackingScriptActivated(story.tracking);
-		let script = story.script;
-
-		if (isScriptCodeReady && isTrackingReady) {
-			const trackingScript = prepareTrackingScript(story.tracking);
-
-			script = `
-			${trackingScript}
-			${story.script}
-			`;
-		}
+		const script = story.script;
 
 		console.log("script", script);
+
+		const storyData = getStoryData(story);
 
 		return (
 			`<tw-storydata name="${escape(story.name)}" ` +
@@ -151,10 +136,12 @@ const publish = (module.exports = {
 			`creator-version="${escape(appInfo.version)}" ` +
 			`ifid="${escape(story.ifid)}" ` +
 			`zoom="${escape(story.zoom)}" ` +
-			`settings="${escape(JSON.stringify(getSettings(story)))}" ` +
+			`settings="${escape(JSON.stringify(storyData.settings || {}))}" ` +
+			`plugins="${escape(JSON.stringify(storyData.plugins || {}))}" ` +
 			`format="${escape(story.storyFormat)}" ` +
 			`format-version="${escape(story.storyFormatVersion)}" ` +
-			`options="${escape(formatOptions)}" hidden>` +
+			`options="${escape(formatOptions)}" ` + 
+			`hidden>` +
 			`<style role="stylesheet" id="twine-user-stylesheet" ` +
 			`type="text/twine-css">` +
 			story.stylesheet +
