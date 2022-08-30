@@ -213,7 +213,7 @@ const actions = (module.exports = {
 	*/	{
 				name: 'Chatbottery',
 				url: 'https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v9.js',
-				version: '9.5.1',
+				version: '10.0.1',
 				userAdded: false
 			},
 			{
