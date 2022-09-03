@@ -45,6 +45,7 @@ module.exports = Vue.extend({
 		},
 
 		getters: {
+			appInfo: state => state.appInfo,
 			stories: state => state.story.stories,
 		},
 	}
