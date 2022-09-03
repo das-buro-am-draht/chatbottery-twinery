@@ -1,5 +1,6 @@
 // A component showing a modal dialog where a story's JavaSCript.
 
+const { trim } = require("lodash");
 const Vue = require("vue");
 const { updateStory } = require("../../data/actions/story");
 const { isValidUrl } = require("../../utils/common");
@@ -19,7 +20,7 @@ module.exports = Vue.extend({
 			siteId: '',
 			statisticalArea: '',
 			shouldStoreTrackingIdInCookies: false,
-			browserHostToEnvironmentMap: {},
+			browserHostToEnvironmentMap: { 'key #1': 'value #1' },
 		},
 		google: {
 			enabled: false,
@@ -31,6 +32,7 @@ module.exports = Vue.extend({
 			authSecret: '',
 			accountKey: '',
 		},
+		matomoHostToEnv: [],
 	}),
 
 	ready() {
@@ -43,23 +45,44 @@ module.exports = Vue.extend({
 				this[plugin].enabled = !!data[plugin];
 			}))
 		}
+		this.matomoHostToEnv = Object.entries(this.matomo.browserHostToEnvironmentMap || {});
+		if (!this.matomoHostToEnv.length) {
+			this.add(this.matomoHostToEnv);
+		}
 	},
 
 	computed: {
 		isValidMatomoPHPUrl() {
 			return this.matomo.url && isValidUrl(this.matomo.url);
 		},
+		
 		isValid() {
-			const google = true;
-			const matomo = this.matomo.url && isValidUrl(this.matomo.url) && !!this.matomo.siteId;
-			const chat = this.chat.appId && this.chat.authKey && this.chat.authSecret && this.chat.accountKey;
-			return (
-				(!this.matomo.enabled || matomo) &&
-				(!this.chat.enabled || chat)); 
-		}
+			const matomo = !this.matomo.enabled || (!!this.matomo.url && isValidUrl(this.matomo.url) && !!this.matomo.siteId && this.isValidMatomoHostToEnv());
+			const chat = !this.chat.enabled || (this.chat.appId && this.chat.authKey && this.chat.authSecret && this.chat.accountKey);
+			return matomo && chat; 
+		},
 	},
 
 	methods: {
+
+		add(arr, index, event) {
+			arr.push(['', '']);
+		},
+
+		remove(arr, index, event) {
+			arr.splice(index, 1);
+		},
+
+		isValidMatomoHostToEnvEntry(entry) {
+			const key = trim(entry[0]);
+			const value = trim(entry[1]);
+			return !!((key && value) || (!key && !value));
+		},
+
+		isValidMatomoHostToEnv() {
+			return !this.matomoHostToEnv.some((entry) => !this.isValidMatomoHostToEnvEntry(entry));
+		},
+
 		getStory() {
 			return this.allStories.find((story) => story.id === this.storyId) || {};
 		},
@@ -76,6 +99,15 @@ module.exports = Vue.extend({
 						...this[plugin],
 						enabled: undefined,
 					};
+					if (plugin === 'matomo') {
+						plugins.matomo.browserHostToEnvironmentMap = {};
+						this.matomoHostToEnv
+						.map(([key, value]) => ([trim(key), trim(value)]))
+						.filter(([key, value]) => !!key && !!value)
+						.forEach(([key, value]) => {
+							plugins.matomo.browserHostToEnvironmentMap[key] = value;
+						});
+					}
 				}
 				return plugins;
 			}, {});

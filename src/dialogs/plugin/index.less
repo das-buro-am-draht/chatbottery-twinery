@@ -5,7 +5,7 @@
         flex-direction: row;
         & label {
             display: inline-block;
-            flex: 0 1 30%;
+            flex: 0 0 30%;
             align-self: baseline;
             padding: 10px 5px;
         }
@@ -19,6 +19,22 @@
     }
     &__error {
         color: #fb1557;
+    }
+    &__list {
+        display: flex;
+        flex-flow: row nowrap;
+        & .plugin__list-text {
+            margin-right: 5px;
+        }
+        & .plugin__list-btn {
+            background-image: url('../../common/img/minus.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        &:first-child .plugin__list-btn {
+            background-image: url('../../common/img/plus.png');
+        }
     }
     &__goto-editor {
         background-color: #fb1557;

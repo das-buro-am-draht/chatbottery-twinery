@@ -39,6 +39,20 @@
 						<input type="checkbox" id="shouldStoreTrackingIdInCookies" v-model="matomo.shouldStoreTrackingIdInCookies" title="Store Tracking ID in Cookies">
 					</div>
 				</div>
+				<div class="plugin__row">
+					<label>Host to Environment Mapping</label>
+					<div class="plugin__input">
+						<template v-for="item in matomoHostToEnv">
+							<div class="plugin__list">
+								<input type="text" class="plugin__list-text" v-model="item[0]" placeholder="Host" title="Host">
+								<input type="text" class="plugin__list-text" v-model="item[1]" placeholder="Environment" title="Environment">
+								<button v-if="$index === 0" class="plugin__list-btn" @click="add(matomoHostToEnv, $index, $event)"></button>
+								<button v-else class="plugin__list-btn" @click="remove(matomoHostToEnv, $index, $event)"></button>
+							</div>
+							<p class="error" v-show="!isValidMatomoHostToEnvEntry(matomoHostToEnv[$index])">{{ 'Host and Environment must be set' | say}}</p>
+						</template>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="plugin__item">
