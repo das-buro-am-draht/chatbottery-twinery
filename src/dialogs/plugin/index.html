@@ -16,7 +16,7 @@
 				<div class="plugin__row">
 					<label for="matomoPHPUrl">PHP Url</label>
 					<div class="plugin__input">
-						<input type="text" id="matomoPHPUrl" v-model="matomo.phpUrl" title="Matomo PHP URL">
+						<input type="text" id="matomoPHPUrl" v-model="matomo.url" title="Matomo PHP URL">
 						<p class="error" v-show="!isValidMatomoPHPUrl">{{ 'Resource Locator must be a valid URL' | say}}</p>
 					</div>
 				</div>
@@ -51,43 +51,29 @@
 			<div class="plugin__row">
 				<label for="chatAppId">Application ID</label>
 				<div class="plugin__input">
-					<input type="text" id="chatAppId" v-model="chat.credentials.appId" title="Chat Application ID">
-					<p class="error" v-show="!chat.credentials.appId">{{ 'Application ID must not be empty' | say}}</p>
+					<input type="text" id="chatAppId" v-model="chat.appId" title="Chat Application ID">
+					<p class="error" v-show="!chat.appId">{{ 'Application ID must not be empty' | say}}</p>
 				</div>
 			</div>
 			<div class="plugin__row">
 				<label for="chatAuthKey">Auth Key</label>
 				<div class="plugin__input">
-					<input type="text" id="chatAuthKey" v-model="chat.credentials.authKey" title="Chat Authorization Key">
-					<p class="error" v-show="!chat.credentials.authKey">{{ 'Authorization Key must not be empty' | say}}</p>
+					<input type="text" id="chatAuthKey" v-model="chat.authKey" title="Chat Authorization Key">
+					<p class="error" v-show="!chat.authKey">{{ 'Authorization Key must not be empty' | say}}</p>
 				</div>
 			</div>
 			<div class="plugin__row">
 				<label for="chatAuthSecret">Authorization Secret</label>
 				<div class="plugin__input">
-					<input type="text" id="chatAuthSecret" v-model="chat.credentials.authSecret" title="Chat Authorization Secret">
-					<p class="error" v-show="!chat.credentials.authSecret">{{ 'Authorization Secret must not be empty' | say}}</p>
+					<input type="text" id="chatAuthSecret" v-model="chat.authSecret" title="Chat Authorization Secret">
+					<p class="error" v-show="!chat.authSecret">{{ 'Authorization Secret must not be empty' | say}}</p>
 				</div>
 			</div>
 			<div class="plugin__row">
 				<label for="chatAccountKey">Account Key</label>
 				<div class="plugin__input">
-					<input type="text" id="chatAccountKey" v-model="chat.credentials.accountKey" title="Chat Account Key">
-					<p class="error" v-show="!chat.credentials.accountKey">{{ 'Account Key must not be empty' | say}}</p>
-				</div>
-			</div>
-			<div class="plugin__row">
-				<label for="chatApi">API Endpoint</label>
-				<div class="plugin__input">
-					<input type="text" id="chatApi" v-model="chat.endpoints.api" title="Chat Endpoint API">
-					<p class="error" v-show="!chat.endpoints.api">{{ 'API Endpoint must not be empty' | say}}</p>
-				</div>
-			</div>
-			<div class="plugin__row">
-				<label for="chatSocket">Web Socket Endpoint</label>
-				<div class="plugin__input">
-					<input type="text" id="chatSocket" v-model="chat.endpoints.chat" title="Chat Web Socket Endpoint">
-					<p class="error" v-show="!chat.endpoints.chat">{{ 'Web Socket Endpoint must not be empty' | say}}</p>
+					<input type="text" id="chatAccountKey" v-model="chat.accountKey" title="Chat Account Key">
+					<p class="error" v-show="!chat.accountKey">{{ 'Account Key must not be empty' | say}}</p>
 				</div>
 			</div>
 		</div>

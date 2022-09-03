@@ -15,7 +15,7 @@ module.exports = Vue.extend({
 		storyId: null,
 		matomo: {
 			enabled: false,
-			phpUrl: '',
+			url: '',
 			siteId: '',
 			statisticalArea: '',
 			shouldStoreTrackingIdInCookies: false,
@@ -26,17 +26,11 @@ module.exports = Vue.extend({
 		},
 		chat: {
 			enabled: false,
-			credentials: {
-				appId: '',
-				authKey: '',
-				authSecret: '',
-				accountKey: '',
-			},
-			endpoints: {
-				api: '',
-				chat: '',
-			}
-		}
+			appId: '',
+			authKey: '',
+			authSecret: '',
+			accountKey: '',
+		},
 	}),
 
 	ready() {
@@ -53,12 +47,12 @@ module.exports = Vue.extend({
 
 	computed: {
 		isValidMatomoPHPUrl() {
-			return this.matomo.phpUrl && isValidUrl(this.matomo.phpUrl);
+			return this.matomo.url && isValidUrl(this.matomo.url);
 		},
 		isValid() {
 			const google = true;
-			const matomo = this.matomo.phpUrl && isValidUrl(this.matomo.phpUrl) && !!this.matomo.siteId;
-			const chat = this.chat.credentials.appId && this.chat.credentials.authKey && this.chat.credentials.authSecret && this.chat.credentials.accountKey && this.chat.endpoints.api && this.chat.endpoints.chat;
+			const matomo = this.matomo.url && isValidUrl(this.matomo.url) && !!this.matomo.siteId;
+			const chat = this.chat.appId && this.chat.authKey && this.chat.authSecret && this.chat.accountKey;
 			return (
 				(!this.matomo.enabled || matomo) &&
 				(!this.chat.enabled || chat)); 
