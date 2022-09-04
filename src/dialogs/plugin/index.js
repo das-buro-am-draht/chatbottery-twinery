@@ -20,7 +20,7 @@ module.exports = Vue.extend({
 			siteId: '',
 			statisticalArea: '',
 			shouldStoreTrackingIdInCookies: false,
-			browserHostToEnvironmentMap: { 'key #1': 'value #1' },
+			browserHostToEnvironmentMap: {},
 		},
 		google: {
 			enabled: false,
