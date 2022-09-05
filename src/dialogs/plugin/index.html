@@ -1,5 +1,5 @@
 <modal-dialog id="pluginModal" :origin="origin" v-ref:modal>
-	<h2 class="plugin__title">{{ 'Plugins' || say }}</h2>
+	<h2 class="plugin__title">{{ 'Plugins' | say }}</h2>
 	<div class="plugin__items">
 		<div class="plugin__item">
 			<div class="plugin__checkbox">
@@ -21,26 +21,26 @@
 					</div>
 				</div>
 				<div class="plugin__row">
-					<label for="siteId">{{ 'Site ID' || say }}</label>
+					<label for="siteId">{{ 'Site ID' | say }}</label>
 					<div class="plugin__input">
 						<input type="text" id="siteId" v-model="matomo.siteId" title="Matomo Site ID">
 						<p class="error" v-show="!matomo.siteId">{{ 'Site ID must not be empty' | say }}</p>
 					</div>
 				</div>
 				<div class="plugin__row">
-					<label for="statisticalArea">{{ 'Statistical area' || say }}</label>
+					<label for="statisticalArea">{{ 'Statistical area' | say }}</label>
 					<div class="plugin__input">
 						<input type="text" id="statisticalArea" v-model="matomo.statisticalArea" title="Matomo Statistical Area">
 					</div>
 				</div>
 				<div class="plugin__row">
-					<label for="shouldStoreTrackingIdInCookies">{{ 'Store Tracking ID in Cookies' || say }}</label>
+					<label for="shouldStoreTrackingIdInCookies">{{ 'Store Tracking ID in Cookies' | say }}</label>
 					<div class="plugin__input">
 						<input type="checkbox" id="shouldStoreTrackingIdInCookies" v-model="matomo.shouldStoreTrackingIdInCookies" title="Store Tracking ID in Cookies">
 					</div>
 				</div>
 				<div class="plugin__row">
-					<label>{{ 'Host to Environment Mapping' || say }}</label>
+					<label>{{ 'Host to Environment Mapping' | say }}</label>
 					<div class="plugin__input">
 						<template v-for="item in matomoHostToEnv" track-by="$index">
 							<div class="plugin__list">
@@ -91,14 +91,14 @@
 				</div>
 			</div>
 			<div class="plugin__row">
-				<label for="chatUserName">{{ 'User\'s Field Name' || say }}</label>
+				<label for="chatUserName">{{ 'User\'s Field Name' | say }}</label>
 				<div class="plugin__input">
 					<input type="text" id="chatUserName" v-model="chat.userName" title="Chat User Field Name">
 					<p class="error" v-show="!isValidUserName(chat.userName)">{{ 'User Field Name must not start with \'$\'' | say }}</p>
 				</div>
 			</div>
 			<div class="plugin__row">
-				<label>{{ 'Shared User Variables' || say }}</label>
+				<label>{{ 'Shared User Variables' | say }}</label>
 				<div class="plugin__input">
 					<template v-for="item in chat.userVariables" track-by="$index">
 						<div class="plugin__list">
@@ -112,7 +112,7 @@
 			</div>
 	</div>
 		<div class="plugin__save">
-			<button class="create" @click="save" :disabled="!isValid">{{ 'Save' || say }}</button>
+			<button class="create" @click="save" :disabled="!isValid">{{ 'Save' | say }}</button>
 		</div>
 	</div>
 </modal-dialog>
