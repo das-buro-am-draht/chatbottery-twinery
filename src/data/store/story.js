@@ -46,7 +46,10 @@ const storyStore = (module.exports = {
 					lastUpdate: new Date(),
 					ifid: uuid().toUpperCase(),
 					tagColors: {},
-					passages: []
+					passages: [],
+					settings: {},
+					plugins: {},
+					userData: {},
 				},
 				storyStore.storyDefaults,
 				props

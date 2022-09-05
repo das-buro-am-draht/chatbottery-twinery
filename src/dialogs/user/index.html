@@ -1,0 +1,21 @@
+<modal-dialog id="userModal" :origin="origin" v-ref:modal>
+	<h2 class="user__title">User data</h2>
+	<!-- <p>{{ 'Enter Field Names without leading \'$\'' | say }}</p> -->
+	<div class="user__row">
+		<div class="user__input">
+			<template v-for="item in userData" track-by="$index">
+				<div class="user__list">
+					<input type="text" class="user__list-text" v-model="item[0]" placeholder="Name" title="Variable Name">
+					<input type="text" class="user__list-text" v-model="item[1]" placeholder="Value" title="Variable Value">
+					<button v-if="$index === 0" class="user__list-btn" @click="add(userData, $index, $event)"></button>
+					<button v-else class="user__list-btn" @click="remove(userData, $index, $event)"></button>
+				</div>
+				<p class="error" v-show="!isUserEntrySet(userData[$index])">{{ 'Name must be set' | say }}</p>
+				<p class="error" v-show="!isValidUserEntry(userData[$index])">{{ 'User Field Name must not start with \'$\'' | say }}</p>
+			</template>
+		</div>
+	</div>
+	<div class="user__save">
+		<button class="create" @click="save" :disabled="!isValid">{{ 'Save' | say }}</button>
+	</div>
+</modal-dialog>

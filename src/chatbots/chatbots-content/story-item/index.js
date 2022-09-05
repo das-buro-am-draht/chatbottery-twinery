@@ -9,16 +9,32 @@ const ZoomTransition = require("../../../story-list-view/zoom-transition");
 
 require("./index.less");
 
+const LIVECHAT = 'Live Chat';
+const TRACKING = 'Tracking';
+
 const pluginsUrlFragments = [
-	{ fragment: "plugins/chat", type: "Livechat" },
-	{ fragment: "plugins/plugin.web.ga-tracking", type: "Tracking" },
-	{ fragment: "plugins/matomo-tracking", type: "Tracking" },
+	{ fragment: "plugins/chat", type: LIVECHAT },
+	{ fragment: "plugins/plugin.web.ga-tracking", type: TRACKING },
+	{ fragment: "plugins/matomo-tracking", type: TRACKING },
 ];
 
-const detectPlugins = (scriptData) => {
-	const plugins = pluginsUrlFragments.reduce((acc, {fragment, type}) => {
-		const isPlugin = scriptData.includes(fragment);
-
+const detectPlugins = (story) => {
+	const plugins = new Set([]);
+	if (story.plugins) {
+		Object.keys(story.plugins).forEach((key) => {
+			switch (key) {
+				case 'google':
+				case 'matomo':
+					plugins.add(TRACKING);
+					break;
+				case 'chat':
+					plugins.add(LIVECHAT);
+					break;
+			}
+		});
+	}
+	pluginsUrlFragments.reduce((acc, {fragment, type}) => {
+		const isPlugin = story.script.includes(fragment);
 		return isPlugin ? acc.add(type) : acc;
 	}, new Set([]));
 
@@ -40,7 +56,7 @@ module.exports = Vue.extend({
 	},
 
 	activate: function (done) {
-		this.plugins = detectPlugins(this.story.script) || [];
+		this.plugins = detectPlugins(this.story) || [];
 
 		done();
 	},

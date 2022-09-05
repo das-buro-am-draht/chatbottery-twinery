@@ -1,0 +1,42 @@
+.user {
+    &__row {
+        margin-bottom: 5px;
+        display: flex;
+        flex-direction: row;
+        & input[type="text"] {
+            width: 100%;
+            font-weight: bold;
+        }
+    }
+    &__input {
+        flex: 1 1 auto;
+        align-self: center;
+    }
+    &__error {
+        color: #fb1557;
+    }
+    &__list {
+        display: flex;
+        flex-flow: row nowrap;
+        & .user__list-text {
+            margin-right: 5px;
+        }
+        & .user__list-btn {
+            background-image: url('../../common/img/minus.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 5px 0;
+        }
+        &:first-child .user__list-btn {
+            background-image: url('../../common/img/plus.png');
+        }
+    }
+    &__checkbox {
+        font-weight: 700;
+        padding: 10px 0;
+    }
+    &__save {
+        margin-top: 20px;
+    }
+}
