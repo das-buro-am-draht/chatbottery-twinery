@@ -23,7 +23,6 @@ const selectors =  {
 	storyData: 'tw-storydata',
 	tagColors: 'tw-tag',
 	passageData: 'tw-passagedata',
-	pluginsData: 'tw-plugins',
 };
 
 /*
@@ -74,6 +73,9 @@ function domToObject(storyEl, forceLastUpdate) {
 		plugins:
 			storyEl.attributes.plugins && storyEl.attributes.plugins.value ? 
 				JSON.parse(unescape(storyEl.attributes.plugins.value)) : undefined,
+		userData:
+			storyEl.attributes.userData && storyEl.attributes.userData.value ? 
+				JSON.parse(unescape(storyEl.attributes.userData.value)) : undefined,
 		tagColors:
 			Array.from(storyEl.querySelectorAll(selectors.tagColors))
 				.reduce(

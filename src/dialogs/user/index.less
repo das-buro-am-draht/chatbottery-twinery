@@ -1,14 +1,8 @@
-.plugin {
+.user {
     &__row {
         margin-bottom: 5px;
         display: flex;
         flex-direction: row;
-        & label {
-            display: inline-block;
-            flex: 0 0 30%;
-            align-self: baseline;
-            padding: 10px 5px;
-        }
         & input[type="text"] {
             width: 100%;
             font-weight: bold;
@@ -24,16 +18,16 @@
     &__list {
         display: flex;
         flex-flow: row nowrap;
-        & .plugin__list-text {
+        & .user__list-text {
             margin-right: 5px;
         }
-        & .plugin__list-btn {
+        & .user__list-btn {
             background-image: url('../../common/img/minus.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
         }
-        &:first-child .plugin__list-btn {
+        &:first-child .user__list-btn {
             background-image: url('../../common/img/plus.png');
         }
     }

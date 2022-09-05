@@ -27,10 +27,14 @@ module.exports = Vue.extend({
 		},
 		chat: {
 			enabled: false,
-			appId: '',
-			authKey: '',
-			authSecret: '',
-			accountKey: '',
+			credentials: {
+				appId: '',
+				authKey: '',
+				authSecret: '',
+				accountKey: '',
+			},
+			userName: '',
+			userVariables: [],
 		},
 		matomoHostToEnv: [],
 	}),
@@ -49,6 +53,9 @@ module.exports = Vue.extend({
 		if (!this.matomoHostToEnv.length) {
 			this.add(this.matomoHostToEnv);
 		}
+		if (!this.chat.userVariables.length) {
+			this.addUserVariable(this.chat.userVariables);
+		}
 	},
 
 	computed: {
@@ -57,8 +64,8 @@ module.exports = Vue.extend({
 		},
 		
 		isValid() {
-			const matomo = !this.matomo.enabled || (!!this.matomo.url && isValidUrl(this.matomo.url) && !!this.matomo.siteId && this.isValidMatomoHostToEnv());
-			const chat = !this.chat.enabled || (this.chat.appId && this.chat.authKey && this.chat.authSecret && this.chat.accountKey);
+			const matomo = !this.matomo.enabled || (!!this.matomo.url && isValidUrl(this.matomo.url) && !!this.matomo.siteId && this.isValidMatomoHostToEnv() && this.isValidUserVariables());
+			const chat = !this.chat.enabled || (this.chat.credentials.appId && this.chat.credentials.authKey && this.chat.credentials.authSecret && this.chat.credentials.accountKey && this.isValidUserName(this.chat.userName));
 			return matomo && chat; 
 		},
 	},
@@ -69,6 +76,10 @@ module.exports = Vue.extend({
 			arr.push(['', '']);
 		},
 
+		addUserVariable(arr, index, event) {
+			arr.push('');
+		},
+
 		remove(arr, index, event) {
 			arr.splice(index, 1);
 		},
@@ -76,11 +87,19 @@ module.exports = Vue.extend({
 		isValidMatomoHostToEnvEntry(entry) {
 			const key = trim(entry[0]);
 			const value = trim(entry[1]);
-			return !!((key && value) || (!key && !value));
+			return (key && value) || (!key && !value);
 		},
 
 		isValidMatomoHostToEnv() {
 			return !this.matomoHostToEnv.some((entry) => !this.isValidMatomoHostToEnvEntry(entry));
+		},
+
+		isValidUserName(userName) {
+			return !userName || !userName.startsWith('$');
+		},
+
+		isValidUserVariables() {
+			return !this.chat.userVariables.some((entry) => !this.isValidUserName(entry));
 		},
 
 		getStory() {

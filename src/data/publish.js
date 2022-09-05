@@ -138,6 +138,7 @@ const publish = (module.exports = {
 			`zoom="${escape(story.zoom)}" ` +
 			`settings="${escape(JSON.stringify(storyData.settings || {}))}" ` +
 			`plugins="${escape(JSON.stringify(storyData.plugins || {}))}" ` +
+			`userData="${escape(JSON.stringify(storyData.userData || {}))}" ` +
 			`format="${escape(story.storyFormat)}" ` +
 			`format-version="${escape(story.storyFormatVersion)}" ` +
 			`options="${escape(formatOptions)}" ` + 

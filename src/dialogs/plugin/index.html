@@ -1,5 +1,5 @@
 <modal-dialog id="pluginModal" :origin="origin" v-ref:modal>
-	<h2 class="plugin__title">Plugins</h2>
+	<h2 class="plugin__title">{{ 'Plugins' || say }}</h2>
 	<div class="plugin__items">
 		<div class="plugin__item">
 			<div class="plugin__checkbox">
@@ -17,39 +17,39 @@
 					<label for="matomoPHPUrl">PHP Url</label>
 					<div class="plugin__input">
 						<input type="text" id="matomoPHPUrl" v-model="matomo.url" title="Matomo PHP URL">
-						<p class="error" v-show="!isValidMatomoPHPUrl">{{ 'Resource Locator must be a valid URL' | say}}</p>
+						<p class="error" v-show="!isValidMatomoPHPUrl">{{ 'Resource Locator must be a valid URL' | say }}</p>
 					</div>
 				</div>
 				<div class="plugin__row">
-					<label for="siteId">Site ID</label>
+					<label for="siteId">{{ 'Site ID' || say }}</label>
 					<div class="plugin__input">
 						<input type="text" id="siteId" v-model="matomo.siteId" title="Matomo Site ID">
-						<p class="error" v-show="!matomo.siteId">{{ 'Site ID must not be empty' | say}}</p>
+						<p class="error" v-show="!matomo.siteId">{{ 'Site ID must not be empty' | say }}</p>
 					</div>
 				</div>
 				<div class="plugin__row">
-					<label for="statisticalArea">Statistical area</label>
+					<label for="statisticalArea">{{ 'Statistical area' || say }}</label>
 					<div class="plugin__input">
 						<input type="text" id="statisticalArea" v-model="matomo.statisticalArea" title="Matomo Statistical Area">
 					</div>
 				</div>
 				<div class="plugin__row">
-					<label for="shouldStoreTrackingIdInCookies">Store Tracking ID in Cookies</label>
+					<label for="shouldStoreTrackingIdInCookies">{{ 'Store Tracking ID in Cookies' || say }}</label>
 					<div class="plugin__input">
 						<input type="checkbox" id="shouldStoreTrackingIdInCookies" v-model="matomo.shouldStoreTrackingIdInCookies" title="Store Tracking ID in Cookies">
 					</div>
 				</div>
 				<div class="plugin__row">
-					<label>Host to Environment Mapping</label>
+					<label>{{ 'Host to Environment Mapping' || say }}</label>
 					<div class="plugin__input">
-						<template v-for="item in matomoHostToEnv">
+						<template v-for="item in matomoHostToEnv" track-by="$index">
 							<div class="plugin__list">
 								<input type="text" class="plugin__list-text" v-model="item[0]" placeholder="Host" title="Host">
 								<input type="text" class="plugin__list-text" v-model="item[1]" placeholder="Environment" title="Environment">
 								<button v-if="$index === 0" class="plugin__list-btn" @click="add(matomoHostToEnv, $index, $event)"></button>
 								<button v-else class="plugin__list-btn" @click="remove(matomoHostToEnv, $index, $event)"></button>
 							</div>
-							<p class="error" v-show="!isValidMatomoHostToEnvEntry(matomoHostToEnv[$index])">{{ 'Host and Environment must be set' | say}}</p>
+							<p class="error" v-show="!isValidMatomoHostToEnvEntry(matomoHostToEnv[$index])">{{ 'Host and Environment must be set' | say }}</p>
 						</template>
 					</div>
 				</div>
@@ -65,34 +65,54 @@
 			<div class="plugin__row">
 				<label for="chatAppId">Application ID</label>
 				<div class="plugin__input">
-					<input type="text" id="chatAppId" v-model="chat.appId" title="Chat Application ID">
-					<p class="error" v-show="!chat.appId">{{ 'Application ID must not be empty' | say}}</p>
+					<input type="text" id="chatAppId" v-model="chat.credentials.appId" title="Chat Application ID">
+					<p class="error" v-show="!chat.credentials.appId">{{ 'Application ID must not be empty' | say }}</p>
 				</div>
 			</div>
 			<div class="plugin__row">
 				<label for="chatAuthKey">Authorization Key</label>
 				<div class="plugin__input">
-					<input type="text" id="chatAuthKey" v-model="chat.authKey" title="Chat Authorization Key">
-					<p class="error" v-show="!chat.authKey">{{ 'Authorization Key must not be empty' | say}}</p>
+					<input type="text" id="chatAuthKey" v-model="chat.credentials.authKey" title="Chat Authorization Key">
+					<p class="error" v-show="!chat.credentials.authKey">{{ 'Authorization Key must not be empty' | say }}</p>
 				</div>
 			</div>
 			<div class="plugin__row">
 				<label for="chatAuthSecret">Authorization Secret</label>
 				<div class="plugin__input">
-					<input type="text" id="chatAuthSecret" v-model="chat.authSecret" title="Chat Authorization Secret">
-					<p class="error" v-show="!chat.authSecret">{{ 'Authorization Secret must not be empty' | say}}</p>
+					<input type="text" id="chatAuthSecret" v-model="chat.credentials.authSecret" title="Chat Authorization Secret">
+					<p class="error" v-show="!chat.credentials.authSecret">{{ 'Authorization Secret must not be empty' | say }}</p>
 				</div>
 			</div>
 			<div class="plugin__row">
 				<label for="chatAccountKey">Account Key</label>
 				<div class="plugin__input">
-					<input type="text" id="chatAccountKey" v-model="chat.accountKey" title="Chat Account Key">
-					<p class="error" v-show="!chat.accountKey">{{ 'Account Key must not be empty' | say}}</p>
+					<input type="text" id="chatAccountKey" v-model="chat.credentials.accountKey" title="Chat Account Key">
+					<p class="error" v-show="!chat.credentials.accountKey">{{ 'Account Key must not be empty' | say }}</p>
 				</div>
 			</div>
-		</div>
+			<div class="plugin__row">
+				<label for="chatUserName">{{ 'User\'s Field Name' || say }}</label>
+				<div class="plugin__input">
+					<input type="text" id="chatUserName" v-model="chat.userName" title="Chat User Field Name">
+					<p class="error" v-show="!isValidUserName(chat.userName)">{{ 'User Field Name must not start with \'$\'' | say }}</p>
+				</div>
+			</div>
+			<div class="plugin__row">
+				<label>{{ 'Shared User Variables' || say }}</label>
+				<div class="plugin__input">
+					<template v-for="item in chat.userVariables" track-by="$index">
+						<div class="plugin__list">
+							<input type="text" class="plugin__list-text" v-model="item" placeholder="Variable Name" title="Variable Name">
+							<button v-if="$index === 0" class="plugin__list-btn" @click="addUserVariable(chat.userVariables, $index, $event)"></button>
+							<button v-else class="plugin__list-btn" @click="remove(chat.userVariables, $index, $event)"></button>
+						</div>
+						<p class="error" v-show="!isValidUserName(chat.userVariables[$index])">{{ 'User Field Name must not start with \'$\'' | say }}</p>
+					</template>
+				</div>
+			</div>
+	</div>
 		<div class="plugin__save">
-			<button class="create" @click="save" :disabled="!isValid">Save</button>
+			<button class="create" @click="save" :disabled="!isValid">{{ 'Save' || say }}</button>
 		</div>
 	</div>
 </modal-dialog>

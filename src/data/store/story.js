@@ -49,6 +49,7 @@ const storyStore = (module.exports = {
 					passages: [],
 					settings: {},
 					plugins: {},
+					userData: {},
 				},
 				storyStore.storyDefaults,
 				props
