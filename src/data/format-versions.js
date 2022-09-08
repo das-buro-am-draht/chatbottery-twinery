@@ -19,9 +19,8 @@ module.exports = {
 			if (latestVersions[format.name]) {
 				const existing = latestVersions[format.name][v.major];
 
-				if (!existing ||
-					v.minor > existing.minor ||
-					v.minor === existing.minor && v.patch > existing.patch) {
+				if (!existing || +v.minor > +existing.minor ||
+					(v.minor === existing.minor && +v.patch > +existing.patch)) {
 					latestVersions[format.name][v.major] = v;
 				}
 			}
@@ -57,7 +56,7 @@ module.exports = {
 				const cVer = semverUtils.parse(current.version);
 				const cMinor = parseInt(cVer.minor);
 				const cPatch = parseInt(cVer.patch);
-				return (cMinor <= pMinor && cPatch <= pPatch) ? prev : current;
+				return (+cMinor <= +pMinor && +cPatch <= +pPatch) ? +prev : +current;
 			});
 		}
 	},

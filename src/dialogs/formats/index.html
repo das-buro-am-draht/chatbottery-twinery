@@ -51,12 +51,10 @@
 		</p>
 
 		<form @submit.prevent="addFormat">
-
-		<p>
-		<input type="text" name="newFormatUrl" v-model="newFormatUrl" required>
-		<button class="create" type="submit"><i class="fa fa-plus"></i> {{'Add' | say }}</button>
-		</p>
-
+			<p class="format-url">
+				<input type="text" name="newFormatUrl" v-model="newFormatUrl" required>
+			</p>
+			<button class="create" type="submit"><i class="fa fa-plus"></i> {{'Add' | say }}</button>
 		</form>
 	</tab-item>
 </tabs-panel>

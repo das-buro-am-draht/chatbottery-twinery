@@ -4,6 +4,7 @@ const locale = require('../../locale');
 const { confirm } = require('../confirm');
 const { deleteFormat } = require('../../data/actions/story-format');
 const { setPref } = require('../../data/actions/pref');
+const { loadDefault } = require('../../locale');
 
 require('./item.less');
 
@@ -66,9 +67,9 @@ module.exports = Vue.extend({
 					'<i class="fa fa-lg fa-trash-o"></i> ' + locale.say('Remove'),
 				buttonClass:
 					'danger',
-			}).then(() => {
-				this.deleteFormat(this.format.id);
-			});
+			})
+			.then(() => this.deleteFormat(this.format.id))
+			.then(() => this.$dispatch('refresh'));
 		},
 
 		setDefaultFormat() {

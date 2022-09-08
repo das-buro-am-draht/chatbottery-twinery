@@ -16,9 +16,6 @@ module.exports = Vue.extend({
 		/* Determines whether to show the loading spinner. */
 		working: true,
 
-		/* The index number of the next format to load. */
-		loadIndex: 0,
-
 		/* Bound to the text in the "new format" input. */
 		newFormatUrl: '',
 
@@ -45,46 +42,43 @@ module.exports = Vue.extend({
 		}
 	},
 
+	events: {
+		refresh: function() {
+			this.loadFormats();
+		},
+	},
+
 	methods: {
-		// Loads the next pending format.
-
-		loadNext() {
-			if (this.loadIndex < this.allFormats.length) {
-				this.loadFormat(
-					this.allFormats[this.loadIndex].name,
-					this.allFormats[this.loadIndex].version
-				).then(format => {
-					this.loadedFormats.push(format);
-					this.loadIndex++;
-					this.loadNext();
-				}).catch(e => {
-					const brokenFormat = this.allFormats[this.loadIndex];
-
-					this.loadedFormats.push(Object.assign(
-						{},
-						brokenFormat,
-						{
-							broken: true,
-							/* Force allow the format to be deleted. */
-							userAdded: true,
-							properties: {
-								version: brokenFormat.version,
-								description:
-									locale.say(
-										'This chatbot format could not be loaded (%1$s).',
-										e.message
-									)
+		loadFormats() {
+			this.working = true;
+			let formats = [];
+			this.allFormats.reduce((promise, format) => {
+				return promise
+					.then(() => this.loadFormat(format.name, format.version))
+					.then((format) => formats.push(format))
+					.catch(e => {
+						formats.push(Object.assign(
+							{},
+							format,
+							{
+								broken: true,
+								/* Force allow the format to be deleted. */
+								userAdded: true,
+								properties: {
+									version: brokenFormat.version,
+									description:
+										locale.say(
+											'This chatbot format could not be loaded (%1$s).',
+											e.message
+										)
+								}
 							}
-						}
-					));
-
-					this.loadIndex++;
-					this.loadNext();
-				});
-			}
-			else {
+						));
+					});
+			}, Promise.resolve()).finally(() => {
 				this.working = false;
-			}
+				this.loadedFormats = formats;
+			});
 		},
 
 		/**
@@ -102,10 +96,9 @@ module.exports = Vue.extend({
 
 			this.createFormatFromUrl(this.newFormatUrl)
 				.then(format => {
-					this.repairFormats();
 					this.error = '';
-					this.working = false;
-					this.loadedFormats.push(format);
+					// this.repairFormats();
+					// this.loadedFormats.push(format);
 
 					if (format.properties.proofing) {
 						this.$refs.tabs.active = 1;
@@ -120,8 +113,9 @@ module.exports = Vue.extend({
 						this.newFormatUrl,
 						e.message
 					);
-					this.working = false;
-				});
+				})
+				.then(() => this.loadFormats())
+				.finally(() => this.working = false);
 		}
 	},
 
@@ -139,7 +133,7 @@ module.exports = Vue.extend({
 			dialogTitle.appendChild(tabs[i]);
 		}
 
-		this.loadNext();
+		this.loadFormats();
 	},
 
 	vuex: {
@@ -161,36 +155,26 @@ module.exports = Vue.extend({
 					}
 					
 					if (a.name > b.name) {
-						return 1;
+						return +1;
 					}
 
 					const aVersion = semverUtils.parse(a.version);
 					const bVersion = semverUtils.parse(b.version);
 
-					if (aVersion.major > bVersion.major) {
+					if (+aVersion.major > +bVersion.major) {
 						return -1;
-					}
-					else if (aVersion.major < bVersion.major) {
-						return 1;
-					}
-					else {
-						if (aVersion.minor > bVersion.minor) {
-							return -1;
-						}
-						else if (aVersion.minor < bVersion.minor) {
-							return 1;
-						}
-						else {
-							if (aVersion.patch > bVersion.patch) {
-								return -1;
-							}
-							else if (aVersion.patch < bVersion.patch) {
-								return 1;
-							}
-							else {
-								return 0;
-							}
-						}
+					} else if (+aVersion.major < +bVersion.major) {
+						return +1;
+					} else if (+aVersion.minor > +bVersion.minor) {
+						return -1;
+					} else if (+aVersion.minor < +bVersion.minor) {
+						return +1;
+					} else if (+aVersion.patch > +bVersion.patch) {
+						return -1;
+					} else if (+aVersion.patch < +bVersion.patch) {
+						return +1;
+					} else {
+						return 0;
 					}
 				});
 

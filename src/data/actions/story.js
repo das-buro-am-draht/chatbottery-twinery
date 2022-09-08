@@ -151,7 +151,7 @@ const actions = (module.exports = {
 
 				const majorVersion = Object.keys(
 					latestVersions[story.storyFormat]
-				).reduce((prev, current) => (current < prev ? current : prev));
+				).reduce((prev, current) => (+current < +prev ? +current : +prev));
 
 				actions.updateStory(store, story.id, {
 					/* eslint-disable max-len */
