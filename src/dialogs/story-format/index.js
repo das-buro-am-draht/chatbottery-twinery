@@ -87,36 +87,26 @@ module.exports = Vue.extend({
 					}
 					
 					if (a.name > b.name) {
-						return 1;
+						return +1;
 					}
 
 					const aVersion = semverUtils.parse(a.version);
 					const bVersion = semverUtils.parse(b.version);
 
-					if (aVersion.major > bVersion.major) {
+					if (+aVersion.major > +bVersion.major) {
 						return -1;
-					}
-					else if (aVersion.major < bVersion.major) {
-						return 1;
-					}
-					else {
-						if (aVersion.minor > bVersion.minor) {
-							return -1;
-						}
-						else if (aVersion.minor < bVersion.minor) {
-							return 1;
-						}
-						else {
-							if (aVersion.patch > bVersion.patch) {
-								return -1;
-							}
-							else if (aVersion.patch < bVersion.patch) {
-								return 1;
-							}
-							else {
-								return 0;
-							}
-						}
+					} else if (+aVersion.major < +bVersion.major) {
+						return +1;
+					} else if (+aVersion.minor > +bVersion.minor) {
+						return -1;
+					} else if (+aVersion.minor < +bVersion.minor) {
+						return +1;
+					} else if (+aVersion.patch > +bVersion.patch) {
+						return -1;
+					} else if (+aVersion.patch < +bVersion.patch) {
+						return +1;
+					} else {
+						return 0;
 					}
 				});
 

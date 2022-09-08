@@ -112,7 +112,7 @@ describe('story format actions module', () => {
 	*/
 		expect(created['Chatbottery-9.5.1']).to.exist;
 		expect(created['Chatbottery-9.5.1'].url).to.equal(
-			'https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v9.js'
+			'https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v10.js'
 		);
 		expect(created['Chatbottery-9.5.1'].userAdded).to.be.false;
 		expect(created['Paperthin-1.0.0']).to.exist;
