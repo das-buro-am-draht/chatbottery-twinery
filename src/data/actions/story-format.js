@@ -265,17 +265,7 @@ const actions = (module.exports = {
 		Delete any outdated formats.
 		*/
 
-		const latestMajor = {}; 
 		const latestVersions = latestFormatVersions(store);
-		Object.entries(latestVersions).forEach(([name, versions]) => {
-			const keys = Object.keys(versions);
-			let major = +keys[0];
-			keys.forEach((key) => {
-				if (+key > major)
-					major = +key;
-			})
-			latestMajor[name] = major;
-		})
 
 		store.state.storyFormat.formats.forEach(format => {
 			if (!format.version) {
@@ -289,7 +279,10 @@ const actions = (module.exports = {
 					`Deleting outdated chatbot format ${format.name} ${v.semver}`
 				);
 				actions.deleteFormat(store, format.id);
-			} else if (!format.userAdded && +v.major < latestMajor[format.name]) {
+			} else if (!format.userAdded && !builtinFormats.find((builtin) => 
+					format.name === builtin.name &&
+					format.version === builtin.version
+				)) {
 				actions.updateFormat(store, format.id, { userAdded: true });
 			}
 		});
