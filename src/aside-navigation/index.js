@@ -2,6 +2,7 @@
 
 const Vue = require('vue');
 const {setPref} = require('../data/actions/pref');
+const FormatsDialog = require("../dialogs/formats");
 
 require('./index.less');
 
@@ -22,6 +23,12 @@ module.exports = Vue.extend({
 	methods: {
 		openRedirect(url) {
 			window.open(url, "_blank") || window.location.replace(url);
+		},
+		openFormats(e) {
+			new FormatsDialog({
+				store: this.$store,
+				data: { origin: e.target },
+			}).$mountTo(document.body);
 		}
 	},
 
