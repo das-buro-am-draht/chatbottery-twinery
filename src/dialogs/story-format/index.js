@@ -10,9 +10,10 @@ module.exports = Vue.extend({
 	template: require('./index.html'),
 
 	data: () => ({
-		loadIndex: 0,
 		loadedFormats: [],
 		storyId: '',
+		/* Determines whether to show the loading spinner. */
+		working: true,
 	}),
 
 	computed: {
@@ -26,47 +27,40 @@ module.exports = Vue.extend({
 					format.version === this.story.storyFormatVersion
 			);
 		},
-
-		working() {
-			return this.loadIndex < this.allFormats.length;
-		}
 	},
 
 	methods: {
-		loadNext() {
-			if (!this.working) {
-				return;
-			}
-
-			const nextFormat = this.allFormats[this.loadIndex];
-
-			this.loadFormat(nextFormat.name, nextFormat.version)
-			.then(format => {
-				if (!format.properties.proofing) {
-					this.loadedFormats.push(format);
-				}
-
-				this.loadIndex++;
-				this.loadNext();
-			})
-			.catch(e => {
-				notify(
-					locale.say(
-						'The chatbot format &ldquo;%1$s&rdquo; could not ' +
-						'be loaded (%2$s).',
-						nextFormat.name + ' ' + nextFormat.version,
-						e.message
-					),
-					'danger'
-				);
-				this.loadIndex++;
-				this.loadNext();
+		loadFormats() {
+			this.working = true;
+			let formats = [];
+			this.allFormats.reduce((promise, format) => {
+				return promise
+					.then(() => this.loadFormat(format.name, format.version))
+					.then((format) => {
+						if (!format.properties.proofing) {
+							formats.push(format);
+						}
+					})
+					.catch(e => {
+						notify(
+							locale.say(
+								'The chatbot format &ldquo;%1$s&rdquo; could not ' +
+								'be loaded (%2$s).',
+								format.name + ' ' + format.version,
+								e.message
+							),
+							'danger'
+						);
+					});
+			}, Promise.resolve()).finally(() => {
+				this.working = false;
+				this.loadedFormats = formats;
 			});
-		}
+		},
 	},
 
 	ready() {
-		this.loadNext();
+		this.loadFormats();
 	},
 
 	vuex: {
