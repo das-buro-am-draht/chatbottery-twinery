@@ -101,34 +101,35 @@ const actions = (module.exports = {
 		*/
 
 		const formats = store.state.storyFormat.formats;
-		let format = formatVersion(formats, name, version);
-		if (!format) {
-			// select the default story format
-			format = formatVersion(formats, store.state.pref.defaultFormat.name, store.state.pref.defaultFormat.version);
-		}
-		if (!format) {
-			throw new Error(`No format is available for ${name} ${version}`);
-		}
-
-		return new Promise((resolve, reject) => {
-			if (format.loaded) {
-				resolve(format);
-				return;
+		return Promise.resolve(formatVersion(formats, name, version)).then(format => {
+			/* if (!format) {
+				// select the default story format
+				format = formatVersion(formats, store.state.pref.defaultFormat.name, store.state.pref.defaultFormat.version);
+			} */
+			if (!format) {
+				throw new Error(`No format is available for ${name} ${version}`);
 			}
 
-			jsonp(
-				format.url,
-				{name: 'storyFormat', timeout: 2000},
-				(err, data) => {
-					if (err) {
-						reject(err);
-						return;
-					}
-
-					store.dispatch('LOAD_FORMAT', format.id, data);
+			return new Promise((resolve, reject) => {
+				if (format.loaded) {
 					resolve(format);
+					return;
 				}
-			);
+
+				jsonp(
+					format.url,
+					{name: 'storyFormat', timeout: 2000},
+					(err, data) => {
+						if (err) {
+							reject(err);
+							return;
+						}
+
+						store.dispatch('LOAD_FORMAT', format.id, data);
+						resolve(format);
+					}
+				);
+			});
 		});
 	},
 
