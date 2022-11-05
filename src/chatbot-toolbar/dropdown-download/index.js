@@ -8,6 +8,8 @@ const save = require('../../file/save');
 const {loadFormat} = require('../../data/actions/story-format');
 const {publishStoryWithFormat} = require('../../data/publish');
 const {proofStory} = require('../../common/launch-story');
+const locale = require('../../locale');
+const notify = require('../../ui/notify');
 
 require('./index.less');
 
@@ -42,8 +44,19 @@ module.exports = Vue.extend({
 					publishStoryWithFormat(this.appInfo, this.story, format),
 					this.story.name + '.html'
 				);
+			})
+			.catch(e => {
+				notify(
+					locale.say(
+						'The chatbot &ldquo;%1$s&rdquo; could not ' +
+						'be published (%2$s).',
+						this.story.name,
+						e.message
+					),
+					'danger'
+				);
 			});
-		},
+	},
 		proofStory(id) {
 			proofStory(this.$store, this.story.id, id);
 		},
