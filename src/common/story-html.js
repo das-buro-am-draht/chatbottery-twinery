@@ -29,7 +29,7 @@ module.exports = {
 		);
 	},
 
-	getStoryProofingHtml(store, storyId) {
+	getStoryProofingHtml(store, storyId, formatId = null) {
 		const story = store.state.story.stories.find(
 			story => story.id === storyId
 		);
@@ -40,10 +40,20 @@ module.exports = {
 			);
 		}
 
+		let format = store.state.pref.proofingFormat;
+		if (formatId) {
+			for (const item of store.state.storyFormat.formats) {
+				if (item.id === formatId) {
+					format = item;
+					break;
+				}
+			}
+		}
+
 		return loadFormat(
 			store,
-			store.state.pref.proofingFormat.name,
-			store.state.pref.proofingFormat.version
+			format.name,
+			format.version
 		).then(format =>
 			publishStoryWithFormat(store.state.appInfo, story, format)
 		);

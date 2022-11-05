@@ -65,7 +65,7 @@ module.exports = Vue.extend({
 								/* Force allow the format to be deleted. */
 								userAdded: true,
 								properties: {
-									version: brokenFormat.version,
+									version: format.version,
 									description:
 										locale.say(
 											'This chatbot format could not be loaded (%1$s).',

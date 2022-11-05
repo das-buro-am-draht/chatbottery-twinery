@@ -2,27 +2,25 @@
 	<nav class="chatbot-toolbar__navigation">
         <ul class="chatbot-toolbar__navigation-list">
             <li class="chatbot-toolbar__navigation-item chatbot-toolbar__navigation-item--home">
-                <a v-link="'/chatbots'" title="{{ 'Go to the chatbot list' | say }}"><div class="icon"></div></a>
+                <a v-link="'/chatbots'" title="{{ 'Go to the Chatbot List' | say }}"><div class="icon"></div></a>
             </li>
             <dropdown-file :story="story"></dropdown-file>
-            <li class="chatbot-toolbar__navigation-item chatbot-toolbar__navigation-item--css" @click="editStyle">
+            <li class="chatbot-toolbar__navigation-item chatbot-toolbar__navigation-item--css" @click="editStyle" title="{{ 'Edit Style Sheet' | say }}">
                 <div class="button">Css</div>
             </li>
-            <li class="chatbot-toolbar__navigation-item chatbot-toolbar__navigation-item--js"  @click="editScript">
+            <li class="chatbot-toolbar__navigation-item chatbot-toolbar__navigation-item--js"  @click="editScript" title="{{ 'Edit JavaScript' | say }}">
                 <div class="button">Js</div>
             </li>
         </ul>
     </nav>
-    <div class="chatbot-toolbar__view">
-        <story-search :story="story"></story-search>
-        <div class="chatbot-toolbar__zoom">
-            <input v-model="sliderVal" class="chatbot-toolbar__range" type="range" id="zoom" name="zoom" min="0" max="2" @change="changeZoom">
-        </div>
+    <story-search :story="story"></story-search>
+    <div class="chatbot-toolbar__zoom">
+        <input v-model="sliderVal" class="chatbot-toolbar__range" type="range" id="zoom" name="zoom" min="0" max="2" @change="changeZoom" title="{{ 'Adjust Zoom' | say }}">
     </div>
     <div class="chatbot-toolbar__actions">
         <ul class="chatbot-toolbar__actions-list">
             <dropdown-download :story="story"></dropdown-download>
-            <li class="chatbot-toolbar__actions-item chatbot-toolbar__actions-item--play" @click="play">
+            <li class="chatbot-toolbar__actions-item chatbot-toolbar__actions-item--play" @click="play" title="{{ 'Play the Chatbot' | say }}">
                 <div class="icon"></div>
             </li>
         </ul>

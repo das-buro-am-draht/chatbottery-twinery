@@ -217,27 +217,30 @@ const actions = (module.exports = {
 				userAdded: false
 			},
 			{
-				name: 'Paperthin',
-				url: 'story-formats/paperthin-1.0.0/format.js',
-				version: '1.0.0',
-				userAdded: false
-			},
-			{
 				name: 'Illume',
 				url: 'story-formats/illume-1.0.5/format.js',
 				version: '1.0.5',
-				userAdded: false
-			}
+				userAdded: false,
+				isReview: true,
+			},
+			{
+				name: 'Paperthin',
+				url: 'story-formats/paperthin-1.0.0/format.js',
+				version: '1.0.0',
+				userAdded: false,
+				isStatistic: true,
+			},
 		];
 
 		builtinFormats.forEach(builtin => {
-			if (
-				!store.state.storyFormat.formats.find(
-					format =>
-						format.name === builtin.name &&
-						format.version === builtin.version
-				)
-			) {
+			const format = store.state.storyFormat.formats.find(
+				format =>
+					format.name === builtin.name &&
+					format.version === builtin.version
+			);
+			if (format) {
+				actions.updateFormat(store, format.id, builtin);
+			} else {
 				actions.createFormat(store, builtin);
 			}
 		});

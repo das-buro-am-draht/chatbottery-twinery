@@ -8,6 +8,8 @@ const formatDefaults = {
 	version: '',
 	url: '',
 	userAdded: true,
+	isReview: false,
+	isStatistic: false,
 	properties: {}
 };
 
@@ -20,7 +22,7 @@ module.exports = {
 		CREATE_FORMAT(state, props) {
 			let newFormat = Object.assign({}, formatDefaults, props);
 
-			newFormat.id = uuid();
+			newFormat.id = props.id || uuid();
 			newFormat.loaded = false;
 			state.formats.push(newFormat);
 		},
