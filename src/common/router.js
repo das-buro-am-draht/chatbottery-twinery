@@ -118,6 +118,27 @@ TwineRouter.map({
 		}
 	},
 
+	'/chatbots/:id/proof/:formatId': {
+		component: {
+			ready() {
+				getStoryProofingHtml(this.$store, this.$route.params.id, this.$route.params.formatId)
+					.then(replaceUI)
+					.catch(e => {
+						window.alert(
+							locale.say(
+								'An error occurred while publishing your chatbot. (%s)',
+								e.message
+							)
+						);
+
+						/* Force returning to the previous view. */
+
+						throw e;
+					});
+			}
+		}
+	},
+
 	'/chatbots/:id/test': {
 		component: {
 			ready() {

@@ -23,6 +23,7 @@ module.exports = Vue.extend({
 
 	data: () => ({
 		active: false,
+		proofingFormat: null,
 	}),
 
 	methods: {
@@ -43,9 +44,13 @@ module.exports = Vue.extend({
 				);
 			});
 		},
-		proofStory() {
-			proofStory(this.$store, this.story.id);
+		proofStory(id) {
+			proofStory(this.$store, this.story.id, id);
 		},
+	},
+
+	ready: function() {
+		this.$data.proofingFormat = this.$store.state.storyFormat.formats.find(format => format.isStatistic);
 	},
 
 	vuex: {

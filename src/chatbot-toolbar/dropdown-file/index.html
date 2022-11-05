@@ -11,10 +11,11 @@
 		<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 	</div>
 	<ul class="dropdown">
-		<li class="dropdown__item" @click="renameStory">{{ 'Rename Chatbot' | say }}</li>
-		<li class="dropdown__item" @click="plugin">{{ 'Plugins' | say }}</li>
-		<li class="dropdown__item" @click="userData">{{ 'User Data' | say }}</li>
-		<li class="dropdown__item" @click="changeFormat">{{ 'Chatbot Format' | say }}</li>
-		<li class="dropdown__item" @click="storyStats">{{ 'Chatbot Statistics' | say }}</li>
+		<li class="dropdown__item" @click="renameStory" title="{{ 'Rename Chatbot' | say }}">{{ 'Rename Chatbot' | say }}</li>
+		<li class="dropdown__item" @click="plugin" title="{{ 'Chatbot Plugins' | say }}">{{ 'Plugins' | say }}</li>
+		<li class="dropdown__item" @click="userData" title="{{ 'Chatbot User Data' | say }}">{{ 'User Data' | say }}</li>
+		<li v-if="proofingFormat" class="dropdown__item" @click="review" title="{{ 'Chatbot Review' | say }}">{{ 'Chatbot Review' | say }}</li>
+		<li class="dropdown__item" @click="changeFormat" title="{{ 'Chatbot Format' | say }}">{{ 'Chatbot Format' | say }}</li>
+		<li class="dropdown__item" @click="storyStats" title="{{ 'Chatbot Statistics' | say }}">{{ 'Statistics' | say }}</li>
 	</ul>
 </li>

@@ -58,9 +58,9 @@ module.exports = {
 		}
 	},
 
-	proofStory(store, storyId) {
+	proofStory(store, storyId, formatId = null) {
 		if (isElectron()) {
-			getStoryProofingHtml(store, storyId)
+			getStoryProofingHtml(store, storyId, formatId)
 				.then(html =>
 					window.twineElectron.ipcRenderer.send(
 						'open-with-temp-file',
@@ -77,7 +77,10 @@ module.exports = {
 					);
 				});
 		} else {
-			openWindow(`#chatbots/${storyId}/proof`);
+			if (formatId)
+				openWindow(`#chatbots/${storyId}/proof/${formatId}`);
+			else
+				openWindow(`#chatbots/${storyId}/proof`);
 		}
 	},
 

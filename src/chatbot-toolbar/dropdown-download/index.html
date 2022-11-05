@@ -5,10 +5,12 @@
 	]"
 	@click="toggleDropdown()"
 	v-click-outside="closeDropdown"
+	title="{{ 'Download' | say }}..."
 >
 	<div class="icon"></div>
 	<ul class="dropdown">
-		<li class="dropdown__item" @click="publishStory">Download html-File</li>
-		<li class="dropdown__item" @click="proofStory">Download Proof Copy</li>
+		<li class="dropdown__item" @click="publishStory" title="{{ 'Download HTML File' | say }}">HTML</li>
+		<li v-if="proofingFormat" class="dropdown__item" @click="proofStory(proofingFormat.id)" title="{{ 'Download Proof PDF' | say }}">Proof PDF</li>
+		<li class="dropdown__item" @click="proofStory(null)" title="{{ 'Download Proof Default' | say }}">Proof Default</li>
 	</ul>
 </li>
