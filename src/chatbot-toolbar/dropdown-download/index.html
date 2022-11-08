@@ -9,8 +9,8 @@
 >
 	<div class="icon"></div>
 	<ul class="dropdown">
-		<li class="dropdown__item" @click="publishStory" title="{{ 'Download HTML File' | say }}">HTML</li>
-		<li v-if="proofingFormat" class="dropdown__item" @click="proofStory(proofingFormat.id)" title="{{ 'Download Proof PDF' | say }}">Proof PDF</li>
-		<li class="dropdown__item" @click="proofStory(null)" title="{{ 'Download Proof Default' | say }}">Proof Default</li>
+		<li class="dropdown__item" @click="publishStory" title="{{ 'Download HTML File' | say }}">Download HTML</li>
+		<li v-if="proofingFormat" class="dropdown__item" @click="proofStory(proofingFormat.id)" title="{{ 'Download Proof PDF' | say }}">Download PDF</li>
+		<li class="dropdown__item" @click="proofStory(null)" title="{{ 'Download Proof Default' | say }}">Proof Copy Default</li>
 	</ul>
 </li>

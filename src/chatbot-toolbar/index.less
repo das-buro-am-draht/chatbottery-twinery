@@ -12,7 +12,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	justify-content: flex-start;
+	justify-content: space-between;
 	// padding: 5px 0;
 	.dropdown {
 		position: absolute;
@@ -21,7 +21,7 @@
 		list-style: none;
 		padding: 0px;
 		margin: 0px;
-		left: 0px;
+		left: auto;
 		top: 100%;
 		background: #4c4c4c;
 		width: 100%;
@@ -145,12 +145,13 @@
 			}
 		}
 	}
-	&__view {
+	&__middle {
 		display: flex;
-		align-items: center;
+		flex: 1;
+		justify-content: center;
 	}
 	&__zoom {
-		margin: 0 10px;
+		margin: auto 10px auto 0;
 	}
 	&__actions {
         &-list {

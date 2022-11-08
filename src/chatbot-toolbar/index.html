@@ -13,9 +13,11 @@
             </li>
         </ul>
     </nav>
-    <story-search :story="story"></story-search>
-    <div class="chatbot-toolbar__zoom">
-        <input v-model="sliderVal" class="chatbot-toolbar__range" type="range" id="zoom" name="zoom" min="0" max="2" @change="changeZoom" title="{{ 'Adjust Zoom' | say }}">
+    <div class="chatbot-toolbar__middle">
+        <story-search :story="story"></story-search>
+        <div class="chatbot-toolbar__zoom">
+            <input v-model="sliderVal" class="chatbot-toolbar__range" type="range" id="zoom" name="zoom" min="0" max="2" @change="changeZoom" title="{{ 'Adjust Zoom' | say }}">
+        </div>
     </div>
     <div class="chatbot-toolbar__actions">
         <ul class="chatbot-toolbar__actions-list">
