@@ -214,7 +214,7 @@ const actions = (module.exports = {
 	*/	{
 				name: 'Chatbottery',
 				url: 'https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v10.js',
-				version: '10.1.1',
+				version: '10.2.1',
 				userAdded: false
 			},
 			{
@@ -249,7 +249,7 @@ const actions = (module.exports = {
 		if (typeof store.state.pref.defaultFormat !== 'object') {
 			setPref(store, 'defaultFormat', {
 				name: 'Chatbottery',
-				version: '10.1.1'
+				version: '10.2.1'
 			});
 		}
 
