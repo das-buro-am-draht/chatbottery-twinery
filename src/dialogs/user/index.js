@@ -32,7 +32,7 @@ module.exports = Vue.extend({
 							tv.value = String(v.value);
 							break;
 						case 'boolean':
-							tv.value = Boolean(v.value);
+							tv.value = v.value == null ? null : Boolean(v.value) ? 'true' : 'false';
 							break;
 						case 'number':
 							tv.value = v.value == null ? null : Number(v.value);
@@ -111,7 +111,7 @@ module.exports = Vue.extend({
 						tv.value = tv.value ? Number(tv.value) : null;
 						break;
 					case 'boolean':
-						tv.value = Boolean(tv.value);
+						tv.value = tv.value ? tv.value === 'true' : null;
 						break;
 					case 'date':
 						tv.value = tv.value ? new Date(tv.value).valueOf() : null;
