@@ -8,6 +8,19 @@ const { latestFormatVersions, formatVersion } = require('../format-versions');
 const locale = require('../../locale');
 const {setPref} = require('./pref');
 
+const defaultFormats = {
+	story: {
+		name: 'Chatbottery',
+		url: 'https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v10.js',
+		version: '10.2.1',
+	},
+	proof: {
+		name: 'Illume',
+		url: 'story-formats/illume-1.0.5/format.js',
+		version: '1.0.5',
+	}
+}
+
 const actions = (module.exports = {
 	createFormat({dispatch}, props) {
 		dispatch('CREATE_FORMAT', props);
@@ -157,7 +170,14 @@ const actions = (module.exports = {
 		*/
 
 		const builtinFormats = [
-/*	{
+			{ ...defaultFormats.story,
+				userAdded: false,
+			},
+			{ ...defaultFormats.proof,
+				userAdded: false,
+				isReview: true,
+			},
+/*		{
 				name: 'Chapbook',
 				url: 'story-formats/chapbook-1.2.1/format.js',
 				version: '1.2.1',
@@ -211,20 +231,7 @@ const actions = (module.exports = {
 				version: '2.34.1',
 				userAdded: false
 			}
-	*/	{
-				name: 'Chatbottery',
-				url: 'https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v10.js',
-				version: '10.1.1',
-				userAdded: false
-			},
-			{
-				name: 'Illume',
-				url: 'story-formats/illume-1.0.5/format.js',
-				version: '1.0.5',
-				userAdded: false,
-				isReview: true,
-			},
-			{
+*/		{
 				name: 'Paperthin',
 				url: 'story-formats/paperthin-1.0.0/format.js',
 				version: '1.0.0',
@@ -248,15 +255,15 @@ const actions = (module.exports = {
 
 		if (typeof store.state.pref.defaultFormat !== 'object') {
 			setPref(store, 'defaultFormat', {
-				name: 'Chatbottery',
-				version: '10.1.1'
+				name: defaultFormats.story.name,
+				version: defaultFormats.story.version,
 			});
 		}
 
 		if (typeof store.state.pref.proofingFormat !== 'object') {
 			setPref(store, 'proofingFormat', {
-				name: 'Illume',
-				version: '1.0.5'
+				name: defaultFormats.proof.name,
+				version: defaultFormats.proof.version,
 			});
 		}
 
