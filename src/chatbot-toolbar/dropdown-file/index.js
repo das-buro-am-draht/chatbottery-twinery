@@ -9,10 +9,11 @@ const { prompt } = require("../../dialogs/prompt");
 const StatsDialog = require("../../dialogs/story-stats");
 const PluginDialog = require("../../dialogs/plugin");
 const UserDataDialog = require("../../dialogs/user");
-// const FormatDialog = require('../../dialogs/story-format');
-const FormatsDialog = require("../../dialogs/formats");
+const FormatDialog = require('../../dialogs/story-format');
+// const FormatsDialog = require("../../dialogs/formats");
 // const ClickOutside = require('vue-click-outside');
 const { updateStory } = require("../../data/actions/story");
+const {proofStory} = require('../../common/launch-story');
 
 require("./index.less");
 
@@ -28,6 +29,7 @@ module.exports = Vue.extend({
 
 	data: () => ({
 		active: false,
+		proofingFormat: null,
 	}),
 
 	methods: {
@@ -68,15 +70,18 @@ module.exports = Vue.extend({
 			}).$mountTo(document.body);
 		},
 		changeFormat(e) {
-			// new FormatDialog({
-			// 	data: {storyId: this.story.id, origin: e.target},
-			// 	store: this.$store
-			// }).$mountTo(document.body);
-			new FormatsDialog({
-				store: this.$store,
-				data: { origin: e.target },
+			new FormatDialog({
+				data: {storyId: this.story.id, origin: e.target},
+				store: this.$store
 			}).$mountTo(document.body);
 		},
+		review(e) {
+			proofStory(this.$store, this.story.id, this.proofingFormat.id);
+		}
+	},
+
+	ready: function() {
+		this.$data.proofingFormat = this.$store.state.storyFormat.formats.find(format => format.isReview);
 	},
 
 	vuex: {

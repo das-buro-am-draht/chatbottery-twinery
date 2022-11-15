@@ -27,7 +27,7 @@
 	}
 	&.selected {
 		color: #3a51fa;
-		border: 1px solid #b1baff;
+		border: 2px solid #3a51fa;
 		background: #fff;
 	}
 
@@ -140,11 +140,13 @@
 	}
 
 	&.highlighted {
+		color: @color-darken;
 		border: @len-hairline solid lighten(@color-highlight, 15%);
 		background: lighten(@color-highlight, 40%);
 	}
 
 	&.selected.highlighted {
+		color: @color-darken;
 		border: @len-hairline solid mix(lighten(@color-highlight, 15%), lighten(@color-link, 30%));
 		background: mix(lighten(@color-highlight, 40%), lighten(@color-link, 55%));
 	}
@@ -199,6 +201,7 @@
 
 	.icons {
 		top: 3px;
+		z-index: 100;
 	}
 
 	.icon {
@@ -226,7 +229,16 @@
 		}
 	}
 
+	.title {
+		font-size: 7px;
+		text-align: center;
+		max-height: 100%;
+		line-height: 100%;
+	}
+
 	.title .text, .excerpt {
-		display: none;
+		text-align: center;
+		max-height: 100%;
+		line-height: 100%;
 	}
 }

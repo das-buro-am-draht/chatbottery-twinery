@@ -38,6 +38,19 @@
 			</button>
             <!-- ({{storiesLength}}) -->
 		</li>
+		<li class="asideNavigation--item asideNavigation--item-formats"
+        >
+			<button
+            class="asideNavigation--button"
+            @click="openFormats"
+            title="Chatbot Formats">
+                <div class="asideNavigation--icon"></div>
+                <div class="asideNavigation--text">
+                    {{ 'Chatbot Formats' | say }}
+                </div>
+			</button>
+            <!-- ({{storiesLength}}) -->
+		</li>
         <li class="asideNavigation--item asideNavigation--item-livechat">
 			<button class="asideNavigation--button" @click="openRedirect('https://chatbot-moderator.chatbottery.com/')" title="Live chats">
                 <div class="asideNavigation--icon"></div>

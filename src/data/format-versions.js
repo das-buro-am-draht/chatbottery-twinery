@@ -51,12 +51,12 @@ module.exports = {
 		} else {
 			return filtered.reduce((prev, current) => {
 				const pVer = semverUtils.parse(prev.version);
-				const pMinor = parseInt(pVer.minor);
-				const pPatch = parseInt(pVer.patch);
+				const pMinor = +parseInt(pVer.minor);
+				const pPatch = +parseInt(pVer.patch);
 				const cVer = semverUtils.parse(current.version);
-				const cMinor = parseInt(cVer.minor);
-				const cPatch = parseInt(cVer.patch);
-				return (+cMinor <= +pMinor && +cPatch <= +pPatch) ? +prev : +current;
+				const cMinor = +parseInt(cVer.minor);
+				const cPatch = +parseInt(cVer.patch);
+				return (cMinor < pMinor || (cMinor === pMinor && cPatch < pPatch)) ? prev : current;
 			});
 		}
 	},

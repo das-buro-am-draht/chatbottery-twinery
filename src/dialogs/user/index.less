@@ -2,26 +2,38 @@
     &__row {
         margin-bottom: 5px;
         display: flex;
-        flex-direction: row;
-        & input[type="text"] {
+        & .user__input {
             width: 100%;
+        }
+        & input[type="text"] {
             font-weight: bold;
         }
-    }
-    &__input {
-        flex: 1 1 auto;
-        align-self: center;
+        & input[type="checkbox"] {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
     }
     &__error {
         color: #fb1557;
     }
     &__list {
         display: flex;
-        flex-flow: row nowrap;
-        & .user__list-text {
+        & .user__list-field {
+            flex: 1 1 40%;
             margin-right: 5px;
         }
+        & .user__list-type {
+            flex: 1;
+            border: none;
+        }
+        & .user__list-input {
+            flex: 1 1 40%;
+            margin: 0 10px;
+            border: none;
+            padding: 0 5px;
+        }
         & .user__list-btn {
+            flex: 1;
             background-image: url('../../common/img/minus.png');
             background-size: contain;
             background-repeat: no-repeat;

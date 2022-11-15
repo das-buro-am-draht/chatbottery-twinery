@@ -8,6 +8,19 @@ const { latestFormatVersions, formatVersion } = require('../format-versions');
 const locale = require('../../locale');
 const {setPref} = require('./pref');
 
+const defaultFormats = {
+	story: {
+		name: 'Chatbottery',
+		url: 'https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v10.js',
+		version: '10.2.1',
+	},
+	proof: {
+		name: 'Illume',
+		url: 'story-formats/illume-1.0.5/format.js',
+		version: '1.0.5',
+	}
+}
+
 const actions = (module.exports = {
 	createFormat({dispatch}, props) {
 		dispatch('CREATE_FORMAT', props);
@@ -101,34 +114,35 @@ const actions = (module.exports = {
 		*/
 
 		const formats = store.state.storyFormat.formats;
-		let format = formatVersion(formats, name, version);
-		if (!format) {
-			// select the default story format
-			format = formatVersion(formats, store.state.pref.defaultFormat.name, store.state.pref.defaultFormat.version);
-		}
-		if (!format) {
-			throw new Error(`No format is available for ${name} ${version}`);
-		}
-
-		return new Promise((resolve, reject) => {
-			if (format.loaded) {
-				resolve(format);
-				return;
+		return Promise.resolve(formatVersion(formats, name, version)).then(format => {
+			/* if (!format) {
+				// select the default story format
+				format = formatVersion(formats, store.state.pref.defaultFormat.name, store.state.pref.defaultFormat.version);
+			} */
+			if (!format) {
+				throw new Error(`No format is available for ${name} ${version}`);
 			}
 
-			jsonp(
-				format.url,
-				{name: 'storyFormat', timeout: 2000},
-				(err, data) => {
-					if (err) {
-						reject(err);
-						return;
-					}
-
-					store.dispatch('LOAD_FORMAT', format.id, data);
+			return new Promise((resolve, reject) => {
+				if (format.loaded) {
 					resolve(format);
+					return;
 				}
-			);
+
+				jsonp(
+					format.url,
+					{name: 'storyFormat', timeout: 2000},
+					(err, data) => {
+						if (err) {
+							reject(err);
+							return;
+						}
+
+						store.dispatch('LOAD_FORMAT', format.id, data);
+						resolve(format);
+					}
+				);
+			});
 		});
 	},
 
@@ -156,7 +170,14 @@ const actions = (module.exports = {
 		*/
 
 		const builtinFormats = [
-/*	{
+			{ ...defaultFormats.story,
+				userAdded: false,
+			},
+			{ ...defaultFormats.proof,
+				userAdded: false,
+				isReview: true,
+			},
+/*		{
 				name: 'Chapbook',
 				url: 'story-formats/chapbook-1.2.1/format.js',
 				version: '1.2.1',
@@ -210,54 +231,39 @@ const actions = (module.exports = {
 				version: '2.34.1',
 				userAdded: false
 			}
-	*/	{
-				name: 'Chatbottery',
-				url: 'https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v10.js',
-				version: '10.0.1',
-				userAdded: false
-			},
-			{
+*/		{
 				name: 'Paperthin',
 				url: 'story-formats/paperthin-1.0.0/format.js',
 				version: '1.0.0',
-				userAdded: false
+				userAdded: false,
+				isStatistic: true,
 			},
-			{
-				name: 'Illume',
-				url: 'story-formats/illume-1.0.5/format.js',
-				version: '1.0.5',
-				userAdded: false
-			}
 		];
 
 		builtinFormats.forEach(builtin => {
-			if (
-				!store.state.storyFormat.formats.find(
-					format =>
-						format.name === builtin.name &&
-						format.version === builtin.version
-				)
-			) {
+			const format = store.state.storyFormat.formats.find(
+				format =>
+					format.name === builtin.name &&
+					format.version === builtin.version
+			);
+			if (format) {
+				actions.updateFormat(store, format.id, builtin);
+			} else {
 				actions.createFormat(store, builtin);
 			}
 		});
 
-		/*
-		Set default formats allways regardless of saved value in local storage // formerly: if not already set, or if an unversioned preference
-		exists.
-		*/
-
-		{ // if (typeof store.state.pref.defaultFormat !== 'object') {
+		if (typeof store.state.pref.defaultFormat !== 'object') {
 			setPref(store, 'defaultFormat', {
-				name: 'Chatbottery',
-				version: '10.0.1'
+				name: defaultFormats.story.name,
+				version: defaultFormats.story.version,
 			});
 		}
 
-		{ // if (typeof store.state.pref.proofingFormat !== 'object') {
+		if (typeof store.state.pref.proofingFormat !== 'object') {
 			setPref(store, 'proofingFormat', {
-				name: 'Illume',
-				version: '1.0.5'
+				name: defaultFormats.proof.name,
+				version: defaultFormats.proof.version,
 			});
 		}
 
