@@ -13,7 +13,10 @@
 						<option value="date">{{ 'Date' | say }}</option>
 					</select>
 					<input v-if="item[1].type === 'string'" type="text" class="user__list-input" v-model="item[1].value" placeholder="{{ 'Default Value' | say }}" title="{{ 'String' | say }}">
-					<input v-if="item[1].type === 'boolean'" type="checkbox" class="user__list-input" v-model="item[1].value" placeholder="{{ 'Default Value' | say }}" title="{{ 'Boolean' | say }}">
+					<select v-if="item[1].type === 'boolean'" class="user__list-input" v-model="item[1].value" placeholder="{{ 'Default Value' | say }}" title="{{ 'Boolean' | say }}">
+						<option value="true">true</option>	
+						<option value="false">false</option>	
+					</select>
 					<input v-if="item[1].type === 'number'" type="number" class="user__list-input" v-model="item[1].value" placeholder="{{ 'Default Value' | say }}" title="{{ 'Number' | say }}">
 					<input v-if="item[1].type === 'date'" type="date" class="user__list-input" v-model="item[1].value" placeholder="{{ 'Default Value' | say }}" title="{{ 'Date' | say }}">
 					<button v-if="$index === 0" class="user__list-btn" @click="add(userData, $index, $event)"></button>
