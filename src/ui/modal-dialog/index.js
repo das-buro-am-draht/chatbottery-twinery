@@ -37,7 +37,7 @@ const ModalDialog = module.exports = Vue.extend({
 
 	computed: {
 		classes() {
-			return this.class + (this.wide ? ' wide' : '');
+			return (this.class || '') + (this.wide ? ' wide' : '');
 		}
 	},
 

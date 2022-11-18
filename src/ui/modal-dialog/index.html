@@ -3,7 +3,6 @@
 	<div :class="'modal-dialog ' + classes">
 		<header>
 			<h2 class="title"><slot name="title"></slot></h2>
-
 			<slot name="buttons"></slot>
 			<button class="widen subtle" @click="toggleWide" v-if="canWiden">
 				<i class="fa fa-expand" v-if="!wide"></i>

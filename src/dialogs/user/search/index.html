@@ -1,0 +1,7 @@
+<ul class="user__search-dropdown">
+  <template v-for="passage in sortedPassages">
+    <li class="user__search-dropdown--item" @click="onEntryClicked(passage, $event)">
+      {{ passage.name }}
+    </li>
+  </template>
+</ul>

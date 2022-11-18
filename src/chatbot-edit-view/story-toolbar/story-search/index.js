@@ -5,6 +5,7 @@ show the search modal dialog.
 
 const Vue = require('vue');
 const SearchDialog = require('../../../dialogs/story-search');
+const { regularExpression } = require('../../../utils/common');
 
 module.exports = Vue.extend({
 	template: require('./index.html'),
@@ -28,9 +29,7 @@ module.exports = Vue.extend({
 			https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions.
 			*/
 
-			const value = new RegExp(
-				this.search.replace(/([.*+?^${}()|\[\]\/\\])/g, '\\$1'), 'i'
-			);
+			const value = regularExpression(this.search);
 
 			this.$dispatch(
 				'highlight-regexp-change',
