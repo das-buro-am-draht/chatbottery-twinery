@@ -4,7 +4,6 @@ const values = require('lodash.values');
 const Vue = require('vue');
 const { confirm } = require('../dialogs/confirm');
 const { createPassage, deletePassage, positionPassage, updatePassage } = require('../data/actions/passage');
-const { loadFormat } = require('../data/actions/story-format');
 const { updateStory } = require('../data/actions/story');
 const domEvents = require('../vue/mixins/dom-events');
 const locale = require('../locale');
@@ -517,7 +516,6 @@ module.exports = Vue.extend({
 		actions: {
 			createPassage,
 			deletePassage,
-			loadFormat,
 			positionPassage,
 			updatePassage,
 			updateStory

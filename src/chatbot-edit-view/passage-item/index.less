@@ -23,7 +23,8 @@
 	}
 	&.start.selected, &.selected  {
 		background: #fc2361;
-		border: 1px solid #fc2361;
+		border: 2px solid #3a51fa;
+		// border: 1px solid #fc2361;
 	}
 	&.selected {
 		color: #3a51fa;
@@ -142,7 +143,7 @@
 	&.highlighted {
 		color: @color-darken;
 		border: @len-hairline solid lighten(@color-highlight, 15%);
-		background: lighten(@color-highlight, 40%);
+		background: lighten(@color-highlight, 40%) !important;
 	}
 
 	&.selected.highlighted {

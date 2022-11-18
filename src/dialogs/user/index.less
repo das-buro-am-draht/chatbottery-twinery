@@ -1,3 +1,7 @@
+#userModal .modal-dialog {
+    width: unset;
+}
+
 .user {
     &__row {
         margin-bottom: 5px;
@@ -21,6 +25,12 @@
         & .user__list-field {
             flex: 1 1 40%;
             margin-right: 5px;
+        }
+        & .user__list-search {
+            flex: 1;
+            background-image: url("../../common/img/search-icon.svg");
+            background-repeat: no-repeat;
+            background-position: center;
         }
         & .user__list-type {
             flex: 1;

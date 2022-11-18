@@ -146,7 +146,7 @@ module.exports = Vue.extend({
 		getters: {
 			allFormats: state => {
 				let result = state.storyFormat.formats.map(
-					format => ({ name: format.name, version: format.version })
+					format => ({ id: format.id, name: format.name, version: format.version })
 				);
 				
 				result.sort((a, b) => {

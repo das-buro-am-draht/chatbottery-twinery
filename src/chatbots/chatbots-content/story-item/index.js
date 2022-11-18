@@ -5,7 +5,7 @@
 "use strict";
 const moment = require("moment");
 const Vue = require("vue");
-const ZoomTransition = require("../../../story-list-view/zoom-transition");
+const ZoomTransition = require("../zoom-transition");
 
 require("./index.less");
 

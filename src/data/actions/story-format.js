@@ -6,6 +6,7 @@ const jsonp = require('../jsonp');
 const semverUtils = require('semver-utils');
 const { latestFormatVersions, formatVersion } = require('../format-versions');
 const locale = require('../../locale');
+const notify = require('../../ui/notify');
 const {setPref} = require('./pref');
 
 const defaultFormats = {
@@ -258,6 +259,18 @@ const actions = (module.exports = {
 				name: defaultFormats.story.name,
 				version: defaultFormats.story.version,
 			});
+		} else if (!(store.state.pref.defaultFormat.name === defaultFormats.story.name 
+							&& semverUtils.parse(store.state.pref.defaultFormat.version).major === semverUtils.parse(defaultFormats.story.version).major)) {
+			notify(
+				locale.say(
+					'Default Chatbot Format &ldquo;%1$s %2$s&rdquo; is not ' +
+					'the latest (%3$s %4$s).',
+					store.state.pref.defaultFormat.name,
+					store.state.pref.defaultFormat.version,
+					defaultFormats.story.name,
+					defaultFormats.story.version,
+				)
+			);
 		}
 
 		if (typeof store.state.pref.proofingFormat !== 'object') {
