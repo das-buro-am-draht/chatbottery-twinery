@@ -158,6 +158,7 @@ module.exports = Vue.extend({
 						Promise.resolve(new SearchDropdown({
 							parent: this,
 							data: {
+								origin: event.target,
 								passages,
 								x: rect.x + rect.width,
 								y: rect.y,
