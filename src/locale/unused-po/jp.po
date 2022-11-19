@@ -184,7 +184,7 @@ msgid "Replace in Passage"
 msgstr "パッセージの中を置換"
 
 #: src/dialogs/story-stats/index.html
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Story Statistics"
 msgstr "ストーリー統計"
 
@@ -284,46 +284,46 @@ msgstr "お読み頂きありがとうございます。Twineでお楽しみ下�
 msgid "Go to the Story List"
 msgstr "ストーリーリストに行く"
 
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Test"
 msgstr "テスト"
 
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Play"
 msgstr "プレイ"
 
 #. L10n: Word in the sense of individual words in a sentence. This does not actually include the count, as it is used in a table.
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 #: src/dialogs/story-stats/index.js:86
 msgid "Passage"
 msgstr "パッセージ"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Edit Story JavaScript"
 msgstr "ストーリーJavaScriptを編集"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Edit Story Stylesheet"
 msgstr "ストーリースタイルシートを編集"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Change Story Format"
 msgstr "ストーリー形式を変更"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Rename Story"
 msgstr "ストーリーの名前を変更"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Snap to Grid"
 msgstr "グリッドにスナップ"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "View Proofing Copy"
 msgstr "校正コピーを表示"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Publish to File"
 msgstr "ファイルに出力する"
@@ -440,7 +440,7 @@ msgid "Untitled Story"
 msgstr "ストーリータイトルなし"
 
 #: src/data/story.js:207
-#: src/story-edit-view/index.js:218
+#: src/chatbot-view/index.js:218
 msgid "Untitled Passage"
 msgstr "パッセージのタイトルなし"
 
@@ -582,7 +582,7 @@ msgid "Paste"
 msgstr "貼付け"
 
 #: src/nw/menus.js:106
-#: src/story-edit-view/passage-item/index.js:334
+#: src/chatbot-view/passage-item/index.js:334
 msgid "Delete"
 msgstr "削除"
 
@@ -590,26 +590,26 @@ msgstr "削除"
 msgid "Show Library"
 msgstr "ライブラリを表示"
 
-#: src/story-edit-view/passage-item/index.js:319
+#: src/chatbot-view/passage-item/index.js:319
 #: src/story-list-view/story-item/item-menu/index.js:78
 msgid "Are you sure you want to delete &ldquo;%s&rdquo;? This cannot be undone."
 msgstr "＆ldquo;％s＆rdquo;を削除してもよろしいですか？これは、元に戻すことはできません。"
 
-#: src/story-edit-view/passage-item/index.js:326
+#: src/chatbot-view/passage-item/index.js:326
 msgid "(Hold the Shift key when deleting to skip this message.)"
 msgstr "（このメッセージをスキップするには、削除するときにShiftキーを押したままにします。）"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:46
+#: src/chatbot-view/story-toolbar/story-menu/index.js:46
 #: src/story-list-view/story-item/item-menu/index.js:100
 msgid "What should &ldquo;%s&rdquo; be renamed to?"
 msgstr "＆ldquo;％s＆rdquo;に名前を変えますか？"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:51
+#: src/chatbot-view/story-toolbar/story-menu/index.js:51
 #: src/story-list-view/story-item/item-menu/index.js:105
 msgid "Rename"
 msgstr "名前を変える"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:55
+#: src/chatbot-view/story-toolbar/story-menu/index.js:55
 #: src/story-list-view/story-item/item-menu/index.js:109
 #: src/story-list-view/story-item/item-menu/index.js:128
 msgid "Please enter a name."

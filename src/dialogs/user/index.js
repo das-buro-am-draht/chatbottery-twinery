@@ -192,11 +192,11 @@ module.exports = Vue.extend({
 		},
 
 		save() {
-			const data = this.userData.reduce((userData, data) => {
+			const data = this.userData.filter(([key]) => !!trim(key)).reduce((userData, data) => {
 				const [key, tv] = data;
 				switch (tv.type) {
 					case 'number':
-						tv.value = tv.value ? Number(tv.value) : null;
+						tv.value = tv.value !== '' ? Number(tv.value) : null;
 						break;
 					case 'boolean':
 						tv.value = tv.value ? tv.value === 'true' : null;

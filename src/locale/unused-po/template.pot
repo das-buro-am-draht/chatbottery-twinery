@@ -183,7 +183,7 @@ msgid "Replace in Passage"
 msgstr ""
 
 #: src/dialogs/story-stats/index.html
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Story Statistics"
 msgstr ""
 
@@ -283,46 +283,46 @@ msgstr ""
 msgid "Go to the Story List"
 msgstr ""
 
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Test"
 msgstr ""
 
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Play"
 msgstr ""
 
 #. L10n: Word in the sense of individual words in a sentence. This does not actually include the count, as it is used in a table.
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 #: src/dialogs/story-stats/index.js:86
 msgid "Passage"
 msgstr ""
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Edit Story JavaScript"
 msgstr ""
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Edit Story Stylesheet"
 msgstr ""
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Change Story Format"
 msgstr ""
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Rename Story"
 msgstr ""
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Snap to Grid"
 msgstr ""
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "View Proofing Copy"
 msgstr ""
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Publish to File"
 msgstr ""
@@ -439,7 +439,7 @@ msgid "Untitled Story"
 msgstr ""
 
 #: src/data/story.js:207
-#: src/story-edit-view/index.js:218
+#: src/chatbot-view/index.js:218
 msgid "Untitled Passage"
 msgstr ""
 
@@ -581,7 +581,7 @@ msgid "Paste"
 msgstr ""
 
 #: src/nw/menus.js:106
-#: src/story-edit-view/passage-item/index.js:334
+#: src/chatbot-view/passage-item/index.js:334
 msgid "Delete"
 msgstr ""
 
@@ -589,26 +589,26 @@ msgstr ""
 msgid "Show Library"
 msgstr ""
 
-#: src/story-edit-view/passage-item/index.js:319
+#: src/chatbot-view/passage-item/index.js:319
 #: src/story-list-view/story-item/item-menu/index.js:78
 msgid "Are you sure you want to delete &ldquo;%s&rdquo;? This cannot be undone."
 msgstr ""
 
-#: src/story-edit-view/passage-item/index.js:326
+#: src/chatbot-view/passage-item/index.js:326
 msgid "(Hold the Shift key when deleting to skip this message.)"
 msgstr ""
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:46
+#: src/chatbot-view/story-toolbar/story-menu/index.js:46
 #: src/story-list-view/story-item/item-menu/index.js:100
 msgid "What should &ldquo;%s&rdquo; be renamed to?"
 msgstr ""
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:51
+#: src/chatbot-view/story-toolbar/story-menu/index.js:51
 #: src/story-list-view/story-item/item-menu/index.js:105
 msgid "Rename"
 msgstr ""
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:55
+#: src/chatbot-view/story-toolbar/story-menu/index.js:55
 #: src/story-list-view/story-item/item-menu/index.js:109
 #: src/story-list-view/story-item/item-menu/index.js:128
 msgid "Please enter a name."

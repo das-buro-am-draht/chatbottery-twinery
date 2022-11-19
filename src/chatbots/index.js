@@ -19,7 +19,7 @@ module.exports = Vue.extend({
 
 	components: {
 		'aside-navigation': require('../aside-navigation'),
-		'chatbots-content': require('./chatbots-content'),
+		'chatbots-content': require('./stories'),
 	},
 
 	vuex: {}
