@@ -15,10 +15,11 @@ require("./index.less");
 module.exports = Vue.extend({
 	template: require("./index.html"),
 
+	searchDropdown: null,
+		
 	data: () => ({
 		storyId: null,
 		userData: [],
-		searchDropdown: null,
 	}),
 
 	ready() {
@@ -100,6 +101,33 @@ module.exports = Vue.extend({
 			}
 		},
 
+		editPassage(passage) {
+			const story = this.getStory();
+			const oldText = passage.text;
+			const afterEdit = () => {
+				this.createNewlyLinkedPassages(
+					story.id,
+					passage.id,
+					oldText,
+					this.gridSize
+				);
+			};
+			new PassageEditor({
+				data: {
+					passageId: passage.id,
+					storyId: story.id,
+				},
+				store: this.$store,
+				storyFormat: {
+					name: story.storyFormat,
+					version: story.storyFormatVersion
+				}
+			})
+			.$mountTo(document.body)
+			.then(afterEdit)
+			.catch(afterEdit);
+		},
+
 		search(entry, event) {
 			if (this.searchDropdown) {
 				if (this.searchDropdown.origin === event.target) {
@@ -123,44 +151,20 @@ module.exports = Vue.extend({
 				);
 			} else {
 				if (passages.length === 1) {
-					const passage = passages[0];
-					const oldText = passage.text;
-					const afterEdit = () => {
-						this.createNewlyLinkedPassages(
-							story.id,
-							passage.id,
-							oldText,
-							this.gridSize
-						);
-					};
-					new PassageEditor({
-						data: {
-							passageId: passage.id,
-							storyId: story.id,
-							origin: event.target,
-						},
-						store: this.$store,
-						storyFormat: {
-							name: story.storyFormat,
-							version: story.storyFormatVersion
-						}
-					})
-					.$mountTo(document.body)
-					.then(afterEdit)
-					.catch(afterEdit);
+					this.editPassage(passages[0]);
 				} else {
+					const rect = event.target.getBoundingClientRect();
 					setTimeout(() => {
 						Promise.resolve(new SearchDropdown({
 							parent: this,
 							data: {
-								storyId: story.id,
-								origin: event.target,
 								passages,
-								gridSize: this.gridSize,
+								x: rect.x + rect.width,
+								y: rect.y,
 							},
 							store: this.$store,
 						})
-						.$mountTo(event.target.parentNode))
+						.$mountTo(this.$refs.modal.$el))
 						.then(dropdown => this.searchDropdown = dropdown);
 					}, 0);
 				}
@@ -215,6 +219,12 @@ module.exports = Vue.extend({
 
 	},
 
+	events: {
+		'passage-edit'(passage) {
+			this.editPassage(passage);
+		}
+	},
+
 	vuex: {
 		actions: {
 			updateStory,
@@ -228,6 +238,6 @@ module.exports = Vue.extend({
 
 	components: {
 		"modal-dialog": require("../../ui/modal-dialog"),
-	},
+	}
 
 });

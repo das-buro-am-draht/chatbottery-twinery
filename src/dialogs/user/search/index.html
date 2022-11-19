@@ -1,6 +1,6 @@
-<ul class="user__search-dropdown">
+<ul class="user__search-dropdown" v-bind:style="{ left: x + 'px', top: y + 'px' }">
   <template v-for="passage in sortedPassages">
-    <li class="user__search-dropdown--item" @click="onEntryClicked(passage, $event)">
+    <li class="user__search-dropdown--item" @click="onEntryClicked(passage)">
       {{ passage.name }}
     </li>
   </template>

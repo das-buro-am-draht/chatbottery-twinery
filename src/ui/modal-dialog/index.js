@@ -57,10 +57,16 @@ const ModalDialog = module.exports = Vue.extend({
 				(originRect.top + originRect.height / 2) + 'px';
 		}
 
-		let body = document.querySelector('body');
+		const body = document.querySelector('body');
 
 		body.classList.add('modalOpen');
-		this.on(body, 'keyup', this.escapeCloser);
+		
+		this.on(body, 'keyup', (e) => {
+			if (e.keyCode === 27) {
+				e.preventDefault();
+				this.close();
+			}
+		});
 
 		/*
 		We have to listen manually to the end of the transition in order to an
@@ -85,7 +91,7 @@ const ModalDialog = module.exports = Vue.extend({
 	},
 
 	destroyed() {
-		let body = document.querySelector('body');
+		const body = document.querySelector('body');
 
 		body.classList.remove('modalOpen');
 		this.$emit('destroyed');
@@ -111,13 +117,6 @@ const ModalDialog = module.exports = Vue.extend({
 
 			this.$emit('reject', message);
 		},
-
-		escapeCloser(e) {
-			if (e.keyCode === 27) {
-				e.preventDefault();
-				this.close();
-			}
-		}
 	},
 
 	events: {
