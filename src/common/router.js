@@ -4,14 +4,12 @@ let Vue = require('vue');
 const VueRouter = require('vue-router');
 const LocaleView = require('../locale/view');
 const ChatbotEditView = require('../chatbot-edit-view');
-// const StoryListView = require('../story-list-view');
 // const WelcomeView = require('../welcome');
 const HomeView = require('../home');
 const ChatbotsView = require('../chatbots');
 const locale = require('../locale');
 const { getStoryPlayHtml, getStoryProofingHtml, getStoryTestHtml } = require('./story-html');
 const replaceUI = require('../ui/replace');
-// const store = require('../data/store');
 
 Vue.use(VueRouter);
 
@@ -40,25 +38,6 @@ TwineRouter.map({
 	For routes that take data objects, we create shim components which provide
 	appropriate props to the components that do the actual work.
 	*/
-
-	// '/stories': {
-	// 	component: {
-	// 		template:
-	// 			'<div><story-list ' +
-	// 			':previously-editing="previouslyEditing"></story-list></div>',
-
-	// 		components: {'story-list': StoryListView},
-
-	// 		data() {
-	// 			return {
-	// 				previouslyEditing: this.$route.params
-	// 					? this.$route.params.previouslyEditing
-	// 					: ''
-	// 			};
-	// 		}
-	// 	}
-	// },
-
 	'/chatbots/:id': {
 		component: {
 			template: '<div><story-edit :story-id="id"></story-edit></div>',

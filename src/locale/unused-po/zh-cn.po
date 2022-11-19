@@ -225,7 +225,7 @@ msgid "Replace in Passage"
 msgstr "在片段中替换"
 
 #: src/dialogs/story-stats/index.html
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Story Statistics"
 msgstr "故事统计"
 
@@ -351,70 +351,70 @@ msgstr "感谢您的阅读，希望 使用 Chatbottery 愉快！"
 msgid "Go to the Story List"
 msgstr "返回故事列表"
 
-#: src/story-edit-view/passage-item/passage-menu/index.html
+#: src/chatbot-edit-view/passage-item/passage-menu/index.html
 msgid "Start Story Here"
 msgstr "从这里开始故事"
 
-#: src/story-edit-view/passage-item/passage-menu/index.html
+#: src/chatbot-edit-view/passage-item/passage-menu/index.html
 msgid "Small"
 msgstr "小"
 
-#: src/story-edit-view/passage-item/passage-menu/index.html
+#: src/chatbot-edit-view/passage-item/passage-menu/index.html
 msgid "Wide"
 msgstr "宽"
 
-#: src/story-edit-view/passage-item/passage-menu/index.html
+#: src/chatbot-edit-view/passage-item/passage-menu/index.html
 msgid "Tall"
 msgstr "高"
 
-#: src/story-edit-view/passage-item/passage-menu/index.html
+#: src/chatbot-edit-view/passage-item/passage-menu/index.html
 msgid "Large"
 msgstr "大"
 
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-edit-view/story-toolbar/index.html
 msgid "Test"
 msgstr "测试"
 
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-edit-view/story-toolbar/index.html
 msgid "Play"
 msgstr "运行"
 
 #. L10n: Word in the sense of individual words in a sentence. This does not actually include the count, as it is used in a table.
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-edit-view/story-toolbar/index.html
 #: src/dialogs/story-stats/index.js:87
 msgid "Passage"
 msgstr "片段"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Edit Story JavaScript"
 msgstr "编辑故事 Javascript 脚本"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Edit Story Stylesheet"
 msgstr "编辑故事样式表"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Change Story Format"
 msgstr "编辑故事格式"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Rename Story"
 msgstr "重命名故事"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Select All Passages"
 msgstr "选择所有片段"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Snap to Grid"
 msgstr "对齐到网格"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "View Proofing Copy"
 msgstr "查看校对版本"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Publish to File"
 msgstr "发布到文件"
@@ -570,7 +570,7 @@ msgstr "未命名故事的格式"
 msgid "Untitled Story"
 msgstr "未命名故事"
 
-#: src/data/store/story.js:208 src/story-edit-view/index.js:277
+#: src/data/store/story.js:208 src/chatbot-edit-view/index.js:277
 msgid "Untitled Passage"
 msgstr "未命名片段"
 
@@ -719,8 +719,8 @@ msgstr "复制"
 msgid "Paste"
 msgstr "粘贴"
 
-#: src/nw/menus.js:106 src/story-edit-view/index.js:389
-#: src/story-edit-view/passage-item/index.js:367
+#: src/nw/menus.js:106 src/chatbot-edit-view/index.js:389
+#: src/chatbot-edit-view/passage-item/index.js:367
 msgid "Delete"
 msgstr "删除"
 
@@ -728,34 +728,34 @@ msgstr "删除"
 msgid "Show Library"
 msgstr "显示故事库"
 
-#: src/story-edit-view/index.js:380
+#: src/chatbot-edit-view/index.js:380
 msgid ""
 "Are you sure you want to delete &ldquo;%2$s&rdquo;? This cannot be undone."
 msgid_plural ""
 "Are you sure you want to delete %d passages? This cannot be undone."
 msgstr[0] "您确定要删除 &ldquo;%2$s&rdquo; 吗？ 该操作不能被撤消。"
 
-#: src/story-edit-view/passage-item/index.js:352
+#: src/chatbot-edit-view/passage-item/index.js:352
 #: src/story-list-view/story-item/item-menu/index.js:81
 msgid ""
 "Are you sure you want to delete &ldquo;%s&rdquo;? This cannot be undone."
 msgstr "您确定要删除 &ldquo;%s&rdquo; 吗？ 该操作不能被撤消。"
 
-#: src/story-edit-view/passage-item/index.js:359
+#: src/chatbot-edit-view/passage-item/index.js:359
 msgid "(Hold the Shift key when deleting to skip this message.)"
 msgstr "（删除时按住Shift键跳过此消息。）"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:50
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.js:50
 #: src/story-list-view/story-item/item-menu/index.js:103
 msgid "What should &ldquo;%s&rdquo; be renamed to?"
 msgstr "&ldquo;%s&rdquo;重命名为？"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:55
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.js:55
 #: src/story-list-view/story-item/item-menu/index.js:108
 msgid "Rename"
 msgstr "重命名"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:59
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.js:59
 #: src/story-list-view/story-item/item-menu/index.js:112
 #: src/story-list-view/story-item/item-menu/index.js:131
 msgid "Please enter a name."

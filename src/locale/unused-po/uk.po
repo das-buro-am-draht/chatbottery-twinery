@@ -239,7 +239,7 @@ msgid "Replace in Passage"
 msgstr "Замінити в Уривкові"
 
 #: src/dialogs/story-stats/index.html
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Story Statistics"
 msgstr "Статистика розповіді"
 
@@ -372,46 +372,46 @@ msgstr "Дякуємо за увагу і насолоджуйтесь Chatbotte
 msgid "Go to the Story List"
 msgstr "Перейти до Списку розповідей"
 
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-edit-view/story-toolbar/index.html
 msgid "Test"
 msgstr "Тестувати"
 
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-edit-view/story-toolbar/index.html
 msgid "Play"
 msgstr "Відтворити"
 
 #. L10n: Word in the sense of individual words in a sentence. This does not actually include the count, as it is used in a table.
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-edit-view/story-toolbar/index.html
 #: src/dialogs/story-stats/index.js:86
 msgid "Passage"
 msgstr "Уривок"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Edit Story JavaScript"
 msgstr "Редаґувати JavaScript розповіді"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Edit Story Stylesheet"
 msgstr "Редаґувати стильову таблицю розповіді"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Change Story Format"
 msgstr "Змінити формат розповіді"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Rename Story"
 msgstr "Перейменувати розповідь"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Snap to Grid"
 msgstr "Прикріпляти до ґраток"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "View Proofing Copy"
 msgstr "Дивитися Коректурну копію"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Publish to File"
 msgstr "Опублікувати як файл"
@@ -570,7 +570,7 @@ msgstr "Формат розповіді без назви"
 msgid "Untitled Story"
 msgstr "Розповідь без назви"
 
-#: src/data/story.js:207 src/story-edit-view/index.js:218
+#: src/data/story.js:207 src/chatbot-edit-view/index.js:218
 msgid "Untitled Passage"
 msgstr "Уривок без назви"
 
@@ -721,7 +721,7 @@ msgstr "Копіювати"
 msgid "Paste"
 msgstr "Вставити"
 
-#: src/nw/menus.js:106 src/story-edit-view/passage-item/index.js:334
+#: src/nw/menus.js:106 src/chatbot-edit-view/passage-item/index.js:334
 msgid "Delete"
 msgstr "Видалити"
 
@@ -729,7 +729,7 @@ msgstr "Видалити"
 msgid "Show Library"
 msgstr "Показати Бібліотеку"
 
-#: src/story-edit-view/passage-item/index.js:319
+#: src/chatbot-edit-view/passage-item/index.js:319
 #: src/story-list-view/story-item/item-menu/index.js:78
 msgid ""
 "Are you sure you want to delete &ldquo;%s&rdquo;? This cannot be undone."
@@ -737,22 +737,22 @@ msgstr ""
 "Ви впевнені, що хочете видалити &ldquo;%s&rdquo;? Це буде неможливо "
 "скасувати."
 
-#: src/story-edit-view/passage-item/index.js:326
+#: src/chatbot-edit-view/passage-item/index.js:326
 msgid "(Hold the Shift key when deleting to skip this message.)"
 msgstr ""
 "(При видаленні затисність клявіш Shift, аби пропустити це повідомлення.)"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:46
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.js:46
 #: src/story-list-view/story-item/item-menu/index.js:100
 msgid "What should &ldquo;%s&rdquo; be renamed to?"
 msgstr "У що перейменувати &ldquo;%s&rdquo;?"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:51
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.js:51
 #: src/story-list-view/story-item/item-menu/index.js:105
 msgid "Rename"
 msgstr "Перейменувати"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:55
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.js:55
 #: src/story-list-view/story-item/item-menu/index.js:109
 #: src/story-list-view/story-item/item-menu/index.js:128
 msgid "Please enter a name."

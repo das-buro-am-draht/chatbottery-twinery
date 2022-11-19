@@ -3,7 +3,6 @@
 const escape = require('lodash.escape');
 const Vue = require('vue');
 const FormatDialog = require('../../../dialogs/story-format');
-const FormatsDialog = require('../../../dialogs/formats');
 const JavaScriptEditor = require('../../../editors/javascript');
 const StatsDialog = require('../../../dialogs/story-stats');
 const StylesheetEditor = require('../../../editors/stylesheet');

@@ -10,8 +10,6 @@ const StatsDialog = require("../../dialogs/story-stats");
 const PluginDialog = require("../../dialogs/plugin");
 const UserDataDialog = require("../../dialogs/user");
 const FormatDialog = require('../../dialogs/story-format');
-// const FormatsDialog = require("../../dialogs/formats");
-// const ClickOutside = require('vue-click-outside');
 const { updateStory } = require("../../data/actions/story");
 const {proofStory} = require('../../common/launch-story');
 

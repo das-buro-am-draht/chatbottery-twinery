@@ -237,7 +237,7 @@ msgid "Replace in Passage"
 msgstr "Ganti dalam Petikan"
 
 #: src/dialogs/story-stats/index.html
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Story Statistics"
 msgstr "Statistik Cerita"
 
@@ -373,46 +373,46 @@ msgstr "Terima kasih kerana membaca, dan berseronoklah dengan Chatbottery."
 msgid "Go to the Story List"
 msgstr "Pergi ke Senarai Cerita"
 
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-edit-view/story-toolbar/index.html
 msgid "Test"
 msgstr "Cuba"
 
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-edit-view/story-toolbar/index.html
 msgid "Play"
 msgstr "Main"
 
 #. L10n: Word in the sense of individual words in a sentence. This does not actually include the count, as it is used in a table.
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-edit-view/story-toolbar/index.html
 #: src/dialogs/story-stats/index.js:86
 msgid "Passage"
 msgstr "Petikan"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Edit Story JavaScript"
 msgstr "Sunting Cerita JavaScript"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Edit Story Stylesheet"
 msgstr "Sunting Cerita Stylesheet"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Change Story Format"
 msgstr "Tukar Format Cerita"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Rename Story"
 msgstr "Namakan Semula Cerita"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Snap to Grid"
 msgstr "Lekat di Grid"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "View Proofing Copy"
 msgstr "Lihat Salinan Proofing"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Publish to File"
 msgstr "Terbit ke Fail"
@@ -575,7 +575,7 @@ msgstr "Format Cerita Tidak Bertajuk"
 msgid "Untitled Story"
 msgstr "Cerita Tidak Bertajuk"
 
-#: src/data/story.js:207 src/story-edit-view/index.js:218
+#: src/data/story.js:207 src/chatbot-edit-view/index.js:218
 msgid "Untitled Passage"
 msgstr "Petikan Tidak Bertajuk"
 
@@ -717,7 +717,7 @@ msgstr "Salin"
 msgid "Paste"
 msgstr "Tampal"
 
-#: src/nw/menus.js:106 src/story-edit-view/passage-item/index.js:334
+#: src/nw/menus.js:106 src/chatbot-edit-view/passage-item/index.js:334
 msgid "Delete"
 msgstr "Padam"
 
@@ -725,7 +725,7 @@ msgstr "Padam"
 msgid "Show Library"
 msgstr "Tunjukkan Pustaka"
 
-#: src/story-edit-view/passage-item/index.js:319
+#: src/chatbot-edit-view/passage-item/index.js:319
 #: src/story-list-view/story-item/item-menu/index.js:78
 msgid ""
 "Are you sure you want to delete &ldquo;%s&rdquo;? This cannot be undone."
@@ -733,21 +733,21 @@ msgstr ""
 "Adakah anda pasti untuk memadam &ldquo;%s&rdquo;? Ini tidak boleh diulang "
 "semula."
 
-#: src/story-edit-view/passage-item/index.js:326
+#: src/chatbot-edit-view/passage-item/index.js:326
 msgid "(Hold the Shift key when deleting to skip this message.)"
 msgstr "(Tahan kunci Shift semasa memadam untuk langkau mesej ini.)"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:46
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.js:46
 #: src/story-list-view/story-item/item-menu/index.js:100
 msgid "What should &ldquo;%s&rdquo; be renamed to?"
 msgstr "Apakah yang patut &ldquo;%s&rdquo; tersebut itu dinamakan?"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:51
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.js:51
 #: src/story-list-view/story-item/item-menu/index.js:105
 msgid "Rename"
 msgstr "Namakan Semula"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:55
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.js:55
 #: src/story-list-view/story-item/item-menu/index.js:109
 #: src/story-list-view/story-item/item-menu/index.js:128
 msgid "Please enter a name."

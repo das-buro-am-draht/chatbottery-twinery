@@ -509,7 +509,7 @@ module.exports = Vue.extend({
 		'story-toolbar': require('./story-toolbar'),
 		'marquee-selector': require('./marquee-selector'),
 		'chatbot-toolbar': require('../chatbot-toolbar'),
-		'create-chatbot-button': require('../create-chatbot-button'),
+		'create-passage-button': require('./create-passage-button'),
 	},
 
 	vuex: {

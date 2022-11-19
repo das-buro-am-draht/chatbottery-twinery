@@ -239,7 +239,7 @@ msgid "Replace in Passage"
 msgstr "Substituir na passagem"
 
 #: src/dialogs/story-stats/index.html
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Story Statistics"
 msgstr "Estatísticas da história"
 
@@ -376,44 +376,44 @@ msgstr "Obrigado pela atenção, e divirta-se com o Chatbottery."
 msgid "Go to the Story List"
 msgstr "Ir para a Lista de Histórias"
 
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-edit-view/story-toolbar/index.html
 msgid "Test"
 msgstr "Testar"
 
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-edit-view/story-toolbar/index.html
 msgid "Play"
 msgstr "Jogar"
 
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-edit-view/story-toolbar/index.html
 msgid "Passage"
 msgstr "Passagem"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Edit Story JavaScript"
 msgstr "Editar o código JavaScript da história"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Edit Story Stylesheet"
 msgstr "Editar a folha de estilos da história"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Change Story Format"
 msgstr "Mudar o formato de história"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Rename Story"
 msgstr "Mudar o nome da história"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "Snap to Grid"
 msgstr "Ajustar à grelha"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 msgid "View Proofing Copy"
 msgstr "Ver uma cópia para revisão"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Publish to File"
 msgstr "Publicar como ficheiro"
@@ -573,7 +573,7 @@ msgstr "Formato de história sem título"
 msgid "Untitled Story"
 msgstr "História sem título"
 
-#: src/data/story.js:207 src/story-edit-view/index.js:195
+#: src/data/story.js:207 src/chatbot-edit-view/index.js:195
 msgid "Untitled Passage"
 msgstr "Passagem sem título"
 
@@ -717,7 +717,7 @@ msgstr "Copiar"
 msgid "Paste"
 msgstr "Colar"
 
-#: src/nw/menus.js:106 src/story-edit-view/passage-item/index.js:275
+#: src/nw/menus.js:106 src/chatbot-edit-view/passage-item/index.js:275
 msgid "Delete"
 msgstr "Apagar"
 
@@ -725,7 +725,7 @@ msgstr "Apagar"
 msgid "Show Library"
 msgstr "Mostrar Biblioteca"
 
-#: src/story-edit-view/passage-item/index.js:260
+#: src/chatbot-edit-view/passage-item/index.js:260
 #: src/story-list-view/story-item/item-menu/index.js:78
 msgid ""
 "Are you sure you want to delete &ldquo;%s&rdquo;? This cannot be undone."
@@ -733,21 +733,21 @@ msgstr ""
 "Tem a certeza de que quer apagar &ldquo;%s&rdquo;? Esta ação não pode ser "
 "anulada."
 
-#: src/story-edit-view/passage-item/index.js:267
+#: src/chatbot-edit-view/passage-item/index.js:267
 msgid "(Hold the Shift key when deleting to skip this message.)"
 msgstr "(Mantenha premida a tecla Shift ao apagar para ignorar esta mensagem.)"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:46
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.js:46
 #: src/story-list-view/story-item/item-menu/index.js:100
 msgid "What should &ldquo;%s&rdquo; be renamed to?"
 msgstr "Qual deve ser o novo nome de &ldquo;%s&rdquo;?"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:51
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.js:51
 #: src/story-list-view/story-item/item-menu/index.js:105
 msgid "Rename"
 msgstr "Mudar o nome"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:55
+#: src/chatbot-edit-view/story-toolbar/story-menu/index.js:55
 #: src/story-list-view/story-item/item-menu/index.js:109
 #: src/story-list-view/story-item/item-menu/index.js:128
 msgid "Please enter a name."
