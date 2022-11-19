@@ -130,7 +130,7 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		"story-item": require("./story-item"),
+		"story-item": require("./story"),
 		'file-drag-n-drop': require('../../ui/file-drag-n-drop')
 	},
 

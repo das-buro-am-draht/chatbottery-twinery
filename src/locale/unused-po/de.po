@@ -269,7 +269,7 @@ msgid "Replace in Passage"
 msgstr "Ersetzen im Abschnitt"
 
 #: src/dialogs/story-stats/index.html
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Story Statistics"
 msgstr "Statistiken der Geschichte"
 
@@ -420,85 +420,85 @@ msgstr "Danke fürs Lesen und viel Spaß mit Chatbottery."
 msgid "Go to the Story List"
 msgstr "Gehe zur Übersicht Deiner Geschichten"
 
-#: src/chatbot-edit-view/passage-item/passage-menu/index.html
+#: src/chatbot-view/passage-item/passage-menu/index.html
 msgid "Test story starting here"
 msgstr "Geschichte von hier aus testen"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Go to the story list"
 msgstr "Gehe zur Übersicht Deiner Geschichten"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Show only story structure"
 msgstr "Nur Struktur der Geschichte anzeigen"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Show only passage titles"
 msgstr "Nur Titel der Abschnitte anzeigen"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Show passage titles and excerpts"
 msgstr "Titel und Auszug der Abschnitte anzeigen"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Play this story in test mode"
 msgstr "Diese Geschichte im Testmodus spielen"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Test"
 msgstr "Testen"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Play this story"
 msgstr "Diese Geschichte spielen"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Play"
 msgstr "Spielen"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Add a new passage"
 msgstr "Neuen Abschnitt hinzufügen"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Passage"
 msgstr "Abschnitt"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Edit Story JavaScript"
 msgstr "JavaScript der Geschichte bearbeiten"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Edit Story Stylesheet"
 msgstr "Stylesheet der Geschichte bearbeiten"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Change Story Format"
 msgstr "Geschichtsformat ändern"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Rename Story"
 msgstr "Geschichte umbenennen"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Snap to Grid"
 msgstr "Am Gitter ausrichten"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "View Proofing Copy"
 msgstr "Korrekturfassung anzeigen"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Publish to File"
 msgstr "Als Datei veröffentlichen"
 
-#: src/chatbot-edit-view/story-toolbar/story-search/index.html
+#: src/chatbot-view/story-toolbar/story-search/index.html
 msgid "Quick Find"
 msgstr "Schnellsuche"
 
-#: src/chatbot-edit-view/story-toolbar/story-search/index.html
+#: src/chatbot-view/story-toolbar/story-search/index.html
 msgid "Find and replace across the entire story"
 msgstr "Suchen und Ersetzen innerhalb der gesamten Geschichte"
 
@@ -685,7 +685,7 @@ msgstr "Unbenanntes Geschichtsformat"
 msgid "Untitled Story"
 msgstr "Unbenannte Geschichte"
 
-#: src/data/story.js src/chatbot-edit-view/index.js
+#: src/data/story.js src/chatbot-view/index.js
 msgid "Untitled Passage"
 msgstr "Unbenannter Abschnitt"
 
@@ -800,7 +800,7 @@ msgstr "Kopieren"
 msgid "Paste"
 msgstr "Einfügen"
 
-#: src/nw/menus.js src/chatbot-edit-view/passage-item/index.js
+#: src/nw/menus.js src/chatbot-view/passage-item/index.js
 msgid "Delete"
 msgstr "Löschen"
 
@@ -808,12 +808,12 @@ msgstr "Löschen"
 msgid "Show Library"
 msgstr "Bibliothek anzeigen"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.js
+#: src/chatbot-view/story-toolbar/story-menu/index.js
 #: src/story-list-view/story-item/item-menu/index.js
 msgid "Rename"
 msgstr "Umbenennen"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.js
+#: src/chatbot-view/story-toolbar/story-menu/index.js
 #: src/story-list-view/story-item/item-menu/index.js
 msgid "Please enter a name."
 msgstr "Bitte gebe einen Namen ein."

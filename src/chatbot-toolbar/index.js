@@ -3,7 +3,7 @@
 const Vue = require('vue');
 const JavaScriptEditor = require('../editors/javascript');
 const StylesheetEditor = require('../editors/stylesheet');
-const zoomMappings = require('../chatbot-edit-view/zoom-settings');
+const zoomMappings = require('../chatbot-view/zoom-settings');
 const {playStory} = require('../common/launch-story');
 const {updateStory} = require('../data/actions/story');
 
@@ -30,9 +30,9 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'story-search': require('./story-search'),
-		'dropdown-file': require('./dropdown-file'),
-		'dropdown-download': require('./dropdown-download'),
+		'story-search': require('./search'),
+		'dropdown-file': require('./file'),
+		'dropdown-download': require('./download'),
 	},
 
 	methods: {

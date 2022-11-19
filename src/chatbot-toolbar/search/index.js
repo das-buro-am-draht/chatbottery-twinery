@@ -31,7 +31,7 @@ module.exports = Vue.extend({
 			https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions.
 			*/
 
-			const value = regularExpression(this.search);
+			const value = regularExpression(this.search, 'i');
 
 			this.$dispatch(
 				'highlight-regexp-change',

@@ -261,7 +261,7 @@ msgid "Replace in Passage"
 msgstr "Erstat i passage"
 
 #: src/dialogs/story-stats/index.html
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Story Statistics"
 msgstr "Historiestatistikker"
 
@@ -408,85 +408,85 @@ msgstr "Tak fordi du læste og god fornøjelse med Chatbottery."
 msgid "Go to the Story List"
 msgstr "Gå til historielisten"
 
-#: src/chatbot-edit-view/passage-item/passage-menu/index.html
+#: src/chatbot-view/passage-item/passage-menu/index.html
 msgid "Test story starting here"
 msgstr "Test historien herfra"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Go to the story list"
 msgstr "Gå til historielisten"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Show only story structure"
 msgstr "Vis kun historiestruktur"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Show only passage titles"
 msgstr "Vis kun titler på passager"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Show passage titles and excerpts"
 msgstr "Vis kun passagetitler og uddrag"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Play this story in test mode"
 msgstr "Spil denne historie i testtilstand"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Test"
 msgstr "Test"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Play this story"
 msgstr "Spil denne historie"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Play"
 msgstr "Spil"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Add a new passage"
 msgstr "Tilføj ny passage"
 
-#: src/chatbot-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Passage"
 msgstr "Passage"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Edit Story JavaScript"
 msgstr "Redigér historiens JavaScript"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Edit Story Stylesheet"
 msgstr "Redigér historiens Stylesheet"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Change Story Format"
 msgstr "Ændr historieformat"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Rename Story"
 msgstr "Omdøb historie"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Snap to Grid"
 msgstr "Fastgør til gitter"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "View Proofing Copy"
 msgstr "Vis korrekturkopi"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Publish to File"
 msgstr "Udgiv som fil"
 
-#: src/chatbot-edit-view/story-toolbar/story-search/index.html
+#: src/chatbot-view/story-toolbar/story-search/index.html
 msgid "Quick Find"
 msgstr "Hurtig søgning"
 
-#: src/chatbot-edit-view/story-toolbar/story-search/index.html
+#: src/chatbot-view/story-toolbar/story-search/index.html
 msgid "Find and replace across the entire story"
 msgstr "Søg og erstat i hele historien"
 
@@ -669,7 +669,7 @@ msgstr "Unavngivet historieformat"
 msgid "Untitled Story"
 msgstr "Unavngiven historie"
 
-#: src/data/story.js src/chatbot-edit-view/index.js
+#: src/data/story.js src/chatbot-view/index.js
 msgid "Untitled Passage"
 msgstr "Unavngiven passage"
 
@@ -780,7 +780,7 @@ msgstr "Kopiér"
 msgid "Paste"
 msgstr "Indsæt"
 
-#: src/nw/menus.js src/chatbot-edit-view/passage-item/index.js
+#: src/nw/menus.js src/chatbot-view/passage-item/index.js
 msgid "Delete"
 msgstr "Slet"
 
@@ -788,12 +788,12 @@ msgstr "Slet"
 msgid "Show Library"
 msgstr "Vis bibliotek"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.js
+#: src/chatbot-view/story-toolbar/story-menu/index.js
 #: src/story-list-view/story-item/item-menu/index.js
 msgid "Rename"
 msgstr "Omdøb"
 
-#: src/chatbot-edit-view/story-toolbar/story-menu/index.js
+#: src/chatbot-view/story-toolbar/story-menu/index.js
 #: src/story-list-view/story-item/item-menu/index.js
 msgid "Please enter a name."
 msgstr "Indtast et navn."

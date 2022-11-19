@@ -3,7 +3,7 @@
 let Vue = require('vue');
 const VueRouter = require('vue-router');
 const LocaleView = require('../locale/view');
-const ChatbotEditView = require('../chatbot-edit-view');
+const ChatbotEditView = require('../chatbot-view');
 // const WelcomeView = require('../welcome');
 const HomeView = require('../home');
 const ChatbotsView = require('../chatbots');

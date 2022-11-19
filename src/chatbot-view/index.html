@@ -8,6 +8,5 @@
 		<passage-item v-for="passage in story.passages" :passage="passage" :parent-story="story" :screen-drag-offset-x="screenDragOffsetX" :screen-drag-offset-y="screenDragOffsetY" :highlight-regexp="highlightRegexp" :grid-size="gridSize" transition="grow-in-out" v-ref:passages track-by="id"></passage-item>
 	</div>
 
-	<!-- <story-toolbar :story="story" :highlight-regexp="highlightRegexp" :zoom-desc="zoomDesc" ></story-toolbar> -->
-	<create-passage-button></create-passage-button>
+	<passage-button></passage-button>
 </div> <!-- #storyEditView -->

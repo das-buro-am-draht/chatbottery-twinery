@@ -3,11 +3,12 @@
 const values = require('lodash.values');
 const Vue = require('vue');
 const { confirm } = require('../dialogs/confirm');
-const { createPassage, deletePassage, positionPassage, updatePassage } = require('../data/actions/passage');
+const { createPassage, deletePassage, positionPassage, updatePassage, createNewlyLinkedPassages } = require('../data/actions/passage');
 const { updateStory } = require('../data/actions/story');
+const { passageDefaults } = require('../data/store/story');
+const PassageEditor = require('../editors/passage')
 const domEvents = require('../vue/mixins/dom-events');
 const locale = require('../locale');
-const { passageDefaults } = require('../data/store/story');
 const zoomSettings = require('./zoom-settings');
 
 require('./index.less');
@@ -325,11 +326,15 @@ module.exports = Vue.extend({
 			again.
 			*/
 			
+			const passageId = this.story.passages.find(p => p.name === name).id;
+
 			this.positionPassage(
 				this.story.id,
-				this.story.passages.find(p => p.name === name).id,
+				passageId,
 				this.gridSize
 			);
+
+			return passageId;
 		},
 
 		/*
@@ -442,7 +447,35 @@ module.exports = Vue.extend({
 		*/
 
 		'passage-create'(name, left, top) {
-			this.createPassageAt(name, left, top);
+			const passageId = this.createPassageAt(name, left, top);
+			const story = this.story;
+			const passage = story.passages.find(passage => passageId === passage.id);
+			if (passage) {
+				const oldText = passage.text;
+				const afterEdit = () => {
+					this.createNewlyLinkedPassages(
+						story.id,
+						passage.id,
+						oldText,
+						this.gridSize
+					);
+				};
+				new PassageEditor({
+					data: {
+						passageId: passage.id,
+						storyId: story.id,
+						origin: this.$el,
+					},
+					store: this.$store,
+					storyFormat: {
+						name: story.storyFormat,
+						version: story.storyFormatVersion
+					}
+				})
+				.$mountTo(document.body)
+				.then(afterEdit)
+				.catch(afterEdit);
+			}
 		},
 
 		/*
@@ -506,10 +539,9 @@ module.exports = Vue.extend({
 	components: {
 		'link-arrows': require('./link-arrows'),
 		'passage-item': require('./passage-item'),
-		'story-toolbar': require('./story-toolbar'),
 		'marquee-selector': require('./marquee-selector'),
 		'chatbot-toolbar': require('../chatbot-toolbar'),
-		'create-passage-button': require('./create-passage-button'),
+		'passage-button': require('./passage-button'),
 	},
 
 	vuex: {
@@ -518,7 +550,8 @@ module.exports = Vue.extend({
 			deletePassage,
 			positionPassage,
 			updatePassage,
-			updateStory
+			updateStory,
+			createNewlyLinkedPassages
 		},
 
 		getters: {
