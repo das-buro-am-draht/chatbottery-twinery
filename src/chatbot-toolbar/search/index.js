@@ -31,11 +31,11 @@ module.exports = Vue.extend({
 			https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions.
 			*/
 
-			const value = regularExpression(this.search, 'i');
+			const regex = regularExpression(this.search, 'i');
 
 			this.$dispatch(
 				'highlight-regexp-change',
-				(value.source !== '(?:)') ? value : null
+				(regex.source !== '(?:)') ? regex : null
 			);
 		}
 	},
