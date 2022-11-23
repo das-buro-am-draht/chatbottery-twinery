@@ -203,7 +203,7 @@ msgid "Replace in Passage"
 msgstr "Reemplaça al passatge"
 
 #: src/dialogs/story-stats/index.html
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Story Statistics"
 msgstr "Estadístiques de la història"
 
@@ -242,70 +242,70 @@ msgstr ""
 msgid "Please choose which language you would like to use with Chatbottery."
 msgstr "Seleccioneu quina llengua voleu emprar amb el Chatbottery."
 
-#: src/story-edit-view/passage-item/passage-menu/index.html
+#: src/chatbot-view/passage-item/passage-menu/index.html
 msgid "Start Story Here"
 msgstr "Comenceu aquí la història"
 
-#: src/story-edit-view/passage-item/passage-menu/index.html
+#: src/chatbot-view/passage-item/passage-menu/index.html
 msgid "Small"
 msgstr "Petita"
 
-#: src/story-edit-view/passage-item/passage-menu/index.html
+#: src/chatbot-view/passage-item/passage-menu/index.html
 msgid "Wide"
 msgstr "Ampla"
 
-#: src/story-edit-view/passage-item/passage-menu/index.html
+#: src/chatbot-view/passage-item/passage-menu/index.html
 msgid "Tall"
 msgstr "Alta"
 
-#: src/story-edit-view/passage-item/passage-menu/index.html
+#: src/chatbot-view/passage-item/passage-menu/index.html
 msgid "Large"
 msgstr "Gran"
 
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Test"
 msgstr "Prova"
 
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 msgid "Play"
 msgstr "Reprodueix"
 
 #. L10n: Word in the sense of individual words in a sentence. This does not actually include the count, as it is used in a table.
-#: src/story-edit-view/story-toolbar/index.html
+#: src/chatbot-view/story-toolbar/index.html
 #: src/dialogs/story-stats/index.js:87
 msgid "Passage"
 msgstr "Passatge"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Edit Story JavaScript"
 msgstr "Edita el JavaScript de la història"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Edit Story Stylesheet"
 msgstr "Edita el full d'estil de la història"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Change Story Format"
 msgstr "Canvia el format de la història"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Rename Story"
 msgstr "Canvia el nom de la història"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Select All Passages"
 msgstr "Selecciona tots els passatges"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "Snap to Grid"
 msgstr "Ajusta a la quadrícula"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 msgid "View Proofing Copy"
 msgstr "Visualitza la còpia de comprovació"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.html
+#: src/chatbot-view/story-toolbar/story-menu/index.html
 #: src/story-list-view/story-item/item-menu/index.html
 msgid "Publish to File"
 msgstr "Publica a fitxer"
@@ -547,7 +547,7 @@ msgstr "Format d'història sense títol"
 msgid "Untitled Story"
 msgstr "Història sense títol"
 
-#: src/data/store/story.js:229 src/story-edit-view/index.js:277
+#: src/data/store/story.js:229 src/chatbot-view/index.js:277
 msgid "Untitled Passage"
 msgstr "Passatge sense títol"
 
@@ -681,7 +681,7 @@ msgstr "S'ha produït un error en canviar el nom d'una història."
 msgid "&ldquo;%1$s&rdquo; could not be saved (%2$s)."
 msgstr "No s'ha pogut desar «%1$s» (%2$s)."
 
-#: src/story-edit-view/index.js:380
+#: src/chatbot-view/index.js:380
 msgid ""
 "Are you sure you want to delete &ldquo;%2$s&rdquo;? This cannot be undone."
 msgid_plural ""
@@ -689,32 +689,32 @@ msgid_plural ""
 msgstr[0] "Esteu segur que voleu suprimir «%s»? Això no es pot desfer."
 msgstr[1] "Esteu segur que voleu suprimir %d passatges? Això no es pot desfer."
 
-#: src/story-edit-view/index.js:389
-#: src/story-edit-view/passage-item/index.js:367
+#: src/chatbot-view/index.js:389
+#: src/chatbot-view/passage-item/index.js:367
 msgid "Delete"
 msgstr "Suprimeix"
 
-#: src/story-edit-view/passage-item/index.js:352
+#: src/chatbot-view/passage-item/index.js:352
 #: src/story-list-view/story-item/item-menu/index.js:79
 msgid ""
 "Are you sure you want to delete &ldquo;%s&rdquo;? This cannot be undone."
 msgstr "Esteu segur que voleu suprimir «%s»? Això no es pot desfer."
 
-#: src/story-edit-view/passage-item/index.js:359
+#: src/chatbot-view/passage-item/index.js:359
 msgid "(Hold the Shift key when deleting to skip this message.)"
 msgstr "(Premeu la tecla Majúscules per ometre aquest missatge.)"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:50
+#: src/chatbot-view/story-toolbar/story-menu/index.js:50
 #: src/story-list-view/story-item/item-menu/index.js:99
 msgid "What should &ldquo;%s&rdquo; be renamed to?"
 msgstr "Introduïu el nom nou per a «%s»."
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:54
+#: src/chatbot-view/story-toolbar/story-menu/index.js:54
 #: src/story-list-view/story-item/item-menu/index.js:103
 msgid "Rename"
 msgstr "Canvia el nom"
 
-#: src/story-edit-view/story-toolbar/story-menu/index.js:56
+#: src/chatbot-view/story-toolbar/story-menu/index.js:56
 #: src/story-list-view/story-item/item-menu/index.js:105
 #: src/story-list-view/story-item/item-menu/index.js:120
 msgid "Please enter a name."

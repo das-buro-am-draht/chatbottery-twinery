@@ -1,0 +1,24 @@
+.user__search-dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  background: #4c4c4c;
+  width: max-content;
+  color: #fff;
+  z-index: 101;
+  border: outset;
+  overflow-y: auto;
+  max-height: 270px;
+  &--item {
+    padding: 15px;
+    display: flex;
+    line-height: 1em;
+    &:hover {
+      background: #000;
+      cursor: pointer;
+    }
+  }
+}

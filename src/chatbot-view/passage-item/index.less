@@ -1,0 +1,245 @@
+@import '../../common/colors.less';
+@import '../../common/metrics.less';
+@import '../../common/depth.less';
+
+#storyEditView .passage {
+	position: absolute;
+	background: @color-paper;
+	cursor: default;
+	font-size: 85%;
+	padding: @len-small;
+	border: 1px solid #909090;
+	border-radius: 7px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #626262;
+	z-index: 1;
+	&.start, &.start.selected {
+		background: #fb1557;
+		border: 1px solid #fb1557;
+		color: #fff;
+		border: 0px;
+	}
+	&.start.selected, &.selected  {
+		background: #fc2361;
+		border: 2px solid #3a51fa;
+		// border: 1px solid #fc2361;
+	}
+	&.selected {
+		color: #3a51fa;
+		border: 2px solid #3a51fa;
+		background: #fff;
+	}
+
+	.icons {
+		display: flex;
+		justify-content: center;
+		align-self: center;
+		position: absolute;
+		top: -25px;
+	}
+
+	.icon {
+		position: relative;
+		display: flex;
+		margin: 0 2px;
+		&:before {
+			clear: both;
+			font-family: FontAwesome;
+			color: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 50%;
+			border: 2px solid #fff;
+			background: #c10d41;
+			width: 3rem;
+			height: 3rem;
+			font-size: 250%;
+		}
+		&--start:before {
+			content: "\F135";
+			
+		}
+		&--chat:before {
+			content: "\f14d";
+		}
+	}
+
+	p {
+		margin: 0;
+		text-align: center;
+	}
+	
+
+
+	.title {
+		position: relative;
+		z-index: 3;
+		font-weight: bold;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		hyphens: auto;
+		word-break: break-word;
+		overflow: hidden;
+	}
+
+	.excerpt {
+		position: relative;
+		z-index: 1;
+		color: lighten(@color-text, 45%);
+	}
+
+	.tags {
+		position: absolute;
+		z-index: 2;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: @len-small * 0.75;
+		display: flex;
+		flex-direction: column;
+
+		div {
+			flex-grow: 1;
+			flex-shrink: 1;
+			margin: @len-hairline;
+			border-radius: (@len-small * 0.75) / 2;
+			border-top-left-radius: 15px;
+			border-bottom-left-radius: 15px;
+			
+			& + div {
+				margin-top: 0;
+			}
+
+			&.red {
+				background: @color-tag-red;
+			}
+
+			&.orange {
+				background: @color-tag-orange;
+			}
+
+			&.yellow {
+				background: @color-tag-yellow;
+			}
+
+			&.green {
+				background: @color-tag-green;
+			}
+
+			&.blue {
+				background: @color-tag-blue;
+			}
+
+			&.purple {
+				background: @color-tag-purple;
+			}
+		}
+	}
+
+	&.highlighted {
+		color: @color-darken;
+		border: @len-hairline solid lighten(@color-highlight, 15%);
+		background: lighten(@color-highlight, 40%) !important;
+	}
+
+	&.selected.highlighted {
+		color: @color-darken;
+		border: @len-hairline solid mix(lighten(@color-highlight, 15%), lighten(@color-link, 30%));
+		background: mix(lighten(@color-highlight, 40%), lighten(@color-link, 55%));
+	}
+
+	.theme-dark & {
+		background: @color-paper-dark;
+	}
+}
+
+#storyEditView.zoom-medium .passage {
+	padding: @len-tiny;
+
+	.icons {
+		top: -13px;
+	}
+
+	.icon {
+		&:before {
+			width: 1.5rem;
+			height: 1.5rem;
+			font-size: 125%;
+			border: 1px solid #fff;
+		}
+	}
+
+	.frame {
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.title {
+		font-weight: normal;
+		text-align: center;
+		max-height: 100%;
+		line-height: 100%;
+
+		.badge-create, .badge-danger {
+			display: block;
+			margin: 0 auto;
+		}
+	}
+
+	.excerpt {
+		display: none;
+	}
+}
+
+#storyEditView.zoom-small .passage {
+	padding: 0;
+
+	.icons {
+		top: 3px;
+		z-index: 100;
+	}
+
+	.icon {
+		margin: 0px;
+		&:before {
+			width: .9rem;
+			height: .9rem;
+			font-size: 80%;
+			border: 1px solid #fff;
+		}
+	}
+
+	.frame {
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: linear-gradient(to bottom, transparent 0, lighten(@color-text, 60%) 1px, transparent 1px);
+		background-size: 3px 3px;
+		margin: 2px;
+
+		.theme-dark & {
+			background: linear-gradient(to bottom, transparent 0, darken(@color-text-dark, 30%) 1px, transparent 1px);
+			background-size: 3px 3px;
+		}
+	}
+
+	.title {
+		font-size: 7px;
+		text-align: center;
+		max-height: 100%;
+		line-height: 100%;
+	}
+
+	.title .text, .excerpt {
+		text-align: center;
+		max-height: 100%;
+		line-height: 100%;
+	}
+}
