@@ -12,6 +12,8 @@ const { createNewlyLinkedPassages } = require('../../data/actions/passage');
 
 require("./index.less");
 
+const labelStoreInLocalStorage = '$storeUserDataInLocalStorage';
+
 module.exports = Vue.extend({
 	template: require("./index.html"),
 
@@ -20,12 +22,21 @@ module.exports = Vue.extend({
 	data: () => ({
 		storyId: null,
 		userData: [],
+		storeInLocalStorage: false
 	}),
 
 	ready() {
 		const data = this.getUserData();
 		if (data) {
-			this.userData = Object.entries(data).map(([k, v]) => {
+			this.userData = Object.entries(data)
+				.filter(([k, v]) => {
+					if (k === labelStoreInLocalStorage) {
+						this.storeInLocalStorage = !!v;
+						return false;
+					}
+					return true;
+				})
+				.map(([k, v]) => {
 				const tv = {
 					type: 'string',
 					value: null,
@@ -213,6 +224,10 @@ module.exports = Vue.extend({
 				userData['$' + trim(key)] = tv;
 				return userData;
 			}, {});
+
+			if (this.storeInLocalStorage) {
+				data[labelStoreInLocalStorage] = true;
+			}
 
 			this.updateStory(this.storyId, { userData: data });
 			this.$refs.modal.close();
