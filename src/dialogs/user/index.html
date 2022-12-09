@@ -28,6 +28,8 @@
 			</template>
 		</div>
 	</div>
+	<input name="storeInLocalStorage" type="checkbox" v-model="storeInLocalStorage">
+	<label for="storeInLocalStorage">{{ 'Store Data in Local Storage' | say }}</label>
 	<div class="user__save">
 		<button class="create" @click="save" :disabled="!isValid">{{ 'Save' | say }}</button>
 	</div>
