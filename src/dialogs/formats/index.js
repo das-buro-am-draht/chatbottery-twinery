@@ -1,10 +1,15 @@
-const Vue = require('vue');
-const semverUtils = require('semver-utils');
-const { createFormatFromUrl, loadFormat, repairFormats } = require('../../data/actions/story-format');
-const locale = require('../../locale');
+import Vue from 'vue';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+import locale from "../../locale";
+import FormatsItem from "./item";
+import TabPanelItem from "../../ui/tab-panel/item";
+import TabPanel from "../../ui/tab-panel";
+import ModalDialog from '../../ui/modal-dialog';
+
+import template from './index.html';
+
+const Formats = Vue.extend({
+	template,
 
 	data: () => ({
 		/* Detail about each format. */
@@ -29,6 +34,13 @@ module.exports = Vue.extend({
 	*/
 
 	computed: {
+		createFormatFromUrl () { return this.$store._actions.createFormatFromUrl[0] },
+		loadFormat () { return this.$store._actions.loadFormat[0] },
+		repairFormats () { return this.$store._actions.repairFormats[0] },
+		allFormats () { return this.$store.getters.allFormatsSorted },
+		defaultFormatPref () { return this.$store.getters.defaultFormatPref },
+		proofingFormatPref () { return this.$store.getters.proofingFormatPref },
+
 		proofingFormats() {
 			return this.loadedFormats.filter(
 				format => format.properties.proofing
@@ -54,7 +66,7 @@ module.exports = Vue.extend({
 			let formats = [];
 			this.allFormats.reduce((promise, format) => {
 				return promise
-					.then(() => this.loadFormat(format.name, format.version))
+					.then(() => this.loadFormat({name: format.name, version: format.version}))
 					.then((format) => formats.push(format))
 					.catch(e => {
 						formats.push(Object.assign(
@@ -119,77 +131,31 @@ module.exports = Vue.extend({
 		}
 	},
 
-	ready() {
-		// Move tabs into the dialog header.
+	mounted: function () {
+		this.$nextTick(function () {
+			// Move tabs into the dialog header.
 
-		const dialogTitle = this.$el.parentNode.querySelector(
-			'.modal-dialog > header .title'
-		);
-		const tabs = this.$el.parentNode.querySelectorAll(
-			'p.tabs-panel button'
-		);
+			const dialogTitle = this.$el.parentNode.querySelector(
+				'.modal-dialog > header .title'
+			);
+			const tabs = this.$el.parentNode.querySelectorAll(
+				'p.tabs-panel button'
+			);
 
-		for (let i = 0; i < tabs.length; i++) {
-			dialogTitle.appendChild(tabs[i]);
-		}
+			for (let i = 0; i < tabs.length; i++) {
+				dialogTitle.appendChild(tabs[i]);
+			}
 
-		this.loadFormats();
-	},
-
-	vuex: {
-		actions: {
-			createFormatFromUrl,
-			loadFormat,
-			repairFormats
-		},
-
-		getters: {
-			allFormats: state => {
-				let result = state.storyFormat.formats.map(
-					format => ({ id: format.id, name: format.name, version: format.version })
-				);
-				
-				result.sort((a, b) => {
-					if (a.name < b.name) {
-						return -1;
-					}
-					
-					if (a.name > b.name) {
-						return +1;
-					}
-
-					const aVersion = semverUtils.parse(a.version);
-					const bVersion = semverUtils.parse(b.version);
-
-					if (+aVersion.major > +bVersion.major) {
-						return -1;
-					} else if (+aVersion.major < +bVersion.major) {
-						return +1;
-					} else if (+aVersion.minor > +bVersion.minor) {
-						return -1;
-					} else if (+aVersion.minor < +bVersion.minor) {
-						return +1;
-					} else if (+aVersion.patch > +bVersion.patch) {
-						return -1;
-					} else if (+aVersion.patch < +bVersion.patch) {
-						return +1;
-					} else {
-						return 0;
-					}
-				});
-
-				return result;
-			},
-
-			defaultFormatPref: state => state.pref.defaultFormat,
-			proofingFormatPref: state => state.pref.proofingFormat
-		}
+			this.loadFormats();
+		});
 	},
 
 	components: {
-		'format-item': require('./item'),
-		'tab-item': require('../../ui/tab-panel/item'),
-		'tabs-panel': require('../../ui/tab-panel'),
-		'modal-dialog': require('../../ui/modal-dialog')
+		"format-item": FormatsItem,
+		"tab-item": TabPanelItem,
+		"tabs-panel": TabPanel,
+		"modal-dialog": ModalDialog,
 	}
 });
+
+export default Formats;

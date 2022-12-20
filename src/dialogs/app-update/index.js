@@ -3,10 +3,9 @@ A function that checks for an update to Chatbottery, and displays a confirm dial
 asking the user to download it.
 */
 
-const checkForUpdate = require('../../common/app/update-check');
-const { confirm } = require('../confirm');
-const locale = require('../../locale');
-const { setPref } = require('../../data/actions/pref');
+import checkForUpdate from '../../common/app/update-check';
+import { confirm } from '../confirm';
+import locale from '../../locale';
 
 /*
 How often we check for a new version of Chatbottery, in milliseconds. This is
@@ -24,7 +23,7 @@ module.exports = {
 
 		if (!store.state.pref.lastUpdateSeen ||
 			store.state.pref.lastUpdateSeen < store.state.appInfo.buildNumber) {
-			setPref(store, 'lastUpdateSeen', store.state.appInfo.buildNumber);
+			store._actions.setPref[0]({name: 'lastUpdateSeen', value: store.state.appInfo.buildNumber});
 		}
 
 		/* Is there a new update since we last checked? */
@@ -35,7 +34,7 @@ module.exports = {
 			checkForUpdate(
 				store.state.pref.lastUpdateSeen,
 				({ buildNumber, version, url }) => {
-					setPref(store, 'lastUpdateSeen', buildNumber);
+					store._actions.setPref[0]({name: 'lastUpdateSeen', value: buildNumber});
 
 					confirm({
 						message:

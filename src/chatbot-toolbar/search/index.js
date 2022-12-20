@@ -3,14 +3,15 @@ Shows a quick search field, which changes passage highlights, and a button to
 show the search modal dialog.
 */
 
-const Vue = require('vue');
-const SearchDialog = require('../../dialogs/story-search');
-const { regularExpression } = require('../../utils/common');
+import Vue from 'vue';
+import SearchDialog from '../../dialogs/story-search';
+import { regularExpression } from '../../utils/common';
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const StorySearch = Vue.extend({
+	template,
 
 	props: {
 		story: {
@@ -53,3 +54,5 @@ module.exports = Vue.extend({
 		}
 	}
 });
+
+export default StorySearch;

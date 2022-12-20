@@ -3,19 +3,21 @@ A dialog which allows a user to import a story from a file. This returns a
 promise resolving to the stories that were imported, if any.
 */
 
-const Vue = require("vue");
-const semverUtils = require('semver-utils');
-const { deleteStory, importStory } = require("../../data/actions/story");
-const { createFormatFromUrl } = require("../../data/actions/story-format");
-const importHTML = require("../../data/import");
-const load = require("../../file/load");
-const locale = require("../../locale");
-const notify = require("../../ui/notify");
-const { thenable } = require("../../vue/mixins/thenable");
-const { formatVersion } = require("../../data/format-versions");
+import Vue from 'vue';
+import semverUtils from 'semver-utils';
 
-module.exports = Vue.extend({
-	template: require("./index.html"),
+import importHTML from "../../data/import";
+import load from "../../file/load";
+import locale from "../../locale";
+import notify from "../../ui/notify";
+import { thenable } from "../../vue/mixins/thenable";
+import { formatVersion } from "../../data/format-versions";
+import ModalDialog from '../../ui/modal-dialog';
+
+import template from './index.html';
+
+const StoryImport = Vue.extend({
+	template,
 
 	data: () => ({
 		/* A file to immediately import when mounted. */
@@ -47,6 +49,11 @@ module.exports = Vue.extend({
 	}),
 
 	computed: {
+		deleteStory () { return this.$store._actions.deleteStory[0] },
+		importStory () { return this.$store._actions.importStory[0] },
+		createFormatFromUrl () { return this.$store._actions.createFormatFromUrl[0] },
+		existingStories () { return this.$store.getters.existingStories },
+		storyFormats () { return this.$store.getters.storyFormats },
 		confirmClass() {
 			if (this.toReplace.length === 0) {
 				return "primary";
@@ -68,10 +75,12 @@ module.exports = Vue.extend({
 		},
 	},
 
-	ready() {
-		if (this.immediateImport) {
-			this.import(this.immediateImport);
-		}
+	mounted: function () {
+		this.$nextTick(function () {
+			if (this.immediateImport) {
+				this.import(this.immediateImport);
+			}
+		});
 	},
 
 	methods: {
@@ -111,7 +120,7 @@ module.exports = Vue.extend({
 			});
 		},
 
-		import(file) {
+		importChatFile(file) {
 			this.status = "working";
 
 			load(file).then((source) => {
@@ -156,21 +165,10 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		"modal-dialog": require("../../ui/modal-dialog"),
+		"modal-dialog": ModalDialog,
 	},
 
 	mixins: [thenable],
-
-	vuex: {
-		actions: {
-			deleteStory,
-			importStory,
-			createFormatFromUrl,
-		},
-
-		getters: {
-			existingStories: (state) => state.story.stories,
-			storyFormats: (state) => state.storyFormat.formats,			
-		},
-	},
 });
+
+export default StoryImport;

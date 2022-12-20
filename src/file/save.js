@@ -12,13 +12,13 @@
 **/
 
 'use strict';
-const JSZip = require('jszip');
-const saveAs = require('browser-saveas');
-const { oniOS, onSafari } = require('../ui');
-const locale = require('../locale');
-const notify = require('../ui/notify');
+import  JSZip from 'jszip';
+import  saveAs from 'browser-saveas';
+import  { oniOS, onSafari } from '../ui';
+import  locale from '../locale';
+import  notify from '../ui/notify';
 
-require('blob-polyfill');
+import 'blob-polyfill';
 
 module.exports = (data, filename, success, failure) => {
 	try {

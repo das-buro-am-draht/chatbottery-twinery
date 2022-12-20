@@ -1,11 +1,11 @@
 'use strict';
-const Vue = require('vue');
-const { ZOOM_MAPPINGS } = require('../../../chatbot-view');
-const { thenable, symbols:{ resolve } } = require('../../../vue/mixins/thenable');
+import Vue from 'vue';
+import { zoomLevels } from '../../../chatbot-view'; // TODO: check ZOOM_MAPPINGS
+import {thenable, symbols} from '../../../vue/mixins/thenable';
 
-require('./index.less');
+import './index.less';
 
-module.exports = Vue.extend({
+const ZoomTransition = Vue.extend({
 	data: () => ({
 		zoom: 0,
 		x: window.innerWidth / 2,
@@ -20,8 +20,8 @@ module.exports = Vue.extend({
 
 	computed: {
 		zoomClass() {
-			for (let desc in ZOOM_MAPPINGS) {
-				if (ZOOM_MAPPINGS[desc] === this.zoom) {
+			for (let desc in zoomLevels) {
+				if (zoomLevels[desc] === this.zoom) {
 					return 'zoom-' + desc;
 				}
 			}
@@ -41,7 +41,7 @@ module.exports = Vue.extend({
 
 	methods: {
 		animationend() {
-			this[resolve]();
+			this[symbols.resolve]();
 
 			/*
 			Do not destroy this immediately: consumers may want to do an
@@ -52,3 +52,5 @@ module.exports = Vue.extend({
 
 	mixins: [thenable]
 });
+
+export default ZoomTransition;

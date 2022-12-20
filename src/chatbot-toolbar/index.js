@@ -1,16 +1,19 @@
 // The toolbar at the bottom of the screen with editing controls.
 
-const Vue = require('vue');
-const JavaScriptEditor = require('../editors/javascript');
-const StylesheetEditor = require('../editors/stylesheet');
-const zoomMappings = require('../chatbot-view/zoom-settings');
-const {playStory} = require('../common/launch-story');
-const {updateStory} = require('../data/actions/story');
+import Vue from 'vue';
+import JavaScriptEditor from '../editors/javascript';
+import StylesheetEditor from '../editors/stylesheet';
+import zoomMappings from '../chatbot-edit-view/zoom-settings';
+import {playStory} from '../common/launch-story';
+import StorySearch from './story-search';
+import DropdownFile from './dropdown-file';
+import DropdownDownload from './dropdown-download';
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const ChatbotToolbar = Vue.extend({
+	template,
 
 	data: () => ({
 		descriptions: ["small", "medium", "big"],
@@ -30,9 +33,13 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'story-search': require('./search'),
-		'dropdown-file': require('./file'),
-		'dropdown-download': require('./download'),
+		'story-search': StorySearch,
+		'dropdown-file': DropdownFile,
+		'dropdown-download': DropdownDownload,
+	},
+
+	computed: {
+		updateStory () { return this.$store._actions.updateStory[0] },
 	},
 
 	methods: {
@@ -61,13 +68,11 @@ module.exports = Vue.extend({
 		},
 	},
 
-	ready: function () {
-		this.sliderVal = this.descriptions.indexOf(this.zoomDesc);
-	},
-
-	vuex: {
-		actions: {
-			updateStory,
-		},
+	mounted: function () {
+		this.$nextTick(function () {
+			this.sliderVal = this.descriptions.indexOf(this.zoomDesc);
+		});
 	}
 });
+
+export default ChatbotToolbar;

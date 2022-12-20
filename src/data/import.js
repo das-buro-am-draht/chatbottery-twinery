@@ -11,7 +11,7 @@ affects startup time in the Twine desktop app. This module moves data from the
 filesystem into local storage, and the app can't begin until it's done.
 */
 
-const { unescape } = require("lodash");
+import { unescape } from "lodash";
 
 /* HTML selectors used to find data in HTML format. */
 
@@ -129,7 +129,7 @@ function domToObject(storyEl, forceLastUpdate) {
 	};
 }
 
-module.exports = (html, lastUpdate) => {
+const importHTML = (html, lastUpdate) => {
 	let nodes = document.createElement('div');
 
 	nodes.innerHTML = html;
@@ -139,3 +139,5 @@ module.exports = (html, lastUpdate) => {
 	)
 	.map(storyEl => domToObject(storyEl, lastUpdate));
 };
+
+export default importHTML;

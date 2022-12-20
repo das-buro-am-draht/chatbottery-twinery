@@ -1,6 +1,6 @@
 "use strict";
 
-const {
+import {
 	extractLinkTags,
 	removeEnclosingBrackets,
 	removeSetters,
@@ -8,8 +8,8 @@ const {
 	nonEmptyLinks,
 	uniques,
 	internalLinks,
-} = require("./link-parser");
-const uniq = require('lodash.uniq');
+} from "./link-parser";
+import uniq from 'lodash.uniq';
 
 const extractGoToLinkTags = (text) =>
 	text.match(

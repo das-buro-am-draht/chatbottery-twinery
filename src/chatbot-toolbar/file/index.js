@@ -3,20 +3,20 @@ Shows a quick search field, which changes passage highlights, and a button to
 show the search modal dialog.
 */
 
-const Vue = require("vue");
-const locale = require("../../locale");
-const { prompt } = require("../../dialogs/prompt");
-const StatsDialog = require("../../dialogs/story-stats");
-const PluginDialog = require("../../dialogs/plugin");
-const UserDataDialog = require("../../dialogs/user");
-const FormatDialog = require('../../dialogs/story-format');
-const { updateStory } = require("../../data/actions/story");
-const {proofStory} = require('../../common/launch-story');
+import Vue from 'vue';
+import locale from "../../locale";
+import { prompt } from "../../dialogs/prompt";
+import StatsDialog from "../../dialogs/story-stats";
+import PluginDialog from "../../dialogs/plugin";
+import UserDataDialog from "../../dialogs/user";
+import FormatDialog from '../../dialogs/story-format';
+import {proofStory} from '../../common/launch-story';
 
-require("./index.less");
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require("./index.html"),
+const File = Vue.extend({
+	template,
 
 	props: {
 		story: {
@@ -29,6 +29,10 @@ module.exports = Vue.extend({
 		active: false,
 		proofingFormat: null,
 	}),
+
+	computed: {
+		updateStory () { return this.$store._actions.updateStory[0] },
+	},
 
 	methods: {
 		toggleDropdown() {
@@ -47,7 +51,7 @@ module.exports = Vue.extend({
 				response: this.story.name,
 				blankTextError: locale.say("Please enter a name."),
 				origin: e.target,
-			}).then((text) => this.updateStory(this.story.id, { name: text }));
+			}).then((text) => this.updateStory({id: this.story.id, name: text }));
 		},
 		storyStats(e) {
 			new StatsDialog({
@@ -78,13 +82,11 @@ module.exports = Vue.extend({
 		}
 	},
 
-	ready: function() {
-		this.$data.proofingFormat = this.$store.state.storyFormat.formats.find(format => format.isReview);
-	},
-
-	vuex: {
-		actions: {
-			updateStory,
-		},
+	mounted: function () {
+		this.$nextTick(function () {
+			this.$data.proofingFormat = this.$store.state.storyFormat.formats.find(format => format.isReview);
+		});
 	},
 });
+
+export default File;

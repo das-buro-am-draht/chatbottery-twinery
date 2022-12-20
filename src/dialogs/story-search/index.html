@@ -32,11 +32,11 @@
 
 	<p class="resultSummary" v-if="passageMatches.length > 0">
 		<span class="controls">
-			<button class="subtle" title="{{ 'Expand all search results' | say }}" @click="expandAll">
+			<button class="subtle" v-bind:title="'Expand all search results' | say" @click="expandAll">
 				<i class="fa fa-expand"></i>
 			</button>
 
-			<button class="subtle" title="{{ 'Collapse all search results' | say }}" @click="collapseAll">
+			<button class="subtle" v-bind:title="'Collapse all search results' | say" @click="collapseAll">
 				<i class="fa fa-compress"></i>
 			</button>
 
@@ -50,9 +50,11 @@
 		</span>
 	</p>
 
-	<p v-if="working" transition="fade-in-out">
-		<i class="fa fa-circle-o-notch fa-spin"></i> {{ 'Searching...' | say }}
-	</p>
+	<transition name="fade-in-out">
+		<p v-if="working">
+			<i class="fa fa-circle-o-notch fa-spin"></i> {{ 'Searching...' | say }}
+		</p>
+	</transition>
 
 	<div class="results">
 		<search-result v-for="match in passageMatches" :story="story" :match="match" :search-regexp="searchRegexp" :replace-with="replace" :search-names="searchNames"></search-result>

@@ -1,20 +1,21 @@
 // The side toolbar of a story list.
 
-const Vue = require("vue");
-const { importStory } = require("../../data/actions/story");
-const locale = require("../../locale");
-const { prompt } = require("../../dialogs/prompt");
-const ImportDialog = require("../../dialogs/story-import");
-const { createStory } = require("../../data/actions/story");
-const blankbotHtml = require('../../common/blankbot/Blankbot.html');
-const {version: blankbotVersion} = require('../../common/blankbot/blankbot.json');
-const importHTML = require("../../data/import");
-const { deleteStory } = require("../../data/actions/story");
+import Vue from 'vue';
 
-require("./index.less");
+import locale from "../../locale";
+import { prompt } from "../../dialogs/prompt";
+import ImportDialog from "../../dialogs/story-import";
+import blankbotHtml from '../../common/blankbot/Blankbot.html';
+import { version as blankbotVersion } from '../../common/blankbot/blankbot.json';
+import importHTML from "../../data/import";
+import StoryItem from "./story";
+import FileDragNDrop from '../../ui/file-drag-n-drop';
 
-module.exports = Vue.extend({
-	template: require("./index.html"),
+import './index.less';
+import template from './index.html';
+
+const ChatbotsContent = Vue.extend({
+	template,
 
 	data: () => ({
 		storyOrder: "name",
@@ -22,6 +23,10 @@ module.exports = Vue.extend({
 	}),
 
 	computed: {
+		createStory () { return this.$store._actions.createStory[0] },
+		deleteStory () { return this.$store._actions.deleteStory[0] },
+		importStory () { return this.$store._actions.importStory[0] },
+		stories () { return this.$store.getters.stories },
 		sortedStories() {
 			/*
 			If we have no stories to sort, don't worry about it.
@@ -95,6 +100,7 @@ module.exports = Vue.extend({
 				/* Allow the appearance animation to complete. */
 
 				window.setTimeout(() => {
+					// TODO: check $dispatch
 					this.$dispatch(
 						"story-edit",
 						this.stories.find((story) => story.name === name).id
@@ -125,18 +131,20 @@ module.exports = Vue.extend({
 		},
 	},
 
-	ready: function () {
-		this.importBlankbot();
+	mounted: function () {
+		this.$nextTick(function () {
+			this.importBlankbot();
+		});
 	},
 
 	components: {
-		"story-item": require("./story"),
-		'file-drag-n-drop': require('../../ui/file-drag-n-drop')
+		"story-item": StoryItem,
+		'file-drag-n-drop': FileDragNDrop
 	},
 
 	events: {
 		"story-edit"(id) {
-			this.$broadcast("story-edit", id);
+			this.$broadcast("story-edit", id); // TODO: check broadcast
 		},
 		'file-drag-n-drop'(files) {
 			new ImportDialog({
@@ -147,16 +155,6 @@ module.exports = Vue.extend({
 			}).$mountTo(document.body);
 		}
 	},
-
-	vuex: {
-		actions: {
-			createStory,
-			importStory,
-			deleteStory,
-		},
-
-		getters: {
-			stories: (state) => state.story.stories,
-		},
-	},
 });
+
+export default ChatbotsContent;

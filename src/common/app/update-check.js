@@ -17,10 +17,10 @@
 	 URL the download is available at.
 **/
 
-const fetch = require('unfetch').default;
+import fetch from 'unfetch';
 
-module.exports = function(latestBuildNumber, callback) {
-	fetch('https://twinery.org/latestversion/2.json')
+const updateCheck = function(latestBuildNumber, callback) {
+	fetch.default('https://twinery.org/latestversion/2.json')
 		.then(r => r.json())
 		.then(data => {
 			if (data.buildNumber > latestBuildNumber) {
@@ -28,3 +28,5 @@ module.exports = function(latestBuildNumber, callback) {
 			}
 		});
 };
+
+export default updateCheck;

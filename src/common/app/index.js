@@ -1,20 +1,26 @@
 // The main app running the show.
 
 'use strict';
-const Vue = require('vue');
-const ui = require('../../ui');
-const {repairFormats} = require('../../data/actions/story-format');
-const {repairStories} = require('../../data/actions/story');
-const store = require('../../data/store');
+import Vue from 'vue';
+import ui from '../../ui';
+import store from '../../data/store';
 
-module.exports = Vue.extend({
+const TwineApp = Vue.extend({
 	template: '<div><router-view></router-view></div>',
 
-	ready() {
-		ui.init();
-		this.repairFormats();
-		this.repairStories();
-		document.body.classList.add(`theme-${this.themePref}`);
+	computed: {
+		repairFormats () { return this.$store._actions.repairFormats[0] },
+		repairStories () { return this.$store._actions.repairStories[0] },
+		themePref () { return this.$store.getters.themePref },
+	},
+
+	mounted: function () {
+		this.$nextTick(function () {
+			ui.init();
+			this.repairFormats();
+			this.repairStories();
+			document.body.classList.add(`theme-${this.themePref}`);
+		});
 	},
 
 	watch: {
@@ -24,12 +30,7 @@ module.exports = Vue.extend({
 		}
 	},
 
-	vuex: {
-		actions: {repairFormats, repairStories},
-		getters: {
-			themePref: state => state.pref.appTheme
-		}
-	},
-
 	store
 });
+
+export default TwineApp;

@@ -1,7 +1,6 @@
 // Functions for moving prefs in and out of local storage.
 
-const uuid = require('tiny-uuid');
-const { setPref } = require('../actions/pref');
+import uuid from 'tiny-uuid';
 
 module.exports = {
 	save(store) {
@@ -50,7 +49,7 @@ module.exports = {
 					window.localStorage.getItem('twine-prefs-' + id)
 				);
 
-				setPref(store, item.name, item.value);
+				store._actions.setPref({name: item.name, value: item.value});
 			}
 			catch (e) {
 				console.warn(

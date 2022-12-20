@@ -4,23 +4,17 @@ const clickOutsideEvent = (event, el, vm, expression) => {
 	}
 };
 
-module.exports = {
-	addTo(Vue) {
-		Vue.directive("click-outside", {
-			bind() {
-				const { el, expression, vm } = this;
-
-				document.body.addEventListener("click", (event) =>
-					clickOutsideEvent(event, el, vm, expression)
-				);
-			},
-			unbind() {
-				const { el, expression, vm } = this;
-
-				document.body.removeEventListener("click", (event) =>
-					clickOutsideEvent(event, el, vm, expression)
-				);
-			},
-		});
-	},
+export const addTo = function (Vue) {
+	Vue.directive("click-outside", {
+		bind(el, binding, vnode) {
+			document.body.addEventListener("click", (event) =>
+				clickOutsideEvent(event, el, vnode.context, binding.expression)
+			);
+		},
+		unbind(el, binding, vnode) {
+			document.body.removeEventListener("click", (event) =>
+				clickOutsideEvent(event, el, vnode.context, binding.expression)
+			);
+		},
+	});
 };

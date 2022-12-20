@@ -1,16 +1,21 @@
 // The side toolbar of a story list.
 
-const Vue = require("vue");
-const locale = require('../../locale');
-const {prompt} = require('../../dialogs/prompt');
-const {createStory} = require('../../data/actions/story');
+import Vue from 'vue';
+import locale  from "../../locale";
+import { prompt } from "../../dialogs/prompt";
+import HomeWordpressNews from "../wordpress-news";
 
-require("./index.less");
+import "./index.less";
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require("./index.html"),
+const HomeInfoContent = Vue.extend({
+	template,
 
-	data: () => ({}),
+	computed: {
+		createStory () { return this.$store._actions.createStory[0] },
+		appInfo () { return this.$store.getters.appInfo },
+		existingStories () {return this.$store.getters.existingStories }
+	},
 
 	methods: {
 		openRedirect(url) {
@@ -54,8 +59,6 @@ module.exports = Vue.extend({
 
 				window.location.replace(`#!/chatbots/${id}`);
 
-				
-
 				/* Allow the appearance animation to complete. */
 
 				// window.setTimeout(() => {
@@ -70,23 +73,14 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'wordpress-news': require('../wordpress-news'),
+		'wordpress-news': HomeWordpressNews,
 	},
 
 	events: {
 		'story-edit'(id) {
-			this.$broadcast('story-edit', id);
+			this.$root.$emit("story-edit", id); // TODO: check event
 		},
-	},
-
-	vuex: {
-		actions: {
-			createStory
-		},
-
-		getters: {
-			appInfo: state => state.appInfo,
-			existingStories: state => state.story.stories,
-		}
 	},
 });
+
+export default HomeInfoContent;

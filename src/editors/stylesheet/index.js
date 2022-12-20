@@ -2,15 +2,18 @@
 A component showing a modal dialog where a story's stylesheet can be edited.
 */
 
-const Vue = require('vue');
-const { updateStory } = require('../../data/actions/story');
+import Vue from 'vue';
 
-require('codemirror/mode/css/css');
-require('codemirror/addon/display/placeholder');
-require('codemirror/addon/hint/show-hint');
+import 'codemirror/mode/css/css';
+import 'codemirror/addon/display/placeholder';
+import 'codemirror/addon/hint/show-hint';
+import ModalDialog from '../../ui/modal-dialog';
+import VueCodeMirror from '../../vue/codemirror';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+import template from './index.html';
+
+const EditorsStylesheet = Vue.extend({
+	template,
 
 	data: () => ({
 		storyId: '',
@@ -18,6 +21,8 @@ module.exports = Vue.extend({
 	}),
 
 	computed: {
+		allStories () { return this.$store.getters.allStories },
+		updateStory () { return this.$store._actions.updateStory[0] },
 		source() {
 			return this.allStories.find(
 				story => story.id === this.storyId
@@ -44,22 +49,14 @@ module.exports = Vue.extend({
 		},
 
 		save(text) {
-			this.updateStory(this.storyId, { stylesheet: text });
+			this.updateStory({id: this.storyId, stylesheet: text }); // TODO: check stylesheet
 		}
 	},
 	
 	components: {
-		'modal-dialog': require('../../ui/modal-dialog'),
-		'code-mirror': require('../../vue/codemirror')
+		'modal-dialog': ModalDialog,
+		'code-mirror': VueCodeMirror
 	},
-
-	vuex: {
-		actions: {
-			updateStory
-		},
-
-		getters: {
-			allStories: state => state.story.stories
-		}
-	}
 });
+
+export default EditorsStylesheet;

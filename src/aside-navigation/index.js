@@ -1,13 +1,16 @@
 // The side toolbar of a story list.
 
-const Vue = require('vue');
-const {setPref} = require('../data/actions/pref');
-const FormatsDialog = require("../dialogs/formats");
+import Vue from 'vue';
+import FormatsDialog from "../dialogs/formats";
+import QuotaGauge from '../ui/quota-gauge';
+import CheckLocalState from './check-local-state';
+import CheckChrome from './check-chrome';
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const AsideNavigation = Vue.extend({
+	template,
 
 	data: () => ({
 		storiesLength: null
@@ -18,6 +21,12 @@ module.exports = Vue.extend({
 			type: String,
 			default: 'home'
 		},
+	},
+
+	computed: {
+		setPref () { return this.$store._actions.setPref[0] },
+		stories () { return this.$store.getters.stories },
+		appInfo () { return this.$store.getters.appInfo }
 	},
 
 	methods: {
@@ -41,19 +50,10 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'quota-gauge': require('../ui/quota-gauge'),
-		'check-local-state': require('./check-local-state'),
-		'check-chrome': require('./check-chrome')
-	},
-
-	vuex: {
-		actions: {
-			setPref
-		},
-
-		getters: {
-			appInfo: state => state.appInfo,
-			stories: state => state.story.stories,
-		},
+		'quota-gauge': QuotaGauge,
+		'check-local-state': CheckLocalState,
+		'check-chrome': CheckChrome
 	}
 });
+
+export default AsideNavigation;

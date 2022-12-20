@@ -2,15 +2,18 @@
 A modal which shows aggregrate statistics for a story.
 */
 
-const Vue = require('vue');
-const moment = require('moment');
-const linkParser = require('../../data/link-parser');
-const locale = require('../../locale');
+import Vue from 'vue';
+import moment from 'moment';
 
-require('./index.less');
+import linkParser from '../../data/link-parser';
+import locale from '../../locale';
+import ModalDialog from '../../ui/modal-dialog';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+import './index.less';
+import template from './index.html';
+
+const StoryStats = Vue.extend({
+	template,
 
 	data: () => ({
 		storyId: '',
@@ -18,6 +21,7 @@ module.exports = Vue.extend({
 	}),
 
 	computed: {
+		allStories () { return this.$store.getters.allStories },
 		story() {
 			return this.allStories.find(story => story.id === this.storyId);
 		},
@@ -125,13 +129,9 @@ module.exports = Vue.extend({
 		}
 	},
 
-	vuex: {
-		getters: {
-			allStories: state => state.story.stories
-		}
-	},
-
 	components: {
-		'modal-dialog': require('../../ui/modal-dialog')
+		'modal-dialog': ModalDialog
 	}
 });
+
+export default StoryStats;

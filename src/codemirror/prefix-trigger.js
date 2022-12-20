@@ -12,7 +12,7 @@
 **/
 
 'use strict';
-const CodeMirror = require('codemirror');
+import CodeMirror from 'codemirror';
 
 CodeMirror.defineOption('prefixTrigger', [], (cm, opts) => {
 	if (opts.prefixes && opts.callback) {

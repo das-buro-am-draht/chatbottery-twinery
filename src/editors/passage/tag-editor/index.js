@@ -1,10 +1,12 @@
 /* An editor for adding and removing tags from a passage. */
 
-const Vue = require('vue');
-const { updatePassage } = require('../../../data/actions/passage');
-const uniq = require('lodash.uniq');
+import Vue from 'vue';
+import uniq from 'lodash.uniq';
+import TagMenu from './tag-menu';
 
-module.exports = Vue.extend({
+import template from './index.html';
+
+const PassageTagEditor = Vue.extend({
 	data: () => ({
 		newVisible: false
 	}),
@@ -12,7 +14,9 @@ module.exports = Vue.extend({
 	computed: {
 		tagColors() {
 			return this.allStories.find(s => s.id === this.storyId).tagColors;
-		}
+		},
+		updatePassage () { return this.$store._actions.updatePassage[0] },
+		allStories () { return this.$store.getters.allStories },
 	},
 
 	props: {
@@ -26,12 +30,12 @@ module.exports = Vue.extend({
 		}
 	},
 
-	template: require('./index.html'),
+	template,
 
 	methods: {
 		showNew() {
 			this.newVisible = true;
-			this.$nextTick(() => this.$els.newName.focus());
+			this.$nextTick(() => this.$refs.newName.focus());
 		},
 
 		hideNew() {
@@ -39,32 +43,25 @@ module.exports = Vue.extend({
 		},
 
 		addNew() {
-			const newName = this.$els.newName.value.replace(/\s/g, '-');
+			const newName = this.$refs.newName.value.replace(/\s/g, '-');
 
 			/* Clear the newName element while it's transitioning out. */
 
-			this.$els.newName.value = '';
+			this.$refs.newName.value = '';
 
-			this.updatePassage(
-				this.storyId,
-				this.passage.id,
-				{
-					tags: uniq([].concat(this.passage.tags, newName))
-				}
-			);
+			this.updatePassage({
+				storyId: this.storyId,
+				passageId: this.passage.id,
+				tags: uniq([].concat(this.passage.tags, newName))
+			});
 
 			this.hideNew();
 		}
 	},
 
-	vuex: {
-		getters: {
-			allStories: state => state.story.stories
-		},
-		actions: { updatePassage }
-	},
-
 	components: {
-		'tag-menu': require('./tag-menu')
+		'tag-menu': TagMenu
 	}
 });
+
+export default PassageTagEditor;

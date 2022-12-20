@@ -1,6 +1,6 @@
-const Vue = require('vue');
+import Vue from 'vue';
 
-module.exports = Vue.extend({
+const TabPanelItem = Vue.extend({
 	template:
 		`<div :class="{hide:hidden}">
 		<slot></slot>
@@ -22,3 +22,5 @@ module.exports = Vue.extend({
 		},
 	},
 });
+
+export default TabPanelItem;

@@ -3,13 +3,18 @@ A modal which allows the user to perform find and replace on a array of
 passages.
 */
 
-const Vue = require('vue');
-const escapeRegexp = require('lodash.escaperegexp');
+import Vue from 'vue';
+import escapeRegexp from 'lodash.escaperegexp';
 
-require('./index.less');
+import ModalDialog from '../../ui/modal-dialog';
+import StorySearchResult from './result';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+import './index.less';
+import template from './index.html';
+import { val } from 'cheerio/lib/api/attributes';
+
+const StorySearch = Vue.extend({
+	template,
 
 	data: () => ({
 		story: {},
@@ -98,24 +103,28 @@ module.exports = Vue.extend({
 
 	methods: {
 		expandAll() {
-			this.$broadcast('expand');
+			this.$broadcast('expand'); // TODO check this.$root.$emit('expand');
 		},
 
 		collapseAll() {
-			this.$broadcast('collapse');
+			this.$broadcast('collapse'); // TODO check this.$root.$emit('collapse');
 		},
 
 		replaceAll() {
-			this.$broadcast('replace');
+			this.$broadcast('replace'); // TODO check this.$root.$emit('replace');
 		}
 	},
 
-	ready() {
-		this.$els.search.focus();
+	mounted: function () {
+		this.$nextTick(function () {
+			this.$refs.search.focus();
+		});
 	},
 
 	components: {
-		'modal-dialog': require('../../ui/modal-dialog'),
-		'search-result': require('./result')
+		'modal-dialog': ModalDialog,
+		'search-result': StorySearchResult
 	}
 });
+
+export default StorySearch;

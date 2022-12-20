@@ -1,23 +1,19 @@
 // Handles the cog menu for a single story.
 
-const escape = require('lodash.escape');
-const Vue = require('vue');
-const {confirm} = require('../../../../dialogs/confirm');
-const {
-	deleteStory,
-	duplicateStory,
-	updateStory
-} = require('../../../../data/actions/story');
-const {loadFormat} = require('../../../../data/actions/story-format');
-const {playStory, testStory} = require('../../../../common/launch-story');
-const {prompt} = require('../../../../dialogs/prompt');
-const locale = require('../../../../locale');
-const notify = require('../../../../ui/notify');
-const {publishStoryWithFormat} = require('../../../../data/publish');
-const save = require('../../../../file/save');
+import escape from 'lodash.escape';
+import Vue from 'vue';
+import {confirm} from '../../../../dialogs/confirm';
+import {playStory} from '../../../../common/launch-story';
+import {prompt} from '../../../../dialogs/prompt';
+import locale from '../../../../locale';
+import {publishStoryWithFormat} from '../../../../data/publish';
+import save from '../../../../file/save';
+import DropDown from '../../../../ui/drop-down';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+import template from './index.html';
+
+const ItemMenu = Vue.extend({
+	template,
 
 	props: {
 		story: {
@@ -27,7 +23,15 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'drop-down': require('../../../../ui/drop-down')
+		'drop-down': DropDown
+	},
+
+	computed: {
+		deleteStory () { return this.$store._actions.deleteStory[0] },
+		duplicateStory () { return this.$store._actions.duplicateStory[0] },
+		updateStory () { return this.$store._actions.updateStory[0] },
+		loadFormat () { return this.$store._actions.loadFormat[0] },
+		appInfo () { return this.$store.getters.appInfo },
 	},
 
 	methods: {
@@ -58,10 +62,10 @@ module.exports = Vue.extend({
 		**/
 
 		publish() {
-			this.loadFormat(
-				this.story.storyFormat,
-				this.story.storyFormatVersion
-			).then(format => {
+			this.loadFormat({
+				name: this.story.storyFormat,
+				varsion: this.story.storyFormatVersion
+			}).then(format => {
 				save(
 					publishStoryWithFormat(this.appInfo, this.story, format),
 					this.story.name + '.html'
@@ -115,7 +119,7 @@ module.exports = Vue.extend({
 				buttonLabel: '<i class="fa fa-ok"></i> ' + locale.say('Rename'),
 				response: this.story.name,
 				blankTextError: locale.say('Please enter a name.')
-			}).then(name => this.updateStory(this.story.id, {name}));
+			}).then(name => this.updateStory({id: this.story.id, name}));
 		},
 
 		/**
@@ -131,23 +135,10 @@ module.exports = Vue.extend({
 				response: locale.say('%s Copy', this.story.name),
 				blankTextError: locale.say('Please enter a name.')
 			}).then(name => {
-				this.duplicateStory(this.story.id, name);
+				this.duplicateStory({id: this.story.id, name});
 			});
 		}
 	},
-
-	vuex: {
-		actions: {
-			deleteStory,
-			duplicateStory,
-			loadFormat,
-			updateStory
-		},
-
-		getters: {
-			allFormats: state => state.storyFormat.formats,
-			appInfo: state => state.appInfo,
-			defaultFormat: state => state.pref.defaultFormat
-		}
-	}
 });
+
+export default ItemMenu;

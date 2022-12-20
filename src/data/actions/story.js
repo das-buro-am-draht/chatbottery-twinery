@@ -2,10 +2,10 @@
 Story-related actions.
 */
 
-const semverUtils = require('semver-utils');
-const { latestFormatVersions, formatVersion } = require('../format-versions');
+import semverUtils from 'semver-utils';
+import { latestFormatVersions, formatVersion } from '../format-versions';
 
-const actions = (module.exports = {
+const actions = {
 	createStory(store, props) {
 		let normalizedProps = Object.assign({}, props);
 
@@ -17,19 +17,19 @@ const actions = (module.exports = {
 				store.state.pref.defaultFormat.version;
 		}
 
-		store.dispatch('CREATE_STORY', normalizedProps);
+		store.commit('CREATE_STORY', {...normalizedProps});
 	},
 
-	updateStory({dispatch}, id, props) {
-		dispatch('UPDATE_STORY', id, props);
+	updateStory({commit}, props) {
+		commit('UPDATE_STORY', props);
 	},
 
-	deleteStory({dispatch}, id) {
-		dispatch('DELETE_STORY', id);
+	deleteStory({commit}, id) {
+		commit('DELETE_STORY', id);
 	},
 
-	duplicateStory({dispatch}, id, newName) {
-		dispatch('DUPLICATE_STORY', id, newName);
+	duplicateStory({commit}, props) {
+		commit('DUPLICATE_STORY', props);
 	},
 
 	importStory(store, toImport) {
@@ -38,10 +38,10 @@ const actions = (module.exports = {
 			story.storyFormat = store.state.pref.defaultFormat.name;
 			story.storyFormatVersion = store.state.pref.defaultFormat.version;
 		}
-		store.dispatch('IMPORT_STORY', story);
+		store.commit('IMPORT_STORY', story);
 	},
 
-	setTagColorInStory(store, storyId, tagName, tagColor) {
+	setTagColorInStory(store, {storyId, tagName, tagColor}) {
 		const story = store.state.story.stories.find(
 			story => story.id == storyId
 		);
@@ -53,7 +53,8 @@ const actions = (module.exports = {
 			throw new Error(`No story exists with id ${storyId}`);
 		}
 
-		store.dispatch('UPDATE_STORY', storyId, {
+		store.commit('UPDATE_STORY', {
+			storyId,
 			tagColors: Object.assign({}, story.tagColors, toMerge)
 		});
 	},
@@ -80,7 +81,7 @@ const actions = (module.exports = {
 			delete tagColors[tag];
 		});
 
-		store.dispatch('UPDATE_STORY', storyId, {tagColors});
+		store.commit('UPDATE_STORY', {storyId, tagColors});
 	},
 
 	/*
@@ -97,7 +98,8 @@ const actions = (module.exports = {
 			*/
 
 			if (!story.storyFormat) {
-				actions.updateStory(store, story.id, {
+				actions.updateStory(store, {
+					storyId: story.id,
 					storyFormat: store.state.pref.defaultFormat.name
 				});
 			}
@@ -108,12 +110,14 @@ const actions = (module.exports = {
 			*/
 
 			if (/^SugarCube 1/.test(story.storyFormat)) {
-				actions.updateStory(store, story.id, {
+				actions.updateStory(store, {
+					storyId: story.id,
 					storyFormat: 'SugarCube',
 					storyFormatVersion: latestVersions['SugarCube']['1'].version
 				});
 			} else if (/^SugarCube 2/.test(story.storyFormat)) {
-				actions.updateStory(store, story.id, {
+				actions.updateStory(store, {
+					storyId: story.id,
 					storyFormat: 'SugarCube',
 					storyFormatVersion: latestVersions['SugarCube']['2'].version
 				});
@@ -135,7 +139,8 @@ const actions = (module.exports = {
 					story.storyFormatVersion !==
 						latestVersions[story.storyFormat][majorVersion].version
 				) {
-					actions.updateStory(store, story.id, {
+					actions.updateStory(store, {
+						storyId: story.id,
 						storyFormatVersion:
 							latestVersions[story.storyFormat][majorVersion]
 								.version
@@ -153,7 +158,8 @@ const actions = (module.exports = {
 					latestVersions[story.storyFormat]
 				).reduce((prev, current) => (+current < +prev ? +current : +prev));
 
-				actions.updateStory(store, story.id, {
+				actions.updateStory(store, {
+					storyId: story.id,
 					/* eslint-disable max-len */
 					storyFormatVersion:
 						latestVersions[story.storyFormat][majorVersion].version
@@ -162,4 +168,6 @@ const actions = (module.exports = {
 			}
 		});
 	}
-});
+};
+
+export default actions;

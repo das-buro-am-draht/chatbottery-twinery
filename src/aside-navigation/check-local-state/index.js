@@ -1,11 +1,12 @@
 // The side toolbar of a story list.
 
-const Vue = require("vue");
+import Vue from 'vue';
 
-require("./index.less");
+import "./index.less";
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require("./index.html"),
+const CheckLocalState = Vue.extend({
+	template,
 
 	data: () => ({
 		localStorageActive: true,
@@ -20,7 +21,7 @@ module.exports = Vue.extend({
 		}
 	},
 
-	activate: function (done) {
+	beforeRouteEnter: function (done) {
 		try {
 			const mod = "chatbot";
 			localStorage.setItem(mod, mod);
@@ -33,8 +34,6 @@ module.exports = Vue.extend({
 		}
 		done();
 	},
-
-	components: {},
-
-	vuex: {},
 });
+
+export default CheckLocalState;

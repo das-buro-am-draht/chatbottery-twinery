@@ -3,18 +3,18 @@ Shows a quick search field, which changes passage highlights, and a button to
 show the search modal dialog.
 */
 
-const Vue = require('vue');
-const save = require('../../file/save');
-const {loadFormat} = require('../../data/actions/story-format');
-const {publishStoryWithFormat} = require('../../data/publish');
-const {proofStory} = require('../../common/launch-story');
-const locale = require('../../locale');
-const notify = require('../../ui/notify');
+import Vue from 'vue';
+import save from '../../file/save';
+import {publishStoryWithFormat} from '../../data/publish';
+import {proofStory} from '../../common/launch-story';
+import locale from '../../locale';
+import notify from '../../ui/notify';
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const Download = Vue.extend({
+	template,
 
 	props: {
 		story: {
@@ -28,6 +28,11 @@ module.exports = Vue.extend({
 		proofingFormat: null,
 	}),
 
+	computed: {
+		loadFormat () { return this.$store._actions.loadFormat[0] },
+		appInfo () { return this.$store.getters.appInfo }
+	},
+
 	methods: {
 		toggleDropdown() {
 			this.active = !this.active;
@@ -36,10 +41,10 @@ module.exports = Vue.extend({
 			this.active = false;
 		},
 		publishStory() {
-			this.loadFormat(
-				this.story.storyFormat,
-				this.story.storyFormatVersion
-			).then(format => {
+			this.loadFormat({
+				name: this.story.storyFormat,
+				version: this.story.storyFormatVersion
+			}).then(format => {
 				save(
 					publishStoryWithFormat(this.appInfo, this.story, format),
 					this.story.name + '.html'
@@ -62,17 +67,11 @@ module.exports = Vue.extend({
 		},
 	},
 
-	ready: function() {
-		this.$data.proofingFormat = this.$store.state.storyFormat.formats.find(format => format.isStatistic);
+	mounted: function () {
+		this.$nextTick(function () {
+			this.$data.proofingFormat = this.$store.state.storyFormat.formats.find(format => format.isStatistic);
+		});
 	},
-
-	vuex: {
-		actions: {
-			loadFormat,
-		},
-
-		getters: {
-			appInfo: state => state.appInfo,
-		}
-	}
 });
+
+export default Download;

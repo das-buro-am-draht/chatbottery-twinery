@@ -1,16 +1,18 @@
 // This is a list of notifications at the top of the page. See index.js for the
 // public API for this.
 
-const Vue = require('vue');
+import Vue from 'vue';
 
-require('./list.less');
+import './list.less';
 
 // How long typical notifications (e.g. that aren't errors) appear onscreen.
 
 const APPEAR_DURATION = 3000;
 
-module.exports = Vue.extend({
-	template: require('./list.html'),
+import template from './list.html';
+
+const NotificationList = Vue.extend({
+	template,
 
 	data: () => ({
 		notifications: []
@@ -71,3 +73,5 @@ module.exports = Vue.extend({
 		}
 	}
 });
+
+export default NotificationList;

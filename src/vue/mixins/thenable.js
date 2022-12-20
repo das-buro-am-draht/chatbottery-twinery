@@ -9,45 +9,41 @@ const Symbol = (window.Symbol || Math.random);
 
 /* These are symbols that key to "private" component methods. */
 
-const symbols = {
+export const symbols = {
 	resolve: Symbol(),
 	reject: Symbol(),
 };
 
-module.exports = {
-	thenable: {
-		init() {
-			const promise = new Promise((resolve, reject) => {
-				/*
-				These methods should be private (to the instance), but the only
-				easy way to approximate this is to key these methods to symbols
-				and force consumers to use those symbols.
-				*/
-
-				this[symbols.reject] = reject;
-				this[symbols.resolve] = resolve;
-			});
-
-			this.then = promise.then.bind(promise);
-			this.catch = promise.catch.bind(promise);
-		},
-
-		compiled() {
+export const thenable = {
+	init() {
+		const promise = new Promise((resolve, reject) => {
 			/*
-			If any direct children of this component are thenable, this
-			component's promise will be settled as soon as that child's
-			settles.  This allows e.g. <format-modal> to contain a
-			<modal-dialog>, and be dismissed when the inner dialog is
-			dismissed.
+			These methods should be private (to the instance), but the only
+			easy way to approximate this is to key these methods to symbols
+			and force consumers to use those symbols.
 			*/
 
-			this.$children.filter((child) => typeof child.then === 'function')
-				.forEach(({then, catch:_catch}) => {
-					then(this[symbols.resolve]);
-					_catch(this[symbols.reject]);
-				});
-		},
+			this[symbols.reject] = reject;
+			this[symbols.resolve] = resolve;
+		});
+
+		this.then = promise.then.bind(promise);
+		this.catch = promise.catch.bind(promise);
 	},
 
-	symbols
+	mounted() {
+		/*
+		If any direct children of this component are thenable, this
+		component's promise will be settled as soon as that child's
+		settles.  This allows e.g. <format-modal> to contain a
+		<modal-dialog>, and be dismissed when the inner dialog is
+		dismissed.
+		*/
+
+		this.$children.filter((child) => typeof child.then === 'function')
+			.forEach(({then, catch:_catch}) => {
+				then(this[symbols.resolve]);
+				_catch(this[symbols.reject]);
+			});
+	},
 };

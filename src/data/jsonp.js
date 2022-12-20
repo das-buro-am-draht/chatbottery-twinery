@@ -11,11 +11,10 @@ race conditions.
 This is only needed for requests outside the app bundle (e.g. loading a locale).
 */
 
-const jsonp = require('jsonp');
-const isElectron = require('../electron/is-electron');
+import jsonp from 'jsonp';
 
 const loadPromises = {};
-const platformJsonp = isElectron() ? window.twineElectron.jsonp : jsonp;
+const platformJsonp = jsonp;
 
 module.exports = function jsonpRequest(url, props, callback) {
 	if (props.name) {

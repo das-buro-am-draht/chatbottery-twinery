@@ -5,11 +5,35 @@
 **/
 
 'use strict';
-const locale = require('../../locale');
-const Vue = require('vue');
-const { thenable } = require('../../vue/mixins/thenable');
+import Vue from 'vue';
 
-require('./index.less');
+import locale from '../../locale';
+import { thenable } from '../../vue/mixins/thenable';
+import ModalDialog from '../../ui/modal-dialog';
+
+import './index.less';
+import template from './index.html';
+
+export const confirm = (data) => {
+	return new confirmation.component(
+		{ data }
+	).$mountTo(document.body).then(
+		result => {
+			// False results are produced by the close button and the
+			// cancel button. If the result is false, convert it into a
+			// rejection.
+			//
+			// Note: this may change in the future, as using rejections for
+			// negative results is somewhat unidiomatic.
+
+			if (!result) {
+				throw result;
+			}
+
+			return result;
+		}
+	);
+};
 
 /**
  Shows a modal confirmation dialog, with one button (to continue the action)
@@ -22,9 +46,9 @@ require('./index.less');
 						 buttonLabel (HTML label for the button)
 **/
 
-const confirmation = module.exports = {
+const confirmation = {
 	component: Vue.extend({
-		template: require('./index.html'),
+		template,
 
 		data: () => ({
 			message: '',
@@ -37,16 +61,16 @@ const confirmation = module.exports = {
 
 		methods: {
 			accept() {
-				this.$broadcast('close', true);
+				this.$broadcast('close', true); // TODO check event
 			},
 
 			cancel() {
-				this.$broadcast('close', false);
+				this.$broadcast('close', false); // TODO check event
 			},
 		},
 
 		components: {
-			'modal-dialog': require('../../ui/modal-dialog'),
+			'modal-dialog': ModalDialog,
 		},
 
 		mixins: [thenable]
@@ -59,24 +83,7 @@ const confirmation = module.exports = {
 	 @return {Promise} the modal's promise.
 	*/
 
-	confirm(data) {
-		return new confirmation.component(
-			{ data }
-		).$mountTo(document.body).then(
-			result => {
-				// False results are produced by the close button and the
-				// cancel button. If the result is false, convert it into a
-				// rejection.
-				//
-				// Note: this may change in the future, as using rejections for
-				// negative results is somewhat unidiomatic.
-
-				if (!result) {
-					throw result;
-				}
-
-				return result;
-			}
-		);
-	}
+	confirm
 };
+
+export default confirmation;

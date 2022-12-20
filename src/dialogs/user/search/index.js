@@ -1,9 +1,10 @@
-const Vue = require("vue");
+import Vue from "vue";
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
 module.exports = Vue.extend({
-	template: require('./index.html'),
+	template,
 
 	data: () => ({
 		origin: null,

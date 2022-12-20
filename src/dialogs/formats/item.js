@@ -1,15 +1,13 @@
 'use strict';
-const Vue = require('vue');
-const locale = require('../../locale');
-const { confirm } = require('../confirm');
-const { deleteFormat } = require('../../data/actions/story-format');
-const { setPref } = require('../../data/actions/pref');
-const { loadDefault } = require('../../locale');
+import Vue from 'vue';
+import locale from '../../locale';
+import { confirm } from '../confirm';
 
-require('./item.less');
+import './item.less';
+import template from './item.html';
 
-module.exports = Vue.extend({
-	template: require('./item.html'),
+const FormatsItem = Vue.extend({
+	template,
 
 	props: {
 		// A format that this component represents.
@@ -17,6 +15,11 @@ module.exports = Vue.extend({
 	},
 
 	computed: {
+		deleteFormat () { return this.$store._actions.deleteFormat[0] },
+		setPref () { return this.$store._actions.setPref[0] },
+		defaultFormatPref () { return this.$store.getters.defaultFormatPref },
+		proofingFormatPref () { return this.$store.getters.proofingFormatPref },
+
 		isDefault() {
 			if (this.format.properties.proofing) {
 				return this.proofingFormatPref.name === this.format.name &&
@@ -69,34 +72,24 @@ module.exports = Vue.extend({
 					'danger',
 			})
 			.then(() => this.deleteFormat(this.format.id))
-			.then(() => this.$dispatch('refresh'));
+			.then(() => this.$dispatch('refresh')); // TODO: check dispatch
 		},
 
 		setDefaultFormat() {
 			if (this.format.properties.proofing) {
-				this.setPref(
-					'proofingFormat',
-					{ name: this.format.name, version: this.format.version }
-				);
+				this.setPref({
+					name: 'proofingFormat',
+					value: { name: this.format.name, version: this.format.version }
+				});
 			}
 			else {
-				this.setPref(
-					'defaultFormat',
-					{ name: this.format.name, version: this.format.version }
-				);
+				this.setPref({
+					name: 'defaultFormat',
+					value: { name: this.format.name, version: this.format.version }
+				});
 			}
 		},
 	},
-
-	vuex: {
-		actions: {
-			deleteFormat,
-			setPref
-		},
-
-		getters: {
-			defaultFormatPref: state => state.pref.defaultFormat,
-			proofingFormatPref: state => state.pref.proofingFormat
-		}
-	}
 });
+
+export default FormatsItem;

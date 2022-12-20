@@ -5,11 +5,10 @@ time. As a result, saving requires that you start and end a transaction
 manually. This minimizes the number of writes to local storage.
 */
 
-let { createStory } = require('../actions/story');
-let { passageDefaults, storyDefaults } = require('../store/story');
-let commaList = require('./comma-list');
+import { passageDefaults, storyDefaults } from '../store/story';
+import commaList from './comma-list';
 
-const story = module.exports = {
+const story = {
 	/*
 	A wrapper for a series of save/delete operations. This takes a function as
 	argument that will receive an object keeping track of the transaction. This
@@ -210,7 +209,9 @@ const story = module.exports = {
 		/* Finally, we dispatch actions to add the stories to the store. */
 
 		Object.keys(stories).forEach(id => {
-			createStory(store, stories[id]);
+			store._actions.createStory(stories[id]);
 		});
 	}
 };
+
+export default story;

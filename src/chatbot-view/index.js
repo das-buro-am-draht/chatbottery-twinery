@@ -1,26 +1,26 @@
 /* The main view where story editing takes place. */
 
-const values = require('lodash.values');
-const Vue = require('vue');
-const { confirm } = require('../dialogs/confirm');
-const { createPassage, deletePassage, positionPassage, updatePassage, createNewlyLinkedPassages } = require('../data/actions/passage');
-const { updateStory } = require('../data/actions/story');
-const { passageDefaults } = require('../data/store/story');
-const PassageEditor = require('../editors/passage')
-const domEvents = require('../vue/mixins/dom-events');
-const locale = require('../locale');
-const zoomSettings = require('./zoom-settings');
+import values from 'lodash.values';
+import Vue from 'vue';
+import { confirm } from '../dialogs/confirm';
+import { passageDefaults } from '../data/store/story';
+import PassageEditor from '../editors/passage';
+import PassageButton from './passage-button';
+import domEvents from '../vue/mixins/dom-events';
+import locale from '../locale';
+import zoomSettings from './zoom-settings';
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
 /*
 A memoized, sorted array of zoom levels used when zooming in or out.
 */
 
-const zoomLevels = values(zoomSettings).sort();
+export const zoomLevels = values(zoomSettings).sort();
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const ChatbotEditView = Vue.extend({
+	template,
 
 	/* The id of the story we're editing is provided by the router. */
 
@@ -62,10 +62,21 @@ module.exports = Vue.extend({
 		*/
 
 		screenDragOffsetX: 0,
-		screenDragOffsetY: 0
+		screenDragOffsetY: 0,
+		passagePositions: {}
 	}),
 
 	computed: {
+		createPassage () { return this.$store._actions.createPassage[0] },
+		deletePassage () { return this.$store._actions.deletePassage[0] },
+		loadFormat () { return this.$store._actions.loadFormat[0] },
+		positionPassage () { return this.$store._actions.positionPassage[0] },
+		updatePassage () { return this.$store._actions.updatePassage[0] },
+		updateStory () { return this.$store._actions.updateStory[0] },
+		allFormats () { return this.$store.getters.allFormats },
+		allStories () { return this.$store.getters.allStories },
+		defaultFormatName () { return this.$store.getters.defaultFormatName },
+
 		/*
 		Sets our width and height to:
 		* the size of the browser window
@@ -129,22 +140,6 @@ module.exports = Vue.extend({
 			return this.$refs.passages.filter(p => p.passage.selected);
 		},
 
-		/*
-		An array of <passage-item> components and their link positions,
-		indexed by name.
-		*/
-
-		passagePositions() {
-			return this.$refs.passages.reduce(
-				(result, passageView) => {
-					result[passageView.passage.name] = passageView.linkPosition;
-					return result;
-				},
-
-				{}
-			);
-		},
-
 		story() {
 			return this.allStories.find(story => story.id === this.storyId);
 		},
@@ -187,17 +182,38 @@ module.exports = Vue.extend({
 		}
 	},
 
-	ready() {
-		this.resize();
-		this.on(window, 'resize', this.resize);
-		this.on(window, 'keyup', this.onKeyup);
+	mounted: function () {
+		
+		this.$nextTick(function () {
+			this.resize();
+			this.on(window, 'resize', this.resize);
+			this.on(window, 'keyup', this.onKeyup);
 
-		if (this.story.passages.length === 0) {
-			this.createPassageAt();
-		}
+			if (this.story.passages.length === 0) {
+				this.createPassageAt();
+			}
+
+			this.passagePositions = this.createPassagePositions();
+		});
 	},
 
 	methods: {
+		/*
+			An array of <passage-item> components and their link positions,
+			indexed by name.
+		*/
+
+		createPassagePositions() {
+			return this.$refs.passages && this.$refs.passages.reduce(
+				(result, passageView) => {
+					result[passageView.passage.name] = passageView.linkPosition;
+					return result;
+				},
+
+				{}
+			);
+		},
+
 		centerPosition() {
 			const selectedPassage = document.querySelector(".passage.selected");
 			const startPassage = document.querySelector(".passage.start");
@@ -238,15 +254,19 @@ module.exports = Vue.extend({
 			if (zoomIndex === 0) {
 				if (wraparound) {
 					this.updateStory(
-						this.story.id,
-						{ zoom: zoomLevels[zoomIndex.length - 1] }
+						{
+							id: this.story.id,
+							zoom: zoomLevels[zoomIndex.length - 1]
+						}
 					);
 				}
 			}
 			else {
 				this.updateStory(
-					this.story.id,
-					{ zoom: zoomLevels[zoomIndex - 1] }
+					{
+						id: this.story.id,
+						zoom: zoomLevels[zoomIndex - 1]
+					}
 				);
 			}
 		},
@@ -257,15 +277,19 @@ module.exports = Vue.extend({
 			if (zoomIndex === zoomLevels.length - 1) {
 				if (wraparound) {
 					this.updateStory(
-						this.story.id,
-						{ zoom: zoomLevels[0] }
+						{
+							id: this.story.id,
+							zoom: zoomLevels[0]
+						}
 					);
 				}
 			}
 			else {
 				this.updateStory(
-					this.story.id,
-					{ zoom: zoomLevels[zoomIndex + 1] }
+					{
+						id: this.story.id,
+						zoom: zoomLevels[zoomIndex + 1]
+					}
 				);
 			}
 		},
@@ -319,7 +343,7 @@ module.exports = Vue.extend({
 
 			/* Add it to our collection. */
 
-			this.createPassage(this.story.id, { name, left, top });
+			this.createPassage({id: this.story.id, name, left, top });
 
 			/*
 			Then position it so it doesn't overlap any others, and save it
@@ -328,11 +352,11 @@ module.exports = Vue.extend({
 			
 			const passageId = this.story.passages.find(p => p.name === name).id;
 
-			this.positionPassage(
-				this.story.id,
-				passageId,
-				this.gridSize
-			);
+			this.positionPassage({
+				storyId: this.story.id,
+				passageId: this.story.passages.find(p => p.name === name).id,
+				gridSize: this.gridSize
+			});
 
 			return passageId;
 		},
@@ -349,7 +373,7 @@ module.exports = Vue.extend({
 			let left = (e.pageX / this.story.zoom) -
 				(passageDefaults.width / 2);
 			
-			this.createPassage(null, top, left);
+			this.createPassage({name: null, top, left});
 		},
 
 		/*
@@ -423,7 +447,7 @@ module.exports = Vue.extend({
 						buttonClass: 'danger'
 					}).then(() => {
 						toDelete.forEach(
-							p => this.deletePassage(this.story.id, p.id)
+							p => this.deletePassage({storyId: this.story.id, passageId: p.id})
 						);
 					});
 					break;
@@ -453,12 +477,12 @@ module.exports = Vue.extend({
 			if (passage) {
 				const oldText = passage.text;
 				const afterEdit = () => {
-					this.createNewlyLinkedPassages(
-						story.id,
-						passage.id,
+					this.createNewlyLinkedPassages({
+						storyId: story.id,
+						passageId: passage.id,
 						oldText,
-						this.gridSize
-					);
+						gridSize: this.gridSize
+					});
 				};
 				new PassageEditor({
 					data: {
@@ -516,7 +540,7 @@ module.exports = Vue.extend({
 				yOffset = Math.round(yOffset / zoomedGridSize) * zoomedGridSize;
 			}
 
-			this.$broadcast('passage-drag-complete', xOffset, yOffset);
+			this.$broadcast('passage-drag-complete', xOffset, yOffset); // TODO: check broadcast
 		},
 
 		/*
@@ -526,40 +550,25 @@ module.exports = Vue.extend({
 		*/
 
 		'passage-position'(passage, options) {
-			this.positionPassage(
-				this.story.id,
-				passage.id,
-				this.gridSize,
-				options.ignoreSelected && (otherPassage =>
+			this.positionPassage({
+				storyId: this.story.id,
+				passageId: passage.id,
+				gridSize: this.gridSize,
+				filter: options.ignoreSelected && (otherPassage =>
 					!otherPassage.selected)
-			);
+			});
 		}
 	},
 
 	components: {
-		'link-arrows': require('./link-arrows'),
-		'passage-item': require('./passage-item'),
-		'marquee-selector': require('./marquee-selector'),
-		'chatbot-toolbar': require('../chatbot-toolbar'),
-		'passage-button': require('./passage-button'),
-	},
-
-	vuex: {
-		actions: {
-			createPassage,
-			deletePassage,
-			positionPassage,
-			updatePassage,
-			updateStory,
-			createNewlyLinkedPassages
-		},
-
-		getters: {
-			allFormats: state => state.storyFormat.formats,
-			allStories: state => state.story.stories,
-			defaultFormatName: state => state.pref.defaultFormat
-		}
+		'link-arrows': LinkArrows,
+		'passage-item': PassageItem,
+		'marquee-selector': MarqueeSelector,
+		'chatbot-toolbar': ChatbotToolbar,
+		'passage-button': PassageButton,
 	},
 
 	mixins: [domEvents]
 });
+
+export default ChatbotEditView;

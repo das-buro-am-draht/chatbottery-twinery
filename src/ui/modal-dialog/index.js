@@ -3,10 +3,14 @@ A generic modal dialog component. This implements the Thenable mixin and
 resolves itself when it is closed.
 */
 
-const Vue = require('vue');
-const domEvents = require('../../vue/mixins/dom-events');
-const { thenable, symbols: { reject, resolve } } =
-	require('../../vue/mixins/thenable');
+import Vue from 'vue';
+import domEvents from "../../vue/mixins/dom-events";
+import {
+	thenable,
+	symbols,
+} from "../../vue/mixins/thenable";
+
+const { reject, resolve } = symbols;
 
 const animationEndEvents = [
 	'animationend',
@@ -15,14 +19,15 @@ const animationEndEvents = [
 	'oAnimationEnd'
 ];
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-const ModalDialog = module.exports = Vue.extend({
-	template: require('./index.html'),
+let ModalDialog = Vue.extend({
+	template,
 
 	props: {
-		class: '',
-		title: '',
+		className: "",
+		title: "",
 		origin: null,
 		canWiden: false,
 		canClose: {
@@ -37,57 +42,56 @@ const ModalDialog = module.exports = Vue.extend({
 
 	computed: {
 		classes() {
-			return (this.class || '') + (this.wide ? ' wide' : '');
+			return (this.className || '') + (this.wide ? ' wide' : '');
 		}
 	},
 
-	ready() {
-		const dialog = this.$el.querySelector('.modal-dialog');
+	mounted: function () {
+		this.$nextTick(function () {
+			const dialog = this.$el.querySelector(".modal-dialog");
 
-		/*
-		If an origin is specified, set it as the point the modal dialog grows
-		out of.
-		*/
-
-		if (this.origin) {
-			const originRect = this.origin.getBoundingClientRect();
-
-			dialog.style.transformOrigin =
-				(originRect.left + originRect.width / 2) + 'px ' +
-				(originRect.top + originRect.height / 2) + 'px';
-		}
-
-		const body = document.querySelector('body');
-
-		body.classList.add('modalOpen');
-		
-		this.on(body, 'keyup', (e) => {
-			if (e.keyCode === 27) {
-				e.preventDefault();
-				this.close();
-			}
-		});
-
-		/*
-		We have to listen manually to the end of the transition in order to an
-		emit an event when this occurs; it looks like Vue only consults the
-		top-level element to see when the transition is complete.
-		*/
-
-		const notifier = () => {
 			/*
-			This event is currently only listened to by <code-mirror> child
-			components.
+			If an origin is specified, set it as the point the modal dialog grows
+			out of.
 			*/
-			this.$broadcast('transition-entered');
-			animationEndEvents.forEach(event =>
-				dialog.removeEventListener(event, notifier)
-			);
-		};
 
-		animationEndEvents.forEach(event =>
-			dialog.addEventListener(event, notifier)
-		);
+			if (this.origin) {
+				const originRect = this.origin.getBoundingClientRect();
+
+				dialog.style.transformOrigin =
+					originRect.left +
+					originRect.width / 2 +
+					"px " +
+					(originRect.top + originRect.height / 2) +
+					"px";
+			}
+
+			let body = document.querySelector("body");
+
+			body.classList.add("modalOpen");
+			this.on(body, "keyup", this.escapeCloser);
+
+			/*
+			We have to listen manually to the end of the transition in order to an
+			emit an event when this occurs; it looks like Vue only consults the
+			top-level element to see when the transition is complete.
+			*/
+
+			const notifier = () => {
+				/*
+				This event is currently only listened to by <code-mirror> child
+				components.
+				*/
+				this.$root.$emit("transition-entered");
+				animationEndEvents.forEach((event) =>
+					dialog.removeEventListener(event, notifier)
+				);
+			};
+
+			animationEndEvents.forEach((event) =>
+				dialog.addEventListener(event, notifier)
+			);
+		});
 	},
 
 	destroyed() {
@@ -99,11 +103,16 @@ const ModalDialog = module.exports = Vue.extend({
 
 	methods: {
 		close(message) {
-			if (typeof this.canClose === 'function' && !this.canClose()) {
+			if (typeof this.canClose === "function" && !this.canClose()) {
 				return;
 			}
 
-			this.$emit('close', message);
+			this.$root.$emit("close", message);
+		},
+
+		closeIt(message) {
+			this[resolve](message);
+			this.$destroy(true);
 		},
 
 		toggleWide() {
@@ -117,8 +126,26 @@ const ModalDialog = module.exports = Vue.extend({
 
 			this.$emit('reject', message);
 		},
+
+		escapeCloser(e) {
+			if (e.keyCode === 27) {
+				e.preventDefault();
+				this.close();
+			}
+		},
+
+		eventClose(message) {
+			this[resolve](message);
+			this.$destroy(true);
+		},
+
+		eventReject(message) {
+			this[reject](message);
+			this.$destroy(true);
+		},
 	},
 
+	// TODO: check events
 	events: {
 		close(message) {
 			this[resolve](message);
@@ -169,3 +196,5 @@ ModalDialog.transition('modal-dialog', {
 		overlay.addEventListener('transitionend', done);
 	}
 });
+
+export default ModalDialog;

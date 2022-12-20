@@ -1,21 +1,24 @@
-const Vue = require('vue');
+import Vue from 'vue';
 
-require('./index.less');
+import ModalDialog from '../../ui/modal-dialog';
 
-module.exports = Vue.extend({
+import './index.less';
+import template from './index.html';
+
+const About = Vue.extend({
+	template,
+
 	data: () => ({
 		origin: null
 	}),
 
-	template: require('./index.html'),
-
-	components: {
-		'modal-dialog': require('../../ui/modal-dialog'),
+	computed: {
+		appInfo () { return this.$store.getters.appInfo }, // TODO: do we need it
 	},
 
-	vuex: {
-		getters: {
-			appInfo: state => state.appInfo
-		}
-	}
+	components: {
+		'modal-dialog': ModalDialog,
+	},
 });
+
+export default About;

@@ -2,25 +2,20 @@
 A single passage in the story map.
 */
 
-const escape = require('lodash.escape');
-const Vue = require('vue');
-const PassageEditor = require('../../editors/passage');
-const { confirm } = require('../../dialogs/confirm');
-const domEvents = require('../../vue/mixins/dom-events');
-const locale = require('../../locale');
-const { hasPrimaryTouchUI } = require('../../ui');
-const {
-	createNewlyLinkedPassages,
-	deletePassage,
-	selectPassages,
-	updatePassage
-} =
-	require('../../data/actions/passage');
+import escape from 'lodash.escape';
+import Vue from 'vue';
+import PassageEditor from "../../editors/passage";
+import { confirm } from "../../dialogs/confirm";
+import domEvents from "../../vue/mixins/dom-events";
+import locale from "../../locale";
+import { hasPrimaryTouchUI } from "../../ui";
+import PassageMenu from "./passage-menu";
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const PassageItem = Vue.extend({
+	template,
 
 	props: {
 		passage: {
@@ -79,6 +74,11 @@ module.exports = Vue.extend({
 	}),
 
 	computed: {
+		createNewlyLinkedPassages () { return this.$store._actions.createNewlyLinkedPassages[0] },
+		selectPassages () { return this.$store._actions.selectPassages[0] },
+		updatePassage () { return this.$store._actions.updatePassage[0] },
+		deletePassage () { return this.$store._actions.deletePassage[0] },
+
 		/*
 		The position to use when drawing link arrows to this passage. This does
 		*not* factor in the story's zoom level, as the link arrow component
@@ -170,18 +170,22 @@ module.exports = Vue.extend({
 		},
 	},
 
-	ready() {
-		if (this.passage.width === 100) {
-			this.updatePassage(this.parentStory.id, this.passage.id, {
-				width: 150,
-			});
-			this.$dispatch('passage-position', this.passage, {});
-		}
+	mounted: function () {
+		this.$nextTick(function () {
+			if (this.passage.width === 100) {
+				this.updatePassage({
+					storyId: this.parentStory.id,
+					passageId: this.passage.id,
+					width: 150,
+				});
+				this.$dispatch('passage-position', this.passage, {});
+			}
+		});
 	},
 
 	methods: {
 		delete() {
-			this.deletePassage(this.parentStory.id, this.passage.id);
+			this.deletePassage({storyId: this.parentStory.id, passageId: this.passage.id});
 		},
 
 		edit() {
@@ -194,12 +198,12 @@ module.exports = Vue.extend({
 
 			const oldText = this.passage.text;
 			const afterEdit = () => {
-				this.createNewlyLinkedPassages(
-					this.parentStory.id,
-					this.passage.id,
+				this.createNewlyLinkedPassages({
+					storyId: this.parentStory.id,
+					passageId: this.passage.id,
 					oldText,
-					this.gridSize
-				);
+					gridSize: this.gridSize
+				});
 			};
 
 			/*
@@ -238,13 +242,13 @@ module.exports = Vue.extend({
 				or control key was not held down, select only ourselves.
 				*/
 
-				this.selectPassages(this.parentStory.id, p => {
+				this.selectPassages({storyId: this.parentStory.id, filter: p => {
 					if (p === this.passage) {
 						return !p.selected;
 					}
 
 					return p.selected;
-				});
+				}});
 			}
 			else if (!this.passage.selected) {
 				/*
@@ -255,10 +259,7 @@ module.exports = Vue.extend({
 				in the mouse up handler, above.
 				*/
 
-				this.selectPassages(
-					this.parentStory.id,
-					p => p === this.passage
-				);
+				this.selectPassages({storyId: this.parentStory.id, filter: (p) => p === this.passage});
 			}
 
 			/* Begin tracking a potential drag. */
@@ -331,7 +332,7 @@ module.exports = Vue.extend({
 			
 			if (this.dragXOffset === 0 && this.dragYOffset === 0) {
 				if (!(e.ctrlKey || e.shiftKey)) {
-					this.selectPassages(this.parentStory.id, p => p !== this);
+					this.selectPassages({storyId: this.parentStory.id, filter: p => p !== this});
 				}
 			}
 			else {
@@ -411,11 +412,12 @@ module.exports = Vue.extend({
 				/ this.parentStory.zoom; 
 				
 				if (this.passage.top !== top || this.passage.left !== left) {
-					this.updatePassage(
-						this.parentStory.id,
-						this.passage.id,
-						{ top, left }
-					);
+					this.updatePassage({
+						storyId: this.parentStory.id,
+						passageId: this.passage.id,
+						top,
+						left,
+					});
 				}
 
 				/*
@@ -442,17 +444,10 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'passage-menu': require('./passage-menu')
-	},
-
-	vuex: {
-		actions: {
-			createNewlyLinkedPassages,
-			selectPassages,
-			updatePassage,
-			deletePassage
-		}
+		'passage-menu': PassageMenu
 	},
 
 	mixins: [domEvents]
 });
+
+export default PassageItem;

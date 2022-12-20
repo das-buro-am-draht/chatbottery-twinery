@@ -3,25 +3,25 @@
 // structures, where each preference had to have its own ID.
 
 module.exports = {
-	state: {
-		appTheme: 'light',
-		defaultFormat: 'Chatbottery',
-		donateShown: false,
-		firstRunTime: new Date().getTime(),
-		lastUpdateSeen: '',
-		lastUpdateCheckTime: new Date().getTime(),
-		locale:
-			// window.navigator.userLanguage ||
-			// window.navigator.language ||
-			// window.navigator.browserLanguage ||
-			// window.navigator.systemLanguage ||
-			'en',
-		proofingFormat: 'Illume', // 'Paperthin',
-		welcomeSeen: false,
-	},
+	// state: {
+	// 	appTheme: 'light',
+	// 	defaultFormat: 'Chatbottery',
+	// 	donateShown: false,
+	// 	firstRunTime: new Date().getTime(),
+	// 	lastUpdateSeen: '',
+	// 	lastUpdateCheckTime: new Date().getTime(),
+	// 	locale:
+	// 		// window.navigator.userLanguage ||
+	// 		// window.navigator.language ||
+	// 		// window.navigator.browserLanguage ||
+	// 		// window.navigator.systemLanguage ||
+	// 		'en',
+	// 	proofingFormat: 'Illume', // 'Paperthin',
+	// 	welcomeSeen: false,
+	// },
 
 	mutations: {
-		UPDATE_PREF(state, name, value) {
+		UPDATE_PREF(state, {name, value}) {
 			state[name] = value;
 		}
 	}

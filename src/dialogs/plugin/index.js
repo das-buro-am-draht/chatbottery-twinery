@@ -1,16 +1,17 @@
 // A component showing a modal dialog where a story's JavaSCript.
 
-const { trim } = require("lodash");
-const Vue = require("vue");
-const { updateStory } = require("../../data/actions/story");
-const { isValidUrl } = require("../../utils/common");
+import trim from "lodash/trim";
+import Vue from "vue";
+import { isValidUrl } from "../../utils/common";
+import ModalDialog from "../../ui/modal-dialog";
 
-require("./index.less");
+import "./index.less";
+import template from "./index.html";
 
 const plugins = ['matomo', 'google', 'chat'];
 
 module.exports = Vue.extend({
-	template: require("./index.html"),
+	template,
 
 	data: () => ({
 		storyId: null,
@@ -39,26 +40,31 @@ module.exports = Vue.extend({
 		matomoHostToEnv: [],
 	}),
 
-	ready() {
-		const data = this.getPluginsData();
-		if (data) {
-			plugins.forEach((plugin => {
-				if (data[plugin]) {
-					Object.entries(data[plugin]).forEach(([key, entry]) => this[plugin][key] = entry);
-				}
-				this[plugin].enabled = !!data[plugin];
-			}))
-		}
-		this.matomoHostToEnv = Object.entries(this.matomo.browserHostToEnvironmentMap || {});
-		if (!this.matomoHostToEnv.length) {
-			this.add(this.matomoHostToEnv);
-		}
-		if (!this.chat.userVariables.length) {
-			this.addUserVariable(this.chat.userVariables);
-		}
+	mounted: function () {
+		this.$nextTick(function () {
+			const data = this.getPluginsData();
+			if (data) {
+				plugins.forEach((plugin => {
+					if (data[plugin]) {
+						Object.entries(data[plugin]).forEach(([key, entry]) => this[plugin][key] = entry);
+					}
+					this[plugin].enabled = !!data[plugin];
+				}))
+			}
+			this.matomoHostToEnv = Object.entries(this.matomo.browserHostToEnvironmentMap || {});
+			if (!this.matomoHostToEnv.length) {
+				this.add(this.matomoHostToEnv);
+			}
+			if (!this.chat.userVariables.length) {
+				this.addUserVariable(this.chat.userVariables);
+			}
+		});
 	},
 
 	computed: {
+		updateStory () { return this.$store._actions.updateStory[0] },
+		allStories () { return this.$store.getters.allStories },
+
 		isValidMatomoPHPUrl() {
 			return this.matomo.url && isValidUrl(this.matomo.url);
 		},
@@ -131,22 +137,12 @@ module.exports = Vue.extend({
 				return plugins;
 			}, {});
 
-			this.updateStory(this.storyId, { plugins: data });
+			this.updateStory({storyId: this.storyId, plugins: data });
 			this.$refs.modal.close();
 		},
 	},
 
-	vuex: {
-		actions: {
-			updateStory,
-		},
-
-		getters: {
-			allStories: (state) => state.story.stories,
-		},
-	},
-
 	components: {
-		"modal-dialog": require("../../ui/modal-dialog"),
+		"modal-dialog": ModalDialog,
 	},
 });

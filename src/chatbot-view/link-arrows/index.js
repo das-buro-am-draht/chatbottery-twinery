@@ -2,13 +2,15 @@
 Draws connector lines between passages.
 */
 
-const Vue = require('vue');
-const linkDivider = require('../../data/link-divider');
+import Vue from 'vue';
+import linkDivider from '../../data/link-divider';
+import LinkArrow from './link-arrow';
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const LinkArrows = Vue.extend({
+	template,
 
 	props: {
 		passages: {
@@ -71,6 +73,8 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'link-arrow': require('./link-arrow')
+		'link-arrow': LinkArrow
 	}
 });
+
+export default LinkArrows;

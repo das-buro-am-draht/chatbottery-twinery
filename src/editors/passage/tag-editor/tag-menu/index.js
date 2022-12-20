@@ -1,11 +1,11 @@
-const Vue = require('vue');
-const without = require('lodash.without');
-const { setTagColorInStory } = require('../../../../data/actions/story');
-const { updatePassage } = require('../../../../data/actions/passage');
+import Vue from 'vue';
+import without from 'lodash.without';
+import DropDown from '../../../../ui/drop-down';
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
+const PassageTagMenu = Vue.extend({
 	props: {
 		tag: {
 			type: String,
@@ -21,26 +21,29 @@ module.exports = Vue.extend({
 		}
 	},
 
-	template: require('./index.html'),
+	template,
+
+	computed: {
+		updatePassage () { return this.$store._actions.updatePassage[0] },
+		setTagColorInStory () { return this.$store._actions.setTagColorInStory[0] },
+	},
 
 	methods: {
 		remove() {
-			this.updatePassage(
-				this.storyId,
-				this.passage.id,
-				{ tags: without(this.passage.tags, this.tag) }
-			);
+			this.updatePassage({
+				storyId: this.storyId,
+				passageId: this.passage.id,
+				tags: without(this.passage.tags, this.tag)
+			});
 		},
 		setColor(color) {
-			this.setTagColorInStory(this.storyId, this.tag, color);
+			this.setTagColorInStory({storyId: this.storyId, tagName: this.tag, tagColor: color});
 		}
 	},
 
-	vuex: {
-		actions: { setTagColorInStory, updatePassage }
-	},
-
 	components: {
-		'drop-down': require('../../../../ui/drop-down')
+		'drop-down': DropDown
 	}
 });
+
+export default PassageTagMenu;

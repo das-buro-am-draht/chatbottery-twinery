@@ -1,7 +1,6 @@
 /* Functions for moving story formats in and out of local storage. */
 
-const uuid = require('tiny-uuid');
-const { createFormat } = require('../actions/story-format');
+import uuid from 'tiny-uuid';
 
 module.exports = {
 	save(store) {
@@ -56,7 +55,7 @@ module.exports = {
 					window.localStorage.getItem('twine-storyformats-' + id)
 				);
 
-				createFormat(store, item);
+				store._actions.createFormat(item);
 			}
 			catch (e) {
 				console.warn(

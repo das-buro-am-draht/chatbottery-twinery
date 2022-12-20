@@ -1,28 +1,30 @@
 // Shows a dialog asking the user to make a donation.
 
-const Vue = require('vue');
-const { setPref } = require('../../data/actions/pref');
+import Vue from 'vue';
 
-require('./index.less');
+import ModalDialog from '../../ui/modal-dialog';
+
+import './index.less';
+import template from './index.html';
 
 // How long we wait after the user first starts using Twine to show a message
 // asking for a donation, in milliseconds. This is currently 14 days.
 
 const DONATION_DELAY = 1000 * 60 * 60 * 24 * 14;
 
-const donation = module.exports = {
+const donation = {
 	check(store) {
 		const now = new Date().getTime();
 
 		if (!store.state.pref.donateShown &&
 			now > store.state.pref.firstRunTime + DONATION_DELAY) {
-			setPref(store, 'donateShown', true);
+			store._actions.setPref[0]({name: 'donateShown', value: true});
 			new donation.component().$mountTo(document.body);
 		}
 	},
 
 	component: Vue.extend({
-		template: require('./index.html'),
+		template,
 
 		methods: {
 			donate() {
@@ -36,8 +38,9 @@ const donation = module.exports = {
 		},
 
 		components: {
-			'modal-dialog': require('../../ui/modal-dialog')
+			'modal-dialog': ModalDialog
 		}
 	})
 };
 
+export default donation;

@@ -3,10 +3,10 @@ A Vuex module for working with stories. This is meant to be incorporated by
 index.js.
 */
 
-const uuid = require('tiny-uuid');
-const locale = require('../../locale');
-const idFor = require('../id');
-const ui = require('../../ui');
+import uuid from 'tiny-uuid';
+import locale from '../../locale';
+import idFor from '../id';
+import ui from '../../ui';
 
 /*
 A shorthand function for finding a particular story in the state, or a
@@ -14,7 +14,7 @@ particular passage in a story.
 */
 
 function getStoryById(state, id) {
-	let story = state.stories.find(story => story.id === id);
+	let story = state.story.stories.find(story => story.id === id);
 
 	if (!story) {
 		throw new Error(`No chatbot exists with id ${id}`);
@@ -33,10 +33,38 @@ function getPassageInStory(story, id) {
 	return passage;
 }
 
-const storyStore = (module.exports = {
-	state: {
-		stories: []
-	},
+/* Defaults for newly-created objects. */
+
+export const storyDefaults = {
+	name: locale.say('Untitled Story'),
+	startPassage: -1,
+	zoom: 1,
+	snapToGrid: false,
+	stylesheet: '',
+	script: '',
+	storyFormat: '',
+	storyFormatVersion: ''
+};
+
+export const passageDefaults = {
+	story: -1,
+	top: 0,
+	left: 0,
+	width: 150,
+	height: 100,
+	tags: [],
+	name: locale.say('Untitled Passage'),
+	selected: false,
+
+	text: ui.hasPrimaryTouchUI()
+		? locale.say('Tap this passage, then the pencil icon to edit it.')
+		: locale.say('Double-click this passage to edit it.')
+};
+
+const storyStore = {
+	// state: {
+	// 	stories: []
+	// },
 
 	mutations: {
 		CREATE_STORY(state, props) {
@@ -51,7 +79,7 @@ const storyStore = (module.exports = {
 					plugins: {},
 					userData: {},
 				},
-				storyStore.storyDefaults,
+				storyDefaults,
 				props
 			);
 
@@ -59,23 +87,23 @@ const storyStore = (module.exports = {
 				story.passages.forEach(passage => (passage.story = story.id));
 			}
 
-			state.stories.push(story);
+			state.story.stories.push(story);
 		},
 
-		UPDATE_STORY(state, id, props) {
-			let story = getStoryById(state, id);
+		UPDATE_STORY(state, props) {
+			let story = getStoryById(state, props.id);
 
 			Object.assign(story, props);
 			story.lastUpdate = new Date();
 		},
 
-		DUPLICATE_STORY(state, id, newName) {
+		DUPLICATE_STORY(state, {id, name}) {
 			const original = getStoryById(state, id);
 
 			let story = Object.assign({}, original, {
-				id: idFor(newName),
+				id: idFor(name),
 				ifid: uuid().toUpperCase(),
-				name: newName
+				name
 			});
 
 			/* We need to do a deep copy of the passages. */
@@ -84,7 +112,7 @@ const storyStore = (module.exports = {
 
 			original.passages.forEach(originalPassage => {
 				const passage = Object.assign({}, originalPassage, {
-					id: idFor(newName + originalPassage.name),
+					id: idFor(name + originalPassage.name),
 					story: story.id
 				});
 
@@ -125,14 +153,14 @@ const storyStore = (module.exports = {
 			});
 
 			delete toImport.startPassagePid;
-			state.stories.push(toImport);
+			state.story.stories.push(toImport);
 		},
 
 		DELETE_STORY(state, id) {
-			state.stories = state.stories.filter(story => story.id !== id);
+			state.stories = state.story.stories.filter(story => story.id !== id);
 		},
 
-		CREATE_PASSAGE_IN_STORY(state, storyId, props) {
+		CREATE_PASSAGE_IN_STORY(state, props) {
 			/*
 			uuid is used here as a salt so that passages always contain unique
 			IDs in Electron (which otherwise uses deterministic IDs based on
@@ -140,12 +168,12 @@ const storyStore = (module.exports = {
 			to have.
 			*/
 			
-			let story = getStoryById(state, storyId);
+			let story = getStoryById(state, props.id);
 			let newPassage = Object.assign(
 				{
 					id: idFor(story.name + uuid())
 				},
-				storyStore.passageDefaults,
+				passageDefaults,
 				props
 			);
 
@@ -172,11 +200,11 @@ const storyStore = (module.exports = {
 			story.lastUpdate = new Date();
 		},
 
-		UPDATE_PASSAGE_IN_STORY(state, storyId, passageId, props) {
+		UPDATE_PASSAGE_IN_STORY(state, props) {
 			let story;
 
 			try {
-				story = getStoryById(state, storyId);
+				story = getStoryById(state, props.storyId);
 			} catch (e) {
 				return;
 			}
@@ -197,7 +225,7 @@ const storyStore = (module.exports = {
 			let passage;
 
 			try {
-				passage = getPassageInStory(story, passageId);
+				passage = getPassageInStory(story, props.passageId);
 			} catch (e) {
 				return;
 			}
@@ -206,7 +234,7 @@ const storyStore = (module.exports = {
 			story.lastUpdate = new Date();
 		},
 
-		DELETE_PASSAGE_IN_STORY(state, storyId, passageId) {
+		DELETE_PASSAGE_IN_STORY(state, {storyId, passageId}) {
 			let story = getStoryById(state, storyId);
 
 			story.passages = story.passages.filter(
@@ -214,33 +242,7 @@ const storyStore = (module.exports = {
 			);
 			story.lastUpdate = new Date();
 		}
-	},
-
-	/* Defaults for newly-created objects. */
-
-	storyDefaults: {
-		name: locale.say('Untitled Story'),
-		startPassage: -1,
-		zoom: 1,
-		snapToGrid: false,
-		stylesheet: '',
-		script: '',
-		storyFormat: '',
-		storyFormatVersion: ''
-	},
-
-	passageDefaults: {
-		story: -1,
-		top: 0,
-		left: 0,
-		width: 150,
-		height: 100,
-		tags: [],
-		name: locale.say('Untitled Passage'),
-		selected: false,
-
-		text: ui.hasPrimaryTouchUI()
-			? locale.say('Tap this passage, then the pencil icon to edit it.')
-			: locale.say('Double-click this passage to edit it.')
 	}
-});
+};
+
+export default storyStore;

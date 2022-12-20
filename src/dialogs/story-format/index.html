@@ -5,10 +5,12 @@
 		{{ 'A chatbot format controls the appearance and behavior of your chatbot during play.' | say }}
 	</p>
 
-	<p v-if="working" transition="fade-in-out">
-		<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
-	</p>
-
+	<transition name="fade-in-out">
+		<p v-if="working">
+			<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
+		</p>	
+	</transition>
+	
 	<table class="lined">
 		<tbody>
 			<tr v-for="format in loadedFormats" is="format-item" :format="format" :story="story" transition="fade-in-out" track-by="$index"></tr>

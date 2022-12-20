@@ -1,15 +1,21 @@
 // The side toolbar of a story list.
 
-const Vue = require("vue");
+import Vue from 'vue';
 
-require("./index.less");
+import "./index.less";
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require("./index.html"),
+const HomeWordpressNews = Vue.extend({
+	template,
 
 	data: () => ({
 		news: []
 	}),
+
+	computed: {
+		appInfo () { return this.$store.getters.appInfo },
+		existingStories () { return this.$store.getters.existingStories }
+	},
 
 	methods: {
 		openRedirect(url) {
@@ -20,43 +26,34 @@ module.exports = Vue.extend({
 			const day = date.getDate();
 			const month = date.getMonth() + 1;
 			const year = date.getFullYear();
+
 			return `${day}.${month}.${year}`;
 		},
 		transformContent(_content) {
-			return _content.replace( /(<([^>]+)>)/ig, '').trim()
+			return _content.replace( /(<([^>]+)>)/ig, '').trim();
 		},
 	},
 
-	activate: function (done) {
-		const self = this;
-		const url =
-			"https://chatbottery.com/wp-json/wp/v2/posts?categories=11&_embed&filter[orderby]=date&order=desc";
+	mounted: function () {
+		this.$nextTick(function () {
+			const self = this;
+			const url =
+				"https://chatbottery.com/wp-json/wp/v2/posts?categories=11&_embed&filter[orderby]=date&order=desc";
 
-		fetch(url, { method: "GET" }).then((response) => {
-			response
-				.json()
-				.then(data => {
-					const news = data.map(({title: {rendered: title}, excerpt: {rendered: excerpt}, link, date: _date}) => {
-						const date = self.transformDate(_date);
-						const content = self.transformContent(excerpt);
-						return {title, content, link, date};
+			fetch(url, { method: "GET" }).then((response) => {
+				response
+					.json()
+					.then(data => {
+						const news = data.map(({title: {rendered: title}, excerpt: {rendered: excerpt}, link, date: _date}) => {
+							const date = self.transformDate(_date);
+							const content = self.transformContent(excerpt)
+							return {title, content, link, date};
+						});
+						self.news = news;
 					});
-					self.news = news;
-				});
-		})
-		.then(() => done());
-	},
-
-	components: {},
-
-	events: {},
-
-	vuex: {
-		actions: {},
-
-		getters: {
-			appInfo: state => state.appInfo,
-			existingStories: state => state.story.stories
-		}
+			});
+		});
 	},
 });
+
+export default HomeWordpressNews;

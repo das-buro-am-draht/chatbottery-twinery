@@ -1,11 +1,12 @@
 // The new passage button at the bottom of the screen.
 
-const Vue = require('vue');
+import Vue from 'vue';
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const PassageButton = Vue.extend({
+	template,
 
 	methods: {
 		addPassage() {
@@ -13,3 +14,5 @@ module.exports = Vue.extend({
 		}
 	},
 });
+
+export default PassageButton;

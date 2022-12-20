@@ -4,7 +4,9 @@
         {{ 'There are no chatbots saved in Chatbottery right now. To get started, you can either create a new chatbot or import an existing one from a file.' | say }}
     </p>
     <div class="chatbotsContent--stories">
-        <story-item v-for="story in sortedStories" :story="story" transition="grow-in-out" track-by="id"></story-item>
+        <transition name="grow-in-out">
+            <story-item v-for="story in sortedStories" :story="story" track-by="id"></story-item>
+        </transition>
     </div>
     <footer class="chatbotsContent--footer">
         <button class="chatbotsContent--import-chatbot" title="Import chatbot" @click="importFile">

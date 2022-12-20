@@ -1,18 +1,21 @@
 // The side toolbar of a story list.
 
-const Vue = require("vue");
+import Vue from 'vue';
 
-require("./index.less");
+import "./index.less";
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require("./index.html"),
+const CheckChrome = Vue.extend({
+	template,
 
 	data: () => ({
 		chromeActive: false,
 	}),
 
-	activate: function (done) {
+	beforeRouteEnter: function (done) {
 		this.chromeActive = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 		done();
 	},
 });
+
+export default CheckChrome;

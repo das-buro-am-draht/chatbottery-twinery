@@ -1,5 +1,5 @@
-const Vue = require('vue');
-const rect = require('../../common/rect');
+import Vue from 'vue';
+import rect from '../../common/rect';
 
 /*
 Renders an SVG arc. This expects an object with start, radius, largeArc,
@@ -17,7 +17,7 @@ function arc(props) {
 		end.left + ',' + end.top;
 }
 
-module.exports = Vue.extend({
+const LinkArrow = Vue.extend({
 	template: '<path :d="pathString" class="marker-{{markerType}} marker-line-{{line}}"></path>',
 
 	props: {
@@ -218,3 +218,5 @@ module.exports = Vue.extend({
 		}
 	}
 });
+
+export default LinkArrow;

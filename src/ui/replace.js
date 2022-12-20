@@ -7,9 +7,9 @@
 **/
 
 'use strict';
-const ui = require('./index.js');
+import ui from './index.js';
 
-module.exports = html => {
+const replaceUI = html => {
 	// remove our UI hooks
 
 	ui.destroy();
@@ -34,3 +34,5 @@ module.exports = html => {
 	/* jshint +W060 */
 	document.close();
 };
+
+export default replaceUI;

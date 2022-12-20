@@ -1,18 +1,18 @@
 <modal-dialog :class="'prompt no-header ' + modalClass" :origin="origin">
 	<form @submit.prevent="accept">
-		<div class="message larger">{{{message}}}</div>
+		<div class="message larger" v-html="message" />
 
-		<p class="error" v-if="!isValid" transition="fade-in-out">
-			{{ validationError }}
-		</p>
+		<transition name="fade-in-out">
+			<p class="error" v-if="!isValid" v-html="validationError" />
+		</transition>
 
 		<p class="prompt">
 			<input type="text" class="block" required v-model="response" v-el:response>
 		</p>
 
 		<p class="buttons">
-			<button type="button" @click="cancel">{{{cancelLabel}}}</button>
-			<button type="submit" :class="buttonClass">{{{buttonLabel}}}</button>
+			<button type="button" @click="cancel" v-html="cancelLabel" />
+			<button type="submit" :class="buttonClass" v-html="buttonLabel" />
 		</p>
 	</form>
 </modal-dialog>
