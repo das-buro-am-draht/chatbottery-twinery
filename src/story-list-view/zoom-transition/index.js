@@ -1,16 +1,19 @@
-'use strict';
-const Vue = require('vue');
-const { ZOOM_MAPPINGS } = require('../../chatbot-edit-view');
-const { thenable, symbols:{ resolve } } = require('../../vue/mixins/thenable');
+"use strict";
+import Vue from 'vue';
+const { ZOOM_MAPPINGS } = require("../../chatbot-edit-view");
+const {
+	thenable,
+	symbols: { resolve },
+} = require("../../vue/mixins/thenable");
 
-require('./index.less');
+require("./index.less");
 
-module.exports = Vue.extend({
+const ZoomTransition = Vue.extend({
 	data: () => ({
 		zoom: 0,
 		x: window.innerWidth / 2,
 		y: window.innerHeight / 2,
-		url: '',
+		url: "",
 		reverse: false,
 	}),
 
@@ -22,21 +25,23 @@ module.exports = Vue.extend({
 		zoomClass() {
 			for (let desc in ZOOM_MAPPINGS) {
 				if (ZOOM_MAPPINGS[desc] === this.zoom) {
-					return 'zoom-' + desc;
+					return "zoom-" + desc;
 				}
 			}
 
-			return '';
+			return "";
 		},
 	},
 
-	ready() {
-		/*
+	mounted: function () {
+		this.$nextTick(function () {
+			/*
 		Ugly hack to make this work on NW.js, which Vue doesn't seem to process
 		animation events correctly for.
 		*/
 
-		window.setTimeout(this.animationend, 200);
+			window.setTimeout(this.animationend, 200);
+		});
 	},
 
 	methods: {
@@ -50,5 +55,7 @@ module.exports = Vue.extend({
 		},
 	},
 
-	mixins: [thenable]
+	mixins: [thenable],
 });
+
+export default ZoomTransition;

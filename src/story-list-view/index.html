@@ -16,15 +16,15 @@
 			<label>{{ 'Sort By' | say }}</label>
 
 			<span class="button-group">
-				<button class="{{ 'subtle' + (storyOrder === 'lastUpdate' ? ' active' : '') }}" @click="sortByDate" title="{{ 'Last changed date' | say }}">
+				<button class="{{ 'subtle' + (storyOrder === 'lastUpdate' ? ' active' : '') }}" @click="sortByDate" v-bind:title="'Last changed date' | say">
 					{{ 'Edit Date' | say }}
 
-					<i class="fa fa-sort-amount-{{storyOrderDir}}" v-if="storyOrder === 'lastUpdate'"></i>
+					<i v-bind:class="'fa fa-sort-amount-' + storyOrderDir"" v-if="storyOrder === 'lastUpdate'"></i>
 				</button>
 
-				<button class="{{ 'subtle' + (storyOrder === 'name' ? ' active' : '') }}" @click="sortByName" title="{{ 'Chatbot name' | say }}">
+				<button class="{{ 'subtle' + (storyOrder === 'name' ? ' active' : '') }}" @click="sortByName" v-bind:title="'Chatbot name' | say">
 					{{ 'Name' | say }}
-					<i class="fa fa-sort-alpha-{{storyOrderDir}}" v-if="storyOrder === 'name'"></i>
+					<i v-bind:class="'fa fa-sort-alpha-' + storyOrderDir" v-if="storyOrder === 'name'"></i>
 				</button>
 			</span>
 		</p>
@@ -35,7 +35,9 @@
 				{{ 'There are no chatbots saved in Chatbottery right now. To get started, you can either create a new chatbot or import an existing one from a file.' | say }}
 			</p>
 
-			<story-item v-for="story in sortedStories" :story="story" transition="grow-in-out" track-by="id"></story-item>
+			<transition name="grow-in-out">
+				<story-item v-for="story in sortedStories" :story="story" v-bind:key="passage.id"></story-item>
+			</transition>
 		</div>
 	</div> <!-- .main -->
 </div> <!-- #storyListView -->

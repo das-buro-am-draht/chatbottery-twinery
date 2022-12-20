@@ -4,12 +4,12 @@
 
 'use strict';
 const moment = require('moment');
-const Vue = require('vue');
+import Vue from 'vue';
 const ZoomTransition = require('../zoom-transition');
 
 require('./index.less');
 
-module.exports = Vue.extend({
+const StoryItem = Vue.extend({
 	template: require('./index.html'),
 
 	props: {
@@ -97,3 +97,5 @@ module.exports = Vue.extend({
 		}
 	}
 });
+
+export default StoryItem;

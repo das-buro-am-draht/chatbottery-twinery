@@ -5,11 +5,11 @@
 			<path d="M0.933088 0.250227C0.69383 0.112043 0.388166 0.194075 0.249983 0.433332C0.111799 0.67259 0.19383 0.978254 0.433088 1.11644L4.87889 3.68333L0.433088 6.25023C0.19383 6.38841 0.111799 6.69407 0.249983 6.93333C0.388166 7.17259 0.69383 7.25413 0.933088 7.11644L6.12913 4.11644C6.13402 4.11351 6.13597 4.11253 6.14085 4.1096C6.2097 4.06761 6.26903 4.00804 6.31224 3.93333C6.40379 3.77464 6.39866 3.58616 6.31468 3.43724C6.31175 3.43187 6.30858 3.42698 6.3054 3.42161C6.26341 3.35277 6.20384 3.2932 6.12913 3.25023L6.12034 3.24534"/>
 		</marker>
 		<marker id="link-broken" refX="4.5" refY="4.5" markerWidth="10" markerHeight="10">
-			<path d="M 1,2 2,1 5,4 8,1 9,2 6,5 9,8 8,9, 5,6 2,9 1,8 4,5 Z">
+			<path d="M 1,2 2,1 5,4 8,1 9,2 6,5 9,8 8,9, 5,6 2,9 1,8 4,5 Z"/>
 		</marker>
 	</defs>
 
-	<style>
+	<!-- <style>
 		.marker-arrow {
 			marker-end: url(#link-arrowhead);
 		}
@@ -21,9 +21,9 @@
 		.marker-line-dashed {
 			stroke-dasharray: 6;
 		}
-	</style>
+	</style> -->
 
-	<template v-for="(start, startLinks) in links" track-by="$index">
+	<template v-for="(startLinks, start) in links" track-by="$index">
 		<template v-for="end in startLinks.goto" track-by="$index">
 			<link-arrow :start="positions[start]" :end="positions[end]" line="dashed"></link-arrow>
 		</template>
@@ -31,4 +31,13 @@
 			<link-arrow :start="positions[start]" :end="positions[end]" line="solid"></link-arrow>
 		</template>
 	</template>
+
+	<!-- <template v-for="(start, startLinks) in links">
+		<template v-for="end in startLinks.goto">
+			<link-arrow :key="end.index" :start="positions[start]" :end="positions[end]" line="dashed"></link-arrow>
+		</template>
+		<template v-for="end in startLinks.actOrBtn">
+			<link-arrow :key="end.index" :start="positions[start]" :end="positions[end]" line="solid"></link-arrow>
+		</template>
+	</template> -->
 </svg>

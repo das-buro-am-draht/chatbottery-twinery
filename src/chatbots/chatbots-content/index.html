@@ -8,7 +8,10 @@
         {{ 'There are no chatbots saved in Chatbottery right now. To get started, you can either create a new chatbot or import an existing one from a file.' | say }}
     </p>
     <div class="chatbotsContent--stories">
-        <story-item v-for="story in sortedStories" :story="story" transition="grow-in-out" track-by="id"></story-item>
+        <!-- <transition-group name="grow-in-out"> -->
+            <!-- <story-item v-for="story in sortedStories" :story="story" v-bind:key="passage.id"></story-item> -->
+            <story-item v-for="story in sortedStories" :story="story" v-bind:key="story.id"></story-item>
+        <!-- </transition-group> -->
     </div>
     <footer class="chatbotsContent--footer">
         <button class="chatbotsContent--import-chatbot" title="Import chatbot" @click="importFile">
@@ -23,4 +26,5 @@
     </footer>
 
     <file-drag-n-drop>{{ 'Drop a chatbot file to import' | say}}</file-drag-n-drop>
+    <slot name="modal-dialog"></slot>
 </div>

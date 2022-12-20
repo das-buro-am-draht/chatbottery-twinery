@@ -1,12 +1,15 @@
 // The side toolbar of a story list.
 
-const Vue = require('vue');
-const {setPref} = require('../data/actions/pref');
+import Vue from 'vue';
+import QuotaGauge from '../ui/quota-gauge';
+import CheckLocalState from './check-local-state';
+import CheckChrome from './check-chrome';
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const AsideNavigation = Vue.extend({
+	template,
 
 	data: () => ({
 		storiesLength: null
@@ -19,13 +22,18 @@ module.exports = Vue.extend({
 		},
 	},
 
+	computed: {
+		setPref () { return this.$store._actions.setPref[0] },
+		stories () { return this.$store.getters.stories },
+	},
+
 	methods: {
 		openRedirect(url) {
 			window.open(url, "_blank") || window.location.replace(url);
 		}
 	},
 
-	activate: function (done) {
+	beforeRouteEnter: function (done) {
 		const storiesLength = this.stories.length;
 
 		this.storiesLength = storiesLength;
@@ -34,18 +42,10 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'quota-gauge': require('../ui/quota-gauge'),
-		'check-local-state': require('./check-local-state'),
-		'check-chrome': require('./check-chrome')
+		'quota-gauge': QuotaGauge,
+		'check-local-state': CheckLocalState,
+		'check-chrome': CheckChrome
 	},
-
-	vuex: {
-		actions: {
-			setPref
-		},
-
-		getters: {
-			stories: state => state.story.stories,
-		},
-	}
 });
+
+export default AsideNavigation;

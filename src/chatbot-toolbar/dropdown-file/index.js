@@ -3,20 +3,20 @@ Shows a quick search field, which changes passage highlights, and a button to
 show the search modal dialog.
 */
 
-const Vue = require("vue");
-const locale = require("../../locale");
-const { prompt } = require("../../dialogs/prompt");
-const StatsDialog = require("../../dialogs/story-stats");
-const TrackingDialog = require("../../dialogs/tracking");
+import Vue from 'vue';
+import locale from "../../locale";
+import { prompt } from "../../dialogs/prompt";
+import StatsDialog from "../../dialogs/story-stats";
+import TrackingDialog from "../../dialogs/tracking";
 // const FormatDialog = require('../../dialogs/story-format');
-const FormatsDialog = require("../../dialogs/formats");
+import FormatsDialog from "../../dialogs/formats";
 // const ClickOutside = require('vue-click-outside');
-const { updateStory } = require("../../data/actions/story");
 
-require("./index.less");
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require("./index.html"),
+const DropdownFile = Vue.extend({
+	template,
 
 	props: {
 		story: {
@@ -28,6 +28,10 @@ module.exports = Vue.extend({
 	data: () => ({
 		active: false,
 	}),
+
+	computed: {
+		updateStory () { return this.$store._actions.updateStory[0] },
+	},
 
 	methods: {
 		toggleDropdown() {
@@ -46,7 +50,7 @@ module.exports = Vue.extend({
 				response: this.story.name,
 				blankTextError: locale.say("Please enter a name."),
 				origin: e.target,
-			}).then((text) => this.updateStory(this.story.id, { name: text }));
+			}).then((text) => this.updateStory({id: this.story.id, name: text }));
 		},
 		storyStats(e) {
 			new StatsDialog({
@@ -71,10 +75,6 @@ module.exports = Vue.extend({
 			}).$mountTo(document.body);
 		},
 	},
-
-	vuex: {
-		actions: {
-			updateStory,
-		},
-	},
 });
+
+export default DropdownFile;

@@ -25,28 +25,29 @@ module.exports = store => {
 	enabled = true;
 
 	store.subscribe((mutation, state) => {
+		
 		if (!enabled) {
 			return;
 		}
 
 		switch (mutation.type) {
-			case 'CREATE_STORY':
+			case 'CREATE_STORY': {
 				story.update(transaction => {
 					story.saveStory(
 						transaction,
 						state.story.stories.find(
-							s => s.name === mutation.payload[0].name
+							s => s.name === mutation.payload.name
 						)
 					);
 				});
 				break;
-
+			}
 			case 'UPDATE_STORY':
 				story.update(transaction => {
 					story.saveStory(
 						transaction,
 						state.story.stories.find(
-							s => s.id === mutation.payload[0]
+							s => s.id === mutation.payload.id
 						)
 					);
 				});
@@ -55,7 +56,7 @@ module.exports = store => {
 			case 'DUPLICATE_STORY':
 				story.update(transaction => {
 					const dupe = state.story.stories.find(
-						s => s.name === mutation.payload[1]
+						s => s.name === mutation.payload.name
 					);
 
 					story.saveStory(transaction, dupe);
@@ -69,7 +70,7 @@ module.exports = store => {
 			case 'IMPORT_STORY':
 				story.update(transaction => {
 					const imported = state.story.stories.find(
-						s => s.name === mutation.payload[0].name
+						s => s.name === mutation.payload.name
 					);
 
 					story.saveStory(transaction, imported);
@@ -87,7 +88,7 @@ module.exports = store => {
 				*/
 
 				const toDelete = previousStories.find(
-					s => s.id === mutation.payload[0]
+					s => s.id === mutation.payload.id
 				);
 
 				story.update(transaction => {
@@ -111,10 +112,10 @@ module.exports = store => {
 
 			case 'CREATE_PASSAGE_IN_STORY': {
 				const parentStory = state.story.stories.find(
-					s => s.id === mutation.payload[0]
+					s => s.id === mutation.payload.id
 				);
 				const passage = parentStory.passages.find(
-					p => p.name === mutation.payload[1].name
+					p => p.name === mutation.payload.name
 				);
 
 				story.update(transaction => {
@@ -127,12 +128,12 @@ module.exports = store => {
 			case 'UPDATE_PASSAGE_IN_STORY': {
 				/* Is this a significant update? */
 
-				if (Object.keys(mutation.payload[2]).some(key => key !== 'selected')) {
+				if (Object.keys(mutation.payload).some(key => key !== 'selected')) {
 					const parentStory = state.story.stories.find(
-						s => s.id === mutation.payload[0]
+						s => s.id === mutation.payload.storyId
 					);
 					const passage = parentStory.passages.find(
-						p => p.id === mutation.payload[1]
+						p => p.id === mutation.payload.passageId
 					);
 
 					story.update(transaction => {
@@ -145,7 +146,7 @@ module.exports = store => {
 				
 			case 'DELETE_PASSAGE_IN_STORY': {
 				const parentStory = state.story.stories.find(
-					s => s.id === mutation.payload[0]
+					s => s.id === mutation.payload.storyId
 				);
 
 				/*

@@ -23,6 +23,7 @@ const config = (module.exports = {
 		filename: 'editor.js'
 	},
 	module: {
+		noParse: /es6-promise\.js$/, // avoid webpack shimming process
 		rules: [
 			/*
 			Inline resources below 10k in size.
@@ -40,6 +41,11 @@ const config = (module.exports = {
 			We must exclude the top-level template, as I think the HTML plugin
 			is expecting a string as output, not a function.
 			*/
+			{
+				test: /\.js$/,
+				loader: 'babel-loader',
+				exclude: /node_modules/
+			},
 			{
 				test: /\.ejs$/,
 				exclude: /index\.ejs$/,
@@ -69,13 +75,13 @@ const config = (module.exports = {
 		]
 	},
 	plugins: [
-		new CopyPlugin([
-			{from: 'src/common/img/favicon.png', to: 'rsrc/favicon.png'},
-			{from: 'icons/ios-icon-180.png', to: 'rsrc/ios-icon-180.png'},
-			{from: 'story-formats/', to: 'story-formats/'},
-			{from: 'src/locale/view/img', to: 'rsrc/'},
-			{from: 'src/locale/po/*.js', to: 'locale/'}
-		]),
+		// new CopyPlugin([
+		// 	{from: 'src/common/img/favicon.png', to: 'rsrc/favicon.png'},
+		// 	{from: 'icons/ios-icon-180.png', to: 'rsrc/ios-icon-180.png'},
+		// 	{from: 'story-formats/', to: 'story-formats/'},
+		// 	{from: 'src/locale/view/img', to: 'rsrc/'},
+		// 	{from: 'src/locale/po/*.js', to: 'locale/'}
+		// ]),
 		new HtmlPlugin({
 			template: './src/index.ejs',
 			package: package,
@@ -96,6 +102,11 @@ const config = (module.exports = {
 	],
 	devServer: {
 		stats: 'minimal'
+	},
+	resolve: {
+		alias: {
+		  'vue$': 'vue/dist/vue.esm.js'
+		}
 	}
 });
 

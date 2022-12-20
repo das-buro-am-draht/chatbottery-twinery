@@ -1,15 +1,15 @@
 // A marquee selection tool for passage items.
 
-const Vue = require('vue');
-const domEvents = require('../../vue/mixins/dom-events');
-const rect = require('../../common/rect');
-const { selectPassages } = require('../../data/actions/passage');
+import Vue from 'vue';
+import domEvents from '../../vue/mixins/dom-events';
+import rect from '../../common/rect';
 
-require('../../ui/ie-mouse-event-polyfill');
-require('./index.less');
+import '../../ui/ie-mouse-event-polyfill';
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const MarqueeSelector = Vue.extend({
+	template,
 
 	props: {
 		story: {
@@ -40,6 +40,8 @@ module.exports = Vue.extend({
 	}),
 
 	computed: {
+		selectPassages () { return this.$store._actions.selectPassages[0] },
+
 		/*
 		The rectangle encompasing this selection in screen coordinates.
 		*/
@@ -174,14 +176,14 @@ module.exports = Vue.extend({
 			this.currentX = e.clientX + window.pageXOffset;
 			this.currentY = e.clientY + window.pageYOffset;
 
-			this.selectPassages(this.story.id, p => {
+			this.selectPassages({storyId: this.story.id, filter: p => {
 				if (this.additive &&
 					this.originallySelected.indexOf(p) !== -1) {
 					return true;
 				}
 
 				return rect.intersects(this.logicalRect, p);
-			});
+			}});
 		},
 
 		endDrag(e) {
@@ -198,7 +200,7 @@ module.exports = Vue.extend({
 
 			if (this.screenRect && this.screenRect.width === 0 &&
 				this.screenRect.height === 0) {
-				this.selectPassages(this.story.id, () => false);
+				this.selectPassages({stroyId: this.story.id, filter: () => false});
 			}
 
 			this.visible = false;
@@ -221,13 +223,13 @@ module.exports = Vue.extend({
 		}
 	},
 
-	ready() {
-		this.on(this.$el.parentNode, 'mousedown', this.startDrag);
-	},
-
-	vuex: {
-		actions: { selectPassages }
+	mounted: function () {
+		this.$nextTick(function () {
+			this.on(this.$el.parentNode, 'mousedown', this.startDrag);
+		});	
 	},
 
 	mixins: [domEvents]
 });
+
+export default MarqueeSelector;

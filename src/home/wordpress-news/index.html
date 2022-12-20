@@ -1,7 +1,7 @@
 <div class="wordpress-news">
     <ul class="wordpress-news--list" v-if="news.length > 0">
         <li class="wordpress-news--item" v-for="item in news">
-            <date class="wordpress-news--date">{{ item.date }}</date>
+            <div class="wordpress-news--date">{{ item.date }}</div>
             <h3 class="wordpress-news--headline">{{ item.title }}</h3>
             <p class="wordpress-news--item-description">
                 <span v-html="item.content"></span>

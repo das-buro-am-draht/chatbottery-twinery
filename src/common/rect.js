@@ -4,7 +4,7 @@
 
 const segseg = require('segseg');
 
-module.exports = {
+const rect = {
 	// Returns whether two rectangles intersect.
 	// http://stackoverflow.com/questions/2752349/fast-rectangle-to-rectangle-intersection
 
@@ -167,3 +167,5 @@ module.exports = {
 		}
 	}
 };
+
+export default rect;

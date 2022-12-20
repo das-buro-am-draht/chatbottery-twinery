@@ -12,9 +12,9 @@ const formatDefaults = {
 };
 
 module.exports = {
-	state: {
-		formats: []
-	},
+	// state: {
+	// 	formats: []
+	// },
 
 	mutations: {
 		CREATE_FORMAT(state, props) {
@@ -22,21 +22,21 @@ module.exports = {
 
 			newFormat.id = uuid();
 			newFormat.loaded = false;
-			state.formats.push(newFormat);
+			state.storyFormat.formats.push(newFormat);
 		},
 
 		UPDATE_FORMAT(state, id, props) {
-			let format = state.formats.find(format => format.id === id);
+			let format = state.storyFormat.formats.find(format => format.id === id);
 
 			Object.assign(format, props);
 		},
 
 		DELETE_FORMAT(state, id) {
-			state.formats = state.formats.filter(format => format.id !== id);
+			state.storyFormat.formats = state.storyFormat.formats.filter(format => format.id !== id);
 		},
 
 		LOAD_FORMAT(state, id, props) {
-			let format = state.formats.find(format => format.id === id);
+			let format = state.storyFormat.formats.find(format => format.id === id);
 
 			format.properties = props;
 			format.loaded = true;

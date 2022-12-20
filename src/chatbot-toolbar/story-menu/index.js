@@ -1,29 +1,38 @@
 // A drop-down menu with miscellaneous editing options for a story.
 
-const escape = require('lodash.escape');
-const Vue = require('vue');
-const FormatDialog = require('../../../dialogs/story-format');
-const FormatsDialog = require('../../../dialogs/formats');
-const JavaScriptEditor = require('../../../editors/javascript');
-const StatsDialog = require('../../../dialogs/story-stats');
-const StylesheetEditor = require('../../../editors/stylesheet');
-const {loadFormat} = require('../../../data/actions/story-format');
-const locale = require('../../../locale');
-const {proofStory} = require('../../../common/launch-story');
-const {prompt} = require('../../../dialogs/prompt');
-const {publishStoryWithFormat} = require('../../../data/publish');
-const save = require('../../../file/save');
-const {selectPassages} = require('../../../data/actions/passage');
-const {updateStory} = require('../../../data/actions/story');
+import escape from 'lodash.escape';
+import Vue from 'vue';
+import FormatDialog from '../../../dialogs/story-format';
+import JavaScriptEditor from '../../../editors/javascript';
+import StatsDialog from '../../../dialogs/story-stats';
+import StylesheetEditor from '../../../editors/stylesheet';
+import locale from '../../../locale';
+import {proofStory} from '../../../common/launch-story';
+import {prompt} from '../../../dialogs/prompt';
+import {publishStoryWithFormat} from '../../../data/publish';
+import save from '../../../file/save';
+import DropDown from '../../../ui/drop-down';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+import './index.less';
+import template from './index.html';
+
+const StoryMenu = Vue.extend({
+	template,
 
 	props: {
 		story: {
 			type: Object,
 			required: true
 		}
+	},
+
+	computed: {
+		loadFormat () { return this.$store._actions.loadFormat[0] },
+		selectPassages () { return this.$store._actions.selectPassages[0] },
+		updateStory () { return this.$store._actions.updateStory[0] },
+		allFormats () { return this.$store.getters.allFormats },
+		appInfo () { return this.$store.getters.appInfo },
+		defaultFormatName () { return this.$store.getters.defaultFormatName },
 	},
 
 	methods: {
@@ -56,11 +65,11 @@ module.exports = Vue.extend({
 				response: this.story.name,
 				blankTextError: locale.say('Please enter a name.'),
 				origin: e.target
-			}).then(text => this.updateStory(this.story.id, {name: text}));
+			}).then(text => this.updateStory({id: this.story.id, name: text}));
 		},
 
 		selectAll() {
-			this.selectPassages(this.story.id, () => true);
+			this.selectPassages({storyId: this.story.id, filter: () => true});
 		},
 
 		proofStory() {
@@ -98,27 +107,16 @@ module.exports = Vue.extend({
 		},
 
 		toggleSnap() {
-			this.updateStory(this.story.id, {
+			this.updateStory({
+				id: this.story.id,
 				snapToGrid: !this.story.snapToGrid
 			});
 		}
 	},
 
 	components: {
-		'drop-down': require('../../../ui/drop-down')
+		'drop-down': DropDown
 	},
-
-	vuex: {
-		actions: {
-			loadFormat,
-			selectPassages,
-			updateStory
-		},
-
-		getters: {
-			allFormats: state => state.storyFormat.formats,
-			appInfo: state => state.appInfo,
-			defaultFormatName: state => state.pref.defaultFormat
-		}
-	}
 });
+
+export default StoryMenu;

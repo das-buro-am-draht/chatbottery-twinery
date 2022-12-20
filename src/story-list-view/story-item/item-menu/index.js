@@ -1,7 +1,7 @@
 // Handles the cog menu for a single story.
 
 const escape = require('lodash.escape');
-const Vue = require('vue');
+import Vue from 'vue';
 const {confirm} = require('../../../dialogs/confirm');
 const {
 	deleteStory,
@@ -15,7 +15,7 @@ const locale = require('../../../locale');
 const {publishStoryWithFormat} = require('../../../data/publish');
 const save = require('../../../file/save');
 
-module.exports = Vue.extend({
+const ItemMenu = Vue.extend({
 	template: require('./index.html'),
 
 	props: {
@@ -74,7 +74,7 @@ module.exports = Vue.extend({
 		 @method confirmDelete
 		**/
 
-		delete() {
+		deleteChatbot() {
 			confirm({
 				message: locale.say(
 					'Are you sure you want to delete &ldquo;%s&rdquo;? ' +
@@ -103,7 +103,7 @@ module.exports = Vue.extend({
 				buttonLabel: '<i class="fa fa-ok"></i> ' + locale.say('Rename'),
 				response: this.story.name,
 				blankTextError: locale.say('Please enter a name.')
-			}).then(name => this.updateStory(this.story.id, {name}));
+			}).then(name => this.updateStory({id: this.story.id, name}));
 		},
 
 		/**
@@ -139,3 +139,5 @@ module.exports = Vue.extend({
 		}
 	}
 });
+
+export default ItemMenu;

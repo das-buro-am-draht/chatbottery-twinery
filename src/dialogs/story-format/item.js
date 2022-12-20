@@ -1,13 +1,13 @@
 // Shows a single story format, with a radio button to allow the user to
 // choose it.
 
-const Vue = require('vue');
-const { updateStory } = require('../../data/actions/story');
+import Vue from 'vue';
 
-require('./item.less');
+import './item.less';
+import template from './item.html';
 
-module.exports = Vue.extend({
-	template: require('./item.html'),
+const StoryFormatItem = Vue.extend({
+	template,
 
 	props: {
 		story: {
@@ -22,6 +22,8 @@ module.exports = Vue.extend({
 	},
 
 	computed: {
+		updateStory () { return this.$store._actions.updateStory[0] },
+
 		selected() {
 			return this.story.storyFormat === this.format.name &&
 				this.story.storyFormatVersion === this.format.version;
@@ -40,19 +42,13 @@ module.exports = Vue.extend({
 
 	methods: {
 		select() {
-			this.updateStory(
-				this.story.id,
-				{
-					storyFormat: this.format.name,
-					storyFormatVersion: this.format.version
-				}
-			);
+			this.updateStory({
+				id: this.story.id,
+				storyFormat: this.format.name,
+				storyFormatVersion: this.format.version
+			});
 		}
 	},
-
-	vuex: {
-		actions: {
-			updateStory
-		}
-	}
 });
+
+export default StoryFormatItem;

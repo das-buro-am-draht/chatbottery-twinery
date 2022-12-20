@@ -2,62 +2,57 @@
 A single passage in the story map.
 */
 
-const escape = require('lodash.escape');
-const Vue = require('vue');
-const PassageEditor = require('../../editors/passage');
-const { confirm } = require('../../dialogs/confirm');
-const domEvents = require('../../vue/mixins/dom-events');
-const locale = require('../../locale');
-const { hasPrimaryTouchUI } = require('../../ui');
-const {
-	createNewlyLinkedPassages,
-	deletePassage,
-	selectPassages,
-	updatePassage
-} =
-	require('../../data/actions/passage');
+const escape = require("lodash.escape");
+import Vue from 'vue';
+import PassageEditor from "../../editors/passage";
+import { confirm } from "../../dialogs/confirm";
+import domEvents from "../../vue/mixins/dom-events";
+import locale from "../../locale";
+import { hasPrimaryTouchUI } from "../../ui";
+import PassageMenu from "./passage-menu";
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const PassageItem = Vue.extend({
+	template,
 
 	props: {
 		passage: {
 			type: Object,
-			required: true
+			required: true,
 		},
-		
+
 		parentStory: {
 			type: Object,
-			required: true
+			required: true,
 		},
 
 		/* The regular expression we use to highlight ourselves or not. */
 
 		highlightRegexp: {
 			type: RegExp,
-			required: false
+			required: false,
 		},
 
 		/* How dragged passages should be offset, in screen coordinates. */
 
 		screenDragOffsetX: {
 			type: Number,
-			required: true
+			required: true,
 		},
 
 		screenDragOffsetY: {
 			type: Number,
-			required: true
+			required: true,
 		},
 
 		/* The story's grid size, in pixels. */
 
 		gridSize: {
 			type: Number,
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data: () => ({
@@ -75,10 +70,15 @@ module.exports = Vue.extend({
 		*/
 
 		screenDragStartX: 0,
-		screenDragStartY: 0
+		screenDragStartY: 0,
 	}),
 
 	computed: {
+		createNewlyLinkedPassages () { return this.$store._actions.createNewlyLinkedPassages[0] },
+		selectPassages () { return this.$store._actions.selectPassages[0] },
+		updatePassage () { return this.$store._actions.updatePassage[0] },
+		deletePassage () { return this.$store._actions.deletePassage[0] },
+
 		/*
 		The position to use when drawing link arrows to this passage. This does
 		*not* factor in the story's zoom level, as the link arrow component
@@ -90,7 +90,7 @@ module.exports = Vue.extend({
 				top: this.passage.top,
 				left: this.passage.left,
 				width: this.passage.width,
-				height: this.passage.height
+				height: this.passage.height,
 			};
 
 			if (this.passage.selected) {
@@ -106,7 +106,7 @@ module.exports = Vue.extend({
 		},
 
 		isLiveChat() {
-			return this.passage.tags.some(passage => passage === "chat");
+			return this.passage.tags.some((passage) => passage === "chat");
 		},
 
 		cssPosition() {
@@ -114,36 +114,41 @@ module.exports = Vue.extend({
 			const { left, top, width, height } = this.passage;
 
 			return {
-				left: left * zoom + 'px',
-				top: top * zoom + 'px',
-				width: width * zoom + 'px',
-				height: height * zoom + 'px',
-				transform: this.passage.selected ?
-					'translate(' + this.screenDragOffsetX + 'px, ' +
-					this.screenDragOffsetY + 'px)'
-					: null
+				left: left * zoom + "px",
+				top: top * zoom + "px",
+				width: width * zoom + "px",
+				height: height * zoom + "px",
+				transform: this.passage.selected
+					? "translate(" +
+					  this.screenDragOffsetX +
+					  "px, " +
+					  this.screenDragOffsetY +
+					  "px)"
+					: null,
 			};
 		},
-		
+
 		cssClasses() {
 			let result = [];
 
 			if (this.passage.selected) {
-				result.push('selected');
+				result.push("selected");
 			}
 
 			if (this.isStart) {
-				result.push('start');
+				result.push("start");
 			}
 
 			if (this.isLiveChat) {
-				result.push('chat');
+				result.push("chat");
 			}
 
-			if (this.highlightRegexp && (
-				this.highlightRegexp.test(this.passage.name) ||
-				this.highlightRegexp.test(this.passage.text))) {
-				result.push('highlighted');
+			if (
+				this.highlightRegexp &&
+				(this.highlightRegexp.test(this.passage.name) ||
+					this.highlightRegexp.test(this.passage.text))
+			) {
+				result.push("highlighted");
 			}
 
 			return result;
@@ -152,7 +157,7 @@ module.exports = Vue.extend({
 		tagColors() {
 			let result = [];
 
-			this.passage.tags.forEach(t => {
+			this.passage.tags.forEach((t) => {
 				if (this.parentStory.tagColors[t]) {
 					result.push(this.parentStory.tagColors[t]);
 				}
@@ -166,17 +171,21 @@ module.exports = Vue.extend({
 				return escape(this.passage.text);
 			}
 
-			return escape(this.passage.text.substr(0, 99)) + '&hellip;';
+			return escape(this.passage.text.substr(0, 99)) + "&hellip;";
 		},
 	},
 
-	ready() {
-		if (this.passage.width === 100) {
-			this.updatePassage(this.parentStory.id, this.passage.id, {
-				width: 150,
-			});
-			this.$dispatch('passage-position', this.passage, {});
-		}
+	mounted: function () {
+		this.$nextTick(function () {
+			if (this.passage.width === 100) {
+				this.updatePassage({
+					storyId: this.parentStory.id,
+					passageId: this.passage.id,
+					width: 150,
+				});
+				this.$root.$emit("passage-position", this.passage, {});
+			}
+		});
 	},
 
 	methods: {
@@ -190,16 +199,16 @@ module.exports = Vue.extend({
 			user double-clicked.
 			*/
 
-			this.$broadcast('drop-down-close');
+			this.$root.$emit("drop-down-close");
 
 			const oldText = this.passage.text;
 			const afterEdit = () => {
-				this.createNewlyLinkedPassages(
-					this.parentStory.id,
-					this.passage.id,
+				this.createNewlyLinkedPassages({
+					storyId: this.parentStory.id,
+					passageId: this.passage.id,
 					oldText,
-					this.gridSize
-				);
+					gridSize: this.gridSize
+				});
 			};
 
 			/*
@@ -211,26 +220,26 @@ module.exports = Vue.extend({
 				data: {
 					passageId: this.passage.id,
 					storyId: this.parentStory.id,
-					origin: this.$el
+					origin: this.$el,
 				},
 				store: this.$store,
 				storyFormat: {
 					name: this.parentStory.storyFormat,
-					version: this.parentStory.storyFormatVersion
-				}
+					version: this.parentStory.storyFormatVersion,
+				},
 			})
-			.$mountTo(document.body)
-			.then(afterEdit)
-			.catch(afterEdit);
+				.$mountTo(document.body)
+				.then(afterEdit)
+				.catch(afterEdit);
 		},
 
 		startDrag(e) {
 			/* Only listen to the left mouse button. */
 
-			if (e.type === 'mousedown' && e.which !== 1) {
+			if (e.type === "mousedown" && e.which !== 1) {
 				return;
 			}
-			
+
 			if (e.shiftKey || e.ctrlKey) {
 				/*
 				Shift- or control-clicking toggles our selected status, but
@@ -238,15 +247,14 @@ module.exports = Vue.extend({
 				or control key was not held down, select only ourselves.
 				*/
 
-				this.selectPassages(this.parentStory.id, p => {
+				this.selectPassages({storyId: this.parentStory.id, filter: (p) => {
 					if (p === this.passage) {
 						return !p.selected;
 					}
 
 					return p.selected;
-				});
-			}
-			else if (!this.passage.selected) {
+				}});
+			} else if (!this.passage.selected) {
 				/*
 				If we are newly-selected and the shift or control keys are not
 				held, deselect everything else. The check for newly-selected
@@ -255,36 +263,32 @@ module.exports = Vue.extend({
 				in the mouse up handler, above.
 				*/
 
-				this.selectPassages(
-					this.parentStory.id,
-					p => p === this.passage
-				);
+				this.selectPassages({storyId: this.parentStory.id, filter: (p) => p === this.passage});
 			}
 
 			/* Begin tracking a potential drag. */
 
-			const srcPoint = (e.type === 'mousedown') ? e : e.touches[0];
+			const srcPoint = e.type === "mousedown" ? e : e.touches[0];
 
 			this.screenDragStartX = srcPoint.clientX + window.pageXOffset;
 			this.screenDragStartY = srcPoint.clientY + window.pageYOffset;
 
 			if (hasPrimaryTouchUI()) {
-				this.on(window, 'touchmove', this.followDrag, { passive: false });
-				this.on(window, 'touchend', this.stopDrag);
-			}
-			else {
-				this.on(window, 'mousemove', this.followDrag, { passive: false });
-				this.on(window, 'mouseup', this.stopDrag);
+				this.on(window, "touchmove", this.followDrag, { passive: false });
+				this.on(window, "touchend", this.stopDrag);
+			} else {
+				this.on(window, "mousemove", this.followDrag, { passive: false });
+				this.on(window, "mouseup", this.stopDrag);
 			}
 
-			document.querySelector('body').classList.add('draggingPassages');
+			document.querySelector("body").classList.add("draggingPassages");
 		},
 
 		followDrag(e) {
-			const srcPoint = (e.type === 'mousemove') ? e : e.touches[0];
+			const srcPoint = e.type === "mousemove" ? e : e.touches[0];
 
-			this.$dispatch(
-				'passage-drag',
+			this.$root.$emit(
+				"passage-drag",
 				srcPoint.clientX + window.pageXOffset - this.screenDragStartX,
 				srcPoint.clientY + window.pageYOffset - this.screenDragStartY
 			);
@@ -295,7 +299,7 @@ module.exports = Vue.extend({
 			around the screen.
 			*/
 
-			if (e.type === 'touchmove') {
+			if (e.type === "touchmove") {
 				e.preventDefault();
 			}
 		},
@@ -303,22 +307,21 @@ module.exports = Vue.extend({
 		stopDrag(e) {
 			/* Only listen to the left mouse button. */
 
-			if (e.type === 'mouseup' && e.which !== 1) {
+			if (e.type === "mouseup" && e.which !== 1) {
 				return;
 			}
 
 			/* Remove event listeners set up at the start of the drag. */
 
 			if (hasPrimaryTouchUI()) {
-				this.off(window, 'touchmove');
-				this.off(window, 'touchend');
-			}
-			else {
-				this.off(window, 'mousemove');
-				this.off(window, 'mouseup');
+				this.off(window, "touchmove");
+				this.off(window, "touchend");
+			} else {
+				this.off(window, "mousemove");
+				this.off(window, "mouseup");
 			}
 
-			document.querySelector('body').classList.remove('draggingPassages');
+			document.querySelector("body").classList.remove("draggingPassages");
 
 			/*
 			If we haven't actually been moved and the shift or control key were
@@ -328,72 +331,68 @@ module.exports = Vue.extend({
 			user may be starting a drag; but now that we know for sure that the
 			user didn't intend this, we select just this one.
 			*/
-			
+
 			if (this.dragXOffset === 0 && this.dragYOffset === 0) {
 				if (!(e.ctrlKey || e.shiftKey)) {
-					this.selectPassages(this.parentStory.id, p => p !== this);
+					this.selectPassages({storyId: this.parentStory.id, filter: (p) => p !== this});
 				}
-			}
-			else {
+			} else {
 				/*
 				touchend events do not include client coordinates, but mouseup
 				events do.
 				*/
 
-				if (e.type === 'mouseup') {
-					this.$dispatch(
-						'passage-drag-complete',
+				if (e.type === "mouseup") {
+					this.$root.$emit(
+						"passage-drag-complete",
 						e.clientX + window.pageXOffset - this.screenDragStartX,
 						e.clientY + window.pageYOffset - this.screenDragStartY,
 						this
 					);
-				}
-				else {
-					this.$dispatch(
-						'passage-drag-complete',
+				} else {
+					this.$root.$emit(
+						"passage-drag-complete",
 						this.screenDragOffsetX,
 						this.screenDragOffsetY,
 						this
 					);
 				}
 			}
-		}
+		},
 	},
 
 	events: {
-		'passage-edit'() {
+		"passage-edit"() {
 			this.edit();
 		},
 
-		'passage-delete'(skipConfirmation) {
+		"passage-delete"(skipConfirmation) {
 			if (skipConfirmation) {
 				this.delete();
-			}
-			else {
+			} else {
 				let message = locale.say(
-					'Are you sure you want to delete &ldquo;%s&rdquo;? ' +
-					'This cannot be undone.',
+					"Are you sure you want to delete &ldquo;%s&rdquo;? " +
+						"This cannot be undone.",
 					escape(this.passage.name)
 				);
 
 				if (!hasPrimaryTouchUI()) {
-					message += '<br><br>' + locale.say(
-						'(Hold the Shift key when deleting to skip this message.)'
-					);
+					message +=
+						"<br><br>" +
+						locale.say(
+							"(Hold the Shift key when deleting to skip this message.)"
+						);
 				}
 
 				confirm({
 					message,
-					buttonLabel:
-						'<i class="fa fa-trash-o"></i> ' + locale.say('Delete'),
-					buttonClass:
-						'danger',
-				})
-				.then(() => this.delete());
+					buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say("Delete"),
+					buttonClass: "danger",
+				}).then(() => this.delete());
 			}
 		},
 
-		'passage-drag-complete'(xOffset, yOffset, emitter) {
+		"passage-drag-complete"(xOffset, yOffset, emitter) {
 			/*
 			We have to check whether we originally emitted this event, as
 			$dispatch triggers first on ourselves, then our parent.
@@ -405,17 +404,16 @@ module.exports = Vue.extend({
 				to convert back to logical space.
 				*/
 
-				const top = this.passage.top + yOffset
-				/ this.parentStory.zoom;
-				const left = this.passage.left + xOffset
-				/ this.parentStory.zoom; 
-				
+				const top = this.passage.top + yOffset / this.parentStory.zoom;
+				const left = this.passage.left + xOffset / this.parentStory.zoom;
+
 				if (this.passage.top !== top || this.passage.left !== left) {
-					this.updatePassage(
-						this.parentStory.id,
-						this.passage.id,
-						{ top, left }
-					);
+					this.updatePassage({
+						storyId: this.parentStory.id,
+						passageId: this.passage.id,
+						top,
+						left,
+					});
 				}
 
 				/*
@@ -425,11 +423,9 @@ module.exports = Vue.extend({
 				dragged.
 				*/
 
-				this.$dispatch(
-					'passage-position',
-					this.passage,
-					{ ignoreSelected: true }
-				);
+				this.$root.$emit("passage-position", this.passage, {
+					ignoreSelected: true,
+				});
 			}
 
 			/*
@@ -437,22 +433,15 @@ module.exports = Vue.extend({
 			change its position.
 			*/
 
-			this.$broadcast('drop-down-reposition');
-		}
+			this.$root.$emit("drop-down-reposition");
+		},
 	},
 
 	components: {
-		'passage-menu': require('./passage-menu')
+		"passage-menu": PassageMenu,
 	},
 
-	vuex: {
-		actions: {
-			createNewlyLinkedPassages,
-			selectPassages,
-			updatePassage,
-			deletePassage
-		}
-	},
-
-	mixins: [domEvents]
+	mixins: [domEvents],
 });
+
+export default PassageItem;

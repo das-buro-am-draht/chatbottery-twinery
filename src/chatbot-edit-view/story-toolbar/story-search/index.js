@@ -3,25 +3,25 @@ Shows a quick search field, which changes passage highlights, and a button to
 show the search modal dialog.
 */
 
-const Vue = require('vue');
-const SearchDialog = require('../../../dialogs/story-search');
+import Vue from 'vue';
+const SearchDialog = require("../../../dialogs/story-search");
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const StorySearch = Vue.extend({
+	template: require("./index.html"),
 
 	props: {
 		story: {
 			type: Object,
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data: () => ({
-		search: ''
+		search: "",
 	}),
 
 	watch: {
-		'search'() {
+		search() {
 			/*
 			Convert the entered text to regexp, escaping text, and tell our
 			parent to change its highlight criteria. This is cribbed from
@@ -29,14 +29,15 @@ module.exports = Vue.extend({
 			*/
 
 			const value = new RegExp(
-				this.search.replace(/([.*+?^${}()|\[\]\/\\])/g, '\\$1'), 'i'
+				this.search.replace(/([.*+?^${}()|\[\]\/\\])/g, "\\$1"),
+				"i"
 			);
 
-			this.$dispatch(
-				'highlight-regexp-change',
-				(value.source !== '(?:)') ? value : null
+			this.$root.$emit(
+				"highlight-regexp-change",
+				value.source !== "(?:)" ? value : null
 			);
-		}
+		},
 	},
 
 	methods: {
@@ -45,10 +46,12 @@ module.exports = Vue.extend({
 				data: {
 					story: this.story,
 					search: this.search,
-					origin: e.target
+					origin: e.target,
 				},
-				store: this.$store
+				store: this.$store,
 			}).$mountTo(document.body);
-		}
-	}
+		},
+	},
 });
+
+export default StorySearch;

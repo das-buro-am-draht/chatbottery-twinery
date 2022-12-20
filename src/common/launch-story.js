@@ -7,13 +7,13 @@ These are a single entrypoint so that individual UI parts don't have to worry
 about which context they're in to dispatch a play or test.
 */
 
-const {
+import {
 	getStoryPlayHtml,
 	getStoryProofingHtml,
 	getStoryTestHtml
-} = require('./story-html');
-const isElectron = require('../electron/is-electron');
-const locale = require('../locale');
+} from './story-html';
+import isElectron from '../electron/is-electron';
+import locale from '../locale';
 
 const windows = {};
 
@@ -34,77 +34,75 @@ function openWindow(url) {
 	windows[url] = window.open(url, url.replace(/\s/g, '_'));
 }
 
-module.exports = {
-	playStory(store, storyId) {
-		if (isElectron()) {
-			getStoryPlayHtml(store, storyId)
-				.then(html =>
-					window.twineElectron.ipcRenderer.send(
-						'open-with-temp-file',
-						html,
-						'.html'
-					)
+export const testStory = (store, storyId, startPassageId) => {
+	if (isElectron()) {
+		getStoryTestHtml(store, storyId, startPassageId)
+			.then(html =>
+				window.twineElectron.ipcRenderer.send(
+					'open-with-temp-file',
+					html,
+					'.html'
 				)
-				.catch(e => {
-					window.alert(
-						locale.say(
-							'An error occurred while publishing your chatbot. (%s)',
-							e.message
-						)
-					);
-				});
+			)
+			.catch(e => {
+				window.alert(
+					locale.say(
+						'An error occurred while publishing your chatbot. (%s)',
+						e.message
+					)
+				);
+			});
+	} else {
+		if (startPassageId) {
+			openWindow(`#chatbots/${storyId}/test/${startPassageId}`);
 		} else {
-			openWindow(`#chatbots/${storyId}/play`);
+			openWindow(`#chatbots/${storyId}/test`);
 		}
-	},
+	}
+};
 
-	proofStory(store, storyId) {
-		if (isElectron()) {
-			getStoryProofingHtml(store, storyId)
-				.then(html =>
-					window.twineElectron.ipcRenderer.send(
-						'open-with-temp-file',
-						html,
-						'.html'
-					)
+export const playStory = (store, storyId) => {
+	if (isElectron()) {
+		getStoryPlayHtml(store, storyId)
+			.then(html =>
+				window.twineElectron.ipcRenderer.send(
+					'open-with-temp-file',
+					html,
+					'.html'
 				)
-				.catch(e => {
-					window.alert(
-						locale.say(
-							'An error occurred while publishing your chatbot. (%s)',
-							e.message
-						)
-					);
-				});
-		} else {
-			openWindow(`#chatbots/${storyId}/proof`);
-		}
-	},
+			)
+			.catch(e => {
+				window.alert(
+					locale.say(
+						'An error occurred while publishing your chatbot. (%s)',
+						e.message
+					)
+				);
+			});
+	} else {
+		openWindow(`#chatbots/${storyId}/play`);
+	}
+};
 
-	testStory(store, storyId, startPassageId) {
-		if (isElectron()) {
-			getStoryTestHtml(store, storyId, startPassageId)
-				.then(html =>
-					window.twineElectron.ipcRenderer.send(
-						'open-with-temp-file',
-						html,
-						'.html'
-					)
+export const proofStory = (store, storyId) => {
+	if (isElectron()) {
+		getStoryProofingHtml(store, storyId)
+			.then(html =>
+				window.twineElectron.ipcRenderer.send(
+					'open-with-temp-file',
+					html,
+					'.html'
 				)
-				.catch(e => {
-					window.alert(
-						locale.say(
-							'An error occurred while publishing your chatbot. (%s)',
-							e.message
-						)
-					);
-				});
-		} else {
-			if (startPassageId) {
-				openWindow(`#chatbots/${storyId}/test/${startPassageId}`);
-			} else {
-				openWindow(`#chatbots/${storyId}/test`);
-			}
-		}
+			)
+			.catch(e => {
+				window.alert(
+					locale.say(
+						'An error occurred while publishing your chatbot. (%s)',
+						e.message
+					)
+				);
+			});
+	} else {
+		openWindow(`#chatbots/${storyId}/proof`);
 	}
 };

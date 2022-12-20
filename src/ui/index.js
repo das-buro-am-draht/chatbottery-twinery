@@ -5,9 +5,9 @@
 **/
 
 'use strict';
-const fastclick = require('fastclick');
+import fastclick from 'fastclick';
 
-require('./index.less');
+import './index.less';
 
 let inited = false;
 let fastclickInstance;
@@ -19,7 +19,7 @@ module.exports = {
 	 in that module.
 	**/
 
-	init() {
+	beforeCreate() {
 		if (inited) {
 			return;
 		}
@@ -40,7 +40,7 @@ module.exports = {
 	},
 
 	/**
-	 Undoes all setup in init().
+	 Undoes all setup in beforeCreate().
 	**/
 
 	destroy() {

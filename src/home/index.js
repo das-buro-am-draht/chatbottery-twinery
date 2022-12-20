@@ -6,24 +6,20 @@
 **/
 
 'use strict';
-const Vue = require('vue');
+import Vue from 'vue';
+import AsideNavigation from '../aside-navigation';
+import HomeInfoContent from './info-content';
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
-
-	props: {
-	},
-
-	data: () => ({}),
-
-	methods: {},
+const HomeView = Vue.extend({
+	template,
 
 	components: {
-		'aside-navigation': require('../aside-navigation'),
-		'info-content': require('./info-content'),
+		'aside-navigation': AsideNavigation,
+		'info-content': HomeInfoContent,
 	},
-
-	vuex: {}
 });
+
+export default HomeView;

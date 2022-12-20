@@ -1,9 +1,11 @@
 // A container for tabs.
 
-const Vue = require('vue');
+import Vue from 'vue';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+import template from './index.html';
+
+const TabPanel = Vue.extend({
+	template,
 
 	props: {
 		active: {
@@ -20,3 +22,5 @@ module.exports = Vue.extend({
 		}
 	}
 });
+
+export default TabPanel;

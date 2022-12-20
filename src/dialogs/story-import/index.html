@@ -1,4 +1,4 @@
-<modal-dialog v-ref:modal :origin="origin">
+<modal-dialog ref="modal" :origin="origin">
 	<span slot="title">{{ 'Import From File' | say }}</span>
 
 	<template v-if="status === 'waiting'">
@@ -7,10 +7,11 @@
 				{{ 'Import this file:' | say }}
 			</label>
 
-			<input type="file" v-el:import-file @change="import($els.importFile.files[0])">
+			<input type="file" ref="importFile" @change="importChatFile($refs.importFile.files[0])">
 		</p>
 
-		<div class="buttons" v-if="!working">
+		<!-- <div class="buttons" v-if="!working"></div> -->
+		<div class="buttons">
 			<button class="subtle" @click="close">
 				<i class="fa fa-times"></i> {{ 'Cancel' | say }}
 			</button>
@@ -30,9 +31,9 @@
 		</p>
 
 		<ul v-for="name in dupeNames" class="plain">
-			<input type="checkbox" id="replace-story-{{ name }}" v-model="toReplace" value="{{ name }}">
+			<input type="checkbox" v-bind:id="'replace-story-' + name" v-model="toReplace" v-bind:value="name">
 
-			<label for="replace-story-{{ name }}">{{ name }}</label>
+			<label v-bind:for="'replace-story-' + name" v-html="name" />
 		</ul>
 
 		<p class="buttons">

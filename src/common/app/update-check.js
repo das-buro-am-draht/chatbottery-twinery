@@ -19,7 +19,7 @@
 
 const fetch = require('unfetch').default;
 
-module.exports = function(latestBuildNumber, callback) {
+const updateCheck = function(latestBuildNumber, callback) {
 	fetch('https://twinery.org/latestversion/2.json')
 		.then(r => r.json())
 		.then(data => {
@@ -28,3 +28,5 @@ module.exports = function(latestBuildNumber, callback) {
 			}
 		});
 };
+
+export default updateCheck;

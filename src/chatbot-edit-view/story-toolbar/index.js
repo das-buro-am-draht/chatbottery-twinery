@@ -1,14 +1,17 @@
 // The toolbar at the bottom of the screen with editing controls.
 
-const Vue = require('vue');
-const zoomMappings = require('../zoom-settings');
-const {playStory, testStory} = require('../../common/launch-story');
-const {updateStory} = require('../../data/actions/story');
+import Vue from 'vue';
+import zoomMappings from '../zoom-settings';
+import {playStory, testStory} from '../../common/launch-story';
+import {updateStory} from '../../data/actions/story';
+import StoryMenu from './story-menu';
+import StorySearch from './story-search';
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const StoryToolbar = Vue.extend({
+	template,
 
 	props: {
 		story: {
@@ -23,13 +26,17 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'story-menu': require('./story-menu'),
-		'story-search': require('./story-search')
+		'story-menu': StoryMenu,
+		'story-search': StorySearch
+	},
+
+	computed: {
+		updateStory () { return this.$store._actions.updateStory[0] },
 	},
 
 	methods: {
 		setZoom(description) {
-			this.updateStory(this.story.id, {zoom: zoomMappings[description]});
+			this.updateStory({id: this.story.id, zoom: zoomMappings[description]});
 		},
 
 		test() {
@@ -41,13 +48,9 @@ module.exports = Vue.extend({
 		},
 
 		addPassage() {
-			this.$dispatch('passage-create');
+			this.$root.$emit('passage-create');
 		}
 	},
-
-	vuex: {
-		actions: {
-			updateStory
-		}
-	}
 });
+
+export default StoryToolbar;

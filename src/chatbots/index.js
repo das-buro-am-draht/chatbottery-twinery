@@ -6,21 +6,21 @@
 **/
 
 'use strict';
-const Vue = require('vue');
+import Vue from 'vue';
 
-require('./index.less');
+import AsideNavigation from '../aside-navigation';
+import ChatbotsContent from './chatbots-content';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+import './index.less';
+import template from './index.html';
 
-	data: () => ({}),
-
-	methods: {},
+const ChatbotsView = Vue.extend({
+	template,
 
 	components: {
-		'aside-navigation': require('../aside-navigation'),
-		'chatbots-content': require('./chatbots-content'),
+		'aside-navigation': AsideNavigation,
+		'chatbots-content': ChatbotsContent,
 	},
-
-	vuex: {}
 });
+
+export default ChatbotsView;

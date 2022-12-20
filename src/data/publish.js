@@ -142,8 +142,6 @@ const publish = (module.exports = {
 			`;
 		}
 
-		console.log("script", script);
-
 		return (
 			`<tw-storydata name="${escape(story.name)}" ` +
 			`startnode="${startLocalId || ""}" ` +

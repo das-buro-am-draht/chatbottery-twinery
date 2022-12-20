@@ -3,16 +3,16 @@ Shows a quick search field, which changes passage highlights, and a button to
 show the search modal dialog.
 */
 
-const Vue = require('vue');
-const save = require('../../file/save');
-const {loadFormat} = require('../../data/actions/story-format');
-const {publishStoryWithFormat} = require('../../data/publish');
-const {proofStory} = require('../../common/launch-story');
+import Vue from 'vue';
+import save from '../../file/save';
+import {publishStoryWithFormat} from '../../data/publish';
+import {proofStory} from '../../common/launch-story';
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const DropdownDownload = Vue.extend({
+	template,
 
 	props: {
 		story: {
@@ -24,6 +24,11 @@ module.exports = Vue.extend({
 	data: () => ({
 		active: false,
 	}),
+
+	computed: {
+		loadFormat () { return this.$store._actions.loadFormat[0] },
+		appInfo () { return this.$store.getters.appInfo }
+	},
 
 	methods: {
 		toggleDropdown() {
@@ -47,14 +52,6 @@ module.exports = Vue.extend({
 			proofStory(this.$store, this.story.id);
 		},
 	},
-
-	vuex: {
-		actions: {
-			loadFormat,
-		},
-
-		getters: {
-			appInfo: state => state.appInfo,
-		}
-	}
 });
+
+export default DropdownDownload;

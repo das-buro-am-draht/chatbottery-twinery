@@ -1,22 +1,26 @@
 // Handles the cog menu for a single story.
 
 const escape = require('lodash.escape');
-const Vue = require('vue');
+import Vue from 'vue';
 const {confirm} = require('../../../../dialogs/confirm');
 const {
 	deleteStory,
 	duplicateStory,
 	updateStory
 } = require('../../../../data/actions/story');
+import { mapActions } from 'vuex';
 const {loadFormat} = require('../../../../data/actions/story-format');
 const {playStory, testStory} = require('../../../../common/launch-story');
 const {prompt} = require('../../../../dialogs/prompt');
 const locale = require('../../../../locale');
 const {publishStoryWithFormat} = require('../../../../data/publish');
 const save = require('../../../../file/save');
+import DropDown from '../../../../ui/drop-down';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+import template from './index.html';
+
+const ItemMenu = Vue.extend({
+	template,
 
 	props: {
 		story: {
@@ -26,7 +30,15 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'drop-down': require('../../../../ui/drop-down')
+		'drop-down': DropDown
+	},
+
+	computed: {
+		deleteStory () { return this.$store._actions.deleteStory[0] },
+		duplicateStory () { return this.$store._actions.duplicateStory[0] },
+		updateStory () { return this.$store._actions.updateStory[0] },
+		loadFormat () { return this.$store._actions.loadFormat[0] },
+		appInfo () { return this.$store.getters.appInfo },
 	},
 
 	methods: {
@@ -74,7 +86,7 @@ module.exports = Vue.extend({
 		 @method confirmDelete
 		**/
 
-		delete() {
+		deleteChatbot() {
 			confirm({
 				message: locale.say(
 					'Are you sure you want to delete &ldquo;%s&rdquo;? ' +
@@ -85,7 +97,7 @@ module.exports = Vue.extend({
 					'<i class="fa fa-trash-o"></i> ' +
 					locale.say('Delete Forever'),
 				buttonClass: 'danger'
-			}).then(() => this.deleteStory(this.story.id));
+			}).then(() => {return this.deleteStory(this.story.id)});
 		},
 
 		/**
@@ -103,7 +115,7 @@ module.exports = Vue.extend({
 				buttonLabel: '<i class="fa fa-ok"></i> ' + locale.say('Rename'),
 				response: this.story.name,
 				blankTextError: locale.say('Please enter a name.')
-			}).then(name => this.updateStory(this.story.id, {name}));
+			}).then(name => this.updateStory({id: this.story.id, name}));
 		},
 
 		/**
@@ -119,23 +131,10 @@ module.exports = Vue.extend({
 				response: locale.say('%s Copy', this.story.name),
 				blankTextError: locale.say('Please enter a name.')
 			}).then(name => {
-				this.duplicateStory(this.story.id, name);
+				this.duplicateStory({id: this.story.id, name});
 			});
 		}
 	},
-
-	vuex: {
-		actions: {
-			deleteStory,
-			duplicateStory,
-			loadFormat,
-			updateStory
-		},
-
-		getters: {
-			allFormats: state => state.storyFormat.formats,
-			appInfo: state => state.appInfo,
-			defaultFormat: state => state.pref.defaultFormat
-		}
-	}
 });
+
+export default ItemMenu;

@@ -1,17 +1,24 @@
-const Vue = require('vue');
-const semverUtils = require('semver-utils');
-const { createFormatFromUrl, loadFormat, repairFormats } = require('../../data/actions/story-format');
-const locale = require('../../locale');
+import Vue from 'vue';
+import { mapActions } from 'vuex';
+import semverUtils from "semver-utils";
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+import locale from "../../locale";
+import FormatsItem from "./item";
+import TabPanelItem from "../../ui/tab-panel/item";
+import TabPanel from "../../ui/tab-panel";
+import ModalDialog from '../../ui/modal-dialog';
+
+import template from './index.html';
+
+const Formats = Vue.extend({
+	template,
 
 	data: () => ({
 		/* Detail about each format. */
 		loadedFormats: [],
 
 		/* Determines whether to show the error <span>, and with what text. */
-		error: '',
+		error: "",
 
 		/* Determines whether to show the loading spinner. */
 		working: true,
@@ -20,10 +27,10 @@ module.exports = Vue.extend({
 		loadIndex: 0,
 
 		/* Bound to the text in the "new format" input. */
-		newFormatUrl: '',
+		newFormatUrl: "",
 
 		/* The origin element to show the dialog coming from. */
-		origin: null
+		origin: null,
 	}),
 
 	/*
@@ -32,57 +39,59 @@ module.exports = Vue.extend({
 	*/
 
 	computed: {
+		allFormats () { return this.$store.getters.allFormatsSorted },
+		defaultFormatPref () { return this.$store.getters.defaultFormatPref },
+		proofingFormatPref () { return this.$store.getters.proofingFormatPref },
+
 		proofingFormats() {
-			return this.loadedFormats.filter(
-				format => format.properties.proofing
-			);
+			return this.loadedFormats.filter((format) => format.properties.proofing);
 		},
 
 		storyFormats() {
-			return this.loadedFormats.filter(
-				format => !format.properties.proofing
-			);
-		}
+			return this.loadedFormats.filter((format) => !format.properties.proofing);
+		},
 	},
 
 	methods: {
+		...mapActions([
+			'createFormatFromUrl',
+			'loadFormat',
+			'repairFormats',
+		]),
 		// Loads the next pending format.
-
 		loadNext() {
 			if (this.loadIndex < this.allFormats.length) {
 				this.loadFormat(
 					this.allFormats[this.loadIndex].name,
 					this.allFormats[this.loadIndex].version
-				).then(format => {
-					this.loadedFormats.push(format);
-					this.loadIndex++;
-					this.loadNext();
-				}).catch(e => {
-					const brokenFormat = this.allFormats[this.loadIndex];
+				)
+					.then((format) => {
+						this.loadedFormats.push(format);
+						this.loadIndex++;
+						this.loadNext();
+					})
+					.catch((e) => {
+						const brokenFormat = this.allFormats[this.loadIndex];
 
-					this.loadedFormats.push(Object.assign(
-						{},
-						brokenFormat,
-						{
-							broken: true,
-							/* Force allow the format to be deleted. */
-							userAdded: true,
-							properties: {
-								version: brokenFormat.version,
-								description:
-									locale.say(
-										'This chatbot format could not be loaded (%1$s).',
+						this.loadedFormats.push(
+							Object.assign({}, brokenFormat, {
+								broken: true,
+								/* Force allow the format to be deleted. */
+								userAdded: true,
+								properties: {
+									version: brokenFormat.version,
+									description: locale.say(
+										"This chatbot format could not be loaded (%1$s).",
 										e.message
-									)
-							}
-						}
-					));
+									),
+								},
+							})
+						);
 
-					this.loadIndex++;
-					this.loadNext();
-				});
-			}
-			else {
+						this.loadIndex++;
+						this.loadNext();
+					});
+			} else {
 				this.working = false;
 			}
 		},
@@ -101,111 +110,52 @@ module.exports = Vue.extend({
 			this.working = true;
 
 			this.createFormatFromUrl(this.newFormatUrl)
-				.then(format => {
+				.then((format) => {
 					this.repairFormats();
-					this.error = '';
+					this.error = "";
 					this.working = false;
 					this.loadedFormats.push(format);
 
 					if (format.properties.proofing) {
 						this.$refs.tabs.active = 1;
-					}
-					else {
+					} else {
 						this.$refs.tabs.active = 0;
 					}
 				})
-				.catch(e => {
+				.catch((e) => {
 					this.error = locale.say(
-						'The chatbot format at %1$s could not be added (%2$s).',
+						"The chatbot format at %1$s could not be added (%2$s).",
 						this.newFormatUrl,
 						e.message
 					);
 					this.working = false;
 				});
-		}
-	},
-
-	ready() {
-		// Move tabs into the dialog header.
-
-		const dialogTitle = this.$el.parentNode.querySelector(
-			'.modal-dialog > header .title'
-		);
-		const tabs = this.$el.parentNode.querySelectorAll(
-			'p.tabs-panel button'
-		);
-
-		for (let i = 0; i < tabs.length; i++) {
-			dialogTitle.appendChild(tabs[i]);
-		}
-
-		this.loadNext();
-	},
-
-	vuex: {
-		actions: {
-			createFormatFromUrl,
-			loadFormat,
-			repairFormats
 		},
+	},
 
-		getters: {
-			allFormats: state => {
-				let result = state.storyFormat.formats.map(
-					format => ({ name: format.name, version: format.version })
-				);
-				
-				result.sort((a, b) => {
-					if (a.name < b.name) {
-						return -1;
-					}
-					
-					if (a.name > b.name) {
-						return 1;
-					}
+	mounted: function () {
+		this.$nextTick(function () {
+			// Move tabs into the dialog header.
 
-					const aVersion = semverUtils.parse(a.version);
-					const bVersion = semverUtils.parse(b.version);
+			const dialogTitle = this.$el.parentNode.querySelector(
+				".modal-dialog > header .title"
+			);
+			const tabs = this.$el.parentNode.querySelectorAll("p.tabs-panel button");
 
-					if (aVersion.major > bVersion.major) {
-						return -1;
-					}
-					else if (aVersion.major < bVersion.major) {
-						return 1;
-					}
-					else {
-						if (aVersion.minor > bVersion.minor) {
-							return -1;
-						}
-						else if (aVersion.minor < bVersion.minor) {
-							return 1;
-						}
-						else {
-							if (aVersion.patch > bVersion.patch) {
-								return -1;
-							}
-							else if (aVersion.patch < bVersion.patch) {
-								return 1;
-							}
-							else {
-								return 0;
-							}
-						}
-					}
-				});
+			for (let i = 0; i < tabs.length; i++) {
+				dialogTitle.appendChild(tabs[i]);
+			}
 
-				return result;
-			},
-
-			defaultFormatPref: state => state.pref.defaultFormat,
-			proofingFormatPref: state => state.pref.proofingFormat
-		}
+			this.loadNext();
+		});
 	},
 
 	components: {
-		'format-item': require('./item'),
-		'tab-item': require('../../ui/tab-panel/item'),
-		'tabs-panel': require('../../ui/tab-panel'),
-		'modal-dialog': require('../../ui/modal-dialog')
-	}
+		"format-item": FormatsItem,
+		"tab-item": TabPanelItem,
+		"tabs-panel": TabPanel,
+		"modal-dialog": ModalDialog,
+	},
 });
+
+export default Formats;

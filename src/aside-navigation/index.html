@@ -11,15 +11,12 @@
             activeNavItem === 'home' ? 'asideNavigation--item-active' : ''
         ]"
         >
-			<button
-            class="asideNavigation--button"
-            v-link="'/home'"
-            title="Home">
+            <router-link class="asideNavigation--button" to="/home" title="Home">
                 <div class="asideNavigation--icon"></div>
 				<div class="asideNavigation--text">
                     {{ 'Home' | say }}
                 </div>
-			</button>
+            </router-link>
 		</li>
 		<li
         :class="[
@@ -27,15 +24,12 @@
             activeNavItem === 'chatbots' ? 'asideNavigation--item-active' : ''
         ]"
         >
-			<button
-            class="asideNavigation--button"
-            v-link="'/chatbots'"
-            title="Chatbots">
+            <router-link class="asideNavigation--button" to="/chatbots" title="Chatbots">
                 <div class="asideNavigation--icon"></div>
                 <div class="asideNavigation--text">
                     {{ 'Chatbots' | say }}
                 </div>
-			</button>
+            </router-link>
             <!-- ({{storiesLength}}) -->
 		</li>
         <li class="asideNavigation--item asideNavigation--item-livechat">

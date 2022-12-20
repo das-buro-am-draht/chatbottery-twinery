@@ -34,13 +34,15 @@ const story = module.exports = {
 	*/
 
 	saveStory(transaction, story) {
-		if (!story.id) {
+		const {id} = story || {};
+
+		if (!id) {
 			throw new Error('Chatbot has no id');
 		}
 		
 		transaction.storyIds = commaList.addUnique(
 			transaction.storyIds,
-			story.id
+			id
 		);
 
 		/*
@@ -49,7 +51,7 @@ const story = module.exports = {
 		*/
 
 		window.localStorage.setItem(
-			'twine-stories-' + story.id,
+			'twine-stories-' + id,
 			JSON.stringify(
 				Object.assign({}, story, { passages: undefined })
 			)

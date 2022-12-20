@@ -3,21 +3,20 @@ This is an gauge that shows how much space is available in the user's local
 storage. It's only applicable when the app is running in a Web browser.
 */
 
-const Vue = require('vue');
-const isElectron = require('../../electron/is-electron');
-const locale = require('../../locale');
+import Vue from 'vue';
+import locale from '../../locale';
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
 const CHUNK_SIZE = 102400;
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const QuotaGauge = Vue.extend({
+	template,
 
 	data: () => ({
 		used: 0,
 		free: 0,
-		show: !isElectron()
 	}),
 
 	computed: {
@@ -31,10 +30,6 @@ module.exports = Vue.extend({
 	},
 
 	created() {
-		if (!this.show) {
-			return;
-		}
-
 		/*
 		We know how much space we're already using. We find out how much is
 		free by trying to allocate more in 100k chunks, and failing once
@@ -87,3 +82,5 @@ module.exports = Vue.extend({
 		);
 	}
 });
+
+export default QuotaGauge;

@@ -4,10 +4,12 @@
 
 "use strict";
 const moment = require("moment");
-const Vue = require("vue");
-const ZoomTransition = require("../../../story-list-view/zoom-transition");
+import Vue from 'vue';
+import ZoomTransition from "../../../story-list-view/zoom-transition";
+import ItemPreview from "./item-preview";
+import ItemMenu from "./item-menu";
 
-require("./index.less");
+import "./index.less";
 
 const pluginsUrlFragments = [
 	{ fragment: "plugins/chat", type: "Livechat" },
@@ -25,8 +27,10 @@ const detectPlugins = (scriptData) => {
 	return Array.from(plugins);
 };
 
-module.exports = Vue.extend({
-	template: require("./index.html"),
+import template from './index.html';
+
+const StoryItem = Vue.extend({
+	template,
 
 	data: () => ({
 		plugins: [],
@@ -39,15 +43,15 @@ module.exports = Vue.extend({
 		},
 	},
 
-	activate: function (done) {
+	beforeRouteEnter: function (done) {
 		this.plugins = detectPlugins(this.story.script) || [];
 
 		done();
 	},
 
 	components: {
-		"item-preview": require("./item-preview"),
-		"item-menu": require("./item-menu"),
+		"item-preview": ItemPreview,
+		"item-menu": ItemMenu,
 	},
 
 	computed: {
@@ -121,3 +125,5 @@ module.exports = Vue.extend({
 		},
 	},
 });
+
+export default StoryItem;

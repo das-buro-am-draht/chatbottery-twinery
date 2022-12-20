@@ -24,7 +24,7 @@ module.exports = {
 
 		if (!store.state.pref.lastUpdateSeen ||
 			store.state.pref.lastUpdateSeen < store.state.appInfo.buildNumber) {
-			setPref(store, 'lastUpdateSeen', store.state.appInfo.buildNumber);
+			setPref(store, {name: 'lastUpdateSeen', value: store.state.appInfo.buildNumber});
 		}
 
 		/* Is there a new update since we last checked? */
@@ -35,7 +35,7 @@ module.exports = {
 			checkForUpdate(
 				store.state.pref.lastUpdateSeen,
 				({ buildNumber, version, url }) => {
-					setPref(store, 'lastUpdateSeen', buildNumber);
+					setPref(store, {name: 'lastUpdateSeen', value: buildNumber});
 
 					confirm({
 						message:

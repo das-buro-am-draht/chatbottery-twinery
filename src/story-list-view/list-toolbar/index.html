@@ -3,32 +3,32 @@
 
 	<ul class="plain">
 		<li>
-			<button class="create block" @click="createStoryPrompt" title="{{ 'Create a brand-new chatbot' | say }}">
+			<button class="create block" @click="createStoryPrompt" v-bind:title="'Create a brand-new chatbot' | say">
 				<i class="fa fa-plus"></i> {{ 'Chatbot' | say }}
 			</button>
 		</li>
 		<li>
-			<button class="block" @click="importFile" title="{{ 'Import a published chatbot or Chatbottery archive' | say }}">
+			<button class="block" @click="importFile" v-bind:title="'Import a published chatbot or Chatbottery archive' | say">
 				<i class="fa fa-upload"></i> {{'Import From File' | say}}
 			</button>
 		</li>
 		<li>
-			<button class="block" @click="saveArchive" title="{{'Save all stories to a Chatbottery archive file' | say }}">
+			<button class="block" @click="saveArchive" v-bind:title="'Save all stories to a Chatbottery archive file' | say">
 				<i class="fa fa-briefcase"></i> {{ 'Archive' | say}}
 			</button>
 		</li>
 		<li>
-			<button class="block" @click="showFormats" title="{{'Work with chatbot and proofing formats' | say }}">
+			<button class="block" @click="showFormats" v-bind:title="'Work with chatbot and proofing formats' | say">
 				<i class="fa fa-file-code-o"></i> {{ 'Formats' | say }}
 			</button>
 		</li>
 		<li>
-			<button class="block" @click="showLocale" title="{{'Change the language Chatbottery uses' | say }}">
+			<button class="block" @click="showLocale" v-bind:title="'Change the language Chatbottery uses' | say">
 				<i class="fa fa-comment-o"></i> {{ 'Language' | say }}
 			</button>
 		</li>
 		<li>
-			<button class="block" @click="showHelp" title="{{'Browse online help' | say }}">
+			<button class="block" @click="showHelp" v-bind:title="'Browse online help' | say">
 				<i class="fa fa-question-circle"></i> {{ 'Help' | say }}
 			</button>
 		</li>

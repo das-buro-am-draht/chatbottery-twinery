@@ -1,14 +1,14 @@
 /* A contextual menu that appears when the user points at a passage. */
 
-const Vue = require('vue');
-const {testStory} = require('../../../common/launch-story');
-const {updatePassage} = require('../../../data/actions/passage');
-const {updateStory} = require('../../../data/actions/story');
+import Vue from 'vue';
+import {testStory} from '../../../common/launch-story';
+import DropDown from '../../../ui/drop-down';
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const PassageMenu = Vue.extend({
+	template,
 
 	props: {
 		passage: {
@@ -27,6 +27,9 @@ module.exports = Vue.extend({
 	}),
 
 	computed: {
+		updatePassage () { return this.$store._actions.updatePassage[0] },
+		updateStory () { return this.$store._actions.updateStory[0] },
+
 		isStart() {
 			return this.parentStory.startPassage === this.passage.id;
 		},
@@ -52,17 +55,17 @@ module.exports = Vue.extend({
 
 	watch: {
 		expanded() {
-			this.$broadcast('drop-down-reposition');
+			this.$root.$emit('drop-down-reposition');
 		}
 	},
 
 	methods: {
 		edit() {
-			this.$dispatch('passage-edit');
+			this.$root.$emit('passage-edit');
 		},
 
-		delete(e) {
-			this.$dispatch('passage-delete', e.shiftKey);
+		deletePassage(e) {
+			this.$root.$emit('passage-delete', e.shiftKey);
 		},
 
 		test() {
@@ -74,7 +77,8 @@ module.exports = Vue.extend({
 		},
 
 		setAsStart() {
-			this.updateStory(this.parentStory.id, {
+			this.updateStory({
+				id: this.parentStory.id,
 				startPassage: this.passage.id
 			});
 		},
@@ -82,28 +86,36 @@ module.exports = Vue.extend({
 		setSize(value) {
 			switch (value) {
 				case 'small':
-					this.updatePassage(this.parentStory.id, this.passage.id, {
+					this.updatePassage({
+						storyId: this.parentStory.id,
+						passageId: this.passage.id,
 						width: 150,
 						height: 100
 					});
 					break;
 
 				case 'wide':
-					this.updatePassage(this.parentStory.id, this.passage.id, {
+					this.updatePassage({
+						storyId: this.parentStory.id,
+						passageId: this.passage.id,
 						width: 200,
 						height: 100
 					});
 					break;
 
 				case 'tall':
-					this.updatePassage(this.parentStory.id, this.passage.id, {
+					this.updatePassage({
+						storyId: this.parentStory.id,
+						passageId: this.passage.id,
 						width: 150,
 						height: 200
 					});
 					break;
 
 				case 'large':
-					this.updatePassage(this.parentStory.id, this.passage.id, {
+					this.updatePassage({
+						storyId: this.parentStory.id,
+						passageId: this.passage.id,
 						width: 200,
 						height: 200
 					});
@@ -113,7 +125,7 @@ module.exports = Vue.extend({
 					throw new Error(`Don't know how to set size ${value}`);
 			}
 
-			this.$dispatch('passage-position', this.passage, {});
+			this.$root.$emit('passage-position', this.passage, {});
 		}
 	},
 
@@ -124,10 +136,8 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'drop-down': require('../../../ui/drop-down')
+		'drop-down': DropDown
 	},
-
-	vuex: {
-		actions: {updatePassage, updateStory}
-	}
 });
+
+export default PassageMenu;

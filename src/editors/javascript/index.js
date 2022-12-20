@@ -1,20 +1,25 @@
 // A component showing a modal dialog where a story's JavaSCript.
 
-const Vue = require('vue');
-const { updateStory } = require('../../data/actions/story');
+import Vue from 'vue';
 
-require('codemirror/mode/javascript/javascript');
-require('codemirror/addon/display/placeholder');
-require('codemirror/addon/hint/show-hint');
+import ModalDialog from '../../ui/modal-dialog';
+import VueCodeMirror from '../../vue/codemirror';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/addon/display/placeholder';
+import 'codemirror/addon/hint/show-hint';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+import template from './index.html';
+
+const EditorsJavaScript = Vue.extend({
+	template,
 
 	data: () => ({
 		storyId: ''
 	}),
 
 	computed: {
+		updateStory () { return this.$store._actions.updateStory[0] },
+		allStories () { return this.$store.getters.allStories },
 		source() {
 			return this.allStories.find(
 				story => story.id === this.storyId
@@ -41,22 +46,14 @@ module.exports = Vue.extend({
 		},
 
 		save(text) {
-			this.updateStory(this.storyId, { script: text });
+			this.updateStory({id: this.storyId, script: text });
 		}
 	},
 	
 	components: {
-		'modal-dialog': require('../../ui/modal-dialog'),
-		'code-mirror': require('../../vue/codemirror')
+		'modal-dialog': ModalDialog,
+		'code-mirror': VueCodeMirror
 	},
-
-	vuex: {
-		actions: {
-			updateStory
-		},
-
-		getters: {
-			allStories: state => state.story.stories
-		}
-	}
 });
+
+export default EditorsJavaScript;

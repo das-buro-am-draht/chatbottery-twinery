@@ -2,21 +2,21 @@ const linkParser = require('../link-parser');
 const rect = require('../../common/rect');
 
 const actions = module.exports = {
-	createPassage({ dispatch }, storyId, props) {
-		dispatch('CREATE_PASSAGE_IN_STORY', storyId, props);
+	createPassage({ commit }, props) {
+		commit('CREATE_PASSAGE_IN_STORY', props);
 	},
 
-	updatePassage({ dispatch }, storyId, passageId, props) {
-		dispatch('UPDATE_PASSAGE_IN_STORY', storyId, passageId, props);
+	updatePassage({ commit }, props) {
+		commit('UPDATE_PASSAGE_IN_STORY', props);
 	},
 
-	deletePassage({ dispatch }, storyId, passageId) {
-		dispatch('DELETE_PASSAGE_IN_STORY', storyId, passageId);
+	deletePassage({ commit }, props) {
+		commit('DELETE_PASSAGE_IN_STORY', props);
 	},
 
-	selectPassages(store, storyId, filter) {
+	selectPassages(store, {storyId, filter}) {
 		const story = store.state.story.stories.find(
-			story => story.id == storyId
+			({id}) => id == storyId
 		);
 
 		if (!story) {
@@ -24,17 +24,16 @@ const actions = module.exports = {
 		}
 
 		story.passages.forEach(p => {
+			
 			const current = p.selected;
 			const wantSelect = filter(p);
 
 			/* Only dispatch updates where there are changes. */
 
 			if (wantSelect !== current) {
-				store.dispatch(
+				store.commit(
 					'UPDATE_PASSAGE_IN_STORY',
-					storyId,
-					p.id,
-					{ selected: wantSelect });
+					{storyId, passageId: p.id, selected: wantSelect});
 			}
 		});
 	},
@@ -44,7 +43,7 @@ const actions = module.exports = {
 	snaps to a grid.
 	*/
 
-	positionPassage(store, storyId, passageId, gridSize, filter) {
+	positionPassage(store, {storyId, passageId, gridSize, filter}) {
 		if (gridSize && typeof gridSize !== 'number') {
 			throw new Error('Asked to snap to a non-numeric grid size: ' + gridSize);
 		}
@@ -120,9 +119,9 @@ const actions = module.exports = {
 		if (passageRect.top !== oldTop || passageRect.left !== oldLeft) {
 			actions.updatePassage(
 				store,
-				storyId,
-				passageId,
 				{
+					storyId,
+					passageId,
 					top: passageRect.top,
 					left: passageRect.left
 				}
@@ -134,7 +133,7 @@ const actions = module.exports = {
 	Adds new passages to a story based on new links added in a passage's text.
 	*/
 
-	createNewlyLinkedPassages(store, storyId, passageId, oldText, gridSize) {
+	createNewlyLinkedPassages(store, {storyId, passageId, oldText, gridSize}) {
 		const story = store.state.story.stories.find(
 			story => story.id === storyId
 		);
@@ -164,7 +163,7 @@ const actions = module.exports = {
 		let newLeft = passage.left + (150 - totalWidth) / 2;
 
 		newLinks.forEach(link => {
-			store.dispatch(
+			store.commit(
 				'CREATE_PASSAGE_IN_STORY',
 				storyId,
 				{
@@ -194,7 +193,7 @@ const actions = module.exports = {
 
 	/* Updates links to a passage in a story to a new name. */
 
-	changeLinksInStory(store, storyId, oldName, newName) {
+	changeLinksInStory(store, {storyId, oldName, newName}) {
 		// TODO: add hook for story formats to be more sophisticated
 
 		const story = store.state.story.stories.find(
@@ -245,11 +244,9 @@ const actions = module.exports = {
 					'[[' + newNameEscaped + '$1$2]]'
 				);
 
-				store.dispatch(
+				store.commit(
 					'UPDATE_PASSAGE_IN_STORY',
-					storyId,
-					passage.id,
-					{ text: newText }
+					{storyId, passageId: passage.id, text: newText }
 				);
 			}
 		});

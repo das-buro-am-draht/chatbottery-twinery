@@ -17,28 +17,29 @@ const actions = (module.exports = {
 				store.state.pref.defaultFormat.version;
 		}
 
-		store.dispatch('CREATE_STORY', normalizedProps);
+		store.commit('CREATE_STORY', {...normalizedProps});
 	},
 
-	updateStory({dispatch}, id, props) {
-		dispatch('UPDATE_STORY', id, props);
+	updateStory({commit}, props) {
+		commit('UPDATE_STORY', props);
 	},
 
-	deleteStory({dispatch}, id) {
-		dispatch('DELETE_STORY', id);
+	deleteStory({commit}, id) {
+		commit('DELETE_STORY', {id});
 	},
 
-	duplicateStory({dispatch}, id, newName) {
-		dispatch('DUPLICATE_STORY', id, newName);
+	duplicateStory({commit}, props) {
+		commit('DUPLICATE_STORY', props);
 	},
 
 	importStory(store, toImport) {
 		const story = Object.assign({}, toImport);
+
 		if (!formatVersion(store.state.storyFormat.formats, story.storyFormat, story.storyFormatVersion)) {
 			story.storyFormat = store.state.pref.defaultFormat.name;
 			story.storyFormatVersion = store.state.pref.defaultFormat.version;
 		}
-		store.dispatch('IMPORT_STORY', story);
+		store.commit('IMPORT_STORY', story);
 	},
 
 	setTagColorInStory(store, storyId, tagName, tagColor) {
@@ -53,7 +54,8 @@ const actions = (module.exports = {
 			throw new Error(`No story exists with id ${storyId}`);
 		}
 
-		store.dispatch('UPDATE_STORY', storyId, {
+		store.commit('UPDATE_STORY', {
+			id: storyId,
 			tagColors: Object.assign({}, story.tagColors, toMerge)
 		});
 	},
@@ -80,7 +82,7 @@ const actions = (module.exports = {
 			delete tagColors[tag];
 		});
 
-		store.dispatch('UPDATE_STORY', storyId, {tagColors});
+		store.commit('UPDATE_STORY', storyId, {tagColors});
 	},
 
 	/*

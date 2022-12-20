@@ -1,58 +1,82 @@
 /* Shows a modal dialog asking for a text response from the user. */
 
-const Vue = require('vue');
-const locale = require('../../locale');
-const { thenable } = require('../../vue/mixins/thenable');
+import Vue from 'vue';
+import locale from "../../locale";
+import { thenable } from "../../vue/mixins/thenable";
 
-require('./index.less');
+import ModalDialog from '../../ui/modal-dialog';
 
-const prompter = module.exports = {
+import './index.less';
+import template from './index.html';
+
+export const prompt = (data) => {
+	return new prompter.component({ data })
+		.$mountTo(document.body)
+		.then((result) => {
+			/*
+			False results are produced by the close button and the cancel
+			button. If the result is false, convert it into a rejection.
+			
+			Note: this may change in the future, as using rejections for
+			negative results is somewhat unidiomatic.
+			*/
+
+			if (!result) {
+				throw result;
+			}
+
+			return result;
+		});
+};
+
+const prompter = {
 	component: Vue.extend({
-		template: require('./index.html'),
-		
-		data: () => ({
-			message: '',
-			response: '',
-			cancelLabel: ('<i class="fa fa-times"></i> ' + locale.say('Cancel')),
-			buttonLabel: '',
-			buttonClass: 'primary',
-			modalClass: '',
-			isValid: true,
-			validationError: '',
-			validator: function() {},
+		template,
 
-			origin: null
+		data: () => ({
+			message: "",
+			response: "",
+			cancelLabel: '<i class="fa fa-times"></i> ' + locale.say("Cancel"),
+			buttonLabel: "",
+			buttonClass: "primary",
+			modalClass: "",
+			isValid: true,
+			validationError: "",
+			validator: function () {},
+
+			origin: null,
 		}),
 
-		ready() {
-			this.$els.response.focus();
-			this.$els.response.select();
+		mounted: function () {
+			this.$nextTick(function () {
+				this.$refs.response.focus();
+				this.$refs.response.select();
+			});
 		},
 
 		methods: {
 			accept() {
 				const validResponse = this.validator(this.response);
 
-				if (typeof validResponse === 'string') {
+				if (typeof validResponse === "string") {
 					this.isValid = false;
 					this.validationError = validResponse;
-				}
-				else {
+				} else {
 					this.isValid = true;
-					this.$broadcast('close', this.response);
+					this.$root.$emit("close", this.response);
 				}
 			},
 
 			cancel() {
-				this.$broadcast('close', false);
-			}
+				this.$root.$emit("close", this.response);
+			},
 		},
 
 		components: {
-			'modal-dialog': require('../../ui/modal-dialog')
+			"modal-dialog": ModalDialog,
 		},
 
-		mixins: [thenable]
+		mixins: [thenable],
 	}),
 
 	/**
@@ -60,23 +84,7 @@ const prompter = module.exports = {
 	 promise, which rejects if the 'cancel' button was selected.
 	*/
 
-	prompt(data) {
-		return new prompter.component({ data }).$mountTo(document.body).then(
-			result => {
-				/*
-				False results are produced by the close button and the cancel
-				button. If the result is false, convert it into a rejection.
-				
-				Note: this may change in the future, as using rejections for
-				negative results is somewhat unidiomatic.
-				*/
-
-				if (!result) {
-					throw result;
-				}
-
-				return result;
-			}
-		);
-	}
+	prompt
 };
+
+export default prompter;

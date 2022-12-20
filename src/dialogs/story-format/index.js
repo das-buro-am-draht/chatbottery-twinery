@@ -1,13 +1,18 @@
-const Vue = require('vue');
-const { loadFormat } = require('../../data/actions/story-format');
-const locale = require('../../locale');
-const notify = require('../../ui/notify');
-const semverUtils = require('semver-utils');
+import Vue from 'vue';
+import { mapActions } from 'vuex';
 
-require('./index.less');
+import locale from '../../locale';
+import notify from '../../ui/notify';
+import semverUtils from 'semver-utils';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+import StoryFormatItem from './item';
+import ModalDialog from '../../ui/modal-dialog';
+
+import './index.less';
+import template from './index.html';
+
+const StoryFormat = Vue.extend({
+	template,
 
 	data: () => ({
 		loadIndex: 0,
@@ -16,6 +21,8 @@ module.exports = Vue.extend({
 	}),
 
 	computed: {
+		allStories () { return this.$store.getters.allStories },
+		allFormats () { return this.$store.getters.allFormatsSorted },
 		story() {
 			return this.allStories.find(story => story.id === this.storyId);
 		},
@@ -33,6 +40,9 @@ module.exports = Vue.extend({
 	},
 
 	methods: {
+		...mapActions([
+			'loadFormat'
+		]),
 		loadNext() {
 			if (!this.working) {
 				return;
@@ -65,68 +75,16 @@ module.exports = Vue.extend({
 		}
 	},
 
-	ready() {
-		this.loadNext();
-	},
-
-	vuex: {
-		actions: {
-			loadFormat,
-		},
-
-		getters: {
-			allStories: state => state.story.stories,
-			allFormats: state => {
-				var result = state.storyFormat.formats.map(
-					format => ({ name: format.name, version: format.version })
-				);
-				
-				result.sort((a, b) => {
-					if (a.name < b.name) {
-						return -1;
-					}
-					
-					if (a.name > b.name) {
-						return 1;
-					}
-
-					const aVersion = semverUtils.parse(a.version);
-					const bVersion = semverUtils.parse(b.version);
-
-					if (aVersion.major > bVersion.major) {
-						return -1;
-					}
-					else if (aVersion.major < bVersion.major) {
-						return 1;
-					}
-					else {
-						if (aVersion.minor > bVersion.minor) {
-							return -1;
-						}
-						else if (aVersion.minor < bVersion.minor) {
-							return 1;
-						}
-						else {
-							if (aVersion.patch > bVersion.patch) {
-								return -1;
-							}
-							else if (aVersion.patch < bVersion.patch) {
-								return 1;
-							}
-							else {
-								return 0;
-							}
-						}
-					}
-				});
-
-				return result;
-			}
-		}
+	mounted: function () {
+		this.$nextTick(function () {
+			this.loadNext();
+		});
 	},
 
 	components: {
-		'format-item': require('./item'),
-		'modal-dialog': require('../../ui/modal-dialog')
+		'format-item': StoryFormatItem,
+		'modal-dialog': ModalDialog
 	}
 });
+
+export default StoryFormat;

@@ -9,16 +9,16 @@ const locale = require('../../locale');
 const {setPref} = require('./pref');
 
 const actions = (module.exports = {
-	createFormat({dispatch}, props) {
-		dispatch('CREATE_FORMAT', props);
+	createFormat({commit}, props) {
+		commit('CREATE_FORMAT', props);
 	},
 
-	updateFormat({dispatch}, id, props) {
-		dispatch('UPDATE_FORMAT', id, props);
+	updateFormat({commit}, props) {
+		commit('UPDATE_FORMAT', props);
 	},
 
-	deleteFormat({dispatch}, id) {
-		dispatch('DELETE_FORMAT', id);
+	deleteFormat({commit}, id) {
+		commit('DELETE_FORMAT', id);
 	},
 
 	createFormatFromUrl(store, url) {
@@ -88,7 +88,7 @@ const actions = (module.exports = {
 					properties: data
 				};
 
-				store.dispatch('CREATE_FORMAT', format);
+				store.commit('CREATE_FORMAT', format);
 				resolve(format);
 			});
 		});
@@ -125,7 +125,7 @@ const actions = (module.exports = {
 						return;
 					}
 
-					store.dispatch('LOAD_FORMAT', format.id, data);
+					store.commit('LOAD_FORMAT', format.id, data);
 					resolve(format);
 				}
 			);
@@ -248,17 +248,17 @@ const actions = (module.exports = {
 		*/
 
 		{ // if (typeof store.state.pref.defaultFormat !== 'object') {
-			setPref(store, 'defaultFormat', {
+			setPref(store, {name: 'defaultFormat', value: {
 				name: 'Chatbottery',
 				version: '9.1.2'
-			});
+			}});
 		}
 
 		{ // if (typeof store.state.pref.proofingFormat !== 'object') {
-			setPref(store, 'proofingFormat', {
+			setPref(store, {name: 'proofingFormat', value: {
 				name: 'Illume',
 				version: '1.0.5'
-			});
+			}});
 		}
 
 		/*
@@ -301,17 +301,17 @@ const actions = (module.exports = {
 		const latestProofing = latestVersions[proofingFormat.name];
 
 		if (latestDefault && latestDefault[defaultFormatVersion.major]) {
-			setPref(store, 'defaultFormat', {
+			setPref(store, {name: 'defaultFormat', value: {
 				name: defaultFormat.name,
 				version: latestDefault[defaultFormatVersion.major].semver
-			});
+			}});
 		}
 
 		if (latestProofing && latestProofing[proofingFormatVersion.major]) {
-			setPref(store, 'proofingFormat', {
+			setPref(store, {name: 'proofingFormat', value: {
 				name: proofingFormat.name,
 				version: latestProofing[proofingFormatVersion.major].semver
-			});
+			}});
 		}
 	}
 });

@@ -1,11 +1,11 @@
 // A lightweight Vue component that wraps a CodeMirror instance.
 
-const Vue = require('vue');
-const CodeMirror = require('codemirror');
+import Vue from 'vue';
+import CodeMirror from 'codemirror';
 
-require('./codemirror-theme.less');
+import './codemirror-theme.less';
 
-module.exports = Vue.extend({
+const VueCodeMirror = Vue.extend({
 	template: '<div></div>',
 
 	props: ['options', 'text'],
@@ -21,7 +21,7 @@ module.exports = Vue.extend({
 		}
 	},
 
-	compiled() {
+	mounted() {
 		this.$cm = CodeMirror(this.$el, this.options);
 		this.$cm.setValue((this.text || '') + '');
 
@@ -34,7 +34,7 @@ module.exports = Vue.extend({
 
 		this.$cm.on('change', () => {
 			this.text = this.$cm.getValue();
-			this.$dispatch('cm-change', this.text);
+			this.$root.$emit('cm-change', this.text);
 		});
 	},
 
@@ -51,3 +51,5 @@ module.exports = Vue.extend({
 		}
 	}
 });
+
+export default VueCodeMirror;

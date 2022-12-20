@@ -1,16 +1,19 @@
 // The toolbar at the bottom of the screen with editing controls.
 
-const Vue = require('vue');
-const JavaScriptEditor = require('../editors/javascript');
-const StylesheetEditor = require('../editors/stylesheet');
-const zoomMappings = require('../chatbot-edit-view/zoom-settings');
-const {playStory} = require('../common/launch-story');
-const {updateStory} = require('../data/actions/story');
+import Vue from 'vue';
+import JavaScriptEditor from '../editors/javascript';
+import StylesheetEditor from '../editors/stylesheet';
+import zoomMappings from '../chatbot-edit-view/zoom-settings';
+import {playStory} from '../common/launch-story';
+import StorySearch from './story-search';
+import DropdownFile from './dropdown-file';
+import DropdownDownload from './dropdown-download';
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const ChatbotToolbar = Vue.extend({
+	template,
 
 	data: () => ({
 		descriptions: ["small", "medium", "big"],
@@ -30,9 +33,13 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'story-search': require('./story-search'),
-		'dropdown-file': require('./dropdown-file'),
-		'dropdown-download': require('./dropdown-download'),
+		'story-search': StorySearch,
+		'dropdown-file': DropdownFile,
+		'dropdown-download': DropdownDownload,
+	},
+
+	computed: {
+		updateStory () { return this.$store._actions.updateStory[0] },
 	},
 
 	methods: {
@@ -57,17 +64,15 @@ module.exports = Vue.extend({
 			}).$mountTo(document.body);
 		},
 		changeZoom() {
-			this.updateStory(this.story.id, {zoom: zoomMappings[this.descriptions[this.sliderVal]]});
+			this.updateStory({id: this.story.id, zoom: zoomMappings[this.descriptions[this.sliderVal]]});
 		},
 	},
 
-	ready: function () {
-		this.sliderVal = this.descriptions.indexOf(this.zoomDesc);
+	mounted: function () {
+		this.$nextTick(function () {
+			this.sliderVal = this.descriptions.indexOf(this.zoomDesc);
+		});
 	},
-
-	vuex: {
-		actions: {
-			updateStory,
-		},
-	}
 });
+
+export default ChatbotToolbar;

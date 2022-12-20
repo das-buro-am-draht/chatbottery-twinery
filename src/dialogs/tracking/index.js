@@ -1,15 +1,18 @@
 // A component showing a modal dialog where a story's JavaSCript.
 
-const Vue = require("vue");
-const JavaScriptEditor = require('../../editors/javascript');
-const { updateStory } = require("../../data/actions/story");
-const { isTrackingScript } = require("../../utils/tracking");
-const { isValidUrl } = require("../../utils/common");
+import Vue from 'vue';
+import { mapActions } from 'vuex';
 
-require("./index.less");
+import JavaScriptEditor from "../../editors/javascript";
+import { isTrackingScript } from "../../utils/tracking";
+import { isValidUrl } from "../../utils/common";
+import ModalDialog from '../../ui/modal-dialog';
 
-module.exports = Vue.extend({
-	template: require("./index.html"),
+import './index.less';
+import template from './index.html';
+
+const Tracking = Vue.extend({
+	template,
 
 	data: () => ({
 		matomo: false,
@@ -24,17 +27,20 @@ module.exports = Vue.extend({
 		storyId: "",
 	}),
 
-	ready() {
-		const tracking = this.getTrackingData();
-		const trackingEntries = tracking && Object.entries(tracking) || [];
-		const isTracking = trackingEntries.length > 0;
+	mounted: function () {
+		this.$nextTick(function () {
+			const tracking = this.getTrackingData();
+			const trackingEntries = (tracking && Object.entries(tracking)) || [];
+			const isTracking = trackingEntries.length > 0;
 
-		if (isTracking) {
-			trackingEntries.forEach(([key, entry]) => this[key] = entry);
-		}
+			if (isTracking) {
+				trackingEntries.forEach(([key, entry]) => (this[key] = entry));
+			}
+		});
 	},
 
 	computed: {
+		allStories () { return this.$store.getters.allStories },
 		isTrackingPossible() {
 			return this.isScriptCodeReady();
 		},
@@ -48,12 +54,23 @@ module.exports = Vue.extend({
 			return this.googleAnalyticsJSUrl && isValidUrl(this.googleAnalyticsJSUrl);
 		},
 		isValid() {
-			return (!this.matomo || (this.matomoJSUrl && isValidUrl(this.matomoJSUrl) && this.matomoPHPUrl && isValidUrl(this.matomoPHPUrl) && !!this.siteId))
-				  && (!this.google || (this.googleAnalyticsJSUrl && isValidUrl(this.googleAnalyticsJSUrl))) 
-		}
+			return (
+				(!this.matomo ||
+					(this.matomoJSUrl &&
+						isValidUrl(this.matomoJSUrl) &&
+						this.matomoPHPUrl &&
+						isValidUrl(this.matomoPHPUrl) &&
+						!!this.siteId)) &&
+				(!this.google ||
+					(this.googleAnalyticsJSUrl && isValidUrl(this.googleAnalyticsJSUrl)))
+			);
+		},
 	},
 
 	methods: {
+		...mapActions([
+			'updateStory'
+		]),
 		getStory() {
 			return this.allStories.find((story) => story.id === this.storyId) || {};
 		},
@@ -79,19 +96,23 @@ module.exports = Vue.extend({
 		save() {
 			const isScriptCodeReady = this.isScriptCodeReady();
 
-			const tracking = (isScriptCodeReady && (this.google || this.matomo)) ? {
-				matomo: this.matomo,
-				google: this.google,
-				matomoJSUrl: this.matomoJSUrl,
-				googleAnalyticsJSUrl: this.googleAnalyticsJSUrl,
-				matomoPHPUrl: this.matomoPHPUrl,
-				siteId: this.siteId,
-				statisticalArea: this.statisticalArea,
-				browserHostToEnvironmentMap: this.browserHostToEnvironmentMap,
-				shouldStoreTrackingIdInCookies: this.shouldStoreTrackingIdInCookies,
-			} : undefined;
+			const tracking =
+				isScriptCodeReady && (this.google || this.matomo)
+					? {
+							matomo: this.matomo,
+							google: this.google,
+							matomoJSUrl: this.matomoJSUrl,
+							googleAnalyticsJSUrl: this.googleAnalyticsJSUrl,
+							matomoPHPUrl: this.matomoPHPUrl,
+							siteId: this.siteId,
+							statisticalArea: this.statisticalArea,
+							browserHostToEnvironmentMap: this.browserHostToEnvironmentMap,
+							shouldStoreTrackingIdInCookies:
+								this.shouldStoreTrackingIdInCookies,
+					  }
+					: undefined;
 
-			this.updateStory(this.storyId, { tracking });
+			this.updateStory({id: this.storyId, tracking});
 			this.$refs.modal.close();
 		},
 
@@ -102,23 +123,15 @@ module.exports = Vue.extend({
 			*/
 
 			new JavaScriptEditor({
-				data: {storyId: this.storyId, origin: e.target},
-				store: this.$store
+				data: { storyId: this.storyId, origin: e.target },
+				store: this.$store,
 			}).$mountTo(document.body);
 		},
 	},
 
-	vuex: {
-		actions: {
-			updateStory,
-		},
-
-		getters: {
-			allStories: (state) => state.story.stories,
-		},
-	},
-
 	components: {
-		"modal-dialog": require("../../ui/modal-dialog"),
+		"modal-dialog": ModalDialog,
 	},
 });
+
+export default Tracking;

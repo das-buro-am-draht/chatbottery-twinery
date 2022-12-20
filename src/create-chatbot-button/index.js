@@ -1,18 +1,21 @@
 // The toolbar at the bottom of the screen with editing controls.
 
-const Vue = require('vue');
+import Vue from 'vue';
 // const zoomMappings = require('../zoom-settings');
 // const {playStory, testStory} = require('../../common/launch-story');
 // const {updateStory} = require('../../data/actions/story');
 
-require('./index.less');
+import './index.less';
+import template from './index.html';
 
-module.exports = Vue.extend({
-	template: require('./index.html'),
+const CreateChatbotButton = Vue.extend({
+	template,
 
 	methods: {
 		addPassage() {
-			this.$dispatch('passage-create');
+			this.$root.$emit('passage-create');
 		}
 	},
 });
+
+export default CreateChatbotButton;

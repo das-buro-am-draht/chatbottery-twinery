@@ -2,7 +2,7 @@
 	<nav class="chatbot-toolbar__navigation">
         <ul class="chatbot-toolbar__navigation-list">
             <li class="chatbot-toolbar__navigation-item chatbot-toolbar__navigation-item--home">
-                <a v-link="'/chatbots'" title="{{ 'Go to the chatbot list' | say }}"><div class="icon"></div></a>
+                <a v-link="'/chatbots'" v-bind:title="'Go to the chatbot list' | say"><div class="icon"></div></a>
             </li>
             <dropdown-file :story="story"></dropdown-file>
             <li class="chatbot-toolbar__navigation-item chatbot-toolbar__navigation-item--css" @click="editStyle">

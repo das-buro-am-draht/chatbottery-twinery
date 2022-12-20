@@ -50,7 +50,7 @@ module.exports = {
 					window.localStorage.getItem('twine-prefs-' + id)
 				);
 
-				setPref(store, item.name, item.value);
+				setPref(store, {name: item.name, value: item.value});
 			}
 			catch (e) {
 				console.warn(

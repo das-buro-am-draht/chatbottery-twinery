@@ -2,13 +2,13 @@
 A component showing a single search result.
 */
 
-const Vue = require('vue');
-const { updatePassage } = require('../../data/actions/passage');
+import Vue from 'vue';
 
-require('./result.less');
+import './result.less';
+import template from './result.html';
 
-module.exports = Vue.extend({
-	template: require('./result.html'),
+const StorySearchResult = Vue.extend({
+	template,
 	
 	props: {
 		story: {
@@ -41,6 +41,10 @@ module.exports = Vue.extend({
 		expanded: false
 	}),
 
+	computed: {
+		updatePassage () { return this.$store._actions.updatePassage[0] },
+	},
+
 	methods: {
 		toggleExpanded() {
 			this.expanded = !this.expanded;
@@ -58,11 +62,12 @@ module.exports = Vue.extend({
 				this.replaceWith
 			);
 
-			this.updatePassage(
-				this.story.id,
-				this.match.passage.id,
-				{ name, text }
-			);
+			this.updatePassage({
+				storyId: this.story.id,
+				passageId: this.match.passage.id,
+				name,
+				text
+			});
 		}
 	},
 
@@ -86,10 +91,6 @@ module.exports = Vue.extend({
 			this.replace();
 		}
 	},
-
-	vuex: {
-		actions: {
-			updatePassage
-		}
-	}
 });
+
+export default StorySearchResult;
