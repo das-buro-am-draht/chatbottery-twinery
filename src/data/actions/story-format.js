@@ -337,3 +337,14 @@ export const repairFormats = (store) => {
 		});
 	}
 };
+
+const actions = {
+	createFormat,
+	updateFormat,
+	deleteFormat,
+	createFormatFromUrl,
+	loadFormat,
+	repairFormats,
+};
+
+export default actions;

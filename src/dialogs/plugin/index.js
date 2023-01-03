@@ -10,7 +10,7 @@ import template from "./index.html";
 
 const plugins = ['matomo', 'google', 'chat'];
 
-module.exports = Vue.extend({
+const PluginDialog = Vue.extend({
 	template,
 
 	data: () => ({
@@ -146,3 +146,5 @@ module.exports = Vue.extend({
 		"modal-dialog": ModalDialog,
 	},
 });
+
+export default PluginDialog;

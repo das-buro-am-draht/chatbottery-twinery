@@ -5,10 +5,12 @@ on metadata embedded in the HTML during the compilation process.
 
 // const htmlEl = document.querySelector('html');
 
-module.exports = {
+const appInfo = {
 	// state: {
 	// 	name: htmlEl.getAttribute('data-app-name'),
 	// 	version: htmlEl.getAttribute('data-version'),
 	// 	buildNumber: parseInt(htmlEl.getAttribute('data-build-number'))
 	// }
 };
+
+export default appInfo;

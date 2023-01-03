@@ -8,7 +8,7 @@ import PassageEditor from "../../editors/passage";
 import { confirm } from "../../dialogs/confirm";
 import domEvents from "../../vue/mixins/dom-events";
 import locale from "../../locale";
-import { hasPrimaryTouchUI } from "../../ui";
+import ui from "../../ui";
 import PassageMenu from "./passage-menu";
 
 import './index.less';
@@ -269,7 +269,7 @@ const PassageItem = Vue.extend({
 			this.screenDragStartX = srcPoint.clientX + window.pageXOffset;
 			this.screenDragStartY = srcPoint.clientY + window.pageYOffset;
 
-			if (hasPrimaryTouchUI()) {
+			if (ui.hasPrimaryTouchUI()) {
 				this.on(window, 'touchmove', this.followDrag, { passive: false });
 				this.on(window, 'touchend', this.stopDrag);
 			}
@@ -310,7 +310,7 @@ const PassageItem = Vue.extend({
 
 			/* Remove event listeners set up at the start of the drag. */
 
-			if (hasPrimaryTouchUI()) {
+			if (ui.hasPrimaryTouchUI()) {
 				this.off(window, 'touchmove');
 				this.off(window, 'touchend');
 			}
@@ -377,7 +377,7 @@ const PassageItem = Vue.extend({
 					escape(this.passage.name)
 				);
 
-				if (!hasPrimaryTouchUI()) {
+				if (!ui.hasPrimaryTouchUI()) {
 					message += '<br><br>' + locale.say(
 						'(Hold the Shift key when deleting to skip this message.)'
 					);

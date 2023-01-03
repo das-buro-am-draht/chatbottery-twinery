@@ -14,7 +14,7 @@ import ChatbotsContent from './stories';
 import './index.less';
 import template from './index.html';
 
-module.exports = Vue.extend({
+const ChatbotsView = Vue.extend({
 	template,
 
 	components: {

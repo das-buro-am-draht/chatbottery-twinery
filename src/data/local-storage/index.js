@@ -16,7 +16,7 @@ import storyFormat from './story-format';
 let enabled = true;
 let previousStories;
 
-module.exports = store => {
+const localStorage = store => {
 	enabled = false;
 	pref.load(store);
 	story.load(store);
@@ -188,3 +188,5 @@ module.exports = store => {
 		previousStories = state.story.stories;
 	});
 };
+
+export default localStorage;

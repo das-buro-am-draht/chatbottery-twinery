@@ -3,11 +3,11 @@
 import Vue from 'vue';
 import JavaScriptEditor from '../editors/javascript';
 import StylesheetEditor from '../editors/stylesheet';
-import zoomMappings from '../chatbot-edit-view/zoom-settings';
+import zoomMappings from '../chatbot-view/zoom-settings';
 import {playStory} from '../common/launch-story';
-import StorySearch from './story-search';
-import DropdownFile from './dropdown-file';
-import DropdownDownload from './dropdown-download';
+import StorySearch from './search';
+import DropdownFile from './file';
+import DropdownDownload from './download';
 
 import './index.less';
 import template from './index.html';

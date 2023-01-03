@@ -2,7 +2,7 @@
 
 import uuid from 'tiny-uuid';
 
-module.exports = {
+const pref = {
 	save(store) {
 		// Delete existing prefs in local storage, since we aren't bothering to
 		// preserve ids.
@@ -60,3 +60,5 @@ module.exports = {
 		});
 	}
 };
+
+export default pref;

@@ -10,6 +10,7 @@ import ItemPreview from "./item-preview";
 import ItemMenu from "./item-menu";
 
 import "./index.less";
+import template from "./index.html";
 
 const LIVECHAT = 'Live Chat';
 const TRACKING = 'Tracking';

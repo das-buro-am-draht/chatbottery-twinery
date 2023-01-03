@@ -6,7 +6,4 @@ const regularExpression = (str, flags) => new RegExp(
   str.replace(/([.*+?^${}()|\[\]\/\\])/g, '\\$1'), flags
 );
 
-module.exports = { 
-  isValidUrl, 
-  regularExpression, 
-};
+export default {isValidUrl, regularExpression};

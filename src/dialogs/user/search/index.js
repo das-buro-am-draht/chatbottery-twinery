@@ -3,7 +3,7 @@ import Vue from "vue";
 import './index.less';
 import template from './index.html';
 
-module.exports = Vue.extend({
+const SearchDropdown = Vue.extend({
 	template,
 
 	data: () => ({
@@ -26,3 +26,5 @@ module.exports = Vue.extend({
 	},
 
 });
+
+export default SearchDropdown;

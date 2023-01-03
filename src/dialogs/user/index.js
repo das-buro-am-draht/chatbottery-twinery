@@ -14,7 +14,7 @@ import template from "./index.html";
 
 const labelStoreInLocalStorage = '$storeUserDataInLocalStorage';
 
-module.exports = Vue.extend({
+const UserDataDialog = Vue.extend({
 	template,
 
 	searchDropdown: null,
@@ -251,3 +251,5 @@ module.exports = Vue.extend({
 	}
 
 });
+
+export default UserDataDialog;

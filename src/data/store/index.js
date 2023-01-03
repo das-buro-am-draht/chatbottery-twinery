@@ -13,6 +13,7 @@ import storyActions from "../actions/story";
 import { setPref } from '../../data/actions/pref';
 import passageActions from '../../data/actions/passage';
 import storyFormatActions from '../../data/actions/story-format';
+import localStorage from '../local-storage';
 
 Vue.use(Vuex);
 
@@ -114,6 +115,8 @@ const store = new Vuex.Store({
 		localePref: state => state.pref.locale
 	},
 	plugins: [
-		require('../local-storage')
+		localStorage
 	]
 });
+
+export default store;

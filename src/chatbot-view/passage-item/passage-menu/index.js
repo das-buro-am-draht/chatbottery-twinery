@@ -7,7 +7,7 @@ import DropDown from '../../../ui/drop-down';
 import './index.less';
 import template from './index.html';
 
-module.exports = Vue.extend({
+const PassageMenu = Vue.extend({
 	template,
 
 	props: {
@@ -138,3 +138,5 @@ module.exports = Vue.extend({
 		'drop-down': DropDown
 	},
 });
+
+export default PassageMenu;

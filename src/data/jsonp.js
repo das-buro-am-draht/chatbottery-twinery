@@ -16,7 +16,7 @@ import jsonp from 'jsonp';
 const loadPromises = {};
 const platformJsonp = jsonp;
 
-module.exports = function jsonpRequest(url, props, callback) {
+const jsonpRequest = (url, props, callback) => {
 	if (props.name) {
 		if (!loadPromises[props.name]) {
 			loadPromises[props.name] = Promise.resolve();
@@ -35,3 +35,5 @@ module.exports = function jsonpRequest(url, props, callback) {
 		return platformJsonp(url, props, callback);
 	}
 };
+
+export default jsonpRequest;

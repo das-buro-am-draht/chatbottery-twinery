@@ -2,7 +2,7 @@
 
 import uuid from 'tiny-uuid';
 
-module.exports = {
+const storyFormat = {
 	save(store) {
 		/*
 		Delete existing formats in local storage, since we aren't bothering to
@@ -66,3 +66,5 @@ module.exports = {
 		});
 	}
 };
+
+export default storyFormat;

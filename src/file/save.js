@@ -14,15 +14,15 @@
 'use strict';
 import  JSZip from 'jszip';
 import  saveAs from 'browser-saveas';
-import  { oniOS, onSafari } from '../ui';
+import  ui from '../ui';
 import  locale from '../locale';
 import  notify from '../ui/notify';
 
 import 'blob-polyfill';
 
-module.exports = (data, filename, success, failure) => {
+const save = (data, filename, success, failure) => {
 	try {
-		if (!oniOS()) {
+		if (!ui.oniOS()) {
 			// standard style
 
 			const blob = new Blob([data], { type: 'text/html;charset=utf-8' });
@@ -32,7 +32,7 @@ module.exports = (data, filename, success, failure) => {
 			// we can't even open it in a new window as that seems to
 			// trigger popup blocking
 
-			if (onSafari()) {
+			if (ui.onSafari()) {
 				window.location.href = URL.createObjectURL(blob);
 			}
 			else {
@@ -76,3 +76,5 @@ module.exports = (data, filename, success, failure) => {
 		}
 	};
 };
+
+export default save;

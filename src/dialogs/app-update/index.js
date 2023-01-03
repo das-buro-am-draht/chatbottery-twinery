@@ -14,7 +14,7 @@ currently one day.
 
 const CHECK_DELAY = 1000 * 60 * 60 * 24;
 
-module.exports = {
+const appUpdate = {
 	check(store) {
 		/*
 		Force the last update we've seen to be at least the current app
@@ -67,3 +67,5 @@ module.exports = {
 		}
 	}
 };
+
+export default appUpdate;

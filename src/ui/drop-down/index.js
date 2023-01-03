@@ -3,7 +3,7 @@
 
 import Drop from "tether-drop";
 import Vue from 'vue';
-import { hasPrimaryTouchUI } from "../index";
+import ui from "../index";
 import domEvents from "../../vue/mixins/dom-events";
 
 import "./index.less";
@@ -39,7 +39,7 @@ const DropDown = Vue.extend({
 			let openOn = this.openOn;
 			const target = this.$el.parentNode;
 
-			if (hasPrimaryTouchUI() && openOn === "click") {
+			if (ui.hasPrimaryTouchUI() && openOn === "click") {
 				/*
 					FastClick interferes with Drop's native handling -- we have to
 					handle it manually.

@@ -12,7 +12,7 @@ import './index.less';
 let inited = false;
 let fastclickInstance;
 
-module.exports = {
+const ui = {
 	/**
 	 Performs one-time startup tasks, mainly setting up event listeners.
 	 The heavy lifting is done in submodules or jQuery plugins living
@@ -88,3 +88,5 @@ module.exports = {
 		);
 	}
 };
+
+export default ui;

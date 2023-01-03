@@ -81,7 +81,7 @@ const links = (text, internalOnly) => {
 	return result;
 };
 
-module.exports = {
+export default {
 	links,
 	extractLink,
 	getField,

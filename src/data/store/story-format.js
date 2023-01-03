@@ -13,7 +13,7 @@ const formatDefaults = {
 	properties: {}
 };
 
-module.exports = {
+const storyFormat = {
 	// state: {
 	// 	formats: []
 	// },
@@ -49,3 +49,5 @@ module.exports = {
 		}
 	}
 };
+
+export default storyFormat;

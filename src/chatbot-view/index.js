@@ -9,6 +9,11 @@ import PassageButton from './passage-button';
 import domEvents from '../vue/mixins/dom-events';
 import locale from '../locale';
 import zoomSettings from './zoom-settings';
+import LinkArrows from "./link-arrows";
+import PassageItem from "./passage-item";
+import MarqueeSelector from "./marquee-selector";
+import ChatbotToolbar from "../chatbot-toolbar";
+
 
 import './index.less';
 import template from './index.html';

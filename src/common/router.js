@@ -169,9 +169,9 @@ const router = new VueRouter({
 
 /* By default, show the story list. */
 
-router.redirect({
-	'*': '/home'
-});
+// router.redirect({
+// 	'*': '/home'
+// });
 
 router.beforeEach((to, from, next) => {
 	/*

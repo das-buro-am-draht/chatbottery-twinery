@@ -18,7 +18,7 @@ import {addTo} from './vue/directives/click-outside';
 
 Vue.mixin(mountMixin);
 localeFilters.addTo(Vue);
-mouseScrollingDirective.addTo(Vue);
+mouseScrollingDirective(Vue);
 addTo(Vue);
 
 import locale from './locale';

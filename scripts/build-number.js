@@ -8,7 +8,7 @@ const moment = require('moment');
 const path = require('path');
 const twine = require('../package.json');
 
-const BuildNumber = (module.exports = {
+const BuildNumber =  = {
 	number: moment().format('YYYYMMDDHHmm'),
 	writeToFile() {
 		fs.writeFile(
@@ -22,10 +22,12 @@ const BuildNumber = (module.exports = {
 			() => console.log('Wrote dist/2.json.')
 		);
 	}
-});
+};
 
 /* https://stackoverflow.com/a/6398335 */
 
 if (require.main === module) {
 	BuildNumber.writeToFile();
 }
+
+export default BuildNumber;

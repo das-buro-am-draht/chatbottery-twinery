@@ -35,7 +35,7 @@ const getResults = (links, internalOnly) => {
 	return result;
 };
 
-module.exports = (text, internalOnly) => {
+const linkDivider = (text, internalOnly) => {
 	const gotoLinks = getResults(extractGoToLinkTags(text), internalOnly);
 	const actOrBtnLinks = getResults(extractActOrBtnLinkTags(text), internalOnly);
 
@@ -44,3 +44,5 @@ module.exports = (text, internalOnly) => {
 		actOrBtn: uniq(actOrBtnLinks),
 	};
 };
+
+export default linkDivider;

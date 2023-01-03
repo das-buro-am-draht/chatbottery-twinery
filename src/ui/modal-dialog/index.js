@@ -165,36 +165,38 @@ let ModalDialog = Vue.extend({
 We have to transition in our individual parts through a custom transition.
 */
 
-ModalDialog.transition('modal-dialog', {
-	beforeEnter: function(el) {
-		let overlay = el.querySelector('#modal-overlay');
-		let dialog = el.querySelector('.modal-dialog');
+// TODO: cover transition
 
-		overlay.classList.add('fade-in-out-transition', 'fade-in-out-enter');
-		dialog.classList.add('grow-in-out-enter');
+// ModalDialog.transition('modal-dialog', {
+// 	beforeEnter: function(el) {
+// 		let overlay = el.querySelector('#modal-overlay');
+// 		let dialog = el.querySelector('.modal-dialog');
 
-		dialog.addEventListener('animationend', function() {
-			dialog.classList.remove('grow-in-out-enter');
-		});
-	},
+// 		overlay.classList.add('fade-in-out-transition', 'fade-in-out-enter');
+// 		dialog.classList.add('grow-in-out-enter');
 
-	enter: function(el, done) {
-		let overlay = el.querySelector('#modal-overlay');
+// 		dialog.addEventListener('animationend', function() {
+// 			dialog.classList.remove('grow-in-out-enter');
+// 		});
+// 	},
 
-		Vue.nextTick(() => {
-			overlay.classList.remove('fade-in-out-enter');
-			overlay.addEventListener('transitionend', done);
-		});
-	},
+// 	enter: function(el, done) {
+// 		let overlay = el.querySelector('#modal-overlay');
 
-	leave: function(el, done) {
-		let overlay = el.querySelector('#modal-overlay');
-		let dialog = el.querySelector('.modal-dialog');
+// 		Vue.nextTick(() => {
+// 			overlay.classList.remove('fade-in-out-enter');
+// 			overlay.addEventListener('transitionend', done);
+// 		});
+// 	},
 
-		dialog.classList.add('grow-in-out-leave');
-		overlay.classList.add('fade-in-out-leave');
-		overlay.addEventListener('transitionend', done);
-	}
-});
+// 	leave: function(el, done) {
+// 		let overlay = el.querySelector('#modal-overlay');
+// 		let dialog = el.querySelector('.modal-dialog');
+
+// 		dialog.classList.add('grow-in-out-leave');
+// 		overlay.classList.add('fade-in-out-leave');
+// 		overlay.addEventListener('transitionend', done);
+// 	}
+// });
 
 export default ModalDialog;

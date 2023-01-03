@@ -2,7 +2,7 @@
 // over-engieneered, as it is designed to be compatible with Twine 2.0 data
 // structures, where each preference had to have its own ID.
 
-module.exports = {
+const pref = {
 	// state: {
 	// 	appTheme: 'light',
 	// 	defaultFormat: 'Chatbottery',
@@ -26,3 +26,5 @@ module.exports = {
 		}
 	}
 };
+
+export default pref;

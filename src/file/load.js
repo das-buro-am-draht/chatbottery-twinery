@@ -4,7 +4,7 @@
 //
 // This returns a promise that resolves with the data in the file.
 
-module.exports = file => {
+const load = file => {
 	const reader = new FileReader();
 
 	return new Promise(resolve => {
@@ -15,3 +15,5 @@ module.exports = file => {
 		reader.readAsText(file, 'UTF-8');
 	});
 };
+
+export default load;
