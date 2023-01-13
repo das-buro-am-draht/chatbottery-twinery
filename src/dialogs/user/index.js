@@ -3,7 +3,7 @@
 const { trim } = require("lodash");
 const Vue = require("vue");
 const { updateStory } = require("../../data/actions/story");
-const { regularExpression } = require("../../utils/common");
+const { stringFromDate, regularExpression } = require("../../utils/common");
 const locale = require("../../locale");
 const notify = require("../../ui/notify");
 const PassageEditor = require('../../editors/passage');
@@ -58,10 +58,7 @@ module.exports = Vue.extend({
 							break;
 						case 'date':
 							if (v.value) {
-								const date = new Date(v.value);
-								tv.value = date.getFullYear() + '-' 
-									+ ('0' + (date.getMonth() + 1)).slice(-2) + '-'
-									+ ('0' + (date.getDate()     )).slice(-2);
+								tv.value = stringFromDate(new Date(v.value));
 							} else {
 								tv.value = null;	
 							}
