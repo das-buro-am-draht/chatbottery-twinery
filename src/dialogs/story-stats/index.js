@@ -59,11 +59,9 @@ module.exports = Vue.extend({
 							return response.json();
 						})
 						.then((data) => {
-							if (data.length > 0) {
-								this.matomo.items = (data[0].subtable || [])
+							this.matomo.items = (data.length > 0) ? (data[0].subtable || [])
 									.map((entry) => ({label: entry.label, events: entry.nb_events}))
-									.sort((a, b) => b.events - a.events);
-							}
+									.sort((a, b) => b.events - a.events) : [];
 						})
 						.catch((error) => notify(`Error on loading Matomo data from '${url}: ${error.message}`, 'danger'));
 				}
