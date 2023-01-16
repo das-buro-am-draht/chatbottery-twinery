@@ -11,17 +11,24 @@ const {
 } = require("./link-parser");
 const uniq = require('lodash.uniq');
 
-const extractGoToLinkTags = (text) =>
-	text.match(
-		/<goto[^>]+(\[\[.*?\]\])"\/>|<goto[^>]+(\[\[.*?\]\])">.*?<\/goto>|/g
-	);
+const extractLinks = (regexp, text) => {
+	let m, match = [];
+  while (m = regexp.exec(text)) {
+    match.push(m[1]);
+  }
+  return match;  
+}
+
+const extractGoToLinkTags = (text) => 
+	extractLinks(/<goto[^>]+\bpassage="(.*)"[^>]*>/g, text);
 
 const extractActOrBtnLinkTags = (text) =>
-	text.match(/<act.*?>(\[\[.*?\]\])<\/act>|<btn.*?>(\[\[.*?\]\])<\/btn>/g);
+	extractLinks(/<act.*>(.*)<\/act>/g, text).concat(
+	extractLinks(/<btn.*>(.*)<\/btn>/g, text));
 
 const getResults = (links, internalOnly) => {
 	let result = links
-		? extractLinkTags(links.join())
+		? links // extractLinkTags(links.join())
 				.map(removeEnclosingBrackets)
 				.map(removeSetters)
 				.map(extractLink)
