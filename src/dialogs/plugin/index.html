@@ -53,6 +53,12 @@
 						</template>
 					</div>
 				</div>
+				<div class="plugin__row">
+					<label for="authToken">{{ 'Authentication Token' | say }}</label>
+					<div class="plugin__input">
+						<input type="text" id="authToken" v-model="matomo.authToken" title="Authentication Token">
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="plugin__item">

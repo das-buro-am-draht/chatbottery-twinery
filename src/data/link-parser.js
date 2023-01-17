@@ -23,7 +23,7 @@ const removeSetters = (link) => {
 	return typeof noSetter !== "undefined" ? noSetter : link;
 };
 
-const removeEnclosingBrackets = (link) => link.substr(2, link.length - 4);
+const removeEnclosingBrackets = (link) => link.replace(/^[\[]*/, "").replace(/[\]]*$/, "");
 
 /*
 Split the link by the separator and return the field in the
@@ -56,7 +56,7 @@ const extractLink = (tagContent) => {
 		   TiddlyWiki links:
 		   [[display text|link]] format
 		   */
-		getField(tagContent, "|", -1) ||
+		getField(tagContent, "|", 1) ||
 		/* [[link]] format */
 		tagContent
 	);

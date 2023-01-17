@@ -21,6 +21,7 @@ module.exports = Vue.extend({
 			statisticalArea: '',
 			shouldStoreTrackingIdInCookies: false,
 			browserHostToEnvironmentMap: {},
+			authToken: '',
 		},
 		google: {
 			enabled: false,
