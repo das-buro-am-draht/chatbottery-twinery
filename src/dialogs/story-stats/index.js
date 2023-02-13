@@ -11,6 +11,8 @@ const { stringFromDate } = require('../../utils/common');
 
 require('./index.less');
 
+const UNMATCHED_PASSAGE = "UNMATCHED";
+
 module.exports = Vue.extend({
 	template: require('./index.html'),
 
@@ -44,8 +46,8 @@ module.exports = Vue.extend({
 						date: new Date(this.matomo.from).toISOString().slice(0, 10) + ','
 								+ new Date(this.matomo.to).toISOString().slice(0, 10),
 						format: 'JSON',
-						segment: 'eventAction==UNMATCHED',
-						filter_limit: 1,
+						segment: 'eventAction==' + UNMATCHED_PASSAGE,
+						// filter_limit: 1,
 						expanded: 1,
 					};
 					const queryString = Object.keys(params).map((key) => 
@@ -59,7 +61,8 @@ module.exports = Vue.extend({
 							return response.json();
 						})
 						.then((data) => {
-							this.matomo.items = (data.length > 0) ? (data[0].subtable || [])
+							const unmatched = data.find((item) => item.label === UNMATCHED_PASSAGE);
+							this.matomo.items = unmatched ? (unmatched.subtable || [])
 									.map((entry) => ({label: entry.label, events: entry.nb_events}))
 									.sort((a, b) => b.events - a.events) : [];
 						})
