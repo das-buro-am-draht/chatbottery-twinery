@@ -5,7 +5,7 @@
 			<!-- L10n: A noun, i.e. what a tag is named. -->
 			<input class="user__row" type="text" placeholder="{{ 'Tag name' | say }}" required v-el:tag-name>
 			<div class="toolbar">
-				<button type="button" class="grey" v-bind:class="{ 'border': !color || color === 'grey' }" @click="setColor('grey')" title="{{ 'Set tag color to gray' | say }}"></button>			
+				<button type="button" class="grey" v-bind:class="{ 'border': color === 'grey' }" @click="setColor('grey')" title="{{ 'Set tag color to gray' | say }}"></button>			
 				<button type="button" class="red" v-bind:class="{ 'border': color === 'red' }" @click="setColor('red')" title="{{ 'Set tag color to red' | say }}"></button>
 				<button type="button" class="orange" v-bind:class="{ 'border': color === 'orange' }" @click="setColor('orange')" title="{{ 'Set tag color to orange' | say }}"></button>
 				<button type="button" class="yellow" v-bind:class="{ 'border': color === 'yellow' }" @click="setColor('yellow')" title="{{ 'Set tag color to yellow' | say }}"></button>
