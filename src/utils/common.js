@@ -16,11 +16,11 @@ const regularExpression = (str, flags) => new RegExp(
   str.replace(/([.*+?^${}()|\[\]\/\\])/g, '\\$1'), flags
 );
 
-const textFromTag = (tag) => tag.replace(/^[@#/%]?/, '');
+const buzzwordFromTag = (tag) => tag.replace(/^[@#\/%]?/, '');
   
 module.exports = { 
   isValidUrl, 
   stringFromDate,
   regularExpression, 
-  textFromTag,
+  buzzwordFromTag,
 };

@@ -7,7 +7,7 @@ const TagsDialog = require('./tag-dialog');
 const { openai } = require('../../../common/app/openai');
 const notify = require('../../../ui/notify');
 const uniq = require('lodash.uniq');
-const { textFromTag } = require('../../../utils/common');
+const { buzzwordFromTag } = require('../../../utils/common');
 
 require('./index.less');
 
@@ -49,7 +49,7 @@ module.exports = Vue.extend({
     },
 
 		'tag_suggestion'(tag) {
-			const text = textFromTag(tag);
+			const text = buzzwordFromTag(tag);
 			let data = {
 				model: 'text-curie-001',
 				prompt: `Synonyme für '${text}'`,
@@ -81,11 +81,11 @@ module.exports = Vue.extend({
 								if (suggestion) {
 									suggestions.push(suggestion);
 								}
-							})
+							});
 						}
 					});
 				}
-				const tags = this.passage.tags.map(tag => textFromTag(tag));
+				const tags = this.passage.tags.map(tag => buzzwordFromTag(tag));
 				this.suggestions = uniq(suggestions.filter(suggestion => suggestion.length < 30 && !tags.includes(suggestion)));
 				if (!this.suggestions.length) {
 					notify('No suggestions were found.', 'info');
