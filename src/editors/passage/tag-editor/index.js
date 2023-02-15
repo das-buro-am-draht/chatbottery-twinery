@@ -52,8 +52,11 @@ module.exports = Vue.extend({
 			const data = {
 				model: 'text-curie-001',
 				prompt: 'Synonyme für "' + textFromTag(tag) + '"',
-				temperature: 0,
-				max_tokens: 1000,
+				temperature: 0.6,
+				max_tokens: 150,
+				top_p: 1,
+				frequency_penalty: 1,
+				presence_penalty: 1
 			};
 			this.suggestions = [];
 			this.loading = true;
