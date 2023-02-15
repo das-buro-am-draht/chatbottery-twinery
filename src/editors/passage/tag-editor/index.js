@@ -49,15 +49,25 @@ module.exports = Vue.extend({
     },
 
 		'tag_suggestion'(tag) {
-			const data = {
+			let data = {
 				model: 'text-curie-001',
-				prompt: 'Synonyme für "' + textFromTag(tag) + '"',
-				temperature: 0.6,
-				max_tokens: 150,
-				top_p: 1,
-				frequency_penalty: 1,
-				presence_penalty: 1
+				prompt: `Synonyme für "${textFromTag(tag)}"`,
+				// max_tokens: 150,
+				// temperature: 0, // 0.6,
+				// top_p: 1,
+				// frequency_penalty: 1,
+				// presence_penalty: 1
 			};
+			const storageData = localStorage.getItem('openai-params');
+			if (storageData) {
+				try {
+					const placeholders = { "%TAG%": tag };
+					data = { ...data, ...JSON.parse(storageData) };
+					data.prompt = data.prompt.replace(/%\w+%/g, (placeholder) => placeholders[placeholder] || placeholder);
+				} catch(e) {
+					notify(e.message, 'danger');
+				}
+			}
 			this.suggestions = [];
 			this.loading = true;
 			openai(data).then((response) => {
