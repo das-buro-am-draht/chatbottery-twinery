@@ -1,24 +1,18 @@
 @import '../../../../common/colors.less';
 @import '../../../../common/metrics.less';
 
-.tags {
+.tags-dialog {
+  padding: 0 0 20px;
 	.toolbar {
-		margin: @len-small 0;
+    justify-content: flex-start;
+		margin: @len-large 0;
 
 		button {
 			height: 2 * @len-large;
 			width: 2 * @len-large;
 			margin: 0 @len-small / 2;	
 
-			&:first-child {
-				margin-left: @len-small;
-			}
-
-			&:last-child {
-				margin-right: @len-small;
-			}
-
-			&.gray {
+			&.grey {
 				background: @color-tag-gray;
 			}
 
@@ -45,6 +39,10 @@
 			&.purple {
 				background: @color-tag-purple;
 			}
+
+      &.border {
+        border: solid;
+      }
 		}
 	}
 }

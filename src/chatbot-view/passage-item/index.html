@@ -6,7 +6,7 @@
 	</div>
 	<div class="frame">
 		<div class="tags">
-			<div v-for="color in tagColors" class="{{color}}"></div>
+			<div v-for="color in tagColors" class="{{color}}" track-by="$index"></div>
 		</div>
 		<p class="title">
 			<!-- <span class="badge-create" v-if="isStart"><i class="fa fa-rocket"></i></span> -->
