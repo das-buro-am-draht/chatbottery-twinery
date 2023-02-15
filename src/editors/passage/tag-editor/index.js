@@ -63,7 +63,7 @@ module.exports = Vue.extend({
 					response.choices.forEach(item => {
 						if (typeof item.text === 'string') {
 							item.text.split(',').forEach(text => {
-								const suggestion = text.replace(/^[\n\r\s]+/, '').replace(/[\n\r\s]+$/, '');
+								const suggestion = text.replace(/^[\n\r\s-\d\.]+/, '').replace(/[\n\r\s]+$/, '');
 								if (suggestion) {
 									suggestions.push(suggestion);
 								}
@@ -72,7 +72,7 @@ module.exports = Vue.extend({
 					});
 				}
 				const tags = this.passage.tags.map(tag => textFromTag(tag));
-				this.suggestions = uniq(suggestions.filter(suggestion => !tags.includes(suggestion)));
+				this.suggestions = uniq(suggestions.filter(suggestion => suggestion.length < 30 && !tags.includes(suggestion)));
 				if (!this.suggestions.length) {
 					notify('No suggestions were found.', 'info');
 				}
