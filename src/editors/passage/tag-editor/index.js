@@ -49,9 +49,10 @@ module.exports = Vue.extend({
     },
 
 		'tag_suggestion'(tag) {
+			const text = textFromTag(tag);
 			let data = {
 				model: 'text-curie-001',
-				prompt: `Synonyme für "${textFromTag(tag)}"`,
+				prompt: `Synonyme für '${text}'`,
 				// max_tokens: 150,
 				// temperature: 0, // 0.6,
 				// top_p: 1,
@@ -61,7 +62,7 @@ module.exports = Vue.extend({
 			const storageData = localStorage.getItem('openai-params');
 			if (storageData) {
 				try {
-					const placeholders = { "%TAG%": tag };
+					const placeholders = { "%TAG%": text };
 					data = { ...data, ...JSON.parse(storageData) };
 					data.prompt = data.prompt.replace(/%\w+%/g, (placeholder) => placeholders[placeholder] || placeholder);
 				} catch(e) {
