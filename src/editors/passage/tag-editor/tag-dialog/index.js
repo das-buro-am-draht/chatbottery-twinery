@@ -1,9 +1,15 @@
 const Vue = require('vue');
 const uniq = require('lodash.uniq');
+const { buzzwordFromTag } = require('../../../../utils/common')
 const { setTagColorInStory } = require('../../../../data/actions/story');
 const { updatePassage } = require('../../../../data/actions/passage');
 
 require('./index.less');
+
+const TYPE_MAIN        = '#'
+const TYPE_GROUP       = '@'
+const TYPE_SUGGESTION  = '/'
+const TYPE_CONDITIONAL = '%'
 
 module.exports = Vue.extend({
 	data: () => ({
@@ -11,7 +17,11 @@ module.exports = Vue.extend({
     passage: null,
     origin: null,
 		tag: null,
-    color: null,
+		edit: {
+			tag: '',
+			type: '',
+			color: null,
+		}
 	}),
 
 	computed: {
@@ -23,12 +33,43 @@ module.exports = Vue.extend({
 	template: require('./index.html'),
 
   ready() {
-    this.color = this.getStory().tagColors[this.tag];
+    this.edit.color = this.getStory().tagColors[this.tag];
     if (this.tag) {
-      this.$nextTick(() => this.$els.tagName.value = this.tag);	
+			this.edit.tag = buzzwordFromTag(this.tag);
+      switch (this.tag.substring(0, 1)) {
+				case '#':
+					this.edit.type = TYPE_MAIN;
+					break;
+				case '@':
+					this.edit.type = TYPE_GROUP;
+					break;
+				case '/':
+					this.edit.type = TYPE_SUGGESTION;
+					break;
+				case '%':
+					this.edit.type = TYPE_CONDITIONAL;
+					break;
+			}
     }
-    this.$nextTick(() => this.$els.tagName.focus());
+    this.$nextTick(() => {
+			this.$els.tagName.select();
+			this.$els.tagName.focus();
+		});
   },
+
+	computed: {
+		isValidTag() {
+			return !!this.edit.tag.trim();
+		},
+
+		isValidType() {
+			return this.edit.type !== TYPE_MAIN || !this.passage.tags.filter(tag => tag !== this.tag).some(tag => tag.substring(0, 1) === TYPE_MAIN);
+		},
+
+		isValid() {
+			return this.isValidTag && this.isValidType;
+		}
+	},
 
 	methods: {
 		getStory() {
@@ -36,27 +77,25 @@ module.exports = Vue.extend({
 		},
 
 		setColor(color) {
-			this.color = color;
+			this.edit.color = color;
       this.save();
 		},
 
 		save() {
-			const tagName = this.$els.tagName.value.trim().replace(/\s/g, '-');
+			const tagName = this.edit.tag.trim().replace(/\s/g, '-');
 
       if (!tagName) {
         return;
       }
 
-			/* Clear the tagName element while it's transitioning out. */
-
-			this.$els.tagName.value = '';
+			const tag = this.edit.type + tagName;
 
       let arr;
       if (this.tag) {
         arr = this.passage.tags.slice();
-        arr[arr.findIndex(t => t === this.tag)] = tagName;
+        arr[arr.findIndex(t => t === this.tag)] = tag;
       } else {
-        arr = [].concat(this.passage.tags, tagName);
+        arr = [].concat(this.passage.tags, tag);
       }
 
 			this.updatePassage(
@@ -67,8 +106,8 @@ module.exports = Vue.extend({
 				}
 			);
 
-			if (this.color) {
-				this.setTagColorInStory(this.storyId, tagName, this.color)
+			if (this.edit.color) {
+				this.setTagColorInStory(this.storyId, tag, this.edit.color)
 			}
 
 			this.$refs.modal.close();

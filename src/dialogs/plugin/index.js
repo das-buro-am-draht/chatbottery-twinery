@@ -63,9 +63,17 @@ module.exports = Vue.extend({
 		isValidMatomoPHPUrl() {
 			return this.matomo.url && isValidUrl(this.matomo.url);
 		},
+
+		isValidMatomoHostToEnv() {
+			return !this.matomoHostToEnv.some((entry) => !this.isValidMatomoHostToEnvEntry(entry));
+		},
+
+		isValidUserVariables() {
+			return !this.chat.userVariables.some((entry) => !this.isValidUserName(entry));
+		},
 		
 		isValid() {
-			const matomo = !this.matomo.enabled || (!!this.matomo.url && isValidUrl(this.matomo.url) && !!this.matomo.siteId && this.isValidMatomoHostToEnv() && this.isValidUserVariables());
+			const matomo = !this.matomo.enabled || (this.isValidMatomoPHPUrl && !!this.matomo.siteId && this.isValidMatomoHostToEnv && this.isValidUserVariables);
 			const chat = !this.chat.enabled || (this.chat.credentials.appId && this.chat.credentials.authKey && this.chat.credentials.authSecret && this.chat.credentials.accountKey && this.isValidUserName(this.chat.userName));
 			return matomo && chat; 
 		},
@@ -91,16 +99,8 @@ module.exports = Vue.extend({
 			return (key && value) || (!key && !value);
 		},
 
-		isValidMatomoHostToEnv() {
-			return !this.matomoHostToEnv.some((entry) => !this.isValidMatomoHostToEnvEntry(entry));
-		},
-
 		isValidUserName(userName) {
 			return !userName || !userName.startsWith('$');
-		},
-
-		isValidUserVariables() {
-			return !this.chat.userVariables.some((entry) => !this.isValidUserName(entry));
 		},
 
 		getStory() {
