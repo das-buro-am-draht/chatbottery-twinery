@@ -51,10 +51,7 @@ module.exports = Vue.extend({
 					break;
 			}
     }
-    this.$nextTick(() => {
-			this.$els.tagName.select();
-			this.$els.tagName.focus();
-		});
+    this.$nextTick(() => this.$els.tagName.focus());
   },
 
 	computed: {
@@ -78,7 +75,9 @@ module.exports = Vue.extend({
 
 		setColor(color) {
 			this.edit.color = color;
-      this.save();
+			if (this.isValid) {
+      	this.save();
+			}
 		},
 
 		save() {

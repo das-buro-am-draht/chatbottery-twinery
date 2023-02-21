@@ -13,19 +13,19 @@
 				</div>
 				<div class="tags__option">
 					<input type="radio" id="type-main" v-model="edit.type" value="#">
-					<label for="type-main"><span class="tags__type">#</span>Main buzzword</label>
+					<label for="type-main"><span class="tags__type">#</span>Main Buzzword</label>
 				</div>
 				<div class="tags__option">
 					<input type="radio" id="type-group" v-model="edit.type" value="@">
-					<label for="type-group"><span class="tags__type">@</span>Group buzzword</label>
+					<label for="type-group"><span class="tags__type">@</span>Group Buzzword</label>
 				</div>
 				<div class="tags__option">
 					<input type="radio" id="type-suggestion" v-model="edit.type" value="/">
-					<label for="type-suggestion"><span class="tags__type">/</span>Suggestional buzzword</label>
+					<label for="type-suggestion"><span class="tags__type">/</span>Suggestional Buzzword</label>
 				</div>
 				<div class="tags__option">
 					<input type="radio" id="type-condition" v-model="edit.type" value="%">
-					<label for="type-condition"><span class="tags__type">%</span>Conditional buzzword</label>
+					<label for="type-condition"><span class="tags__type">%</span>Conditional Buzzword</label>
 				</div>
 			</fieldset>
 			<p class="error" v-show="!isValidType">{{ 'Only one Main Tag is allowed' | say }}</p>
