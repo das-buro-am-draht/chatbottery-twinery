@@ -2,6 +2,8 @@ const Vue = require('vue');
 const without = require('lodash.without');
 const { updatePassage } = require('../../../../data/actions/passage');
 
+require('./index.less');
+
 module.exports = Vue.extend({
 	props: {
 		tag: {
