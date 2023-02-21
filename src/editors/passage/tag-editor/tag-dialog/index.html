@@ -6,26 +6,26 @@
 			<input class="tags__row" type="text" placeholder="{{ 'Tag name' | say }}" required v-model="edit.tag" v-el:tag-name>
 			<p class="error" v-show="!isValidTag">{{ 'Tag name must be set' | say }}</p>
 			<fieldset class="tags__row">
-				<legend><a href="https://docu.chatbottery.com/#/./story/format/passage?id=schlagw%c3%b6rter" target="_blank">Buzzword Type</a></legend>
+				<legend><a href="https://docu.chatbottery.com/#/./story/format/passage?id=schlagw%c3%b6rter" target="_blank">{{ 'Buzzword Type' | say }}</a></legend>
 				<div class="tags__option">
 					<input type="radio"id="type-none" v-model="edit.type" value="">
-					<label for="type-none"><span class="tags__type"></span>None</label>
+					<label for="type-none"><span class="tags__type"></span>{{ 'None' | say }}</label>
 				</div>
 				<div class="tags__option">
 					<input type="radio" id="type-main" v-model="edit.type" value="#">
-					<label for="type-main"><span class="tags__type">#</span>Main Buzzword</label>
+					<label for="type-main"><span class="tags__type">#</span>{{ 'Main Buzzword' | say }}</label>
 				</div>
 				<div class="tags__option">
 					<input type="radio" id="type-group" v-model="edit.type" value="@">
-					<label for="type-group"><span class="tags__type">@</span>Group Buzzword</label>
+					<label for="type-group"><span class="tags__type">@</span>{{ 'Group Buzzword' | say }}</label>
 				</div>
 				<div class="tags__option">
 					<input type="radio" id="type-suggestion" v-model="edit.type" value="/">
-					<label for="type-suggestion"><span class="tags__type">/</span>Suggestional Buzzword</label>
+					<label for="type-suggestion"><span class="tags__type">/</span>{{ 'Suggestional Buzzword' | say }}</label>
 				</div>
 				<div class="tags__option">
 					<input type="radio" id="type-condition" v-model="edit.type" value="%">
-					<label for="type-condition"><span class="tags__type">%</span>Conditional Buzzword</label>
+					<label for="type-condition"><span class="tags__type">%</span>{{ 'Conditional Buzzword' | say }}</label>
 				</div>
 			</fieldset>
 			<p class="error" v-show="!isValidType">{{ 'Only one Main Tag is allowed' | say }}</p>
