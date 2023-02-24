@@ -38,8 +38,8 @@ module.exports = Vue.extend({
   events: {
     'tag-change'(tag) {
 			new TagsDialog({
-				data: { 
-					storyId: this.storyId, 
+				data: {
+					storyId: this.storyId,
 					passage: this.passage,
 					origin: this.$el,
 					tag
@@ -50,11 +50,19 @@ module.exports = Vue.extend({
 
 		'tag_suggestion'(tag) {
 			const text = buzzwordFromTag(tag);
+			// let data = {
+			// 	model: 'text-davinci-003',
+			// 	input: `${text}`,
+			// 	instruction: 'Finde Synonyme',
+			// 	n: 5,
+			// 	temperature: 0.2, // 0.6,
+			// 	// top_p: 1,
+			// };
 			let data = {
-				model: 'text-curie-001',
-				prompt: `Synonyme für '${text}'`,
-				// max_tokens: 150,
-				// temperature: 0, // 0.6,
+				model: 'text-curie-001', //text-curie-001 text-davinci-003
+				prompt: `5 Synonyme für ${text}`,
+				max_tokens: 150,
+				temperature: 0.2, // 0.6,
 				// top_p: 1,
 				// frequency_penalty: 1,
 				// presence_penalty: 1
@@ -88,7 +96,12 @@ module.exports = Vue.extend({
 				const tags = this.passage.tags.map(tag => buzzwordFromTag(tag));
 				this.suggestions = uniq(suggestions.filter(suggestion => suggestion.length < 30 && !tags.includes(suggestion)));
 				if (!this.suggestions.length) {
-					notify('No suggestions were found.', 'info');
+					if (response.choices) {
+						const text = response.choices.map(it => it.text).reduce((acc, it) => acc + it)
+						notify('No suggestions were found. Response: ' + text, 'info');
+					} else {
+						notify('No suggestions were found.', 'info');
+					}
 				}
 			})
 			.catch((error) => notify(error.message, 'danger'))
@@ -109,8 +122,8 @@ module.exports = Vue.extend({
 
 		newTag(e) {
 			new TagsDialog({
-				data: { 
-					storyId: this.storyId, 
+				data: {
+					storyId: this.storyId,
 					passage: this.passage,
 					origin: this.$el,
 				},
