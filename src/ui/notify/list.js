@@ -7,7 +7,7 @@ require('./list.less');
 
 // How long typical notifications (e.g. that aren't errors) appear onscreen.
 
-const APPEAR_DURATION = 3000;
+const APPEAR_DURATION = 4000;
 
 module.exports = Vue.extend({
 	template: require('./list.html'),
