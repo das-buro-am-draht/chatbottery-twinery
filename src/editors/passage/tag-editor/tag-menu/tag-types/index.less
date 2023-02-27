@@ -1,0 +1,25 @@
+.tag-types {
+  flex-direction: column;
+  .tag-menu__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    .tag-type--image {
+      flex: 0 0 1.5rem;
+      margin-right: 10px;
+      width: 1.5rem;
+    }
+    .tag-type--check {
+      flex: 0 0 1.5rem;
+      margin-left: 5px;
+      width: 1.5rem;
+      img {
+        width: 100%;
+      }
+    }
+    .tag-type--text {
+      flex: 1;
+    }
+  }
+}

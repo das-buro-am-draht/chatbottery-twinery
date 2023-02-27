@@ -1,61 +1,32 @@
-@import '../../../../common/colors.less';
 @import '../../../../common/metrics.less';
 
-.tags-dialog {
+.tag-dialog {
   padding: 0 0 20px;
 	input {
 		font-size: 20px;
 	}
-	.tags__row {
+	.tag__row {
 		margin-bottom: 20px;
+		width: 100%;
 	}
-	.tags__option {
+	.tag__option {
 		margin: 5px 0;
 	}
-	.tags__type {
+	.tag__type {
 		display: inline-block;
 		width: 1rem;
 	}
 	.toolbar {
     justify-content: flex-start;
-		margin: @len-large 0;
-
-		button {
-			height: 2 * @len-large;
-			width: 2 * @len-large;
-			margin: 0 @len-small / 2;	
-
-			&.grey {
-				background: @color-tag-gray;
-			}
-
-			&.red {
-				background: @color-tag-red;
-			}
-
-			&.orange {
-				background: @color-tag-orange;
-			}
-
-			&.yellow {
-				background: @color-tag-yellow;
-			}
-
-			&.green {
-				background: @color-tag-green;
-			}
-
-			&.blue {
-				background: @color-tag-blue;
-			}
-
-			&.purple {
-				background: @color-tag-purple;
-			}
-
-      &.border {
-        border: solid;
-      }
+	}
+	button.create {
+		float: right;
+	}
+	.tag-colors,.tag-types {
+		flex-direction: row;
+		margin-bottom: 1rem;
+		label {
+			margin: auto 0.5rem auto 0;
 		}
 	}
 }
