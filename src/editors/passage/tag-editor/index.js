@@ -9,7 +9,7 @@ const notify = require('../../../ui/notify');
 const uniq = require('lodash.uniq');
 const {buzzwordFromTag} = require('../../../utils/common');
 
-const MAX_TAGS_INITIAL = 2; //14;
+const MAX_TAGS_INITIAL = 14;
 
 require('./index.less');
 
