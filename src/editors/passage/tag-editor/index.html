@@ -14,8 +14,10 @@
 			</button>
 		</div>
 	</template>
-	<button v-if="showingAll" @click="toggleShowTags">Show less</button>
-	<button v-else @click="toggleShowTags">Show all</button>
+	<template v-if="passage.tags.length > maxTags">
+		<button v-if="showingAll" @click="toggleShowTags">Show less</button>
+		<button v-else @click="toggleShowTags">Show all</button>
+	</template>
 
 	<div class="tag-suggestion" v-if="loading || suggestions.length">
 		<div class="tag-suggestion-header">

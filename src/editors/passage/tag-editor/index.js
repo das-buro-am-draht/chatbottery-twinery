@@ -9,6 +9,8 @@ const notify = require('../../../ui/notify');
 const uniq = require('lodash.uniq');
 const {buzzwordFromTag} = require('../../../utils/common');
 
+const MAX_TAGS_INITIAL = 2; //14;
+
 require('./index.less');
 
 module.exports = Vue.extend({
@@ -16,19 +18,20 @@ module.exports = Vue.extend({
 	data: () => ({
 		loading: false,
 		suggestions: [],
-		taglist: [],
 		showingAll: false,
 	}),
 
 	computed: {
+		maxTags: () => MAX_TAGS_INITIAL,
+
 		tagColors() {
 			return this.getStory().tagColors;
 		},
 		taglist() {
-			if (this.$data.showingAll) {
+			if (this.showingAll) {
 				return this.taglist = this.passage.tags;
 			} else {
-				return this.taglist = this.passage.tags.slice(0, 14);
+				return this.taglist = this.passage.tags.slice(0, this.maxTags);
 			}
 		}
 	},
@@ -152,7 +155,7 @@ module.exports = Vue.extend({
 		},
 
 		toggleShowTags() {
-			this.$data.showingAll = !this.$data.showingAll;
+			this.showingAll = !this.showingAll;
 		},
 	},
 
