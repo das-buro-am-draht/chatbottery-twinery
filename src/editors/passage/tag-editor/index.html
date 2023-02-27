@@ -6,7 +6,7 @@
 	{{ 'Tag' | say }}
 	</button>
 
-	<template v-for="tag in passage.tags" track-by="$index" transition="fade-in-out">
+	<template v-for="tag in taglist" transition="fade-in-out">
 		<div class="tag label label-info {{tagColors[tag]}}">{{ tag }}
 			<button>
 				<i class="fa fa-caret-down"></i>
@@ -14,10 +14,14 @@
 			</button>
 		</div>
 	</template>
+	<template v-if="passage.tags.length > maxTags">
+		<button v-if="showingAll" @click="toggleShowTags">{{ 'Show less' | say }}</button>
+		<button v-else @click="toggleShowTags">{{ 'Show all' | say }}</button>
+	</template>
 
 	<div class="tag-suggestion" v-if="loading || suggestions.length">
 		<div class="tag-suggestion-header">
-			<h3>Suggestions</h3>
+			<h3>{{ 'Suggestions' | say }}</h3>
 			<button class="close subtle" @click="closeSuggestions">
 				<i class="fa fa-close"></i>
 			</button>
