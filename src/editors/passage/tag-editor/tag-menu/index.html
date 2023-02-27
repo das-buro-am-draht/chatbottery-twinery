@@ -12,6 +12,16 @@
 			</span>
 			<span class="tag-menu__item--text">{{ 'Edit' | say }}</span>
 		</div>
+		<div class="tag-menu__item">
+			<span class="tag-menu__item--icon">
+				<img src="../../../../common/img/colors.svg"></img>
+			</span>
+			<span class="tag-menu__item--text">{{ 'Change Color' | say }}</span>
+			<span class="tag-menu__item--caret">
+				<i class="fa fa-caret-right"></i>
+			</span>
+			<tag-colors :tag="tag" :story-id="storyId"></tag-colors>
+		</div>
 		<div class="tag-menu__item" @click="remove">
 			<span class="tag-menu__item--icon">
 				<img src="../../../../common/img/delete.svg"></img>

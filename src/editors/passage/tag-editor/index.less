@@ -1,3 +1,6 @@
+@import '../../../common/colors.less';
+@import '../../../common/metrics.less';
+
 .tag-suggestion {
   padding: 0 0 0.5rem 1rem;
   background-color: #e0e0e0;
@@ -10,5 +13,46 @@
     flex-flow: row wrap;
     justify-content: flex-start;
     padding-right: 1rem;
+  }
+}
+
+.tag-colors {
+  display: flex;
+  button {
+    height: 2 * @len-large;
+    width: 2 * @len-large;
+    margin: @len-small / 4 @len-small / 2;	
+
+    &.grey {
+      background: @color-tag-gray;
+    }
+
+    &.red {
+      background: @color-tag-red;
+    }
+
+    &.orange {
+      background: @color-tag-orange;
+    }
+
+    &.yellow {
+      background: @color-tag-yellow;
+    }
+
+    &.green {
+      background: @color-tag-green;
+    }
+
+    &.blue {
+      background: @color-tag-blue;
+    }
+
+    &.purple {
+      background: @color-tag-purple;
+    }
+
+    &.border {
+      border: solid;
+    }
   }
 }

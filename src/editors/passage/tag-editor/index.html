@@ -6,7 +6,7 @@
 	{{ 'Tag' | say }}
 	</button>
 
-	<template v-for="tag in passage.tags" transition="fade-in-out">
+	<template v-for="tag in passage.tags" track-by="$index" transition="fade-in-out">
 		<div class="tag label label-info {{tagColors[tag]}}">{{ tag }}
 			<button>
 				<i class="fa fa-caret-down"></i>

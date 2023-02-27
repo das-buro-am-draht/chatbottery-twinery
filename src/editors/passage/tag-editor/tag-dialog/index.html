@@ -1,35 +1,35 @@
 <modal-dialog :origin="origin" v-ref:modal :title="'Test'">
-	<div class="tags-dialog">
+	<div class="tag-dialog">
 		<!-- Using a <form> allows the "required" attribute on the input to be usable. -->
 		<form @submit.prevent="save">
 			<!-- L10n: A noun, i.e. what a tag is named. -->
-			<input class="tags__row" type="text" placeholder="{{ 'Tag name' | say }}" required v-model="edit.tag" v-el:tag-name>
+			<input class="tag__row" type="text" placeholder="{{ 'Tag name' | say }}" required v-model="edit.tag" v-el:tag-name>
 			<p class="error" v-show="!isValidTag">{{ 'Tag name must be set' | say }}</p>
-			<fieldset class="tags__row">
+			<fieldset class="tag__row">
 				<legend><a href="https://docu.chatbottery.com/#/./story/format/passage?id=schlagw%c3%b6rter" target="_blank">{{ 'Buzzword Type' | say }}</a></legend>
-				<div class="tags__option">
+				<div class="tag__option">
 					<input type="radio"id="type-none" v-model="edit.type" value="">
-					<label for="type-none"><span class="tags__type"></span>{{ 'None' | say }}</label>
+					<label for="type-none"><span class="tag__type"></span>{{ 'None' | say }}</label>
 				</div>
-				<div class="tags__option">
+				<div class="tag__option">
 					<input type="radio" id="type-main" v-model="edit.type" value="#">
-					<label for="type-main"><span class="tags__type">#</span>{{ 'Main Buzzword' | say }}</label>
+					<label for="type-main"><span class="tag__type">#</span>{{ 'Main Buzzword' | say }}</label>
 				</div>
-				<div class="tags__option">
+				<div class="tag__option">
 					<input type="radio" id="type-group" v-model="edit.type" value="@">
-					<label for="type-group"><span class="tags__type">@</span>{{ 'Group Buzzword' | say }}</label>
+					<label for="type-group"><span class="tag__type">@</span>{{ 'Group Buzzword' | say }}</label>
 				</div>
-				<div class="tags__option">
+				<div class="tag__option">
 					<input type="radio" id="type-suggestion" v-model="edit.type" value="/">
-					<label for="type-suggestion"><span class="tags__type">/</span>{{ 'Suggestional Buzzword' | say }}</label>
+					<label for="type-suggestion"><span class="tag__type">/</span>{{ 'Suggestional Buzzword' | say }}</label>
 				</div>
-				<div class="tags__option">
+				<div class="tag__option">
 					<input type="radio" id="type-condition" v-model="edit.type" value="%">
-					<label for="type-condition"><span class="tags__type">%</span>{{ 'Conditional Buzzword' | say }}</label>
+					<label for="type-condition"><span class="tag__type">%</span>{{ 'Conditional Buzzword' | say }}</label>
 				</div>
 			</fieldset>
 			<p class="error" v-show="!isValidType">{{ 'Only one Main Tag is allowed' | say }}</p>
-			<div class="toolbar">
+			<div class="toolbar tag-colors">
 				<button type="button" class="grey" v-bind:class="{ 'border': edit.color === 'grey' }" @click="setColor('grey')" title="{{ 'Set tag color to gray' | say }}"></button>			
 				<button type="button" class="red" v-bind:class="{ 'border': edit.color === 'red' }" @click="setColor('red')" title="{{ 'Set tag color to red' | say }}"></button>
 				<button type="button" class="orange" v-bind:class="{ 'border': edit.color === 'orange' }" @click="setColor('orange')" title="{{ 'Set tag color to orange' | say }}"></button>

@@ -15,13 +15,13 @@ module.exports = Vue.extend({
 
 	data: () => ({
 		loading: false,
-		suggestions: []
+		suggestions: [],
 	}),
 
 	computed: {
 		tagColors() {
 			return this.getStory().tagColors;
-		}
+		},
 	},
 
 	props: {

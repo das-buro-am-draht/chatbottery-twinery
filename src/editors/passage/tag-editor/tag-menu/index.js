@@ -43,6 +43,7 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'drop-down': require('../../../../ui/drop-down')
+		'drop-down': require('../../../../ui/drop-down'),
+		'tag-colors': require('./tag-colors')
 	}
 });
