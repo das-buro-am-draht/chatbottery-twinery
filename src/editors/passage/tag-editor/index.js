@@ -118,7 +118,7 @@ module.exports = Vue.extend({
 			}).$mountTo(this.$el);
 		},
 
-		addTag(suggestion) {
+		addSuggestion(suggestion) {
 			this.updatePassage(
 				this.storyId,
 				this.passage.id,

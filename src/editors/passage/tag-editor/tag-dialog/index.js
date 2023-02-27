@@ -1,6 +1,6 @@
 const Vue = require('vue');
 const uniq = require('lodash.uniq');
-const { buzzwordFromTag } = require('../../../../utils/common')
+const { typeFromTag, buzzwordFromTag } = require('../../../../utils/common')
 const { setTagColorInStory } = require('../../../../data/actions/story');
 const { updatePassage } = require('../../../../data/actions/passage');
 
@@ -36,20 +36,7 @@ module.exports = Vue.extend({
     this.edit.color = this.getStory().tagColors[this.tag];
     if (this.tag) {
 			this.edit.tag = buzzwordFromTag(this.tag);
-      switch (this.tag.substring(0, 1)) {
-				case '#':
-					this.edit.type = TYPE_MAIN;
-					break;
-				case '@':
-					this.edit.type = TYPE_GROUP;
-					break;
-				case '/':
-					this.edit.type = TYPE_SUGGESTION;
-					break;
-				case '%':
-					this.edit.type = TYPE_CONDITIONAL;
-					break;
-			}
+			this.edit.type = typeFromTag(this.tag);
     }
     this.$nextTick(() => this.$els.tagName.focus());
   },
@@ -59,13 +46,9 @@ module.exports = Vue.extend({
 			return !!this.edit.tag.trim();
 		},
 
-		isValidType() {
-			return this.edit.type !== TYPE_MAIN || !this.passage.tags.filter(tag => tag !== this.tag).some(tag => tag.substring(0, 1) === TYPE_MAIN);
+		isMainValid() {
+			return !this.passage.tags.filter(tag => tag !== this.tag).some(tag => tag.substring(0, 1) === TYPE_MAIN);
 		},
-
-		isValid() {
-			return this.isValidTag && this.isValidType;
-		}
 	},
 
 	methods: {
@@ -75,9 +58,10 @@ module.exports = Vue.extend({
 
 		setColor(color) {
 			this.edit.color = color;
-			if (this.isValid) {
-      	this.save();
-			}
+		},
+
+		setType(type) {
+			this.edit.type = type;
 		},
 
 		save() {

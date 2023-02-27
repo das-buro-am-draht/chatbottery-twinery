@@ -4,6 +4,7 @@ const { setTagColorInStory } = require('../../../../../data/actions/story');
 require('./index.less');
 
 module.exports = Vue.extend({
+
 	props: {
 		tag: {
 			type: String,
