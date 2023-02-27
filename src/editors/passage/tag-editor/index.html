@@ -15,13 +15,13 @@
 		</div>
 	</template>
 	<template v-if="passage.tags.length > maxTags">
-		<button v-if="showingAll" @click="toggleShowTags">Show less</button>
-		<button v-else @click="toggleShowTags">Show all</button>
+		<button v-if="showingAll" @click="toggleShowTags">{{ 'Show less' | say }}</button>
+		<button v-else @click="toggleShowTags">{{ 'Show all' | say }}</button>
 	</template>
 
 	<div class="tag-suggestion" v-if="loading || suggestions.length">
 		<div class="tag-suggestion-header">
-			<h3>Suggestions</h3>
+			<h3>{{ 'Suggestions' | say }}</h3>
 			<button class="close subtle" @click="closeSuggestions">
 				<i class="fa fa-close"></i>
 			</button>
