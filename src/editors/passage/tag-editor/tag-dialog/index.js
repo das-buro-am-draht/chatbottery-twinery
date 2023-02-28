@@ -49,7 +49,11 @@ module.exports = Vue.extend({
 		},
 
 		isMainValid() {
-			return !this.passage.tags.filter(tag => tag !== this.tag).some(tag => tag.substring(0, 1) === TYPE_MAIN);
+			return !(this.edit.type === TYPE_MAIN && this.passage.tags.filter(tag => tag !== this.tag).some(tag => tag.substring(0, 1) === TYPE_MAIN));
+		},
+
+		isValid() {
+			return this.isValidTag && this.isMainValid;
 		},
 	},
 
