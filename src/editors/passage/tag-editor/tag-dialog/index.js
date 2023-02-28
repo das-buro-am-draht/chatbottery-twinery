@@ -21,7 +21,8 @@ module.exports = Vue.extend({
 			tag: '',
 			type: '',
 			color: null,
-		}
+		},
+		description: [],
 	}),
 
 	computed: {
@@ -38,6 +39,7 @@ module.exports = Vue.extend({
 			this.edit.tag = buzzwordFromTag(this.tag);
 			this.edit.type = typeFromTag(this.tag);
     }
+		this.setDescription(this.edit.type);
     this.$nextTick(() => this.$els.tagName.focus());
   },
 
@@ -54,6 +56,41 @@ module.exports = Vue.extend({
 	methods: {
 		getStory() {
 			return this.allStories.find(s => s.id === this.storyId);
+		},
+
+		setDescription(type) {
+			switch(type) {
+				case TYPE_MAIN:
+					this.description = [
+						'Main Tag', 
+						'Main Tag will be shown to user in "Did you mean...?"-selection, when prompt is too vague'
+					];
+					break;
+				case TYPE_GROUP:
+					this.description = [
+						'Group Tag', 
+						'All passages that have this tag form a semantic context - improving identification in this context'
+					];
+					break;
+				case TYPE_SUGGESTION:
+					this.description = [
+						'Suggestion Tag', 
+						'Tag-Phrase is autocompleted, when the user starts to type accordingly'
+					];
+					break;
+				case TYPE_CONDITIONAL:
+					this.description = [
+						'Conditional Tag', 
+						'Passage Content is only shown if a preset variable condition is met e.g. "isGerman"'
+					];
+					break;
+				default:
+					this.description = [
+						'Regular Tag', 
+						'Passage content will be shown, when user submits the exact or a similar phrase'
+					];
+					break;
+			}
 		},
 
 		setColor(color) {
