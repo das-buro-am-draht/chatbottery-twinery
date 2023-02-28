@@ -26,7 +26,35 @@
 		flex-direction: row;
 		margin-bottom: 1rem;
 		label {
+			flex: 0 1 3rem;
 			margin: auto 0.5rem auto 0;
+		}
+	}
+	.tag-types button {
+		padding: 0;
+		border: 1px solid;
+		border-radius: 20%;
+		img {
+			width: 100%;
+		}
+		&.active,&:hover {
+			background-color: #3a51fa;
+      img {
+        filter: invert(100%);
+      }
+		}
+	}
+	.tag-type-description {
+		color: white;
+		padding: 8px 5px 2px 13px;
+  	border-radius: 7px;
+  	background-color: #3a51fa;
+		span {
+			display: inline;
+			font-weight: bold;
+		}
+		p {
+			display: inline;
 		}
 	}
 }
