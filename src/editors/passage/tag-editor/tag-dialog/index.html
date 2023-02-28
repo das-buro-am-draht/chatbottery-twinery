@@ -20,19 +20,19 @@
 			<div class="tag-types">
 				<label>{{'Type' | say }}</label>
 				<div class="toolbar">
-					<button type="button" class="regular" v-bind:class="{ 'active': edit.type === '' }" @click="setType('')" @mouseenter="setDescription('')" @mouseleave="setDescription(edit.type)" title="{{ 'Set regular tag type' | say }}">
+					<button type="button" class="regular" v-bind:class="{ 'active': edit.type === '' }" @click="setType('')" @mouseenter="setDescription('')" @mouseleave="setDescription(edit.type)">
 						<img src="../../../../common/img/regular-tag.svg"></img>
 					</button>			
-					<button type="button" class="main" v-bind:class="{ 'active': edit.type === '#' }" :disabled="" @click="setType('#')" @mouseenter="setDescription('#')" @mouseleave="setDescription(edit.type)" title="{{ 'Set main tag type' | say }}">
+					<button type="button" class="main" v-bind:class="{ 'active': edit.type === '#' }" :disabled="" @click="setType('#')" @mouseenter="setDescription('#')" @mouseleave="setDescription(edit.type)">
 						<img src="../../../../common/img/main-tag.svg"></img>
 					</button>
-					<button type="button" class="group" v-bind:class="{ 'active': edit.type === '@' }" @click="setType('@')" @mouseenter="setDescription('@')" @mouseleave="setDescription(edit.type)" title="{{ 'Set group tag type' | say }}">
+					<button type="button" class="group" v-bind:class="{ 'active': edit.type === '@' }" @click="setType('@')" @mouseenter="setDescription('@')" @mouseleave="setDescription(edit.type)">
 						<img src="../../../../common/img/group-tag.svg"></img>
 					</button>
-					<button type="button" class="suggestion" v-bind:class="{ 'active': edit.type === '/' }" @click="setType('/')" @mouseenter="setDescription('/')" @mouseleave="setDescription(edit.type)" title="{{ 'Set suggestional tag type' | say }}">
+					<button type="button" class="suggestion" v-bind:class="{ 'active': edit.type === '/' }" @click="setType('/')" @mouseenter="setDescription('/')" @mouseleave="setDescription(edit.type)">
 						<img src="../../../../common/img/suggestion-tag.svg"></img>
 					</button>
-					<button type="button" class="conditional" v-bind:class="{ 'active': edit.type === '%' }" @click="setType('%')" @mouseenter="setDescription('%')" @mouseleave="setDescription(edit.type)" title="{{ 'Set conditional tag type' | say }}">
+					<button type="button" class="conditional" v-bind:class="{ 'active': edit.type === '%' }" @click="setType('%')" @mouseenter="setDescription('%')" @mouseleave="setDescription(edit.type)">
 						<img src="../../../../common/img/conditional-tag.svg"></img>
 					</button>		
 				</div>
