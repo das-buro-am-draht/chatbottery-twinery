@@ -5,7 +5,7 @@ const TYPE_GROUP       = '@'
 const TYPE_SUGGESTION  = '/'
 const TYPE_CONDITIONAL = '%'
 
-const buzzwordFromTag = (tag) => tag.replace(/^[@#\/%]?/, '');
+const nameFromTag = (tag) => tag.replace(/^[@#\/%]?/, '');
 
 const typeFromTag = (tag) => {
   const type = tag.substring(0, 1);
@@ -24,7 +24,7 @@ const insertTag = (tags, tag, tagOld = null) => {
   let arr = tags.slice();
   const index = tagOld ? arr.findIndex(t => t === tagOld) : -1;
   if (typeFromTag(tag) === TYPE_MAIN) {
-    arr = arr.map((t, i) => i !== index && typeFromTag(t) === TYPE_MAIN ? buzzwordFromTag(t) : t);
+    arr = arr.map((t, i) => i !== index && typeFromTag(t) === TYPE_MAIN ? nameFromTag(t) : t);
   }
   if (index < 0) {
     arr.push(tag);
@@ -39,7 +39,7 @@ module.exports = {
   TYPE_GROUP,
   TYPE_SUGGESTION,
   TYPE_CONDITIONAL,
-  buzzwordFromTag,
+  nameFromTag,
   typeFromTag,
   insertTag,
 };

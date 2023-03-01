@@ -1,5 +1,5 @@
 const Vue = require('vue');
-const { typeFromTag, buzzwordFromTag } = require('../../../../utils/tags')
+const { typeFromTag, nameFromTag } = require('../../../../utils/tags')
 const { setTagColorInStory } = require('../../../../data/actions/story');
 const { updatePassage } = require('../../../../data/actions/passage');
 const { TYPE_MAIN,
@@ -9,7 +9,7 @@ const { TYPE_MAIN,
 				insertTag,
 			} = require('../../../../utils/tags');
 const notify = require('../../../../ui/notify');
-
+const locale = require('../../../../locale');
 
 require('./index.less');
 
@@ -39,7 +39,7 @@ module.exports = Vue.extend({
   ready() {
     this.edit.color = this.getStory().tagColors[this.tag];
     if (this.tag) {
-			this.edit.tag = buzzwordFromTag(this.tag);
+			this.edit.tag = nameFromTag(this.tag);
 			this.edit.type = typeFromTag(this.tag);
     }
 		this.$nextTick(() => this.$els.tagName.focus());
@@ -125,7 +125,7 @@ module.exports = Vue.extend({
 
 			const tag = this.edit.type + tagName;
 			if (tag != this.tag && this.passage.tags.includes(tag)) {
-				notify(`Der Tag '${tag}' existiert bereits.`, 'info');
+				notify(locale.say('Tag &ldquo;%1$s&rdquo; already exists.', tag), 'info');
 				return;
 			}
 

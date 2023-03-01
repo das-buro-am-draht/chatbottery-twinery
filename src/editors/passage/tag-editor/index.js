@@ -12,10 +12,11 @@ const {
 	TYPE_GROUP,
 	TYPE_SUGGESTION,
 	TYPE_CONDITIONAL,
-	buzzwordFromTag, 
+	nameFromTag, 
 	typeFromTag, 
 	insertTag
 } = require('../../../utils/tags');
+const locale = require('../../../locale');
 
 require('./index.less');
 
@@ -70,7 +71,7 @@ module.exports = Vue.extend({
 		},
 
 		'tag_suggestion'(tag) {
-			const text = buzzwordFromTag(tag);
+			const text = nameFromTag(tag);
 			// let data = {
 			// 	model: 'text-davinci-003',
 			// 	input: `${text}`,
@@ -114,14 +115,14 @@ module.exports = Vue.extend({
 						}
 					});
 				}
-				const tags = this.passage.tags.map(tag => buzzwordFromTag(tag));
+				const tags = this.passage.tags.map(tag => nameFromTag(tag));
 				this.suggestions = uniq(suggestions.filter(suggestion => suggestion.length < 30 && !tags.includes(suggestion)));
 				if (!this.suggestions.length) {
 					if (response.choices) {
 						const text = response.choices.map(it => it.text).reduce((acc, it) => acc + it);
-						notify('No suggestions were found. Response: ' + text, 'info');
+						notify(locale.say('No suggestions were found - &ldquo;%1$s&rdquo;', text), 'info');
 					} else {
-						notify('No suggestions were found.', 'info');
+						notify(locale.say('No suggestions were found.'), 'info');
 					}
 				}
 			})
@@ -138,7 +139,7 @@ module.exports = Vue.extend({
 		},
 
 		getTagname(tag) {
-			return buzzwordFromTag(tag);
+			return nameFromTag(tag);
 		},
 
 		getStory() {

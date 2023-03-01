@@ -1,7 +1,6 @@
 const Vue = require('vue');
-const uniq = require('lodash.uniq');
 const { updatePassage } = require('../../../../../data/actions/passage');
-const { typeFromTag, buzzwordFromTag, insertTag } = require('../../../../../utils/tags')
+const { typeFromTag, nameFromTag, insertTag } = require('../../../../../utils/tags')
 
 require('./index.less');
 
@@ -34,7 +33,7 @@ module.exports = Vue.extend({
 			return this.allStories.find(s => s.id === this.storyId);
 		},
 		setType(type) {
-			const tag = type + buzzwordFromTag(this.tag);
+			const tag = type + nameFromTag(this.tag);
 
 			this.updatePassage(
 				this.storyId,
