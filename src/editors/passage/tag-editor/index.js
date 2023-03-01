@@ -7,33 +7,43 @@ const TagsDialog = require('./tag-dialog');
 const {openai} = require('../../../common/app/openai');
 const notify = require('../../../ui/notify');
 const uniq = require('lodash.uniq');
-const {buzzwordFromTag} = require('../../../utils/common');
-
-const MAX_TAGS_INITIAL = 14;
+const {
+	TYPE_MAIN,
+	TYPE_GROUP,
+	TYPE_SUGGESTION,
+	TYPE_CONDITIONAL,
+	nameFromTag, 
+	typeFromTag, 
+	insertTag
+} = require('../../../utils/tags');
+const locale = require('../../../locale');
 
 require('./index.less');
+
+const tagSortOrder = [TYPE_MAIN, TYPE_GROUP, TYPE_SUGGESTION, TYPE_CONDITIONAL];
 
 module.exports = Vue.extend({
 
 	data: () => ({
 		loading: false,
 		suggestions: [],
-		showingAll: false,
 	}),
 
 	computed: {
-		maxTags: () => MAX_TAGS_INITIAL,
-
 		tagColors() {
 			return this.getStory().tagColors;
 		},
 		taglist() {
-			if (this.showingAll) {
-				return this.taglist = this.passage.tags;
-			} else {
-				return this.taglist = this.passage.tags.slice(0, this.maxTags);
-			}
-		}
+			return this.passage.tags.sort((a, b) => {
+				const type_a = typeFromTag(a);
+				const type_b = typeFromTag(b);
+				if (type_a == type_b) 
+					return 0;
+				const index_a = type_a ? tagSortOrder.indexOf(type_a) : tagSortOrder.length;
+				const index_b = type_b ? tagSortOrder.indexOf(type_b) : tagSortOrder.length;
+				return index_a - index_b;
+			});
+		},
 	},
 
 	props: {
@@ -61,7 +71,7 @@ module.exports = Vue.extend({
 		},
 
 		'tag_suggestion'(tag) {
-			const text = buzzwordFromTag(tag);
+			const text = nameFromTag(tag);
 			// let data = {
 			// 	model: 'text-davinci-003',
 			// 	input: `${text}`,
@@ -105,14 +115,14 @@ module.exports = Vue.extend({
 						}
 					});
 				}
-				const tags = this.passage.tags.map(tag => buzzwordFromTag(tag));
+				const tags = this.passage.tags.map(tag => nameFromTag(tag));
 				this.suggestions = uniq(suggestions.filter(suggestion => suggestion.length < 30 && !tags.includes(suggestion)));
 				if (!this.suggestions.length) {
 					if (response.choices) {
 						const text = response.choices.map(it => it.text).reduce((acc, it) => acc + it);
-						notify('No suggestions were found. Response: ' + text, 'info');
+						notify(locale.say('No suggestions were found - &ldquo;%1$s&rdquo;', text), 'info');
 					} else {
-						notify('No suggestions were found.', 'info');
+						notify(locale.say('No suggestions were found.'), 'info');
 					}
 				}
 			})
@@ -124,6 +134,14 @@ module.exports = Vue.extend({
 	template: require('./index.html'),
 
 	methods: {
+		getType(tag) {
+			return typeFromTag(tag);
+		},
+
+		getTagname(tag) {
+			return nameFromTag(tag);
+		},
+
 		getStory() {
 			return this.allStories.find(s => s.id === this.storyId);
 		},
@@ -148,14 +166,10 @@ module.exports = Vue.extend({
 				this.storyId,
 				this.passage.id,
 				{
-					tags: uniq([].concat(this.passage.tags, suggestion))
+					tags: insertTag(this.passage.tags, suggestion)
 				}
 			);
 			this.suggestions.splice(this.suggestions.findIndex(s => s === suggestion), 1);
-		},
-
-		toggleShowTags() {
-			this.showingAll = !this.showingAll;
 		},
 	},
 

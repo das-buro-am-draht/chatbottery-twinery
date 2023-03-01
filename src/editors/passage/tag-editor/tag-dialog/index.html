@@ -1,45 +1,50 @@
-<modal-dialog :origin="origin" v-ref:modal :title="'Test'">
-	<div class="tag-dialog">
+<modal-dialog :origin="origin" v-ref:modal :title="'Test'" :class="'tag-dialog'">
+	<div class="tag-dialog-content">
 		<!-- Using a <form> allows the "required" attribute on the input to be usable. -->
 		<form @submit.prevent="save">
 			<!-- L10n: A noun, i.e. what a tag is named. -->
-			<input class="tag__row" type="text" placeholder="{{ 'Tag name' | say }}" required v-model="edit.tag" v-el:tag-name>
-			<p class="error" v-show="!isValidTag">{{ 'Tag name must be set.' | say }}</p>
-			<div class="tag-colors">
-				<label>{{'Color' | say }}</label>
-				<div class="toolbar">
-					<button type="button" class="grey" v-bind:class="{ 'border': edit.color === 'grey' }" @click="setColor('grey')" title="{{ 'Set tag color to gray' | say }}"></button>			
-					<button type="button" class="red" v-bind:class="{ 'border': edit.color === 'red' }" @click="setColor('red')" title="{{ 'Set tag color to red' | say }}"></button>
-					<button type="button" class="orange" v-bind:class="{ 'border': edit.color === 'orange' }" @click="setColor('orange')" title="{{ 'Set tag color to orange' | say }}"></button>
-					<button type="button" class="yellow" v-bind:class="{ 'border': edit.color === 'yellow' }" @click="setColor('yellow')" title="{{ 'Set tag color to yellow' | say }}"></button>
-					<button type="button" class="green" v-bind:class="{ 'border': edit.color === 'green' }" @click="setColor('green')" title="{{ 'Set tag color to green' | say }}"></button>		
-					<button type="button" class="blue" v-bind:class="{ 'border': edit.color === 'blue' }" @click="setColor('blue')" title="{{ 'Set tag color to blue' | say }}"></button>		
-					<button type="button" class="purple" v-bind:class="{ 'border': edit.color === 'purple' }" @click="setColor('purple')" title="{{ 'Set tag color to purple' | say }}"></button>
+			<input class="tag__row" type="text" placeholder="{{ 'Tag or phrase' | say }}" required v-model="edit.tag" v-el:tag-name>
+			<!-- <p class="error" v-show="!isValidTag">{{ 'Tag name must be set.' | say }}</p> -->
+			<div class="tag-color-types">
+				<div class="tag-colors">
+					<label>{{'Color' | say }}</label>
+					<div class="toolbar">
+						<button type="button" class="grey" v-bind:class="{ 'border': edit.color === 'grey' }" @click="setColor('grey')" title="{{ 'Set tag color to gray' | say }}"></button>			
+						<button type="button" class="red" v-bind:class="{ 'border': edit.color === 'red' }" @click="setColor('red')" title="{{ 'Set tag color to red' | say }}"></button>
+						<button type="button" class="orange" v-bind:class="{ 'border': edit.color === 'orange' }" @click="setColor('orange')" title="{{ 'Set tag color to orange' | say }}"></button>
+						<button type="button" class="yellow" v-bind:class="{ 'border': edit.color === 'yellow' }" @click="setColor('yellow')" title="{{ 'Set tag color to yellow' | say }}"></button>
+						<button type="button" class="green" v-bind:class="{ 'border': edit.color === 'green' }" @click="setColor('green')" title="{{ 'Set tag color to green' | say }}"></button>		
+						<button type="button" class="blue" v-bind:class="{ 'border': edit.color === 'blue' }" @click="setColor('blue')" title="{{ 'Set tag color to blue' | say }}"></button>		
+						<button type="button" class="purple" v-bind:class="{ 'border': edit.color === 'purple' }" @click="setColor('purple')" title="{{ 'Set tag color to purple' | say }}"></button>
+					</div>
+				</div>
+				<div class="tag-types">
+					<label>{{'Type' | say }}</label>
+					<div class="toolbar">
+						<button type="button" v-bind:class="{ 'active': edit.type === '' }" @click="setType('')" @mouseenter="setDescription('', $event)" @mouseleave="clearDescription()">
+							<img src="../../../../common/img/regular-tag.svg"></img>
+						</button>			
+						<button type="button" v-bind:class="{ 'active': edit.type === '#' }" :disabled="" @click="setType('#')" @mouseenter="setDescription('#', $event)" @mouseleave="clearDescription()">
+							<img src="../../../../common/img/main-tag.svg"></img>
+						</button>
+						<button type="button" v-bind:class="{ 'active': edit.type === '@' }" @click="setType('@')" @mouseenter="setDescription('@', $event)" @mouseleave="clearDescription()">
+							<img src="../../../../common/img/group-tag.svg"></img>
+						</button>
+						<button type="button" v-bind:class="{ 'active': edit.type === '/' }" @click="setType('/')" @mouseenter="setDescription('/', $event)" @mouseleave="clearDescription()">
+							<img src="../../../../common/img/suggestion-tag.svg"></img>
+						</button>
+						<button type="button" v-bind:class="{ 'active': edit.type === '%' }" @click="setType('%')" @mouseenter="setDescription('%', $event)" @mouseleave="clearDescription()">
+							<img src="../../../../common/img/conditional-tag.svg"></img>
+						</button>		
+					</div>
 				</div>
 			</div>
-			<div class="tag-types">
-				<label>{{'Type' | say }}</label>
-				<div class="toolbar">
-					<button type="button" class="regular" v-bind:class="{ 'active': edit.type === '' }" @click="setType('')" @mouseenter="setDescription('')" @mouseleave="setDescription(edit.type)">
-						<img src="../../../../common/img/regular-tag.svg"></img>
-					</button>			
-					<button type="button" class="main" v-bind:class="{ 'active': edit.type === '#' }" :disabled="" @click="setType('#')" @mouseenter="setDescription('#')" @mouseleave="setDescription(edit.type)">
-						<img src="../../../../common/img/main-tag.svg"></img>
-					</button>
-					<button type="button" class="group" v-bind:class="{ 'active': edit.type === '@' }" @click="setType('@')" @mouseenter="setDescription('@')" @mouseleave="setDescription(edit.type)">
-						<img src="../../../../common/img/group-tag.svg"></img>
-					</button>
-					<button type="button" class="suggestion" v-bind:class="{ 'active': edit.type === '/' }" @click="setType('/')" @mouseenter="setDescription('/')" @mouseleave="setDescription(edit.type)">
-						<img src="../../../../common/img/suggestion-tag.svg"></img>
-					</button>
-					<button type="button" class="conditional" v-bind:class="{ 'active': edit.type === '%' }" @click="setType('%')" @mouseenter="setDescription('%')" @mouseleave="setDescription(edit.type)">
-						<img src="../../../../common/img/conditional-tag.svg"></img>
-					</button>		
+			<!-- <p class="error" v-show="!isMainValid">{{ 'Only one Main Tag is allowed.' | say }}</p> -->
+			<div class="tag__row tag-type-description" v-el:description>
+				<div class="tag-type-desc--arrow" v-el:desc-arrow hidden></div>
+				<div class="tag-type-desc--content" v-if="!!description">
+					<span>{{ description[0] | say }}:&nbsp;</span><p>{{ description[1] | say }}</p>
 				</div>
-			</div>
-			<p class="error" v-show="!isMainValid">{{ 'Only one Main Tag is allowed.' | say }}</p>
-			<div class="tag__row tag-type-description">
-				<span>{{ description[0] | say }}:&nbsp;</span><p>{{ description[1] | say }}</p>
 			</div>
 			<button type="submit" class="create" :disabled="!isValid"><i class="fa fa-check"></i>{{ tag ? ' Change' : ' Add' }}</button>
 		</form>

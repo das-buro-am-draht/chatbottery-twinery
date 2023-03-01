@@ -66,7 +66,9 @@ module.exports = Vue.extend({
 									.map((entry) => ({label: entry.label, events: entry.nb_events}))
 									.sort((a, b) => b.events - a.events) : [];
 						})
-						.catch((error) => notify(`Error on loading Matomo data from '${url}: ${error.message}`, 'danger'));
+						.catch((error) => {
+							notify(locale.say(`Error on loading Matomo data from '${url}: ${error.message}`), 'danger');
+						});
 				}
 			}
 		},

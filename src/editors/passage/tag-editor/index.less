@@ -17,11 +17,25 @@
 }
 
 .tag-colors,.tag-types {
-  display: flex;
   button {
     height: 2 * @len-large;
     width: 2 * @len-large;
     margin: @len-small / 4 @len-small / 2;	
+  }
+}
+
+.tag.label {
+  .tag-type {
+    width: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    img {
+      width: 100%;
+      filter: invert(100%);
+    }
+  }
+  .tag-label {
+    display: inline-block;
   }
 }
 

@@ -7,16 +7,25 @@
 	</button>
 
 	<template v-for="tag in taglist" transition="fade-in-out">
-		<div class="tag label label-info {{tagColors[tag]}}">{{ tag }}
+		<div class="tag label label-info {{tagColors[tag]}}">
+			<div v-if="getType(tag) === '#'" class="tag-type">
+				<img src="../../../common/img/main-tag.svg">
+			</div>
+			<div v-if="getType(tag) === '@'" class="tag-type">
+				<img src="../../../common/img/group-tag.svg">
+			</div>
+			<div v-if="getType(tag) === '/'" class="tag-type">
+				<img src="../../../common/img/suggestion-tag.svg">
+			</div>
+			<div v-if="getType(tag) === '%'" class="tag-type">
+				<img src="../../../common/img/conditional-tag.svg">
+			</div>
+			<div class="tag-label">{{ getTagname(tag) }}</div>
 			<button>
 				<i class="fa fa-caret-down"></i>
 				<tag-menu :tag="tag" :passage="passage" :story-id="storyId"></tag-menu>
 			</button>
 		</div>
-	</template>
-	<template v-if="passage.tags.length > maxTags">
-		<button v-if="showingAll" @click="toggleShowTags">{{ 'Show less' | say }}</button>
-		<button v-else @click="toggleShowTags">{{ 'Show all' | say }}</button>
 	</template>
 
 	<div class="tag-suggestion" v-if="loading || suggestions.length">
