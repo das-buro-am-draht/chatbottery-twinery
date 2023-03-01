@@ -127,7 +127,10 @@ module.exports = Vue.extend({
 				}
 			})
 			.catch((error) => notify(error.message, 'danger'))
-			.finally(() => this.loading = false);
+			.finally(() => {
+				this.loading = false;
+				this.$els.suggestions.scrollIntoView();
+			});
 		}
 	},
 

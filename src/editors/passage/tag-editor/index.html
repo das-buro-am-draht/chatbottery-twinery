@@ -28,24 +28,26 @@
 		</div>
 	</template>
 
-	<div class="tag-suggestion" v-if="loading || suggestions.length">
-		<div class="tag-suggestion-header">
-			<h3>{{ 'Suggestions' | say }}</h3>
-			<button class="close subtle" @click="closeSuggestions">
-				<i class="fa fa-close"></i>
-			</button>
-		</div>
-		<p v-if="loading" transition="fade-in-out">
-			<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
-		</p>
-		<div class="tag-suggestion-items">
-			<template v-for="suggestion in suggestions">
-				<div class="tag label label-info">{{ suggestion }}
-					<button @click="addSuggestion(suggestion)">
-						<i class="fa fa-caret-up"></i>
-					</button>
-				</div>
-			</template>
+	<div v-el:suggestions>
+		<div class="tag-suggestion" v-if="loading || suggestions.length">
+			<div class="tag-suggestion-header">
+				<h3>{{ 'Suggestions' | say }}</h3>
+				<button class="close subtle" @click="closeSuggestions">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<p v-if="loading" transition="fade-in-out">
+				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
+			</p>
+			<div class="tag-suggestion-items">
+				<template v-for="suggestion in suggestions">
+					<div class="tag label label-info">{{ suggestion }}
+						<button @click="addSuggestion(suggestion)">
+							<i class="fa fa-caret-up"></i>
+						</button>
+					</div>
+				</template>
+			</div>
 		</div>
 	</div>
 
