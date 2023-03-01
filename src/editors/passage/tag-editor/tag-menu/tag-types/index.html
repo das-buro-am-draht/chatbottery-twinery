@@ -7,7 +7,7 @@
 				<img v-show="!type" src="../../../../../common/img/tick.svg">
 			</div>
 		</div>
-		<div class="tag-menu__item" v-if="isMainValid" @click="setType('#')">
+		<div class="tag-menu__item" @click="setType('#')">
 			<img class="tag-type--image" src="../../../../../common/img/main-tag.svg">
 			<div class="tag-type--text">{{ 'Main' | say }}</div>
 			<div class="tag-type--check">

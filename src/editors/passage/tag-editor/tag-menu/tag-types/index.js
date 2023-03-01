@@ -1,7 +1,7 @@
 const Vue = require('vue');
 const uniq = require('lodash.uniq');
 const { updatePassage } = require('../../../../../data/actions/passage');
-const { typeFromTag, buzzwordFromTag } = require('../../../../../utils/common')
+const { typeFromTag, buzzwordFromTag, insertTag } = require('../../../../../utils/tags')
 
 require('./index.less');
 
@@ -27,10 +27,6 @@ module.exports = Vue.extend({
 		type() {
 			return typeFromTag(this.tag);
 		},
-
-		isMainValid() {
-			return !this.passage.tags.filter(tag => tag !== this.tag).some(tag => tag.substring(0, 1) === '#');
-		},
 	},
 
 	methods: {
@@ -40,14 +36,11 @@ module.exports = Vue.extend({
 		setType(type) {
 			const tag = type + buzzwordFromTag(this.tag);
 
-      const arr = this.passage.tags.slice();
-      arr[arr.findIndex(t => t === this.tag)] = tag;
-
 			this.updatePassage(
 				this.storyId,
 				this.passage.id,
 				{
-					tags: uniq(arr)
+					tags: insertTag(this.passage.tags, tag, this.tag)
 				}
 			);
 		}

@@ -1,15 +1,18 @@
 const Vue = require('vue');
-const uniq = require('lodash.uniq');
-const { typeFromTag, buzzwordFromTag } = require('../../../../utils/common')
+const { typeFromTag, buzzwordFromTag } = require('../../../../utils/tags')
 const { setTagColorInStory } = require('../../../../data/actions/story');
 const { updatePassage } = require('../../../../data/actions/passage');
+const { TYPE_MAIN,
+				TYPE_GROUP,
+				TYPE_SUGGESTION,
+				TYPE_CONDITIONAL,
+				insertTag,
+			} = require('../../../../utils/tags');
+const notify = require('../../../../ui/notify');
+
 
 require('./index.less');
 
-const TYPE_MAIN        = '#'
-const TYPE_GROUP       = '@'
-const TYPE_SUGGESTION  = '/'
-const TYPE_CONDITIONAL = '%'
 
 module.exports = Vue.extend({
 	data: () => ({
@@ -22,7 +25,7 @@ module.exports = Vue.extend({
 			type: '',
 			color: null,
 		},
-		description: [],
+		description: null,
 	}),
 
 	computed: {
@@ -39,8 +42,7 @@ module.exports = Vue.extend({
 			this.edit.tag = buzzwordFromTag(this.tag);
 			this.edit.type = typeFromTag(this.tag);
     }
-		this.setDescription(this.edit.type);
-    this.$nextTick(() => this.$els.tagName.focus());
+		this.$nextTick(() => this.$els.tagName.focus());
   },
 
 	computed: {
@@ -53,7 +55,7 @@ module.exports = Vue.extend({
 		},
 
 		isValid() {
-			return this.isValidTag && this.isMainValid;
+			return this.isValidTag; // && this.isMainValid;
 		},
 	},
 
@@ -62,7 +64,7 @@ module.exports = Vue.extend({
 			return this.allStories.find(s => s.id === this.storyId);
 		},
 
-		setDescription(type) {
+		setDescription(type, event) {
 			switch(type) {
 				case TYPE_MAIN:
 					this.description = [
@@ -95,6 +97,15 @@ module.exports = Vue.extend({
 					];
 					break;
 			}
+			const pos = this.$els.description.getBoundingClientRect().right 
+								- event.target.getBoundingClientRect().right + 4;
+			this.$els.descArrow.style.right = String(pos) + 'px';
+			this.$els.descArrow.hidden = false;
+		},
+
+		clearDescription() {
+			this.$els.descArrow.hidden = true;
+			this.description = null;
 		},
 
 		setColor(color) {
@@ -113,20 +124,16 @@ module.exports = Vue.extend({
       }
 
 			const tag = this.edit.type + tagName;
-
-      let arr;
-      if (this.tag) {
-        arr = this.passage.tags.slice();
-        arr[arr.findIndex(t => t === this.tag)] = tag;
-      } else {
-        arr = [].concat(this.passage.tags, tag);
-      }
+			if (tag != this.tag && this.passage.tags.includes(tag)) {
+				notify(`Der Tag '${tag}' existiert bereits.`, 'info');
+				return;
+			}
 
 			this.updatePassage(
 				this.storyId,
 				this.passage.id,
 				{
-					tags: uniq(arr)
+					tags: insertTag(this.passage.tags, tag, this.tag)
 				}
 			);
 

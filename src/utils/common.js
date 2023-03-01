@@ -15,27 +15,9 @@ const stringFromDate = (date) =>
 const regularExpression = (str, flags) => new RegExp(
   str.replace(/([.*+?^${}()|\[\]\/\\])/g, '\\$1'), flags
 );
-
-const buzzwordFromTag = (tag) => tag.replace(/^[@#\/%]?/, '');
-
-const typeFromTag = (tag) => {
-  const type = tag.substring(0, 1);
-  switch (type) {
-    case '#':
-    case '@':
-    case '/':
-    case '%':
-      return type;
-    default:
-      return '';
-  }
-
-}
   
 module.exports = { 
   isValidUrl, 
   stringFromDate,
   regularExpression, 
-  buzzwordFromTag,
-  typeFromTag,
 };
