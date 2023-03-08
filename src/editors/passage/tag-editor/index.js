@@ -1,18 +1,49 @@
 /* An editor for adding and removing tags from a passage. */
 
 const Vue = require('vue');
-const { updatePassage } = require('../../../data/actions/passage');
+const {setTagColorInStory} = require('../../../data/actions/story');
+const {updatePassage} = require('../../../data/actions/passage');
+const TagsDialog = require('./tag-dialog');
+const {openai} = require('../../../common/app/openai');
+const notify = require('../../../ui/notify');
 const uniq = require('lodash.uniq');
+const {
+	TYPE_MAIN,
+	TYPE_GROUP,
+	TYPE_SUGGESTION,
+	TYPE_CONDITIONAL,
+	nameFromTag, 
+	typeFromTag, 
+	insertTag
+} = require('../../../utils/tags');
+const locale = require('../../../locale');
+
+require('./index.less');
+
+const tagSortOrder = [TYPE_MAIN, TYPE_GROUP, TYPE_SUGGESTION, TYPE_CONDITIONAL];
 
 module.exports = Vue.extend({
+
 	data: () => ({
-		newVisible: false
+		loading: false,
+		suggestions: [],
 	}),
 
 	computed: {
 		tagColors() {
-			return this.allStories.find(s => s.id === this.storyId).tagColors;
-		}
+			return this.getStory().tagColors;
+		},
+		taglist() {
+			return this.passage.tags.sort((a, b) => {
+				const type_a = typeFromTag(a);
+				const type_b = typeFromTag(b);
+				if (type_a == type_b) 
+					return 0;
+				const index_a = type_a ? tagSortOrder.indexOf(type_a) : tagSortOrder.length;
+				const index_b = type_b ? tagSortOrder.indexOf(type_b) : tagSortOrder.length;
+				return index_a - index_b;
+			});
+		},
 	},
 
 	props: {
@@ -26,42 +57,128 @@ module.exports = Vue.extend({
 		}
 	},
 
+	events: {
+		'tag-change'(tag) {
+			new TagsDialog({
+				data: {
+					storyId: this.storyId,
+					passage: this.passage,
+					origin: this.$el,
+					tag
+				},
+				store: this.$store,
+			}).$mountTo(this.$el);
+		},
+
+		'tag_suggestion'(tag) {
+			const text = nameFromTag(tag);
+			let data = {
+				model: 'gpt-3.5-turbo', //text-curie-001 text-davinci-003
+				messages: [{ 
+					role: "assistant",
+					content: locale.say("Erzeuge fünf Schlagworte zu dem Begriff '%1$s'", text),
+				}],
+			};
+			const storageData = localStorage.getItem('openai-param');
+			if (storageData) {
+				try {
+					const placeholders = {"%TAG%": text};
+					data = {...data, ...JSON.parse(storageData)};
+					if (data.messages && data.messages.length > 0) {
+						data.messages = data.messages.map(message => {
+							if (message.content) {
+								message.content = message.content.replace(/%\w+%/g, (placeholder) => placeholders[placeholder] || placeholder);
+							}
+							return message;
+						});
+					}
+				} catch (e) {
+					notify(e.message, 'danger');
+				}
+			}
+			this.suggestions = [];
+			this.$nextTick(() => this.$els.suggestions.scrollIntoView());
+			this.loading = true;
+			openai(data).then((response) => {
+				const suggestions = [];
+				if (response.choices) {
+					response.choices.forEach(item => {
+						if (item.message && typeof item.message.content === 'string') {
+							item.message.content.split(/[,\n]/).forEach(text => {
+								const suggestion = text.replace(/^[\n\r\s-\d\.]+/, '').replace(/[\n\r\s]+$/, '');
+								if (suggestion) {
+									suggestions.push(suggestion);
+								}
+							});
+						}
+					});
+				}
+				const tags = this.passage.tags.map(tag => nameFromTag(tag));
+				this.suggestions = uniq(suggestions.filter(suggestion => suggestion.length < 30 && !tags.includes(suggestion)));
+				if (!this.suggestions.length) {
+					if (response.choices) {
+						const text = response.choices.map(it => it.text).reduce((acc, it) => acc + it);
+						notify(locale.say('No suggestions were found - &ldquo;%1$s&rdquo;', text), 'info');
+					} else {
+						notify(locale.say('No suggestions were found.'), 'info');
+					}
+				}
+			})
+			.catch((error) => notify(error.message, 'danger'))
+			.finally(() => {
+				this.loading = false;
+				this.$nextTick(() => this.$els.suggestions.scrollIntoView());
+			});
+		}
+	},
+
 	template: require('./index.html'),
 
 	methods: {
-		showNew() {
-			this.newVisible = true;
-			this.$nextTick(() => this.$els.newName.focus());
+		getType(tag) {
+			return typeFromTag(tag);
 		},
 
-		hideNew() {
-			this.newVisible = false;
+		getTagname(tag) {
+			return nameFromTag(tag);
 		},
 
-		addNew() {
-			const newName = this.$els.newName.value.replace(/\s/g, '-');
+		getStory() {
+			return this.allStories.find(s => s.id === this.storyId);
+		},
 
-			/* Clear the newName element while it's transitioning out. */
+		closeSuggestions() {
+			this.suggestions = [];
+		},
 
-			this.$els.newName.value = '';
+		newTag(e) {
+			new TagsDialog({
+				data: {
+					storyId: this.storyId,
+					passage: this.passage,
+					origin: this.$el,
+				},
+				store: this.$store,
+			}).$mountTo(this.$el);
+		},
 
+		addSuggestion(suggestion) {
 			this.updatePassage(
 				this.storyId,
 				this.passage.id,
 				{
-					tags: uniq([].concat(this.passage.tags, newName))
+					tags: insertTag(this.passage.tags, suggestion)
 				}
 			);
-
-			this.hideNew();
-		}
+			this.suggestions.splice(this.suggestions.findIndex(s => s === suggestion), 1);
+		},
 	},
 
 	vuex: {
 		getters: {
 			allStories: state => state.story.stories
 		},
-		actions: { updatePassage }
+		actions: {setTagColorInStory, updatePassage}
 	},
 
 	components: {

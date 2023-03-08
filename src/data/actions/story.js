@@ -45,13 +45,12 @@ const actions = (module.exports = {
 		const story = store.state.story.stories.find(
 			story => story.id == storyId
 		);
-		let toMerge = {};
-
-		toMerge[tagName] = tagColor;
-
 		if (!story) {
 			throw new Error(`No story exists with id ${storyId}`);
 		}
+
+		let toMerge = {};
+		toMerge[tagName] = tagColor === 'grey' ? undefined : tagColor;
 
 		store.dispatch('UPDATE_STORY', storyId, {
 			tagColors: Object.assign({}, story.tagColors, toMerge)

@@ -1,26 +1,54 @@
 <div class="passageTags">
 	<span class="tags"></span>
 
-	<button class="subtle" type="button" @click="showNew" v-show="!newVisible"><i class="fa fa-plus"></i>
+	<button class="subtle" type="button" @click="newTag"><i class="fa fa-plus"></i>
 	<!-- L10n: this is the noun form, as in tags you would apply to content. -->
 	{{ 'Tag' | say }}
 	</button>
 
-	<template v-for="tag in passage.tags" transition="fade-in-out">
-		<div class="tag label label-info {{tagColors[tag]}}">{{ tag }}<button>
-			<i class="fa fa-caret-down"></i>
-			<tag-menu :tag="tag" :passage="passage" :story-id="storyId"></tag-menu>
-		</button></div>
+	<template v-for="tag in taglist" transition="fade-in-out">
+		<div class="tag label label-info {{tagColors[tag]}}">
+			<div v-if="getType(tag) === '#'" class="tag-type">
+				<img src="../../../common/img/main-tag.svg">
+			</div>
+			<div v-if="getType(tag) === '@'" class="tag-type">
+				<img src="../../../common/img/group-tag.svg">
+			</div>
+			<div v-if="getType(tag) === '/'" class="tag-type">
+				<img src="../../../common/img/suggestion-tag.svg">
+			</div>
+			<div v-if="getType(tag) === '%'" class="tag-type">
+				<img src="../../../common/img/conditional-tag.svg">
+			</div>
+			<div class="tag-label">{{ getTagname(tag) }}</div>
+			<button>
+				<i class="fa fa-caret-down"></i>
+				<tag-menu :tag="tag" :passage="passage" :story-id="storyId"></tag-menu>
+			</button>
+		</div>
 	</template>
 
-	<span v-show="newVisible">
-		<!-- Using a <form> allows the "required" attribute on the input to be usable. -->
-		<form @submit.prevent="addNew">
-			<!-- L10n: A noun, i.e. what a tag is named. -->
-			<input type="text" placeholder="{{ 'Tag name' | say }}" required v-el:new-name>
+	<div v-el:suggestions>
+		<div class="tag-suggestion" v-if="loading || suggestions.length">
+			<div class="tag-suggestion-header">
+				<h3>{{ 'Suggestions' | say }}</h3>
+				<button class="close subtle" @click="closeSuggestions">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<p v-if="loading" transition="fade-in-out">
+				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
+			</p>
+			<div class="tag-suggestion-items">
+				<template v-for="suggestion in suggestions">
+					<div class="tag label label-info">{{ suggestion }}
+						<button @click="addSuggestion(suggestion)">
+							<i class="fa fa-caret-up"></i>
+						</button>
+					</div>
+				</template>
+			</div>
+		</div>
+	</div>
 
-			<button type="button" @click="hideNew">Cancel</button>
-			<button type="submit" class="create"><i class="fa fa-check"></i> Add</button>
-		</form>
-	</span>
 </div>

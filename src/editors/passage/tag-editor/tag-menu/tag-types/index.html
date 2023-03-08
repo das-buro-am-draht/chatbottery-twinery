@@ -1,0 +1,39 @@
+<drop-down position="right top" open-on="hover">
+	<div class="tag-menu tag-types">
+		<div class="tag-menu__item" @click="setType('')">
+			<img class="tag-type--image" src="../../../../../common/img/regular-tag.svg">
+			<div class="tag-type--text">{{ 'Regular' | say }}</div>
+			<div class="tag-type--check">
+				<img v-show="!type" src="../../../../../common/img/tick.svg">
+			</div>
+		</div>
+		<div class="tag-menu__item" @click="setType('#')">
+			<img class="tag-type--image" src="../../../../../common/img/main-tag.svg">
+			<div class="tag-type--text">{{ 'Main' | say }}</div>
+			<div class="tag-type--check">
+				<img v-show="type === '#'" src="../../../../../common/img/tick.svg">
+			</div>
+		</div>
+		<div class="tag-menu__item" @click="setType('@')">
+			<img class="tag-type--image" src="../../../../../common/img/group-tag.svg">
+			<div class="tag-type--text">{{ 'Group' | say }}</div>
+			<div class="tag-type--check">
+				<img v-show="type === '@'" src="../../../../../common/img/tick.svg">
+			</div>
+		</div>
+		<div class="tag-menu__item" @click="setType('/')">
+			<img class="tag-type--image" src="../../../../../common/img/suggestion-tag.svg">
+			<div class="tag-type--text">{{ 'Suggestion' | say }}</div>
+			<div class="tag-type--check">
+				<img v-show="type === '/'" src="../../../../../common/img/tick.svg">
+			</div>
+		</div>
+		<div class="tag-menu__item" @click="setType('%')">
+			<img class="tag-type--image" src="../../../../../common/img/conditional-tag.svg">
+			<div class="tag-type--text">{{ 'Conditional' | say }}</div>
+			<div class="tag-type--check">
+				<img v-show="type === '%'" src="../../../../../common/img/tick.svg">
+			</div>
+		</div>
+	</div>
+</drop-down>

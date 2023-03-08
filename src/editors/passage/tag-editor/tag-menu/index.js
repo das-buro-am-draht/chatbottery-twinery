@@ -1,6 +1,5 @@
 const Vue = require('vue');
 const without = require('lodash.without');
-const { setTagColorInStory } = require('../../../../data/actions/story');
 const { updatePassage } = require('../../../../data/actions/passage');
 
 require('./index.less');
@@ -31,16 +30,21 @@ module.exports = Vue.extend({
 				{ tags: without(this.passage.tags, this.tag) }
 			);
 		},
-		setColor(color) {
-			this.setTagColorInStory(this.storyId, this.tag, color);
+		change() {
+			this.$dispatch('tag-change', this.tag);
+		},
+		suggestions() {
+			this.$dispatch('tag_suggestion', this.tag);
 		}
 	},
 
 	vuex: {
-		actions: { setTagColorInStory, updatePassage }
+		actions: { updatePassage }
 	},
 
 	components: {
-		'drop-down': require('../../../../ui/drop-down')
+		'drop-down': require('../../../../ui/drop-down'),
+		'tag-colors': require('./tag-colors'),
+		'tag-types': require('./tag-types')
 	}
 });

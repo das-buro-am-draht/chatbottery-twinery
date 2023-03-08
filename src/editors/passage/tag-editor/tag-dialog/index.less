@@ -1,0 +1,88 @@
+@import '../../../../common/metrics.less';
+
+.tag-dialog {
+	width: 55em;
+	left: calc(~"(100vw - 55em) / 2");
+	.tag-dialog-content {
+		padding: 0 0 20px;
+		input {
+			font-size: 20px;
+		}
+		.tag__row {
+			margin-bottom: 20px;
+			width: 100%;
+		}
+		.tag__option {
+			margin: 5px 0;
+		}
+		.tag__type {
+			display: inline-block;
+			width: 1rem;
+		}
+		.toolbar {
+			justify-content: flex-start;
+		}
+		button.create {
+			float: right;
+		}
+		.tag-color-types {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-between;
+			margin-bottom: 10px;
+			label {
+				flex: 0 1 2rem;
+				margin: auto 0.5rem auto 0;
+			}
+		}
+		.tag-colors,.tag-types {
+			display: flex;
+			flex-direction: row;
+			margin: 5px 0;
+		}
+		.tag-types button {
+			padding: 0;
+			border: 1px solid;
+			border-radius: 20%;
+			img {
+				width: 100%;
+			}
+			&.active,&:hover {
+				background-color: #3a51fa;
+				img {
+					filter: invert(100%);
+				}
+			}
+		}
+		.tag-type-description {
+			min-height: 2.5rem;
+			text-align: right;
+			position: relative;
+			margin-bottom: 10px;
+			.tag-type-desc--arrow {
+				position: absolute;
+				top: -14px;
+				width: 30px;
+				height: 16px;
+				background-color: #3a51fa;
+				clip-path: polygon(50% 0, 100% 100%, 0 100%);
+			}
+			.tag-type-desc--content {
+				color: white;
+				padding: 10px;
+				margin: auto 0;
+				text-align: left;
+				border-radius: 7px;
+				background-color: #3a51fa;
+				display: inline-block;
+				span {
+					display: inline;
+					font-weight: bold;
+				}
+				p {
+					display: inline;
+				}
+			}
+		}
+	}
+}
