@@ -72,41 +72,39 @@ module.exports = Vue.extend({
 
 		'tag_suggestion'(tag) {
 			const text = nameFromTag(tag);
-			// let data = {
-			// 	model: 'text-davinci-003',
-			// 	input: `${text}`,
-			// 	instruction: 'Finde Synonyme',
-			// 	n: 5,
-			// 	temperature: 0.2, // 0.6,
-			// 	// top_p: 1,
-			// };
 			let data = {
-				model: 'text-curie-001', //text-curie-001 text-davinci-003
-				prompt: `5 Synonyme für ${text}`,
-				max_tokens: 150,
-				temperature: 0.2, // 0.6,
-				// top_p: 1,
-				// frequency_penalty: 1,
-				// presence_penalty: 1
+				model: 'gpt-3.5-turbo', //text-curie-001 text-davinci-003
+				messages: [{ 
+					role: "assistant",
+					content: locale.say("Erzeuge fünf Schlagworte zu dem Begriff '%1$s'", text),
+				}],
 			};
-			const storageData = localStorage.getItem('openai-params');
+			const storageData = localStorage.getItem('openai-param');
 			if (storageData) {
 				try {
 					const placeholders = {"%TAG%": text};
 					data = {...data, ...JSON.parse(storageData)};
-					data.prompt = data.prompt.replace(/%\w+%/g, (placeholder) => placeholders[placeholder] || placeholder);
+					if (data.messages && data.messages.length > 0) {
+						data.messages = data.messages.map(message => {
+							if (message.content) {
+								message.content = message.content.replace(/%\w+%/g, (placeholder) => placeholders[placeholder] || placeholder);
+							}
+							return message;
+						});
+					}
 				} catch (e) {
 					notify(e.message, 'danger');
 				}
 			}
 			this.suggestions = [];
+			this.$nextTick(() => this.$els.suggestions.scrollIntoView());
 			this.loading = true;
 			openai(data).then((response) => {
 				const suggestions = [];
 				if (response.choices) {
 					response.choices.forEach(item => {
-						if (typeof item.text === 'string') {
-							item.text.split(',').forEach(text => {
+						if (item.message && typeof item.message.content === 'string') {
+							item.message.content.split(/[,\n]/).forEach(text => {
 								const suggestion = text.replace(/^[\n\r\s-\d\.]+/, '').replace(/[\n\r\s]+$/, '');
 								if (suggestion) {
 									suggestions.push(suggestion);
@@ -129,7 +127,7 @@ module.exports = Vue.extend({
 			.catch((error) => notify(error.message, 'danger'))
 			.finally(() => {
 				this.loading = false;
-				this.$els.suggestions.scrollIntoView();
+				this.$nextTick(() => this.$els.suggestions.scrollIntoView());
 			});
 		}
 	},
