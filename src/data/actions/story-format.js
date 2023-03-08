@@ -37,7 +37,7 @@ const actions = (module.exports = {
 
 	createFormatFromUrl(store, url) {
 		return new Promise((resolve, reject) => {
-			jsonp(url, {name: 'storyFormat', timeout: 2000}, (err, data) => {
+			jsonp(url, {name: 'storyFormat', timeout: 5000}, (err, data) => {
 				if (err) {
 					reject(err);
 					return;
@@ -132,7 +132,7 @@ const actions = (module.exports = {
 
 				jsonp(
 					format.url,
-					{name: 'storyFormat', timeout: 2000},
+					{name: 'storyFormat', timeout: 5000},
 					(err, data) => {
 						if (err) {
 							reject(err);
