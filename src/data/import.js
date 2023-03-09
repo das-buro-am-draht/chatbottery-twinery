@@ -101,6 +101,17 @@ function domToObject(storyEl, forceLastUpdate) {
 							.map(Math.floor);
 					}
 
+					let tags = passageEl.attributes.tags.value === '' 
+						? []
+						: passageEl.attributes.tags.value.split(/\s+/);
+					try {
+						if (passageEl.attributes.tagsData && passageEl.attributes.tagsData.value) {
+							tags = JSON.parse(passageEl.attributes.tagsData.value);
+						}
+					} catch(e) {
+						console.error(`Error loading tags for passage '${passageEl.attributes.name.value}'.`, e);
+					}
+
 					return {
 						/* Again, a one-off id, not a database id. */
 
@@ -116,10 +127,7 @@ function domToObject(storyEl, forceLastUpdate) {
 							size[1],
 						selected:
 							false,
-						tags:
-							passageEl.attributes.tags.value === '' ?
-								[]
-								: passageEl.attributes.tags.value.split(/\s+/),
+						tags,
 						name:
 							passageEl.attributes.name.value,
 						text:
