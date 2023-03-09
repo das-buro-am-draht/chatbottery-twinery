@@ -117,7 +117,7 @@ module.exports = Vue.extend({
 		},
 
 		save() {
-			const tagName = this.edit.tag.trim().replace(/\s/g, '-');
+			const tagName = this.edit.tag.trim(); 
 
       if (!tagName) {
         return;
