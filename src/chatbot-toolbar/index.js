@@ -4,6 +4,7 @@ const Vue = require('vue');
 const JavaScriptEditor = require('../editors/javascript');
 const StylesheetEditor = require('../editors/stylesheet');
 const zoomMappings = require('../chatbot-view/zoom-settings');
+const OpenaiDialog = require('../dialogs/openai');
 const {playStory} = require('../common/launch-story');
 const {updateStory} = require('../data/actions/story');
 
@@ -58,6 +59,12 @@ module.exports = Vue.extend({
 		},
 		changeZoom() {
 			this.updateStory(this.story.id, {zoom: zoomMappings[this.descriptions[this.sliderVal]]});
+		},
+		openai(e) {
+			new OpenaiDialog({
+				data: {origin: e.target},
+				store: this.$store
+			}).$mountTo(document.body);
 		},
 	},
 
