@@ -1,0 +1,37 @@
+@import '../../common/metrics.less';
+
+.openai-dialog {
+	width: 55em;
+	left: calc(~"(100vw - 55em) / 2");
+	.title {
+		img {
+			width: 20px;
+			height: 100%;
+			vertical-align: middle;
+		}
+	}
+	.openai-dialog-params {
+		margin: 20px 0;
+		label {
+			display: block;
+			img {
+				width: 20px;
+				height: 100%;
+				vertical-align: middle;
+			}
+		}
+		&--data {
+			width: 100%;
+			resize: vertical;
+			display: block;
+			margin: 5px 0;
+		}
+		&--reset {
+			padding: 0;
+			text-decoration: underline;
+		}
+	}
+	.create {
+		float: right;
+	}
+}

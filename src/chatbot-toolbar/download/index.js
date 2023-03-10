@@ -56,7 +56,7 @@ module.exports = Vue.extend({
 					'danger'
 				);
 			});
-	},
+		},
 		proofStory(id) {
 			proofStory(this.$store, this.story.id, id);
 		},

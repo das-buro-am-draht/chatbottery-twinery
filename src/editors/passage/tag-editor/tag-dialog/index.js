@@ -28,12 +28,6 @@ module.exports = Vue.extend({
 		description: null,
 	}),
 
-	computed: {
-		tagColors() {
-			return this.getStory().tagColors;
-		},
-	},
-
 	template: require('./index.html'),
 
   ready() {
@@ -46,6 +40,9 @@ module.exports = Vue.extend({
   },
 
 	computed: {
+		tagColors() {
+			return this.getStory().tagColors;
+		},
 		isValidTag() {
 			return !!this.edit.tag.trim();
 		},
@@ -53,7 +50,6 @@ module.exports = Vue.extend({
 		isMainValid() {
 			return !(this.edit.type === TYPE_MAIN && this.passage.tags.filter(tag => tag !== this.tag).some(tag => tag.substring(0, 1) === TYPE_MAIN));
 		},
-
 		isValid() {
 			return this.isValidTag; // && this.isMainValid;
 		},
@@ -117,7 +113,7 @@ module.exports = Vue.extend({
 		},
 
 		save() {
-			const tagName = this.edit.tag.trim().replace(/\s/g, '-');
+			const tagName = this.edit.tag.trim(); 
 
       if (!tagName) {
         return;

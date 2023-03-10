@@ -1,4 +1,4 @@
-<modal-dialog :origin="origin" v-ref:modal :title="'Test'" :class="'tag-dialog'">
+<modal-dialog :origin="origin" v-ref:modal :class="'tag-dialog'">
 	<div class="tag-dialog-content">
 		<!-- Using a <form> allows the "required" attribute on the input to be usable. -->
 		<form @submit.prevent="save">
@@ -22,19 +22,19 @@
 					<label>{{'Type' | say }}</label>
 					<div class="toolbar">
 						<button type="button" v-bind:class="{ 'active': edit.type === '' }" @click="setType('')" @mouseenter="setDescription('', $event)" @mouseleave="clearDescription()">
-							<img src="../../../../common/img/regular-tag.svg"></img>
+							<img src="../../../../common/img/regular-tag.svg">
 						</button>			
 						<button type="button" v-bind:class="{ 'active': edit.type === '#' }" :disabled="" @click="setType('#')" @mouseenter="setDescription('#', $event)" @mouseleave="clearDescription()">
-							<img src="../../../../common/img/main-tag.svg"></img>
+							<img src="../../../../common/img/main-tag.svg">
 						</button>
 						<button type="button" v-bind:class="{ 'active': edit.type === '@' }" @click="setType('@')" @mouseenter="setDescription('@', $event)" @mouseleave="clearDescription()">
-							<img src="../../../../common/img/group-tag.svg"></img>
+							<img src="../../../../common/img/group-tag.svg">
 						</button>
 						<button type="button" v-bind:class="{ 'active': edit.type === '/' }" @click="setType('/')" @mouseenter="setDescription('/', $event)" @mouseleave="clearDescription()">
-							<img src="../../../../common/img/suggestion-tag.svg"></img>
+							<img src="../../../../common/img/suggestion-tag.svg">
 						</button>
 						<button type="button" v-bind:class="{ 'active': edit.type === '%' }" @click="setType('%')" @mouseenter="setDescription('%', $event)" @mouseleave="clearDescription()">
-							<img src="../../../../common/img/conditional-tag.svg"></img>
+							<img src="../../../../common/img/conditional-tag.svg">
 						</button>		
 					</div>
 				</div>

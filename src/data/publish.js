@@ -166,7 +166,8 @@ const publish = (module.exports = {
 		return (
 			`<tw-passagedata pid="${escape(localId)}" ` +
 			`name="${escape(passage.name)}" ` +
-			`tags="${escape(passage.tags.join(" "))}" ` +
+			`tags="${escape(passage.tags.map(tag => tag.trim().replace(/\s/g, '-')).join(' '))}" ` +
+			`tagsData="${escape(JSON.stringify(passage.tags))}"` +
 			`position="${passage.left},${passage.top}" ` +
 			`size="${passage.width},${passage.height}">` +
 			`${escape(passage.text)}</tw-passagedata>`

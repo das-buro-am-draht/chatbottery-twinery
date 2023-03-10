@@ -72,29 +72,21 @@ module.exports = Vue.extend({
 
 		'tag_suggestion'(tag) {
 			const text = nameFromTag(tag);
-			let data = {
-				model: 'gpt-3.5-turbo', //text-curie-001 text-davinci-003
-				messages: [{ 
-					role: "assistant",
-					content: locale.say("Erzeuge fünf Schlagworte zu dem Begriff '%1$s'", text),
-				}],
-			};
-			const storageData = localStorage.getItem('openai-param');
-			if (storageData) {
-				try {
-					const placeholders = {"%TAG%": text};
-					data = {...data, ...JSON.parse(storageData)};
-					if (data.messages && data.messages.length > 0) {
-						data.messages = data.messages.map(message => {
-							if (message.content) {
-								message.content = message.content.replace(/%\w+%/g, (placeholder) => placeholders[placeholder] || placeholder);
-							}
-							return message;
-						});
-					}
-				} catch (e) {
-					notify(e.message, 'danger');
+			let data;
+			try {
+				const placeholders = {"%TAG%": text};
+				data = JSON.parse(this.openaiTags);
+				if (data.messages && data.messages.length > 0) {
+					data.messages = data.messages.map(message => {
+						if (message.content) {
+							message.content = message.content.replace(/%\w+%/g, (placeholder) => placeholders[placeholder] || placeholder);
+						}
+						return message;
+					});
 				}
+			} catch (e) {
+				notify(e.message, 'danger');
+				return;
 			}
 			this.suggestions = [];
 			this.$nextTick(() => this.$els.suggestions.scrollIntoView());
@@ -114,7 +106,7 @@ module.exports = Vue.extend({
 					});
 				}
 				const tags = this.passage.tags.map(tag => nameFromTag(tag));
-				this.suggestions = uniq(suggestions.filter(suggestion => suggestion.length < 30 && !tags.includes(suggestion)));
+				this.suggestions = uniq(suggestions.filter(suggestion => /*suggestion.length < 30 &&*/ !tags.includes(suggestion)));
 				if (!this.suggestions.length) {
 					if (response.choices) {
 						const text = response.choices.map(it => it.text).reduce((acc, it) => acc + it);
@@ -176,7 +168,8 @@ module.exports = Vue.extend({
 
 	vuex: {
 		getters: {
-			allStories: state => state.story.stories
+			allStories: state => state.story.stories,
+			openaiTags: state => state.pref.openaiTags,
 		},
 		actions: {setTagColorInStory, updatePassage}
 	},
