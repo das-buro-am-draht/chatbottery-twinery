@@ -84,6 +84,24 @@ ul.plain {
 	}
 }
 
+.warning {
+	background-color: hsl(hue(@color-warning), 50%, 97%);
+	padding: @len-small-rel @len-small-rel @len-small-rel 2em;
+	position: relative;
+	margin-top: 1px;
+	color: @color-warning;
+
+	&:before {
+		content: '\f12a';
+		font-family: FontAwesome;
+		color: @color-warning;
+		padding-right: 0.5em;
+		position: absolute;
+		top: 0.5em;
+		left: 0.5em;
+	}
+}
+
 @import './badges.less';
 @import './buttons.less';
 @import './forms.less';

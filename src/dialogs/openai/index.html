@@ -11,9 +11,10 @@
 					<img src="../../common/img/regular-tag.svg">
 					<span>{{ 'Tag Alternatives' | say }}</span>
 				</label>
-				<textarea class="openai-dialog-params--data" name="openaiParams" rows="7" v-model="openaiParams"></textarea>
+				<textarea class="openai-dialog-params--data" name="openaiParams" rows="7" v-model="openaiParams" v-el:openai-params></textarea>
 				<button class="openai-dialog-params--reset" type="button" @click="reset">{{ 'Reset to default' | say }}</button>
 				<p class="error" v-show="!!errorMessage">{{ errorMessage }}</p>
+				<p class="warning" v-show="isValid && !tagPresent">{{ 'Placeholder %TAG% should be set.' |say }}</p>
 			</div>
 			<button type="submit" class="create" :disabled="!isValid"><i class="fa fa-check"></i>{{ ' Save' | say }}</button>
 		</form>

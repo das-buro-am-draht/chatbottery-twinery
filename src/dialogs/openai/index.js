@@ -28,8 +28,23 @@ module.exports = Vue.extend({
 				return true;
 			} catch(e) {
 				this.errorMessage = e.message;
+				// if (e.message) {
+				// 	const searchString = 'at position ';
+				// 	const p = e.message.indexOf(searchString);
+				// 	if (p >= 0) {
+				// 		const matches = e.message.substring(p + searchString.length).match(/\d+/);
+				// 		const position = parseInt(matches[0]);
+				// 		if (!isNaN(position)) {
+				// 			this.$els.openaiParams.setSelectionRange(position, position + 1);
+				// 		}
+				// 	}
+				// }
 				return false;
 			}
+		},
+
+		tagPresent() {
+			return this.openaiParams.indexOf('%TAG%') >= 0;
 		},
 
 		isValid() {
