@@ -21,6 +21,9 @@
     </div>
     <div class="chatbot-toolbar__actions">
         <ul class="chatbot-toolbar__actions-list">
+            <li class="chatbot-toolbar__actions-item chatbot-toolbar__actions-item--openai" @click="openai" title="{{ 'Open AI Settings' | say }}">
+                <img src="../common/img/suggestions.svg">
+            </li>
             <dropdown-download :story="story"></dropdown-download>
             <li class="chatbot-toolbar__actions-item chatbot-toolbar__actions-item--play" @click="play" title="{{ 'Play the Chatbot' | say }}">
                 <div class="icon"></div>

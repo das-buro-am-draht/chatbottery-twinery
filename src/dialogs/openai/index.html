@@ -1,0 +1,21 @@
+<modal-dialog :origin="origin" v-ref:modal :class="'openai-dialog'">
+	<span slot="title">
+		<img src="../../common/img/suggestions.svg">
+		{{ 'Open AI Settings' | say }}
+	</span>
+	<div class="openai-dialog-content">
+		<!-- Using a <form> allows the "required" attribute on the input to be usable. -->
+		<form @submit.prevent="save">
+			<div class="openai-dialog-params">
+				<label for="openaiParams">
+					<img src="../../common/img/regular-tag.svg">
+					<span>{{ 'Tag Alternatives' | say }}</span>
+				</label>
+				<textarea class="openai-dialog-params--data" name="openaiParams" rows="7" v-model="openaiParams"></textarea>
+				<button class="openai-dialog-params--reset" type="button" @click="reset">{{ 'Reset to default' | say }}</button>
+				<p class="error" v-show="!!errorMessage">{{ errorMessage }}</p>
+			</div>
+			<button type="submit" class="create" :disabled="!isValid"><i class="fa fa-check"></i>{{ ' Save' | say }}</button>
+		</form>
+	</div>
+</modal-dialog>
