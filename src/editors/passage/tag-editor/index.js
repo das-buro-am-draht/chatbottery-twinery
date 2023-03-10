@@ -108,12 +108,7 @@ module.exports = Vue.extend({
 				const tags = this.passage.tags.map(tag => nameFromTag(tag));
 				this.suggestions = uniq(suggestions.filter(suggestion => /*suggestion.length < 30 &&*/ !tags.includes(suggestion)));
 				if (!this.suggestions.length) {
-					if (response.choices) {
-						const text = response.choices.map(it => it.text).reduce((acc, it) => acc + it);
-						notify(locale.say('No suggestions were found - &ldquo;%1$s&rdquo;', text), 'info');
-					} else {
-						notify(locale.say('No suggestions were found.'), 'info');
-					}
+					notify(locale.say('No suggestions were found.'), 'info');
 				}
 			})
 			.catch((error) => notify(error.message, 'danger'))

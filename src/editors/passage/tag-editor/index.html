@@ -39,7 +39,7 @@
 			<p v-if="loading" transition="fade-in-out">
 				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
 			</p>
-			<div class="tag-suggestion-items">
+			<div v-else class="tag-suggestion-items">
 				<template v-for="suggestion in suggestions">
 					<div class="tag label label-info">{{ suggestion }}
 						<button @click="addSuggestion(suggestion)">
