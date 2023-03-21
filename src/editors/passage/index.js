@@ -31,7 +31,8 @@ module.exports = Vue.extend({
 		oldWindowTitle: '',
 		userPassageName: '',
 		saveError: '',
-		origin: null
+		origin: null,
+		gui: false
 	}),
 
 	computed: {
@@ -72,7 +73,7 @@ module.exports = Vue.extend({
 					passage.id !== this.passage.id
 			));
 		},
-		
+
 		autocompletions() {
 			return this.parentStory.passages.map(passage => passage.name);
 		}
@@ -172,6 +173,16 @@ module.exports = Vue.extend({
 			}
 
 			return false;
+		},
+
+		showGui() {
+			this.gui = true;
+			// this.$forceUpdate();
+		},
+		showSyntax() {
+			this.gui = false;
+			// this.ready();
+			// this.$forceUpdate();
 		}
 	},
 
@@ -246,7 +257,8 @@ module.exports = Vue.extend({
 	components: {
 		'code-mirror': require('../../vue/codemirror'),
 		'modal-dialog': require('../../ui/modal-dialog'),
-		'tag-editor': require('./tag-editor')
+		'tag-editor': require('./tag-editor'),
+		'ui-view': require('./ui-view')
 	},
 
 	vuex: {

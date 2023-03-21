@@ -9,7 +9,10 @@
 		{{ 'A passage already exists with this name.' | say }}
 	</p>
 
+	<button v-on:click="showGui" type="button">UI</button>
+	<button v-on:click="showSyntax" type="button">Syntax</button>
 	<div class="expand">
-		<code-mirror :options="cmOptions" :text="passage.text" @cm-change="saveText" v-ref:codemirror></code-mirror>
+		<code-mirror v-show="!gui" :options="cmOptions" :text="passage.text" @cm-change="saveText" v-ref:codemirror></code-mirror>
+		<ui-view v-show="gui"></ui-view>
 	</div> <!-- .fullEdit -->
 </modal-dialog>
