@@ -2,21 +2,29 @@
 const { XMLParser } = require("fast-xml-parser");
 const Vue = require('vue');
 
-const parser = new XMLParser();
+const parser = new XMLParser({
+	preserveOrder: true,
+	alwaysCreateTextNode: true
+});
 
 module.exports = Vue.extend({
 	template: require('./index.html'),
-
+	props: ['syntax'],
 	data: () => ({
-		rawSyntax: '<msg>Test</msg>\n<btn>Click!</btn>',
-		syntacObjects: [],
+		syntaxObjects: []
 	}),
 
 	computed: {
 		syntaxObjects() {
-			const jObj = parser.parse(this.rawSyntax);
+			let ret;
+			try {
+				ret = parser.parse(this.syntax);
+			} catch (e) {
+				console.log("error parsing syntax", e);
+				ret = [];
+			}
 
-			return jObj;
+			return ret;
 		}
 	},
 

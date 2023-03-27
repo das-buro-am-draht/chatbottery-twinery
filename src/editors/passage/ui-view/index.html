@@ -1,5 +1,23 @@
 <div class="editor-ui-view">
-	<span>
-		{{ syntaxObjects }}
-	</span>
+	<hr>
+	<div v-for="syntaxObjectArrayItem of syntaxObjects">
+		<div v-for="(key, value) of syntaxObjectArrayItem" class=tab>
+			<span><b>{{ key }}</b></span>
+			<div v-for="arrayItem of value">
+				<div v-for="(key, value) of arrayItem" class="syntax-object-level">
+					<div v-if="key === '#text'">
+						<span>{{ value }}</span>
+					</div>
+					<div v-else>
+						<span><b>{{ key }}</b></span>
+						<div v-for="arrayItem of value">
+							<div v-for="value of arrayItem" class=tab>
+								<span>{{ value }}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
