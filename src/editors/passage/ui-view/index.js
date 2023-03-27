@@ -4,7 +4,8 @@ const Vue = require('vue');
 
 const parser = new XMLParser({
 	preserveOrder: true,
-	alwaysCreateTextNode: true
+	alwaysCreateTextNode: true,
+	ignoreAttributes:false
 });
 
 module.exports = Vue.extend({
