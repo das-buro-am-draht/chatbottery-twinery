@@ -12,16 +12,21 @@ module.exports = Vue.extend({
 	template: require('./index.html'),
 	props: ['syntax'],
 	data: () => ({
-		syntaxObjects: []
+		syntaxObjects: [],
+		error: "",
+		parsingError: false
 	}),
 
 	computed: {
 		syntaxObjects() {
+			this.parsingError = false;
 			let ret;
 			try {
 				ret = parser.parse(this.syntax);
 			} catch (e) {
-				console.log("error parsing syntax", e);
+				console.log("error parsing syntax: ", e);
+				this.error = e;
+				this.parsingError = true;
 				ret = [];
 			}
 
