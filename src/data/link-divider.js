@@ -23,8 +23,8 @@ const extractGoToLinkTags = (text) =>
 	extractLinks(/<goto[^>]+\bpassage="(.*)"[^>]*>/g, text);
 
 const extractActOrBtnLinkTags = (text) =>
-	extractLinks(/<act.*>(.*)<\/act>/g, text).concat(
-	extractLinks(/<btn.*>(.*)<\/btn>/g, text));
+	extractLinks(/<act.*>\s*(.*)\s*<\/act>/g, text).concat(
+	extractLinks(/<btn.*>\s*(.*)\s*<\/btn>/g, text));
 
 const getResults = (links, internalOnly) => {
 	let result = links
