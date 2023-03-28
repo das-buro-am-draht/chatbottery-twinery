@@ -5,10 +5,12 @@ A modal dialog for editing a single passage.
 const CodeMirror = require('codemirror');
 const Vue = require('vue');
 const locale = require('../../locale');
+const { parse } = require('../../utils/xmlparser');
 const { thenable } = require('../../vue/mixins/thenable');
 const { changeLinksInStory, updatePassage } = require('../../data/actions/passage');
 const { loadFormat } = require('../../data/actions/story-format');
 const { passageDefaults } = require('../../data/store/story');
+const notify = require('../../ui/notify');
 
 require('codemirror/addon/display/placeholder');
 require('codemirror/addon/hint/show-hint');
@@ -32,7 +34,7 @@ module.exports = Vue.extend({
 		userPassageName: '',
 		saveError: '',
 		origin: null,
-		gui: false
+		gui: null,
 	}),
 
 	computed: {
@@ -175,15 +177,21 @@ module.exports = Vue.extend({
 			return false;
 		},
 
-		showGui() {
-			this.gui = true;
-			// this.$forceUpdate();
+		showMode(gui) {
+			if (gui == !!this.gui)
+				return;
+
+			if (gui) {
+				try {
+					this.gui = parse(this.passage.text);
+				} catch (e) {
+					notify(e.message, 'danger');
+					return;
+				}
+			} else {
+				this.gui = null;	
+			}
 		},
-		showSyntax() {
-			this.gui = false;
-			// this.ready();
-			// this.$forceUpdate();
-		}
 	},
 
 	ready() {

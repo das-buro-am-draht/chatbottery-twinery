@@ -1,50 +1,7 @@
-<div class="editor-ui-view">
-	<hr>
-	<div v-show="parsingError">
-		<p>Error parsing syntax: {{error}}</p>
-	</div>
-	<div v-show="!parsingError">
-		<div v-for="syntaxObjectArrayItem of syntaxObjects">
-			<div v-for="(key, value) of syntaxObjectArrayItem" class=tab>
-				<span><b>{{ key }}</b></span>
-				<div v-for="arrayItem of value">
-					<div v-for="(key, value) of arrayItem" class="syntax-object-level">
-						<div v-if="key === '#text' || key === ':@'">
-							<div v-if="key === ':@'">
-								<div v-for="(attrKey, attrValue) of value">
-									<span>{{ attrKey }}</span>
-									<span>{{ attrValue }}</span>
-								</div>
-							</div>
-							<span v-else>{{ value }}</span>
-						</div>
-						<div v-else>
-							<span><b>{{ key }}</b></span>
-							<div v-for="arrayItem of value">
-								<div v-for="(key, value) of arrayItem" class=tab>
-									<div v-if="key === '#text' || key.startsWith(':@')"> <!-- || key === ':@' -->
-										<div v-if="key === ':@'">
-											<div v-for="(attrKey, attrValue) of value">
-												<span>{{ attrKey }}</span>
-												<span>{{ attrValue }}</span>
-											</div>
-										</div>
-										<span v-else>{{ value }}</span>
-									</div>
-									<div v-else>
-										<span><b>{{ key }}</b></span>
-										<div v-for="arrayItem of value">
-											<div v-for="value of arrayItem" class=tab>
-												<span>{{ value }}</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+<div class="passageUI">
+	<div class="passageUI-item" v-for="item in gui">
+		<h3 class="passageUI-item--type">{{ item.type }}</h3>
+		<p class="passageUI-item--attr">{{ attributes(item) }}</p>
+		<p class="passageUI-item--text">{{ item.text }}</p>
 	</div>
 </div>
