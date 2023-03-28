@@ -5,7 +5,7 @@ A modal dialog for editing a single passage.
 const CodeMirror = require('codemirror');
 const Vue = require('vue');
 const locale = require('../../locale');
-const { parse } = require('../../utils/xmlparser');
+const { parse, stringify } = require('../../utils/xmlparser');
 const { thenable } = require('../../vue/mixins/thenable');
 const { changeLinksInStory, updatePassage } = require('../../data/actions/passage');
 const { loadFormat } = require('../../data/actions/story-format');
@@ -190,7 +190,16 @@ module.exports = Vue.extend({
 				}
 			} else {
 				this.gui = null;	
+				Vue.nextTick(() => this.$refs.codemirror.$cm.refresh());
 			}
+		},
+	},
+
+	events: {
+		'gui_changed'() {
+			const xml = stringify(this.gui);
+			this.$refs.codemirror.$cm.setValue(xml);
+			this.$refs.codemirror.$el.dispatchEvent(new Event('change'));
 		},
 	},
 

@@ -15,6 +15,6 @@
 	</div>
 	<div class="expand">
 		<code-mirror v-show="!gui" :options="cmOptions" :text="passage.text" @cm-change="saveText" v-ref:codemirror></code-mirror>
-		<ui-view v-show="gui" :gui="gui"></ui-view>
+		<ui-view v-if="gui" :gui="gui"></ui-view>
 	</div> <!-- .fullEdit -->
 </modal-dialog>

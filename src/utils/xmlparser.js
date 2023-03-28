@@ -12,15 +12,15 @@ const parse = (text) => {
     for (let i = 0; i < el.attributes.length; i++) {
       task.attr[el.attributes[i].name] = el.attributes[i].value;
     }
-    task.text = el.innerHTML;
+    task.text = el.innerHTML.trim();
   });
   return tasks;
 };
 
 const stringify = (arr) => {
-  return arr.reduce((text, item) => {
+  return arr.reduce((xml, item) => {
     const attributes = Object.entries(item.attr || {}).map(([k,v]) => `${k}="${v}"`).join(' ');
-    return text += `<${item.type}${attributes ? ' ' + attributes : ''}>${item.text}</${item.type}>\n`;
+    return xml += `<${item.type}${attributes ? ' ' + attributes : ''}>${item.text}</${item.type}>\n`;
   }, '');
 };
 
