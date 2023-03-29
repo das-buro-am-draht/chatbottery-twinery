@@ -9,7 +9,12 @@
 		{{ 'A passage already exists with this name.' | say }}
 	</p>
 
+	<div class="passageMode">
+		<button v-on:click="showMode(false)" type="button" :class="['active', { primary: !gui } ]" :disabled="!gui">XML</button>
+		<button v-on:click="showMode(true)" type="button" :class="['active', { primary: gui } ]" :disabled="gui">UI</button>
+	</div>
 	<div class="expand">
-		<code-mirror :options="cmOptions" :text="passage.text" @cm-change="saveText" v-ref:codemirror></code-mirror>
+		<code-mirror v-show="!gui" :options="cmOptions" :text="passage.text" @cm-change="saveText" v-ref:codemirror></code-mirror>
+		<ui-view v-if="gui" :gui="gui"></ui-view>
 	</div> <!-- .fullEdit -->
 </modal-dialog>
