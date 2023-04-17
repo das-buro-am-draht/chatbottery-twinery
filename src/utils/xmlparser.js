@@ -26,7 +26,7 @@ const stringify = (arr) => {
   }, ''));
 };
 
-module.exports = { 
+module.exports = {
   parse,
   stringify,
 };
