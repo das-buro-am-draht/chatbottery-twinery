@@ -189,7 +189,7 @@ module.exports = Vue.extend({
 					return;
 				}
 			} else {
-				this.gui = null;	
+				this.gui = null;
 				Vue.nextTick(() => this.$refs.codemirror.$cm.refresh());
 			}
 		},
