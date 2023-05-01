@@ -1,39 +1,30 @@
 /*
-Handles importing HTML source code into story objects ready to be saved to the
-store. This works on both published story files and archives.
-
-The one difference between what's returned from this module and the usual
-objects in the store is that passages have a `pid` property instead of an `id`.
-Pids are sequential, not UUIDs.
-
-It's important that this code be as efficient as possible, as it directly
-affects startup time in the Twine desktop app. This module moves data from the
-filesystem into local storage, and the app can't begin until it's done.
+Handles importing JSON source code into story objects ready to be saved to the
+store.
 */
 
-const { trim } = require("../../utils/common");
+const { trim, camelToKebab } = require("../../utils/common");
 const beautify = require("xml-beautifier");
 
+const createNewElement = (name, text = null) => {
+  const el = document.createElement(name);
+  if (text) {
+    el.innerHTML = text;
+  }
+  return el;
+};
+
+const createNewTextElement = (name, obj) => {
+  const el = createNewElement(name, trim(obj.text));
+  for (let key in obj) {
+    if (key !== 'text') {
+      el.setAttribute(camelToKebab(key), obj[key]);
+    }
+  }
+  return el;
+}
+
 const taskToXml = (task) => {
-	const setAttribute = (el, name, value) => {
-		el.setAttribute(name.replace(/[A-Z]/g, c => `-${c.toLowerCase()}`), value);
-	};
-	const createNewElement = (name, text = null) => {
-		const el = document.createElement(name);
-		if (text) {
-			el.innerText = text;
-		}
-		return el;
-	};
-	const createNewTextElement = (name, obj) => {
-		const el = createNewElement(name, trim(obj.text));
-		for (let key in obj) {
-			if (key !== 'text') {
-				setAttribute(el, key, obj[key]);
-			}
-		}
-		return el;
-	}
 	const element = document.createElement(task.type);
 	for (let key in task) {
 		switch (key) {
@@ -42,7 +33,7 @@ const taskToXml = (task) => {
 			case 'options':
 				const options = task[key].filter(item => !!trim(item.text));
 				if (options.length === 1)
-					element.innerText = trim(options[0].text);
+					element.innerHTML = trim(options[0].text);
 				else
 					options.forEach(item => element.append(createNewTextElement('opt', item)));
 				break;
@@ -71,7 +62,7 @@ const taskToXml = (task) => {
 				break;
 			default:
 				if (['string', 'number', 'boolean'].includes(typeof task[key])) {
-					setAttribute(element, key, task[key]);
+					element.setAttribute(camelToKebab(key), task[key]);
 				} /* else {
 					throw new Error(`Unknown element type '${key}'`);
 				} */
@@ -93,7 +84,6 @@ module.exports = (data, lastUpdate) => {
 		name: passage.name,
 		text: beautify(passage.tasks.map(taskToXml).join('')),
 	}));
-	// throw new Error('Not implemented!');
 	return [{
 		startPassagePid: (passages.findIndex(passage => passage.name === story.startPassage) + 1).toString(),
 		name: story.id || story.projectName,

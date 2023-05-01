@@ -70,7 +70,7 @@ module.exports = Vue.extend({
 
 	ready() {
 		if (this.immediateImport) {
-			this.import(this.immediateImport);
+			this.importFile(this.immediateImport);
 		}
 	},
 
@@ -106,12 +106,12 @@ module.exports = Vue.extend({
 					notify(locale.say(
 						"Story format of imported story was changed to '%s'.",
 						importedStory.storyFormat + ' ' + importedStory.storyFormatVersion
-					), 'danger');					
+					));					
 				}
 			});
 		},
 
-		import(file) {
+		importFile(file) {
 			this.status = "working";
 
 			load(file).then((source) => {
