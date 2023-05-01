@@ -7,7 +7,7 @@ const Vue = require("vue");
 const semverUtils = require('semver-utils');
 const { deleteStory, importStory } = require("../../data/actions/story");
 const { createFormatFromUrl } = require("../../data/actions/story-format");
-const importHTML = require("../../data/import");
+const importData = require("../../data/import");
 const load = require("../../file/load");
 const locale = require("../../locale");
 const notify = require("../../ui/notify");
@@ -105,8 +105,8 @@ module.exports = Vue.extend({
 				if (importedStory.storyFormat !== story.storyFormat || importedStory.storyFormatVersion !== story.storyFormatVersion) {
 					notify(locale.say(
 						"Story format of imported story was changed to '%s'.",
-						importedStory.storyFormat + ' ' + importedStory.storyFormatVersion)
-					), 'danger';					
+						importedStory.storyFormat + ' ' + importedStory.storyFormatVersion
+					), 'danger');					
 				}
 			});
 		},
@@ -115,7 +115,16 @@ module.exports = Vue.extend({
 			this.status = "working";
 
 			load(file).then((source) => {
-				this.toImport = importHTML(source);
+
+				try {
+					this.toImport = importData(source);
+				} catch(e) {
+					notify(locale.say(
+						"Error on importing file '%1$s': %2$s",
+						file.name, e.message
+					), 'danger');
+					return this.close();
+				}
 
 				this.dupeNames = this.toImport.reduce(
 					(list, story) => {
