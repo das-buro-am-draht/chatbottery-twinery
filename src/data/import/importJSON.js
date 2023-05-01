@@ -6,14 +6,27 @@ store.
 const { trim, camelToKebab } = require("../../utils/common");
 const beautify = require("xml-beautifier");
 
-const createNewElement = (name, text = null) => {
+/**
+ * Creates a new DOM-Elelment with specified name and optional content 
+ * @param {String} name 
+ * @param {String} html content inner HTML
+ * @returns newly created DOM-Elelment
+ */
+const createNewElement = (name, html = null) => {
   const el = document.createElement(name);
-  if (text) {
-    el.innerHTML = text;
+  if (html) {
+    el.innerHTML = html;
   }
   return el;
 };
 
+/**
+ * Creates a new DOM-Elelment from an Object with specified name and content from property 'text'
+ * Element attributes are set from object properties
+ * @param {String} name 
+ * @param {Object} obj Object to create attributes and content from
+ * @returns {Element} newly created DOM-Elelment
+ */
 const createNewTextElement = (name, obj) => {
   const el = createNewElement(name, trim(obj.text));
   for (let key in obj) {
@@ -24,6 +37,11 @@ const createNewTextElement = (name, obj) => {
   return el;
 }
 
+/**
+ * Create XML from a passages's task element
+ * @param {Object} task 
+ * @returns {String} XML representing the task's properties 
+ */
 const taskToXml = (task) => {
 	const element = document.createElement(task.type);
 	for (let key in task) {
