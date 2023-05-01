@@ -104,7 +104,7 @@ const storyStore = (module.exports = {
 
 		IMPORT_STORY(state, toImport) {
 			/*
-			See data/import.js for how the object that we receive is
+			See data/import/import.js for how the object that we receive is
 			structured.
 
 			Assign IDs to to everything, link passages to their story,
