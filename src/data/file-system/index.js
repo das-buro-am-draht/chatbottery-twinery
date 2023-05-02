@@ -7,7 +7,7 @@ const {createFormat} = require('../actions/story-format');
 const {setPref} = require('../actions/pref');
 const {importStory} = require('../actions/story');
 const {loadFormat} = require('../actions/story-format');
-const importFile = require('../import');
+const importFile = require('../import/import');
 
 /* These are exposed to us by the Electron preload script. */
 
