@@ -10,6 +10,7 @@ const { thenable } = require('../../vue/mixins/thenable');
 const { changeLinksInStory, updatePassage } = require('../../data/actions/passage');
 const { loadFormat } = require('../../data/actions/story-format');
 const { passageDefaults } = require('../../data/store/story');
+const SettingsDialog = require('./settings');
 const notify = require('../../ui/notify');
 
 require('codemirror/addon/display/placeholder');
@@ -177,11 +178,8 @@ module.exports = Vue.extend({
 			return false;
 		},
 
-		showMode(gui) {
-			if (gui == !!this.gui)
-				return;
-
-			if (gui) {
+		toggleMode() {
+			if (!this.gui) {
 				try {
 					this.gui = parse(this.passage.text);
 				} catch (e) {
@@ -192,6 +190,17 @@ module.exports = Vue.extend({
 				this.gui = null;
 				Vue.nextTick(() => this.$refs.codemirror.$cm.refresh());
 			}
+		},
+
+		properties() {
+			new SettingsDialog({
+				data: {
+					storyId: this.storyId,
+					passage: this.passage,
+					origin: null, // this.$refs.modal.$el,
+				},
+				store: this.$store,
+			}).$mountTo(document.body); // this.$refs.modal.$el);
 		},
 	},
 

@@ -1,0 +1,24 @@
+<modal-dialog :origin="origin" v-ref:modal>
+	<span slot="title">Passage '{{ passage.name }}'</span>
+	<form @submit.prevent="save">
+		<div class="form__row">
+			<label for="title">{{ 'Title' | say }}:</label>
+			<div class="form__row-input">
+				<input id="title" type="text" placeholder="{{ 'Title' | say }}" v-model="title" v-el:title>
+			</div>
+		</div>
+		<div class="form__row">
+			<label for="image">{{ 'Image URL' | say }}:</label>
+			<div class="form__row-input">
+				<input id="image" type="text" placeholder="{{ 'Image URL' | say }}" v-model="image">
+			</div>
+		</div>
+		<!-- <div class="form__row">
+			<label for="summary">{{ 'Summary' | say }}:</label>
+			<div class="form__row-input">
+				<textarea id="summary" placeholder="{{ 'Summary' | say }}" v-model="summary" rows="3"></textarea>
+			</div>
+		</div> -->
+		<button type="submit" class="create"><i class="fa fa-check"></i>Change</button>
+	</form>
+</modal-dialog>

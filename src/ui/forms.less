@@ -89,3 +89,29 @@ textarea, .CodeMirror {
 input[type="search"] {
 	-webkit-appearance: none;
 }
+
+.user-field {
+	position:relative;
+	&::before {
+			position: absolute;
+			content: '$';
+			top: 9px;
+			left: -1px;
+	}
+}
+
+.form__row {
+	display: flex;
+	flex-direction: row;
+	margin: 14px 0;
+	label {
+		flex: 0 0 20%;
+		align-self: center;
+	}
+	&-input {
+		flex: 1 1 auto;
+		input,textarea {
+			width: 100%;
+		}
+	}
+}
