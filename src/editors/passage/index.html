@@ -10,8 +10,13 @@
 	</p>
 
 	<div class="passageMode">
-		<button v-on:click="showMode(false)" type="button" :class="['active', { primary: !gui } ]" :disabled="!gui">XML</button>
-		<button v-on:click="showMode(true)" type="button" :class="['active', { primary: gui } ]" :disabled="gui">UI</button>
+		<button @click="properties" type="button" class="primary" title="Properties">
+			<img src="../../common/img/wrench.svg">
+		</button>
+		<button @click="toggleMode" type="button" class="active" title="{{ gui ? 'XML' : 'GUI' }}">
+			<img v-if="gui" src="../../common/img/code.svg">
+			<img v-else src="../../common/img/layers.svg">
+		</button>
 	</div>
 	<div class="expand">
 		<code-mirror v-show="!gui" :options="cmOptions" :text="passage.text" @cm-change="saveText" v-ref:codemirror></code-mirror>

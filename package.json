@@ -18,6 +18,7 @@
 		"build:electron": "cross-env NODE_ENV=production USE_ELECTRON=y webpack && electron-builder -mwl",
 		"build:electron-dev": "cross-env USE_ELECTRON=y webpack --progress && electron .",
 		"build:web": "cross-env NODE_ENV=production webpack",
+		"build:dev": "cross-env NODE_ENV=development webpack",
 		"clean": "rimraf dist/",
 		"lint": "eslint src/ || exit 0",
 		"lint:noisy": "eslint src/",
