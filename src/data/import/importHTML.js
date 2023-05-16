@@ -135,9 +135,9 @@ module.exports = (html, lastUpdate) => {
 								passageEl.attributes.name.value,
 							text:
 								passageEl.textContent,
-							title: passageEl.hasAttribute('title') ? getAttribute('title') : undefined,
-							image: passageEl.hasAttribute('image') ? getAttribute('image') : undefined,
-							summary: passageEl.hasAttribute('summary') ? getAttribute('summary') : undefined,
+							title: passageEl.hasAttribute('title') ? passageEl.getAttribute('title') : undefined,
+							image: passageEl.hasAttribute('image') ? passageEl.getAttribute('image') : undefined,
+							summary: passageEl.hasAttribute('summary') ? passageEl.getAttribute('summary') : undefined,
 						};
 					}),
 		}
