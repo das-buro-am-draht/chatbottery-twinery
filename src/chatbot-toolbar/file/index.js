@@ -9,6 +9,7 @@ const { prompt } = require("../../dialogs/prompt");
 const StatsDialog = require("../../dialogs/story-stats");
 const PluginDialog = require("../../dialogs/plugin");
 const UserDataDialog = require("../../dialogs/user");
+const SettingDialog = require("../../dialogs/setting");
 const FormatDialog = require('../../dialogs/story-format');
 const { updateStory } = require("../../data/actions/story");
 const {proofStory} = require('../../common/launch-story');
@@ -63,6 +64,12 @@ module.exports = Vue.extend({
 		},
 		userData(e) {
 			new UserDataDialog({
+				data: { storyId: this.story.id, origin: e.target },
+				store: this.$store,
+			}).$mountTo(document.body);
+		},
+		settings(e) {
+			new SettingDialog({
 				data: { storyId: this.story.id, origin: e.target },
 				store: this.$store,
 			}).$mountTo(document.body);

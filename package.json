@@ -1,6 +1,6 @@
 {
 	"name": "chatbottery-editor",
-	"version": "10.4.3",
+	"version": "11.0.1",
 	"author": "Chris Klimas <chris@twinery.org>",
 	"description": "a GUI for creating nonlinear stories",
 	"license": "GPL-3.0",
@@ -18,6 +18,7 @@
 		"build:electron": "cross-env NODE_ENV=production USE_ELECTRON=y webpack && electron-builder -mwl",
 		"build:electron-dev": "cross-env USE_ELECTRON=y webpack --progress && electron .",
 		"build:web": "cross-env NODE_ENV=production webpack",
+		"build:dev": "cross-env NODE_ENV=development webpack",
 		"clean": "rimraf dist/",
 		"lint": "eslint src/ || exit 0",
 		"lint:noisy": "eslint src/",
@@ -54,7 +55,8 @@
 		"unfetch": "^3.0.0",
 		"vue": "^1.0.18",
 		"vue-router": "^0.7.13",
-		"vuex": "^1.0.0"
+		"vuex": "^1.0.0",
+		"xml-beautifier": "^0.5.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.1.2",

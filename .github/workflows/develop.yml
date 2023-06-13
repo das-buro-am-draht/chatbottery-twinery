@@ -22,7 +22,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run deploy
+    - run: npm run build:dev && node ftp.js
       env:
         FTP_HOST: ${{ secrets.FTP_HOST }}
         FTP_USER_NAME: ${{ secrets.FTP_USER_NAME }}

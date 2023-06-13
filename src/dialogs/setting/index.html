@@ -1,0 +1,17 @@
+<modal-dialog id="settingsModal" :origin="origin" v-ref:modal>
+	<span slot="title">{{ 'Settings' | say }}</span>
+	<div class="setting__items">
+		<div class="setting__item">
+			<div class="setting__row">
+				<label for="storyUrl">External Story URL</label>
+				<div class="setting__input">
+					<input type="text" id="storyUrl" v-model="storyUrl" title="External Story URL">
+					<p class="error" v-show="!isValid">{{ 'Resource Locator must be a valid URL' | say }}</p>
+				</div>
+			</div>
+		</div>
+		<div class="setting__save">
+			<button class="create" @click="save" :disabled="!isValid">{{ 'Save' | say }}</button>
+		</div>
+	</div>
+</modal-dialog>

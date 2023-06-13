@@ -33,7 +33,7 @@ const Locale = (module.exports = {
 
 			jsonp(
 				`locale/${locale}.js`,
-				{name: 'locale', timeout: 1000},
+				{name: 'locale', timeout: 3000},
 				(err, data) => {
 					if (err) {
 						Locale.loadDefault();

@@ -9,11 +9,13 @@ const locale = require('../../locale');
 const notify = require('../../ui/notify');
 const {setPref} = require('./pref');
 
+const prefix = process.env.NODE_ENV === 'development' ? 'develop.' : '';
+
 const defaultFormats = {
 	story: {
 		name: 'Chatbottery',
-		url: 'https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v10.js',
-		version: '10.4.2',
+		url: `https://${prefix}web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v11.js`,
+		version: '11.0.1',
 	},
 	proof: {
 		name: 'Illume',

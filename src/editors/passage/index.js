@@ -5,10 +5,13 @@ A modal dialog for editing a single passage.
 const CodeMirror = require('codemirror');
 const Vue = require('vue');
 const locale = require('../../locale');
+const { parse, stringify } = require('../../utils/xmlparser');
 const { thenable } = require('../../vue/mixins/thenable');
 const { changeLinksInStory, updatePassage } = require('../../data/actions/passage');
 const { loadFormat } = require('../../data/actions/story-format');
 const { passageDefaults } = require('../../data/store/story');
+const SettingsDialog = require('./settings');
+const notify = require('../../ui/notify');
 
 require('codemirror/addon/display/placeholder');
 require('codemirror/addon/hint/show-hint');
@@ -31,7 +34,8 @@ module.exports = Vue.extend({
 		oldWindowTitle: '',
 		userPassageName: '',
 		saveError: '',
-		origin: null
+		origin: null,
+		gui: null,
 	}),
 
 	computed: {
@@ -72,7 +76,7 @@ module.exports = Vue.extend({
 					passage.id !== this.passage.id
 			));
 		},
-		
+
 		autocompletions() {
 			return this.parentStory.passages.map(passage => passage.name);
 		}
@@ -172,7 +176,40 @@ module.exports = Vue.extend({
 			}
 
 			return false;
-		}
+		},
+
+		toggleMode() {
+			if (!this.gui) {
+				try {
+					this.gui = parse(this.passage.text);
+				} catch (e) {
+					notify(e.message, 'danger');
+					return;
+				}
+			} else {
+				this.gui = null;
+				Vue.nextTick(() => this.$refs.codemirror.$cm.refresh());
+			}
+		},
+
+		properties() {
+			new SettingsDialog({
+				data: {
+					storyId: this.storyId,
+					passage: this.passage,
+					origin: null, // this.$refs.modal.$el,
+				},
+				store: this.$store,
+			}).$mountTo(document.body); // this.$refs.modal.$el);
+		},
+	},
+
+	events: {
+		'gui_changed'() {
+			const xml = stringify(this.gui);
+			this.$refs.codemirror.$cm.setValue(xml);
+			this.$refs.codemirror.$el.dispatchEvent(new Event('change'));
+		},
 	},
 
 	ready() {
@@ -246,7 +283,8 @@ module.exports = Vue.extend({
 	components: {
 		'code-mirror': require('../../vue/codemirror'),
 		'modal-dialog': require('../../ui/modal-dialog'),
-		'tag-editor': require('./tag-editor')
+		'tag-editor': require('./tag-editor'),
+		'ui-view': require('./ui-view')
 	},
 
 	vuex: {

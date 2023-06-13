@@ -8,7 +8,7 @@ const ImportDialog = require("../../dialogs/story-import");
 const { createStory } = require("../../data/actions/story");
 const blankbotHtml = require('../../common/blankbot/Blankbot.html');
 const {version: blankbotVersion} = require('../../common/blankbot/blankbot.json');
-const importHTML = require("../../data/import");
+const importHTML = require("../../data/import/import");
 const { deleteStory } = require("../../data/actions/story");
 
 require("./index.less");
