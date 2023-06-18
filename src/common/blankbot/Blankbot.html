@@ -179,7 +179,7 @@
 		position: 'HEADER' 
 	};
   // Create a Menu in the Chatbot with configuration from above
-  runtime.createPersistentMenu(menuItems, config);
+  runtime.createMenu(menuItems, config);
 
   // Define a User Function that is shipped in the menu entry above and will close the Chatbot on invocation
   user.closeChatWindow = (app) => {
