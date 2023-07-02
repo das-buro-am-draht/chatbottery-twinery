@@ -239,8 +239,8 @@ const storyStore = (module.exports = {
 		name: locale.say('Untitled Passage'),
 		selected: false,
 
-		text: ui.hasPrimaryTouchUI()
+		text: '', /*ui.hasPrimaryTouchUI()
 			? locale.say('Tap this passage, then the pencil icon to edit it.')
-			: locale.say('Double-click this passage to edit it.')
+			: locale.say('Double-click this passage to edit it.'), */
 	}
 });

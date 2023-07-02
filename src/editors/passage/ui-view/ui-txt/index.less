@@ -1,0 +1,33 @@
+.passageUI-opt {
+  display: flex;
+  flex-direction: row;
+  background-color: #eee;
+  &-text {
+    flex: 1;
+    padding: 5px;
+    margin: 2px 0;
+    background-color: #fff;
+    font-family: Roboto, serif;
+  }
+  &-ctrl {
+    flex: 0 0 24px;
+    align-self: center;
+    &--icon {
+      width: 20px;
+      height: 20px;
+      margin: 0 auto;
+      cursor: pointer;
+      background-image: url("../../../../common/img/close.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      &.modified {
+        background-image: url("../../../../common/img/tick.svg");
+      }
+    }
+  }
+  &-new {
+    display: block;
+    margin: 0 auto;
+  }
+}

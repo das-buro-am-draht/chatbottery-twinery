@@ -42,9 +42,9 @@ module.exports = Vue.extend({
 		cmOptions() {
 			return {
 				placeholder: locale.say(
-					'Enter the body text of your passage here. To link to another ' +
+					'Enter the body text of your passage here.' /* To link to another ' +
 					'passage, put two square brackets around its name, [[like ' +
-					'this]].'
+					'this]].' */
 				),
 				prefixTrigger: {
 					prefixes: ['[[', '->'],

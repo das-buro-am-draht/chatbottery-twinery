@@ -1,7 +1,11 @@
 <div class="passageUI">
-	<div class="passageUI-item" v-for="item in gui" track-by="$index" draggable="true" @dragstart="setIdx($index, $event)" @drop="switchToIndex($index, $event)">
-		<h3 class="passageUI-item--type">{{ item.type }}</h3>
-		<p class="passageUI-item--attr">{{ attributes(item) }}</p>
-		<textarea class="passageUI-item--text" rows="5" v-model="item.text" @input="onChange($event, $index)"></textarea>
+	<div class="passageUI-item" v-for="task in gui" track-by="$index" draggable="true" @dragstart="setIdx($index, $event)" @drop="switchToIndex($index, $event)">
+		<div class="passageUI-item--header">
+			<button type="button" class="passageUI-item--props"></button>
+			<h3 class="passageUI-item--caption">{{ caption(task) }}</h3>
+			<button type="button" class="passageUI-item--remove" @click="onRemove($index, $event)"></button>
+		</div>
+		<ui-txt v-if="task.type === 'txt'" :task="task"></ui-txt>
+		<textarea v-else class="passageUI-item--text" rows="5" v-model="task.text" @input="onChange($index, $event)"></textarea>
 	</div>
 </div>

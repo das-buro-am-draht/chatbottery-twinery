@@ -6,11 +6,33 @@
     border-style: outset;
     padding: 10px;
     margin-bottom: 10px;
-    &--type {
-      margin-top: 0;
+    &--header {
+      display: flex;
+      flex-direction: row;
+    }
+    &--props {
+      flex: 0 0 20px;
+      background: center / contain no-repeat url('../../../common/img/wrench.svg') ;
+      height: 20px;
+      padding: 0;
+    }
+    &--caption {
+      flex: 1;
+      margin: 0 5px 5px;
+      text-align: center;
+    }
+    &--remove {
+      flex: 0 0 20px;
+      background: center / contain no-repeat url('../../../common/img/delete.svg') ;
+      height: 20px;
+      padding: 0;
+    }
+    &--attr {
+      margin: 5px 0;
     }
     &--text {
       width: 100%;
+      resize: vertical;
       background-color: #fff;
       font: 100% "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
     }
