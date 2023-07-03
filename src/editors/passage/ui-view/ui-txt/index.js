@@ -11,7 +11,7 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
-		this.options = this.task.opt.map(txt => ({text: txt, modified: false}));
+		this.options = (this.task.opt || []).map(txt => ({text: txt, modified: false}));
 		if (!this.options.length) {
 			this.addNew();
 		}
@@ -47,7 +47,7 @@ module.exports = Vue.extend({
 				this.options.splice(index, 1);
 			}
 			this.task.opt = this.options.filter(opt => !opt.modified && !!opt.text).map(opt => opt.text);
-			this.$dispatch('gui_changed');
+			this.$dispatch('gui-changed');
 		},
 
 		addNew() {

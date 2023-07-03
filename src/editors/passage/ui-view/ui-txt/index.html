@@ -1,6 +1,6 @@
 <div class="passageUI-txt">
 	<div class="passageUI-opt" v-for="entry in options" track-by="$index">
-		<textarea v-else class="passageUI-opt-text" v-model="entry.text" @input="onChange($index, $event)"></textarea>
+		<textarea class="passageUI-opt-text" rows="2" v-model="entry.text" @input="onChange($index, $event)"></textarea>
 		<div class="passageUI-opt-ctrl">
 			<div :class="['passageUI-opt-ctrl--icon', entry.modified ? 'modified' : '']" @click="onModify($index, $event)"></div>
 		</div>

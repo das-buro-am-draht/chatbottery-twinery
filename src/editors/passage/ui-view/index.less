@@ -1,5 +1,4 @@
 .passageUI {
-  padding: 20px;
   &-item {
     background-color: antiquewhite;
     border: 1px solid;
@@ -35,6 +34,26 @@
       resize: vertical;
       background-color: #fff;
       font: 100% "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    }
+  }
+  &-append {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0;
+    div {
+      flex: 1;
+      border-top: dashed 1px;
+    }
+    button {
+      flex: 0 0 20px;
+      height: 20px;
+      margin: 0 5px;
+      background-image: url('../../../common/img/plus.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
     }
   }
 }

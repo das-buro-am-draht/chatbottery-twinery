@@ -1,20 +1,25 @@
 .passageUI-opt {
   display: flex;
   flex-direction: row;
+  border: 3px solid #aaa;
+  margin: 5px 0;
+  border-radius: 10px;
   background-color: #eee;
   &-text {
     flex: 1;
-    padding: 5px;
-    margin: 2px 0;
+    padding: 0;
+    margin: 5px;
     background-color: #fff;
     font-family: Roboto, serif;
+    box-shadow: none;
   }
   &-ctrl {
-    flex: 0 0 24px;
+    flex: 0 0 25px;
     align-self: center;
+    margin-right: 3px;
     &--icon {
-      width: 20px;
-      height: 20px;
+      width: 25px;
+      height: 25px;
       margin: 0 auto;
       cursor: pointer;
       background-image: url("../../../../common/img/close.svg");
@@ -29,5 +34,6 @@
   &-new {
     display: block;
     margin: 0 auto;
+    padding: 0;
   }
 }

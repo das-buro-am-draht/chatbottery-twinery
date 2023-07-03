@@ -15,6 +15,9 @@ require('./index.less');
 
 
 module.exports = Vue.extend({
+	
+	template: require('./index.html'),
+
 	data: () => ({
     storyId: '',
     passage: null,
@@ -27,8 +30,6 @@ module.exports = Vue.extend({
 		},
 		description: null,
 	}),
-
-	template: require('./index.html'),
 
   ready() {
     this.edit.color = this.getStory().tagColors[this.tag];

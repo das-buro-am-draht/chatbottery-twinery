@@ -33,11 +33,11 @@ const parse = (text) => {
 const xmlValue = (item) => {
   if (item.type === 'txt' && item.opt && item.opt.length > 0) {
     if (item.opt.length === 1)
-      return item.opt[0].replace(/\n/g, '<br>');
+      item.text = item.opt[0].replace(/\n/g, '<br>');
     else {
-      return item.opt.reduce((prev, current) => {
+      item.text = item.opt.reduce((prev, current) => {
         if (prev)
-          prev += '\n   ';
+          prev += '\n';
         return prev + '<opt>' + current.replace(/\n/g, '<br>') + '</opt>';
       }, '');
     }
