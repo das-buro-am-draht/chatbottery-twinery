@@ -7,27 +7,34 @@ const openaiDefault = require('../../data/store/openai');
 require('./index.less');
 
 module.exports = Vue.extend({
-	data: () => ({
-		origin: null,
-		openaiParams: '',
-		errorMessage: '',
-	}),
-
 	template: require('./index.html'),
 
+	data: () => ({
+		origin: null,
+		openaiTags: {
+			data: '',
+			message: '',
+		},
+		openaiAlts: {
+			data: '',
+			message: '',
+		},
+	}),
+
   ready() {
-		this.openaiParams = this.openaiTags;
+		this.openaiTags.data = this.getPref.openaiTags;
+		this.openaiAlts.data = this.getPref.openaiAlts;
   },
 
 	computed: {
 
-		isValidJson() {
+		isValidOpenaiTags() {
 			try {
-				JSON.parse(this.openaiParams);
-				this.errorMessage = '';
-				return true;
+				JSON.parse(this.openaiTags.data);
+				this.openaiTags.message = '';
+				return !!this.openaiTags.data.trim();
 			} catch(e) {
-				this.errorMessage = e.message;
+				this.openaiTags.message = e.message;
 				// if (e.message) {
 				// 	const searchString = 'at position ';
 				// 	const p = e.message.indexOf(searchString);
@@ -35,7 +42,7 @@ module.exports = Vue.extend({
 				// 		const matches = e.message.substring(p + searchString.length).match(/\d+/);
 				// 		const position = parseInt(matches[0]);
 				// 		if (!isNaN(position)) {
-				// 			this.$els.openaiParams.setSelectionRange(position, position + 1);
+				// 			this.$els.openaiTags.setSelectionRange(position, position + 1);
 				// 		}
 				// 	}
 				// }
@@ -43,35 +50,50 @@ module.exports = Vue.extend({
 			}
 		},
 
-		tagPresent() {
-			return this.openaiParams.indexOf('%TAG%') >= 0;
+		isOpenaiTagPresent() {
+			return this.openaiTags.data.indexOf('%TAG%') >= 0;
+		},
+
+		isValidOpenaiAlts() {
+			try {
+				JSON.parse(this.openaiAlts.data);
+				this.openaiAlts.message = '';
+				return !!this.openaiAlts.data.trim();
+			} catch(e) {
+				this.openaiAlts.message = e.message;
+				return false;
+			}
+		},
+
+		isOpenaiAltPresent() {
+			return this.openaiAlts.data.indexOf('%PHRASE%') >= 0;
 		},
 
 		isValid() {
-			return !!this.openaiParams.trim() && this.isValidJson;
+			return this.isValidOpenaiTags && this.isValidOpenaiAlts;
 		},
 	},
 
 	methods: {
 
-		reset() {
-			this.openaiParams = openaiDefault.tags;
+		resetOpenaiTags() {
+			this.openaiTags.data = openaiDefault.tags;
+		},
+
+		resetOpenaiAlts() {
+			this.openaiAlts.data = openaiDefault.alts;
 		},
 
 		save() {
-			try {
-				JSON.parse(this.openaiParams);
-				this.setPref('openaiTags', this.openaiParams);
-				this.$refs.modal.close();
-			} catch(e) {
-				notify(locale.say("Error on parsing open AI params: '%s'", e.message), 'danger');
-			}
+			this.setPref('openaiTags', this.openaiTags.data);
+			this.setPref('openaiAlts', this.openaiAlts.data);
+			this.$refs.modal.close();
 		},
 	},
 
 	vuex: {
 		getters: {
-			openaiTags: state => state.pref.openaiTags,
+			getPref: (state) => state.pref,
 		},
 		actions: { 
 			setPref 

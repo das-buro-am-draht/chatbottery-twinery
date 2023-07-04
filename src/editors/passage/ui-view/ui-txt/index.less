@@ -1,0 +1,55 @@
+.passageUI-opt {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  &-entry {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    border: 3px solid #aaa;
+    margin: 5px 0;
+    border-radius: 10px;
+    background-color: #eee;
+  }
+  &-text {
+    flex: 1;
+    padding: 0;
+    margin: 5px;
+    background-color: #fff;
+    font-family: Roboto, serif;
+    box-shadow: none;
+    resize: vertical;
+  }
+  &-ctrl {
+    flex: 0 0 25px;
+    align-self: center;
+    margin-right: 3px;
+    &--icon {
+      width: 25px;
+      height: 25px;
+      margin: 0 auto;
+      cursor: pointer;
+      background-image: url("../../../../common/img/close.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      &.modified {
+        background-image: url("../../../../common/img/tick.svg");
+      }
+    }
+  }
+  &-openai {
+    flex: 0 0 30px;
+    height: 30px;
+    margin-left: 5px;
+    background-image: url('../../../../common/img/suggestions.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  &-new {
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+  }
+}

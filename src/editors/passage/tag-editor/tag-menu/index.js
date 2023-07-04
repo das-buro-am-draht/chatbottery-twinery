@@ -2,8 +2,6 @@ const Vue = require('vue');
 const without = require('lodash.without');
 const { updatePassage } = require('../../../../data/actions/passage');
 
-require('./index.less');
-
 module.exports = Vue.extend({
 	props: {
 		tag: {
@@ -31,10 +29,10 @@ module.exports = Vue.extend({
 			);
 		},
 		change() {
-			this.$dispatch('tag-change', this.tag);
+			this.$parent.newTag(this.tag);
 		},
 		suggestions() {
-			this.$dispatch('tag_suggestion', this.tag);
+			this.$parent.getSuggestions(this.tag);
 		}
 	},
 

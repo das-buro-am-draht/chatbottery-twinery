@@ -1,5 +1,7 @@
 const apikey = 'RsCsGSeRfwlZYh21fhJNXrMsStRWRSyDBF8CjTNoLELL9';
-const host = 'https://proxy.chatbottery.com';
+const host = localStorage.getItem('DEV_ENV') === 'true'
+           ? 'http://chatbot.proxy'
+           : 'https://proxy.chatbottery.com';
 
 const openai = (data) => {
   const url = host + '/openai?apikey=' + apikey;

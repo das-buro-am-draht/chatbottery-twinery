@@ -3,7 +3,7 @@
 const Vue = require('vue');
 const {setTagColorInStory} = require('../../../data/actions/story');
 const {updatePassage} = require('../../../data/actions/passage');
-const TagsDialog = require('./tag-dialog');
+const TagDialog = require('./tag-dialog');
 const {openai} = require('../../../common/app/openai');
 const notify = require('../../../ui/notify');
 const uniq = require('lodash.uniq');
@@ -57,20 +57,38 @@ module.exports = Vue.extend({
 		}
 	},
 
-	events: {
-		'tag-change'(tag) {
-			new TagsDialog({
+	template: require('./index.html'),
+
+	methods: {
+		getType(tag) {
+			return typeFromTag(tag);
+		},
+
+		getTagname(tag) {
+			return nameFromTag(tag);
+		},
+
+		getStory() {
+			return this.allStories.find(s => s.id === this.storyId);
+		},
+
+		closeSuggestions() {
+			this.suggestions = [];
+		},
+
+		newTag(tag) {
+			new TagDialog({
 				data: {
 					storyId: this.storyId,
 					passage: this.passage,
 					origin: this.$el,
-					tag
+					tag,
 				},
 				store: this.$store,
 			}).$mountTo(this.$el);
 		},
 
-		'tag_suggestion'(tag) {
+		getSuggestions(tag) {
 			const text = nameFromTag(tag);
 			let data;
 			try {
@@ -96,8 +114,8 @@ module.exports = Vue.extend({
 				if (response.choices) {
 					response.choices.forEach(item => {
 						if (item.message && typeof item.message.content === 'string') {
-							item.message.content.split(/[,\n]/).forEach(text => {
-								const suggestion = text.replace(/^[\n\r\s-\d\.]+/, '').replace(/[\n\r\s]+$/, '');
+							item.message.content.split(/[\n]/).forEach(text => {
+								const suggestion = text.replace(/^[\n\r\s-\d\.\)]+/, '').replace(/[\n\r\s]+$/, '');
 								if (suggestion) {
 									suggestions.push(suggestion);
 								}
@@ -116,37 +134,6 @@ module.exports = Vue.extend({
 				this.loading = false;
 				this.$nextTick(() => this.$els.suggestions.scrollIntoView());
 			});
-		}
-	},
-
-	template: require('./index.html'),
-
-	methods: {
-		getType(tag) {
-			return typeFromTag(tag);
-		},
-
-		getTagname(tag) {
-			return nameFromTag(tag);
-		},
-
-		getStory() {
-			return this.allStories.find(s => s.id === this.storyId);
-		},
-
-		closeSuggestions() {
-			this.suggestions = [];
-		},
-
-		newTag(e) {
-			new TagsDialog({
-				data: {
-					storyId: this.storyId,
-					passage: this.passage,
-					origin: this.$el,
-				},
-				store: this.$store,
-			}).$mountTo(this.$el);
 		},
 
 		addSuggestion(suggestion) {
