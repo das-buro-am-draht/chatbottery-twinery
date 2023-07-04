@@ -1,10 +1,16 @@
 .passageUI-opt {
   display: flex;
   flex-direction: row;
-  border: 3px solid #aaa;
-  margin: 5px 0;
-  border-radius: 10px;
-  background-color: #eee;
+  align-items: center;
+  &-entry {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    border: 3px solid #aaa;
+    margin: 5px 0;
+    border-radius: 10px;
+    background-color: #eee;
+  }
   &-text {
     flex: 1;
     padding: 0;
@@ -12,6 +18,7 @@
     background-color: #fff;
     font-family: Roboto, serif;
     box-shadow: none;
+    resize: vertical;
   }
   &-ctrl {
     flex: 0 0 25px;
@@ -30,6 +37,15 @@
         background-image: url("../../../../common/img/tick.svg");
       }
     }
+  }
+  &-openai {
+    flex: 0 0 30px;
+    height: 30px;
+    margin-left: 5px;
+    background-image: url('../../../../common/img/suggestions.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   }
   &-new {
     display: block;

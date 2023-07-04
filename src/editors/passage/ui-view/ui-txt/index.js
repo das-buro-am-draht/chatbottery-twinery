@@ -11,7 +11,10 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
-		this.options = (this.task.opt || []).map(txt => ({text: txt, modified: false}));
+		this.options = (this.task.opt || []).map(txt => ({
+			text: txt, 
+			modified: false,
+		}));
 		if (!this.options.length) {
 			this.addNew();
 		}
@@ -35,6 +38,11 @@ module.exports = Vue.extend({
 
 	methods: {
 
+		synchronize() {
+			this.task.opt = this.options.filter(opt => !opt.modified && !!opt.text).map(opt => opt.text);
+			this.$dispatch('gui-changed');
+		},
+
 		onChange(index, event) {
 			this.options[index].modified = true;
 			// event.target.style.height = `${event.target.scrollHeight}px`;
@@ -46,13 +54,15 @@ module.exports = Vue.extend({
 			} else { // delete entry
 				this.options.splice(index, 1);
 			}
-			this.task.opt = this.options.filter(opt => !opt.modified && !!opt.text).map(opt => opt.text);
-			this.$dispatch('gui-changed');
+			this.synchronize();
 		},
 
 		addNew() {
 			const length = this.options.length;
-			this.options.push({text: '', modified: true});
+			this.options.push({
+				text: '', 
+				modified: true,
+			});
 			this.$nextTick(() => {
 				const item = this.$el.children[length];
 				if (item) {
@@ -61,6 +71,22 @@ module.exports = Vue.extend({
 						ta[0].focus();
 				}
 			});
+		},
+
+		onOpenai(event, index) {
+			this.$parent.loadSuggestions(this, this.options[index].text);
+		}
+
+	},
+
+	events: {
+
+		'openai-selected'(text) {
+			this.options.push({
+				text,
+				modified: false,
+			});
+			this.synchronize();
 		},
 
 	},

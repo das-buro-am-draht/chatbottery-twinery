@@ -114,8 +114,8 @@ module.exports = Vue.extend({
 				if (response.choices) {
 					response.choices.forEach(item => {
 						if (item.message && typeof item.message.content === 'string') {
-							item.message.content.split(/[,\n]/).forEach(text => {
-								const suggestion = text.replace(/^[\n\r\s-\d\.]+/, '').replace(/[\n\r\s]+$/, '');
+							item.message.content.split(/[\n]/).forEach(text => {
+								const suggestion = text.replace(/^[\n\r\s-\d\.\)]+/, '').replace(/[\n\r\s]+$/, '');
 								if (suggestion) {
 									suggestions.push(suggestion);
 								}
