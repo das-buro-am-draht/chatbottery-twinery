@@ -63,7 +63,7 @@ module.exports = Vue.extend({
 			return this.openaiTags.data.indexOf(placeholders.tag) >= 0;
 		},
 
-		isValidOpenaiAlts() {
+		isValidOpenaiPhrases() {
 			try {
 				JSON.parse(this.openaiPhrases.data);
 				this.openaiPhrases.message = '';
@@ -79,7 +79,7 @@ module.exports = Vue.extend({
 		},
 
 		isValid() {
-			return this.isValidOpenaiTags && this.isValidOpenaiAlts;
+			return this.isValidOpenaiTags && this.isValidOpenaiPhrases;
 		},
 	},
 
@@ -89,8 +89,8 @@ module.exports = Vue.extend({
 			this.openaiTags.data = openaiDefault.tags;
 		},
 
-		resetOpenaiAlts() {
-			this.openaiPhrases.data = openaiDefault.alts;
+		resetOpenaiPhrases() {
+			this.openaiPhrases.data = openaiDefault.phrases;
 		},
 
 		save() {

@@ -24,9 +24,9 @@
 					<span>{{ 'Phrase Alternatives (use ' + placeholderPhrase + ' as placeholder for phrase string)' | say }}</span>
 				</label>
 				<textarea class="openai-dialog-params--data" name="openaiPhrases" rows="7" v-model="openaiPhrases.data" v-el:openai-tags></textarea>
-				<button class="openai-dialog-params--reset" type="button" @click="resetOpenaiAlts">{{ 'Reset to default' | say }}</button>
+				<button class="openai-dialog-params--reset" type="button" @click="resetOpenaiPhrases">{{ 'Reset to default' | say }}</button>
 				<p class="error" v-show="!!openaiPhrases.message">{{ openaiPhrases.message }}</p>
-				<p class="warning" v-show="isValidOpenaiAlts && !isOpenaiAltPresent">{{ 'Placeholder ' + placeholderPhrase + ' should be set.' |say }}</p>
+				<p class="warning" v-show="isValidOpenaiPhrases && !isOpenaiAltPresent">{{ 'Placeholder ' + placeholderPhrase + ' should be set.' |say }}</p>
 			</div>
 			<button type="submit" class="create" :disabled="!isValid"><i class="fa fa-check"></i>{{ ' Save' | say }}</button>
 		</form>
