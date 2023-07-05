@@ -6,29 +6,9 @@
 	<div class="openai-dialog-content">
 		<!-- Using a <form> allows the "required" attribute on the input to be usable. -->
 		<form @submit.prevent="save">
-			<div class="openai-dialog-params">
-				<h2>OpenAI Tag Alternatives</h2>
-				<label for="openaiTags">
-					<img src="../../common/img/regular-tag.svg">
-					<span>{{ 'Tag Alternatives (use ' + placeholderTag + ' as placeholder for tag string)' | say }}</span>
-				</label>
-				<textarea class="openai-dialog-params--data" name="openaiTags" rows="7" v-model="openaiTags.data" v-el:openai-tags></textarea>
-				<button class="openai-dialog-params--reset" type="button" @click="resetOpenaiTags">{{ 'Reset to default' | say }}</button>
-				<p class="error" v-show="!!openaiTags.message">{{ openaiTags.message }}</p>
-				<p class="warning" v-show="isValidOpenaiTags && !isOpenaiTagPresent">{{ 'Placeholder ' + placeholderTag + ' should be set.' |say }}</p>
-			</div>
-			<div class="openai-dialog-params">
-				<h2>OpenAI Phrase Alternatives</h2>
-				<label for="openaiPhrases">
-					<img src="../../common/img/message.svg">
-					<span>{{ 'Phrase Alternatives (use ' + placeholderPhrase + ' as placeholder for phrase string)' | say }}</span>
-				</label>
-				<textarea class="openai-dialog-params--data" name="openaiPhrases" rows="7" v-model="openaiPhrases.data" v-el:openai-tags></textarea>
-				<button class="openai-dialog-params--reset" type="button" @click="resetOpenaiPhrases">{{ 'Reset to default' | say }}</button>
-				<p class="error" v-show="!!openaiPhrases.message">{{ openaiPhrases.message }}</p>
-				<p class="warning" v-show="isValidOpenaiPhrases && !isOpenaiAltPresent">{{ 'Placeholder ' + placeholderPhrase + ' should be set.' |say }}</p>
-			</div>
-			<button type="submit" class="create" :disabled="!isValid"><i class="fa fa-check"></i>{{ ' Save' | say }}</button>
+			<openai-params v-ref:tag label="Tag" :params="openaiTags" :placeholder="placeholders.tag" :initial="openaiDefault.tags" image="regular-tag.svg"></openai-params>
+			<openai-params v-ref:phrase label="Phrase" :params="openaiPhrases" :placeholder="placeholders.phrase" :initial="openaiDefault.phrases"  image="message.svg"></openai-params>
+			<button type="submit" class="create" :disabled="!canSave"><i class="fa fa-check"></i>{{ ' Save' | say }}</button>
 		</form>
 	</div>
 </modal-dialog>

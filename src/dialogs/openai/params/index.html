@@ -1,0 +1,10 @@
+<div class="openai-dialog-params">
+	<h2><img :src="imageUrl"> {{ 'OpenAI ' + label + ' Alternatives' }}</h2>
+	<label :for="label">
+		<span>{{"Use '" + placeholder + "' as placeholder for " + label + " string" | say }}</span>
+	</label>
+	<textarea class="openai-dialog-params--data" :name="label" rows="7" v-model="params" v-el:params></textarea>
+	<button v-if="initial" type="button" class="openai-dialog-params--reset" @click="reset">{{ 'Reset to default' | say }}</button>
+	<p class="error" v-show="!!message">{{ message }}</p>
+	<p class="warning" v-show="isValid && !isPlaceholderPresent">{{ 'Placeholder ' + placeholder + ' should be set.' |say }}</p>
+</div>
