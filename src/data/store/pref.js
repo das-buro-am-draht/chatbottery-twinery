@@ -21,7 +21,7 @@ module.exports = {
 		proofingFormat: 'Illume', // 'Paperthin',
 		welcomeSeen: false,
 		openaiTags: openai.tags,
-		openaiAlts: openai.alts,
+		openaiPhrases: openai.phrases,
 	},
 
 	mutations: {
