@@ -1,5 +1,8 @@
 <div class="openai-dialog-params">
-	<h3><img :src="imageUrl"> {{ 'OpenAI ' + label + ' Alternatives' }}</h3>
+	<h3>
+		<template v-if="image"><img :src="imageUrl"> </template>
+		{{ 'OpenAI ' + label + ' Alternatives' }}
+	</h3>
 	<label :for="label">
 		<span>{{"Use '" + placeholder + "' as placeholder for " + label + " string" | say }}</span>
 	</label>

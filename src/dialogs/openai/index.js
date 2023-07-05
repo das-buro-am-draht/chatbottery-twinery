@@ -14,6 +14,7 @@ module.exports = Vue.extend({
 		origin: null,
 		openai: {
 		 	tag: {
+				pref: 'openaiTags',
 				label: 'Tag',
 				image: 'regular-tag.svg',
 				initial: openaiDefault.tags,
@@ -21,6 +22,7 @@ module.exports = Vue.extend({
 				params: '',
 		 	},
 		 	phrase: {
+				pref: 'openaiPhrases',
 				label: 'Phrase',
 				image: 'message.svg',
 				initial: openaiDefault.phrases,
@@ -28,39 +30,29 @@ module.exports = Vue.extend({
 				params: '',
 		 	},
 		},
-		openaiPhrases: '',
 	}),
 
   ready() {
-		this.openai.tag.params = this.getPref.openaiTags;
-		this.openai.phrase.params = this.getPref.openaiPhrases;
+		Object.entries(this.openai).forEach(([key, openai]) => {
+			if (!openai.pref) {
+				console.warn(`No preference found for OpenAI Key '${key}.`)
+			} else {
+				openai.params = this.getPref[openai.pref];
+			}
+		})
   },
 
 	computed: {
-
 		canSave() {
 			return !Object.values(this.$refs.params).some((ref) => !ref.isValid);
 		},
 	},
 
 	methods: {
-
 		save() {
-			Object.keys(this.openai).forEach((key) => {
-				if (!this.$refs.params[key]) {
-					console.warn(`No component found for OpenAI Key '${key}.`)
-					return;
-				}
-				switch (key) {
-					case 'tag':
-						this.setPref('openaiTags', this.$refs.params[key].params);
-						break;
-					case 'phrase':
-						this.setPref('openaiPhrases', this.$refs.params[key].params);
-						break;
-					default:
-						console.warn(`No preference found for OpenAI Key '${key}.`)
-						break;
+			Object.entries(this.openai).forEach(([key, openai]) => {
+				if (openai.pref) {
+					this.setPref(openai.pref, this.$refs.params[key].params);
 				}
 			});
 			this.$refs.modal.close();

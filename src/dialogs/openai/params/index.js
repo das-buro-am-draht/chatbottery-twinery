@@ -18,7 +18,7 @@ module.exports = Vue.extend({
 		},
 		image: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		initial: {
 			type: String,
