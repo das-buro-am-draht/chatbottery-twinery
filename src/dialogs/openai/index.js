@@ -12,36 +12,57 @@ module.exports = Vue.extend({
 
 	data: () => ({
 		origin: null,
-		openaiTags: '',
+		openai: {
+		 	tag: {
+				label: 'Tag',
+				image: 'regular-tag.svg',
+				initial: openaiDefault.tags,
+				placeholder: placeholders.tag,
+				params: '',
+		 	},
+		 	phrase: {
+				label: 'Phrase',
+				image: 'message.svg',
+				initial: openaiDefault.phrases,
+				placeholder: placeholders.phrase,
+				params: '',
+		 	},
+		},
 		openaiPhrases: '',
 	}),
 
   ready() {
-		this.openaiTags = this.getPref.openaiTags;
-		this.openaiPhrases = this.getPref.openaiPhrases;
+		this.openai.tag.params = this.getPref.openaiTags;
+		this.openai.phrase.params = this.getPref.openaiPhrases;
   },
 
 	computed: {
 
-		placeholders() {
-			return placeholders;
-		},
-
-		openaiDefault() {
-			return openaiDefault;
-		},
-
 		canSave() {
-			return this.$refs.tag.isValid 
-					&& this.$refs.phrase.isValid;
+			return !Object.values(this.$refs.params).some((ref) => !ref.isValid);
 		},
 	},
 
 	methods: {
 
 		save() {
-			this.setPref('openaiTags', this.$refs.tag.params);
-			this.setPref('openaiPhrases', this.$refs.phrase.params);
+			Object.keys(this.openai).forEach((key) => {
+				if (!this.$refs.params[key]) {
+					console.warn(`No component found for OpenAI Key '${key}.`)
+					return;
+				}
+				switch (key) {
+					case 'tag':
+						this.setPref('openaiTags', this.$refs.params[key].params);
+						break;
+					case 'phrase':
+						this.setPref('openaiPhrases', this.$refs.params[key].params);
+						break;
+					default:
+						console.warn(`No preference found for OpenAI Key '${key}.`)
+						break;
+				}
+			});
 			this.$refs.modal.close();
 		},
 	},

@@ -38,7 +38,7 @@ module.exports = Vue.extend({
 			try {
 				JSON.parse(this.params);
 				this.message = '';
-				return !!this.params.trim();
+				return true;
 			} catch(e) {
 				this.message = e.message;
 				// if (e.message) {
@@ -47,7 +47,7 @@ module.exports = Vue.extend({
 				// 	if (p >= 0) {
 				// 		const matches = e.message.substring(p + searchString.length).match(/\d+/);
 				// 		const position = parseInt(matches[0]);
-				// 		if (!isNaN(position)) {openaiTags
+				// 		if (!isNaN(position)) {
 				// 			this.$els.params.setSelectionRange(position, position + 1);
 				// 		}
 				// 	}
