@@ -10,23 +10,23 @@
 				<h2>OpenAI Tag Alternatives</h2>
 				<label for="openaiTags">
 					<img src="../../common/img/regular-tag.svg">
-					<span>{{ 'Tag Alternatives (use %TAG% as placeholder for tag string)' | say }}</span>
+					<span>{{ 'Tag Alternatives (use ' + placeholderTag + ' as placeholder for tag string)' | say }}</span>
 				</label>
 				<textarea class="openai-dialog-params--data" name="openaiTags" rows="7" v-model="openaiTags.data" v-el:openai-tags></textarea>
 				<button class="openai-dialog-params--reset" type="button" @click="resetOpenaiTags">{{ 'Reset to default' | say }}</button>
 				<p class="error" v-show="!!openaiTags.message">{{ openaiTags.message }}</p>
-				<p class="warning" v-show="isValidOpenaiTags && !isOpenaiTagPresent">{{ 'Placeholder %TAG% should be set.' |say }}</p>
+				<p class="warning" v-show="isValidOpenaiTags && !isOpenaiTagPresent">{{ 'Placeholder ' + placeholderTag + ' should be set.' |say }}</p>
 			</div>
 			<div class="openai-dialog-params">
 				<h2>OpenAI Phrase Alternatives</h2>
-				<label for="openaiAlts">
+				<label for="openaiPhrases">
 					<img src="../../common/img/message.svg">
-					<span>{{ 'Phrase Alternatives (use %PHRASE% as placeholder for phrase string)' | say }}</span>
+					<span>{{ 'Phrase Alternatives (use ' + placeholderPhrase + ' as placeholder for phrase string)' | say }}</span>
 				</label>
-				<textarea class="openai-dialog-params--data" name="openaiAlts" rows="7" v-model="openaiAlts.data" v-el:openai-tags></textarea>
+				<textarea class="openai-dialog-params--data" name="openaiPhrases" rows="7" v-model="openaiPhrases.data" v-el:openai-tags></textarea>
 				<button class="openai-dialog-params--reset" type="button" @click="resetOpenaiAlts">{{ 'Reset to default' | say }}</button>
-				<p class="error" v-show="!!openaiAlts.message">{{ openaiAlts.message }}</p>
-				<p class="warning" v-show="isValidOpenaiAlts && !isOpenaiAltPresent">{{ 'Placeholder %TAG% should be set.' |say }}</p>
+				<p class="error" v-show="!!openaiPhrases.message">{{ openaiPhrases.message }}</p>
+				<p class="warning" v-show="isValidOpenaiAlts && !isOpenaiAltPresent">{{ 'Placeholder ' + placeholderPhrase + ' should be set.' |say }}</p>
 			</div>
 			<button type="submit" class="create" :disabled="!isValid"><i class="fa fa-check"></i>{{ ' Save' | say }}</button>
 		</form>

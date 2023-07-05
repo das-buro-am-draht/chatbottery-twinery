@@ -3,6 +3,7 @@ const notify = require('../../ui/notify');
 const locale = require('../../locale');
 const { setPref } = require('../../data/actions/pref');
 const openaiDefault = require('../../data/store/openai');
+const { placeholders } = require('../../common/app/openai');
 
 require('./index.less');
 
@@ -15,7 +16,7 @@ module.exports = Vue.extend({
 			data: '',
 			message: '',
 		},
-		openaiAlts: {
+		openaiPhrases: {
 			data: '',
 			message: '',
 		},
@@ -23,10 +24,18 @@ module.exports = Vue.extend({
 
   ready() {
 		this.openaiTags.data = this.getPref.openaiTags;
-		this.openaiAlts.data = this.getPref.openaiAlts;
+		this.openaiPhrases.data = this.getPref.openaiPhrases;
   },
 
 	computed: {
+
+		placeholderTag() {
+			return placeholders.tag;
+		},
+
+		placeholderPhrase() {
+			return placeholders.phrase;
+		},
 
 		isValidOpenaiTags() {
 			try {
@@ -51,22 +60,22 @@ module.exports = Vue.extend({
 		},
 
 		isOpenaiTagPresent() {
-			return this.openaiTags.data.indexOf('%TAG%') >= 0;
+			return this.openaiTags.data.indexOf(placeholders.tag) >= 0;
 		},
 
 		isValidOpenaiAlts() {
 			try {
-				JSON.parse(this.openaiAlts.data);
-				this.openaiAlts.message = '';
-				return !!this.openaiAlts.data.trim();
+				JSON.parse(this.openaiPhrases.data);
+				this.openaiPhrases.message = '';
+				return !!this.openaiPhrases.data.trim();
 			} catch(e) {
-				this.openaiAlts.message = e.message;
+				this.openaiPhrases.message = e.message;
 				return false;
 			}
 		},
 
 		isOpenaiAltPresent() {
-			return this.openaiAlts.data.indexOf('%PHRASE%') >= 0;
+			return this.openaiPhrases.data.indexOf(placeholders.phrase) >= 0;
 		},
 
 		isValid() {
@@ -81,12 +90,12 @@ module.exports = Vue.extend({
 		},
 
 		resetOpenaiAlts() {
-			this.openaiAlts.data = openaiDefault.alts;
+			this.openaiPhrases.data = openaiDefault.alts;
 		},
 
 		save() {
 			this.setPref('openaiTags', this.openaiTags.data);
-			this.setPref('openaiAlts', this.openaiAlts.data);
+			this.setPref('openaiPhrases', this.openaiPhrases.data);
 			this.$refs.modal.close();
 		},
 	},
