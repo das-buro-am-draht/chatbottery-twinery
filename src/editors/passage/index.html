@@ -16,11 +16,11 @@
 		</button>
 		<button v-if="gui" type="button" class="active" title="{{ 'Add new task' | say }}">
 			<img src="../../common/img/plus.svg">
-			<task-menu></task-menu>
+			<task-menu :story="story"></task-menu>
 		</button>
 	</div>
 	<div :class="gui ? '' : 'expand'">
 		<code-mirror v-show="!gui" :options="cmOptions" :text="passage.text" @cm-change="saveText" v-ref:codemirror></code-mirror>
-		<ui-view v-if="gui" :gui="gui" v-el:ui-view></ui-view>
+		<ui-view v-if="gui" :gui="gui" :story="story" v-el:ui-view></ui-view>
 	</div> <!-- .fullEdit -->
 </modal-dialog>

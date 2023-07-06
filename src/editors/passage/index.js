@@ -128,25 +128,25 @@ module.exports = Vue.extend({
 			};
 		},
 
-		parentStory() {
+		story() {
 			return this.allStories.find(story => story.id === this.storyId);
 		},
 
 		passage() {
-			return this.parentStory.passages.find(
+			return this.story.passages.find(
 				passage => passage.id === this.passageId
 			);
 		},
 
 		userPassageNameValid() {
-			return !(this.parentStory.passages.some(
+			return !(this.story.passages.some(
 				passage => passage.name === this.userPassageName &&
 					passage.id !== this.passage.id
 			));
 		},
 
 		autocompletions() {
-			return this.parentStory.passages.map(passage => passage.name);
+			return this.story.passages.map(passage => passage.name);
 		}
 	},
 
@@ -206,7 +206,7 @@ module.exports = Vue.extend({
 
 		saveText(text) {
 			this.updatePassage(
-				this.parentStory.id,
+				this.story.id,
 				this.passage.id,
 				{ text: text }
 			);
@@ -214,7 +214,7 @@ module.exports = Vue.extend({
 
 		saveTags(tags) {
 			this.updatePassage(
-				this.parentStory.id,
+				this.story.id,
 				this.passage.id,
 				{ tags: tags }
 			);
@@ -228,13 +228,13 @@ module.exports = Vue.extend({
 			if (this.userPassageNameValid) {
 				if (this.userPassageName !== this.passage.name) {
 					this.changeLinksInStory(
-						this.parentStory.id,
+						this.story.id,
 						this.passage.name,
 						this.userPassageName
 					);
 
 					this.updatePassage(
-						this.parentStory.id,
+						this.story.id,
 						this.passage.id,
 						{ name: this.userPassageName }
 					);

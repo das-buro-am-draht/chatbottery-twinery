@@ -1,14 +1,14 @@
 const types = {
   'txt'     : 'Text messages',
   'msg'     : 'Messages',
-  'later'   : 'Delayed Message',
+  // 'later'   : 'Delayed Message',
   'wait'    : 'User Input',
-  'goto'    : 'Deviation',
+  'goto'    : 'Jump Instruction',
   'carousel': 'Carousel',
   'tiles'   : 'Tiles',
   'chat'    : 'Chat',
-  'sms'     : 'SMS (Voice Bot)',
-  'call'    : 'Call Control (Voice Bot)',
+  // 'sms'     : 'SMS (Voice Bot)',
+  // 'call'    : 'Call Control (Voice Bot)',
 };
 
 const label = (type) => types[type];
