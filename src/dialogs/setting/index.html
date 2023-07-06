@@ -3,9 +3,9 @@
 	<div class="setting__items">
 		<div class="setting__item">
 			<div class="setting__row">
-				<label for="assetBaseUrl">{{ 'Assets Base URL' | say }}</label>
+				<label for="assetBaseUrl">{{ 'Asset Base URL' | say }}</label>
 				<div class="setting__input">
-					<input type="text" id="assetBaseUrl" v-model="assetBaseUrl" :title="{{ 'Assets Base URL' | say }}">
+					<input type="text" id="assetBaseUrl" v-model="assetBaseUrl" title="Asset Base URL">
 					<p class="error" v-show="!isValidUrl(assetBaseUrl)">{{ 'Resource Locator must be a valid URL' | say }}</p>
 				</div>
 			</div>
@@ -14,7 +14,7 @@
 			<div class="setting__row">
 				<label for="storyUrl">{{ 'External Story URL' | say }}</label>
 				<div class="setting__input">
-					<input type="text" id="storyUrl" v-model="storyUrl" :title="{{ 'External Story URL' | say }}">
+					<input type="text" id="storyUrl" v-model="storyUrl" title="External Story URL">
 					<p class="error" v-show="!isValidUrl(storyUrl)">{{ 'Resource Locator must be a valid URL' | say }}</p>
 				</div>
 			</div>
