@@ -12,38 +12,37 @@ module.exports = Vue.extend({
 
 	data: () => ({
 		storyId: null,
+		assetBaseUrl: '',
 		storyUrl: '',
 	}),
 
 	ready() {
-		const data = this.getSettingsData();
+		const data = this.settingsData;
 		if (data) {
+			this.assetBaseUrl = data.assetBaseUrl || '';
 			this.storyUrl = data.storyUrl || '';
 		}
 	},
 
 	computed: {
-		
-		isValid() {
-			return !this.storyUrl || /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/.test(this.storyUrl);
+		settingsData() {
+			const { settings } = this.allStories.find((story) => story.id === this.storyId) || {};
+			return settings;
 		},
+		isValid() {
+			return this.isValidUrl(this.storyUrl) && this.isValidUrl(this.assetBaseUrl);
+		}		
 	},
 
 	methods: {
-
-		getStory() {
-			return this.allStories.find((story) => story.id === this.storyId) || {};
+		isValidUrl(url) {
+			return !url || isValidUrl(url);
 		},
-
-		getSettingsData() {
-			const { settings } = this.getStory() || {};
-			return settings;
-		},
-
 		save() {
 			const settings = { 
-				...this.getSettingsData(),
+				...this.settingsData,
 				storyUrl: this.storyUrl,
+				assetBaseUrl: this.assetBaseUrl,
 			};
 			this.updateStory(this.storyId, { settings });
 			this.$refs.modal.close();
@@ -54,7 +53,6 @@ module.exports = Vue.extend({
 		actions: {
 			updateStory,
 		},
-
 		getters: {
 			allStories: (state) => state.story.stories,
 		},

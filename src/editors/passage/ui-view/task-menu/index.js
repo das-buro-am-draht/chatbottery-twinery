@@ -5,9 +5,27 @@ module.exports = Vue.extend({
 
 	template: require('./index.html'),
 
+	props: {
+		story: {
+			type: Object,
+			required: false,
+		},
+	},
+
 	computed: {
 		types() {
-			return types;
+			const items = {};
+			Object.entries(types).forEach(([key, value]) => {
+				switch (key) {
+					case 'chat':
+						if (!(this.story && this.story.plugins && this.story.plugins.chat)) {
+							break;
+						}
+					default:
+						items[key] = value;
+				}
+			});
+			return items;
 		}
 	},
 
