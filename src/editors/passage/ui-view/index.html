@@ -7,7 +7,7 @@
 				<button type="button" class="passageUI-item--remove" @click="onRemove($index)" title="{{'Remove entry' | say}}"></button>
 			</div>
 			<ui-txt v-if="task.type === 'txt'" :task="task"></ui-txt>
-			<textarea v-else class="passageUI-item--text" rows="3" v-model="task.text" @input="onChange($index)"></textarea>
+			<textarea v-else class="passageUI-item--text" rows="3" v-model="task.content" @input="onChange($index)"></textarea>
 		</div>
 		<div class="passageUI-append">
 			<div></div>

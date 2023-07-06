@@ -287,7 +287,8 @@ module.exports = Vue.extend({
 			const index = this.gui.length;
 			const task = {
 				type,
-				text: '',
+				attributes: {},
+				content: '',
 			};
 			switch(type) {
 				case 'txt':
