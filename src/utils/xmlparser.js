@@ -2,16 +2,17 @@
 
 const parse = (text) => {
   const tasks = [];
-  const doc = new DOMParser().parseFromString(text, 'text/html');
+  const xml = text.replace(/<([^\/])(\S+)([^\/]*)\/>/g, '<$1$2$3></$1$2>');
+  const doc = new DOMParser().parseFromString(xml, 'text/html');
   const elements = Array.from(doc.body.children);
   elements.forEach((el) => {
     const task = {
       type: el.nodeName.toLowerCase(),
-      attr: { },
+      attributes: {},
     }
 
     for (let i = 0; i < el.attributes.length; i++) {
-      task.attr[el.attributes[i].name] = el.attributes[i].value;
+      task.attributes[el.attributes[i].name] = el.attributes[i].value;
     }
 
     if (task.type === 'txt') {
@@ -23,32 +24,34 @@ const parse = (text) => {
       }
     }
 
-    task.text = el.innerHTML.trim();
+    task.content = el.innerHTML.trim()
+      .replace(/>\s*(.+)\s*</g, '>$1<')
+      .replace(/>\s*</g, '>\n<');
 
     tasks.push(task);
   });
   return tasks;
 };
 
-const xmlValue = (item) => {
-  if (item.type === 'txt' && item.opt && item.opt.length > 0) {
-    if (item.opt.length === 1)
-      item.text = item.opt[0].replace(/\n/g, '<br>');
+const xmlValue = (task) => {
+  if (task.type === 'txt' && task.opt && task.opt.length > 0) {
+    if (task.opt.length === 1)
+      task.content = task.opt[0].replace(/\n/g, '<br>');
     else {
-      item.text = item.opt.reduce((prev, current) => {
-        if (prev)
-          prev += '\n';
-        return prev + '<opt>' + current.replace(/\n/g, '<br>') + '</opt>';
+      task.content = task.opt.reduce((xml, current) => {
+        if (xml)
+          xml += '\n';
+        return xml + '<opt>' + current.replace(/\n/g, '<br>') + '</opt>';
       }, '');
     }
   }
-  return item.text.replace(/\n</g, '\n   <');
+  return task.content.replace(/\n</g, '\n   <');
 }
 
 const stringify = (arr) => {
-  return arr.reduce((xml, item) => {
-    const attributes = Object.entries(item.attr || {}).map(([k,v]) => `${k}="${v}"`).join(' ');
-    return xml += `<${item.type}${attributes ? ' ' + attributes : ''}>\n   ${xmlValue(item)}\n</${item.type}>\n`;
+  return arr.reduce((xml, task) => {
+    const attributes = Object.entries(task.attributes || {}).map(([k,v]) => `${k}="${v}"`).join(' ');
+    return xml += `<${task.type}${attributes ? ' ' + attributes : ''}>\n   ${xmlValue(task)}\n</${task.type}>\n`;
   }, '');
 };
 

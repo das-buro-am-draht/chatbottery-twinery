@@ -33,7 +33,7 @@ module.exports = Vue.extend({
 		},
 
 		attributes(item) {
-			return Object.entries(item.attr || {}).map(([k, v]) => `${k}="${v}"`).join(' ');
+			return Object.entries(item.attributes || {}).map(([k, v]) => `${k}="${v}"`).join(' ');
 		},
 		
 		onChange(index) {
@@ -42,7 +42,7 @@ module.exports = Vue.extend({
 
 		onRemove(index) {
 			Promise.resolve(this.gui[index]).then((task) => {
-				if (task.text)
+				if (task.content)
 					return confirm({
 						message: locale.say('Are you sure to delete &ldquo;%1$s&rdquo;?', this.caption(task)),
 						buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Delete'),
