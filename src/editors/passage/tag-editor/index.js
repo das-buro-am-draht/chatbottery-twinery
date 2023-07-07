@@ -3,8 +3,8 @@
 const Vue = require('vue');
 const {setTagColorInStory} = require('../../../data/actions/story');
 const {updatePassage} = require('../../../data/actions/passage');
-const TagsDialog = require('./tag-dialog');
-const {openai} = require('../../../common/app/openai');
+const TagDialog = require('./tag-dialog');
+const {tagSuggestions} = require('../../../common/app/openai');
 const notify = require('../../../ui/notify');
 const uniq = require('lodash.uniq');
 const {
@@ -57,68 +57,6 @@ module.exports = Vue.extend({
 		}
 	},
 
-	events: {
-		'tag-change'(tag) {
-			new TagsDialog({
-				data: {
-					storyId: this.storyId,
-					passage: this.passage,
-					origin: this.$el,
-					tag
-				},
-				store: this.$store,
-			}).$mountTo(this.$el);
-		},
-
-		'tag_suggestion'(tag) {
-			const text = nameFromTag(tag);
-			let data;
-			try {
-				const placeholders = {"%TAG%": text};
-				data = JSON.parse(this.openaiTags);
-				if (data.messages && data.messages.length > 0) {
-					data.messages = data.messages.map(message => {
-						if (message.content) {
-							message.content = message.content.replace(/%\w+%/g, (placeholder) => placeholders[placeholder] || placeholder);
-						}
-						return message;
-					});
-				}
-			} catch (e) {
-				notify(e.message, 'danger');
-				return;
-			}
-			this.suggestions = [];
-			this.$nextTick(() => this.$els.suggestions.scrollIntoView());
-			this.loading = true;
-			openai(data).then((response) => {
-				const suggestions = [];
-				if (response.choices) {
-					response.choices.forEach(item => {
-						if (item.message && typeof item.message.content === 'string') {
-							item.message.content.split(/[,\n]/).forEach(text => {
-								const suggestion = text.replace(/^[\n\r\s-\d\.]+/, '').replace(/[\n\r\s]+$/, '');
-								if (suggestion) {
-									suggestions.push(suggestion);
-								}
-							});
-						}
-					});
-				}
-				const tags = this.passage.tags.map(tag => nameFromTag(tag));
-				this.suggestions = uniq(suggestions.filter(suggestion => /*suggestion.length < 30 &&*/ !tags.includes(suggestion)));
-				if (!this.suggestions.length) {
-					notify(locale.say('No suggestions were found.'), 'info');
-				}
-			})
-			.catch((error) => notify(error.message, 'danger'))
-			.finally(() => {
-				this.loading = false;
-				this.$nextTick(() => this.$els.suggestions.scrollIntoView());
-			});
-		}
-	},
-
 	template: require('./index.html'),
 
 	methods: {
@@ -138,15 +76,37 @@ module.exports = Vue.extend({
 			this.suggestions = [];
 		},
 
-		newTag(e) {
-			new TagsDialog({
+		newTag(tag) {
+			new TagDialog({
 				data: {
 					storyId: this.storyId,
 					passage: this.passage,
 					origin: this.$el,
+					tag,
 				},
 				store: this.$store,
 			}).$mountTo(this.$el);
+		},
+
+		getSuggestions(tag) {
+			const text = nameFromTag(tag);
+			this.suggestions = [];
+			this.$nextTick(() => this.$els.suggestions.scrollIntoView());
+			this.loading = true;
+			Promise.resolve(this.openaiTags)
+				.then((params) => tagSuggestions(params, text))
+				.then((suggestions) => {
+					const tags = this.passage.tags.map(tag => nameFromTag(tag));
+					this.suggestions = uniq(suggestions.filter(suggestion => /*suggestion.length < 30 &&*/ !tags.includes(suggestion)));
+					if (!this.suggestions.length) {
+						notify(locale.say('No suggestions were found.'), 'info');
+					}
+				})
+				.catch((error) => notify(error.message, 'danger'))
+				.finally(() => {
+					this.loading = false;
+					this.$nextTick(() => this.$els.suggestions.scrollIntoView());
+				});
 		},
 
 		addSuggestion(suggestion) {

@@ -1,0 +1,7 @@
+<drop-down position="bottom left" class="tags">
+	<div class="menu">
+		<div class="menu__item" v-for="(type, text) in types" @click="addNew(type)">
+			<span class="menu__item--text">{{ text }}</span>
+		</div>
+	</div>
+</drop-down>

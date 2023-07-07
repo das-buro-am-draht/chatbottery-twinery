@@ -38,180 +38,6 @@ module.exports = Vue.extend({
 		gui: null,
 	}),
 
-	computed: {
-		cmOptions() {
-			return {
-				placeholder: locale.say(
-					'Enter the body text of your passage here. To link to another ' +
-					'passage, put two square brackets around its name, [[like ' +
-					'this]].'
-				),
-				prefixTrigger: {
-					prefixes: ['[[', '->'],
-					callback: this.autocomplete.bind(this)
-				},
-				extraKeys: {
-					'Ctrl-Space': this.autocomplete.bind(this)
-				},
-				indentWithTabs: true,
-				lineWrapping: true,
-				lineNumbers: false,
-				mode: 'text'
-			};
-		},
-
-		parentStory() {
-			return this.allStories.find(story => story.id === this.storyId);
-		},
-
-		passage() {
-			return this.parentStory.passages.find(
-				passage => passage.id === this.passageId
-			);
-		},
-
-		userPassageNameValid() {
-			return !(this.parentStory.passages.some(
-				passage => passage.name === this.userPassageName &&
-					passage.id !== this.passage.id
-			));
-		},
-
-		autocompletions() {
-			return this.parentStory.passages.map(passage => passage.name);
-		}
-	},
-
-	methods: {
-		autocomplete() {
-			this.$refs.codemirror.$cm.showHint({
-				hint: cm => {
-					const wordRange = cm.findWordAt(cm.getCursor());
-					const word = cm.getRange(
-						wordRange.anchor,
-						wordRange.head
-					).toLowerCase();
-
-					const comps = {
-						list: this.autocompletions.filter(
-							name => name.toLowerCase().indexOf(word) !== -1
-						),
-						from: wordRange.anchor,
-						to: wordRange.head
-					};
-
-					CodeMirror.on(comps, 'pick', () => {
-						const doc = cm.getDoc();
-
-						doc.replaceRange(']] ', doc.getCursor());
-					});
-
-					return comps;
-				},
-
-				completeSingle: false,
-
-				extraKeys: {
-					']'(cm, hint) {
-						const doc = cm.getDoc();
-
-						doc.replaceRange(']', doc.getCursor());
-						hint.close();
-					},
-
-					'-'(cm, hint) {
-						const doc = cm.getDoc();
-
-						doc.replaceRange('-', doc.getCursor());
-						hint.close();
-					},
-
-					'|'(cm, hint) {
-						const doc = cm.getDoc();
-
-						doc.replaceRange('|', doc.getCursor());
-						hint.close();
-					}
-				}
-			});
-		},
-
-		saveText(text) {
-			this.updatePassage(
-				this.parentStory.id,
-				this.passage.id,
-				{ text: text }
-			);
-		},
-
-		saveTags(tags) {
-			this.updatePassage(
-				this.parentStory.id,
-				this.passage.id,
-				{ tags: tags }
-			);
-		},
-
-		dialogDestroyed() {
-			this.$destroy();
-		},
-
-		canClose() {
-			if (this.userPassageNameValid) {
-				if (this.userPassageName !== this.passage.name) {
-					this.changeLinksInStory(
-						this.parentStory.id,
-						this.passage.name,
-						this.userPassageName
-					);
-
-					this.updatePassage(
-						this.parentStory.id,
-						this.passage.id,
-						{ name: this.userPassageName }
-					);
-				}
-
-				return true;
-			}
-
-			return false;
-		},
-
-		toggleMode() {
-			if (!this.gui) {
-				try {
-					this.gui = parse(this.passage.text);
-				} catch (e) {
-					notify(e.message, 'danger');
-					return;
-				}
-			} else {
-				this.gui = null;
-				Vue.nextTick(() => this.$refs.codemirror.$cm.refresh());
-			}
-		},
-
-		properties() {
-			new SettingsDialog({
-				data: {
-					storyId: this.storyId,
-					passage: this.passage,
-					origin: null, // this.$refs.modal.$el,
-				},
-				store: this.$store,
-			}).$mountTo(document.body); // this.$refs.modal.$el);
-		},
-	},
-
-	events: {
-		'gui_changed'() {
-			const xml = stringify(this.gui);
-			this.$refs.codemirror.$cm.setValue(xml);
-			this.$refs.codemirror.$el.dispatchEvent(new Event('change'));
-		},
-	},
-
 	ready() {
 		this.userPassageName = this.passage.name;
 
@@ -280,11 +106,214 @@ module.exports = Vue.extend({
 		document.title = this.oldWindowTitle;
 	},
 
+	computed: {
+		cmOptions() {
+			return {
+				placeholder: locale.say(
+					'Enter the body text of your passage here.' /* To link to another ' +
+					'passage, put two square brackets around its name, [[like ' +
+					'this]].' */
+				),
+				prefixTrigger: {
+					prefixes: ['[[', '->'],
+					callback: this.autocomplete.bind(this)
+				},
+				extraKeys: {
+					'Ctrl-Space': this.autocomplete.bind(this)
+				},
+				indentWithTabs: true,
+				lineWrapping: true,
+				lineNumbers: false,
+				mode: 'text'
+			};
+		},
+
+		story() {
+			return this.allStories.find(story => story.id === this.storyId);
+		},
+
+		passage() {
+			return this.story.passages.find(
+				passage => passage.id === this.passageId
+			);
+		},
+
+		userPassageNameValid() {
+			return !(this.story.passages.some(
+				passage => passage.name === this.userPassageName &&
+					passage.id !== this.passage.id
+			));
+		},
+
+		autocompletions() {
+			return this.story.passages.map(passage => passage.name);
+		}
+	},
+
+	methods: {
+		autocomplete() {
+			this.$refs.codemirror.$cm.showHint({
+				hint: cm => {
+					const wordRange = cm.findWordAt(cm.getCursor());
+					const word = cm.getRange(
+						wordRange.anchor,
+						wordRange.head
+					).toLowerCase();
+
+					const comps = {
+						list: this.autocompletions.filter(
+							name => name.toLowerCase().indexOf(word) !== -1
+						),
+						from: wordRange.anchor,
+						to: wordRange.head
+					};
+
+					CodeMirror.on(comps, 'pick', () => {
+						const doc = cm.getDoc();
+
+						doc.replaceRange(']] ', doc.getCursor());
+					});
+
+					return comps;
+				},
+
+				completeSingle: false,
+
+				extraKeys: {
+					']'(cm, hint) {
+						const doc = cm.getDoc();
+
+						doc.replaceRange(']', doc.getCursor());
+						hint.close();
+					},
+
+					'-'(cm, hint) {
+						const doc = cm.getDoc();
+
+						doc.replaceRange('-', doc.getCursor());
+						hint.close();
+					},
+
+					'|'(cm, hint) {
+						const doc = cm.getDoc();
+
+						doc.replaceRange('|', doc.getCursor());
+						hint.close();
+					}
+				}
+			});
+		},
+
+		saveText(text) {
+			this.updatePassage(
+				this.story.id,
+				this.passage.id,
+				{ text: text }
+			);
+		},
+
+		saveTags(tags) {
+			this.updatePassage(
+				this.story.id,
+				this.passage.id,
+				{ tags: tags }
+			);
+		},
+
+		dialogDestroyed() {
+			this.$destroy();
+		},
+
+		canClose() {
+			if (this.userPassageNameValid) {
+				if (this.userPassageName !== this.passage.name) {
+					this.changeLinksInStory(
+						this.story.id,
+						this.passage.name,
+						this.userPassageName
+					);
+
+					this.updatePassage(
+						this.story.id,
+						this.passage.id,
+						{ name: this.userPassageName }
+					);
+				}
+
+				return true;
+			}
+
+			return false;
+		},
+
+		toggleMode() {
+			if (!this.gui) {
+				try {
+					this.gui = parse(this.passage.text);
+				} catch (e) {
+					notify(e.message, 'danger');
+					return;
+				}
+			} else {
+				this.gui = null;
+				Vue.nextTick(() => this.$refs.codemirror.$cm.refresh());
+			}
+		},
+
+		properties() {
+			new SettingsDialog({
+				data: {
+					storyId: this.storyId,
+					passage: this.passage,
+					origin: null, // this.$refs.modal.$el,
+				},
+				store: this.$store,
+			}).$mountTo(document.body); // this.$refs.modal.$el);
+		},
+
+		serialize() {
+			const xml = stringify(this.gui);
+			this.$refs.codemirror.$cm.setValue(xml);
+			this.$refs.codemirror.$el.dispatchEvent(new Event('change'));
+		}
+	},
+
+	events: {
+		'gui-changed'() {
+			this.serialize();
+		},
+
+		'gui-append'(type) {
+			const index = this.gui.length;
+			const task = {
+				type,
+				attributes: {},
+				content: '',
+			};
+			switch(type) {
+				case 'txt':
+					task.opt = [];
+					break;
+			}
+			this.gui.push(task);
+			this.serialize();
+			this.$nextTick(() => {
+				if (this.$els.uiView) {
+					const elements = this.$els.uiView.getElementsByClassName('passageUI-item');
+					if (elements[index]) {
+						elements[index].scrollIntoView({behavior: 'smooth'});
+					}
+				}
+			});
+		},
+	},
+
 	components: {
 		'code-mirror': require('../../vue/codemirror'),
 		'modal-dialog': require('../../ui/modal-dialog'),
 		'tag-editor': require('./tag-editor'),
-		'ui-view': require('./ui-view')
+		'ui-view': require('./ui-view'),
+		'task-menu': require('./ui-view/task-menu'),
 	},
 
 	vuex: {

@@ -1,7 +1,34 @@
 <div class="passageUI">
-	<div class="passageUI-item" v-for="item in gui" track-by="$index" draggable="true" @dragstart="setIdx($index, $event)" @drop="switchToIndex($index, $event)">
-		<h3 class="passageUI-item--type">{{ item.type }}</h3>
-		<p class="passageUI-item--attr">{{ attributes(item) }}</p>
-		<textarea class="passageUI-item--text" rows="5" v-model="item.text" @input="onChange($event, $index)"></textarea>
+	<div class="passageUI-tasks" v-el:tasks>
+		<div class="passageUI-item" v-for="task in gui" track-by="$index" draggable="true" @dragstart="drag($index, $event)" @drop="drop($index, $event)">
+			<div class="passageUI-item--header">
+				<button type="button" class="passageUI-item--props"></button>
+				<h3 class="passageUI-item--caption">{{ caption(task) }}</h3>
+				<button type="button" class="passageUI-item--remove" @click="onRemove($index)" title="{{'Remove entry' | say}}"></button>
+			</div>
+			<ui-txt v-if="task.type === 'txt'" :task="task"></ui-txt>
+			<textarea v-else class="passageUI-item--text" rows="3" v-model="task.content" @input="onChange($index)"></textarea>
+		</div>
+		<div class="passageUI-append">
+			<div></div>
+			<button type="button" title="{{ 'Add new task' | say }}">
+				<task-menu :story="story"></task-menu>
+			</button>
+			<div></div>
+		</div>
+	</div>
+	<div v-if="openai" class="passageUI-openai">
+		<div class="passageUI-openai--caption">
+			<h2 class="passageUI-openai--caption-title">{{ 'Suggestions' | say }}</h2>
+			<button type="button" @click="closeSuggestions" title="{{ 'Close Suggestions' | say }}"></button>
+		</div>
+		<p class="passageUI-openai--text">{{openai.text}}</p>
+		<div v-if="openai.loading" class="passageUI-openai--loader" transition="fade-in-out">
+			<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
+		</div>
+		<div class="passageUI-openai--suggestions" v-for="suggestion in openai.suggestions" track-by="$index">
+			<button class="passageUI-openai--add" @click="addSuggestion($index)"></button>
+			<p class="passageUI-openai--suggestion">{{suggestion}}</p>
+		</div>
 	</div>
 </div>

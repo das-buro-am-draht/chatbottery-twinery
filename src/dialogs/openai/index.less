@@ -3,22 +3,20 @@
 .openai-dialog {
 	width: 55em;
 	left: calc(~"(100vw - 55em) / 2");
-	.title {
-		img {
-			width: 20px;
-			height: 100%;
-			vertical-align: middle;
-		}
+	&.wide {
+		width: auto;
+		left: 0.5rem;
+		right: 0.5rem;
+	}
+	img {
+		width: 20px;
+		height: 100%;
+		vertical-align: middle;
 	}
 	.openai-dialog-params {
 		margin: 20px 0;
 		label {
 			display: block;
-			img {
-				width: 20px;
-				height: 100%;
-				vertical-align: middle;
-			}
 		}
 		&--data {
 			width: 100%;
@@ -30,8 +28,5 @@
 			padding: 0;
 			text-decoration: underline;
 		}
-	}
-	.create {
-		float: right;
 	}
 }
