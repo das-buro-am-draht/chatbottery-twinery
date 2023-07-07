@@ -1,65 +1,64 @@
 #userModal .modal-dialog {
-    width: unset;
-}
 
-.user {
-    &__row {
-        margin-bottom: 20px;
-        display: flex;
-        & .user__input {
-            width: 100%;
+    .user {
+        &__row {
+            margin-bottom: 20px;
+            display: flex;
+            & .user__input {
+                width: 100%;
+            }
+            & input[type="text"] {
+                font-weight: bold;
+            }
+            & input[type="checkbox"] {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
         }
-        & input[type="text"] {
-            font-weight: bold;
+        &__error {
+            color: #fb1557;
         }
-        & input[type="checkbox"] {
-            margin-top: 10px;
-            margin-bottom: 10px;
+        &__list {
+            display: flex;
+            & .user__list-field {
+                flex: 1 1 40%;
+                margin-right: 5px;
+            }
+            & .user__list-search {
+                flex: 1;
+                background-image: url("../../common/img/search-icon.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            & .user__list-type {
+                flex: 1;
+                border: none;
+            }
+            & .user__list-input {
+                flex: 1 1 40%;
+                margin: auto 10px;
+                border: none;
+                // padding: 0 5px;
+                font: 100% "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace
+            }
+            & .user__list-btn {
+                flex: 1;
+                background-image: url('../../common/img/minus.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                margin: 5px 0;
+            }
+            &:first-child .user__list-btn {
+                background-image: url('../../common/img/plus.png');
+            }
         }
-    }
-    &__error {
-        color: #fb1557;
-    }
-    &__list {
-        display: flex;
-        & .user__list-field {
-            flex: 1 1 40%;
-            margin-right: 5px;
+        &__checkbox {
+            font-weight: 700;
+            padding: 10px 0;
         }
-        & .user__list-search {
-            flex: 1;
-            background-image: url("../../common/img/search-icon.svg");
-            background-repeat: no-repeat;
-            background-position: center;
+        &__save {
+            margin-top: 20px;
         }
-        & .user__list-type {
-            flex: 1;
-            border: none;
-        }
-        & .user__list-input {
-            flex: 1 1 40%;
-            margin: auto 10px;
-            border: none;
-            // padding: 0 5px;
-            font: 100% "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace
-        }
-        & .user__list-btn {
-            flex: 1;
-            background-image: url('../../common/img/minus.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            margin: 5px 0;
-        }
-        &:first-child .user__list-btn {
-            background-image: url('../../common/img/plus.png');
-        }
-    }
-    &__checkbox {
-        font-weight: 700;
-        padding: 10px 0;
-    }
-    &__save {
-        margin-top: 20px;
     }
 }
