@@ -39,6 +39,8 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
+		this.toggleMode();
+		
 		this.userPassageName = this.passage.name;
 
 		/* Update the window title. */
@@ -247,16 +249,15 @@ module.exports = Vue.extend({
 		},
 
 		toggleMode() {
-			if (!this.gui) {
+			if (this.gui) {
+				this.gui = null;
+				Vue.nextTick(() => this.$refs.codemirror.$cm.refresh());
+			} else {
 				try {
 					this.gui = parse(this.passage.text);
 				} catch (e) {
 					notify(e.message, 'danger');
-					return;
 				}
-			} else {
-				this.gui = null;
-				Vue.nextTick(() => this.$refs.codemirror.$cm.refresh());
 			}
 		},
 
@@ -275,16 +276,9 @@ module.exports = Vue.extend({
 			const xml = stringify(this.gui);
 			this.$refs.codemirror.$cm.setValue(xml);
 			this.$refs.codemirror.$el.dispatchEvent(new Event('change'));
-		}
-	},
-
-	events: {
-		'gui-changed'() {
-			this.serialize();
 		},
 
-		'gui-append'(type) {
-			const index = this.gui.length;
+		createTask(type) {
 			const task = {
 				type,
 				attributes: {},
@@ -295,13 +289,25 @@ module.exports = Vue.extend({
 					task.opt = [];
 					break;
 			}
+			return task;
+		},
+	},
+
+	events: {
+		'gui-changed'() {
+			this.serialize();
+		},
+
+		'gui-append'(type) {
+			const index = this.gui.length;
+			const task = this.createTask(type);
 			this.gui.push(task);
 			this.serialize();
-			this.$nextTick(() => {
+			Vue.nextTick(() => {
 				if (this.$els.uiView) {
-					const elements = this.$els.uiView.getElementsByClassName('passageUI-item');
-					if (elements[index]) {
-						elements[index].scrollIntoView({behavior: 'smooth'});
+					const element = this.$els.uiView.getElementsByClassName('passageUI-task')[index];
+					if (element) {
+						element.scrollIntoView({behavior: 'smooth'});
 					}
 				}
 			});

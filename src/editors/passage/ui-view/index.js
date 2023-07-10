@@ -20,15 +20,33 @@ module.exports = Vue.extend({
 		},
 	},
 
+	ready() {
+		Array.from(this.taskElements)
+			.filter((element, index) => this.canCollapse(this.gui[index]))
+			.forEach((element) => element.classList.add('collapsed'));
+	},
+
 	data: () => ({
 		openai: null,
 	}),
 
-	methods: {
+	computed: {
+		taskElements() {
+			return this.$els.tasks.getElementsByClassName('passageUI-task');
+		}
+	},
 
+	methods: {
+		canCollapse(task) {
+			return !(task.type === 'txt');
+		},
+		toggleCollapse(index, event) {
+			const element = this.taskElements[index];
+			element && element.classList.toggle('collapsed');
+		},
 		disable() {
 			const enable = !this.openai ? true : false;
-			Array.from(this.$els.tasks.getElementsByClassName('passageUI-item')).forEach((element) => {
+			Array.from(this.taskElements).forEach((element) => {
 				if (enable) {
 					element.classList.remove('disabled');
 				} else if (!this.openai.component || !element.contains(this.openai.component.$el)) {
@@ -36,19 +54,12 @@ module.exports = Vue.extend({
 				}
 			});
 		},
-
 		caption(task) {
 			return label(task.type);
 		},
-
 		attributes(item) {
 			return Object.entries(item.attributes || {}).map(([k, v]) => `${k}="${v}"`).join(' ');
 		},
-		
-		onChange(index) {
-			this.$dispatch('gui-changed');
-		},
-
 		onRemove(index) {
 			Promise.resolve(this.gui[index]).then((task) => {
 				if (task.content)
@@ -61,12 +72,10 @@ module.exports = Vue.extend({
 				this.gui.splice(index, 1);
 				this.$dispatch('gui-changed');
 			});
-		},
-		
+		},		
 		drag(index, event) {
 			event.dataTransfer.setData("text/plain", index);
-		},
-		
+		},		
 		drop(index, event) {
 			const toIdx = index;
 			const fromIdx = parseInt(event.dataTransfer.getData("text/plain"));
@@ -81,12 +90,10 @@ module.exports = Vue.extend({
 			this.$dispatch('gui-changed');
 			event.preventDefault();
 		},
-
 		closeSuggestions() {
 			this.openai = null;
 			this.disable();
 		},
-
 		addSuggestion(index) {
 			if (this.openai.component) {
 				const suggestion = this.openai.suggestions[index];
@@ -94,7 +101,6 @@ module.exports = Vue.extend({
 				this.openai.component.$emit('openai-selected', suggestion);
 			}
 		},
-
 		loadSuggestions(component, text) {
 			this.openai = {
 				text, 
@@ -122,7 +128,7 @@ module.exports = Vue.extend({
 						this.openai.loading = false;
 					}
 				});
-		}
+		},
 	},
 
 	vuex: {
@@ -132,7 +138,8 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'ui-txt': require('./ui-txt'),
 		'task-menu': require('./task-menu'),
+		'ui-xml': require('./ui-xml'),
+		'ui-txt': require('./ui-txt'),
 	},
 });

@@ -8,6 +8,7 @@ module.exports = Vue.extend({
 
 	data: () => ({
 		options: [],
+		collapsed: true,
 	}),
 
 	ready() {
@@ -18,7 +19,7 @@ module.exports = Vue.extend({
 		if (!this.options.length) {
 			this.addNew();
 		}
-		/* this.$nextTick(() => {
+		/* Vue.$nextTick(() => {
 			Array.from(this.$el.children).forEach(child => {
 				const ta = child.getElementsByTagName('textarea');
 				if (ta && ta.length) {
@@ -28,26 +29,29 @@ module.exports = Vue.extend({
 		}); */
 	},
 
-	computed: {
-		
+	computed: {		
 		isModified() {
 			return this.options.some(opt => opt.modified);
 		},
-
+		canCollapse() {
+			return this.options.length > 1;
+		},
+		collapseImageUrl() {
+			const image = `caret-${this.collapsed ? 'down' : 'up'}.svg`;
+			return require('../../../../common/img/' + image);
+		},
 	},
 
 	methods: {
-
-		synchronize() {
-			this.task.opt = this.options.filter(opt => !opt.modified && !!opt.text).map(opt => opt.text);
-			this.$dispatch('gui-changed');
+		onOptionsClicked() {
+			if (this.collapsed) {
+				this.collapsed = false;
+			}
 		},
-
 		onChange(index, event) {
 			this.options[index].modified = true;
 			// event.target.style.height = `${event.target.scrollHeight}px`;
 		},
-
 		onModify(index, event) {
 			if (this.options[index].modified && !!this.options[index].text) { // add entry
 				this.options[index].modified = false;
@@ -56,14 +60,17 @@ module.exports = Vue.extend({
 			}
 			this.synchronize();
 		},
-
+		toggleCollapse() {
+			this.collapsed = !this.collapsed;
+		},
 		addNew() {
 			const length = this.options.length;
+			this.collapsed = false;
 			this.options.push({
 				text: '', 
 				modified: true,
 			});
-			this.$nextTick(() => {
+			Vue.nextTick(() => {
 				const item = this.$el.children[length];
 				if (item) {
 					const ta = item.getElementsByTagName('textarea');
@@ -72,15 +79,16 @@ module.exports = Vue.extend({
 				}
 			});
 		},
-
+		synchronize() {
+			this.task.opt = this.options.filter(opt => !opt.modified && !!opt.text).map(opt => opt.text);
+			this.$dispatch('gui-changed');
+		},
 		onOpenai(event, index) {
 			this.$parent.loadSuggestions(this, this.options[index].text);
-		}
-
+		},
 	},
 
 	events: {
-
 		'openai-selected'(text) {
 			this.options.push({
 				text,
@@ -88,6 +96,5 @@ module.exports = Vue.extend({
 			});
 			this.synchronize();
 		},
-
 	},
 });

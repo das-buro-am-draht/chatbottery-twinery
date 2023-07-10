@@ -91,7 +91,7 @@ module.exports = Vue.extend({
 		getSuggestions(tag) {
 			const text = nameFromTag(tag);
 			this.suggestions = [];
-			this.$nextTick(() => this.$els.suggestions.scrollIntoView());
+			Vue.nextTick(() => this.$els.suggestions.scrollIntoView());
 			this.loading = true;
 			Promise.resolve(this.openaiTags)
 				.then((params) => tagSuggestions(params, text))
@@ -105,7 +105,7 @@ module.exports = Vue.extend({
 				.catch((error) => notify(error.message, 'danger'))
 				.finally(() => {
 					this.loading = false;
-					this.$nextTick(() => this.$els.suggestions.scrollIntoView());
+					Vue.nextTick(() => this.$els.suggestions.scrollIntoView());
 				});
 		},
 

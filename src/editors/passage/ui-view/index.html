@@ -1,17 +1,18 @@
 <div class="passageUI">
 	<div class="passageUI-tasks" v-el:tasks>
-		<div class="passageUI-item" v-for="task in gui" track-by="$index" draggable="true" @dragstart="drag($index, $event)" @drop="drop($index, $event)">
-			<div class="passageUI-item--header">
-				<button type="button" class="passageUI-item--props"></button>
-				<h3 class="passageUI-item--caption">{{ caption(task) }}</h3>
-				<button type="button" class="passageUI-item--remove" @click="onRemove($index)" title="{{'Remove entry' | say}}"></button>
+		<div :class="['passageUI-task', 'task-' + task.type]" v-for="task in gui" track-by="$index" draggable="true" @dragstart="drag($index, $event)" @drop="drop($index, $event)">
+			<div class="passageUI-task-header">
+				<button type="button" class="passageUI-task-props"></button>
+				<h3 class="passageUI-task-caption">{{ caption(task) }}</h3>
+				<button type="button" class="passageUI-task-remove" @click="onRemove($index)" title="{{'Remove entry' | say}}"></button>
 			</div>
 			<ui-txt v-if="task.type === 'txt'" :task="task"></ui-txt>
-			<textarea v-else class="passageUI-item--text" rows="3" v-model="task.content" @input="onChange($index)"></textarea>
+			<ui-xml v-else :task="task"></ui-xml>
+			<button v-if="canCollapse(task)" type="button" class="passageUI-task-collapse" @click="toggleCollapse($index)" title="{{ 'Expand / Collapse' | say }}"></button>
 		</div>
 		<div class="passageUI-append">
 			<div></div>
-			<button type="button" title="{{ 'Add new task' | say }}">
+			<button type="button" title="{{ 'Add new Task' | say }}">
 				<task-menu :story="story"></task-menu>
 			</button>
 			<div></div>

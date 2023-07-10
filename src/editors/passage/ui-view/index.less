@@ -65,41 +65,41 @@
       border-radius: 0 10px 10px 0;
     }
   }
-  &-item {
+  &-task {
     background-color: antiquewhite;
     border: 1px solid;
     border-style: outset;
     padding: 10px;
     margin-bottom: 10px;
-    &--header {
+    &-header {
       display: flex;
       flex-direction: row;
     }
-    &--props {
+    &-props {
       flex: 0 0 20px;
-      background: center / contain no-repeat url('../../../common/img/wrench.svg') ;
+      background: center / contain no-repeat url('../../../common/img/wrench.svg');
       height: 20px;
       padding: 0;
     }
-    &--caption {
+    &-caption {
       flex: 1;
       margin: 0 5px 5px;
       text-align: center;
     }
-    &--remove {
+    &-remove {
       flex: 0 0 20px;
-      background: center / contain no-repeat url('../../../common/img/delete.svg') ;
+      background: center / contain no-repeat url('../../../common/img/delete.svg');
       height: 20px;
       padding: 0;
     }
-    &--attr {
-      margin: 5px 0;
+    &-collapse {
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      background: center / contain no-repeat url('../../../common/img/caret-up.svg');
     }
-    &--text {
-      width: 100%;
-      resize: vertical;
-      background-color: #fff;
-      font: 100% "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    &.collapsed &-collapse {
+      background: center / contain no-repeat url('../../../common/img/caret-down.svg');
     }
   }
   &-append {

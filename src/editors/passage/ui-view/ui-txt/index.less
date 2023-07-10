@@ -1,35 +1,40 @@
-.passageUI-opt {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  &-entry {
-    flex: 1;
+.passageUI-txt {
+  &-options {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    margin-top: 5px;
+    transition: margin 1s;
+  }
+  &-option {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: auto;
     border: 3px solid #aaa;
-    margin: 5px 0;
     border-radius: 10px;
     background-color: #eee;
-  }
-  &-text {
-    flex: 1;
-    padding: 0;
-    margin: 5px;
-    background-color: #fff;
-    font-family: Roboto, serif;
-    box-shadow: none;
-    resize: vertical;
-  }
-  &-ctrl {
-    flex: 0 0 25px;
-    align-self: center;
-    margin-right: 3px;
-    &--icon {
-      width: 25px;
-      height: 25px;
-      margin: 0 auto;
+    overflow: hidden;
+    // transition: height 1s;
+    &-text {
+      display: inline-block;
+      width: calc(~"100% - 30px");
+      padding: 5px;
+      background-color: #fff;
+      font-family: Roboto, serif;
+      box-shadow: none;
+      resize: vertical;
+      &:focus {
+        box-shadow: none;
+      }
+    }
+    &-edit {
+      display: inline-block;
+      position: absolute;
+      width: 30px;
+      height: 20px;
+      top: calc(~"50% - 10px");
       cursor: pointer;
-      background-image: url("../../../../common/img/close.svg");
+      background-image: url("../../../../common/img/delete.svg");
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
@@ -37,19 +42,69 @@
         background-image: url("../../../../common/img/tick.svg");
       }
     }
+    &-openai {
+      display: inline-block;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      margin-left: 5px;
+      background-image: url('../../../../common/img/suggestions.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
   }
-  &-openai {
-    flex: 0 0 30px;
-    height: 30px;
-    margin-left: 5px;
-    background-image: url('../../../../common/img/suggestions.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+  &-options.collapsed {
+    // pointer-events: none;
+    margin-top: 0;
+    .passageUI-txt-option {
+      margin: 0;
+      height: 10px;
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+      background-color: white;
+      &-text,&-edit {
+        visibility: hidden;
+      }
+      &-openai {
+        height: 0;
+        visibility: hidden;
+      }
+    }
   }
-  &-new {
+  &-ctrl {
     display: block;
-    margin: 0 auto;
-    padding: 0;
+    margin-top: 5px;
+    &-collapse {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      img {
+        width: 100%;
+      }
+    }
+    &-new {
+      display: inline-block;
+      width: calc(~"100% - 44px");
+      text-align: center;
+      font-size: 12pt;
+      button {
+        padding: 0;
+      }
+    }
   }
 }
+
+// .passageUI-task.collapsed {
+//   & .passageUI-opt {
+//     &:not(:first-child) {
+//       .passageUI-opt-entry {
+//         margin: 0;
+//         textarea {
+//           height: 20px;
+//         }
+//       }
+//     }
+//   }
+// }

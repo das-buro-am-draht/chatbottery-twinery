@@ -1,12 +1,17 @@
 <div class="passageUI-txt">
-	<div class="passageUI-opt" v-for="entry in options" track-by="$index">
-		<div class="passageUI-opt-entry">
-			<textarea class="passageUI-opt-text" rows="2" v-model="entry.text" @input="onChange($index, $event)"></textarea>
-			<div class="passageUI-opt-ctrl">
-				<div :class="['passageUI-opt-ctrl--icon', entry.modified ? 'modified' : '']" @click="onModify($index, $event)"></div>
-			</div>
+	<div class="passageUI-txt-options" v-for="entry in options" track-by="$index" :class="{collapsed: collapsed && $index > 0}" @click="onOptionsClicked">
+		<div class="passageUI-txt-option">
+			<textarea class="passageUI-txt-option-text" rows="2" v-model="entry.text" @input="onChange($index, $event)"></textarea>
+			<div :class="['passageUI-txt-option-edit', entry.modified ? 'modified' : '']" @click="onModify($index, $event)"></div>
 		</div>
-		<button class="passageUI-opt-openai" :disabled="!entry.text || !entry.text.trim()" type="button" @click="onOpenai($event, $index)"></button>
+		<div class="passageUI-txt-option-openai" :disabled="!entry.text || !entry.text.trim()" @click="onOpenai($event, $index)"></div>
 	</div>
-	<button type="button" v-if="!isModified" class="passageUI-opt-new" @click="addNew">Add Alternative</button>
+	<div class="passageUI-txt-ctrl">
+		<button v-if="canCollapse" type="button" class="passageUI-txt-ctrl-collapse" @click="toggleCollapse" title="{{ collapsed ? 'Expand' : 'Collapse' | say }}">
+			<img :src="collapseImageUrl">
+		</button>
+		<div v-if="!isModified" class="passageUI-txt-ctrl-new" >
+			<button type="button" @click="addNew">Add Alternative</button>
+		</div>
+	</div>
 </div>
