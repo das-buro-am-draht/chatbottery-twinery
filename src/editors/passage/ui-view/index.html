@@ -1,19 +1,29 @@
 <div class="passageUI">
 	<div class="passageUI-tasks" v-el:tasks>
-		<div :class="['passageUI-task', 'task-' + task.type]" v-for="task in gui" track-by="$index" draggable="true" @dragstart="drag($index, $event)" @drop="drop($index, $event)">
+		<div :class="['passageUI-task', 'task-' + task.type]" v-for="task in gui" track-by="$index" draggable="true" @dragstart="drag($index, $event)" @drop="drop($index, $event)" @click="onTaskClicked($index)">
 			<div class="passageUI-task-header">
-				<button type="button" class="passageUI-task-props"></button>
+				<div class="passageUI-task-ctrl left">
+					<button type="button" class="passageUI-task-collapse" @click="toggleCollapse($index, $event)" title="{{ 'Expand / Collapse' | say }}"></button>
+					<button type="button" class="passageUI-task-props"></button>
+				</div>
 				<h3 class="passageUI-task-caption">{{ caption(task) }}</h3>
-				<button type="button" class="passageUI-task-remove" @click="onRemove($index)" title="{{'Remove entry' | say}}"></button>
+				<div class="passageUI-task-ctrl right">
+					<button type="button" class="passageUI-task-remove" @click="onRemove($index)" title="{{'Remove entry' | say}}"></button>
+				</div>
 			</div>
-			<ui-txt v-if="task.type === 'txt'" :task="task"></ui-txt>
-			<ui-xml v-else :task="task"></ui-xml>
-			<button v-if="canCollapse(task)" type="button" class="passageUI-task-collapse" @click="toggleCollapse($index)" title="{{ 'Expand / Collapse' | say }}"></button>
+			<task-txt v-if="task.type === 'txt'" :task="task"></task-txt>
+			<task-img v-if="task.type === 'image'" :task="task" :asset-base-url="assetBaseUrl"></task-img>
+			<task-xml v-if="task.type === 'msg'" :task="task"></task-xml>
+			<task-xml v-if="task.type === 'wait'" :task="task"></task-xml>
+			<task-xml v-if="task.type === 'goto'" :task="task"></task-xml>
+			<task-xml v-if="task.type === 'carousel'" :task="task"></task-xml>
+			<task-xml v-if="task.type === 'tiles'" :task="task"></task-xml>
+			<task-xml v-if="task.type === 'chat'" :task="task"></task-xml>
 		</div>
 		<div class="passageUI-append">
 			<div></div>
 			<button type="button" title="{{ 'Add new Task' | say }}">
-				<task-menu :story="story"></task-menu>
+				<ui-menu :story="story"></ui-menu>
 			</button>
 			<div></div>
 		</div>

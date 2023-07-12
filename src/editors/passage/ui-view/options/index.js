@@ -4,11 +4,20 @@ require('./index.less');
 
 module.exports = Vue.extend({
 	template: require('./index.html'),
-	props: ['task'],
+	props: {
+		task: {
+			type: Object,
+			required: true,
+		},
+		addLabel: {
+			type: String,
+			default: 'Add Text alternative',
+			required: false,
+		},
+	},
 
 	data: () => ({
 		options: [],
-		collapsed: true,
 	}),
 
 	ready() {
@@ -16,9 +25,6 @@ module.exports = Vue.extend({
 			text: txt, 
 			modified: false,
 		}));
-		if (!this.options.length) {
-			this.addNew();
-		}
 		/* Vue.$nextTick(() => {
 			Array.from(this.$el.children).forEach(child => {
 				const ta = child.getElementsByTagName('textarea');
@@ -31,23 +37,11 @@ module.exports = Vue.extend({
 
 	computed: {		
 		isModified() {
-			return this.options.some(opt => opt.modified);
-		},
-		canCollapse() {
-			return this.options.length > 1;
-		},
-		collapseImageUrl() {
-			const image = `caret-${this.collapsed ? 'down' : 'up'}.svg`;
-			return require('../../../../common/img/' + image);
+			return this.options.some(opt => opt.modified || !opt.text);
 		},
 	},
 
 	methods: {
-		onOptionsClicked() {
-			if (this.collapsed) {
-				this.collapsed = false;
-			}
-		},
 		onChange(index, event) {
 			this.options[index].modified = true;
 			// event.target.style.height = `${event.target.scrollHeight}px`;
@@ -60,12 +54,8 @@ module.exports = Vue.extend({
 			}
 			this.synchronize();
 		},
-		toggleCollapse() {
-			this.collapsed = !this.collapsed;
-		},
 		addNew() {
 			const length = this.options.length;
-			this.collapsed = false;
 			this.options.push({
 				text: '', 
 				modified: true,
@@ -84,7 +74,7 @@ module.exports = Vue.extend({
 			this.$dispatch('gui-changed');
 		},
 		onOpenai(event, index) {
-			this.$parent.loadSuggestions(this, this.options[index].text);
+			this.$dispatch('openai-suggest', this, this.options[index].text);
 		},
 	},
 

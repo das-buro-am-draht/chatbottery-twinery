@@ -286,6 +286,9 @@ module.exports = Vue.extend({
 			};
 			switch(type) {
 				case 'txt':
+					task.opt = [''];
+					break;
+				case 'image':
 					task.opt = [];
 					break;
 			}
@@ -319,7 +322,7 @@ module.exports = Vue.extend({
 		'modal-dialog': require('../../ui/modal-dialog'),
 		'tag-editor': require('./tag-editor'),
 		'ui-view': require('./ui-view'),
-		'task-menu': require('./ui-view/task-menu'),
+		'ui-menu': require('./ui-view/menu'),
 	},
 
 	vuex: {

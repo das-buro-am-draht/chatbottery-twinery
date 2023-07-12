@@ -72,34 +72,40 @@
     padding: 10px;
     margin-bottom: 10px;
     &-header {
-      display: flex;
-      flex-direction: row;
+      position: relative;
+      min-height: 24px;
+      button {
+        width: 20px;
+        height: 20px;
+        padding: 0;
+      }
     }
-    &-props {
-      flex: 0 0 20px;
-      background: center / contain no-repeat url('../../../common/img/wrench.svg');
-      height: 20px;
-      padding: 0;
-    }
-    &-caption {
-      flex: 1;
-      margin: 0 5px 5px;
-      text-align: center;
-    }
-    &-remove {
-      flex: 0 0 20px;
-      background: center / contain no-repeat url('../../../common/img/delete.svg');
-      height: 20px;
-      padding: 0;
+    &-ctrl {
+      position: absolute;
+      &.left {
+        top: 0;
+        left: 0;
+      }
+      &.right {
+        top: 0;
+        right: 0;
+      }
     }
     &-collapse {
-      width: 20px;
-      height: 20px;
-      padding: 0;
       background: center / contain no-repeat url('../../../common/img/caret-up.svg');
     }
     &.collapsed &-collapse {
       background: center / contain no-repeat url('../../../common/img/caret-down.svg');
+    }
+    &-props {
+      background: center / contain no-repeat url('../../../common/img/wrench.svg');
+    }
+    &-caption {
+      margin: 0 50px 5px;
+      text-align: center;
+    }
+    &-remove {
+      background: center / contain no-repeat url('../../../common/img/delete.svg');
     }
   }
   &-append {

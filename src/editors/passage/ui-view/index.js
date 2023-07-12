@@ -7,6 +7,8 @@ const { phraseSuggestions } = require('../../../common/app/openai');
 
 require('./index.less');
 
+const CLASS_COLLAPSED = 'collapsed';
+
 module.exports = Vue.extend({
 	template: require('./index.html'),
 	props: {
@@ -22,8 +24,7 @@ module.exports = Vue.extend({
 
 	ready() {
 		Array.from(this.taskElements)
-			.filter((element, index) => this.canCollapse(this.gui[index]))
-			.forEach((element) => element.classList.add('collapsed'));
+			.forEach((element) => element.classList.add(CLASS_COLLAPSED));
 	},
 
 	data: () => ({
@@ -33,16 +34,28 @@ module.exports = Vue.extend({
 	computed: {
 		taskElements() {
 			return this.$els.tasks.getElementsByClassName('passageUI-task');
-		}
+		},
+		assetBaseUrl() {
+			const { settings } = this.story;
+			return (settings && settings.assetBaseUrl) || '';
+		},
 	},
 
 	methods: {
-		canCollapse(task) {
-			return !(task.type === 'txt');
+		isCollapsed(index) {
+			const element = this.taskElements[index];
+			return element && element.taskElements[index].classList.contains(CLASS_COLLAPSED);
+		},
+		onTaskClicked(index) {
+			const element = this.taskElements[index];
+			if (element && element.classList.contains(CLASS_COLLAPSED)) {
+				element.classList.remove(CLASS_COLLAPSED);
+			}
 		},
 		toggleCollapse(index, event) {
+			event.stopPropagation();
 			const element = this.taskElements[index];
-			element && element.classList.toggle('collapsed');
+			element && element.classList.toggle(CLASS_COLLAPSED);
 		},
 		disable() {
 			const enable = !this.openai ? true : false;
@@ -62,12 +75,13 @@ module.exports = Vue.extend({
 		},
 		onRemove(index) {
 			Promise.resolve(this.gui[index]).then((task) => {
-				if (task.content)
+				if (task.content || Object.keys(task.attributes).length) {
 					return confirm({
 						message: locale.say('Are you sure to delete &ldquo;%1$s&rdquo;?', this.caption(task)),
 						buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Delete'),
 						buttonClass: 'danger'
-				})
+					});
+				}
 			}).then(() => {
 				this.gui.splice(index, 1);
 				this.$dispatch('gui-changed');
@@ -77,6 +91,7 @@ module.exports = Vue.extend({
 			event.dataTransfer.setData("text/plain", index);
 		},		
 		drop(index, event) {
+			event.preventDefault();
 			const toIdx = index;
 			const fromIdx = parseInt(event.dataTransfer.getData("text/plain"));
 			event.dataTransfer.clearData("text/plain");
@@ -88,7 +103,6 @@ module.exports = Vue.extend({
 			this.gui.splice(removeIdx, 1);
 
 			this.$dispatch('gui-changed');
-			event.preventDefault();
 		},
 		closeSuggestions() {
 			this.openai = null;
@@ -101,7 +115,10 @@ module.exports = Vue.extend({
 				this.openai.component.$emit('openai-selected', suggestion);
 			}
 		},
-		loadSuggestions(component, text) {
+	},
+
+	events: {
+		'openai-suggest'(component, text) {
 			this.openai = {
 				text, 
 				loading: true,
@@ -133,13 +150,14 @@ module.exports = Vue.extend({
 
 	vuex: {
 		getters: {
-			openaiPhrases: state => state.pref.openaiPhrases,
+			openaiPhrases: state => state.pref.openaiPhrases,			
 		},
 	},
 
 	components: {
-		'task-menu': require('./task-menu'),
-		'ui-xml': require('./ui-xml'),
-		'ui-txt': require('./ui-txt'),
+		'ui-menu': require('./menu'),
+		'task-xml': require('./xml'),
+		'task-txt': require('./txt'),
+		'task-img': require('./image'),
 	},
 });

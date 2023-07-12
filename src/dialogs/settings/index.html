@@ -6,7 +6,7 @@
 				<label for="assetBaseUrl">{{ 'Asset Base URL' | say }}</label>
 				<div class="setting__input">
 					<input type="text" id="assetBaseUrl" v-model="assetBaseUrl" title="{{ 'URL for Assets (Images, Videos, etc.)' | say }}">
-					<p class="error" v-show="!isValidUrl(assetBaseUrl)">{{ 'Resource Locator must be a valid URL' | say }}</p>
+					<p class="error" v-show="!isValidBaseUrl(assetBaseUrl)">{{ 'Resource Locator must be a valid URL Path ending with slash (\'/\')' | say }}</p>
 				</div>
 			</div>
 		</div>

@@ -1,7 +1,8 @@
 const types = {
-  'txt'     : 'Text messages',
-  'msg'     : 'Messages',
-  // 'later'   : 'Delayed Message',
+  'txt'     : 'Text',
+  'image'   : 'Image',
+  'msg'     : 'Message',
+  'buttons' : 'Buttons',
   'wait'    : 'User Input',
   'goto'    : 'Jump Instruction',
   'carousel': 'Carousel',
@@ -11,6 +12,6 @@ const types = {
   // 'call'    : 'Call Control (Voice Bot)',
 };
 
-const label = (type) => types[type];
+const label = (type) => types[type] || type;
 
 module.exports = { label, types };

@@ -1,0 +1,75 @@
+.passageUI-options {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  transition: margin 1s;
+}
+
+.passageUI-option {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  border: 3px solid #aaa;
+  border-radius: 10px;
+  background-color: #eee;
+  overflow: hidden;
+  // transition: height 1s;
+  &-text {
+    display: inline-block;
+    width: calc(~"100% - 30px");
+    padding: 5px;
+    background-color: #fff;
+    font-family: Roboto, serif;
+    box-shadow: none;
+    resize: vertical;
+    &:focus {
+      box-shadow: none;
+    }
+  }
+  &-ctrl {
+    display: inline-block;
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    top: calc(~"50% - 10px");
+    cursor: pointer;
+    background-image: url("../../../../common/img/delete.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    &.modified {
+      background-image: url("../../../../common/img/tick.svg");
+    }
+  }
+  &-openai {
+    display: inline-block;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+    background-image: url('../../../../common/img/suggestions.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+}
+
+.passageUI-task.collapsed .passageUI-options:not(:first-child) {
+  // pointer-events: none;
+  margin-top: 0;
+  .passageUI-option {
+    margin: 0;
+    height: 10px;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    background-color: white;
+    &-text,&-ctrl {
+      visibility: hidden;
+    }
+    &-openai {
+      height: 0;
+      visibility: hidden;
+    }
+  }
+}
