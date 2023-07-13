@@ -16,7 +16,12 @@ module.exports = Vue.extend({
 		},
 	},
 
+	data: () => ({
+		options: [],
+	}),
+
 	ready() {
+		this.load();
 		/* Vue.$nextTick(() => {
 			Array.from(this.$el.children).forEach(child => {
 				const ta = child.getElementsByTagName('textarea');
@@ -29,22 +34,51 @@ module.exports = Vue.extend({
 
 	computed: {		
 		isModified() {
-			return this.task.opt.some((option) => !option);
+			return this.options.some(opt => opt.modified || !opt.text);
 		},
 	},
 
+	watch: {
+		'task.opt'() {
+			this.load();
+		}
+	},
+
 	methods: {
+		load() {
+			this.options = (this.task.opt || []).map(txt => ({
+				text: txt, 
+				modified: false,
+			}));
+		},
 		onChange(index, event) {
-			this.synchronize();
+			this.options[index].modified = true;
 			// event.target.style.height = `${event.target.scrollHeight}px`;
 		},
-		onDelete(index, event) {
-			this.task.opt.splice(index, 1);
+		hasChanged(index) {
+			return this.options[index].modified && !!this.options[index].text;
+		},
+		onModify(index) {
+			if (this.hasChanged(index)) { // add entry
+				this.options[index].modified = false;
+			} else { // delete entry
+				this.options.splice(index, 1);
+			}
 			this.synchronize();
 		},
+		onEnter(index, event) {
+			if (event.ctrlKey && this.hasChanged(index)) {
+				event.preventDefault();
+				this.onModify(index);
+				Vue.nextTick(() => this.addNew());
+			}
+		},
 		addNew() {
-			const length = this.task.opt.length;
-			this.task.opt.push('');
+			const length = this.options.length;
+			this.options.push({
+				text: '', 
+				modified: true,
+			});
 			Vue.nextTick(() => {
 				const item = this.$el.children[length];
 				if (item) {
@@ -55,16 +89,20 @@ module.exports = Vue.extend({
 			});
 		},
 		synchronize() {
+			this.task.opt = this.options.filter(opt => !opt.modified && !!opt.text).map(opt => opt.text);
 			this.$dispatch('gui-changed');
 		},
 		onOpenai(event, index) {
-			this.$dispatch('openai-suggest', this, this.task.opt[index]);
+			this.$dispatch('openai-suggest', this, this.options[index].text);
 		},
 	},
 
 	events: {
 		'openai-selected'(text) {
-			this.task.opt.push(text);
+			this.options.push({
+				text,
+				modified: false,
+			});
 			this.synchronize();
 		},
 	},

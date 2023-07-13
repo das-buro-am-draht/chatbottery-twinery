@@ -1,8 +1,31 @@
-<div class="passageUI-image">
-	<div class="passageUI-image-content">
-		<img :src="imageUrl">
-		<label for="imageUrl">{{ 'URL' | say }}:</label>
-		<input type="text" name="imageUrl" v-model="image" @input="onChange($event)" required>
+<div class="passageUI-buttons">
+	<div class="passageUI-buttons-list">
+		<div class="passageUI-buttons-listbox" v-el:list>
+			<div :class="['passageUI-button', selection === $index ? 'selected' : '']" v-for="button in task.buttons" track-by="$index" draggable="true" @dragstart="drag($index, $event)" @drop.prevent="drop($index, $event)" @click="onSelect($index)">
+				<div class="passageUI-button-label">{{ button.label }}</div>
+				<div class="passageUI-button-delete" @click="onDelete($index)"></div>
+			</div>
+		</div>
+		<button class="passageUI-buttons-list-new" type="button" @click="onAdd()">Add Button</button>
 	</div>
-	<task-options :task="task" add-label="Add Image Text"></task-options>
+	<form v-show="selection >= 0" class="passageUI-buttons-form">
+		<fieldset>
+			<div class="passageUI-buttons-label">
+				<label for="label">Label:</label>
+				<input type="text" name="label" v-el:label @input="onChangeLabel($event)">
+			</div>
+			<div class="passageUI-buttons-link">
+				<label for="link">Link:</label>
+				<input type="text" name="link" v-el:link @input="onChangeLink($event)">
+			</div>
+			<div class="passageUI-buttons-func">
+				<label for="func">User Function:</label>
+				<input type="text" name="func" v-el:func @input="onChangeFunc($event)">
+			</div>
+			<div class="passageUI-buttons-action">
+				<label for="action">Action Button:</label>
+				<input type="checkbox" name="action" v-el:action @input="onChangeAction($event)">
+			</div>
+		</fieldset>
+	</form>
 </div>

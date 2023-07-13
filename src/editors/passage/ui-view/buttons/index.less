@@ -1,27 +1,60 @@
-.passageUI-image {
-  &-content {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    img {
-      flex: 1;
-      max-height: 100%;
-      max-width: 150px;
-      // background-image: url("../../../../common/img/placeholder-image.png");
-      // background-repeat: no-repeat;
-      // background-position: center;
-      // background-size: contain;
-      // background-color: #fff;
-      border-radius: 10px;
+.passageUI-buttons {
+  display: flex;
+  flex-direction: row;
+  &-list {
+    text-align: center;
+    &box {
+      border-style: inset;
+      text-align: left;
+      overflow-y: auto;
+      min-width: 200px;
+      max-height: 120px;
+    }
+  }
+  &-form {
+    flex: 1;
+    margin-left: 10px;
+    fieldset {
+      padding: 10px;
     }
     label {
-      margin: 8px 10px 0 20px;
+      display: inline-block;
+      width: 100px;
     }
-    input {
-      flex: 2;
-      width: 100%;
-      background-color: #fff;
-      // border-style: inset;
+    input[type="text"] {
+      width: calc(~"100% - 108px");
+      border: #888 solid 1px;
+      border-radius: 3px;
+      padding: 5px;
+      margin: 0 0 5px 4px;
     }
+  }
+}
+
+.passageUI-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fff;
+  height: 32px;
+  &.selected {
+    color: #fff;
+    background-color: blue;
+    .passageUI-button-delete {
+      filter: invert(1);
+    }
+  }
+  &-label {
+    flex: 1;
+    padding: 5px;
+  }
+  &-delete {
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    background-image: url("../../../../common/img/delete.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   }
 }

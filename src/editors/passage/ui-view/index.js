@@ -43,19 +43,22 @@ module.exports = Vue.extend({
 
 	methods: {
 		isCollapsed(index) {
-			const element = this.taskElements[index];
-			return element && element.taskElements[index].classList.contains(CLASS_COLLAPSED);
+			return this.taskElements[index].classList.contains(CLASS_COLLAPSED);
 		},
 		onTaskClicked(index) {
-			const element = this.taskElements[index];
-			if (element && element.classList.contains(CLASS_COLLAPSED)) {
-				element.classList.remove(CLASS_COLLAPSED);
+			const elements = this.taskElements;
+			if (elements[index].classList.contains(CLASS_COLLAPSED)) {
+				Array.from(elements).forEach((element, ix) => {
+					if (ix === index) {
+						element.classList.remove(CLASS_COLLAPSED);
+					} else {
+						element.classList.add(CLASS_COLLAPSED);
+					}
+				});
 			}
 		},
-		toggleCollapse(index, event) {
-			event.stopPropagation();
-			const element = this.taskElements[index];
-			element && element.classList.toggle(CLASS_COLLAPSED);
+		toggleCollapse(index) {
+			this.taskElements[index].classList.toggle(CLASS_COLLAPSED);
 		},
 		disable() {
 			const enable = !this.openai ? true : false;
@@ -70,12 +73,24 @@ module.exports = Vue.extend({
 		caption(task) {
 			return label(task.type);
 		},
-		attributes(item) {
-			return Object.entries(item.attributes || {}).map(([k, v]) => `${k}="${v}"`).join(' ');
+		isEmpty(task) {
+			let isEmpty = Object.keys(task.attributes).length === 0;
+			if (isEmpty) {
+				switch (task.type) {
+					case 'txt':
+					case 'image':
+						isEmpty = !task.opt.some((option) => !!option.trim());
+						break;
+					case 'buttons':
+						isEmpty = task.buttons.length === 0;
+						break;
+				}
+			}
+			return isEmpty;
 		},
 		onRemove(index) {
 			Promise.resolve(this.gui[index]).then((task) => {
-				if (task.content || Object.keys(task.attributes).length) {
+				if (!this.isEmpty(task)) {
 					return confirm({
 						message: locale.say('Are you sure to delete &ldquo;%1$s&rdquo;?', this.caption(task)),
 						buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Delete'),
@@ -91,7 +106,6 @@ module.exports = Vue.extend({
 			event.dataTransfer.setData("text/plain", index);
 		},		
 		drop(index, event) {
-			event.preventDefault();
 			const toIdx = index;
 			const fromIdx = parseInt(event.dataTransfer.getData("text/plain"));
 			event.dataTransfer.clearData("text/plain");
@@ -159,5 +173,6 @@ module.exports = Vue.extend({
 		'task-xml': require('./xml'),
 		'task-txt': require('./txt'),
 		'task-img': require('./image'),
+		'task-btn': require('./buttons'),
 	},
 });

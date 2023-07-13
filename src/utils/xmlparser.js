@@ -43,10 +43,10 @@ const parse = (text) => {
 
     if (task.type === 'msg') {
       const buttons = 
-        children.filter((el) => el.tagName.toLowerCase() === 'act')
-          .map((el) => ({ ...button(el), action: true })).concat(
-        children.filter((el) => el.tagName.toLowerCase() === 'btn')
-          .map((el) => ({ ...button(el), action: false })));
+        children.filter((el) => {
+          const tagName = el.tagName.toLowerCase();
+          return tagName === 'act' || tagName === 'btn';
+        }).map((el) => ({ ...button(el), action: el.tagName.toLowerCase() === 'act' }));
       if (buttons.length) {
         tasks.push({
           type: 'buttons',
@@ -102,9 +102,10 @@ const xmlValue = (task) => {
       }
       break;
     case 'buttons':
-      content = task.buttons.reduce((xml, button) => {
+      const buttons = task.buttons.filter((button) => button.label || button.link || button.func);
+      content = buttons.reduce((xml, button) => {
         const tag = button.action ? 'act' : 'btn';
-        let text = `${button.label}|${button.link}`;
+        let text = `${button.label || ''}|${button.link || ''}`;
         if (button.func) {
           text += `|${button.func}`;
         }
