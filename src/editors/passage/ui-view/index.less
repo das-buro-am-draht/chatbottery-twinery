@@ -1,3 +1,5 @@
+@import '../../../common/colors.less';
+
 .passageUI {
   display: flex;
   flex-direction: row;
@@ -32,7 +34,7 @@
       }
     }
     &--text {
-      background-color: blue;
+      background-color: @color-suggestions;
       color: white;
       padding: 10px;
       margin: 5px 0;     
@@ -47,7 +49,7 @@
       flex-direction: row;
       align-items: center;
       border-radius: 10px;
-      background: blue;
+      background: @color-suggestions;
       margin: 5px 0;
     }
     &--add {
@@ -65,12 +67,12 @@
       margin: 0;
       padding: 5px;
       background-color: white;
-      border: solid 2px blue;
+      border: solid 2px @color-suggestions;
       border-radius: 0 10px 10px 0;
     }
   }
   &-task {
-    background-color: antiquewhite;
+    background-color: #dde;
     border: 1px solid;
     border-style: outset;
     padding: 10px;
