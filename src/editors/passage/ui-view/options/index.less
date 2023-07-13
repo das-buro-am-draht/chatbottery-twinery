@@ -19,15 +19,14 @@
     display: inline-block;
     width: calc(~"100% - 30px");
     padding: 5px;
-    background-color: #fff;
-    font-family: Roboto, serif;
+    // font-family: Roboto, serif;
     box-shadow: none;
     resize: vertical;
     &:focus {
       box-shadow: none;
     }
   }
-  &-ctrl {
+  &-delete {
     display: inline-block;
     position: absolute;
     width: 30px;
@@ -38,9 +37,6 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    &.modified {
-      background-image: url("../../../../common/img/tick.svg");
-    }
   }
   &-openai {
     display: inline-block;

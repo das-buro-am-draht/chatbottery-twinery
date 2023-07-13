@@ -1,0 +1,8 @@
+<div class="passageUI-image">
+	<div class="passageUI-image-content">
+		<img :src="imageUrl">
+		<label for="imageUrl">{{ 'URL' | say }}:</label>
+		<input type="text" name="imageUrl" v-model="image" @input="onChange($event)" required>
+	</div>
+	<task-options :task="task" add-label="Add Image Text"></task-options>
+</div>

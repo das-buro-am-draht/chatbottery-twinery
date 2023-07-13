@@ -26,7 +26,6 @@ const button = (el) => {
     label: trim(label),
     link: trim(link),
     func: trim(func),
-    content: el.outerHTML,
   };
 };
 
@@ -52,7 +51,6 @@ const parse = (text) => {
         tasks.push({
           type: 'buttons',
           attributes: { ...task.attributes },
-          content: buttons.map((button) => button.content).join('\n'),
           buttons,
         });
         el.innerText = '';
@@ -128,7 +126,7 @@ const stringify = (arr) => {
     }
     let value = xmlValue(task).replace(/\n</g, '\n   <');
     if (value) {
-      value = '\n   ' + value;
+      value = '\n   ' + value.replace(/\s+$/, '') + '\n';
     }
     return xml + xmlElement(type, value, task.attributes);
   }, '');

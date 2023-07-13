@@ -16,15 +16,7 @@ module.exports = Vue.extend({
 		},
 	},
 
-	data: () => ({
-		options: [],
-	}),
-
 	ready() {
-		this.options = (this.task.opt || []).map(txt => ({
-			text: txt, 
-			modified: false,
-		}));
 		/* Vue.$nextTick(() => {
 			Array.from(this.$el.children).forEach(child => {
 				const ta = child.getElementsByTagName('textarea');
@@ -37,29 +29,22 @@ module.exports = Vue.extend({
 
 	computed: {		
 		isModified() {
-			return this.options.some(opt => opt.modified || !opt.text);
+			return this.task.opt.some((option) => !option);
 		},
 	},
 
 	methods: {
 		onChange(index, event) {
-			this.options[index].modified = true;
+			this.synchronize();
 			// event.target.style.height = `${event.target.scrollHeight}px`;
 		},
-		onModify(index, event) {
-			if (this.options[index].modified && !!this.options[index].text) { // add entry
-				this.options[index].modified = false;
-			} else { // delete entry
-				this.options.splice(index, 1);
-			}
+		onDelete(index, event) {
+			this.task.opt.splice(index, 1);
 			this.synchronize();
 		},
 		addNew() {
-			const length = this.options.length;
-			this.options.push({
-				text: '', 
-				modified: true,
-			});
+			const length = this.task.opt.length;
+			this.task.opt.push('');
 			Vue.nextTick(() => {
 				const item = this.$el.children[length];
 				if (item) {
@@ -70,20 +55,16 @@ module.exports = Vue.extend({
 			});
 		},
 		synchronize() {
-			this.task.opt = this.options.filter(opt => !opt.modified && !!opt.text).map(opt => opt.text);
 			this.$dispatch('gui-changed');
 		},
 		onOpenai(event, index) {
-			this.$dispatch('openai-suggest', this, this.options[index].text);
+			this.$dispatch('openai-suggest', this, this.task.opt[index]);
 		},
 	},
 
 	events: {
 		'openai-selected'(text) {
-			this.options.push({
-				text,
-				modified: false,
-			});
+			this.task.opt.push(text);
 			this.synchronize();
 		},
 	},
