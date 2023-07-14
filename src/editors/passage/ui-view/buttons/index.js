@@ -24,6 +24,9 @@ module.exports = Vue.extend({
 		if (this.story) {
 			this.passages = this.story.passages.map((passage) => passage.name).sort();
 		}
+		if (!this.task.buttons.length) {
+			this.onAdd();
+		}
 	},
 
 	methods: {
@@ -52,7 +55,9 @@ module.exports = Vue.extend({
 				this.task.buttons.splice(removeIdx, 1);
 
 				this.$dispatch('gui-changed');
-				this.setSelection(this.selection);
+				if (this.selection >= 0) {
+					this.setSelection(toIdx);
+				}
 			}
 		},
 		setSelection(index) {

@@ -1,5 +1,5 @@
 <div class="passageUI-opt">
-	<div class="passageUI-options" v-for="option in options" track-by="$index" transition="fade-in-out">
+	<div class="passageUI-options" v-for="option in options" track-by="$index">
 		<div class="passageUI-option">
 			<textarea class="passageUI-option-text" v-model="option.text" @input="onChange($index, $event)" @keydown.13="onEnter($index, $event)"></textarea>
 			<div :class="['passageUI-option-ctrl', option.modified ? 'modified' : '']" @click="onModify($index)"></div>
