@@ -47,7 +47,8 @@ module.exports = Vue.extend({
 		},
 		onTaskClicked(index) {
 			const elements = this.taskElements;
-			if (elements[index].classList.contains(CLASS_COLLAPSED)) {
+			const element = elements[index];
+			if (element.classList.contains(CLASS_COLLAPSED)) {
 				Array.from(elements).forEach((element, ix) => {
 					if (ix === index) {
 						element.classList.remove(CLASS_COLLAPSED);
@@ -56,6 +57,7 @@ module.exports = Vue.extend({
 					}
 				});
 			}
+			element.scrollIntoView({behavior: 'smooth'});
 		},
 		toggleCollapse(index) {
 			this.taskElements[index].classList.toggle(CLASS_COLLAPSED);
@@ -103,20 +105,26 @@ module.exports = Vue.extend({
 			});
 		},		
 		drag(index, event) {
-			event.dataTransfer.setData("text/plain", index);
-		},		
+			event.dataTransfer.setData('cb/ui-task', index);
+		},
+		dragenter(event) {
+			if (event.dataTransfer.types.includes('cb/ui-task')) {
+				event.preventDefault(); // is allowed
+			}
+		},
 		drop(index, event) {
 			const toIdx = index;
-			const fromIdx = parseInt(event.dataTransfer.getData("text/plain"));
-			event.dataTransfer.clearData("text/plain");
-			
-			const insertIdx = toIdx > fromIdx ? toIdx + 1 : toIdx;
-			this.gui.splice(insertIdx, 0, this.gui[fromIdx]);
+			const fromIdx = parseInt(event.dataTransfer.getData('cb/ui-task'), 10);
+			event.dataTransfer.clearData('cb/ui-task');
+			if (toIdx !== fromIdx && fromIdx >= 0 && fromIdx < this.gui.length) {
+				const insertIdx = toIdx > fromIdx ? toIdx + 1 : toIdx;
+				this.gui.splice(insertIdx, 0, this.gui[fromIdx]);
 
-			const removeIdx = toIdx > fromIdx ? fromIdx : fromIdx + 1;
-			this.gui.splice(removeIdx, 1);
+				const removeIdx = toIdx > fromIdx ? fromIdx : fromIdx + 1;
+				this.gui.splice(removeIdx, 1);
 
-			this.$dispatch('gui-changed');
+				this.$dispatch('gui-changed');
+			}
 		},
 		closeSuggestions() {
 			this.openai = null;

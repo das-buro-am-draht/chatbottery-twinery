@@ -1,6 +1,6 @@
 <div class="passageUI">
 	<div class="passageUI-tasks" v-el:tasks>
-		<div :class="['passageUI-task', 'task-' + task.type]" v-for="task in gui" track-by="$index" draggable="true" @dragstart="drag($index, $event)" @drop.prevent="drop($index, $event)" @click="onTaskClicked($index)">
+		<div :class="['passageUI-task', 'task-' + task.type]" v-for="task in gui" track-by="$index" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)" @click="onTaskClicked($index)">
 			<div class="passageUI-task-header">
 				<div class="passageUI-task-ctrl left">
 					<button type="button" class="passageUI-task-collapse" @click.stop="toggleCollapse($index)" title="{{ 'Expand / Collapse' | say }}"></button>
@@ -13,7 +13,7 @@
 			</div>
 			<task-txt v-if="task.type === 'txt'" :task="task"></task-txt>
 			<task-img v-if="task.type === 'image'" :task="task" :asset-base-url="assetBaseUrl"></task-img>
-			<task-btn v-if="task.type === 'buttons'" :task="task"></task-btn>
+			<task-btn v-if="task.type === 'buttons'" :task="task" :story="story"></task-btn>
 			<task-xml v-if="task.type === 'msg'" :task="task"></task-xml>
 			<task-xml v-if="task.type === 'wait'" :task="task"></task-xml>
 			<task-xml v-if="task.type === 'goto'" :task="task"></task-xml>
@@ -35,7 +35,7 @@
 			<button type="button" @click="closeSuggestions" title="{{ 'Close Suggestions' | say }}"></button>
 		</div>
 		<p class="passageUI-openai--text">{{openai.text}}</p>
-		<div v-if="openai.loading" class="passageUI-openai--loader" transition="fade-in-out">
+		<div v-if="openai.loading" class="passageUI-openai--loader">
 			<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
 		</div>
 		<div class="passageUI-openai--suggestions" v-for="suggestion in openai.suggestions" track-by="$index">

@@ -291,6 +291,9 @@ module.exports = Vue.extend({
 				case 'image':
 					task.opt = [];
 					break;
+				case 'buttons':
+					task.buttons = [];
+					break;
 			}
 			return task;
 		},

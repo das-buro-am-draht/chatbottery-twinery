@@ -9,28 +9,51 @@ module.exports = Vue.extend({
 			type: Object,
 			required: true,
 		},
+		story: {
+			type: Object,
+			required: false,
+		},
 	},
 
 	data: () => ({
 		selection: -1,
+		passages: null,
 	}),
+
+	ready() {
+		if (this.story) {
+			this.passages = this.story.passages.map((passage) => passage.name).sort();
+		}
+	},
 
 	methods: {
 		drag(index, event) {
-			event.dataTransfer.setData("text/plain", index);
+			const data = [this._uid, index].join();
+			event.dataTransfer.setData('cb/ui-button', data);
 		},		
+		dragenter(event) {
+			if (event.dataTransfer.types.includes('cb/ui-button')) {
+				event.preventDefault(); // is allowed
+			}
+		},
 		drop(index, event) {
 			const toIdx = index;
-			const fromIdx = parseInt(event.dataTransfer.getData("text/plain"));
-			event.dataTransfer.clearData("text/plain");
-			
-			const insertIdx = toIdx > fromIdx ? toIdx + 1 : toIdx;
-			this.task.buttons.splice(insertIdx, 0, this.task.buttons[fromIdx]);
+			const [_uid, ix] = event.dataTransfer.getData('cb/ui-button').split(',');
+			event.dataTransfer.clearData('cb/ui-button');
+			if (parseInt(_uid) !== this._uid) {
+				return; // don't allow other components
+			}
+			const fromIdx = parseInt(ix);
+			if (!isNaN(fromIdx) && toIdx !== fromIdx && fromIdx >= 0 && fromIdx < this.task.buttons.length) {
+				const insertIdx = toIdx > fromIdx ? toIdx + 1 : toIdx;
+				this.task.buttons.splice(insertIdx, 0, this.task.buttons[fromIdx]);
 
-			const removeIdx = toIdx > fromIdx ? fromIdx : fromIdx + 1;
-			this.task.buttons.splice(removeIdx, 1);
+				const removeIdx = toIdx > fromIdx ? fromIdx : fromIdx + 1;
+				this.task.buttons.splice(removeIdx, 1);
 
-			this.$dispatch('gui-changed');
+				this.$dispatch('gui-changed');
+				this.setSelection(this.selection);
+			}
 		},
 		setSelection(index) {
 			this.selection = index;
