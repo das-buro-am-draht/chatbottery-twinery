@@ -5,8 +5,23 @@ e.g. those pointing to other passages in a story, not to an external web site.
 
 "use strict";
 
+const extractLinks = (regexp, text) => {
+	let m, match = [];
+	while (m = regexp.exec(text)) {
+    match.push(m[1].trim());
+  }
+  return match;  
+}
+
+const extractGoToLinkTags = (text) => 
+	extractLinks(/<goto[^>]+\bpassage="(.*)"[^>]*>/g, text);
+
 /* The top level regular expression to catch links -- i.e. [[link]]. */
 const extractLinkTags = (text) => text.match(/\[\[.*?\]\]/g) || [];
+
+const extractActLinkTags = (text) => extractLinks(/<act.*>([^<]*)<\/act>/g, text);
+
+const extractBtnLinkTags = (text) => extractLinks(/<btn.*>([^<]*)<\/btn>/g, text);
 
 /* Links _not_ starting with a protocol, e.g. abcd://. */
 const internalLinks = (link) => !/^\w+:\/\/\/?\w/i.test(link);
@@ -91,4 +106,7 @@ module.exports = {
 	nonEmptyLinks,
 	internalLinks,
 	extractLinkTags,
+	extractGoToLinkTags,
+	extractActLinkTags,
+	extractBtnLinkTags,
 };

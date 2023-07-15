@@ -1,18 +1,30 @@
 <div class="passageUI">
 	<div class="passageUI-tasks" v-el:tasks>
-		<div class="passageUI-item" v-for="task in gui" track-by="$index" draggable="true" @dragstart="drag($index, $event)" @drop="drop($index, $event)">
-			<div class="passageUI-item--header">
-				<button type="button" class="passageUI-item--props"></button>
-				<h3 class="passageUI-item--caption">{{ caption(task) }}</h3>
-				<button type="button" class="passageUI-item--remove" @click="onRemove($index)" title="{{'Remove entry' | say}}"></button>
+		<div :class="['passageUI-task', 'task-' + task.type]" v-for="task in gui" track-by="$index" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)" @click="onTaskClicked($index)">
+			<div class="passageUI-task-header">
+				<div class="passageUI-task-ctrl left">
+					<button type="button" class="passageUI-task-collapse" @click.stop="toggleCollapse($index)" title="{{ 'Expand / Collapse' | say }}"></button>
+					<button type="button" class="passageUI-task-props"></button>
+				</div>
+				<h3 class="passageUI-task-caption">{{ caption(task) }}</h3>
+				<div class="passageUI-task-ctrl right">
+					<button type="button" class="passageUI-task-remove" @click="onRemove($index)" title="{{'Remove entry' | say}}"></button>
+				</div>
 			</div>
-			<ui-txt v-if="task.type === 'txt'" :task="task"></ui-txt>
-			<textarea v-else class="passageUI-item--text" rows="3" v-model="task.content" @input="onChange($index)"></textarea>
+			<task-txt v-if="task.type === 'txt'" :task="task"></task-txt>
+			<task-img v-if="task.type === 'image'" :task="task" :asset-base-url="assetBaseUrl"></task-img>
+			<task-btn v-if="task.type === 'buttons'" :task="task" :story="story"></task-btn>
+			<task-xml v-if="task.type === 'msg'" :task="task"></task-xml>
+			<task-xml v-if="task.type === 'wait'" :task="task"></task-xml>
+			<task-xml v-if="task.type === 'goto'" :task="task"></task-xml>
+			<task-xml v-if="task.type === 'carousel'" :task="task"></task-xml>
+			<task-xml v-if="task.type === 'tiles'" :task="task"></task-xml>
+			<task-xml v-if="task.type === 'chat'" :task="task"></task-xml>
 		</div>
 		<div class="passageUI-append">
 			<div></div>
-			<button type="button" title="{{ 'Add new task' | say }}">
-				<task-menu :story="story"></task-menu>
+			<button type="button" title="{{ 'Add new Task' | say }}">
+				<ui-menu :story="story"></ui-menu>
 			</button>
 			<div></div>
 		</div>
@@ -23,7 +35,7 @@
 			<button type="button" @click="closeSuggestions" title="{{ 'Close Suggestions' | say }}"></button>
 		</div>
 		<p class="passageUI-openai--text">{{openai.text}}</p>
-		<div v-if="openai.loading" class="passageUI-openai--loader" transition="fade-in-out">
+		<div v-if="openai.loading" class="passageUI-openai--loader">
 			<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
 		</div>
 		<div class="passageUI-openai--suggestions" v-for="suggestion in openai.suggestions" track-by="$index">

@@ -37,7 +37,7 @@ module.exports = Vue.extend({
 			this.edit.tag = nameFromTag(this.tag);
 			this.edit.type = typeFromTag(this.tag);
     }
-		this.$nextTick(() => this.$els.tagName.focus());
+		Vue.nextTick(() => this.$els.tagName.focus());
   },
 
 	computed: {

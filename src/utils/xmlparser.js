@@ -1,26 +1,71 @@
 // const beautify = require('xml-beautifier');
+const { 
+  removeEnclosingBrackets,
+} = require('../data/link-parser');
+const { trim } = require('./common');
+const { createTask } = require('../utils/task');
+
+const ROOT = 'root';
+
+const attributes = (attributes) => {
+  const attr = {};
+  for (let i = 0; i < attributes.length; i++) {
+    attr[attributes[i].name] = attributes[i].value;
+  }
+  return attr;
+};
+
+const xmlElement = (tag, content, attributes = null) => {
+  const attr = Object.entries(attributes || {}).map(([k,v]) => `${k}="${String(v).replace(/"/g, '\"')}"`).join(' ');
+  return `<${tag}${attr ? ' ' + attr : ''}>${content}</${tag}>\n`;
+}
+
+const button = (el) => {
+  [label, link, func] = removeEnclosingBrackets(el.innerText).split('|');
+  return {
+    attributes: attributes(el.attributes),
+    label: trim(label),
+    link: trim(link),
+    func: trim(func),
+  };
+};
 
 const parse = (text) => {
   const tasks = [];
   const xml = text.replace(/<([^\/])(\S+)([^\/]*)\/>/g, '<$1$2$3></$1$2>');
-  const doc = new DOMParser().parseFromString(xml, 'text/html');
-  const elements = Array.from(doc.body.children);
+  const doc = new DOMParser().parseFromString(`<${ROOT}>${xml}</${ROOT}>`, 'text/html');
+  const elements = Array.from(doc.querySelector(ROOT).children);
   elements.forEach((el) => {
-    const task = {
-      type: el.nodeName.toLowerCase(),
-      attributes: {},
-    }
+    const children = Array.from(el.children);
+    const task = createTask(el.nodeName.toLowerCase(), attributes(el.attributes));
 
-    for (let i = 0; i < el.attributes.length; i++) {
-      task.attributes[el.attributes[i].name] = el.attributes[i].value;
-    }
-
-    if (task.type === 'txt') {
-      const opt = Array.from(el.children).filter(el => el.tagName.toLowerCase() === 'opt');
-      if (!opt.length){
-        task.opt = [el.innerHTML.trim().replace(/<br\s*\/?>/g, '\n')];
+    let taskButtons;
+    if (task.type === 'msg') {
+      const buttons = 
+        children.filter((el) => {
+          const tagName = el.tagName.toLowerCase();
+          return tagName === 'act' || tagName === 'btn';
+        }).map((el) => ({ ...button(el), action: el.tagName.toLowerCase() === 'act' }));
+      if (buttons.length) {
+        taskButtons = {
+          ...createTask('buttons', { ...task.attributes }),
+          buttons,
+        };
+      }
+      // option texts
+      task.opt = children.filter((el) => el.tagName.toLowerCase() === 'opt').map((el) => el.innerText.trim());
+      el.innerHTML = trim(el.innerHTML.replace(/(<[^>]+>[^<]+<\/[^>]+>)|(<[^\/]+\/>)/g, ''));
+      if (el.innerText) {
+        task.opt.unshift(el.innerText);
+      }
+      if (task.attributes.hasOwnProperty('img')) {
+        task.type = 'image';
+      } else if (task.attributes.hasOwnProperty('src')) {
+        task.type = 'iframe';
+      } else if (task.attributes.hasOwnProperty('video')) {
+        task.type = 'video';
       } else {
-        task.opt = opt.map(el => el.innerHTML.trim().replace(/<br\s*\/?>/g, '\n'));
+        task.type = 'txt';
       }
     }
 
@@ -28,30 +73,69 @@ const parse = (text) => {
       .replace(/>\s*(.+)\s*</g, '>$1<')
       .replace(/>\s*</g, '>\n<');
 
-    tasks.push(task);
+    if (task.type !== 'txt' || task.opt.some((option) => !!option)) {
+      tasks.push(task);
+    }
+    if (taskButtons) {
+      tasks.push(taskButtons);
+    }
   });
   return tasks;
 };
 
+const HtmlEncode = (text) => text
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/\n/g, '<br>');
+
 const xmlValue = (task) => {
-  if (task.type === 'txt' && task.opt && task.opt.length > 0) {
-    if (task.opt.length === 1)
-      task.content = task.opt[0].replace(/\n/g, '<br>');
-    else {
-      task.content = task.opt.reduce((xml, current) => {
-        if (xml)
-          xml += '\n';
-        return xml + '<opt>' + current.replace(/\n/g, '<br>') + '</opt>';
+  let content = task.content;
+  switch (task.type) {
+    case 'txt':
+    case 'image':
+    case 'video':
+    case 'iframe':
+      const opt = (task.opt || []).filter((option) => !!option);
+      if (opt.length === 1)
+        content = HtmlEncode(opt[0]) + '\n';
+      else {
+        content = opt.reduce((xml, option) => {
+          return xml + xmlElement('opt', HtmlEncode(option));
+        }, '');
+      }
+      break;
+    case 'buttons':
+      const buttons = task.buttons.filter((button) => button.label || button.link || button.func);
+      content = buttons.reduce((xml, button) => {
+        const tag = button.action ? 'act' : 'btn';
+        let text = `${button.label || ''}|${button.link || ''}`;
+        if (button.func) {
+          text += `|${button.func}`;
+        }
+        return xml + xmlElement(tag, `[[${text}]]`, button.attributes);
       }, '');
-    }
   }
-  return task.content.replace(/\n</g, '\n   <');
+  return content;
 }
 
 const stringify = (arr) => {
   return arr.reduce((xml, task) => {
-    const attributes = Object.entries(task.attributes || {}).map(([k,v]) => `${k}="${v}"`).join(' ');
-    return xml += `<${task.type}${attributes ? ' ' + attributes : ''}>\n   ${xmlValue(task)}\n</${task.type}>\n`;
+    let type = task.type;
+    switch (type) {
+      case 'txt':
+      case 'buttons':
+      case 'image':
+      case 'video':
+      case 'iframe':
+        type = 'msg';
+        break;
+    }
+    let value = xmlValue(task).replace(/\n</g, '\n   <');
+    if (value) {
+      value = '\n   ' + value.replace(/\s+$/, '') + '\n';
+    }
+    return xml + xmlElement(type, value, task.attributes);
   }, '');
 };
 

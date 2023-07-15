@@ -21,7 +21,7 @@ const placeholders = {
   phrase: '%PHRASE%',
 }
 
-const suggestions = (params, placeholder, text) => {
+const suggestions = (params, placeholder, text, delimiter) => {
   const placeholders = { [placeholder]: text };
   const data = JSON.parse(params);
   if (data.messages && data.messages.length > 0) {
@@ -37,7 +37,7 @@ const suggestions = (params, placeholder, text) => {
     if (response.choices) {
       response.choices.forEach(choice => {
         if (choice.message && typeof choice.message.content === 'string') {
-          choice.message.content.split(/[\n]/).forEach(text => {
+          choice.message.content.split(new RegExp(`[${delimiter}]`)).forEach(text => {
             const suggestion = text.replace(/^[\n\r\s-\d\.\)]+/, '').replace(/[\n\r\s]+$/, '');
             if (suggestion) {
               suggestions.push(suggestion);
@@ -53,6 +53,6 @@ const suggestions = (params, placeholder, text) => {
 module.exports = { 
   openai, 
   placeholders,
-  tagSuggestions: (params, text) => suggestions(params, placeholders.tag, text), 
-  phraseSuggestions: (params, text) => suggestions(params, placeholders.phrase, text), 
+  tagSuggestions: (params, text, delimiter = ',\n') => suggestions(params, placeholders.tag, text, delimiter), 
+  phraseSuggestions: (params, text, delimiter = '\n') => suggestions(params, placeholders.phrase, text, delimiter), 
 };

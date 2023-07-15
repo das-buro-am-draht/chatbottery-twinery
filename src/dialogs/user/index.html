@@ -1,4 +1,4 @@
-<modal-dialog id="userModal" :origin="origin" v-ref:modal @click="onDialogClicked($event)">
+<modal-dialog id="userModal" :origin="origin" :can-widen="true" v-ref:modal @click="onDialogClicked($event)">
 	<span slot="title">{{ 'User data' | say }}</span>
 	<!-- <p>{{ 'Enter Field Names without leading \'$\'' | say }}</p> -->
 	<div class="user__row">
