@@ -3,6 +3,7 @@ const {
   removeEnclosingBrackets,
 } = require('../data/link-parser');
 const { trim } = require('./common');
+const { createTask } = require('../utils/task');
 
 const ROOT = 'root';
 
@@ -36,11 +37,9 @@ const parse = (text) => {
   const elements = Array.from(doc.querySelector(ROOT).children);
   elements.forEach((el) => {
     const children = Array.from(el.children);
-    const task = {
-      type: el.nodeName.toLowerCase(),
-      attributes: attributes(el.attributes),
-    }
+    const task = createTask(el.nodeName.toLowerCase(), attributes(el.attributes));
 
+    let taskButtons;
     if (task.type === 'msg') {
       const buttons = 
         children.filter((el) => {
@@ -48,25 +47,25 @@ const parse = (text) => {
           return tagName === 'act' || tagName === 'btn';
         }).map((el) => ({ ...button(el), action: el.tagName.toLowerCase() === 'act' }));
       if (buttons.length) {
-        tasks.push({
-          type: 'buttons',
-          attributes: { ...task.attributes },
+        taskButtons = {
+          ...createTask('buttons', { ...task.attributes }),
           buttons,
-        });
-        el.innerText = '';
+        };
       }
-
-      const opt = children.filter((el) => el.tagName.toLowerCase() === 'opt').map((el) => el.innerText.trim());
-      if (!opt.length) {
-        const text = el.innerText.trim();
-        if (text) {
-          opt.push(text);
-        }
+      // option texts
+      task.opt = children.filter((el) => el.tagName.toLowerCase() === 'opt').map((el) => el.innerText.trim());
+      el.innerHTML = trim(el.innerHTML.replace(/(<[^>]+>[^<]+<\/[^>]+>)|(<[^\/]+\/>)/g, ''));
+      if (el.innerText) {
+        task.opt.unshift(el.innerText);
       }
-      task.opt = opt;
-      task.type = 'txt';
       if (task.attributes.hasOwnProperty('img')) {
         task.type = 'image';
+      } else if (task.attributes.hasOwnProperty('src')) {
+        task.type = 'iframe';
+      } else if (task.attributes.hasOwnProperty('video')) {
+        task.type = 'video';
+      } else {
+        task.type = 'txt';
       }
     }
 
@@ -76,6 +75,9 @@ const parse = (text) => {
 
     if (task.type !== 'txt' || task.opt.some((option) => !!option)) {
       tasks.push(task);
+    }
+    if (taskButtons) {
+      tasks.push(taskButtons);
     }
   });
   return tasks;
@@ -92,6 +94,8 @@ const xmlValue = (task) => {
   switch (task.type) {
     case 'txt':
     case 'image':
+    case 'video':
+    case 'iframe':
       const opt = (task.opt || []).filter((option) => !!option);
       if (opt.length === 1)
         content = HtmlEncode(opt[0]) + '\n';
@@ -119,9 +123,11 @@ const stringify = (arr) => {
   return arr.reduce((xml, task) => {
     let type = task.type;
     switch (type) {
-      case 'buttons':
       case 'txt':
+      case 'buttons':
       case 'image':
+      case 'video':
+      case 'iframe':
         type = 'msg';
         break;
     }

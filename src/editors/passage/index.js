@@ -12,6 +12,7 @@ const { loadFormat } = require('../../data/actions/story-format');
 const { passageDefaults } = require('../../data/store/story');
 const SettingsDialog = require('./settings');
 const notify = require('../../ui/notify');
+const { createTask } = require('../../utils/task');
 
 require('codemirror/addon/display/placeholder');
 require('codemirror/addon/hint/show-hint');
@@ -39,7 +40,7 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
-		this.toggleMode();
+		// this.toggleMode();
 		
 		this.userPassageName = this.passage.name;
 
@@ -277,26 +278,6 @@ module.exports = Vue.extend({
 			this.$refs.codemirror.$cm.setValue(xml);
 			this.$refs.codemirror.$el.dispatchEvent(new Event('change'));
 		},
-
-		createTask(type) {
-			const task = {
-				type,
-				attributes: {},
-				content: '',
-			};
-			switch(type) {
-				case 'txt':
-					task.opt = [''];
-					break;
-				case 'image':
-					task.opt = [];
-					break;
-				case 'buttons':
-					task.buttons = [];
-					break;
-			}
-			return task;
-		},
 	},
 
 	events: {
@@ -306,7 +287,7 @@ module.exports = Vue.extend({
 
 		'gui-append'(type) {
 			const index = this.gui.length;
-			const task = this.createTask(type);
+			const task = createTask(type);
 			this.gui.push(task);
 			this.serialize();
 			Vue.nextTick(() => {
