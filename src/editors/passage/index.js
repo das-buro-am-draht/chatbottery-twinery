@@ -12,6 +12,7 @@ const { loadFormat } = require('../../data/actions/story-format');
 const { passageDefaults } = require('../../data/store/story');
 const SettingsDialog = require('./settings');
 const notify = require('../../ui/notify');
+const { createTask } = require('../../utils/task');
 
 require('codemirror/addon/display/placeholder');
 require('codemirror/addon/hint/show-hint');
@@ -39,6 +40,8 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
+		// this.toggleMode();
+		
 		this.userPassageName = this.passage.name;
 
 		/* Update the window title. */
@@ -247,16 +250,15 @@ module.exports = Vue.extend({
 		},
 
 		toggleMode() {
-			if (!this.gui) {
+			if (this.gui) {
+				this.gui = null;
+				Vue.nextTick(() => this.$refs.codemirror.$cm.refresh());
+			} else {
 				try {
 					this.gui = parse(this.passage.text);
 				} catch (e) {
 					notify(e.message, 'danger');
-					return;
 				}
-			} else {
-				this.gui = null;
-				Vue.nextTick(() => this.$refs.codemirror.$cm.refresh());
 			}
 		},
 
@@ -275,7 +277,7 @@ module.exports = Vue.extend({
 			const xml = stringify(this.gui);
 			this.$refs.codemirror.$cm.setValue(xml);
 			this.$refs.codemirror.$el.dispatchEvent(new Event('change'));
-		}
+		},
 	},
 
 	events: {
@@ -285,23 +287,14 @@ module.exports = Vue.extend({
 
 		'gui-append'(type) {
 			const index = this.gui.length;
-			const task = {
-				type,
-				attributes: {},
-				content: '',
-			};
-			switch(type) {
-				case 'txt':
-					task.opt = [];
-					break;
-			}
+			const task = createTask(type);
 			this.gui.push(task);
 			this.serialize();
-			this.$nextTick(() => {
+			Vue.nextTick(() => {
 				if (this.$els.uiView) {
-					const elements = this.$els.uiView.getElementsByClassName('passageUI-item');
-					if (elements[index]) {
-						elements[index].scrollIntoView({behavior: 'smooth'});
+					const element = this.$els.uiView.getElementsByClassName('passageUI-task')[index];
+					if (element) {
+						element.scrollIntoView({behavior: 'smooth'});
 					}
 				}
 			});
@@ -313,7 +306,7 @@ module.exports = Vue.extend({
 		'modal-dialog': require('../../ui/modal-dialog'),
 		'tag-editor': require('./tag-editor'),
 		'ui-view': require('./ui-view'),
-		'task-menu': require('./ui-view/task-menu'),
+		'ui-menu': require('./ui-view/menu'),
 	},
 
 	vuex: {

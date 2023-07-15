@@ -1,7 +1,13 @@
+@import '../../../common/colors.less';
+
 .passageUI {
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
+  input,textarea:not(&-xml-text) {
+    font-family: Roboto, serif;
+    background-color: #fff;
+  }
   &-tasks {
     flex: 1;
   }
@@ -28,7 +34,7 @@
       }
     }
     &--text {
-      background-color: blue;
+      background-color: @color-suggestions;
       color: white;
       padding: 10px;
       margin: 5px 0;     
@@ -43,7 +49,7 @@
       flex-direction: row;
       align-items: center;
       border-radius: 10px;
-      background: blue;
+      background: @color-suggestions;
       margin: 5px 0;
     }
     &--add {
@@ -61,45 +67,51 @@
       margin: 0;
       padding: 5px;
       background-color: white;
-      border: solid 2px blue;
+      border: solid 2px @color-suggestions;
       border-radius: 0 10px 10px 0;
     }
   }
-  &-item {
-    background-color: antiquewhite;
+  &-task {
+    background-color: #dde;
     border: 1px solid;
     border-style: outset;
     padding: 10px;
     margin-bottom: 10px;
-    &--header {
-      display: flex;
-      flex-direction: row;
+    &-header {
+      position: relative;
+      min-height: 24px;
+      button {
+        width: 20px;
+        height: 20px;
+        padding: 0;
+      }
     }
-    &--props {
-      flex: 0 0 20px;
-      background: center / contain no-repeat url('../../../common/img/wrench.svg') ;
-      height: 20px;
-      padding: 0;
+    &-ctrl {
+      position: absolute;
+      &.left {
+        top: 0;
+        left: 0;
+      }
+      &.right {
+        top: 0;
+        right: 0;
+      }
     }
-    &--caption {
-      flex: 1;
-      margin: 0 5px 5px;
+    &-collapse {
+      background: center / contain no-repeat url('../../../common/img/caret-up.svg');
+    }
+    &.collapsed &-collapse {
+      background: center / contain no-repeat url('../../../common/img/caret-down.svg');
+    }
+    &-props {
+      background: center / contain no-repeat url('../../../common/img/wrench.svg');
+    }
+    &-caption {
+      margin: 0 50px 5px;
       text-align: center;
     }
-    &--remove {
-      flex: 0 0 20px;
-      background: center / contain no-repeat url('../../../common/img/delete.svg') ;
-      height: 20px;
-      padding: 0;
-    }
-    &--attr {
-      margin: 5px 0;
-    }
-    &--text {
-      width: 100%;
-      resize: vertical;
-      background-color: #fff;
-      font: 100% "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    &-remove {
+      background: center / contain no-repeat url('../../../common/img/delete.svg');
     }
   }
   &-append {

@@ -1,20 +1,28 @@
 @import '../../../common/colors.less';
 @import '../../../common/metrics.less';
 
-.tag-suggestion {
-  padding: 0 0 0.5rem 1rem;
-  background-color: #e0e0e0;
-  border-style: outset;
-
-  &-header {
-    display: flex;
-    justify-content: space-between;
+.passageTags {
+  &-list {
+    max-height: 12.5em;
+    overflow-y: auto;
   }
-  &-items {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    padding-right: 1rem;
+  &-suggestion {
+    padding: 0 0 0.5rem 1rem;
+    background-color: #e0e0e0;
+    border-style: outset;
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      h1,h2,h3 {
+        margin: 5px 0;
+      }
+    }
+    &-items {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+      padding-right: 1rem;
+    }
   }
 }
 
