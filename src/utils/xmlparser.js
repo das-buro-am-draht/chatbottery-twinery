@@ -21,7 +21,7 @@ const xmlElement = (tag, content, attributes = null) => {
 }
 
 const button = (el) => {
-  [label, link, func] = removeEnclosingBrackets(el.innerText).split('|');
+  [label, link, func] = removeEnclosingBrackets(el.innerHTML).split('|');
   return {
     attributes: attributes(el.attributes),
     label: trim(label),
@@ -53,10 +53,10 @@ const parse = (text) => {
         };
       }
       // option texts
-      task.opt = children.filter((el) => el.tagName.toLowerCase() === 'opt').map((el) => el.innerText.trim());
-      el.innerHTML = trim(el.innerHTML.replace(/(<[^>]+>[^<]+<\/[^>]+>)|(<[^\/]+\/>)/g, ''));
-      if (el.innerText) {
-        task.opt.unshift(el.innerText);
+      task.opt = children.filter((el) => el.tagName.toLowerCase() === 'opt').map((el) => el.innerHTML.trim());
+      el.innerHTML = trim(el.innerHTML.replace(/(<(opt|act|btn)[^>]*>[^<]+<\/(opt|act|btn)>)|(<(opt|act|btn)[^\/]*\/>)/g, ''));
+      if (el.innerHTML) {
+        task.opt.unshift(el.innerHTML);
       }
       if (task.attributes.hasOwnProperty('img')) {
         task.type = 'image';
@@ -83,11 +83,11 @@ const parse = (text) => {
   return tasks;
 };
 
-const HtmlEncode = (text) => text
+const HtmlEncode = (text) => text /*
   .replace(/&/g, '&amp;')
   .replace(/</g, '&lt;')
   .replace(/>/g, '&gt;')
-  .replace(/\n/g, '<br>');
+  .replace(/\n/g, '<br>')*/;
 
 const xmlValue = (task) => {
   let content = task.content;

@@ -1,0 +1,15 @@
+<div class="passageUI-iframe">
+	<div class="passageUI-iframe-content">
+		<div class="passageUI-iframe-placeholder"></div>
+		<div class="passageUI-iframe-input">
+			<div class="passageUI-iframe-input-row">
+				<label for="iframeUrl">{{ 'URL' | say }}:</label>
+				<input type="text" name="iframeUrl" v-model="iframe" @input="onChangeUrl($event)" required>
+			</div>
+			<div class="passageUI-iframe-input-row">
+				<label for="height">{{ 'Height' | say }}:</label>
+				<input type="text" name="height" v-model="height" @input="onChangeHeight($event)" required>
+			</div>
+		</div>
+	</div>
+</div>
