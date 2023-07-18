@@ -21,7 +21,7 @@ const xmlElement = (tag, content, attributes = null) => {
 }
 
 const button = (el) => {
-  [label, link, func] = removeEnclosingBrackets(el.innerHTML).split('|');
+  [label, link, func] = removeEnclosingBrackets(trim(el.innerHTML)).split('|');
   return {
     attributes: attributes(el.attributes),
     label: trim(label),
