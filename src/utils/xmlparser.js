@@ -83,11 +83,11 @@ const parse = (text) => {
   return tasks;
 };
 
-const HtmlEncode = (text) => text /*
+const HtmlEncode = (text) => text
   .replace(/&/g, '&amp;')
   .replace(/</g, '&lt;')
   .replace(/>/g, '&gt;')
-  .replace(/\n/g, '<br>')*/;
+  .replace(/\n/g, '<br>');
 
 const xmlValue = (task) => {
   let content = task.content;
@@ -98,10 +98,10 @@ const xmlValue = (task) => {
     case 'iframe':
       const opt = (task.opt || []).filter((option) => !!option);
       if (opt.length === 1)
-        content = HtmlEncode(opt[0]) + '\n';
+        content = opt[0] + '\n'; // HtmlEncode(opt[0]) + '\n';
       else {
         content = opt.reduce((xml, option) => {
-          return xml + xmlElement('opt', HtmlEncode(option));
+          return xml + xmlElement('opt', option); // HtmlEncode(option));
         }, '');
       }
       break;
