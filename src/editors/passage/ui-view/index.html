@@ -12,8 +12,10 @@
 				</div>
 			</div>
 			<task-txt v-if="task.type === 'txt'" :task="task"></task-txt>
-			<task-img v-if="task.type === 'image'" :task="task" :asset-base-url="assetBaseUrl"></task-img>
-			<task-btn v-if="task.type === 'buttons'" :task="task" :story="story"></task-btn>
+			<task-image v-if="task.type === 'image'" :task="task" :asset-base-url="assetBaseUrl"></task-image>
+			<task-video v-if="task.type === 'video'" :task="task"></task-video>
+			<task-iframe v-if="task.type === 'iframe'" :task="task"></task-iframe>
+			<task-buttons v-if="task.type === 'buttons'" :task="task" :story="story"></task-buttons>
 			<task-xml v-if="task.type === 'msg'" :task="task"></task-xml>
 			<task-xml v-if="task.type === 'wait'" :task="task"></task-xml>
 			<task-xml v-if="task.type === 'goto'" :task="task"></task-xml>
