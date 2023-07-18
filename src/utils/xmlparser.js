@@ -54,7 +54,7 @@ const parse = (text) => {
       }
       // option texts
       task.opt = children.filter((el) => el.tagName.toLowerCase() === 'opt').map((el) => el.innerHTML.trim());
-      el.innerHTML = trim(el.innerHTML.replace(/(<(opt|act|btn)[^>]*>[^<]+<\/(opt|act|btn)>)|(<(opt|act|btn)[^\/]*\/>)/g, ''));
+      el.innerHTML = trim(el.innerHTML.replace(/(<(opt|act|btn)[^>]*>.*<\/(opt|act|btn)>)|(<(opt|act|btn)[^\/]*\/>)/g, ''));
       if (el.innerHTML) {
         task.opt.unshift(el.innerHTML);
       }
