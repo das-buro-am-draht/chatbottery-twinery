@@ -180,7 +180,9 @@ module.exports = Vue.extend({
 		'ui-menu': require('./menu'),
 		'task-xml': require('./xml'),
 		'task-txt': require('./txt'),
-		'task-img': require('./image'),
-		'task-btn': require('./buttons'),
+		'task-image': require('./image'),
+		'task-video': require('./video'),
+		'task-iframe': require('./iframe'),
+		'task-buttons': require('./buttons'),
 	},
 });
