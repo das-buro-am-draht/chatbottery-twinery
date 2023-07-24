@@ -134,4 +134,31 @@
       background-position: center;
     }
   }
+  &-content {
+    display: flex;
+    align-items: flex-start;
+  }
+  &-input {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    &-row {
+      flex: 1;
+      display: flex;
+      // margin: 5px 0;
+      label {
+        flex: 0 1 55px;
+        margin: 6px 10px 0 20px;
+      }
+      input {
+        flex: 1 1 auto;
+        margin: 0 0 5px 4px;
+      }
+    }
+  }
+  input {
+    border: #888 solid 1px;
+    border-radius: 3px;
+    padding: 5px;
+  }
 }

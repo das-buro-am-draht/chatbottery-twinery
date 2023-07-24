@@ -1,13 +1,4 @@
 .passageUI-iframe {
-  &-content {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    label {
-      flex: 0 1 55px;
-      margin: 8px 10px 0 20px;
-    }
-  }
   &-placeholder {
     flex: 0 0 100px;
     height: 90px;
@@ -17,20 +8,8 @@
     background-position: center;
     background-size: contain;
   }
-  &-input {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    &-row {
-      display: flex;
-      margin: 5px 0;
-      input {
-        flex: 1 1 auto;
-        &[name="height"] {
-          max-width: 70px;
-        }
-      }
-    }
+  input[name="height"] {
+    max-width: 70px;
   }
 }
 
