@@ -1,8 +1,14 @@
 <div class="passageUI-image">
-	<div class="passageUI-image-content">
-		<img :src="imageUrl">
-		<label for="imageUrl">{{ 'Image URL' | say }}:</label>
-		<input type="text" name="imageUrl" v-model="image" @input="onChange($event)" required>
+	<div class="passageUI-content">
+		<div class="passageUI-placeholder">
+			<img :src="imageUrl">
+		</div>
+		<div class="passageUI-input">
+			<div class="passageUI-input-row">
+				<label for="imageUrl">{{ 'Image URL' | say }}:</label>
+				<input type="text" name="imageUrl" v-model="image" @input="onChange($event)" required>
+			</div>
+		</div>
 	</div>
 	<task-options :task="task" add-label="Add Image Text"></task-options>
 </div>

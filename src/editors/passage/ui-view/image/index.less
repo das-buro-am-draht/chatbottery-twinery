@@ -1,29 +1,12 @@
 .passageUI-image {
-  &-content {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+  .passageUI-placeholder {
+    background-image: url("../../../../common/img/placeholder-image.png");
     img {
       max-width: 150px;
       height: 100%;
-      // border-radius: 10px;
-      // background-image: url("../../../../common/img/placeholder-image.png");
-      // background-repeat: no-repeat;
-      // background-position: center;
-      // background-size: contain;
-    }
-    label {
-      margin: 8px 10px 0 20px;
-    }
-    input {
-      flex: 1;
-      // border-style: inset;
     }
   }
-}
-
-.passageUI-task.collapsed .passageUI-image-content {
-  img {
+  &.collapsed img {
     width: auto;
     height: 33px;
   }
