@@ -17,7 +17,7 @@
 			<task-iframe v-if="task.type === 'iframe'" :task="task"></task-iframe>
 			<task-buttons v-if="task.type === 'buttons'" :task="task" :story="story"></task-buttons>
 			<task-xml v-if="task.type === 'msg'" :task="task"></task-xml>
-			<task-xml v-if="task.type === 'wait'" :task="task"></task-xml>
+			<task-wait v-if="task.type === 'wait'" :task="task" :story="story"></task-wait>
 			<task-xml v-if="task.type === 'goto'" :task="task"></task-xml>
 			<task-xml v-if="task.type === 'carousel'" :task="task"></task-xml>
 			<task-xml v-if="task.type === 'tiles'" :task="task"></task-xml>
