@@ -7,7 +7,7 @@ module.exports = Vue.extend({
 	props: ['task'],
 
 	ready() {
-		if (!this.task.length) {
+		if (this.task.opt && this.task.opt.length === 0) {
 			this.$refs.options.addNew();
 		}
 	},

@@ -22,7 +22,7 @@ module.exports = Vue.extend({
 
 	ready() {
 		this.load();
-		/* Vue.$nextTick(() => {
+		/* Vue.nextTick(() => {
 			Array.from(this.$el.children).forEach(child => {
 				const ta = child.getElementsByTagName('textarea');
 				if (ta && ta.length) {
