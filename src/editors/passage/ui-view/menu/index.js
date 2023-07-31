@@ -33,8 +33,34 @@ module.exports = Vue.extend({
 		label: (type) => label(type),
 
 		addNew(type) {
-			this.$dispatch('gui-append', type);
-		}
+			this.$parent.$parent.$broadcast('gui-append', type);
+		},
+		image(type) {
+			switch (type) {
+				default:
+					return require('../../../../common/img/element-textmessage.svg');
+				case 'buttons':
+					return require('../../../../common/img/element-buttons.svg');
+				case 'image':
+					return require('../../../../common/img/element-image.svg');
+				case 'video':
+					return require('../../../../common/img/element-video.svg');
+				case 'iframe':
+					return require('../../../../common/img/element-iframepdf.svg');
+				case 'carousel':
+					return require('../../../../common/img/element-carousel.svg');
+				case 'tiles':
+					return require('../../../../common/img/element-tiles.svg');
+				case 'wait':
+					return require('../../../../common/img/element-record-variable.svg');
+				case 'eval':
+					return require('../../../../common/img/element-set-variable.svg');
+				case 'goto':
+					return require('../../../../common/img/element-goto.svg');
+				case 'chat':
+					return require('../../../../common/img/livechat-icon.svg');
+			}
+		},
 	},
 
 	components: {

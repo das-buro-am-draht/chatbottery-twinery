@@ -1,40 +1,10 @@
 .passageUI-iframe {
-  &-content {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    label {
-      flex: 0 1 55px;
-      margin: 8px 10px 0 20px;
+  .passageUI-placeholder {
+    img {
+      width: 100%;
     }
   }
-  &-placeholder {
-    flex: 0 0 100px;
-    height: 90px;
-    border-radius: 10px;
-    background-image: url("../../../../common/img/placeholder-iframe.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+  input[name="height"] {
+    max-width: 70px;
   }
-  &-input {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    &-row {
-      display: flex;
-      margin: 5px 0;
-      input {
-        flex: 1 1 auto;
-        &[name="height"] {
-          max-width: 70px;
-        }
-      }
-    }
-  }
-}
-
-.passageUI-task.collapsed .passageUI-iframe-placeholder {
-  flex: 0 0 50px;
-  height: 50px;
 }

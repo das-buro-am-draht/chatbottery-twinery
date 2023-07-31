@@ -191,6 +191,8 @@ const story = module.exports = {
 
 				/* Set defaults if any are missing. */
 
+				newPassage.selected = false;
+
 				Object.keys(passageDefaults).forEach(key => {
 					if (newPassage[key] === undefined) {
 						newPassage[key] = passageDefaults[key];

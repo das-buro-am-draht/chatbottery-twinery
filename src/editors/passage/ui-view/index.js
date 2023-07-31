@@ -4,6 +4,7 @@ const locale = require('../../../locale');
 const notify = require('../../../ui/notify');
 const { label } = require('../../../utils/task');
 const { phraseSuggestions } = require('../../../common/app/openai');
+const { createTask } = require('../../../utils/task');
 
 require('./index.less');
 
@@ -12,7 +13,7 @@ const CLASS_COLLAPSED = 'collapsed';
 module.exports = Vue.extend({
 	template: require('./index.html'),
 	props: {
-		gui: {
+		tasks: {
 			type: Array,
 			required: true,
 		},
@@ -91,7 +92,7 @@ module.exports = Vue.extend({
 			return isEmpty;
 		},
 		onRemove(index) {
-			Promise.resolve(this.gui[index]).then((task) => {
+			Promise.resolve(this.tasks[index]).then((task) => {
 				if (!this.isEmpty(task)) {
 					return confirm({
 						message: locale.say('Are you sure to delete &ldquo;%1$s&rdquo;?', this.caption(task)),
@@ -100,7 +101,7 @@ module.exports = Vue.extend({
 					});
 				}
 			}).then(() => {
-				this.gui.splice(index, 1);
+				this.tasks.splice(index, 1);
 				this.$dispatch('gui-changed');
 			});
 		},		
@@ -116,14 +117,16 @@ module.exports = Vue.extend({
 			const toIdx = index;
 			const fromIdx = parseInt(event.dataTransfer.getData('cb/ui-task'), 10);
 			event.dataTransfer.clearData('cb/ui-task');
-			if (toIdx !== fromIdx && fromIdx >= 0 && fromIdx < this.gui.length) {
+			if (toIdx !== fromIdx && fromIdx >= 0 && fromIdx < this.tasks.length) {
 				const insertIdx = toIdx > fromIdx ? toIdx + 1 : toIdx;
-				this.gui.splice(insertIdx, 0, this.gui[fromIdx]);
+				this.tasks.splice(insertIdx, 0, this.tasks[fromIdx]);
 
 				const removeIdx = toIdx > fromIdx ? fromIdx : fromIdx + 1;
-				this.gui.splice(removeIdx, 1);
+				this.tasks.splice(removeIdx, 1);
 
 				this.$dispatch('gui-changed');
+				
+				this.onTaskClicked(index);
 			}
 		},
 		closeSuggestions() {
@@ -140,6 +143,13 @@ module.exports = Vue.extend({
 	},
 
 	events: {
+		'gui-append'(type) {
+			const index = this.tasks.length;
+			const task = createTask(type);
+			this.tasks.push(task);
+			this.$dispatch('gui-changed');
+			Vue.nextTick(() => this.onTaskClicked(index));
+		},
 		'openai-suggest'(component, text) {
 			this.openai = {
 				text, 
@@ -180,6 +190,7 @@ module.exports = Vue.extend({
 		'ui-menu': require('./menu'),
 		'task-xml': require('./xml'),
 		'task-txt': require('./txt'),
+		'task-wait': require('./wait'),
 		'task-image': require('./image'),
 		'task-video': require('./video'),
 		'task-iframe': require('./iframe'),

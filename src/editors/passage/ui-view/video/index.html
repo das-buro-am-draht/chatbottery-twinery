@@ -1,7 +1,13 @@
 <div class="passageUI-video">
-	<div class="passageUI-video-content">
-		<div class="passageUI-video-placeholder"></div>
-		<label for="videoUrl">{{ 'Video URL' | say }}:</label>
-		<input type="text" name="videoUrl" v-model="video" @input="onChange($event)" required>
+	<div class="passageUI-content">
+		<div class="passageUI-placeholder">
+			<img src="../../../../common/img/element-video.svg">
+		</div>		
+		<div class="passageUI-input">
+			<div class="passageUI-input-row">
+				<label for="videoUrl">{{ 'Video URL' | say }}:</label>
+				<input type="text" name="videoUrl" v-model="video" @input="onChange($event)" required>
+			</div>
+		</div>
 	</div>
 </div>

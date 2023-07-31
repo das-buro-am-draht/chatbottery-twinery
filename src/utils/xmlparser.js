@@ -52,6 +52,14 @@ const parse = (text) => {
           buttons,
         };
       }
+      if (task.attributes.eval) {
+        tasks.push({
+          type: 'eval',
+          content: '',
+          attributes: { ...task.attributes },
+        });
+        delete task.attributes.eval;
+      }
       // option texts
       task.opt = children.filter((el) => el.tagName.toLowerCase() === 'opt').map((el) => el.innerHTML.trim());
       el.innerHTML = trim(el.innerHTML.replace(/(<(opt|act|btn)[^>]*>[\s\S]*<\/(opt|act|btn)>)|(<(opt|act|btn)[^\/]*\/>)/g, ''));
@@ -124,6 +132,7 @@ const stringify = (arr) => {
     let type = task.type;
     switch (type) {
       case 'txt':
+      case 'eval':
       case 'buttons':
       case 'image':
       case 'video':

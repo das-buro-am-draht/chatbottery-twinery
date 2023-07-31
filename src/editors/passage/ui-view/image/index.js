@@ -22,20 +22,34 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
-		this.image = this.task.attributes['img'] || '';
+		this.load();
 	},
 
-	computed: {
-		imageUrl() {
-			return !this.image || isValidUrl(this.image) ? this.image : this.assetBaseUrl + this.image;
+	watch: {
+		'task.attributes.img'() {
+			this.load();
 		},
 	},
 
 	methods: {
+		load() {
+			const image = this.task.attributes['img'] || '';
+			if (image !== this.image) {
+				this.setImage(this.image = image);
+			}
+		},
+		setImage(image) {
+			const imageUrl = !image || isValidUrl(image) ? image : this.assetBaseUrl + image;
+			this.$els.image.src = imageUrl;
+		},
 		onChange(event) {
+			this.setImage(this.image);
 			this.task.attributes['img'] = this.image;
 			this.$dispatch('gui-changed');
 		},
+		onError(event) {
+			this.$els.image.src = require('../../../../common/img/element-image.svg');
+		}
 	},
 
 	components: {
