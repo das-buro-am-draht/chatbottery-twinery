@@ -72,7 +72,7 @@ module.exports = Vue.extend({
 					this.$els.label.focus();
 					const element = this.$els.list.children[index];
 					if (element) {
-						element.scrollIntoView({behavior: 'smooth'});
+						element.scrollIntoView({block: 'nearest', behavior: 'smooth'});
 					}
 				});
 			}

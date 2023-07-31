@@ -58,7 +58,7 @@ module.exports = Vue.extend({
 					}
 				});
 			}
-			element.scrollIntoView({behavior: 'smooth'});
+			element.scrollIntoView({block: 'nearest', behavior: 'smooth'});
 		},
 		toggleCollapse(index) {
 			this.taskElements[index].classList.toggle(CLASS_COLLAPSED);
@@ -140,16 +140,16 @@ module.exports = Vue.extend({
 				this.openai.component.$emit('openai-selected', suggestion);
 			}
 		},
-	},
-
-	events: {
-		'gui-append'(type) {
+		addTask(type) {
 			const index = this.tasks.length;
 			const task = createTask(type);
 			this.tasks.push(task);
 			this.$dispatch('gui-changed');
 			Vue.nextTick(() => this.onTaskClicked(index));
 		},
+	},
+
+	events: {
 		'openai-suggest'(component, text) {
 			this.openai = {
 				text, 
