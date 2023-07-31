@@ -33,7 +33,7 @@ module.exports = Vue.extend({
 		label: (type) => label(type),
 
 		addNew(type) {
-			this.$parent.$parent.$broadcast('gui-append', type);
+			this.$parent.addTask(type);
 		},
 		image(type) {
 			switch (type) {

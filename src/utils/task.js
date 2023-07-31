@@ -24,7 +24,7 @@ const createTask = (type, attributes = {}) => {
   };
   switch(type) {
     case 'txt':
-      task.opt = [''];
+      task.opt = [];
       break;
     case 'image':
     case 'video':
