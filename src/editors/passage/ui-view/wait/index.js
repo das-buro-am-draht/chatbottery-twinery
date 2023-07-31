@@ -22,7 +22,7 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
-		this.variable = this.task.attributes['var'] || '';
+		this.load();
 		if (this.story) {
 			this.userData = Object.entries(this.story.userData || {})
 				.filter(([k, v]) => v.type !== 'function' && v.type !== 'boolean')
@@ -33,7 +33,19 @@ module.exports = Vue.extend({
 		}
 	},
 
+	watch: {
+		'task.attributes.var'() {
+			this.load();
+		},
+	},
+
 	methods: {
+		load() {
+			const variable = this.task.attributes['var'] || '';
+			if (variable !== this.variable) {
+				this.variable = variable;
+			}
+		},
 		onChange(event) {
 			const variable = trim(this.variable);
 			if (variable) {

@@ -1,7 +1,7 @@
 <div class="passageUI-image">
 	<div class="passageUI-content">
 		<div class="passageUI-placeholder">
-			<img :src="imageUrl">
+			<img src="../../../../common/img/element-image.svg" v-el:image @error.stop.prevent="onError($event)">
 		</div>
 		<div class="passageUI-input">
 			<div class="passageUI-input-row">

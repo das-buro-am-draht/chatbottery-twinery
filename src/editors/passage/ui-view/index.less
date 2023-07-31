@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
+  // background-color: #f5f5f5;
   input,textarea:not(&-xml-text) {
     font-family: Roboto, serif;
     background-color: #fff;
@@ -75,43 +76,43 @@
     background-color: #dde;
     border: 1px solid;
     border-style: outset;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 5px 0;
+    margin: 5px 0;
     &-header {
-      position: relative;
-      min-height: 24px;
-      button {
-        width: 20px;
-        height: 20px;
+      display: flex;
+      align-items: center;
+      button,.passageUI-task-gripper {
+        flex: 0 0 30px;
+        height: 30px;
         padding: 0;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
       }
     }
-    &-ctrl {
-      position: absolute;
-      &.left {
-        top: 0;
-        left: 0;
-      }
-      &.right {
-        top: 0;
-        right: 0;
-      }
+    &-gripper {
+      cursor: grab;
+      background-image: url('../../../common/img/ui-drag.svg');
     }
     &-collapse {
-      background: center / contain no-repeat url('../../../common/img/caret-up.svg');
+      background-image: url('../../../common/img/ui-chevron-up.svg');
     }
     &.collapsed &-collapse {
-      background: center / contain no-repeat url('../../../common/img/caret-down.svg');
+      background-image: url('../../../common/img/ui-chevron-down.svg');
     }
     &-props {
-      background: center / contain no-repeat url('../../../common/img/wrench.svg');
-    }
-    &-caption {
-      margin: 0 50px 5px;
-      text-align: center;
+      background-image: url('../../../common/img/ui-settings-blank.svg');
     }
     &-remove {
-      background: center / contain no-repeat url('../../../common/img/delete.svg');
+      background-image: url('../../../common/img/ui-delete.svg');
+    }
+    &-caption {
+      flex: 1;
+      margin-left: 5px;
+      text-transform: uppercase;
+    }
+    &-container {
+      padding: 5px 10px;
     }
   }
   &-append {
@@ -139,14 +140,7 @@
     align-items: flex-start;
   }
   &-placeholder {
-    flex: 0 0 50px;
-    height: 50px;
-    // flex: 0 0 100px;
-    // height: 90px;
-    border-radius: 10px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    flex: 0 0 245px;
   }
   &-input {
     flex: 1;
@@ -171,10 +165,9 @@
     border-radius: 3px;
     padding: 5px;
   }
-  // &-task.collapsed .passageUI-content .passageUI-placeholder {
-  //   flex: 0 0 50px;
-  //   height: 50px;
-  // }
+  &-task.collapsed .passageUI-content .passageUI-placeholder {
+    flex: 0 0 123px;
+  }
   &-task.collapsed:not(.task-txt) {
     .passageUI-input,.passageUI-options,.passageUI-txt-new {
       display: none;

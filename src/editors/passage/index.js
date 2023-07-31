@@ -12,7 +12,6 @@ const { loadFormat } = require('../../data/actions/story-format');
 const { passageDefaults } = require('../../data/store/story');
 const SettingsDialog = require('./settings');
 const notify = require('../../ui/notify');
-const { createTask } = require('../../utils/task');
 
 require('codemirror/addon/display/placeholder');
 require('codemirror/addon/hint/show-hint');
@@ -40,7 +39,7 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
-		// this.toggleMode();
+		this.toggleMode();
 		
 		this.userPassageName = this.passage.name;
 
@@ -283,21 +282,6 @@ module.exports = Vue.extend({
 	events: {
 		'gui-changed'() {
 			this.serialize();
-		},
-
-		'gui-append'(type) {
-			const index = this.gui.length;
-			const task = createTask(type);
-			this.gui.push(task);
-			this.serialize();
-			Vue.nextTick(() => {
-				if (this.$els.uiView) {
-					const element = this.$els.uiView.getElementsByClassName('passageUI-task')[index];
-					if (element) {
-						element.scrollIntoView({behavior: 'smooth'});
-					}
-				}
-			});
 		},
 	},
 
