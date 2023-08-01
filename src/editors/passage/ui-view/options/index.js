@@ -77,7 +77,7 @@ module.exports = Vue.extend({
 			const length = this.options.length;
 			this.options.push({
 				text: '', 
-				modified: true,
+				modified: false,
 			});
 			Vue.nextTick(() => {
 				const item = this.$el.children[length];

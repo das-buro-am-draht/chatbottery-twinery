@@ -129,6 +129,14 @@ module.exports = Vue.extend({
 				this.onTaskClicked(index);
 			}
 		},
+		settingsImage(index) {
+			let image = 'blank';
+			if (this.tasks[index].attributes.if) {
+				image = 'red';
+			}
+			const imageUrl = require(`../../../common/img/ui-settings-${image}.svg`);
+			return `url(${imageUrl})`;
+		},
 		closeSuggestions() {
 			this.openai = null;
 			this.disable();
