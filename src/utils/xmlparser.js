@@ -143,6 +143,8 @@ const stringify = (arr) => {
     let value = xmlValue(task).replace(/\n</g, '\n   <');
     if (value) {
       value = '\n   ' + value.replace(/\s+$/, '') + '\n';
+    } else if (type === 'msg' && !Object.keys(task.attributes).length) {
+      return xml;
     }
     return xml + xmlElement(type, value, task.attributes);
   }, '');
