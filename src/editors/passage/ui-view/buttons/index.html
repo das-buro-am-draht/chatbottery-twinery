@@ -10,22 +10,22 @@
 	</div>
 	<form v-show="selection >= 0" class="passageUI-buttons-form">
 		<fieldset>
-			<div class="passageUI-buttons-label">
+			<div>
 				<label for="label">Label:</label>
 				<input type="text" name="label" v-el:label @input="onChangeLabel($event)" />
 			</div>
-			<div class="passageUI-buttons-link">
+			<div>
 				<label for="link">Link / Passage:</label>
 				<input type="text" list="passages" name="link" v-el:link @input="onChangeLink($event)" />
 				<datalist v-if="passages" id="passages">
 					<option v-for="passage in passages" :value="passage">
 				</datalist>
 			</div>
-			<div class="passageUI-buttons-func">
+			<div>
 				<label for="func">User Function:</label>
 				<input type="text" name="func" v-el:func @input="onChangeFunc($event)" />
 			</div>
-			<div class="passageUI-buttons-action">
+			<div>
 				<label for="action">Action Button:</label>
 				<input type="checkbox" name="action" v-el:action @input="onChangeAction($event)" />
 			</div>

@@ -24,18 +24,12 @@
   &-ctrl {
     flex: 0 0 30px;
     cursor: pointer;
-    background-color: #eee;
-    background-image: url("../../../../common/img/ui-delete.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
   }
   &.modified {
     border-color: #3a51fa;
-    .passageUI-option-ctrl {
-      background-color: #3a51fa;
-      background-image: url("../../../../common/img/ui-save.svg");
-    }
   }
   &-openai {
     display: inline-block;
@@ -50,21 +44,26 @@
   }
 }
 
-.passageUI-task.collapsed .passageUI-options:not(:first-child) {
-  // pointer-events: none;
-  margin-top: 0;
-  .passageUI-option {
-    margin: 0;
-    height: 10px;
-    border-top: none;
-    border-radius: 0 0 10px 10px;
-    background-color: white;
-    &-text,&-ctrl {
-      visibility: hidden;
-    }
-    &-openai {
-      height: 0;
-      visibility: hidden;
+.passageUI-task.collapsed .passageUI-opt {
+  .passageUI-txt-new {
+    display: none;
+  }
+  .passageUI-options:not(:first-child) {
+    // pointer-events: none;
+    margin-top: 0;
+    .passageUI-option {
+      margin: 0;
+      height: 10px;
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+      background-color: white;
+      &-text,&-ctrl {
+        visibility: hidden;
+      }
+      &-openai {
+        height: 0;
+        visibility: hidden;
+      }
     }
   }
 }

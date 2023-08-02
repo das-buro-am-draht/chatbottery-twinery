@@ -23,14 +23,15 @@ module.exports = Vue.extend({
 		},
 	},
 
+	data: () => ({
+		openai: null,
+		settings: 0,
+	}),
+
 	ready() {
 		Array.from(this.taskElements)
 			.forEach((element) => element.classList.add(CLASS_COLLAPSED));
 	},
-
-	data: () => ({
-		openai: null,
-	}),
 
 	computed: {
 		taskElements() {
@@ -45,6 +46,12 @@ module.exports = Vue.extend({
 	methods: {
 		isCollapsed(index) {
 			return this.taskElements[index].classList.contains(CLASS_COLLAPSED);
+		},
+		onSettings(index) {
+			this.settings ^= 1 << index;
+		},
+		onChangeSettings(event) {
+			this.$dispatch('gui-changed');
 		},
 		onTaskClicked(index) {
 			const elements = this.taskElements;
@@ -101,6 +108,7 @@ module.exports = Vue.extend({
 					});
 				}
 			}).then(() => {
+				this.settings &= ~(1 << index);
 				this.tasks.splice(index, 1);
 				this.$dispatch('gui-changed');
 			});
@@ -124,18 +132,33 @@ module.exports = Vue.extend({
 				const removeIdx = toIdx > fromIdx ? fromIdx : fromIdx + 1;
 				this.tasks.splice(removeIdx, 1);
 
+				let settings = this.settings;
+				if ((((settings & (1 << fromIdx)) >> fromIdx) ^ ((settings & (1 << toIdx)) >> toIdx)) == 1)
+				{
+					settings ^= (1 << fromIdx);
+					settings ^= (1 << toIdx);
+					this.settings = settings;
+				}
+
 				this.$dispatch('gui-changed');
 				
 				this.onTaskClicked(index);
 			}
 		},
-		settingsImage(index) {
+		settingsStyle(index) {
 			let image = 'blank';
-			if (this.tasks[index].attributes.if) {
+			let color = '#fff';
+			if (this.settings & (1 << index)) {
+				color = '#3a51fa';
+				image = 'white';
+			} else if (this.tasks[index].attributes.if) {
 				image = 'red';
 			}
 			const imageUrl = require(`../../../common/img/ui-settings-${image}.svg`);
-			return `url(${imageUrl})`;
+			return {
+				backgroundColor: color,
+				backgroundImage: `url(${imageUrl})`,
+			};
 		},
 		closeSuggestions() {
 			this.openai = null;
@@ -199,6 +222,7 @@ module.exports = Vue.extend({
 		'task-xml': require('./xml'),
 		'task-txt': require('./txt'),
 		'task-wait': require('./wait'),
+		'task-eval': require('./eval'),
 		'task-image': require('./image'),
 		'task-video': require('./video'),
 		'task-iframe': require('./iframe'),

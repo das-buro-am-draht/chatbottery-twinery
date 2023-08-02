@@ -51,12 +51,21 @@ module.exports = Vue.extend({
 				modified: false,
 			}));
 		},
+		hasChanged(index) {
+			return this.options[index].modified && !!this.options[index].text;
+		},
+		bgStyle(index) {
+			const color = this.options[index].modified ? '#3a51fa' : '#eee';
+			const image = !this.options[index].modified ? 'ui-delete' : this.options[index].text ? 'ui-save' : 'ui-delete-white';
+			const imageUrl = require(`../../../../common/img/${image}.svg`);
+			return {
+				backgroundColor: color,
+				backgroundImage: `url(${imageUrl})`,
+			}
+		},
 		onChange(index, event) {
 			this.options[index].modified = true;
 			// event.target.style.height = `${event.target.scrollHeight}px`;
-		},
-		hasChanged(index) {
-			return this.options[index].modified && !!this.options[index].text;
 		},
 		onModify(index) {
 			if (this.hasChanged(index)) { // add entry
@@ -77,7 +86,7 @@ module.exports = Vue.extend({
 			const length = this.options.length;
 			this.options.push({
 				text: '', 
-				modified: false,
+				modified: true,
 			});
 			Vue.nextTick(() => {
 				const item = this.$el.children[length];

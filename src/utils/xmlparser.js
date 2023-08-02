@@ -16,7 +16,9 @@ const attributes = (attributes) => {
 };
 
 const xmlElement = (tag, content, attributes = null) => {
-  const attr = Object.entries(attributes || {}).map(([k,v]) => `${k}="${String(v).replace(/"/g, '\"')}"`).join(' ');
+  const attr = Object.entries(attributes || {})
+    .filter(([k,v]) => !!v)
+    .map(([k,v]) => `${k}="${String(v).replace(/"/g, '\'')}"`).join(' ');
   return `<${tag}${attr ? ' ' + attr : ''}>${content}</${tag}>\n`;
 }
 
@@ -32,6 +34,17 @@ const button = (el) => {
 
 const parse = (text) => {
   const tasks = [];
+  const addTask = (task) => {
+    tasks.push({
+      ...task,
+      attributes: {
+        classname: '',
+        'typing-animation-time': '',
+        'if': '',
+        ...task.attributes,
+      }
+    })
+  };
   const xml = text.replace(/<([^\/])(\S+)([^\/]*)\/>/g, '<$1$2$3></$1$2>');
   const doc = new DOMParser().parseFromString(`<${ROOT}>${xml}</${ROOT}>`, 'text/html');
   const elements = Array.from(doc.querySelector(ROOT).children);
@@ -82,10 +95,10 @@ const parse = (text) => {
       .replace(/>\s*</g, '>\n<');
 
     if (task.type !== 'txt' || task.opt.some((option) => !!option)) {
-      tasks.push(task);
+      addTask(task);
     }
     if (taskButtons) {
-      tasks.push(taskButtons);
+      addTask(taskButtons);
     }
   });
   return tasks;
@@ -143,7 +156,7 @@ const stringify = (arr) => {
     let value = xmlValue(task).replace(/\n</g, '\n   <');
     if (value) {
       value = '\n   ' + value.replace(/\s+$/, '') + '\n';
-    } else if (type === 'msg' && !Object.keys(task.attributes).length) {
+    } else if (type === 'msg' && !Object.values(task.attributes).some(v => !!v)) {
       return xml;
     }
     return xml + xmlElement(type, value, task.attributes);
