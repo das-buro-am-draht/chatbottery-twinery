@@ -26,14 +26,44 @@ module.exports = Vue.extend({
 	data: () => ({
 		openai: null,
 		settings: 0,
+		userData: {},
 	}),
 
 	ready() {
-		Array.from(this.taskElements)
-			.forEach((element) => element.classList.add(CLASS_COLLAPSED));
+		this.userData = Object.entries(this.story.userData || {})
+			.filter(([k, v]) => v.type !== 'function')
+			.reduce((prev, data) => {
+				prev[data[0]] = data[1].type;
+				return prev;
+			}, {});
+
+		Array.from(this.taskElements).forEach((element) => element.classList.add(CLASS_COLLAPSED));
 	},
 
 	computed: {
+		conditions() {
+			const conditions = [];
+			Object.entries(this.userData).forEach(([name, type]) => {
+				switch (type) {
+					default:
+						conditions.push(`${name} === 'value'`);
+						conditions.push(`${name} !== 'value'`);
+						break;
+					case 'boolean':
+						conditions.push(`${name}`);
+						conditions.push(`!${name}`);
+						break;
+					case 'number':
+						conditions.push(`${name} === 1`);
+						conditions.push(`${name} !== 1`);
+						break;
+					case 'date':
+						conditions.push(`${name} > Date.now()`);
+						break;
+				}
+			});
+			return conditions;
+		},
 		taskElements() {
 			return this.$els.tasks.getElementsByClassName('passageUI-task');
 		},

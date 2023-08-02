@@ -49,7 +49,7 @@ module.exports = Vue.extend({
 			this.$dispatch('gui-changed');
 		},
 		onError(event) {
-			this.$els.image.src = require('../../../../common/img/element-image.svg');
+			this.$els.image.src = require('../../../../common/img/element-image-white.svg');
 			this.$els.image.style.width = '50%';
 		}
 	},

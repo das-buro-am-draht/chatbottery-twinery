@@ -25,7 +25,7 @@ module.exports = Vue.extend({
 	ready() {
 		if (this.story) {
 			this.userData = Object.entries(this.story.userData || {})
-				.filter(([k, v]) => v.type !== 'function' && v.type !== 'boolean')
+				.filter(([k, v]) => v.type !== 'function')
 				.reduce((prev, data) => {
 					prev[data[0]] = data[1].type;
 					return prev;
@@ -40,6 +40,12 @@ module.exports = Vue.extend({
 		},
 		'task.attributes.validate'() {
 			this.loadVariable();
+		},
+	},
+
+	computed: {
+		isValid() {
+			return !this.variable || this.variable.startsWith('$');
 		},
 	},
 

@@ -6,14 +6,17 @@
 		<div class="passageUI-input">
 			<div class="passageUI-input-row">
 				<label for="variable">{{ 'Variable' | say }}:</label>
-				<input type="text" class="code" list="userData" name="variable" v-model="variable" @input="onChangeVariable($event)" required>
-				<datalist id="userData">
-					<option v-for="field in userData" :value="$key">
-				</datalist>
+				<div class="passageUI-input-validate">
+					<input type="text" class="code user-field" list="userData" name="variable" v-model="variable" @input="onChangeVariable($event)" required placeholder="User field prefixed with '$' that receives the user input">
+					<datalist id="userData">
+						<option v-for="field in userData" :value="$key">
+					</datalist>
+					<p class="error" v-show="!isValid">{{ 'User variable must start with \'$\'' | say }}</p>
+				</div>
 			</div>
 			<div class="passageUI-input-row">
 				<label for="validate">{{ 'Validation' | say }}:</label>
-				<input type="text" class="code" name="validate" v-model="validate" @input="onChangeValidate($event)" required>
+				<input type="text" class="code" name="validate" v-model="validate" @input="onChangeValidate($event)" title="Validation function - e.g. '$isEmail($msg)'">
 			</div>
 		</div>
 	</div>

@@ -1,5 +1,5 @@
 const Vue = require('vue');
-const { trim } = require('../../../../utils/common');
+const { trim, isValidUrl } = require('../../../../utils/common');
 
 require('./index.less');
 
@@ -25,6 +25,12 @@ module.exports = Vue.extend({
 		'task.attributes'() {
 			this.load();
 		},
+	},
+
+	computed: {
+		isValid() {
+			return !this.iframe || isValidUrl(this.iframe);
+		}
 	},
 
 	methods: {
