@@ -34,7 +34,7 @@ module.exports = Vue.extend({
 
 	computed: {		
 		hasEmpty() {
-			return this.options.some(option => !option);
+			return this.options.length > 0 && this.options.some(option => !option);
 		},
 	},
 
@@ -75,7 +75,7 @@ module.exports = Vue.extend({
 			});
 		},
 		synchronize() {
-			this.task.opt = this.options.filter(option => !!option);
+			this.task.opt = this.options; // .length > 1 ? this.options.filter(option => !!option) : this.options;
 			this.$dispatch('gui-changed');
 		},
 		onOpenai(event, index) {
