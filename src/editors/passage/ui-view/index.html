@@ -20,7 +20,7 @@
 								<label for="condition">{{ 'Condition:' | say }}</label>
 								<input type="text" class="code" name="condition" v-model="task.attributes.if" @input="onChangeSettings($event)">
 							</div>
-							<div v-show="!(task.type === 'wait' || task.type === 'eval')">
+							<div v-show="!(task.type === 'wait' || task.type === 'eval' || task.type === 'goto')">
 								<label for="classname">{{ 'CSS Class:' | say }}</label>
 								<input type="text" name="classname" v-model="task.attributes.classname" @input="onChangeSettings($event)">
 								<label for="tat">&nbsp;{{ 'Typing animation time:' | say }}&nbsp;</label>
@@ -37,7 +37,7 @@
 					<task-xml v-if="task.type === 'carousel'" :task="task"></task-xml>
 					<task-xml v-if="task.type === 'tiles'" :task="task"></task-xml>
 					<task-wait v-if="task.type === 'wait'" :task="task" :story="story"></task-wait>
-					<task-xml v-if="task.type === 'goto'" :task="task"></task-xml>
+					<task-goto v-if="task.type === 'goto'" :task="task" :story="story"></task-goto>
 					<task-eval v-if="task.type === 'eval'" :task="task" :story="story"></task-eval>
 					<task-xml v-if="task.type === 'chat'" :task="task"></task-xml>
 				</div>
