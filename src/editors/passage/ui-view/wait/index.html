@@ -6,10 +6,14 @@
 		<div class="passageUI-input">
 			<div class="passageUI-input-row">
 				<label for="variable">{{ 'Variable' | say }}:</label>
-				<input type="text" class="code" list="userData" name="variable" v-model="variable" @input="onChange($event)" required>
+				<input type="text" class="code" list="userData" name="variable" v-model="variable" @input="onChangeVariable($event)" required>
 				<datalist id="userData">
 					<option v-for="field in userData" :value="$key">
 				</datalist>
+			</div>
+			<div class="passageUI-input-row">
+				<label for="validate">{{ 'Validation' | say }}:</label>
+				<input type="text" class="code" name="validate" v-model="validate" @input="onChangeValidate($event)" required>
 			</div>
 		</div>
 	</div>
