@@ -1,11 +1,11 @@
-<div class="passageUI-wait">
+<div class="passageUI-eval">
 	<div class="passageUI-content">
 		<div class="passageUI-placeholder">
-			<img src="../../../../common/img/element-record-variable.svg">
+			<img src="../../../../common/img/element-set-variable.svg">
 		</div>		
 		<div class="passageUI-input">
 			<div class="passageUI-input-row">
-				<label for="variable">{{ 'Variable' | say }}:</label>
+				<label for="variable">{{ 'Set variable' | say }}:</label>
 				<input type="text" class="code" list="userData" name="variable" v-model="variable" @input="onChange($event)" required>
 				<datalist id="userData">
 					<option v-for="field in userData" :value="$key">
@@ -13,5 +13,4 @@
 			</div>
 		</div>
 	</div>
-	<task-options :task="task" add-label="Add Validation Text"></task-options>
 </div>

@@ -41,6 +41,7 @@ module.exports = Vue.extend({
 		setImage(image) {
 			const imageUrl = !image || isValidUrl(image) ? image : this.assetBaseUrl + image;
 			this.$els.image.src = imageUrl;
+			this.$els.image.style.width = '100%';
 		},
 		onChange(event) {
 			this.setImage(this.image);
@@ -49,6 +50,7 @@ module.exports = Vue.extend({
 		},
 		onError(event) {
 			this.$els.image.src = require('../../../../common/img/element-image.svg');
+			this.$els.image.style.width = '50%';
 		}
 	},
 
