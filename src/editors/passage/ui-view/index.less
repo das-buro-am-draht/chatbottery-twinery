@@ -156,6 +156,7 @@
           margin: 10px 0;
           input {
             flex: 1;
+            border: none;
           }
         }
       }
@@ -186,7 +187,7 @@
     align-items: flex-start;
   }
   &-placeholder {
-    flex: 0 0 245px;
+    flex: 0 0 123px; // flex: 0 0 245px;
   }
   &-input {
     flex: 1;
@@ -195,7 +196,7 @@
     &-row {
       flex: 1;
       display: flex;
-      margin: 5px 0;
+      margin-top: 5px;
       label {
         flex: 0 1 55px;
         margin: 6px 10px 0 20px;
@@ -217,12 +218,12 @@
   input[type="number"] {
     max-width: 70px;
   }
-  &-task.collapsed .passageUI-content .passageUI-placeholder {
-    flex: 0 0 123px;
-  }
-  &-task.collapsed:not(.task-txt) {
-    .passageUI-input,.passageUI-options,.passageUI-txt-new {
-      display: none;
-    }
-  }
+  // &-task.collapsed .passageUI-content .passageUI-placeholder {
+  //   flex: 0 0 123px;
+  // }
+  // &-task.collapsed:not(.task-txt) {
+  //   .passageUI-input,.passageUI-options,.passageUI-txt-new {
+  //     display: none;
+  //   }
+  // }
 }

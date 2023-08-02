@@ -49,10 +49,19 @@ const parse = (text) => {
   const doc = new DOMParser().parseFromString(`<${ROOT}>${xml}</${ROOT}>`, 'text/html');
   const elements = Array.from(doc.querySelector(ROOT).children);
   elements.forEach((el) => {
+    let taskButtons;
     const children = Array.from(el.children);
     const task = createTask(el.nodeName.toLowerCase(), attributes(el.attributes));
 
-    let taskButtons;
+    if (task.type === 'msg' || task.type === 'wait') {
+      // option texts
+      task.opt = children.filter((el) => el.tagName.toLowerCase() === 'opt').map((el) => el.innerHTML.trim());
+      el.innerHTML = trim(el.innerHTML.replace(/(<(opt|act|btn)[^>]*>[\s\S]*<\/(opt|act|btn)>)|(<(opt|act|btn)[^\/]*\/>)/g, ''));
+      if (el.innerHTML) {
+        task.opt.unshift(el.innerHTML);
+      }
+    }
+
     if (task.type === 'msg') {
       const buttons = 
         children.filter((el) => {
@@ -73,12 +82,7 @@ const parse = (text) => {
         });
         delete task.attributes.eval;
       }
-      // option texts
-      task.opt = children.filter((el) => el.tagName.toLowerCase() === 'opt').map((el) => el.innerHTML.trim());
-      el.innerHTML = trim(el.innerHTML.replace(/(<(opt|act|btn)[^>]*>[\s\S]*<\/(opt|act|btn)>)|(<(opt|act|btn)[^\/]*\/>)/g, ''));
-      if (el.innerHTML) {
-        task.opt.unshift(el.innerHTML);
-      }
+
       if (task.attributes.hasOwnProperty('img')) {
         task.type = 'image';
       } else if (task.attributes.hasOwnProperty('src')) {
@@ -114,6 +118,7 @@ const xmlValue = (task) => {
   let content = task.content;
   switch (task.type) {
     case 'txt':
+    case 'wait':
     case 'image':
     case 'video':
     case 'iframe':

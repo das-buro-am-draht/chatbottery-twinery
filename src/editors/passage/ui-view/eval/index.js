@@ -22,7 +22,6 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
-		this.load();
 		if (this.story) {
 			this.userData = Object.entries(this.story.userData || {})
 				.filter(([k, v]) => v.type !== 'function' && v.type !== 'boolean')
@@ -31,6 +30,7 @@ module.exports = Vue.extend({
 					return prev;
 				}, {});
 		}
+		this.load();
 	},
 
 	watch: {
@@ -55,9 +55,5 @@ module.exports = Vue.extend({
 			}
 			this.$dispatch('gui-changed');
 		},
-	},
-
-	components: {
-		'task-options': require('../options'),
 	},
 });
