@@ -6,7 +6,7 @@
 					<div class="passageUI-task-gripper"></div>
 					<!-- <button type="button" class="passageUI-task-collapse" @click.stop="toggleCollapse($index)" title="{{ 'Expand / Collapse' | say }}"></button> -->
 					<span class="passageUI-task-caption">{{ caption(task) }}</span>
-					<button type="button" class="passageUI-task-props" @click="onSettings($index)" :style="settingsStyle($index)"></button>
+					<button type="button" class="passageUI-task-props" @click="onSettings($index)" :style="settingsStyle($index)" title="Settings (Condition / Class name)"></button>
 					<button type="button" class="passageUI-task-remove" @click="onRemove($index)" title="{{'Remove entry' | say}}"></button>
 				</div>
 				<div class="passageUI-task-container">
