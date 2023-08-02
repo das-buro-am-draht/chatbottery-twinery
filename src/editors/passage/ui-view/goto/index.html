@@ -1,0 +1,16 @@
+<div class="passageUI-eval">
+	<div class="passageUI-content">
+		<div class="passageUI-placeholder">
+			<img src="../../../../common/img/element-goto.svg">
+		</div>		
+		<div class="passageUI-input">
+			<div class="passageUI-input-row">
+				<label for="Passage">{{ 'Passage' | say }}:</label>
+				<input type="text" list="passages" name="passage" v-model="passage" @input="onChange($event)" required>
+				<datalist v-if="passages" id="passages">
+					<option v-for="passage in passages" :value="passage">
+				</datalist>
+			</div>
+		</div>
+	</div>
+</div>

@@ -223,6 +223,7 @@ module.exports = Vue.extend({
 		'task-txt': require('./txt'),
 		'task-wait': require('./wait'),
 		'task-eval': require('./eval'),
+		'task-goto': require('./goto'),
 		'task-image': require('./image'),
 		'task-video': require('./video'),
 		'task-iframe': require('./iframe'),
