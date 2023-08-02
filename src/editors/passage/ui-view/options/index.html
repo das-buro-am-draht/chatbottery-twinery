@@ -1,12 +1,12 @@
 <div class="passageUI-opt">
 	<div class="passageUI-options" v-for="option in options" track-by="$index">
-		<div :class="['passageUI-option', option.modified ? 'modified' : '']">
-			<textarea class="passageUI-option-text" v-model="option.text" @input="onChange($index, $event)" @keydown.13="onEnter($index, $event)"></textarea>
-			<div class="passageUI-option-ctrl" @click="onModify($index)" :style="bgStyle($index)"></div>
+		<div class="passageUI-option">
+			<textarea class="passageUI-option-text" v-model="option" @input="onChange($index, $event)" @keydown.13="onEnter($index, $event)"></textarea>
+			<div class="passageUI-option-ctrl" @click="onDelete($index)"></div>
 		</div>
-		<div class="passageUI-option-openai" :class="{ disabled: !option.text || !option.text.trim() }" @click="onOpenai($event, $index)"></div>
+		<div class="passageUI-option-openai" :class="{ disabled: !option || !option.trim() }" @click="onOpenai($event, $index)"></div>
 	</div>
-	<div v-show="!isModified" class="passageUI-txt-new" >
+	<div v-show="!hasEmpty" class="passageUI-txt-new" >
 		<button type="button" @click="addNew">{{ addLabel }}</button>
 	</div>
 </div>

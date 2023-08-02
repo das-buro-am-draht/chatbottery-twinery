@@ -33,8 +33,8 @@ module.exports = Vue.extend({
 	},
 
 	computed: {		
-		isModified() {
-			return this.options.some(opt => opt.modified || !opt.text);
+		hasEmpty() {
+			return this.options.some(option => !option);
 		},
 	},
 
@@ -46,48 +46,25 @@ module.exports = Vue.extend({
 
 	methods: {
 		load() {
-			this.options = (this.task.opt || []).map(txt => ({
-				text: txt, 
-				modified: false,
-			}));
-		},
-		hasChanged(index) {
-			return this.options[index].modified && !!this.options[index].text;
-		},
-		bgStyle(index) {
-			const color = this.options[index].modified ? '#3a51fa' : '#eee';
-			const image = !this.options[index].modified ? 'ui-delete' : this.options[index].text ? 'ui-save' : 'ui-delete-white';
-			const imageUrl = require(`../../../../common/img/${image}.svg`);
-			return {
-				backgroundColor: color,
-				backgroundImage: `url(${imageUrl})`,
-			}
+			this.options = this.task.opt || [];
 		},
 		onChange(index, event) {
-			this.options[index].modified = true;
+			this.synchronize();
 			// event.target.style.height = `${event.target.scrollHeight}px`;
 		},
-		onModify(index) {
-			if (this.hasChanged(index)) { // add entry
-				this.options[index].modified = false;
-			} else { // delete entry
-				this.options.splice(index, 1);
-			}
+		onDelete(index) {
+			this.options.splice(index, 1);
 			this.synchronize();
 		},
 		onEnter(index, event) {
-			if (event.ctrlKey && this.hasChanged(index)) {
+			if (event.ctrlKey) {
 				event.preventDefault();
-				this.onModify(index);
 				Vue.nextTick(() => this.addNew());
 			}
 		},
 		addNew() {
 			const length = this.options.length;
-			this.options.push({
-				text: '', 
-				modified: true,
-			});
+			this.options.push('');
 			Vue.nextTick(() => {
 				const item = this.$el.children[length];
 				if (item) {
@@ -98,20 +75,17 @@ module.exports = Vue.extend({
 			});
 		},
 		synchronize() {
-			this.task.opt = this.options.filter(opt => !opt.modified && !!opt.text).map(opt => opt.text);
+			this.task.opt = this.options.filter(option => !!option);
 			this.$dispatch('gui-changed');
 		},
 		onOpenai(event, index) {
-			this.$dispatch('openai-suggest', this, this.options[index].text);
+			this.$dispatch('openai-suggest', this, this.options[index]);
 		},
 	},
 
 	events: {
 		'openai-selected'(text) {
-			this.options.push({
-				text,
-				modified: false,
-			});
+			this.options.push(text);
 			this.synchronize();
 		},
 	},

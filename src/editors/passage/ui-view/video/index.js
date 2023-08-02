@@ -1,4 +1,5 @@
 const Vue = require('vue');
+const { isValidUrl } = require('../../../../utils/common');
 
 require('./index.less');
 
@@ -23,6 +24,12 @@ module.exports = Vue.extend({
 		'task.attributes.video'() {
 			this.load();
 		},
+	},
+
+	computed: {
+		isValid() {
+			return !this.video || isValidUrl(this.video);
+		}
 	},
 
 	methods: {
