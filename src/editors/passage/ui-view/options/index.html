@@ -6,7 +6,7 @@
 		</div>
 		<div class="passageUI-option-openai" :class="{ disabled: !option || !option.trim() }" @click="onOpenai($event, $index)"></div>
 	</div>
-	<div v-show="!hasEmpty" class="passageUI-txt-new" >
+	<div v-show="!hasEmpty" class="passageUI-action" >
 		<button type="button" @click="addNew">{{ addLabel }}</button>
 	</div>
 </div>

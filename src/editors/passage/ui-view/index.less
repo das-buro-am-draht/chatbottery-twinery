@@ -16,6 +16,16 @@
     flex-direction: column;
     overflow-y: auto;
   }
+  &-action {
+    text-align: center;
+    margin-top: 5px;
+    // display: inline-block;
+    // width: calc(~"100% - 44px");
+    font-size: 12pt;
+    button {
+      padding: 0;
+    }
+  }
   &-openai {
     flex: 1;
     overflow-y: auto;
@@ -213,12 +223,4 @@
   input[type="number"] {
     max-width: 70px;
   }
-  // &-task.collapsed .passageUI-content .passageUI-placeholder {
-  //   flex: 0 0 123px;
-  // }
-  // &-task.collapsed:not(.task-txt) {
-  //   .passageUI-input,.passageUI-options,.passageUI-txt-new {
-  //     display: none;
-  //   }
-  // }
 }
