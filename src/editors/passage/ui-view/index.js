@@ -2,9 +2,9 @@ const Vue = require('vue');
 const { confirm } = require('../../../dialogs/confirm');
 const locale = require('../../../locale');
 const notify = require('../../../ui/notify');
-const { label } = require('../../../utils/task');
+const { isEmpty } = require('../../../utils/common');
 const { phraseSuggestions } = require('../../../common/app/openai');
-const { createTask } = require('../../../utils/task');
+const { label, createTask } = require('../../../utils/task');
 
 require('./index.less');
 
@@ -114,19 +114,19 @@ module.exports = Vue.extend({
 			return label(task.type);
 		},
 		isEmpty(task) {
-			let isEmpty = Object.keys(task.attributes).length === 0;
-			if (isEmpty) {
+			let empty = isEmpty(task.attributes);
+			if (empty) {
 				switch (task.type) {
 					case 'txt':
 					case 'image':
-						isEmpty = !task.opt.some((option) => !!option.trim());
+						empty = isEmpty(task.opt);
 						break;
 					case 'buttons':
-						isEmpty = task.buttons.length === 0;
+						empty = isEmpty(task.buttons);
 						break;
 				}
 			}
-			return isEmpty;
+			return empty;
 		},
 		onRemove(index) {
 			Promise.resolve(this.tasks[index]).then((task) => {
