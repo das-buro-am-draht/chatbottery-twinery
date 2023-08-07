@@ -18,6 +18,7 @@ module.exports = Vue.extend({
 	data: () => ({
 		selection: -1,
 		passages: null,
+		showAdvanced: false,
 	}),
 
 	ready() {
@@ -67,6 +68,7 @@ module.exports = Vue.extend({
 				this.$els.label.value = button.label || '';
 				this.$els.link.value = button.link || '';
 				this.$els.func.value = button.func || '';
+				this.$els.class.value = button.attributes.classname || '';
 				this.$els.action.checked = !!button.action;
 				Vue.nextTick(() => {
 					this.$els.label.focus();
@@ -76,6 +78,9 @@ module.exports = Vue.extend({
 					}
 				});
 			}
+		},
+		onShowAdvanced() {
+			this.showAdvanced = !this.showAdvanced;
 		},
 		onSelect(index) {
 			this.setSelection(index);
@@ -88,7 +93,7 @@ module.exports = Vue.extend({
 		onAdd() {
 			const index = this.task.buttons.length;
 			this.task.buttons.push({
-				attributes: {},
+				attributes: { },
 				label: '',
 				link: '',
 				func: '',
@@ -111,6 +116,12 @@ module.exports = Vue.extend({
 		onChangeFunc(event) {
 			if (this.selection >= 0) {
 				this.task.buttons[this.selection].func = this.$els.func.value;
+				this.$dispatch('gui-changed');
+			}
+		},
+		onChangeClass(event) {
+			if (this.selection >= 0) {
+				this.task.buttons[this.selection].attributes['classname'] = this.$els.class.value;
 				this.$dispatch('gui-changed');
 			}
 		},

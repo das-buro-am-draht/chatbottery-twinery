@@ -22,12 +22,19 @@
 				</datalist>
 			</div>
 			<div>
+				<label for="action">Action Button:</label>
+				<input type="checkbox" name="action" v-el:action @input="onChangeAction($event)" />
+			</div>
+			<div v-show="showAdvanced">
+				<label for="classname">Custom class:</label>
+				<input type="text" name="classname" v-el:class @input="onChangeClass($event)" />
+			</div>
+			<div v-show="showAdvanced">
 				<label for="func">User Function:</label>
 				<input type="text" name="func" v-el:func @input="onChangeFunc($event)" />
 			</div>
-			<div>
-				<label for="action">Action Button:</label>
-				<input type="checkbox" name="action" v-el:action @input="onChangeAction($event)" />
+			<div v-show="!hasEmpty" class="passageUI-action" >
+				<button type="button" @click="onShowAdvanced">{{ showAdvanced ? 'Hide advanced Settings' : 'Advanced Settings' }}</button>
 			</div>
 		</fieldset>
 	</form>
