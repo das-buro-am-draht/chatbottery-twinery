@@ -38,5 +38,4 @@ const createTask = (type, attributes = {}) => {
   return task;
 };
 
-
 module.exports = { label, types, createTask };
