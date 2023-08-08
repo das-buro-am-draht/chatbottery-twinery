@@ -9,7 +9,7 @@ const types = {
   'wait'    : 'Record user input',
   'eval'    : 'Set variable',
   'goto'    : 'Goto',
-  'chat'    : 'Chat',
+  'chat'    : 'Live Chat',
   // 'sms'     : 'SMS (Voice Bot)',
   // 'call'    : 'Call Control (Voice Bot)',
 };

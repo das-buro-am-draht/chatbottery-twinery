@@ -3,10 +3,10 @@
 		<div class="passageUI-placeholder" :style="{ backgroundColor: video ? '#4c4c4c' : '#e2e2e2' }">
 			<img src="../../../../common/img/element-video.svg">
 		</div>		
-		<div class="passageUI-input">
-			<div class="passageUI-input-row">
+		<div class="passageUI-form">
+			<div class="passageUI-row">
 				<label for="videoUrl">{{ 'Video URL' | say }}:</label>
-				<div class="passageUI-input-validate">
+				<div class="passageUI-row-input">
 					<input type="text" name="videoUrl" v-model="video" @input="onChange($event)" required placeholder="Enter a valid youtube- or vimeo link">
 					<p class="error" v-show="!isValid">{{ 'Resource Locator must be a valid URL' | say }}</p>
 				</div>

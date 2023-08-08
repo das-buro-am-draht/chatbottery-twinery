@@ -3,8 +3,8 @@
 		<div class="passageUI-placeholder">
 			<img src="../../../../common/img/element-goto.svg">
 		</div>		
-		<div class="passageUI-input">
-			<div class="passageUI-input-row">
+		<div class="passageUI-form">
+			<div class="passageUI-row">
 				<label for="Passage">{{ 'Passage' | say }}:</label>
 				<input type="text" list="passages" name="passage" v-model="passage" @input="onChange($event)" required>
 				<datalist v-if="passages" id="passages">

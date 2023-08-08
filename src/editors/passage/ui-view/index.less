@@ -2,13 +2,17 @@
 
 .passageUI {
   display: flex;
-  flex-direction: column;
   max-height: 100%;
+  flex-direction: column;
   input:not(.code),textarea:not(.code) {
     font-family: Roboto, serif;
   }
   input.code {
     font-size: 13px;
+  }
+  &-container {
+    display: flex;
+    min-height: 0;
   }
   &-tasks {
     flex: 1;
@@ -19,11 +23,37 @@
   &-action {
     text-align: center;
     margin-top: 5px;
-    // display: inline-block;
-    // width: calc(~"100% - 44px");
-    font-size: 12pt;
     button {
       padding: 0;
+    }
+  }
+  &-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 5px 10px;
+  }
+  &-row {
+    display: flex;
+    flex-wrap: wrap;
+    &-input {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      min-width: 100px;
+      margin-top: 8px;
+      margin-right: 5px;
+    }
+    input,textarea {
+      flex: 1;
+      margin: 2px 0;    
+    }
+    input[type="checkbox"] {
+      flex: 0;
+      margin: 10px 0;
     }
   }
   &-openai {
@@ -134,7 +164,6 @@
       &-header {
         display: flex;
         align-items: center;
-        // border-bottom: 1px solid #000;
         span {
           flex: 1;
         }
@@ -149,18 +178,9 @@
         background-image: url('../../../common/img/ui-close.svg');
       }
       fieldset {
-        padding: 0 10px;
-        color: #fff;
-        background-color: #3a51fa;
-        margin: 0 0 10px;
-        div {
-          display: flex;
-          align-items: center;
-          margin: 10px 0;
-          input {
-            flex: 1;
-            border: none;
-          }
+        background: #c9cef4;
+        input {
+          background: #fff;
         }
       }
     }
@@ -187,33 +207,10 @@
   }
   &-content {
     display: flex;
-    align-items: flex-start;
   }
   &-placeholder {
     flex: 0 0 123px; // flex: 0 0 245px;
-  }
-  &-input {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    &-row {
-      flex: 1;
-      display: flex;
-      margin-top: 5px;
-      label {
-        margin: 6px 10px 0 20px;
-      }
-      input {
-        width: 100%;
-      }
-    }
-    &-validate {
-      flex: 1;
-    }
-  }
-  label {
-    display: inline-block;
-    min-width: 80px;
+    margin-right: 10px;
   }
   input {
     border: #888 solid 1px;
