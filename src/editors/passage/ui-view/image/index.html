@@ -3,8 +3,8 @@
 		<div class="passageUI-placeholder" :style="{ backgroundColor: image ? '#4c4c4c' : '#e2e2e2' }">
 			<img src="../../../../common/img/element-image-white.svg" v-el:image @error.stop.prevent="onError($event)">
 		</div>
-		<div class="passageUI-input">
-			<div class="passageUI-input-row">
+		<div class="passageUI-form">
+			<div class="passageUI-row">
 				<label for="imageUrl">{{ 'Image link' | say }}:</label>
 				<input type="text" name="imageUrl" v-model="image" @input="onChange($event)" required placeholder="Relative image URL">
 			</div>

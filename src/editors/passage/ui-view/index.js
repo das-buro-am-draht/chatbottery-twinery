@@ -179,8 +179,8 @@ module.exports = Vue.extend({
 			let image = 'blank';
 			let color = '#fff';
 			if (this.settings & (1 << index)) {
-				color = '#3a51fa';
-				image = 'white';
+				color = '#c9cef4';
+				// image = 'white';
 			} else if (this.tasks[index].attributes.if) {
 				image = 'red';
 			}

@@ -39,7 +39,7 @@ module.exports = Vue.extend({
 			this.loadVariable();
 		},
 		'task.attributes.validate'() {
-			this.loadVariable();
+			this.loadValidate();
 		},
 	},
 
@@ -76,9 +76,9 @@ module.exports = Vue.extend({
 			this.$dispatch('gui-changed');
 		},
 		onChangeValidate(event) {
-			const variable = trim(this.variable);
-			if (variable) {
-				this.task.attributes['validate'] = variable;
+			const validate = trim(this.validate);
+			if (validate) {
+				this.task.attributes['validate'] = validate;
 			} else {
 				delete this.task.attributes['validate'];
 			}
