@@ -2,13 +2,14 @@
 	<div class="passageUI-buttons-list">
 		<div v-show="task.buttons.length > 0" class="passageUI-buttons-listbox" v-el:list>
 			<div :class="['passageUI-button', selection === $index ? 'selected' : '']" v-for="button in task.buttons" track-by="$index" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)" @click="onSelect($index)">
+				<div class="passageUI-button-gripper"></div>
 				<div class="passageUI-button-label">{{ button.label }}</div>
 				<div class="passageUI-button-delete" @click="onDelete($index)"></div>
 			</div>
 		</div>
 		<button class="passageUI-buttons-list-new" type="button" @click="onAdd()">Add Button</button>
 	</div>
-	<fieldset v-show="selection >= 0" class="passageUI-form">
+	<div v-show="selection >= 0" class="passageUI-form">
 		<div class="passageUI-row">
 			<label for="label">Label:</label>
 			<input type="text" name="label" v-el:label @input="onChangeLabel($event)" />
@@ -35,5 +36,5 @@
 		<div v-show="!hasEmpty" class="passageUI-action" >
 			<button type="button" @click="onShowAdvanced">{{ showAdvanced ? 'Hide advanced Settings' : 'Advanced Settings' }}</button>
 		</div>
-	</fieldset>
+	</div>
 </div>

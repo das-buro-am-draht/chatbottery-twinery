@@ -32,7 +32,6 @@
     display: flex;
     flex-direction: column;
     min-width: 0;
-    padding: 5px 10px;
   }
   &-row {
     display: flex;
@@ -44,8 +43,7 @@
     }
     label {
       min-width: 100px;
-      margin-top: 8px;
-      margin-right: 5px;
+      margin: 8px 5px 0;
     }
     input,textarea {
       flex: 1;
@@ -53,8 +51,9 @@
       max-width: 100%;
     }
     input[type="checkbox"] {
-      flex: 0;
-      margin: 10px 0;
+      flex: 0 0 20px;
+      height: 20px;
+      margin: 7px 0;
     }
   }
   &-openai {
@@ -162,6 +161,7 @@
       background-color: #fff;
     }
     &-settings {
+      margin-bottom: 5px;
       &-header {
         display: flex;
         align-items: center;
@@ -178,7 +178,12 @@
         background-size: contain;
         background-image: url('../../../common/img/ui-close.svg');
       }
+      label {
+        min-width: 70px;
+        text-align: left;
+      }
       fieldset {
+        margin: 0;
         background: #c9cef4;
         input {
           background: #fff;

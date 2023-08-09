@@ -7,30 +7,31 @@ const { createTask } = require('../utils/task');
 
 const ROOT = 'root';
 
-const attributes = (attributes) => {
+const getAttributes = (attributes) => {
   const attr = {};
-  for (let i = 0; i < attributes.length; i++) {
+  for (let i = 0; attributes && i < attributes.length; i++) {
     attr[attributes[i].name] = attributes[i].value;
   }
   return attr;
 };
 
-const xmlElement = (tag, content, attributes = null) => {
-  const attr = Object.entries(attributes || {})
-    .filter(([k,v]) => !!v)
-    .map(([k,v]) => `${k}="${String(v).replace(/"/g, '\'')}"`).join(' ');
-  return `<${tag}${attr ? ' ' + attr : ''}>${content}</${tag}>\n`;
-}
-
-const button = (el) => {
-  [label, link, func] = removeEnclosingBrackets(trim(el.innerHTML)).split('|');
+const textToButton = (element) => {
+  [label, link, func] = removeEnclosingBrackets(trim(element.innerHTML)).split('|');
   return {
-    attributes: attributes(el.attributes),
+    attributes: getAttributes(element.attributes),
     label: trim(label),
     link: trim(link),
     func: trim(func),
   };
 };
+  
+const buttonToText = (button) => {
+  let text = `${button.label || ''}|${button.link || ''}`;
+  if (button.func) {
+    text += `|${button.func}`;
+  }
+  return `[[${text}]]`;
+} 
 
 const parse = (text) => {
   const tasks = [];
@@ -51,48 +52,88 @@ const parse = (text) => {
   elements.forEach((el) => {
     let taskButtons;
     const children = Array.from(el.children);
-    const task = createTask(el.nodeName.toLowerCase(), attributes(el.attributes));
+    const task = createTask(el.nodeName.toLowerCase(), getAttributes(el.attributes));
 
     if (task.type === 'msg' || task.type === 'wait') {
       // option texts
-      task.opt = children.filter((el) => el.tagName.toLowerCase() === 'opt').map((el) => el.innerHTML.trim());
+      task.opt = children.filter((item) => item.tagName.toLowerCase() === 'opt').map((item) => item.innerHTML.trim());
       el.innerHTML = trim(el.innerHTML.replace(/(<(opt|act|btn)[^>]*>[\s\S]*<\/(opt|act|btn)>)|(<(opt|act|btn)[^\/]*\/>)/g, ''));
       if (el.innerHTML) {
         task.opt.unshift(el.innerHTML);
       }
     }
 
-    if (task.type === 'msg') {
-      const buttons = 
-        children.filter((el) => {
-          const tagName = el.tagName.toLowerCase();
+    switch (task.type) {
+      case 'msg':
+        const buttons = children.filter((item) => {
+          const tagName = item.tagName.toLowerCase();
           return tagName === 'act' || tagName === 'btn';
-        }).map((el) => ({ ...button(el), action: el.tagName.toLowerCase() === 'act' }));
-      if (buttons.length) {
-        taskButtons = {
-          ...createTask('buttons', { ...task.attributes }),
-          buttons,
-        };
-      }
-      if (task.attributes.eval) {
-        tasks.push({
-          type: 'eval',
-          content: '',
-          attributes: { ...task.attributes },
-        });
-        delete task.attributes.eval;
-      }
+        }).map((item) => ({ ...textToButton(item), action: item.tagName.toLowerCase() === 'act' }));
+        if (buttons.length) {
+          taskButtons = {
+            ...createTask('buttons', { ...task.attributes }),
+            buttons,
+          };
+        }
+        if (task.attributes.eval) {
+          tasks.push({
+            type: 'eval',
+            content: '',
+            attributes: { ...task.attributes },
+          });
+          delete task.attributes.eval;
+        }
 
-      if (task.attributes.hasOwnProperty('img')) {
-        task.type = 'image';
-      } else if (task.attributes.hasOwnProperty('src')) {
-        task.type = 'iframe';
-      } else if (task.attributes.hasOwnProperty('video')) {
-        task.type = 'video';
-      } else {
-        task.type = 'txt';
+        if (task.attributes.hasOwnProperty('img')) {
+          task.type = 'image';
+        } else if (task.attributes.hasOwnProperty('src')) {
+          task.type = 'iframe';
+        } else if (task.attributes.hasOwnProperty('video')) {
+          task.type = 'video';
+        } else {
+          task.type = 'txt';
+        }
+        break;
+      case 'carousel':
+        task.items = children.map((item) => {
+          const child = {};
+          Array.from(item.children).forEach((el) => {
+            const tag = el.tagName.toLowerCase();
+            if (tag === 'btn') {
+              child.button = textToButton(el);
+            } else {
+              child[tag] = trim(el.innerHTML);
+            }
+          });
+          return {
+            attributes: getAttributes(item.attributes),
+            title: child.title,
+            text: child.text,
+            description: child.description,
+            button: child.button || {},
+          }
+        });
+        break;
+      case 'tiles':
+        task.items = children.map((item) => {
+          const child = {};
+          Array.from(item.children).forEach((el) => {
+            const tag = el.tagName.toLowerCase();
+            if (tag === 'act') {
+              child.link = textToButton(el);
+            } else {
+              child[tag] = trim(el.innerHTML);
+            }
+          });
+          return {
+            attributes: getAttributes(item.attributes),
+            title: child.title,
+            description: child.description,
+            link: child.link || {},
+          }
+        });
+        break;
       }
-    }
 
     task.content = el.innerHTML.trim()
       .replace(/>\s*(.+)\s*</g, '>$1<')
@@ -114,6 +155,13 @@ const HtmlEncode = (text) => text
   .replace(/>/g, '&gt;')
   .replace(/\n/g, '<br>');
 
+const xmlElement = (tag, content, attributes = null) => {
+  const attr = Object.entries(attributes || {})
+    .filter(([k,v]) => !!v)
+    .map(([k,v]) => `${k}="${String(v).replace(/"/g, '\'')}"`).join(' ');
+  return `<${tag}${attr ? ' ' + attr : ''}>${content}</${tag}>\n`;
+}
+
 const xmlValue = (task) => {
   let content = task.content;
   switch (task.type) {
@@ -121,7 +169,7 @@ const xmlValue = (task) => {
     case 'wait':
     case 'image':
     case 'video':
-    case 'iframe':
+    case 'iframe': {
       const opt = (task.opt || []).filter((option) => !!option);
       if (opt.length === 1)
         content = opt[0] + '\n'; // HtmlEncode(opt[0]) + '\n';
@@ -131,16 +179,38 @@ const xmlValue = (task) => {
         }, '');
       }
       break;
-    case 'buttons':
+    }
+    case 'buttons': {
       const buttons = task.buttons.filter((button) => button.label || button.link || button.func);
-      content = buttons.reduce((xml, button) => {
-        const tag = button.action ? 'act' : 'btn';
-        let text = `${button.label || ''}|${button.link || ''}`;
-        if (button.func) {
-          text += `|${button.func}`;
-        }
-        return xml + xmlElement(tag, `[[${text}]]`, button.attributes);
+      content = buttons.reduce((xml, button) => xml + xmlElement(button.action ? 'act' : 'btn', buttonToText(button), button.attributes), '');
+      break;
+    }
+    case 'carousel': {
+      const items = task.items.filter((item) => item.title || item.text || item.description || item.button);
+      content = items.reduce((xml, item) => {
+        const text = Object.entries(item).filter(([key]) => ['title', 'text', 'description', 'button'].includes(key)).reduce((xml, [key, value]) => {
+          const element = (key === 'button')
+            ? xmlElement('btn', buttonToText(value), value.attributes)
+            : xmlElement(key, value);
+          return xml + element;
+        }, '\n');
+        return xml + xmlElement('item', text, item.attributes);
       }, '');
+      break;
+    }
+    case 'tiles': {
+      const items = task.items.filter((item) => item.title || item.description || item.link);
+      content = items.reduce((xml, item) => {
+        const text = Object.entries(item).filter(([key]) => ['title', 'description', 'link'].includes(key)).reduce((xml, [key, value]) => {
+          const element = (key === 'link')
+            ? xmlElement('act', buttonToText(value), value.attributes)
+            : xmlElement(key, value);
+          return xml + element;
+        }, '\n');
+        return xml + xmlElement('item', text, item.attributes);
+      }, '');
+      break;
+    }
   }
   return content;
 }
