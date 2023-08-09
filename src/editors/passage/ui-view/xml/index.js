@@ -7,7 +7,7 @@ module.exports = Vue.extend({
 	props: ['task'],
 
 	ready() {
-		Vue.nextTick(() => this.$els.text.style.transition = 'height 1s, visibility 1s, opacity 1s');
+		// Vue.nextTick(() => this.$els.text.style.transition = 'height 1s, visibility 1s, opacity 1s');
 	},
 
 	methods: {

@@ -26,7 +26,7 @@
 							<div v-show="!(task.type === 'wait' || task.type === 'eval' || task.type === 'goto' || task.type === 'chat')" class="passageUI-row">
 								<label for="classname">{{ 'CSS Class:' | say }}</label>
 								<input type="text" name="classname" v-model="task.attributes.classname" @input="onChangeSettings($event)" title="CSS class name" placeholder="CSS class name">
-								<label for="tat">&nbsp;&nbsp;{{ 'Typing animation time:' | say }}&nbsp;</label>
+								<label for="tat">{{ 'Typing animation time:' | say }}</label>
 								<input type="number" name="tat" v-model="task.attributes['typing-animation-time']" @input="onChangeSettings($event)" title="Typing animation Time in Milliseconds" placeholder="ms">
 							</div>
 						</fieldset>
