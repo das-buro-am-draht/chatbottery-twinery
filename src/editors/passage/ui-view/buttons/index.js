@@ -62,6 +62,9 @@ module.exports = Vue.extend({
 			}
 		},
 		setSelection(index) {
+			while (index >= this.task.buttons.length) {
+				index--;
+			}
 			this.selection = index;
 			if (index >= 0) {
 				const button = this.task.buttons[index];
@@ -88,7 +91,9 @@ module.exports = Vue.extend({
 		onDelete(index) {
 			this.task.buttons.splice(index, 1);
 			this.$dispatch('gui-changed');
-			this.setSelection(-1);
+			if (index === this.selection) {
+				this.setSelection(index);
+			}
 		},
 		onAdd() {
 			const index = this.task.buttons.length;
