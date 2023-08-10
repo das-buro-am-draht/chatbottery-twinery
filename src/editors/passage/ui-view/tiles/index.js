@@ -1,5 +1,7 @@
 const Vue = require('vue');
 
+require('./index.less');
+
 module.exports = Vue.extend({
 	template: require('./index.html'),
 	props: {
@@ -21,6 +23,8 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
+		this.$els.caption.value = this.task.attributes['caption'] || '';
+		this.$els.initial.value = this.task.attributes['initial'] || '';
 		if (this.story) {
 			const { settings } = this.story;
 			if (settings && settings.assetBaseUrl) {
@@ -38,17 +42,17 @@ module.exports = Vue.extend({
 	methods: {
 		drag(index, event) {
 			const data = [this._uid, index].join();
-			event.dataTransfer.setData('cb/ui-carousel', data);
+			event.dataTransfer.setData('cb/ui-tiles', data);
 		},		
 		dragenter(event) {
-			if (event.dataTransfer.types.includes('cb/ui-carousel')) {
+			if (event.dataTransfer.types.includes('cb/ui-tiles')) {
 				event.preventDefault(); // is allowed
 			}
 		},
 		drop(index, event) {
 			const toIdx = index;
-			const [_uid, ix] = event.dataTransfer.getData('cb/ui-carousel').split(',');
-			event.dataTransfer.clearData('cb/ui-carousel');
+			const [_uid, ix] = event.dataTransfer.getData('cb/ui-tiles').split(',');
+			event.dataTransfer.clearData('cb/ui-tiles');
 			if (parseInt(_uid) !== this._uid) {
 				return; // don't allow other components
 			}
@@ -72,14 +76,11 @@ module.exports = Vue.extend({
 			}
 			this.selection = index;
 			if (index >= 0) {
-				const button = this.task.items[index].button;
+				const button = this.task.items[index].link;
 				this.$els.image.value = this.imageUrl = this.task.items[index].attributes['img'] || '';
 				this.$els.title.value = this.task.items[index].title || '';
-				this.$els.text.value = this.task.items[index].text || '';
 				this.$els.description.value = this.task.items[index].description || '';
-				this.$els.label.value = button.label || '';
 				this.$els.link.value = button.link || '';
-				// this.$els.func.value = button.func || '';
 				Vue.nextTick(() => this.$els.image.focus());
 			}
 		},
@@ -98,9 +99,8 @@ module.exports = Vue.extend({
 			this.task.items.push({
 				attributes: { },
 				title: '',
-				text: '',
 				description: '',
-				button: { 
+				link: { 
 					attributes: { },
 					label: '',
 					link: '',
@@ -108,6 +108,14 @@ module.exports = Vue.extend({
 				},
 			});
 			this.setSelection(index);
+		},
+		onChangeCaption(event) {
+			this.task.attributes['caption'] = this.$els.caption.value;
+			this.$dispatch('gui-changed');
+		},
+		onChangeInitial(event) {
+			this.task.attributes['initial'] = this.$els.initial.value;
+			this.$dispatch('gui-changed');
 		},
 		onChangeImage(event) {
 			if (this.selection >= 0) {
@@ -121,36 +129,18 @@ module.exports = Vue.extend({
 				this.$dispatch('gui-changed');
 			}
 		},
-		onChangeText(event) {
-			if (this.selection >= 0) {
-				this.task.items[this.selection].text = this.$els.text.value;
-				this.$dispatch('gui-changed');
-			}
-		},
 		onChangeDescription(event) {
 			if (this.selection >= 0) {
 				this.task.items[this.selection].description = this.$els.description.value;
 				this.$dispatch('gui-changed');
 			}
 		},
-		onChangeLabel(event) {
-			if (this.selection >= 0) {
-				this.task.items[this.selection].button.label = this.$els.label.value;
-				this.$dispatch('gui-changed');
-			}
-		},
 		onChangeLink(event) {
 			if (this.selection >= 0) {
-				this.task.items[this.selection].button.link = this.$els.link.value;
+				this.task.items[this.selection].link.link = this.$els.link.value;
 				this.$dispatch('gui-changed');
 			}
 		},
-		// onChangeFunc(event) {
-		// 	if (this.selection >= 0) {
-		// 		this.task.items[this.selection].button.func = this.$els.func.value;
-		// 		this.$dispatch('gui-changed');
-		// 	}
-		// },
 	},
 
 	components: {
