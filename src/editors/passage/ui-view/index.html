@@ -32,12 +32,12 @@
 						</fieldset>
 					</div>
 					<task-txt v-if="task.type === 'txt'" :task="task"></task-txt>
-					<task-image v-if="task.type === 'image'" :task="task" :asset-base-url="assetBaseUrl"></task-image>
+					<task-image v-if="task.type === 'image'" :task="task" :story="story"></task-image>
 					<task-video v-if="task.type === 'video'" :task="task"></task-video>
 					<task-iframe v-if="task.type === 'iframe'" :task="task"></task-iframe>
 					<task-buttons v-if="task.type === 'buttons'" :task="task" :story="story"></task-buttons>
 					<task-xml v-if="task.type === 'msg'" :task="task"></task-xml>
-					<task-xml v-if="task.type === 'carousel'" :task="task"></task-xml>
+					<task-carousel v-if="task.type === 'carousel'" :task="task" :story="story"></task-carousel>
 					<task-xml v-if="task.type === 'tiles'" :task="task"></task-xml>
 					<task-wait v-if="task.type === 'wait'" :task="task" :story="story"></task-wait>
 					<task-goto v-if="task.type === 'goto'" :task="task" :story="story"></task-goto>

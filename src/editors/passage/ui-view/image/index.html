@@ -1,8 +1,6 @@
 <div class="passageUI-image">
 	<div class="passageUI-content">
-		<div class="passageUI-placeholder" :style="{ backgroundColor: image ? '#4c4c4c' : '#e2e2e2' }">
-			<img src="../../../../common/img/element-image-white.svg" v-el:image @error.stop.prevent="onError($event)">
-		</div>
+		<image-placeholder :image-url="image" :asset-base-url="assetBaseUrl"></image-placeholder>
 		<div class="passageUI-form">
 			<div class="passageUI-row">
 				<label for="imageUrl">{{ 'Image link' | say }}:</label>

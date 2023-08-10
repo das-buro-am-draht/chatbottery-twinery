@@ -1,7 +1,4 @@
 const Vue = require('vue');
-const { isValidUrl } = require('../../../../utils/common');
-
-require('./index.less');
 
 module.exports = Vue.extend({
 	template: require('./index.html'),
@@ -10,18 +7,24 @@ module.exports = Vue.extend({
 			type: Object,
 			required: true,
 		},
-		assetBaseUrl: {
-			type: String,
+		story: {
+			type: Object,
 			required: true,
-			default: '',
 		},
 	},
 
 	data: () => ({
 		image: '',
+		assetBaseUrl: '',
 	}),
 
 	ready() {
+		if (this.story) {
+			const { settings } = this.story;
+			if (settings && settings.assetBaseUrl) {
+				this.assetBaseUrl = settings.assetBaseUrl;
+			}
+		}
 		this.load();
 	},
 
@@ -35,26 +38,17 @@ module.exports = Vue.extend({
 		load() {
 			const image = this.task.attributes['img'] || '';
 			if (image !== this.image) {
-				this.setImage(this.image = image);
+				this.image = image;
 			}
 		},
-		setImage(image) {
-			const imageUrl = !image || isValidUrl(image) ? image : this.assetBaseUrl + image;
-			this.$els.image.src = imageUrl;
-			this.$els.image.style.width = '100%';
-		},
 		onChange(event) {
-			this.setImage(this.image);
 			this.task.attributes['img'] = this.image;
 			this.$dispatch('gui-changed');
 		},
-		onError(event) {
-			this.$els.image.src = require('../../../../common/img/element-image-white.svg');
-			this.$els.image.style.width = '50%';
-		}
 	},
 
 	components: {
+		'image-placeholder': require('../img'),
 		'task-options': require('../options'),
 	},
 });

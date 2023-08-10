@@ -124,6 +124,10 @@ module.exports = Vue.extend({
 					case 'buttons':
 						empty = isEmpty(task.buttons);
 						break;
+					case 'carousel':
+					case 'tiles':
+						empty = isEmpty(task.items);
+						break;
 				}
 			}
 			return empty;
@@ -258,5 +262,6 @@ module.exports = Vue.extend({
 		'task-video': require('./video'),
 		'task-iframe': require('./iframe'),
 		'task-buttons': require('./buttons'),
+		'task-carousel': require('./carousel'),
 	},
 });

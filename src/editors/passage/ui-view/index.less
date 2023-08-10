@@ -213,10 +213,18 @@
   }
   &-content {
     display: flex;
+    align-items: flex-start;
   }
   &-placeholder {
     flex: 0 0 123px; // flex: 0 0 245px;
+    align-self: stretch;
     margin-right: 10px;
+    img {
+      display: block;
+      margin: auto;
+      width: 50%;
+      height: 100%;
+    }
   }
   input {
     border: #888 solid 1px;
