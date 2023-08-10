@@ -7,7 +7,7 @@
 					<!-- <button type="button" class="passageUI-task-collapse" @click.stop="toggleCollapse($index)" title="{{ 'Expand / Collapse' | say }}"></button> -->
 					<span class="passageUI-task-caption">{{ caption(task) }}</span>
 					<button type="button" class="passageUI-task-props" @click="onSettings($index)" :style="settingsStyle($index)" title="Settings (Condition / Class name)"></button>
-					<button type="button" class="passageUI-task-remove" @click="onRemove($index)" title="{{'Remove entry' | say}}"></button>
+					<button type="button" class="passageUI-task-remove" @click.stop="onDelete($index)" title="{{'Delete entry' | say}}"></button>
 				</div>
 				<div class="passageUI-task-container">
 					<div v-show="settings & (1 << $index)" class="passageUI-task-settings">
@@ -38,11 +38,11 @@
 					<task-buttons v-if="task.type === 'buttons'" :task="task" :story="story"></task-buttons>
 					<task-xml v-if="task.type === 'msg'" :task="task"></task-xml>
 					<task-carousel v-if="task.type === 'carousel'" :task="task" :story="story"></task-carousel>
-					<task-xml v-if="task.type === 'tiles'" :task="task"></task-xml>
+					<task-tiles v-if="task.type === 'tiles'" :task="task" :story="story"></task-tiles>
 					<task-wait v-if="task.type === 'wait'" :task="task" :story="story"></task-wait>
 					<task-goto v-if="task.type === 'goto'" :task="task" :story="story"></task-goto>
 					<task-eval v-if="task.type === 'eval'" :task="task" :story="story"></task-eval>
-					<task-xml v-if="task.type === 'chat'" :task="task"></task-xml>
+					<task-chat v-if="task.type === 'chat'" :task="task"></task-chat>
 				</div>
 			</div>
 		</div>

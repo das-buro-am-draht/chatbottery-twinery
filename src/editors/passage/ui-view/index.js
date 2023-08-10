@@ -132,7 +132,7 @@ module.exports = Vue.extend({
 			}
 			return empty;
 		},
-		onRemove(index) {
+		onDelete(index) {
 			Promise.resolve(this.tasks[index]).then((task) => {
 				if (!this.isEmpty(task)) {
 					return confirm({
@@ -263,5 +263,7 @@ module.exports = Vue.extend({
 		'task-iframe': require('./iframe'),
 		'task-buttons': require('./buttons'),
 		'task-carousel': require('./carousel'),
+		'task-tiles': require('./tiles'),
+		'task-chat': require('./chat'),
 	},
 });

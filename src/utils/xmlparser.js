@@ -159,7 +159,7 @@ const xmlElement = (tag, content, attributes = null) => {
   const attr = Object.entries(attributes || {})
     .filter(([k,v]) => !!v)
     .map(([k,v]) => `${k}="${String(v).replace(/"/g, '\'')}"`).join(' ');
-  return `<${tag}${attr ? ' ' + attr : ''}>${content}</${tag}>\n`;
+  return `<${tag}${attr ? ' ' + attr : ''}>${content || ''}</${tag}>\n`;
 }
 
 const xmlValue = (task) => {
