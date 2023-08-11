@@ -11,7 +11,8 @@
 					<datalist id="userData">
 						<option v-for="field in userData" :value="$key">
 					</datalist>
-					<p class="error" v-show="!isValid">{{ 'User variable must start with \'$\'' | say }}</p>
+					<p class="error" v-show="!variable">{{ 'User variable must be set!' | say }}</p>
+					<p class="error" v-show="!isValid">{{ 'User variable must start with \'$\'!' | say }}</p>
 				</div>
 			</div>
 			<div class="passageUI-row">

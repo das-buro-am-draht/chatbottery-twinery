@@ -8,6 +8,7 @@
 				<label for="videoUrl">{{ 'Video URL' | say }}:</label>
 				<div class="passageUI-row-input">
 					<input type="text" name="videoUrl" v-model="video" @input="onChange($event)" required placeholder="Enter a valid youtube- or vimeo link">
+					<p class="error" v-show="!video">{{ 'Video URL must be set!' | say }}</p>
 					<p class="error" v-show="!isValid">{{ 'Resource Locator must be a valid URL' | say }}</p>
 				</div>
 			</div>
