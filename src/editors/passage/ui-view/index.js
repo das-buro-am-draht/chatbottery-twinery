@@ -47,7 +47,7 @@ module.exports = Vue.extend({
 				switch (type) {
 					default:
 						conditions.push(`${name} === 'value'`);
-						conditions.push(`${name} !== 'value'`);
+						conditions.push(`!${name}`);
 						break;
 					case 'boolean':
 						conditions.push(`${name}`);

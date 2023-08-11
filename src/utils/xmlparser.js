@@ -2,7 +2,7 @@
 const { 
   removeEnclosingBrackets,
 } = require('../data/link-parser');
-const { trim } = require('./common');
+const { trim, isEmpty } = require('./common');
 const { createTask } = require('../utils/task');
 
 const ROOT = 'root';
@@ -26,9 +26,15 @@ const textToButton = (element) => {
 };
   
 const buttonToText = (button) => {
-  let text = `${button.label || ''}|${button.link || ''}`;
-  if (button.func) {
-    text += `|${button.func}`;
+  const label = trim(button.label);
+  const link  = trim(button.link);
+  const func  = trim(button.func);
+  if (!(label || link || func)) {
+    return '';
+  }
+  let text = `${label || ''}|${link || ''}`;
+  if (func) {
+    text += `|${func}`;
   }
   return `[[${text}]]`;
 } 
@@ -39,7 +45,7 @@ const parse = (text) => {
     tasks.push({
       ...task,
       attributes: {
-        classname: '',
+        'classname': '',
         'typing-animation-time': '',
         'if': '',
         ...task.attributes,
@@ -57,14 +63,18 @@ const parse = (text) => {
     if (task.type === 'msg' || task.type === 'wait') {
       // option texts
       task.opt = children.filter((item) => item.tagName.toLowerCase() === 'opt').map((item) => item.innerHTML.trim());
-      el.innerHTML = trim(el.innerHTML.replace(/(<(opt|act|btn)[^>]*>[\s\S]*<\/(opt|act|btn)>)|(<(opt|act|btn)[^\/]*\/>)/g, ''));
+      if (task.type === 'wait') { 
+        // autocomplete
+        task.autocomplete = children.filter((item) => item.tagName.toLowerCase() === 'autocomplete').map((item) => item.innerHTML.trim());
+      }
+      el.innerHTML = trim(el.innerHTML.replace(/(<(opt|act|btn|autocomplete)[^>]*>[\s\S]*<\/(opt|act|btn|autocomplete)>)|(<(opt|act|btn|autocomplete)[^\/]*\/>)/gi, ''));
       if (el.innerHTML) {
         task.opt.unshift(el.innerHTML);
       }
     }
 
     switch (task.type) {
-      case 'msg':
+      case 'msg': {
         const buttons = children.filter((item) => {
           const tagName = item.tagName.toLowerCase();
           return tagName === 'act' || tagName === 'btn';
@@ -83,7 +93,6 @@ const parse = (text) => {
           });
           delete task.attributes.eval;
         }
-
         if (task.attributes.hasOwnProperty('img')) {
           task.type = 'image';
         } else if (task.attributes.hasOwnProperty('src')) {
@@ -94,7 +103,8 @@ const parse = (text) => {
           task.type = 'txt';
         }
         break;
-      case 'carousel':
+      }
+      case 'carousel': {
         task.items = children.map((item) => {
           const child = {};
           Array.from(item.children).forEach((el) => {
@@ -114,7 +124,8 @@ const parse = (text) => {
           }
         });
         break;
-      case 'tiles':
+      }
+      case 'tiles': {
         task.items = children.map((item) => {
           const child = {};
           Array.from(item.children).forEach((el) => {
@@ -134,14 +145,14 @@ const parse = (text) => {
         });
         break;
       }
-
-    task.content = el.innerHTML.trim()
-      .replace(/>\s*(.+)\s*</g, '>$1<')
-      .replace(/>\s*</g, '>\n<');
-
-    if (task.type !== 'txt' || task.opt.some((option) => !!option)) {
-      addTask(task);
+      default:
+        task.content = el.innerHTML.trim()
+          .replace(/>\s*(.+)\s*</g, '>$1<')
+          .replace(/>\s*</g, '>\n<');
     }
+
+    addTask(task);
+
     if (taskButtons) {
       addTask(taskButtons);
     }
@@ -163,18 +174,24 @@ const xmlElement = (tag, content, attributes = null) => {
 }
 
 const xmlValue = (task) => {
-  let content = task.content;
+  let content = '';
   switch (task.type) {
+    case 'wait': {
+      if (task.autocomplete) {
+        content = task.autocomplete.reduce((xml, autocomplete) => {
+          return xml + xmlElement('autocomplete', autocomplete); // HtmlEncode(autocomplete));
+        }, '');
+      }
+    }
     case 'txt':
-    case 'wait':
     case 'image':
     case 'video':
     case 'iframe': {
       const opt = (task.opt || []).filter((option) => !!option);
       if (opt.length === 1)
-        content = opt[0] + '\n'; // HtmlEncode(opt[0]) + '\n';
+        content += opt[0] + '\n'; // HtmlEncode(opt[0]) + '\n';
       else {
-        content = opt.reduce((xml, option) => {
+        content += opt.reduce((xml, option) => {
           return xml + xmlElement('opt', option); // HtmlEncode(option));
         }, '');
       }
@@ -211,6 +228,9 @@ const xmlValue = (task) => {
       }, '');
       break;
     }
+    default:
+      content = task.content || '';
+      break;
   }
   return content;
 }
@@ -231,8 +251,40 @@ const stringify = (arr) => {
     let value = xmlValue(task).replace(/\n</g, '\n   <');
     if (value) {
       value = '\n   ' + value.replace(/\s+$/, '') + '\n';
-    } else if (type === 'msg' && !Object.values(task.attributes).some(v => !!v)) {
-      return xml;
+    } else {
+      switch (task.type) {
+        case 'chat':
+          break;
+        case 'image':
+          if (!task.attributes['img'])
+            return xml;
+          break;
+        case 'video':
+          if (!task.attributes['video'])
+            return xml;
+          break;
+        case 'iframe':
+          if (!task.attributes['src'])
+            return xml;
+          break;
+        case 'goto':
+          if (!task.attributes['passage'])
+            return xml;
+          break;
+        case 'wait':
+          if (!task.attributes['var'])
+            return xml;
+          break;
+        case 'eval':
+          if (!task.attributes['eval'])
+            return xml;
+          break;
+        default:
+          if (!Object.entries(task).some(([k, v]) => (k !== 'type' && k !== 'attributes' && !isEmpty(v)))) {
+            return xml; // ignore task
+          }
+          break;
+      }
     }
     return xml + xmlElement(type, value, task.attributes);
   }, '');

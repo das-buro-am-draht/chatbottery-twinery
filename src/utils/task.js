@@ -37,6 +37,9 @@ const createTask = (type, attributes = {}) => {
     case 'carousel':
       task.items = [];
       break;
+    case 'tiles':
+      task.items = [];
+      break;
   }
   return task;
 };
