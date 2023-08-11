@@ -150,8 +150,10 @@ const parse = (text) => {
           .replace(/>\s*(.+)\s*</g, '>$1<')
           .replace(/>\s*</g, '>\n<');
     }
-
-    addTask(task);
+    
+    if (task.type !== 'txt' || task.opt.some((option) => !!option)) {
+      addTask(task);
+    }
 
     if (taskButtons) {
       addTask(taskButtons);
