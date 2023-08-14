@@ -41,6 +41,7 @@ module.exports = Vue.extend({
 				this.src = require('../../../../common/img/element-image-white.svg');
 				this.$els.image.style.width = '';
 				this.$els.image.style.height = '';
+				this.$els.image.style.maxHeight = '';
 				this.$els.image.style.backgroundColor = '#e2e2e2';
 			} else {
 				if (isValidUrl(this.imageUrl)) {
@@ -50,6 +51,7 @@ module.exports = Vue.extend({
 				}
 				this.$els.image.style.width = '100%';
 				this.$els.image.style.height = 'auto';
+				this.$els.image.style.maxHeight = 'unset';
 				this.$els.image.style.backgroundColor = '';
 			}
 		},
@@ -57,6 +59,7 @@ module.exports = Vue.extend({
 			this.src = require('../../../../common/img/element-image.svg');
 			this.$els.image.style.width = '';
 			this.$els.image.style.height = '';
+			this.$els.image.style.maxHeight = '';
 		},
 	},
 });
