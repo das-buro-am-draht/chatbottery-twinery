@@ -65,7 +65,7 @@ const parse = (text) => {
       task.opt = children.filter((item) => item.tagName.toLowerCase() === 'opt').map((item) => item.innerHTML.trim());
       if (task.type === 'wait') { 
         // autocomplete
-        task.autocomplete = children.filter((item) => item.tagName.toLowerCase() === 'autocomplete').map((item) => item.innerHTML.trim());
+        task.autocomplete = children.filter((item) => item.tagName.toLowerCase() === 'autocomplete').map((item) => item.innerText.trim());
       }
       el.innerHTML = trim(el.innerHTML.replace(/(<(opt|act|btn|autocomplete)[^>]*>[\s\S]*<\/(opt|act|btn|autocomplete)>)|(<(opt|act|btn|autocomplete)[^\/]*\/>)/gi, ''));
       if (el.innerHTML) {
@@ -181,7 +181,7 @@ const xmlValue = (task) => {
     case 'wait': {
       if (task.autocomplete) {
         content = task.autocomplete.reduce((xml, autocomplete) => {
-          return xml + xmlElement('autocomplete', autocomplete); // HtmlEncode(autocomplete));
+          return xml + xmlElement('autocomplete', HtmlEncode(autocomplete));
         }, '');
       }
     }

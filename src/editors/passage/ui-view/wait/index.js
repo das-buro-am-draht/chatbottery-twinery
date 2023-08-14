@@ -19,6 +19,8 @@ module.exports = Vue.extend({
 	data: () => ({
 		variable: '',
 		validate: '',
+		autocomplete: '',
+		showAutocomplete: false,
 		userData: {},
 	}),
 
@@ -53,6 +55,7 @@ module.exports = Vue.extend({
 		load() {
 			this.loadVariable();
 			this.loadValidate();
+			this.loadAutocomplete();
 		},
 		loadVariable() {
 			const variable = this.task.attributes['var'] || '';
@@ -65,6 +68,10 @@ module.exports = Vue.extend({
 			if (validate !== this.validate) {
 				this.validate = validate;
 			}
+		},
+		loadAutocomplete() {
+			this.autocomplete = (this.task.autocomplete || []).join('\n');
+			this.showAutocomplete = this.autocomplete
 		},
 		onChangeVariable(event) {
 			const variable = trim(this.variable);
@@ -83,6 +90,13 @@ module.exports = Vue.extend({
 				delete this.task.attributes['validate'];
 			}
 			this.$dispatch('gui-changed');
+		},
+		onChangeAutocomplete(event) {
+			this.task.autocomplete = this.autocomplete.split('\n').map((autocomplete) => trim(autocomplete));
+			this.$dispatch('gui-changed');
+		},
+		onShowAutocomplete() {
+			this.showAutocomplete = true;
 		},
 	},
 
