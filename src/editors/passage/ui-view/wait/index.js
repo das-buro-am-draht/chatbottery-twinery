@@ -43,6 +43,9 @@ module.exports = Vue.extend({
 		'task.attributes.validate'() {
 			this.loadValidate();
 		},
+		'task.autocomplete'() {
+			this.loadAutocomplete();
+		},
 	},
 
 	computed: {
@@ -92,7 +95,7 @@ module.exports = Vue.extend({
 			this.$dispatch('gui-changed');
 		},
 		onChangeAutocomplete(event) {
-			this.task.autocomplete = this.autocomplete.split('\n').map((autocomplete) => trim(autocomplete));
+			this.task.autocomplete = this.autocomplete.split('\n');
 			this.$dispatch('gui-changed');
 		},
 		onShowAutocomplete() {
