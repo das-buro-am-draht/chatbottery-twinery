@@ -180,7 +180,10 @@ const xmlValue = (task) => {
   switch (task.type) {
     case 'wait': {
       if (task.autocomplete) {
-        content = task.autocomplete.reduce((xml, autocomplete) => {
+        content = task.autocomplete
+          .map((autocomplete) => trim(autocomplete))
+          .filter((autocomplete) => !!autocomplete)
+          .reduce((xml, autocomplete) => {
           return xml + xmlElement('autocomplete', HtmlEncode(autocomplete));
         }, '');
       }
