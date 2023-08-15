@@ -1,3 +1,3 @@
-<div class="passageUI-placeholder" :style="{ 'background': background }">
-	<img :src="src" v-el:image @error.stop.prevent="onError($event)">
+<div class="passageUI-placeholder" v-el:ph>
+	<img :src="src" @error.stop.prevent="onError($event)">
 </div>

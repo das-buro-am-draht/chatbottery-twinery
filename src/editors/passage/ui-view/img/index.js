@@ -29,37 +29,23 @@ module.exports = Vue.extend({
 		},
 	},
 
-	computed: {
-		background() {
-			return this.imageUrl ? '#fff' : '#e2e2e2';
-		},
-	},
-
 	methods: {
 		load() {
 			if (!this.imageUrl) {
 				this.src = require('../../../../common/img/element-image-white.svg');
-				this.$els.image.style.width = '';
-				this.$els.image.style.height = '';
-				this.$els.image.style.maxHeight = '';
-				this.$els.image.style.backgroundColor = '#e2e2e2';
+				this.$els.ph.style.backgroundColor = '#e2e2e2';
 			} else {
 				if (isValidUrl(this.imageUrl)) {
 					this.src = this.imageUrl;
 				} else {
 					this.src = this.assetBaseUrl + this.imageUrl;
 				}
-				this.$els.image.style.width = '100%';
-				this.$els.image.style.height = 'auto';
-				this.$els.image.style.maxHeight = 'unset';
-				this.$els.image.style.backgroundColor = '';
+				this.$els.ph.style.backgroundColor = '';
 			}
 		},
 		onError(event) {
 			this.src = require('../../../../common/img/element-image.svg');
-			this.$els.image.style.width = '';
-			this.$els.image.style.height = '';
-			this.$els.image.style.maxHeight = '';
+			this.$els.ph.style.backgroundColor = '#e2e2e2';
 		},
 	},
 });
