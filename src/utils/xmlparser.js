@@ -45,9 +45,10 @@ const parse = (text) => {
     tasks.push({
       ...task,
       attributes: {
+        'if': '',
+        'user-data': '',
         'classname': '',
         'typing-animation-time': '',
-        'if': '',
         ...task.attributes,
       }
     })
