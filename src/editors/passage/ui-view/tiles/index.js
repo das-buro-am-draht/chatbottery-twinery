@@ -1,4 +1,6 @@
 const Vue = require('vue');
+const { specialPassages } = require('../../../../data/special-passages');
+
 
 require('./index.less');
 
@@ -30,7 +32,10 @@ module.exports = Vue.extend({
 			if (settings && settings.assetBaseUrl) {
 				this.assetBaseUrl = settings.assetBaseUrl;
 			}
-			this.passages = this.story.passages.map((passage) => passage.name).sort();
+			this.passages = this.story.passages
+				.map((passage) => passage.name)
+				.sort()
+				.concat(Object.values(specialPassages));
 		}
 		if (!this.task.items.length) {
 			this.onAdd();

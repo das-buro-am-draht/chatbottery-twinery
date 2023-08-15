@@ -8,7 +8,7 @@ e.g. those pointing to other passages in a story, not to an external web site.
 const extractLinks = (regexp, text) => {
 	let m, match = [];
 	while (m = regexp.exec(text)) {
-    match.push(m[1].trim());
+    	match.push(m[1].trim());
   }
   return match;  
 }
@@ -82,10 +82,17 @@ const links = (text, internalOnly) => {
 	Link matching regexps ignore setter components, should they exist.
 	*/
 
-	let result = extractLinkTags(text)
+	/* let result = extractLinkTags(text)
 		.map(removeEnclosingBrackets)
 		.map(removeSetters)
-		.map(extractLink)
+		.map(extractLink) 
+		.filter(nonEmptyLinks)
+		.filter(uniques);
+	*/ 	 
+	let result = extractGoToLinkTags(text).map(removeEnclosingBrackets)
+		.concat(extractActLinkTags(text)
+		.concat(extractBtnLinkTags(text))
+		.map(removeEnclosingBrackets).map(extractLink))
 		.filter(nonEmptyLinks)
 		.filter(uniques);
 

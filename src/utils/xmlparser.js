@@ -1,7 +1,5 @@
 // const beautify = require('xml-beautifier');
-const { 
-  removeEnclosingBrackets,
-} = require('../data/link-parser');
+const { removeEnclosingBrackets } = require('../data/link-parser');
 const { trim, isEmpty } = require('./common');
 const { createTask } = require('../utils/task');
 
@@ -29,7 +27,7 @@ const buttonToText = (button) => {
   const label = trim(button.label);
   const link  = trim(button.link);
   const func  = trim(button.func);
-  if (!(label || link || func)) {
+  if (!link) {
     return '';
   }
   let text = `${label || ''}|${link || ''}`;
@@ -212,10 +210,16 @@ const xmlValue = (task) => {
       const items = task.items.filter((item) => item.title || item.text || item.description || item.button);
       content = items.reduce((xml, item) => {
         const text = Object.entries(item).filter(([key]) => ['title', 'text', 'description', 'button'].includes(key)).reduce((xml, [key, value]) => {
-          const element = (key === 'button')
-            ? xmlElement('btn', buttonToText(value), value.attributes)
-            : xmlElement(key, value);
-          return xml + element;
+          if (key !== 'button') {
+            return xml + xmlElement(key, value);
+          } else {
+            const element = buttonToText(value);
+            if (element) {
+              return xml + xmlElement('btn', element, value.attributes);
+            } else {
+              return xml;
+            }
+          }
         }, '\n');
         return xml + xmlElement('item', text, item.attributes);
       }, '');
@@ -225,10 +229,16 @@ const xmlValue = (task) => {
       const items = task.items.filter((item) => item.title || item.description || item.link);
       content = items.reduce((xml, item) => {
         const text = Object.entries(item).filter(([key]) => ['title', 'description', 'link'].includes(key)).reduce((xml, [key, value]) => {
-          const element = (key === 'link')
-            ? xmlElement('act', buttonToText(value), value.attributes)
-            : xmlElement(key, value);
-          return xml + element;
+          if (key !== 'link') {
+            return xml + xmlElement(key, value);
+          } else {
+            const element = buttonToText(value);
+            if (element) {
+              return xml + xmlElement('act', element, value.attributes);
+            } else {
+              return xml;
+            }
+          }
         }, '\n');
         return xml + xmlElement('item', text, item.attributes);
       }, '');

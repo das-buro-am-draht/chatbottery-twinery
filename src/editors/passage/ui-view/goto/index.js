@@ -1,5 +1,6 @@
 const Vue = require('vue');
 const { trim } = require('../../../../utils/common');
+const { specialPassages } = require('../../../../data/special-passages');
 
 require('./index.less');
 
@@ -23,7 +24,10 @@ module.exports = Vue.extend({
 
 	ready() {
 		if (this.story) {
-			this.passages = this.story.passages.map((passage) => passage.name).sort();
+			this.passages = this.story.passages
+				.map((passage) => passage.name)
+				.sort()
+				.concat(Object.values(specialPassages));
 		}
 		this.load();
 	},
