@@ -28,10 +28,7 @@ module.exports = Vue.extend({
 		if (this.story) {
 			this.userData = Object.entries(this.story.userData || {})
 				.filter(([k, v]) => v.type !== 'function')
-				.reduce((prev, data) => {
-					prev[data[0]] = data[1].type;
-					return prev;
-				}, {});
+				.map(([k]) => k.substring(1));
 		}
 		this.load();
 	},
@@ -50,7 +47,7 @@ module.exports = Vue.extend({
 
 	computed: {
 		isValid() {
-			return !this.variable || this.variable.startsWith('$');
+			return !this.variable || !this.variable.startsWith('$');
 		},
 	},
 
@@ -61,7 +58,7 @@ module.exports = Vue.extend({
 			this.loadAutocomplete();
 		},
 		loadVariable() {
-			const variable = this.task.attributes['var'] || '';
+			const variable = (this.task.attributes['var'] || '').substring(1);
 			if (variable !== this.variable) {
 				this.variable = variable;
 			}
@@ -77,7 +74,10 @@ module.exports = Vue.extend({
 			this.showAutocomplete = this.autocomplete
 		},
 		onChangeVariable(event) {
-			const variable = trim(this.variable);
+			let variable = trim(this.variable);
+			if (variable && !variable.startsWith('$')) {
+				variable = '$' + variable;
+			}
 			if (variable) {
 				this.task.attributes['var'] = variable;
 			} else {

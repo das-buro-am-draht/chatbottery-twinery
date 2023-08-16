@@ -2,4 +2,16 @@
    .passageUI-placeholder img {
       filter: invert(39%) sepia(100%) saturate(6453%) hue-rotate(331deg) brightness(96%) contrast(104%);
    }
+	&-variable {
+		position: relative;
+		&::before {
+			position: absolute;
+			content: '$';
+			top: 9px;
+			left: -10px;
+		}
+		input {
+			width: 100%;
+		}
+	}
 }

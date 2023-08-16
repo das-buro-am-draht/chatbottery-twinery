@@ -7,12 +7,14 @@
 			<div class="passageUI-row">
 				<label for="variable">{{ 'Variable' | say }}:</label>
 				<div class="passageUI-row-input">
-					<input type="text" class="code user-field" list="userData" name="variable" v-model="variable" @input="onChangeVariable($event)" required placeholder="User field prefixed with '$' that receives the user input">
-					<datalist id="userData">
-						<option v-for="field in userData" :value="$key">
-					</datalist>
+					<div class="passageUI-wait-variable">
+						<input type="text" class="code" list="userData" name="variable" v-model="variable" @input="onChangeVariable($event)" required placeholder="User variable without '$' prefix">
+						<datalist id="userData">
+							<option v-for="field in userData" :value="field">
+						</datalist>
+					</div>
 					<p class="error" v-show="!variable">{{ 'User variable must be set!' | say }}</p>
-					<p class="error" v-show="!isValid">{{ 'User variable must start with \'$\'!' | say }}</p>
+					<p class="warning" v-show="!isValid">{{ '\'$\' will be added automatically.' | say }}</p>
 				</div>
 			</div>
 			<div class="passageUI-row">
