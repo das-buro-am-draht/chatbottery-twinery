@@ -4,12 +4,13 @@ A modal dialog for editing a single passage.
 
 const Vue = require('vue');
 const CodeMirror = require('codemirror');
-const uniq = require('lodash.uniq');
 const locale = require('../../locale');
+const UserDataDialog = require('../../dialogs/user');
 const { parse, stringify } = require('../../utils/xmlparser');
 const { thenable } = require('../../vue/mixins/thenable');
 const { updateStory } = require("../../data/actions/story");
 const { changeLinksInStory, updatePassage } = require('../../data/actions/passage');
+const VariablesParser = require('../../data/variables-parser');
 const { loadFormat } = require('../../data/actions/story-format');
 const { passageDefaults } = require('../../data/store/story');
 const SettingsDialog = require('./settings');
@@ -227,58 +228,35 @@ module.exports = Vue.extend({
 		},
 
 		updateUserData() {
-			if (this.$refs.codemirror.$cm.isClean()) {
-				return true;
-			}
-			const userData = { ...this.story.userData };
-			const entries = Object.keys(userData).length;
-			const xml = this.$refs.codemirror.$cm.getValue();
-			for (const match of xml.matchAll(/<wait\s[^>]*\bvar="(\$[^\s"]+)"[^>]*>/gmi)) {
-				const variable = match[1];
-				if (variable && !userData[variable]) {
-					userData[variable] = {
-						type: 'string',
-						value: '',
-						auto: true,
-					};
+			if (!this.$refs.codemirror.$cm.isClean()) {
+				const userData = this.story.userData;
+				const xml = this.$refs.codemirror.$cm.getValue();
+				const variables = VariablesParser(xml);
+				const newData = Object.entries(variables)
+					.filter(([k]) => !userData[k])
+					.reduce((obj, [k, v]) => {
+						obj[k] = v;
+						return obj;
+					}, {});
+				const keys = Object.keys(newData);
+				if (keys.length > 0) {
+					notify(
+						locale.say(
+							'New user variables were found: &ldquo;%1$s&rdquo;',
+							keys.join(', ')
+						)
+					);
+					new UserDataDialog({
+						data: { storyId: this.storyId, newData },
+						store: this.$store,
+					}).$mountTo(document.body);
+					// this.updateStory(this.storyId, { userData: { ...userData, ...newData } }); 
 				}
 			}
-			for (const match of xml.matchAll(/<msg\s[^>]*\beval="(\$[^"]+)"[^>]*>/gmi)) {
-				if (match[1]) {
-					const m = match[1].match(/(\$[^\s=]+)\s*=\s*(\S*)/m);
-					const variable = m[1];
-					const assignmt = m[2];
-					if (variable && assignmt && !userData[variable]) {
-						let type = 'string';
-						let value = '';
-						if (!assignmt.startsWith('\'')) {
-							if (/^(true|false)$/i.test(assignmt)) {
-								type = 'boolean';
-								value = false;
-							} else if (/^[0-9\.,]+$/.test(assignmt)) {
-								type = 'number';
-								value = null;
-							} else if (/\bdate\b/i.test(assignmt)) {
-								type = 'date';
-								value = null;
-							}
-						}
-						userData[variable] = {
-							type,
-							value,
-							auto: true,
-						};
-					}
-				}
-			}
-			if (Object.keys(userData).length !== entries) {
-				this.updateStory(this.storyId, { userData });
-			}
-
-			return true;
 		},
 
 		dialogDestroyed() {
+			this.updateUserData();
 			this.$destroy();
 		},
 
@@ -300,7 +278,7 @@ module.exports = Vue.extend({
 				);
 			}
 
-			return this.updateUserData();
+			return true;
 		},
 
 		toggleMode() {

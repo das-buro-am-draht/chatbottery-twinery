@@ -1,5 +1,5 @@
-<div transition="modal-dialog">
-	<div id="modal-overlay" @click="reject"></div>
+<div transition="modal-dialog" tabindex="0">
+	<div id="modal-overlay" @click.prev="reject"></div>
 	<div :class="'modal-dialog ' + classes">
 		<header>
 			<h2 class="title"><slot name="title"></slot></h2>

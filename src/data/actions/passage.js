@@ -1,6 +1,6 @@
 const linkParser = require('../link-parser');
 const rect = require('../../common/rect');
-const { specialPassages }= require('../special-passages');
+const specialPassages = require('../special-passages');
 
 const actions = module.exports = {
 	createPassage({ dispatch }, storyId, props) {

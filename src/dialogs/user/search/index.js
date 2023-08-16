@@ -7,21 +7,21 @@ module.exports = Vue.extend({
 
 	data: () => ({
 		origin: null,
-    passages: [],
-    x: 0,
-    y: 0,
-  }),
+		passages: [],
+		x: 0,
+		y: 0,
+	}),
 
   computed: {
-    sortedPassages() {
-      return this.passages.sort((a, b) => a.name.localeCompare(b.name));
-    }
-  },
+    	sortedPassages() {
+      	return this.passages.sort((a, b) => a.name.localeCompare(b.name));
+    	}
+  	},
 
 	methods: {  
-    onEntryClicked(passage) {
-      this.$dispatch('passage-edit', passage);
-    }
+   	onEntryClicked(passage) {
+      	this.$dispatch('passage-edit', passage);
+    	}
 	},
 
 });

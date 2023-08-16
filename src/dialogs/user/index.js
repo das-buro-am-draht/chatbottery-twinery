@@ -22,21 +22,21 @@ module.exports = Vue.extend({
 	data: () => ({
 		storyId: null,
 		userData: [],
+		newData: {},
 		storeInLocalStorage: false
 	}),
 
 	ready() {
-		const data = this.getUserData();
-		if (data) {
-			this.userData = Object.entries(data)
-				.filter(([k, v]) => {
-					if (k === labelStoreInLocalStorage) {
-						this.storeInLocalStorage = !!v;
-						return false;
-					}
-					return true;
-				})
-				.map(([k, v]) => {
+		const data = this.story.userData || {};
+		this.userData = Object.entries(data)
+			.filter(([k, v]) => {
+				if (k === labelStoreInLocalStorage) {
+					this.storeInLocalStorage = !!v;
+					return false;
+				}
+				return true;
+			})
+			.map(([k, v]) => {
 				const tv = {
 					type: 'string',
 					value: null,
@@ -69,7 +69,13 @@ module.exports = Vue.extend({
 				}
 				return ([k.substring(1), tv]);
 			});
+
+		if (Object.keys(this.newData).length > 0) {
+			this.userData = this.userData.concat(Object.entries(this.newData)
+				.filter(([k]) => k.startsWith('$'))
+				.map(([k,v]) => [k.substring(1), v]));
 		}
+
 		if (!this.userData.length) {
 			// ensure one empty entry
 			this.add(this.userData);
@@ -83,6 +89,9 @@ module.exports = Vue.extend({
 		},
 		gridSize() {
 			return 25;
+		},
+		story() {
+			return this.allStories.find((story) => story.id === this.storyId) || {};
 		},
 	},
 
@@ -110,7 +119,7 @@ module.exports = Vue.extend({
 		},
 
 		editPassage(passage) {
-			const story = this.getStory();
+			const story = this.story;
 			const oldText = passage.text;
 			const afterEdit = () => {
 				this.createNewlyLinkedPassages(
@@ -129,7 +138,8 @@ module.exports = Vue.extend({
 				storyFormat: {
 					name: story.storyFormat,
 					version: story.storyFormatVersion
-				}
+				},
+				origin: this.$el,
 			})
 			.$mountTo(document.body)
 			.then(afterEdit)
@@ -137,16 +147,14 @@ module.exports = Vue.extend({
 		},
 
 		search(entry, event) {
-			if (this.searchDropdown) {
-				if (this.searchDropdown.origin === event.target) {
-					this.closeSearchDropdown();
-					return;
-				}
+			if (this.searchDropdown && this.searchDropdown.origin === event.target) {
+				this.closeSearchDropdown();
+				return;
 			}
 
 			this.closeSearchDropdown();
 
-			const story = this.getStory();
+			const story = this.story;
 			const key = '$' + trim(entry[0]);
 			const regex = regularExpression(key);
 			const passages = story.passages.filter((passage) => regex.test(passage.text));		
@@ -194,14 +202,6 @@ module.exports = Vue.extend({
 		isValidUserEntry(entry) {
 			const key = trim(entry[0]);
 			return !key || !key.startsWith('$');
-		},
-
-		getStory() {
-			return this.allStories.find((story) => story.id === this.storyId) || {};
-		},
-
-		getUserData() {
-			return this.getStory().userData || {};
 		},
 
 		save() {

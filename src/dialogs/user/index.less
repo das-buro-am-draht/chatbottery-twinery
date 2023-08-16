@@ -33,13 +33,24 @@
             & .user__list-type {
                 flex: 1;
                 border: none;
+					 background: #fff;
+					 &:focus-visible {
+						outline: none;
+					 }
             }
             & .user__list-input {
                 flex: 1 1 40%;
                 margin: auto 10px;
                 border: none;
-                // padding: 0 5px;
-                font: 100% "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace
+                background: #fff;
+					 font: 100% "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+					 min-height: 36px;
+					 &[type="number"] {
+						padding: 0.5rem;
+					 }
+					 &:focus-visible {
+						outline: none;
+					 }
             }
             & .user__list-btn {
                 flex: 1;
