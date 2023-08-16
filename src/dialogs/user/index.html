@@ -6,7 +6,7 @@
 			<template v-for="item in userData" track-by="$index">
 				<div class="user__list user-field">
 					<input type="text" class="user__list-field" v-model="item[0]" placeholder="Name" title="{{ 'Variable Name' | say }}">
-					<button class="user__list-search" @click="search(item, $event)" :disabled="isEmptyUserEntry(item)" title="{{ 'Find in Passages' | say }}"></button>
+					<button class="user__list-search" @click.stop="search(item, $event)" :disabled="isEmptyUserEntry(item)" title="{{ 'Find in Passages' | say }}"></button>
 					<select class="user__list-type" name="types" v-model="item[1].type">
 						<option value="string">{{ 'String' | say }}</option>
 						<option value="boolean">{{ 'Boolean' | say }}</option>

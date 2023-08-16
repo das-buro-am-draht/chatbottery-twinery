@@ -1,4 +1,4 @@
-const specialPassages = module.exports = {
+module.exports = {
    unmatched: 'UNMATCHED',
    choosePassage: 'CHOOSE PASSAGE',
    deleteUserProfile: 'DELETE USER PROFILE',

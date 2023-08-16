@@ -1,12 +1,12 @@
 // A component showing a modal dialog where a story's JavaSCript.
 
-const { trim } = require("lodash");
-const Vue = require("vue");
+const Vue = require('vue');
+const { trim } = require('lodash');
 const { updateStory } = require("../../data/actions/story");
 const { stringFromDate, regularExpression } = require("../../utils/common");
 const locale = require("../../locale");
 const notify = require("../../ui/notify");
-const PassageEditor = require('../../editors/passage');
+// const PassageEditor = require('../../editors/passage');
 const SearchDropdown = require('./search');
 const { createNewlyLinkedPassages } = require('../../data/actions/passage');
 
@@ -129,6 +129,7 @@ module.exports = Vue.extend({
 					this.gridSize
 				);
 			};
+			const PassageEditor = require('../../editors/passage') 
 			new PassageEditor({
 				data: {
 					passageId: passage.id,
@@ -138,8 +139,7 @@ module.exports = Vue.extend({
 				storyFormat: {
 					name: story.storyFormat,
 					version: story.storyFormatVersion
-				},
-				origin: this.$el,
+				}
 			})
 			.$mountTo(document.body)
 			.then(afterEdit)
@@ -154,10 +154,9 @@ module.exports = Vue.extend({
 
 			this.closeSearchDropdown();
 
-			const story = this.story;
 			const key = '$' + trim(entry[0]);
 			const regex = regularExpression(key);
-			const passages = story.passages.filter((passage) => regex.test(passage.text));		
+			const passages = this.story.passages.filter((passage) => regex.test(passage.text));		
 			if (!passages.length) {
 				notify(
 					locale.say(
@@ -170,20 +169,17 @@ module.exports = Vue.extend({
 					this.editPassage(passages[0]);
 				} else {
 					const rect = event.target.getBoundingClientRect();
-					setTimeout(() => {
-						Promise.resolve(new SearchDropdown({
-							parent: this,
-							data: {
-								origin: event.target,
-								passages,
-								x: rect.x + rect.width,
-								y: rect.y,
-							},
-							store: this.$store,
-						})
-						.$mountTo(this.$refs.modal.$el))
-						.then(dropdown => this.searchDropdown = dropdown);
-					}, 0);
+					this.searchDropdown = new SearchDropdown({
+						parent: this,
+						data: {
+							origin: event.target,
+							passages,
+							x: rect.x + rect.width,
+							y: rect.y,
+						},
+						store: this.$store,
+					})
+					.$mountTo(this.$refs.modal.$el);
 				}
 			}
 		},
