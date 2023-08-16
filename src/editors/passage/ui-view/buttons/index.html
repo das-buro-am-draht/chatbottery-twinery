@@ -2,33 +2,39 @@
 	<div class="passageUI-buttons-list">
 		<div v-show="task.buttons.length > 0" class="passageUI-buttons-listbox" v-el:list>
 			<div :class="['passageUI-button', selection === $index ? 'selected' : '']" v-for="button in task.buttons" track-by="$index" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)" @click="onSelect($index)">
+				<div class="passageUI-button-gripper"></div>
 				<div class="passageUI-button-label">{{ button.label }}</div>
-				<div class="passageUI-button-delete" @click="onDelete($index)"></div>
+				<div class="passageUI-button-delete" @click.stop="onDelete($index)"></div>
 			</div>
 		</div>
 		<button class="passageUI-buttons-list-new" type="button" @click="onAdd()">Add Button</button>
 	</div>
-	<form v-show="selection >= 0" class="passageUI-buttons-form">
-		<fieldset>
-			<div class="passageUI-buttons-label">
-				<label for="label">Label:</label>
-				<input type="text" name="label" v-el:label @input="onChangeLabel($event)" />
-			</div>
-			<div class="passageUI-buttons-link">
-				<label for="link">Link / Passage:</label>
-				<input type="text" list="passages" name="link" v-el:link @input="onChangeLink($event)" />
-				<datalist v-if="passages" id="passages">
-					<option v-for="passage in passages" :value="passage">
-				</datalist>
-			</div>
-			<div class="passageUI-buttons-func">
-				<label for="func">User Function:</label>
-				<input type="text" name="func" v-el:func @input="onChangeFunc($event)" />
-			</div>
-			<div class="passageUI-buttons-action">
-				<label for="action">Action Button:</label>
-				<input type="checkbox" name="action" v-el:action @input="onChangeAction($event)" />
-			</div>
-		</fieldset>
-	</form>
+	<div v-show="selection >= 0" class="passageUI-form">
+		<div class="passageUI-row">
+			<label for="label">Label:</label>
+			<input type="text" name="label" v-el:label @input="onChangeLabel($event)" />
+		</div>
+		<div class="passageUI-row">
+			<label for="link">Link / Passage:</label>
+			<input type="text" list="passages" name="link" v-el:link @input="onChangeLink($event)" />
+			<datalist v-if="passages" id="passages">
+				<option v-for="passage in passages" :value="passage">
+			</datalist>
+		</div>
+		<div class="passageUI-row">
+			<label for="action">Action Button:</label>
+			<input type="checkbox" name="action" v-el:action @input="onChangeAction($event)" />
+		</div>
+		<div v-show="showAdvanced" class="passageUI-row">
+			<label for="classname">Custom class:</label>
+			<input type="text" name="classname" v-el:class @input="onChangeClass($event)" />
+		</div>
+		<div v-show="showAdvanced" class="passageUI-row">
+			<label for="func">User Function:</label>
+			<input type="text" name="func" v-el:func @input="onChangeFunc($event)" />
+		</div>
+		<div v-show="!hasEmpty" class="passageUI-action" >
+			<button type="button" @click="onShowAdvanced">{{ showAdvanced ? 'Hide advanced Settings' : 'Advanced Settings' }}</button>
+		</div>
+	</div>
 </div>

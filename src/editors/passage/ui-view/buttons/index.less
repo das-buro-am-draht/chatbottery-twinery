@@ -2,28 +2,15 @@
   display: flex;
   flex-direction: row;
   &-list {
+    flex: 0 0 30%;
     text-align: center;
-    min-width: 200px;
+    min-width: 150px;
+    margin-right: 10px;
     &box {
       border-style: inset;
       text-align: left;
       overflow-y: auto;
       max-height: 120px;
-    }
-  }
-  &-form {
-    flex: 1;
-    margin-left: 10px;
-    fieldset {
-      padding: 10px;
-    }
-    label {
-      display: inline-block;
-      width: 100px;
-    }
-    input[type="text"] {
-      width: calc(~"100% - 108px");
-      margin: 0 0 5px 4px;
     }
   }
 }
@@ -36,17 +23,29 @@
   height: 32px;
   &.selected {
     color: #fff;
-    background-color: #e3385b;
-    .passageUI-button-delete {
+    background-color: #808080;
+    .passageUI-button-delete,.passageUI-button-gripper {
       filter: invert(1);
     }
   }
   &-label {
     flex: 1;
     padding: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  &-gripper {
+    cursor: grab;
+    flex: 0 0 20px;
+    height: 20px;
+    background-image: url("../../../../common/img/ui-drag.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   }
   &-delete {
-    width: 30px;
+    flex: 0 0 20px;
     height: 20px;
     cursor: pointer;
     background-image: url("../../../../common/img/delete.svg");

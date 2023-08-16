@@ -2,11 +2,13 @@
 A modal dialog for editing a single passage.
 */
 
-const CodeMirror = require('codemirror');
 const Vue = require('vue');
+const CodeMirror = require('codemirror');
+const uniq = require('lodash.uniq');
 const locale = require('../../locale');
 const { parse, stringify } = require('../../utils/xmlparser');
 const { thenable } = require('../../vue/mixins/thenable');
+const { updateStory } = require("../../data/actions/story");
 const { changeLinksInStory, updatePassage } = require('../../data/actions/passage');
 const { loadFormat } = require('../../data/actions/story-format');
 const { passageDefaults } = require('../../data/store/story');
@@ -222,7 +224,58 @@ module.exports = Vue.extend({
 			);
 		},
 
+		updateUserData() {
+			if (this.$refs.codemirror.$cm.isClean()) {
+				return;
+			}
+			const userData = { ...this.story.userData };
+			const entries = Object.keys(userData).length;
+			const xml = this.$refs.codemirror.$cm.getValue();
+			for (const wait of xml.matchAll(/<wait\s[^>]*\bvar="(\$[^\s"]+)"[^>]*>/gmi)) {
+				const variable = wait[1];
+				if (variable && !userData[variable]) {
+					userData[variable] = {
+						type: 'string',
+						value: '',
+						auto: true,
+					};
+				}
+			}
+			for (const eval of xml.matchAll(/<msg\s[^>]*\beval="(\$[^"]+)"[^>]*>/gmi)) {
+				if (eval[1]) {
+					const m = eval[1].match(/(\$[^\s=]+)\s*=\s*(\S*)/m);
+					const variable = m[1];
+					const assignmt = m[2];
+					if (variable && assignmt && !userData[variable]) {
+						let type = 'string';
+						let value = '';
+						if (!assignmt.startsWith('\'')) {
+							if (/^(true|false)$/i.test(assignmt)) {
+								type = 'boolean';
+								value = false;
+							} else if (/^[0-9\.,]+$/.test(assignmt)) {
+								type = 'number';
+								value = null;
+							} else if (/\bdate\b/i.test(assignmt)) {
+								type = 'date';
+								value = null;
+							}
+						}
+						userData[variable] = {
+							type,
+							value,
+							auto: true,
+						};
+					}
+				}
+			}
+			if (Object.keys(userData).length !== entries) {
+				this.updateStory(this.storyId, { userData });
+			}
+		},
+
 		dialogDestroyed() {
+			this.updateUserData();
 			this.$destroy();
 		},
 
@@ -297,12 +350,13 @@ module.exports = Vue.extend({
 		actions: {
 			changeLinksInStory,
 			updatePassage,
-			loadFormat
+			updateStory,
+			loadFormat,
 		},
 
 		getters: {
-			allStories: state => state.story.stories
-		}
+			allStories: state => state.story.stories,
+		},
 	},
 
 	mixins: [thenable]

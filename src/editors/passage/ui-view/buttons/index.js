@@ -1,4 +1,5 @@
 const Vue = require('vue');
+const { specialPassages } = require('../../../../data/special-passages');
 
 require('./index.less');
 
@@ -18,11 +19,15 @@ module.exports = Vue.extend({
 	data: () => ({
 		selection: -1,
 		passages: null,
+		showAdvanced: false,
 	}),
 
 	ready() {
 		if (this.story) {
-			this.passages = this.story.passages.map((passage) => passage.name).sort();
+			this.passages = this.story.passages
+				.map((passage) => passage.name)
+				.sort()
+				// .concat(Object.values(specialPassages));
 		}
 		if (!this.task.buttons.length) {
 			this.onAdd();
@@ -61,12 +66,16 @@ module.exports = Vue.extend({
 			}
 		},
 		setSelection(index) {
+			while (index >= this.task.buttons.length) {
+				index--;
+			}
 			this.selection = index;
 			if (index >= 0) {
 				const button = this.task.buttons[index];
 				this.$els.label.value = button.label || '';
 				this.$els.link.value = button.link || '';
 				this.$els.func.value = button.func || '';
+				this.$els.class.value = button.attributes.classname || '';
 				this.$els.action.checked = !!button.action;
 				Vue.nextTick(() => {
 					this.$els.label.focus();
@@ -77,18 +86,23 @@ module.exports = Vue.extend({
 				});
 			}
 		},
+		onShowAdvanced() {
+			this.showAdvanced = !this.showAdvanced;
+		},
 		onSelect(index) {
 			this.setSelection(index);
 		},
 		onDelete(index) {
 			this.task.buttons.splice(index, 1);
 			this.$dispatch('gui-changed');
-			this.setSelection(-1);
+			if (index === this.selection) {
+				this.setSelection(index);
+			}
 		},
 		onAdd() {
 			const index = this.task.buttons.length;
 			this.task.buttons.push({
-				attributes: {},
+				attributes: { },
 				label: '',
 				link: '',
 				func: '',
@@ -111,6 +125,12 @@ module.exports = Vue.extend({
 		onChangeFunc(event) {
 			if (this.selection >= 0) {
 				this.task.buttons[this.selection].func = this.$els.func.value;
+				this.$dispatch('gui-changed');
+			}
+		},
+		onChangeClass(event) {
+			if (this.selection >= 0) {
+				this.task.buttons[this.selection].attributes['classname'] = this.$els.class.value;
 				this.$dispatch('gui-changed');
 			}
 		},

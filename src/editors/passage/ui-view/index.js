@@ -2,9 +2,9 @@ const Vue = require('vue');
 const { confirm } = require('../../../dialogs/confirm');
 const locale = require('../../../locale');
 const notify = require('../../../ui/notify');
-const { label } = require('../../../utils/task');
+const { isEmpty } = require('../../../utils/common');
 const { phraseSuggestions } = require('../../../common/app/openai');
-const { createTask } = require('../../../utils/task');
+const { label, createTask } = require('../../../utils/task');
 
 require('./index.less');
 
@@ -23,16 +23,47 @@ module.exports = Vue.extend({
 		},
 	},
 
-	ready() {
-		Array.from(this.taskElements)
-			.forEach((element) => element.classList.add(CLASS_COLLAPSED));
-	},
-
 	data: () => ({
 		openai: null,
+		settings: 0,
+		userData: {},
 	}),
 
+	ready() {
+		this.userData = Object.entries(this.story.userData || {})
+			.filter(([k, v]) => v.type !== 'function')
+			.reduce((prev, data) => {
+				prev[data[0]] = data[1].type;
+				return prev;
+			}, {});
+
+		Array.from(this.taskElements).forEach((element) => element.classList.add(CLASS_COLLAPSED));
+	},
+
 	computed: {
+		conditions() {
+			const conditions = [];
+			Object.entries(this.userData).forEach(([name, type]) => {
+				switch (type) {
+					default:
+						conditions.push(`${name} === 'value'`);
+						conditions.push(`!${name}`);
+						break;
+					case 'boolean':
+						conditions.push(`${name}`);
+						conditions.push(`!${name}`);
+						break;
+					case 'number':
+						conditions.push(`${name} === 1`);
+						conditions.push(`${name} !== 1`);
+						break;
+					case 'date':
+						conditions.push(`${name} > Date.now()`);
+						break;
+				}
+			});
+			return conditions;
+		},
 		taskElements() {
 			return this.$els.tasks.getElementsByClassName('passageUI-task');
 		},
@@ -45,6 +76,12 @@ module.exports = Vue.extend({
 	methods: {
 		isCollapsed(index) {
 			return this.taskElements[index].classList.contains(CLASS_COLLAPSED);
+		},
+		onSettings(index) {
+			this.settings ^= 1 << index;
+		},
+		onChangeSettings(event) {
+			this.$dispatch('gui-changed');
 		},
 		onTaskClicked(index) {
 			const elements = this.taskElements;
@@ -77,21 +114,25 @@ module.exports = Vue.extend({
 			return label(task.type);
 		},
 		isEmpty(task) {
-			let isEmpty = Object.keys(task.attributes).length === 0;
-			if (isEmpty) {
+			let empty = isEmpty(task.attributes);
+			if (empty) {
 				switch (task.type) {
 					case 'txt':
 					case 'image':
-						isEmpty = !task.opt.some((option) => !!option.trim());
+						empty = isEmpty(task.opt);
 						break;
 					case 'buttons':
-						isEmpty = task.buttons.length === 0;
+						empty = isEmpty(task.buttons);
+						break;
+					case 'carousel':
+					case 'tiles':
+						empty = isEmpty(task.items);
 						break;
 				}
 			}
-			return isEmpty;
+			return empty;
 		},
-		onRemove(index) {
+		onDelete(index) {
 			Promise.resolve(this.tasks[index]).then((task) => {
 				if (!this.isEmpty(task)) {
 					return confirm({
@@ -101,6 +142,7 @@ module.exports = Vue.extend({
 					});
 				}
 			}).then(() => {
+				this.settings &= ~(1 << index);
 				this.tasks.splice(index, 1);
 				this.$dispatch('gui-changed');
 			});
@@ -124,18 +166,33 @@ module.exports = Vue.extend({
 				const removeIdx = toIdx > fromIdx ? fromIdx : fromIdx + 1;
 				this.tasks.splice(removeIdx, 1);
 
+				let settings = this.settings;
+				if ((((settings & (1 << fromIdx)) >> fromIdx) ^ ((settings & (1 << toIdx)) >> toIdx)) == 1)
+				{
+					settings ^= (1 << fromIdx);
+					settings ^= (1 << toIdx);
+					this.settings = settings;
+				}
+
 				this.$dispatch('gui-changed');
 				
 				this.onTaskClicked(index);
 			}
 		},
-		settingsImage(index) {
+		settingsStyle(index) {
 			let image = 'blank';
-			if (this.tasks[index].attributes.if) {
+			let color = '#fff';
+			if (this.settings & (1 << index)) {
+				color = '#c9cef4';
+				// image = 'white';
+			} else if (this.tasks[index] && this.tasks[index].attributes['if']) {
 				image = 'red';
 			}
 			const imageUrl = require(`../../../common/img/ui-settings-${image}.svg`);
-			return `url(${imageUrl})`;
+			return {
+				backgroundColor: color,
+				backgroundImage: `url(${imageUrl})`,
+			};
 		},
 		closeSuggestions() {
 			this.openai = null;
@@ -199,9 +256,14 @@ module.exports = Vue.extend({
 		'task-xml': require('./xml'),
 		'task-txt': require('./txt'),
 		'task-wait': require('./wait'),
+		'task-eval': require('./eval'),
+		'task-goto': require('./goto'),
 		'task-image': require('./image'),
 		'task-video': require('./video'),
 		'task-iframe': require('./iframe'),
 		'task-buttons': require('./buttons'),
+		'task-carousel': require('./carousel'),
+		'task-tiles': require('./tiles'),
+		'task-chat': require('./chat'),
 	},
 });

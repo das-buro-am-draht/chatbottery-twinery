@@ -1,5 +1,6 @@
 const linkParser = require('../link-parser');
 const rect = require('../../common/rect');
+const { specialPassages }= require('../special-passages');
 
 const actions = module.exports = {
 	createPassage({ dispatch }, storyId, props) {
@@ -144,9 +145,11 @@ const actions = module.exports = {
 
 		/* Determine how many passages we'll need to create. */
 
+		const ignorePassages = Object.values(specialPassages);
 		const oldLinks = linkParser.links(oldText, true);
 		const newLinks = linkParser.links(passage.text, true).filter(
 			link => (oldLinks.indexOf(link) === -1) &&
+				!ignorePassages.includes(link) &&
 				!(story.passages.some(passage => passage.name === link))
 		);
 

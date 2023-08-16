@@ -30,6 +30,7 @@ module.exports = Vue.extend({
 		user immediately hits Undo, the editor becomes empty.
 		*/
 
+		this.$cm.markClean();
 		this.$cm.clearHistory();
 
 		this.$cm.on('change', () => {

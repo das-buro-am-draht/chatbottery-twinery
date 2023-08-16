@@ -1,0 +1,48 @@
+<div class="passageUI-tiles">
+	<div class="passageUI-row">
+		<label for="caption">Caption:</label>
+		<input type="text" name="caption" v-el:caption @input="onChangeCaption($event)" placeholder="Caption before Tiles" title="Caption before Tiles"/>
+	</div>
+	<div class="passageUI-row">
+		<label for="initial">Initial count:</label>
+		<input type="number" name="initial" v-el:initial @input="onChangeInitial($event)" title="Limit initially visible item count" />
+	</div>
+	<div class="passageUI-items">
+		<div :class="['passageUI-item', selection === $index ? 'selected' : '']" v-for="item in task.items" track-by="$index" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)" @click="onSelect($index)">
+			<div class="passageUI-item-gripper">
+				<img src="../../../../common/img/ui-drag.svg">
+			</div>
+			<div class="passageUI-item-text">Item {{ $index + 1 }}</div>
+			<div class="passageUI-item-delete" @click.stop="onDelete($index)">
+				<img src="../../../../common/img/ui-delete.svg">
+			</div>
+		</div>
+		<div class="passageUI-item passageUI-item-add">
+			<img src="../../../../common/img/plus.svg" @click="onAdd">
+		</div>
+	</div>
+	<div class="passageUI-content">
+		<image-placeholder :image-url="imageUrl" :asset-base-url="assetBaseUrl"></image-placeholder>
+		<div v-show="selection >= 0" class="passageUI-form">
+			<div class="passageUI-row">
+				<label for="image">Image link:</label>
+				<input type="text" name="image" v-el:image @input="onChangeImage($event)" placeholder="Image URL" title="Relative or absolute image URL" required />
+			</div>
+			<div class="passageUI-row">
+				<label for="title">Headline:</label>
+				<input type="text" name="title" v-el:title @input="onChangeTitle($event)" placeholder="Title of the item" title="Title of the item" required />
+			</div>
+			<div class="passageUI-row">
+				<label for="description">Description:</label>
+				<input type="text" name="description" v-el:description @input="onChangeDescription($event)" placeholder="Description of the item" title="Description of the item"/>
+			</div>
+			<div class="passageUI-row">
+				<label for="link">Target:</label>
+				<input type="text" name="link" list="passages" v-el:link @input="onChangeLink($event)" placeholder="Passage name or external URL" title="Passage name or external URL" required />
+				<datalist v-if="passages" id="passages">
+					<option v-for="passage in passages" :value="passage">
+				</datalist>
+			</div>
+		</div>
+	</div>
+</div>

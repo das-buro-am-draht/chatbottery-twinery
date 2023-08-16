@@ -3,9 +3,6 @@
     width: 100%;
     resize: vertical;
     height: 56px;
-    opacity: 1;
-    visibility: visible;
-    // transition: height 1s, visibility 1s, opacity 1s;
     background-color: #fff;
     font: 100% "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
   }
@@ -15,13 +12,8 @@
   height: 256px;
 }
 
-.passageUI-task.collapsed .passageUI-xml-content {
-  height: 0;
-  .passageUI-xml-text {
-    height: 0;
-    visibility: collapse;
-    opacity: 0;
-  }
+.passageUI-task.collapsed .passageUI-xml-text {
+  display: none;
 }
 
 .passageUI-task.task-carousel.collapsed .passageUI-xml-content {

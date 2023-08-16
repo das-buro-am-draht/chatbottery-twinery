@@ -9,7 +9,7 @@ const types = {
   'wait'    : 'Record user input',
   'eval'    : 'Set variable',
   'goto'    : 'Goto',
-  'chat'    : 'Chat',
+  'chat'    : 'Live Chat',
   // 'sms'     : 'SMS (Voice Bot)',
   // 'call'    : 'Call Control (Voice Bot)',
 };
@@ -34,9 +34,14 @@ const createTask = (type, attributes = {}) => {
     case 'buttons':
       task.buttons = [];
       break;
+    case 'carousel':
+      task.items = [];
+      break;
+    case 'tiles':
+      task.items = [];
+      break;
   }
   return task;
 };
-
 
 module.exports = { label, types, createTask };

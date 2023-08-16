@@ -1,4 +1,4 @@
-<modal-dialog id="passageEditModal" class="editor" :can-close="canClose" :can-widen="true" :origin="origin" @destroyed="dialogDestroyed" v-ref:modal>
+<modal-dialog id="passageEditModal" class="editor" :can-close="canClose" :origin="origin" @destroyed="dialogDestroyed" v-ref:modal>
 	<span slot="title">
 		<input type="text" id="passageName" placeholder="{{ 'Passage Name' | say }}" v-model="userPassageName">
 	</span>
@@ -9,12 +9,12 @@
 		{{ 'A passage already exists with this name.' | say }}
 	</p>
 
-	<!-- <div class="passageMode">
+	<div class="passageMode">
 		<button @click="toggleMode" type="button" class="active" title="{{ gui ? 'XML' : 'GUI' }}">
 			<img v-if="gui" src="../../common/img/code.svg">
 			<img v-else src="../../common/img/layers.svg">
 		</button>
-	</div> -->
+	</div>
 	
 	<div :class="['passageContent', gui ? '' : 'expand']">
 		<code-mirror v-show="!gui" :options="cmOptions" :text="passage.text" @cm-change="saveText" v-ref:codemirror></code-mirror>
