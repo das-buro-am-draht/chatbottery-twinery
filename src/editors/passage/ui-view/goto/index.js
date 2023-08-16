@@ -27,7 +27,7 @@ module.exports = Vue.extend({
 			this.passages = this.story.passages
 				.map((passage) => passage.name)
 				.sort()
-				.concat(Object.values(specialPassages));
+				// .concat(Object.values(specialPassages));
 		}
 		this.load();
 	},

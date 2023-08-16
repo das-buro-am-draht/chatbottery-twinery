@@ -6,18 +6,18 @@ e.g. those pointing to other passages in a story, not to an external web site.
 "use strict";
 
 const extractLinks = (regexp, text) => {
-	let m, match = [];
-	while (m = regexp.exec(text)) {
-    	match.push(m[1].trim());
-  }
-  return match;  
+	const matches = [];
+	for (const match of text.matchAll(regexp)) {
+		matches.push(match[1].trim())
+	}
+  	return matches;  
 }
-
-const extractGoToLinkTags = (text) => 
-	extractLinks(/<goto[^>]+\bpassage="(.*)"[^>]*>/g, text);
 
 /* The top level regular expression to catch links -- i.e. [[link]]. */
 const extractLinkTags = (text) => text.match(/\[\[.*?\]\]/g) || [];
+
+const extractGoToLinkTags = (text) => 
+	extractLinks(/<goto[^>]+\bpassage="(.*)"[^>]*>/g, text);
 
 const extractActLinkTags = (text) => extractLinks(/<act.*>([^<]*)<\/act>/g, text);
 
@@ -89,31 +89,66 @@ const links = (text, internalOnly) => {
 		.filter(nonEmptyLinks)
 		.filter(uniques);
 	*/ 	 
-	let result = extractGoToLinkTags(text).map(removeEnclosingBrackets)
-		.concat(extractActLinkTags(text)
-		.concat(extractBtnLinkTags(text))
-		.map(removeEnclosingBrackets).map(extractLink))
+	const result = extractGoToLinkTags(text)
+		.concat(
+			extractActLinkTags(text).concat(
+			extractBtnLinkTags(text))
+		)
+		.map(removeEnclosingBrackets)
+		.map(removeSetters)
+		.map(extractLink)
 		.filter(nonEmptyLinks)
 		.filter(uniques);
 
 	if (internalOnly) {
-		result = result.filter(internalLinks);
+		return result.filter(internalLinks);
+	} else {
+		return result;
 	}
+};
 
-	return result;
+const gotoLinks = (text, internalOnly) => {
+	const result = extractGoToLinkTags(text)
+		.map(removeEnclosingBrackets)
+		.map(removeSetters)
+		.map(extractLink)
+		.filter(nonEmptyLinks)
+		.filter(uniques);
+	if (internalOnly) {
+		return result.filter(internalLinks);
+	} else {
+		return result;
+	}
+};
+
+const buttonLinks = (text, internalOnly) => {
+	const result = extractActLinkTags(text)
+		.concat(extractBtnLinkTags(text))
+		.map(removeEnclosingBrackets)
+		.map(removeSetters)
+		.map(extractLink)
+		.filter(nonEmptyLinks)
+		.filter(uniques);
+	if (internalOnly) {
+		return result.filter(internalLinks);
+	} else {
+		return result;
+	}
 };
 
 module.exports = {
 	links,
-	extractLink,
-	getField,
+	gotoLinks,
+	buttonLinks,
+	// extractLink,
+	// getField,
 	removeEnclosingBrackets,
-	removeSetters,
-	uniques,
-	nonEmptyLinks,
-	internalLinks,
-	extractLinkTags,
-	extractGoToLinkTags,
-	extractActLinkTags,
-	extractBtnLinkTags,
+	// removeSetters,
+	// uniques,
+	// nonEmptyLinks,
+	// internalLinks,
+	// extractLinkTags,
+	// extractGoToLinkTags,
+	// extractActLinkTags,
+	// extractBtnLinkTags,
 };
