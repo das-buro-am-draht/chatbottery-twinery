@@ -41,7 +41,7 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
-		this.toggleMode();
+		// this.toggleMode();
 		
 		this.userPassageName = this.passage.name;
 
