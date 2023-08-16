@@ -1,5 +1,5 @@
 const Vue = require('vue');
-const { specialPassages } = require('../../../../data/special-passages');
+const specialPassages = require('../../../../data/special-passages');
 
 require('./index.less');
 

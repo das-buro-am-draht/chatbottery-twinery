@@ -74,7 +74,7 @@ module.exports = Vue.extend({
 			this.showAutocomplete = this.autocomplete
 		},
 		onChangeVariable(event) {
-			let variable = trim(this.variable);
+			let variable = this.variable;
 			if (variable && !variable.startsWith('$')) {
 				variable = '$' + variable;
 			}

@@ -1,6 +1,6 @@
 const Vue = require('vue');
 const { trim } = require('../../../../utils/common');
-const { specialPassages } = require('../../../../data/special-passages');
+const specialPassages = require('../../../../data/special-passages');
 
 require('./index.less');
 
@@ -46,7 +46,7 @@ module.exports = Vue.extend({
 			}
 		},
 		onChange(event) {
-			const passage = trim(this.passage);
+			const passage = this.passage;
 			if (passage) {
 				this.task.attributes['passage'] = passage;
 			} else {
