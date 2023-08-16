@@ -41,7 +41,7 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
-		this.toggleMode();
+		// this.toggleMode();
 		
 		this.userPassageName = this.passage.name;
 
@@ -231,8 +231,8 @@ module.exports = Vue.extend({
 			const userData = { ...this.story.userData };
 			const entries = Object.keys(userData).length;
 			const xml = this.$refs.codemirror.$cm.getValue();
-			for (const wait of xml.matchAll(/<wait\s[^>]*\bvar="(\$[^\s"]+)"[^>]*>/gmi)) {
-				const variable = wait[1];
+			for (const match of xml.matchAll(/<wait\s[^>]*\bvar="(\$[^\s"]+)"[^>]*>/gmi)) {
+				const variable = match[1];
 				if (variable && !userData[variable]) {
 					userData[variable] = {
 						type: 'string',
@@ -241,9 +241,9 @@ module.exports = Vue.extend({
 					};
 				}
 			}
-			for (const eval of xml.matchAll(/<msg\s[^>]*\beval="(\$[^"]+)"[^>]*>/gmi)) {
-				if (eval[1]) {
-					const m = eval[1].match(/(\$[^\s=]+)\s*=\s*(\S*)/m);
+			for (const match of xml.matchAll(/<msg\s[^>]*\beval="(\$[^"]+)"[^>]*>/gmi)) {
+				if (match[1]) {
+					const m = match[1].match(/(\$[^\s=]+)\s*=\s*(\S*)/m);
 					const variable = m[1];
 					const assignmt = m[2];
 					if (variable && assignmt && !userData[variable]) {
