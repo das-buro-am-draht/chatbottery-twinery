@@ -1,7 +1,6 @@
 const Vue = require('vue');
 const { specialPassages } = require('../../../../data/special-passages');
 
-
 require('./index.less');
 
 module.exports = Vue.extend({
@@ -35,7 +34,7 @@ module.exports = Vue.extend({
 			this.passages = this.story.passages
 				.map((passage) => passage.name)
 				.sort()
-				.concat(Object.values(specialPassages));
+				// .concat(Object.values(specialPassages));
 		}
 		if (!this.task.items.length) {
 			this.onAdd();
@@ -149,6 +148,6 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'image-placeholder': require('../img'),
+		'image-placeholder': require('../image-placeholder'),
 	},
 });

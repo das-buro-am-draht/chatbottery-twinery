@@ -20,6 +20,7 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
+		this.$els.image.style.maxHeight = 'unset';
 		this.load();
 	},
 
@@ -33,19 +34,19 @@ module.exports = Vue.extend({
 		load() {
 			if (!this.imageUrl) {
 				this.src = require('../../../../common/img/element-image-white.svg');
-				this.$els.ph.style.backgroundColor = '#e2e2e2';
+				this.$els.phold.style.backgroundColor = '#e2e2e2';
 			} else {
 				if (isValidUrl(this.imageUrl)) {
 					this.src = this.imageUrl;
 				} else {
 					this.src = this.assetBaseUrl + this.imageUrl;
 				}
-				this.$els.ph.style.backgroundColor = '';
+				this.$els.phold.style.backgroundColor = '';
 			}
 		},
 		onError(event) {
 			this.src = require('../../../../common/img/element-image.svg');
-			this.$els.ph.style.backgroundColor = '#e2e2e2';
+			this.$els.phold.style.backgroundColor = '#e2e2e2';
 		},
 	},
 });

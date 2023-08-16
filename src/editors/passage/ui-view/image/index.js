@@ -48,7 +48,7 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'image-placeholder': require('../img'),
+		'image-placeholder': require('../image-placeholder'),
 		'task-options': require('../options'),
 	},
 });

@@ -18,7 +18,7 @@ const locale = require('../locale');
 const windows = {};
 
 function openWindow(url) {
-	if (windows[url]) {
+	if (windows[url] && !windows[url].closed) {
 		try {
 			windows[url].focus();
 			windows[url].location.reload();
