@@ -41,7 +41,9 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
-		this.toggleMode();
+		if (process.env.NODE_ENV === 'development') {
+			this.toggleMode();
+		}
 		
 		this.userPassageName = this.passage.name;
 
@@ -226,7 +228,7 @@ module.exports = Vue.extend({
 
 		updateUserData() {
 			if (this.$refs.codemirror.$cm.isClean()) {
-				return;
+				return true;
 			}
 			const userData = { ...this.story.userData };
 			const entries = Object.keys(userData).length;
@@ -272,33 +274,33 @@ module.exports = Vue.extend({
 			if (Object.keys(userData).length !== entries) {
 				this.updateStory(this.storyId, { userData });
 			}
+
+			return true;
 		},
 
 		dialogDestroyed() {
-			this.updateUserData();
 			this.$destroy();
 		},
 
 		canClose() {
-			if (this.userPassageNameValid) {
-				if (this.userPassageName !== this.passage.name) {
-					this.changeLinksInStory(
-						this.story.id,
-						this.passage.name,
-						this.userPassageName
-					);
+			if (!this.userPassageNameValid) {
+				return false;
+			}
+			if (this.userPassageName !== this.passage.name) {
+				this.changeLinksInStory(
+					this.story.id,
+					this.passage.name,
+					this.userPassageName
+				);
 
-					this.updatePassage(
-						this.story.id,
-						this.passage.id,
-						{ name: this.userPassageName }
-					);
-				}
-
-				return true;
+				this.updatePassage(
+					this.story.id,
+					this.passage.id,
+					{ name: this.userPassageName }
+				);
 			}
 
-			return false;
+			return this.updateUserData();
 		},
 
 		toggleMode() {

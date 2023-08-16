@@ -75,10 +75,8 @@ module.exports = Vue.extend({
 	},
 
 	methods: {
-		close() {
-			if (this.$refs.modal) {
-				this.$refs.modal.close();
-			}
+		close(message) {
+			this.$broadcast('close', message);
 		},
 
 		find(name) {
@@ -86,7 +84,7 @@ module.exports = Vue.extend({
 			return stories.find(story => story.name === name);
 		},
 
-		_importStory(story) {
+		loadStory(story) {
 			return Promise.resolve(this.storyFormats).then(formats => {
 				if (story.storyFormat === 'Chatbottery' && !formatVersion(formats, story.storyFormat, story.storyFormatVersion)) {
 					const majorVersion = semverUtils.parse(story.storyFormatVersion).major;
@@ -123,7 +121,7 @@ module.exports = Vue.extend({
 						"Error on importing file '%1$s': %2$s",
 						file.name, e.message
 					), 'danger');
-					return this.close();
+					return this.close(false);
 				}
 
 				this.dupeNames = this.toImport.reduce(
@@ -141,8 +139,8 @@ module.exports = Vue.extend({
 				} else {
 					/* Immediately run the import and close the dialog. */
 
-					return Promise.all(this.toImport.map((story) => this._importStory(story)))
-						.then(() => this.close());
+					return Promise.all(this.toImport.map((story) => this.loadStory(story)))
+						.then(() => this.close(true));
 				}
 			});
 		},
@@ -158,9 +156,9 @@ module.exports = Vue.extend({
 				*/
 
 				if (this.toReplace.indexOf(story.name) !== -1 || !this.find(story.name)) {
-					return this._importStory(story);
+					return this.loadStory(story);
 				}				
-			})).then(() => this.close());
+			})).then(() => this.close(true));
 		},
 	},
 
