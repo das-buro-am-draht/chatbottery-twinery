@@ -14,12 +14,12 @@ const openai = (data) => {
     }
     return response.json();
   });
-}
+};
 
 const placeholders = {
   tag: '%TAG%',
   phrase: '%PHRASE%',
-}
+};
 
 const suggestions = (params, placeholder, text, delimiter) => {
   const placeholders = { [placeholder]: text };
@@ -48,7 +48,7 @@ const suggestions = (params, placeholder, text, delimiter) => {
     }
     return suggestions;
   });
-}
+};
 
 module.exports = { 
   openai, 

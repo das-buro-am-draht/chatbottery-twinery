@@ -3,7 +3,7 @@
  * before function 'onChatbotteryRuntimeLoaded' is called
  * @param user user data object
  */
- function initUserDataProps(user) {
+ function onInit(user) {
 
   // Add some default user data
   user.$name = "Nutzer";
@@ -32,7 +32,7 @@
  * before the Chatbot is shown
  * @param runtime Chatbottery Runtime Object
  */
- function onChatbotteryRuntimeLoaded(runtime) {
+ function onLoad(runtime) {
 
   // Get the user data object
   const user = runtime.userData;

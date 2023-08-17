@@ -1,9 +1,12 @@
 // A component showing a modal dialog where a story's JavaSCript.
 
 const Vue = require('vue');
-const { trim } = require('../../utils/common');
 const { updateStory } = require("../../data/actions/story");
-const { stringFromDate, regularExpression } = require("../../utils/common");
+const { 
+	trim, 
+	stringFromDate, 
+	regularExpression 
+} = require("../../utils/common");
 const locale = require("../../locale");
 const notify = require("../../ui/notify");
 const PassageEditor = require("../../editors/passage");
@@ -133,7 +136,6 @@ module.exports = Vue.extend({
 					this.gridSize
 				);
 			};
-			const PassageEditor = require('../../editors/passage');
 			new PassageEditor({
 				data: {
 					passageId: passage.id,

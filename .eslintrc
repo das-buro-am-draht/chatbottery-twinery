@@ -1,12 +1,12 @@
 {
     "rules": {
 		"brace-style": [
-			2,
-			"stroustrup",
+			1,
+			"1tbs",
 			{ "allowSingleLine": true }
 		],
-        "comma-dangle": 0,
-		"curly": [2, "all"],
+      "comma-dangle": 0,
+		"curly": [1, "all"],
 		"indent": "off",
 		"max-len": [
 			2,
@@ -17,20 +17,22 @@
 				"ignoreTemplateLiterals": true
 			}
 		],
-		"newline-after-var": [2, "always"],
+		"newline-after-var": 0,
+		"no-unused-vars": 1,
 		"no-console": [
-			2,
-			{ "allow": ["warn"] }
+			1,
+			{ "allow": ["warn", "error"] }
 		],
 		"no-extra-semi": 0,
+		"no-useless-escape": 1,
 		"no-mixed-spaces-and-tabs": 0,
 		"no-trailing-spaces": [
-			2,
+			0,
 			{ "skipBlankLines": true }
 		],
 		"quote-props": 0,
         "semi": [
-            2,
+            1,
             "always"
         ]
     },

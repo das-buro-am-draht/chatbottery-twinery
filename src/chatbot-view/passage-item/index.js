@@ -245,8 +245,7 @@ module.exports = Vue.extend({
 
 					return p.selected;
 				});
-			}
-			else if (!this.passage.selected) {
+			} else if (!this.passage.selected) {
 				/*
 				If we are newly-selected and the shift or control keys are not
 				held, deselect everything else. The check for newly-selected
@@ -271,8 +270,7 @@ module.exports = Vue.extend({
 			if (hasPrimaryTouchUI()) {
 				this.on(window, 'touchmove', this.followDrag, { passive: false });
 				this.on(window, 'touchend', this.stopDrag);
-			}
-			else {
+			} else {
 				this.on(window, 'mousemove', this.followDrag, { passive: false });
 				this.on(window, 'mouseup', this.stopDrag);
 			}
@@ -312,8 +310,7 @@ module.exports = Vue.extend({
 			if (hasPrimaryTouchUI()) {
 				this.off(window, 'touchmove');
 				this.off(window, 'touchend');
-			}
-			else {
+			} else {
 				this.off(window, 'mousemove');
 				this.off(window, 'mouseup');
 			}
@@ -333,8 +330,7 @@ module.exports = Vue.extend({
 				if (!(e.ctrlKey || e.shiftKey)) {
 					this.selectPassages(this.parentStory.id, p => p !== this);
 				}
-			}
-			else {
+			} else {
 				/*
 				touchend events do not include client coordinates, but mouseup
 				events do.
@@ -347,8 +343,7 @@ module.exports = Vue.extend({
 						e.clientY + window.pageYOffset - this.screenDragStartY,
 						this
 					);
-				}
-				else {
+				} else {
 					this.$dispatch(
 						'passage-drag-complete',
 						this.screenDragOffsetX,
@@ -368,8 +363,7 @@ module.exports = Vue.extend({
 		'passage-delete'(skipConfirmation) {
 			if (skipConfirmation) {
 				this.delete();
-			}
-			else {
+			} else {
 				let message = locale.say(
 					'Are you sure you want to delete &ldquo;%s&rdquo;? ' +
 					'This cannot be undone.',
@@ -405,10 +399,8 @@ module.exports = Vue.extend({
 				to convert back to logical space.
 				*/
 
-				const top = this.passage.top + yOffset
-				/ this.parentStory.zoom;
-				const left = this.passage.left + xOffset
-				/ this.parentStory.zoom; 
+				const top = this.passage.top + yOffset / this.parentStory.zoom;
+				const left = this.passage.left + xOffset / this.parentStory.zoom;
 				
 				if (this.passage.top !== top || this.passage.left !== left) {
 					this.updatePassage(

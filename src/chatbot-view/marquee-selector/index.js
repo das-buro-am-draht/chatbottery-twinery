@@ -54,8 +54,7 @@ module.exports = Vue.extend({
 			if (this.startX < this.currentX) {
 				result.left = this.startX;
 				result.width = this.currentX - this.startX;
-			}
-			else {
+			} else {
 				result.left = this.currentX;
 				result.width = this.startX - this.currentX;
 			}
@@ -63,8 +62,7 @@ module.exports = Vue.extend({
 			if (this.startY < this.currentY) {
 				result.top = this.startY;
 				result.height = this.currentY - this.startY;
-			}
-			else {
+			} else {
 				result.top = this.currentY;
 				result.height = this.startY - this.currentY;
 			}

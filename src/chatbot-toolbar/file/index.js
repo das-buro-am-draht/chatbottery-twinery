@@ -80,7 +80,7 @@ module.exports = Vue.extend({
 				store: this.$store
 			}).$mountTo(document.body);
 		},
-		review(e) {
+		review() {
 			proofStory(this.$store, this.story.id, this.proofingFormat.id);
 		}
 	},

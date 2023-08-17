@@ -6,7 +6,7 @@ const { confirm } = require('../dialogs/confirm');
 const { createPassage, deletePassage, positionPassage, updatePassage, createNewlyLinkedPassages } = require('../data/actions/passage');
 const { updateStory } = require('../data/actions/story');
 const { passageDefaults } = require('../data/store/story');
-const PassageEditor = require('../editors/passage')
+const PassageEditor = require('../editors/passage');
 const domEvents = require('../vue/mixins/dom-events');
 const locale = require('../locale');
 const zoomSettings = require('./zoom-settings');
@@ -242,8 +242,7 @@ module.exports = Vue.extend({
 						{ zoom: zoomLevels[zoomIndex.length - 1] }
 					);
 				}
-			}
-			else {
+			} else {
 				this.updateStory(
 					this.story.id,
 					{ zoom: zoomLevels[zoomIndex - 1] }
@@ -261,8 +260,7 @@ module.exports = Vue.extend({
 						{ zoom: zoomLevels[0] }
 					);
 				}
-			}
-			else {
+			} else {
 				this.updateStory(
 					this.story.id,
 					{ zoom: zoomLevels[zoomIndex + 1] }
@@ -363,8 +361,7 @@ module.exports = Vue.extend({
 
 				if (e.wheelDeltaY > 0) {
 					this.zoomIn(true);
-				}
-				else {
+				} else {
 					this.zoomOut(true);
 				}
 
@@ -492,8 +489,7 @@ module.exports = Vue.extend({
 					zoomedGridSize;
 				this.screenDragOffsetY = Math.round(yOffset / zoomedGridSize) *
 					zoomedGridSize;
-			}
-			else {
+			} else {
 				this.screenDragOffsetX = xOffset;
 				this.screenDragOffsetY = yOffset;
 			}

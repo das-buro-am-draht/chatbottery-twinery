@@ -23,6 +23,7 @@ module.exports = Vue.extend({
 						}
 					default:
 						items[key] = value;
+						break;
 				}
 			});
 			return items;
