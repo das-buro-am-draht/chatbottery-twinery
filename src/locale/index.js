@@ -9,7 +9,7 @@ const moment = require('moment');
 /*
 The Jed instance used to localize strings.
 */
-let i8n;
+let i18n;
 
 const Locale = (module.exports = {
 	/*

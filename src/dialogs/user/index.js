@@ -1,12 +1,15 @@
 // A component showing a modal dialog where a story's JavaSCript.
 
 const Vue = require('vue');
-const { trim } = require('lodash');
 const { updateStory } = require("../../data/actions/story");
-const { stringFromDate, regularExpression } = require("../../utils/common");
+const { 
+	trim, 
+	stringFromDate, 
+	regularExpression 
+} = require("../../utils/common");
 const locale = require("../../locale");
 const notify = require("../../ui/notify");
-// const PassageEditor = require('../../editors/passage');
+const PassageEditor = require("../../editors/passage");
 const SearchDropdown = require('./search');
 const { createNewlyLinkedPassages } = require('../../data/actions/passage');
 
@@ -21,6 +24,7 @@ module.exports = Vue.extend({
 		
 	data: () => ({
 		storyId: null,
+		origin: null,
 		userData: [],
 		newData: {},
 		storeInLocalStorage: false
@@ -78,7 +82,7 @@ module.exports = Vue.extend({
 
 		if (!this.userData.length) {
 			// ensure one empty entry
-			this.add(this.userData);
+			this.add();
 		}
 
 	},
@@ -103,12 +107,12 @@ module.exports = Vue.extend({
 			}
 		},
 
-		add(arr) {
-			arr.push(['', { type: 'string', value: '' }]);
+		add() {
+			this.userData.push(['', { type: 'string', value: '' }]);
 		},
 
-		remove(arr, index) {
-			arr.splice(index, 1);
+		remove(index) {
+			this.userData.splice(index, 1);
 		},
 
 		closeSearchDropdown() {
@@ -122,6 +126,9 @@ module.exports = Vue.extend({
 			const story = this.story;
 			const oldText = passage.text;
 			const afterEdit = () => {
+				if (this.$refs.modal && this.$refs.modal.$els.dlg) {
+					this.$refs.modal.$els.dlg.focus();
+				}
 				this.createNewlyLinkedPassages(
 					story.id,
 					passage.id,
@@ -129,7 +136,6 @@ module.exports = Vue.extend({
 					this.gridSize
 				);
 			};
-			const PassageEditor = require('../../editors/passage') 
 			new PassageEditor({
 				data: {
 					passageId: passage.id,
@@ -247,6 +253,6 @@ module.exports = Vue.extend({
 
 	components: {
 		"modal-dialog": require("../../ui/modal-dialog"),
-	}
+	},
 
 });

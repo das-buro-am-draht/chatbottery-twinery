@@ -1,7 +1,7 @@
 {
 	"name": "chatbottery-editor",
-	"version": "11.2.1",
-	"author": "Chris Klimas <chris@twinery.org>",
+	"version": "11.2.2",
+	"author": "Pidoco GmbH - Thorsten Breug",
 	"description": "a GUI for creating nonlinear stories",
 	"license": "GPL-3.0",
 	"repository": {

@@ -2,18 +2,18 @@
 
 const escape = require('lodash.escape');
 const Vue = require('vue');
-const {confirm} = require('../../../../dialogs/confirm');
+const { confirm } = require('../../../../dialogs/confirm');
 const {
 	deleteStory,
 	duplicateStory,
 	updateStory
 } = require('../../../../data/actions/story');
-const {loadFormat} = require('../../../../data/actions/story-format');
-const {playStory, testStory} = require('../../../../common/launch-story');
-const {prompt} = require('../../../../dialogs/prompt');
+const { loadFormat } = require('../../../../data/actions/story-format');
+const { playStory } = require('../../../../common/launch-story');
+const { prompt } = require('../../../../dialogs/prompt');
 const locale = require('../../../../locale');
 const notify = require('../../../../ui/notify');
-const {publishStoryWithFormat} = require('../../../../data/publish');
+const { publishStoryWithFormat } = require('../../../../data/publish');
 const save = require('../../../../file/save');
 
 module.exports = Vue.extend({

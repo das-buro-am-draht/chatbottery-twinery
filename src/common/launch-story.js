@@ -77,10 +77,11 @@ module.exports = {
 					);
 				});
 		} else {
-			if (formatId)
+			if (formatId) {
 				openWindow(`#chatbots/${storyId}/proof/${formatId}`);
-			else
+			} else {
 				openWindow(`#chatbots/${storyId}/proof`);
+			}
 		}
 	},
 

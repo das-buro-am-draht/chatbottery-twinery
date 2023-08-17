@@ -5,12 +5,11 @@ A modal dialog for editing a single passage.
 const Vue = require('vue');
 const CodeMirror = require('codemirror');
 const locale = require('../../locale');
-const UserDataDialog = require('../../dialogs/user');
 const { parse, stringify } = require('../../utils/xmlparser');
 const { thenable } = require('../../vue/mixins/thenable');
 const { updateStory } = require("../../data/actions/story");
 const { changeLinksInStory, updatePassage } = require('../../data/actions/passage');
-const VariablesParser = require('../../data/variables-parser');
+const parseVariables = require('../../data/variables-parser');
 const { loadFormat } = require('../../data/actions/story-format');
 const { passageDefaults } = require('../../data/store/story');
 const SettingsDialog = require('./settings');
@@ -106,6 +105,40 @@ module.exports = Vue.extend({
 		}
 		else {
 			this.$refs.codemirror.$cm.execCommand('goDocEnd');
+		}
+	},
+
+	beforeDestroy() {
+		if (!this.$refs.codemirror.$cm.isClean()) {
+			const userData = this.story.userData;
+			const xml = this.$refs.codemirror.$cm.getValue();
+			const variables = parseVariables(xml);
+			const newData = Object.entries(variables)
+				.filter(([k]) => !userData[k])
+				.reduce((obj, [k, v]) => {
+					obj[k] = v;
+					return obj;
+				}, {});
+			const keys = Object.keys(newData);
+			if (keys.length > 0) {
+				notify(
+					locale.say(
+						'New user variables were found: &ldquo;%1$s&rdquo;',
+						keys.join(', ')
+					)
+				);
+				// 'UserDataDialog' must not be global due to circular dependencies
+				const UserDataDialog = require('../../dialogs/user');
+				new UserDataDialog({
+					data: { 
+						storyId: this.storyId, 
+						newData,
+						origin: this.origin,
+					},
+					store: this.$store,
+				}).$mountTo(document.body);
+				// this.updateStory(this.storyId, { userData: { ...userData, ...newData } }); 
+			}
 		}
 	},
 
@@ -227,36 +260,7 @@ module.exports = Vue.extend({
 			);
 		},
 
-		updateUserData() {
-			if (!this.$refs.codemirror.$cm.isClean()) {
-				const userData = this.story.userData;
-				const xml = this.$refs.codemirror.$cm.getValue();
-				const variables = VariablesParser(xml);
-				const newData = Object.entries(variables)
-					.filter(([k]) => !userData[k])
-					.reduce((obj, [k, v]) => {
-						obj[k] = v;
-						return obj;
-					}, {});
-				const keys = Object.keys(newData);
-				if (keys.length > 0) {
-					notify(
-						locale.say(
-							'New user variables were found: &ldquo;%1$s&rdquo;',
-							keys.join(', ')
-						)
-					);
-					new UserDataDialog({
-						data: { storyId: this.storyId, newData },
-						store: this.$store,
-					}).$mountTo(document.body);
-					// this.updateStory(this.storyId, { userData: { ...userData, ...newData } }); 
-				}
-			}
-		},
-
 		dialogDestroyed() {
-			this.updateUserData();
 			this.$destroy();
 		},
 

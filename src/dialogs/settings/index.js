@@ -1,6 +1,5 @@
 // A component showing a modal dialog where a story's JavaSCript.
 
-const { trim } = require("lodash");
 const Vue = require("vue");
 const { updateStory } = require("../../data/actions/story");
 const { isValidUrl } = require("../../utils/common");

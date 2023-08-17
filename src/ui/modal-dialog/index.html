@@ -1,6 +1,6 @@
-<div transition="modal-dialog" tabindex="0">
-	<div id="modal-overlay" @click.prevent="reject"></div>
-	<div :class="'modal-dialog ' + classes">
+<div transition="modal-dialog">
+	<div id="modal-overlay" @click="reject"></div>
+	<div :class="'modal-dialog ' + classes" tabindex="0" v-el:dlg>
 		<header>
 			<h2 class="title"><slot name="title"></slot></h2>
 			<slot name="buttons"></slot>
