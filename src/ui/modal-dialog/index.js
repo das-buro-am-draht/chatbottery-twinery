@@ -42,7 +42,7 @@ const ModalDialog = module.exports = Vue.extend({
 	},
 
 	ready() {
-		const dialog = this.$el.querySelector('.modal-dialog');
+		const dialog = this.$els.dlg; // this.$el.querySelector('.modal-dialog');
 
 		/*
 		If an origin is specified, set it as the point the modal dialog grows
@@ -55,17 +55,17 @@ const ModalDialog = module.exports = Vue.extend({
 			dialog.style.transformOrigin =
 				(originRect.left + originRect.width / 2) + 'px ' +
 				(originRect.top + originRect.height / 2) + 'px';
+				
+			document.querySelector('body').classList.add('modalOpen');
 		}
-
-		document.querySelector('body').classList.add('modalOpen');
 		
-		this.on(this.$el, 'keyup', (e) => {
+		this.on(dialog, 'keyup', (e) => {
 			if (e.keyCode === 27) {
 				e.preventDefault();
 				this.close();
 			}
 		});
-		Vue.nextTick(() => this.$el.focus());
+		Vue.nextTick(() => dialog.focus());
 
 		/*
 		We have to listen manually to the end of the transition in order to an
@@ -90,7 +90,9 @@ const ModalDialog = module.exports = Vue.extend({
 	},
 
 	destroyed() {
-		document.querySelector('body').classList.remove('modalOpen');
+		if (this.origin) {
+			document.querySelector('body').classList.remove('modalOpen');
+		}
 		this.$emit('destroyed');
 	},
 

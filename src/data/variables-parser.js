@@ -1,5 +1,3 @@
-"use strict";
-
 module.exports = (text) => {
 
 	const variables = {};
