@@ -83,7 +83,6 @@ module.exports = Vue.extend({
 			} else {
 				delete this.task.attributes['var'];
 			}
-			this.$dispatch('gui-changed');
 		},
 		onChangeValidate(event) {
 			const validate = trim(this.validate);
@@ -92,11 +91,9 @@ module.exports = Vue.extend({
 			} else {
 				delete this.task.attributes['validate'];
 			}
-			this.$dispatch('gui-changed');
 		},
 		onChangeAutocomplete(event) {
 			this.task.autocomplete = this.autocomplete.split('\n');
-			this.$dispatch('gui-changed');
 		},
 		onShowAutocomplete() {
 			this.showAutocomplete = true;

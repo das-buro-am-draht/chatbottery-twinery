@@ -308,18 +308,19 @@ module.exports = Vue.extend({
 				store: this.$store,
 			}).$mountTo(document.body); // this.$refs.modal.$el);
 		},
-
-		serialize() {
-			const xml = stringify(this.gui);
-			this.$refs.codemirror.$cm.setValue(xml);
-			this.$refs.codemirror.$el.dispatchEvent(new Event('change'));
-		},
 	},
 
-	events: {
-		'gui-changed'() {
-			this.serialize();
-		},
+	watch: {
+		'gui': {
+			handler: function (gui, oldValue) {
+				if (gui && oldValue) {
+					const xml = stringify(gui);
+					this.$refs.codemirror.$cm.setValue(xml);
+					this.$refs.codemirror.$el.dispatchEvent(new Event('change'));
+				}
+			},
+			deep: true,
+		}
 	},
 
 	components: {

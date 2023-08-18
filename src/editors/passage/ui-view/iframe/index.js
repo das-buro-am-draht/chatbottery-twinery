@@ -44,7 +44,6 @@ module.exports = Vue.extend({
 		},
 		onChangeUrl(event) {
 			this.task.attributes['src'] = this.iframe;
-			this.$dispatch('gui-changed');
 		},
 		onChangeHeight(event) {
 			const height = trim(this.height);
@@ -53,7 +52,6 @@ module.exports = Vue.extend({
 			} else {
 				this.task.attributes['height'] = height;
 			}
-			this.$dispatch('gui-changed');
 		},
 	},
 });

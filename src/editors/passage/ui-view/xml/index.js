@@ -12,7 +12,6 @@ module.exports = Vue.extend({
 
 	methods: {
 		onChange(event) {
-			this.$dispatch('gui-changed');
 			this.$els.text.style.height = 'auto';
 			this.$els.text.style.height = `${this.$els.text.scrollHeight}px`;		
 		},

@@ -52,7 +52,6 @@ module.exports = Vue.extend({
 			} else {
 				delete this.task.attributes['passage'];
 			}
-			this.$dispatch('gui-changed');
 		},
 	},
 });

@@ -41,7 +41,6 @@ module.exports = Vue.extend({
 		},
 		onChange(event) {
 			this.task.attributes['video'] = this.video;
-			this.$dispatch('gui-changed');
 		},
 	},
 });

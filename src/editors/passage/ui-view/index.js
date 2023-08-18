@@ -80,9 +80,6 @@ module.exports = Vue.extend({
 		onSettings(index) {
 			this.settings ^= 1 << index;
 		},
-		onChangeSettings(event) {
-			this.$dispatch('gui-changed');
-		},
 		onTaskClicked(index) {
 			const elements = this.taskElements;
 			const element = elements[index];
@@ -144,7 +141,6 @@ module.exports = Vue.extend({
 			}).then(() => {
 				this.settings &= ~(1 << index);
 				this.tasks.splice(index, 1);
-				this.$dispatch('gui-changed');
 			});
 		},		
 		drag(index, event) {
@@ -160,11 +156,12 @@ module.exports = Vue.extend({
 			const fromIdx = parseInt(event.dataTransfer.getData('cb/ui-task'), 10);
 			event.dataTransfer.clearData('cb/ui-task');
 			if (toIdx !== fromIdx && fromIdx >= 0 && fromIdx < this.tasks.length) {
+				const tasks = [ ...this.tasks ];
 				const insertIdx = toIdx > fromIdx ? toIdx + 1 : toIdx;
-				this.tasks.splice(insertIdx, 0, this.tasks[fromIdx]);
-
+				tasks.splice(insertIdx, 0, tasks[fromIdx]);
 				const removeIdx = toIdx > fromIdx ? fromIdx : fromIdx + 1;
-				this.tasks.splice(removeIdx, 1);
+				tasks.splice(removeIdx, 1);
+				this.tasks.splice(0, this.tasks.length, ...tasks);
 
 				let settings = this.settings;
 				if ((((settings & (1 << fromIdx)) >> fromIdx) ^ ((settings & (1 << toIdx)) >> toIdx)) == 1)
@@ -173,8 +170,6 @@ module.exports = Vue.extend({
 					settings ^= (1 << toIdx);
 					this.settings = settings;
 				}
-
-				this.$dispatch('gui-changed');
 				
 				this.onTaskClicked(index);
 			}
@@ -209,7 +204,6 @@ module.exports = Vue.extend({
 			const index = this.tasks.length;
 			const task = createTask(type);
 			this.tasks.push(task);
-			this.$dispatch('gui-changed');
 			Vue.nextTick(() => this.onTaskClicked(index));
 		},
 	},

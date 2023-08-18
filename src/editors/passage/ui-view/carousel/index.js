@@ -60,13 +60,13 @@ module.exports = Vue.extend({
 			}
 			const fromIdx = parseInt(ix);
 			if (!isNaN(fromIdx) && toIdx !== fromIdx && fromIdx >= 0 && fromIdx < this.task.items.length) {
+				const items = [ ...this.task.items ];
 				const insertIdx = toIdx > fromIdx ? toIdx + 1 : toIdx;
-				this.task.items.splice(insertIdx, 0, this.task.items[fromIdx]);
-
+				items.splice(insertIdx, 0, items[fromIdx]);
 				const removeIdx = toIdx > fromIdx ? fromIdx : fromIdx + 1;
-				this.task.items.splice(removeIdx, 1);
+				items.splice(removeIdx, 1);
+				this.task.items = items;
 
-				this.$dispatch('gui-changed');
 				if (this.selection >= 0) {
 					this.setSelection(toIdx);
 				}
@@ -94,7 +94,6 @@ module.exports = Vue.extend({
 		},
 		onDelete(index) {
 			this.task.items.splice(index, 1);
-			this.$dispatch('gui-changed');
 			if (index === this.selection) {
 				this.setSelection(index);
 			}
@@ -118,43 +117,36 @@ module.exports = Vue.extend({
 		onChangeImage(event) {
 			if (this.selection >= 0) {
 				this.imageUrl = this.task.items[this.selection].attributes['img'] = this.$els.image.value;
-				this.$dispatch('gui-changed');
 			}
 		},
 		onChangeTitle(event) {
 			if (this.selection >= 0) {
 				this.task.items[this.selection].title = this.$els.title.value;
-				this.$dispatch('gui-changed');
 			}
 		},
 		onChangeText(event) {
 			if (this.selection >= 0) {
 				this.task.items[this.selection].text = this.$els.text.value;
-				this.$dispatch('gui-changed');
 			}
 		},
 		onChangeDescription(event) {
 			if (this.selection >= 0) {
 				this.task.items[this.selection].description = this.$els.description.value;
-				this.$dispatch('gui-changed');
 			}
 		},
 		onChangeLabel(event) {
 			if (this.selection >= 0) {
 				this.task.items[this.selection].button.label = this.$els.label.value;
-				this.$dispatch('gui-changed');
 			}
 		},
 		onChangeLink(event) {
 			if (this.selection >= 0) {
 				this.task.items[this.selection].button.link = this.$els.link.value;
-				this.$dispatch('gui-changed');
 			}
 		},
 		// onChangeFunc(event) {
 		// 	if (this.selection >= 0) {
 		// 		this.task.items[this.selection].button.func = this.$els.func.value;
-		// 		this.$dispatch('gui-changed');
 		// 	}
 		// },
 	},

@@ -76,7 +76,6 @@ module.exports = Vue.extend({
 		},
 		synchronize() {
 			this.task.opt = this.options; // .length > 1 ? this.options.filter(option => !!option) : this.options;
-			this.$dispatch('gui-changed');
 		},
 		onOpenai(event, index) {
 			this.$dispatch('openai-suggest', this, this.options[index]);

@@ -80,7 +80,6 @@ module.exports = Vue.extend({
 			} else {
 				delete this.task.attributes['eval'];
 			}
-			this.$dispatch('gui-changed');
 		},
 	},
 });

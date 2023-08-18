@@ -43,7 +43,6 @@ module.exports = Vue.extend({
 		},
 		onChange(event) {
 			this.task.attributes['img'] = this.image;
-			this.$dispatch('gui-changed');
 		},
 	},
 
