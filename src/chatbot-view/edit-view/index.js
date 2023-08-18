@@ -9,7 +9,7 @@ const { passageDefaults } = require('../../data/store/story');
 const PassageEditor = require('../../editors/passage');
 const domEvents = require('../../vue/mixins/dom-events');
 const locale = require('../../locale');
-const zoomSettings = require('./zoom-settings');
+const zoomSettings = require('../zoom-settings');
 
 require('./index.less');
 
@@ -517,7 +517,6 @@ module.exports = Vue.extend({
 		'link-arrows': require('./link-arrows'),
 		'passage-item': require('./passage-item'),
 		'marquee-selector': require('./marquee-selector'),
-		'chatbot-toolbar': require('../chatbot-toolbar'),
 		'passage-button': require('./passage-button'),
 	},
 

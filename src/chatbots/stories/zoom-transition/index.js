@@ -1,6 +1,6 @@
 'use strict';
 const Vue = require('vue');
-const { ZOOM_MAPPINGS } = require('../../../chatbot-view/chatbot-edit-view');
+const { ZOOM_MAPPINGS } = require('../../../chatbot-view/edit-view');
 const { thenable, symbols:{ resolve } } = require('../../../vue/mixins/thenable');
 
 require('./index.less');
