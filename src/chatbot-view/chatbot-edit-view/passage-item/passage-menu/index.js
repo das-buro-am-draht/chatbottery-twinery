@@ -1,9 +1,9 @@
 /* A contextual menu that appears when the user points at a passage. */
 
 const Vue = require('vue');
-const {testStory} = require('../../../common/launch-story');
-const {updatePassage} = require('../../../data/actions/passage');
-const {updateStory} = require('../../../data/actions/story');
+const {testStory} = require('../../../../common/launch-story');
+const {updatePassage} = require('../../../../data/actions/passage');
+const {updateStory} = require('../../../../data/actions/story');
 
 require('./index.less');
 
@@ -124,7 +124,7 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'drop-down': require('../../../ui/drop-down')
+		'drop-down': require('../../../../ui/drop-down')
 	},
 
 	vuex: {

@@ -1,11 +1,11 @@
 // A marquee selection tool for passage items.
 
 const Vue = require('vue');
-const domEvents = require('../../vue/mixins/dom-events');
-const rect = require('../../common/rect');
-const { selectPassages } = require('../../data/actions/passage');
+const domEvents = require('../../../vue/mixins/dom-events');
+const rect = require('../../../common/rect');
+const { selectPassages } = require('../../../data/actions/passage');
 
-require('../../ui/ie-mouse-event-polyfill');
+require('../../../ui/ie-mouse-event-polyfill');
 require('./index.less');
 
 module.exports = Vue.extend({

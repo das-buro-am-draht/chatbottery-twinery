@@ -4,18 +4,18 @@ A single passage in the story map.
 
 const escape = require('lodash.escape');
 const Vue = require('vue');
-const PassageEditor = require('../../editors/passage');
-const { confirm } = require('../../dialogs/confirm');
-const domEvents = require('../../vue/mixins/dom-events');
-const locale = require('../../locale');
-const { hasPrimaryTouchUI } = require('../../ui');
+const PassageEditor = require('../../../editors/passage');
+const { confirm } = require('../../../dialogs/confirm');
+const domEvents = require('../../../vue/mixins/dom-events');
+const locale = require('../../../locale');
+const { hasPrimaryTouchUI } = require('../../../ui');
 const {
 	createNewlyLinkedPassages,
 	deletePassage,
 	selectPassages,
 	updatePassage
 } =
-	require('../../data/actions/passage');
+	require('../../../data/actions/passage');
 
 require('./index.less');
 

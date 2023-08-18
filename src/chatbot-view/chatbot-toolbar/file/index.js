@@ -4,15 +4,15 @@ show the search modal dialog.
 */
 
 const Vue = require("vue");
-const locale = require("../../locale");
-const { prompt } = require("../../dialogs/prompt");
-const StatsDialog = require("../../dialogs/story-stats");
-const PluginsDialog = require("../../dialogs/plugins");
-const UserDataDialog = require("../../dialogs/user");
-const SettingsDialog = require("../../dialogs/settings");
-const FormatDialog = require('../../dialogs/story-format');
-const { updateStory } = require("../../data/actions/story");
-const {proofStory} = require('../../common/launch-story');
+const locale = require("../../../locale");
+const { prompt } = require("../../../dialogs/prompt");
+const StatsDialog = require("../../../dialogs/story-stats");
+const PluginsDialog = require("../../../dialogs/plugins");
+const UserDataDialog = require("../../../dialogs/user");
+const SettingsDialog = require("../../../dialogs/settings");
+const FormatDialog = require('../../../dialogs/story-format');
+const { updateStory } = require("../../../data/actions/story");
+const {proofStory} = require('../../../common/launch-story');
 
 require("./index.less");
 

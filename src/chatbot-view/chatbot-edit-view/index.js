@@ -2,13 +2,13 @@
 
 const values = require('lodash.values');
 const Vue = require('vue');
-const { confirm } = require('../dialogs/confirm');
-const { createPassage, deletePassage, positionPassage, updatePassage, createNewlyLinkedPassages } = require('../data/actions/passage');
-const { updateStory } = require('../data/actions/story');
-const { passageDefaults } = require('../data/store/story');
-const PassageEditor = require('../editors/passage');
-const domEvents = require('../vue/mixins/dom-events');
-const locale = require('../locale');
+const { confirm } = require('../../dialogs/confirm');
+const { createPassage, deletePassage, positionPassage, updatePassage, createNewlyLinkedPassages } = require('../../data/actions/passage');
+const { updateStory } = require('../../data/actions/story');
+const { passageDefaults } = require('../../data/store/story');
+const PassageEditor = require('../../editors/passage');
+const domEvents = require('../../vue/mixins/dom-events');
+const locale = require('../../locale');
 const zoomSettings = require('./zoom-settings');
 
 require('./index.less');

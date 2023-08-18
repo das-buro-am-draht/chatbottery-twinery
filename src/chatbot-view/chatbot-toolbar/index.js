@@ -1,12 +1,12 @@
 // The toolbar at the bottom of the screen with editing controls.
 
 const Vue = require('vue');
-const JavaScriptEditor = require('../editors/javascript');
-const StylesheetEditor = require('../editors/stylesheet');
-const zoomMappings = require('../chatbot-view/zoom-settings');
-const OpenaiDialog = require('../dialogs/openai');
-const {playStory} = require('../common/launch-story');
-const {updateStory} = require('../data/actions/story');
+const JavaScriptEditor = require('../../editors/javascript');
+const StylesheetEditor = require('../../editors/stylesheet');
+const zoomMappings = require('../chatbot-edit-view/zoom-settings');
+const OpenaiDialog = require('../../dialogs/openai');
+const {playStory} = require('../../common/launch-story');
+const {updateStory} = require('../../data/actions/story');
 
 require('./index.less');
 

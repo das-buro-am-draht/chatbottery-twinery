@@ -1,5 +1,5 @@
 const Vue = require('vue');
-const rect = require('../../common/rect');
+const rect = require('../../../common/rect');
 
 /*
 Renders an SVG arc. This expects an object with start, radius, largeArc,
