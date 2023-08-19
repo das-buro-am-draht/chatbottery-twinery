@@ -15,8 +15,8 @@ module.exports = Vue.extend({
 	template: require('./index.html'),
 
 	props: {
-		storyId: {
-			type: String,
+		story: {
+			type: Object,
 			required: true
 		},
 	},
@@ -28,18 +28,6 @@ module.exports = Vue.extend({
 
 	ready: function () {
 		this.setSliderVal();
-	},
-
-	watch: {
-		'story.zoom'() {
-			this.setSliderVal();
-		},
-	},
-
-	computed: {
-		story() {
-			return this.allStories.find(story => story.id === this.storyId);
-		},
 	},
 
 	watch: {
@@ -101,8 +89,5 @@ module.exports = Vue.extend({
 		actions: {
 			updateStory,
 		},
-		getters: {
-			allStories: state => state.story.stories,
-		}
 	},
 });

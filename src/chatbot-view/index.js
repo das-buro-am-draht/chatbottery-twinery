@@ -20,17 +20,44 @@ module.exports = Vue.extend({
 		story() {
 			return this.allStories.find(story => story.id === this.storyId);
 		},
+
+		/* Our grid size -- for now, constant. */
+
+		gridSize() {
+			return 25;
+		},
+	},
+
+	watch: {
+		'story.name': {
+			handler(value) {
+				document.title = value;
+			},
+
+			immediate: true
+		},
+
+		'story.zoom': {
+			handler(value, old) {
+				/*
+				Change the window's scroll position so that the same logical
+				coordinates are at its center.
+				*/
+				
+				// const halfWidth = this.$els.view.offsetWidth / 2;
+				// const halfHeight = this.$els.view.offsetHeight / 2;
+				// const logCenterX = (this.$els.view.scrollLeft + halfWidth) / old;
+				// const logCenterY = (this.$els.view.scrollTop + halfHeight) / old;
+
+				this.$els.view.scroll(
+					0, // (logCenterX * value) - halfWidth, 
+					0  // (logCenterY * value) - halfHeight
+				);
+			}
+		}
 	},
 
 	events: {
-		/*
-		Our children (e.g. the search field can tell us to change what the
-		highlight filter should be.
-		*/
-
-		'highlight-regexp-change'(value) {
-			this.$refs.editView.$set('highlightRegexp', value);
-		},
 	},
 
 	components: {

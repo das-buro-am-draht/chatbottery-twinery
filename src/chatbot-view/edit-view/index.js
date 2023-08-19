@@ -25,10 +25,14 @@ module.exports = Vue.extend({
 	/* The id of the story we're editing is provided by the router. */
 
 	props: {
-		storyId: {
-			type: String,
+		story: {
+			type: Object,
 			required: true
-		}
+		},
+		gridSize: {
+			type: Number,
+			required: true
+		},
 	},
 
 	data: () => ({
@@ -67,8 +71,8 @@ module.exports = Vue.extend({
 
 	ready() {
 		this.resize();
-		this.on(this.window, 'resize', this.resize);
-		this.on(this.window, 'keyup', this.onKeyup);
+		this.on(window, 'resize', this.resize);
+		this.on(window, 'keyup', this.onKeyup);
 
 		if (this.story.passages.length === 0) {
 			this.createPassageAt();
@@ -88,15 +92,11 @@ module.exports = Vue.extend({
 		*/
 
 		window() {
-			// return this.$el.parentElement;
+			// return this.$el.parentNode;
 			return document.querySelector('.chatbot-view');
 		},
 
 		cssDimensions() {
-			if (!this.winWidth && !this.winHeight) {
-				return {};
-			}
-
 			let width = this.winWidth;
 			let height = this.winHeight;
 			let passagesWidth = 0;
@@ -132,12 +132,6 @@ module.exports = Vue.extend({
 			};
 		},
 
-		/* Our grid size -- for now, constant. */
-
-		gridSize() {
-			return 25;
-		},
-
 		/*
 		Returns an array of currently-selected <passage-item> components. This
 		is used by the marquee selector component to do additive selections
@@ -164,45 +158,12 @@ module.exports = Vue.extend({
 			);
 		},
 
-		story() {
-			return this.allStories.find(story => story.id === this.storyId);
-		},
-
 		/* A human readable adjective for the story's zoom level. */
 
 		zoomDesc() {
 			return Object.keys(zoomSettings).find(
 				key => zoomSettings[key] === this.story.zoom
 			);
-		}
-	},
-
-	watch: {
-		'story.name': {
-			handler(value) {
-				document.title = value;
-			},
-
-			immediate: true
-		},
-
-		'story.zoom': {
-			handler(value, old) {
-				/*
-				Change the window's scroll position so that the same logical
-				coordinates are at its center.
-				*/
-				
-				const halfWidth = this.window.offsetWidth / 2;
-				const halfHeight = this.window.offsetHeight / 2;
-				const logCenterX = (this.window.scrollLeft + halfWidth) / old;
-				const logCenterY = (this.window.scrollTop + halfHeight) / old;
-
-				this.window.scroll(
-					(logCenterX * value) - halfWidth, 
-					(logCenterY * value) - halfHeight
-				);
-			}
 		}
 	},
 
@@ -568,12 +529,6 @@ module.exports = Vue.extend({
 			updateStory,
 			createNewlyLinkedPassages
 		},
-
-		getters: {
-			allFormats: state => state.storyFormat.formats,
-			allStories: state => state.story.stories,
-			defaultFormatName: state => state.pref.defaultFormat
-		}
 	},
 
 	mixins: [domEvents]

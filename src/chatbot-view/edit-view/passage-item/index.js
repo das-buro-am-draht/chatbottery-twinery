@@ -272,11 +272,11 @@ module.exports = Vue.extend({
 			this.screenDragStartY = srcPoint.clientY + this.window.scrollTop;
 
 			if (hasPrimaryTouchUI()) {
-				this.on(this.window, 'touchmove', this.followDrag, { passive: false });
-				this.on(this.window, 'touchend', this.stopDrag);
+				this.on(window, 'touchmove', this.followDrag, { passive: false });
+				this.on(window, 'touchend', this.stopDrag);
 			} else {
-				this.on(this.window, 'mousemove', this.followDrag, { passive: false });
-				this.on(this.window, 'mouseup', this.stopDrag);
+				this.on(window, 'mousemove', this.followDrag, { passive: false });
+				this.on(window, 'mouseup', this.stopDrag);
 			}
 
 			document.querySelector('body').classList.add('draggingPassages');
@@ -312,11 +312,11 @@ module.exports = Vue.extend({
 			/* Remove event listeners set up at the start of the drag. */
 
 			if (hasPrimaryTouchUI()) {
-				this.off(this.window, 'touchmove');
-				this.off(this.window, 'touchend');
+				this.off(window, 'touchmove');
+				this.off(window, 'touchend');
 			} else {
-				this.off(this.window, 'mousemove');
-				this.off(this.window, 'mouseup');
+				this.off(window, 'mousemove');
+				this.off(window, 'mouseup');
 			}
 
 			document.querySelector('body').classList.remove('draggingPassages');
