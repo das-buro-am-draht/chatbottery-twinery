@@ -3,7 +3,6 @@
 const Vue = require('vue');
 const JavaScriptEditor = require('../../editors/javascript');
 const StylesheetEditor = require('../../editors/stylesheet');
-const zoomMappings = require('../zoom-settings');
 const OpenaiDialog = require('../../dialogs/openai');
 const {playStory} = require('../../common/launch-story');
 const {updateStory} = require('../../data/actions/story');
@@ -68,7 +67,7 @@ module.exports = Vue.extend({
 		},
 		
 		changeZoom() {
-			this.updateStory(this.story.id, {zoom: zoomMappings[this.descriptions[this.sliderVal]]});
+			this.updateStory(this.story.id, {zoom: zoomSettings[this.descriptions[this.sliderVal]]});
 		},
 		
 		openai(e) {
