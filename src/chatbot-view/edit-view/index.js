@@ -37,8 +37,8 @@ module.exports = Vue.extend({
 		with the DOM.
 		*/
 
-		winWidth: window.innerWidth,
-		winHeight: window.innerHeight,
+		winWidth: 0,
+		winHeight: 0,
 
 		/*
 		The calculated width and height we maintain to allow the user to
@@ -65,6 +65,16 @@ module.exports = Vue.extend({
 		screenDragOffsetY: 0
 	}),
 
+	ready() {
+		this.resize();
+		this.on(this.window, 'resize', this.resize);
+		this.on(this.window, 'keyup', this.onKeyup);
+
+		if (this.story.passages.length === 0) {
+			this.createPassageAt();
+		}
+	},
+
 	computed: {
 		/*
 		Sets our width and height to:
@@ -77,7 +87,16 @@ module.exports = Vue.extend({
 		expand.
 		*/
 
+		window() {
+			// return this.$el.parentElement;
+			return document.querySelector('.chatbot-view');
+		},
+
 		cssDimensions() {
+			if (!this.winWidth && !this.winHeight) {
+				return {};
+			}
+
 			let width = this.winWidth;
 			let height = this.winHeight;
 			let passagesWidth = 0;
@@ -167,20 +186,41 @@ module.exports = Vue.extend({
 			immediate: true
 		},
 
-		'story.zoom'() {
-			const selectedPassage = this.$el.querySelector(".passage.selected");
-			const startPassage = this.$el.querySelector(".passage.start");
+		'story.zoom': {
+			handler(value, old) {
+				/*
+				Change the window's scroll position so that the same logical
+				coordinates are at its center.
+				*/
+				
+				const halfWidth = this.window.offsetWidth / 2;
+				const halfHeight = this.window.offsetHeight / 2;
+				const logCenterX = (this.window.scrollLeft + halfWidth) / old;
+				const logCenterY = (this.window.scrollTop + halfHeight) / old;
+
+				this.window.scroll(
+					(logCenterX * value) - halfWidth, 
+					(logCenterY * value) - halfHeight
+				);
+			}
+		}
+	},
+
+	methods: {
+		centerPosition() {
+			const selectedPassage = document.querySelector(".passage.selected");
+			const startPassage = document.querySelector(".passage.start");
 			const setPositions = (target) => {
 				const targetX = target.offsetLeft;
 				const targetY = target.offsetTop;
-				const windowHalfHeight = window.innerHeight / 2;
-				const windowHalfWidth = window.innerWidth / 2;
+				const windowHalfHeight = this.window.offsetHeight / 2;
+				const windowHalfWidth = this.window.offsetWidth / 2;
 				const calcX = targetX - windowHalfWidth;
 				const calcY = targetY - windowHalfHeight;
 				const x = calcX > 0 ? calcX : 0;
 				const y = calcY > 0 ? calcY : 0;
 
-				window.scroll(x, y);
+				this.window.scroll(x, y);
 			};
 		
 			if (selectedPassage) {
@@ -193,9 +233,8 @@ module.exports = Vue.extend({
 				return;
 			}
 		
-			window.scroll(0, 0);
-		}
-	},
+			this.window.scroll(0, 0);
+		},
 
 	ready() {
 		this.resize();
@@ -209,8 +248,8 @@ module.exports = Vue.extend({
 
 	methods: {
 		resize() {
-			this.winWidth = window.innerWidth;
-			this.winHeight = window.innerHeight;
+			this.winWidth = this.window.offsetWidth;
+			this.winHeight = this.window.offsetHeight;
 		},
 
 		zoomIn(wraparound) {
@@ -265,13 +304,13 @@ module.exports = Vue.extend({
 			*/
 
 			if (!left) {
-				left = (window.scrollX + window.innerWidth / 2)
+				left = (this.window.scrollLeft + this.window.offsetWidth / 2)
 					/ this.story.zoom;
 				left -= passageDefaults.width;
 			}
 
 			if (!top) {
-				top = (window.scrollY + window.innerHeight / 2)
+				top = (this.window.scrollTop + this.window.offsetHeight / 2)
 					/ this.story.zoom;
 				top -= passageDefaults.height;
 			}

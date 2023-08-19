@@ -85,6 +85,10 @@ module.exports = Vue.extend({
 		will be doing that itself.
 		*/
 
+		window() {
+			return document.querySelector('.chatbot-view');
+		},
+
 		linkPosition() {
 			let result = {
 				top: this.passage.top,
@@ -264,15 +268,15 @@ module.exports = Vue.extend({
 
 			const srcPoint = (e.type === 'mousedown') ? e : e.touches[0];
 
-			this.screenDragStartX = srcPoint.clientX + window.scrollX;
-			this.screenDragStartY = srcPoint.clientY + window.scrollY;
+			this.screenDragStartX = srcPoint.clientX + this.window.scrollLeft;
+			this.screenDragStartY = srcPoint.clientY + this.window.scrollTop;
 
 			if (hasPrimaryTouchUI()) {
-				this.on(window, 'touchmove', this.followDrag, { passive: false });
-				this.on(window, 'touchend', this.stopDrag);
+				this.on(this.window, 'touchmove', this.followDrag, { passive: false });
+				this.on(this.window, 'touchend', this.stopDrag);
 			} else {
-				this.on(window, 'mousemove', this.followDrag, { passive: false });
-				this.on(window, 'mouseup', this.stopDrag);
+				this.on(this.window, 'mousemove', this.followDrag, { passive: false });
+				this.on(this.window, 'mouseup', this.stopDrag);
 			}
 
 			document.querySelector('body').classList.add('draggingPassages');
@@ -283,8 +287,8 @@ module.exports = Vue.extend({
 
 			this.$dispatch(
 				'passage-drag',
-				srcPoint.clientX + window.scrollX - this.screenDragStartX,
-				srcPoint.clientY + window.scrollY - this.screenDragStartY
+				srcPoint.clientX + this.window.scrollLeft - this.screenDragStartX,
+				srcPoint.clientY + this.window.scrollTop - this.screenDragStartY
 			);
 
 			/*
@@ -308,11 +312,11 @@ module.exports = Vue.extend({
 			/* Remove event listeners set up at the start of the drag. */
 
 			if (hasPrimaryTouchUI()) {
-				this.off(window, 'touchmove');
-				this.off(window, 'touchend');
+				this.off(this.window, 'touchmove');
+				this.off(this.window, 'touchend');
 			} else {
-				this.off(window, 'mousemove');
-				this.off(window, 'mouseup');
+				this.off(this.window, 'mousemove');
+				this.off(this.window, 'mouseup');
 			}
 
 			document.querySelector('body').classList.remove('draggingPassages');
@@ -339,8 +343,8 @@ module.exports = Vue.extend({
 				if (e.type === 'mouseup') {
 					this.$dispatch(
 						'passage-drag-complete',
-						e.clientX + window.scrollX - this.screenDragStartX,
-						e.clientY + window.scrollY - this.screenDragStartY,
+						e.clientX + this.window.scrollLeft - this.screenDragStartX,
+						e.clientY + this.window.scrollTop - this.screenDragStartY,
 						this
 					);
 				} else {
