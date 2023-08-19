@@ -44,8 +44,8 @@ module.exports = Vue.extend({
 		The rectangle encompasing this selection in screen coordinates.
 		*/
 
-		window() {
-			return document.querySelector('.chatbot-view');
+		container() {
+			return this.$parent.$el.parentNode;
 		},
 
 		screenRect() {
@@ -147,8 +147,9 @@ module.exports = Vue.extend({
 			into account the window's scroll position.
 			*/
 
-			this.startX = this.currentX = e.clientX + this.window.scrollLeft;
-			this.startY = this.currentY = e.clientY + this.window.scrollTop;
+			const rc = this.container.getBoundingClientRect();
+			this.startX = this.currentX = e.clientX - rc.x + this.container.scrollLeft;
+			this.startY = this.currentY = e.clientY - rc.y + this.container.scrollTop;
 
 			/*
 			Set up event listeners to continue the drag.
@@ -173,8 +174,9 @@ module.exports = Vue.extend({
 			window's scroll position.
 			*/
 
-			this.currentX = e.clientX + this.window.scrollLeft;
-			this.currentY = e.clientY + this.window.scrollTop;
+			const rc = this.container.getBoundingClientRect();
+			this.currentX = e.clientX - rc.x + this.container.scrollLeft;
+			this.currentY = e.clientY - rc.y + this.container.scrollTop;
 
 			this.selectPassages(this.story.id, p => {
 				if (this.additive &&

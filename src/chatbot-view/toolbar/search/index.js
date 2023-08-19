@@ -33,7 +33,7 @@ module.exports = Vue.extend({
 
 			const regex = regularExpression(this.search, 'i');
 
-			this.$parent.$parent.$broadcast(
+			this.$dispatch(
 				'highlight-regexp-change',
 				(regex.source !== '(?:)') ? regex : null
 			);

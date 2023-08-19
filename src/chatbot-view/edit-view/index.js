@@ -91,9 +91,8 @@ module.exports = Vue.extend({
 		expand.
 		*/
 
-		window() {
-			// return this.$el.parentNode;
-			return document.querySelector('.chatbot-view');
+		container() {
+			return this.$el.parentNode;
 		},
 
 		cssDimensions() {
@@ -168,49 +167,9 @@ module.exports = Vue.extend({
 	},
 
 	methods: {
-		centerPosition() {
-			const selectedPassage = document.querySelector(".passage.selected");
-			const startPassage = document.querySelector(".passage.start");
-			const setPositions = (target) => {
-				const targetX = target.offsetLeft;
-				const targetY = target.offsetTop;
-				const windowHalfHeight = this.window.offsetHeight / 2;
-				const windowHalfWidth = this.window.offsetWidth / 2;
-				const calcX = targetX - windowHalfWidth;
-				const calcY = targetY - windowHalfHeight;
-				const x = calcX > 0 ? calcX : 0;
-				const y = calcY > 0 ? calcY : 0;
-
-				this.window.scroll(x, y);
-			};
-		
-			if (selectedPassage) {
-				setPositions(selectedPassage);
-				return;
-			}
-
-			if (startPassage) {
-				setPositions(startPassage);
-				return;
-			}
-		
-			this.window.scroll(0, 0);
-		},
-
-	ready() {
-		this.resize();
-		this.on(window, 'resize', this.resize);
-		this.on(window, 'keyup', this.onKeyup);
-
-		if (this.story.passages.length === 0) {
-			this.createPassageAt();
-		}
-	},
-
-	methods: {
 		resize() {
-			this.winWidth = this.window.offsetWidth;
-			this.winHeight = this.window.offsetHeight;
+			this.winWidth = this.container.offsetWidth;
+			this.winHeight = this.container.offsetHeight;
 		},
 
 		zoomIn(wraparound) {
@@ -265,13 +224,13 @@ module.exports = Vue.extend({
 			*/
 
 			if (!left) {
-				left = (this.window.scrollLeft + this.window.offsetWidth / 2)
+				left = (this.container.scrollLeft + this.container.offsetWidth / 2)
 					/ this.story.zoom;
 				left -= passageDefaults.width;
 			}
 
 			if (!top) {
-				top = (this.window.scrollTop + this.window.offsetHeight / 2)
+				top = (this.container.scrollTop + this.container.offsetHeight / 2)
 					/ this.story.zoom;
 				top -= passageDefaults.height;
 			}
@@ -298,7 +257,7 @@ module.exports = Vue.extend({
 
 			/* Add it to our collection. */
 
-			this.createPassage(this.story.id, { name, left, top });
+			this.createPassage(this.story.id, { name, left, top, selected: true });
 
 			/*
 			Then position it so it doesn't overlap any others, and save it
@@ -410,15 +369,38 @@ module.exports = Vue.extend({
 		}
 	},
 
-	events: {
-		/*
-		Our children (e.g. the search field can tell us to change what the
-		highlight filter should be.
-		*/
+	watch: {
+		'story.zoom'() {
+			const selectedPassage = document.querySelector(".passage.selected");
+			const startPassage = document.querySelector(".passage.start");
+			const setPositions = (target) => {
+				const targetX = target.offsetLeft;
+				const targetY = target.offsetTop;
+				const windowHalfHeight = this.container.offsetHeight / 2;
+				const windowHalfWidth = this.container.offsetWidth / 2;
+				const calcX = targetX - windowHalfWidth;
+				const calcY = targetY - windowHalfHeight;
+				const x = calcX > 0 ? calcX : 0;
+				const y = calcY > 0 ? calcY : 0;
 
-		'highlight-regexp-change'(value) {
-			this.highlightRegexp = value;
+				this.container.scroll(x, y);
+			};
+		
+			if (selectedPassage) {
+				setPositions(selectedPassage);
+				return;
+			}
+
+			if (startPassage) {
+				setPositions(startPassage);
+				return;
+			}
+		
+			this.container.scroll(0, 0);
 		},
+	},
+
+	events: {
 		
 		/*
 		A hook into our createPassage() method for child components.

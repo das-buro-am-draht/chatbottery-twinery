@@ -85,8 +85,8 @@ module.exports = Vue.extend({
 		will be doing that itself.
 		*/
 
-		window() {
-			return document.querySelector('.chatbot-view');
+		container() {
+			return this.$parent.$el.parentNode;
 		},
 
 		linkPosition() {
@@ -110,7 +110,7 @@ module.exports = Vue.extend({
 		},
 
 		isLiveChat() {
-			return /<chat[^<>]*>/i.test(this.passage.text);
+			return /<chat[^>]*>/i.test(this.passage.text);
 		},
 
 		cssPosition() {
@@ -267,9 +267,9 @@ module.exports = Vue.extend({
 			/* Begin tracking a potential drag. */
 
 			const srcPoint = (e.type === 'mousedown') ? e : e.touches[0];
-
-			this.screenDragStartX = srcPoint.clientX + this.window.scrollLeft;
-			this.screenDragStartY = srcPoint.clientY + this.window.scrollTop;
+			
+			this.screenDragStartX = srcPoint.clientX + this.container.scrollLeft;
+			this.screenDragStartY = srcPoint.clientY + this.container.scrollTop;
 
 			if (hasPrimaryTouchUI()) {
 				this.on(window, 'touchmove', this.followDrag, { passive: false });
@@ -287,8 +287,8 @@ module.exports = Vue.extend({
 
 			this.$dispatch(
 				'passage-drag',
-				srcPoint.clientX + this.window.scrollLeft - this.screenDragStartX,
-				srcPoint.clientY + this.window.scrollTop - this.screenDragStartY
+				srcPoint.clientX + this.container.scrollLeft - this.screenDragStartX,
+				srcPoint.clientY + this.container.scrollTop - this.screenDragStartY
 			);
 
 			/*
@@ -343,8 +343,8 @@ module.exports = Vue.extend({
 				if (e.type === 'mouseup') {
 					this.$dispatch(
 						'passage-drag-complete',
-						e.clientX + this.window.scrollLeft - this.screenDragStartX,
-						e.clientY + this.window.scrollTop - this.screenDragStartY,
+						e.clientX + this.container.scrollLeft - this.screenDragStartX,
+						e.clientY + this.container.scrollTop - this.screenDragStartY,
 						this
 					);
 				} else {
