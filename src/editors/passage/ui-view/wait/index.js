@@ -30,7 +30,9 @@ module.exports = Vue.extend({
 				.filter(([k, v]) => v.type !== 'function')
 				.map(([k]) => k.substring(1));
 		}
-		this.load();
+		this.loadVariable();
+		this.loadValidate();
+		this.loadAutocomplete();
 	},
 
 	watch: {
@@ -52,11 +54,6 @@ module.exports = Vue.extend({
 	},
 
 	methods: {
-		load() {
-			this.loadVariable();
-			this.loadValidate();
-			this.loadAutocomplete();
-		},
 		loadVariable() {
 			const variable = (this.task.attributes['var'] || '').substring(1);
 			if (variable !== this.variable) {

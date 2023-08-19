@@ -30,13 +30,11 @@ module.exports = Vue.extend({
 					return prev;
 				}, {});
 		}
-		this.load();
-	},
-
-	watch: {
-		'task.attributes.eval'() {
-			this.load();
-		},
+		
+		const assignment = this.task.attributes['eval'] || '';
+		if (assignment !== this.assignment) {
+			this.assignment = assignment;
+		}
 	},
 
 	computed: {
@@ -67,12 +65,6 @@ module.exports = Vue.extend({
 	},
 
 	methods: {
-		load() {
-			const assignment = this.task.attributes['eval'] || '';
-			if (assignment !== this.assignment) {
-				this.assignment = assignment;
-			}
-		},
 		onChange(event) {
 			const assignment = this.assignment;
 			if (assignment) {
