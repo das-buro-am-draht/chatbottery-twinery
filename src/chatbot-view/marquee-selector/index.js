@@ -143,8 +143,9 @@ module.exports = Vue.extend({
 			into account the window's scroll position.
 			*/
 
-			this.startX = this.currentX = e.clientX + window.pageXOffset;
-			this.startY = this.currentY = e.clientY + window.pageYOffset;
+			const rc = this.$parent.$el.getBoundingClientRect();
+			this.startX = this.currentX = e.clientX - rc.x + window.scrollX;
+			this.startY = this.currentY = e.clientY - rc.y + window.scrollY;
 
 			/*
 			Set up event listeners to continue the drag.
@@ -169,8 +170,9 @@ module.exports = Vue.extend({
 			window's scroll position.
 			*/
 
-			this.currentX = e.clientX + window.pageXOffset;
-			this.currentY = e.clientY + window.pageYOffset;
+			const rc = this.$parent.$el.getBoundingClientRect();
+			this.currentX = e.clientX + - rc.x + window.scrollX;
+			this.currentY = e.clientY + - rc.y + window.scrollY;
 
 			this.selectPassages(this.story.id, p => {
 				if (this.additive &&

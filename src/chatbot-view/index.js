@@ -167,40 +167,9 @@ module.exports = Vue.extend({
 			immediate: true
 		},
 
-		'story.zoom': {
-			handler(value, old) {
-				/*
-				Change the window's scroll position so that the same logical
-				coordinates are at its center.
-				*/
-				
-				const halfWidth = window.innerWidth / 2;
-				const halfHeight = window.innerHeight / 2;
-				const logCenterX = (window.scrollX + halfWidth) / old;
-				const logCenterY = (window.scrollY + halfHeight) / old;
-
-				window.scroll(
-					(logCenterX * value) - halfWidth,
-					(logCenterY * value) - halfHeight
-				);
-			}
-		}
-	},
-
-	ready() {
-		this.resize();
-		this.on(window, 'resize', this.resize);
-		this.on(window, 'keyup', this.onKeyup);
-
-		if (this.story.passages.length === 0) {
-			this.createPassageAt();
-		}
-	},
-
-	methods: {
-		centerPosition() {
-			const selectedPassage = document.querySelector(".passage.selected");
-			const startPassage = document.querySelector(".passage.start");
+		'story.zoom'() {
+			const selectedPassage = this.$el.querySelector(".passage.selected");
+			const startPassage = this.$el.querySelector(".passage.start");
 			const setPositions = (target) => {
 				const targetX = target.offsetLeft;
 				const targetY = target.offsetTop;
@@ -225,8 +194,20 @@ module.exports = Vue.extend({
 			}
 		
 			window.scroll(0, 0);
-		},
+		}
+	},
 
+	ready() {
+		this.resize();
+		this.on(window, 'resize', this.resize);
+		this.on(window, 'keyup', this.onKeyup);
+
+		if (this.story.passages.length === 0) {
+			this.createPassageAt();
+		}
+	},
+
+	methods: {
 		resize() {
 			this.winWidth = window.innerWidth;
 			this.winHeight = window.innerHeight;
@@ -239,7 +220,7 @@ module.exports = Vue.extend({
 				if (wraparound) {
 					this.updateStory(
 						this.story.id,
-						{ zoom: zoomLevels[zoomIndex.length - 1] }
+						{ zoom: zoomLevels[zoomLevels.length - 1] }
 					);
 				}
 			} else {
@@ -284,13 +265,13 @@ module.exports = Vue.extend({
 			*/
 
 			if (!left) {
-				left = (window.pageXOffset + window.innerWidth / 2)
+				left = (window.scrollX + window.innerWidth / 2)
 					/ this.story.zoom;
 				left -= passageDefaults.width;
 			}
 
 			if (!top) {
-				top = (window.pageYOffset + window.innerHeight / 2)
+				top = (window.scrollY + window.innerHeight / 2)
 					/ this.story.zoom;
 				top -= passageDefaults.height;
 			}

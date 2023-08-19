@@ -36,7 +36,19 @@ module.exports = Vue.extend({
 		'dropdown-download': require('./download'),
 	},
 
+	watch: {
+		'story.zoom'() {
+			this.setSliderVal();
+		},
+	},
+
 	methods: {
+		setSliderVal() {
+			const zoomDesc = Object.keys(zoomMappings).find(
+				key => zoomMappings[key] === this.story.zoom
+			);
+			this.sliderVal = this.descriptions.indexOf(zoomDesc);
+		},
 		play() {
 			playStory(this.$store, this.story.id);
 		},
@@ -69,7 +81,7 @@ module.exports = Vue.extend({
 	},
 
 	ready: function () {
-		this.sliderVal = this.descriptions.indexOf(this.zoomDesc);
+		this.setSliderVal();
 	},
 
 	vuex: {
