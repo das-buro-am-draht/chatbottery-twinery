@@ -123,7 +123,7 @@ module.exports = Vue.extend({
 			if (keys.length > 0) {
 				notify(
 					locale.say(
-						'New user variables were found: &ldquo;%1$s&rdquo;',
+						'New user variables found: &ldquo;%1$s&rdquo;',
 						keys.join(', ')
 					)
 				);
