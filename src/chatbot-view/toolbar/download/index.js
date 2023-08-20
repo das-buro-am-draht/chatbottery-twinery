@@ -62,7 +62,7 @@ module.exports = Vue.extend({
 		},
 	},
 
-	ready: function() {
+	ready() {
 		this.$data.proofingFormat = this.$store.state.storyFormat.formats.find(format => format.isStatistic);
 	},
 

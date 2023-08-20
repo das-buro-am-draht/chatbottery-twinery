@@ -74,9 +74,12 @@ module.exports = Vue.extend({
 		this.on(window, 'resize', this.resize);
 		this.on(window, 'keyup', this.onKeyup);
 
-		if (this.story.passages.length === 0) {
-			this.createPassageAt();
-		}
+		Vue.nextTick(() => {
+			this.centerPosition();
+			if (this.story.passages.length === 0) {
+				this.createPassageAt();
+			}
+		});
 	},
 
 	computed: {
@@ -206,6 +209,35 @@ module.exports = Vue.extend({
 					{ zoom: zoomLevels[zoomIndex + 1] }
 				);
 			}
+		},
+
+		centerPosition() {
+			const selectedPassage = this.$el.querySelector(".passage.selected");
+			const startPassage = this.$el.querySelector(".passage.start");
+			const setPositions = (target) => {
+				const targetX = target.offsetLeft;
+				const targetY = target.offsetTop;
+				const windowHalfHeight = this.container.offsetHeight / 2;
+				const windowHalfWidth = this.container.offsetWidth / 2;
+				const calcX = targetX - windowHalfWidth;
+				const calcY = targetY - windowHalfHeight;
+				const x = calcX > 0 ? calcX : 0;
+				const y = calcY > 0 ? calcY : 0;
+
+				this.container.scroll(x, y);
+			};
+		
+			if (selectedPassage) {
+				setPositions(selectedPassage);
+				return;
+			}
+
+			if (startPassage) {
+				setPositions(startPassage);
+				return;
+			}
+		
+			this.container.scroll(0, 0);
 		},
 
 		/*
@@ -371,32 +403,7 @@ module.exports = Vue.extend({
 
 	watch: {
 		'story.zoom'() {
-			const selectedPassage = document.querySelector(".passage.selected");
-			const startPassage = document.querySelector(".passage.start");
-			const setPositions = (target) => {
-				const targetX = target.offsetLeft;
-				const targetY = target.offsetTop;
-				const windowHalfHeight = this.container.offsetHeight / 2;
-				const windowHalfWidth = this.container.offsetWidth / 2;
-				const calcX = targetX - windowHalfWidth;
-				const calcY = targetY - windowHalfHeight;
-				const x = calcX > 0 ? calcX : 0;
-				const y = calcY > 0 ? calcY : 0;
-
-				this.container.scroll(x, y);
-			};
-		
-			if (selectedPassage) {
-				setPositions(selectedPassage);
-				return;
-			}
-
-			if (startPassage) {
-				setPositions(startPassage);
-				return;
-			}
-		
-			this.container.scroll(0, 0);
+			this.centerPosition();
 		},
 	},
 

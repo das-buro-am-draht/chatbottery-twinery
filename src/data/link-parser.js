@@ -13,11 +13,8 @@ const extractLinks = (regexp, text) => {
   	return matches;  
 }
 
-/* The top level regular expression to catch links -- i.e. [[link]]. */
-const extractLinkTags = (text) => text.match(/\[\[.*?\]\]/g) || [];
-
 const extractGoToLinkTags = (text) => 
-	extractLinks(/<goto[^>]+\bpassage="(.*)"[^>]*>/g, text);
+	extractLinks(/<goto[^>]+\bpassage="([^>"]*)"[^>]*>/g, text);
 
 const extractActLinkTags = (text) => extractLinks(/<act.*>([^<]*)<\/act>/g, text);
 
@@ -82,13 +79,6 @@ const links = (text, internalOnly) => {
 	Link matching regexps ignore setter components, should they exist.
 	*/
 
-	/* let result = extractLinkTags(text)
-		.map(removeEnclosingBrackets)
-		.map(removeSetters)
-		.map(extractLink) 
-		.filter(nonEmptyLinks)
-		.filter(uniques);
-	*/ 	 
 	const result = extractGoToLinkTags(text)
 		.concat(
 			extractActLinkTags(text).concat(
@@ -136,9 +126,12 @@ const buttonLinks = (text, internalOnly) => {
 	}
 };
 
+const isLiveChat = (text) => /<chat[^<>]*>/i.test(text);
+
 module.exports = {
 	links,
 	gotoLinks,
 	buttonLinks,
+	isLiveChat,
 	removeEnclosingBrackets,
 };

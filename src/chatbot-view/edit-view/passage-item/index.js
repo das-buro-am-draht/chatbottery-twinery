@@ -9,6 +9,7 @@ const { confirm } = require('../../../dialogs/confirm');
 const domEvents = require('../../../vue/mixins/dom-events');
 const locale = require('../../../locale');
 const { hasPrimaryTouchUI } = require('../../../ui');
+const { isLiveChat } = require('../../../data/link-parser');
 const {
 	createNewlyLinkedPassages,
 	deletePassage,
@@ -110,7 +111,7 @@ module.exports = Vue.extend({
 		},
 
 		isLiveChat() {
-			return /<chat[^>]*>/i.test(this.passage.text);
+			return isLiveChat(this.passage.text);
 		},
 
 		cssPosition() {

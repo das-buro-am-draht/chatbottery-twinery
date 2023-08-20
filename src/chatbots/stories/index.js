@@ -125,7 +125,7 @@ module.exports = Vue.extend({
 		},
 	},
 
-	ready: function () {
+	ready() {
 		this.importBlankbot();
 	},
 

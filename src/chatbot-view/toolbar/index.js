@@ -25,7 +25,7 @@ module.exports = Vue.extend({
 		sliderVal: '',
 	}),
 
-	ready: function () {
+	ready() {
 		this.setSliderVal();
 	},
 
