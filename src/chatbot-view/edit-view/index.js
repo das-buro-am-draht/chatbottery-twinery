@@ -256,13 +256,15 @@ module.exports = Vue.extend({
 			*/
 
 			if (!left) {
-				left = (this.container.scrollLeft + (this.container.clientWidth - passageDefaults.width) / 2)
-					/ this.story.zoom;
+				left  = (this.container.scrollLeft
+						+ (this.container.clientWidth - passageDefaults.width) / 2) 
+						/  this.story.zoom;
 			}
 
 			if (!top) {
-				top = (this.container.scrollTop + (this.container.clientHeight - passageDefaults.height) / 2)
-					/ this.story.zoom;
+				top   = (this.container.scrollTop 
+						+ (this.container.clientHeight - passageDefaults.height) / 2) 
+						/  this.story.zoom;
 			}
 
 			/*
