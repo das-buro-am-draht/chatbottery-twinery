@@ -3,7 +3,7 @@ Draws connector lines between passages.
 */
 
 const Vue = require('vue');
-const linkDivider = require('../../data/link-divider');
+const linkDivider = require('../../../data/link-divider');
 
 require('./index.less');
 

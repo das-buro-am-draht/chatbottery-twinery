@@ -1,11 +1,11 @@
 // A marquee selection tool for passage items.
 
 const Vue = require('vue');
-const domEvents = require('../../vue/mixins/dom-events');
-const rect = require('../../common/rect');
-const { selectPassages } = require('../../data/actions/passage');
+const domEvents = require('../../../vue/mixins/dom-events');
+const rect = require('../../../common/rect');
+const { selectPassages } = require('../../../data/actions/passage');
 
-require('../../ui/ie-mouse-event-polyfill');
+require('../../../ui/ie-mouse-event-polyfill');
 require('./index.less');
 
 module.exports = Vue.extend({
@@ -43,6 +43,10 @@ module.exports = Vue.extend({
 		/*
 		The rectangle encompasing this selection in screen coordinates.
 		*/
+
+		container() {
+			return this.$parent.$el.parentNode;
+		},
 
 		screenRect() {
 			if (!this.visible) {
@@ -143,9 +147,9 @@ module.exports = Vue.extend({
 			into account the window's scroll position.
 			*/
 
-			const rc = this.$parent.$el.getBoundingClientRect();
-			this.startX = this.currentX = e.clientX - rc.x + window.scrollX;
-			this.startY = this.currentY = e.clientY - rc.y + window.scrollY;
+			const rc = this.container.getBoundingClientRect();
+			this.startX = this.currentX = e.clientX - rc.x + this.container.scrollLeft;
+			this.startY = this.currentY = e.clientY - rc.y + this.container.scrollTop;
 
 			/*
 			Set up event listeners to continue the drag.
@@ -170,9 +174,9 @@ module.exports = Vue.extend({
 			window's scroll position.
 			*/
 
-			const rc = this.$parent.$el.getBoundingClientRect();
-			this.currentX = e.clientX + - rc.x + window.scrollX;
-			this.currentY = e.clientY + - rc.y + window.scrollY;
+			const rc = this.container.getBoundingClientRect();
+			this.currentX = e.clientX - rc.x + this.container.scrollLeft;
+			this.currentY = e.clientY - rc.y + this.container.scrollTop;
 
 			this.selectPassages(this.story.id, p => {
 				if (this.additive &&

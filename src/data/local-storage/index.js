@@ -127,7 +127,7 @@ module.exports = store => {
 			case 'UPDATE_PASSAGE_IN_STORY': {
 				/* Is this a significant update? */
 
-				if (Object.keys(mutation.payload[2]).some(key => key !== 'selected')) {
+				/* if (Object.keys(mutation.payload[2]).some(key => key !== 'selected')) */ {
 					const parentStory = state.story.stories.find(
 						s => s.id === mutation.payload[0]
 					);
