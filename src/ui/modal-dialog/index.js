@@ -55,8 +55,6 @@ const ModalDialog = module.exports = Vue.extend({
 			dialog.style.transformOrigin =
 				(originRect.left + originRect.width / 2) + 'px ' +
 				(originRect.top + originRect.height / 2) + 'px';
-				
-			document.querySelector('body').classList.add('modalOpen');
 		}
 		
 		this.on(dialog, 'keyup', (e) => {
@@ -90,9 +88,6 @@ const ModalDialog = module.exports = Vue.extend({
 	},
 
 	destroyed() {
-		if (this.origin) {
-			document.querySelector('body').classList.remove('modalOpen');
-		}
 		this.$emit('destroyed');
 	},
 

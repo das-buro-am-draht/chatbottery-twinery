@@ -18,13 +18,12 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
-		this.load();
-	},
-
-	watch: {
-		'task.attributes'() {
-			this.load();
-		},
+		const iframe = this.task.attributes['src'] || '';
+		const height = this.task.attributes['height'] || '';
+		if (iframe !== this.iframe || height !== this.height) {
+			this.iframe = iframe;
+			this.height = height;
+		}
 	},
 
 	computed: {
@@ -34,17 +33,8 @@ module.exports = Vue.extend({
 	},
 
 	methods: {
-		load() {
-			const iframe = this.task.attributes['src'] || '';
-			const height = this.task.attributes['height'] || '';
-			if (iframe !== this.iframe || height !== this.height) {
-				this.iframe = iframe;
-				this.height = height;
-			}
-		},
 		onChangeUrl(event) {
 			this.task.attributes['src'] = this.iframe;
-			this.$dispatch('gui-changed');
 		},
 		onChangeHeight(event) {
 			const height = trim(this.height);
@@ -53,7 +43,6 @@ module.exports = Vue.extend({
 			} else {
 				this.task.attributes['height'] = height;
 			}
-			this.$dispatch('gui-changed');
 		},
 	},
 });

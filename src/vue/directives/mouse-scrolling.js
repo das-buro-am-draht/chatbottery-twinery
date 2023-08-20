@@ -33,7 +33,7 @@ module.exports = {
 					*/
 
 					mouseOrigin = [e.clientX, e.clientY];
-					scrollOrigin = [window.pageXOffset, window.pageYOffset];
+					scrollOrigin = [window.scrollX, window.scrollY];
 					scrolling = true;
 					body.classList.add('mouseScrolling');
 					e.preventDefault();

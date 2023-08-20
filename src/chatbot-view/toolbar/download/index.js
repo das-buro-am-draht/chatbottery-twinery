@@ -4,12 +4,12 @@ show the search modal dialog.
 */
 
 const Vue = require('vue');
-const save = require('../../file/save');
-const {loadFormat} = require('../../data/actions/story-format');
-const {publishStoryWithFormat} = require('../../data/publish');
-const {proofStory} = require('../../common/launch-story');
-const locale = require('../../locale');
-const notify = require('../../ui/notify');
+const save = require('../../../file/save');
+const {loadFormat} = require('../../../data/actions/story-format');
+const {publishStoryWithFormat} = require('../../../data/publish');
+const {proofStory} = require('../../../common/launch-story');
+const locale = require('../../../locale');
+const notify = require('../../../ui/notify');
 
 require('./index.less');
 
@@ -62,7 +62,7 @@ module.exports = Vue.extend({
 		},
 	},
 
-	ready: function() {
+	ready() {
 		this.$data.proofingFormat = this.$store.state.storyFormat.formats.find(format => format.isStatistic);
 	},
 

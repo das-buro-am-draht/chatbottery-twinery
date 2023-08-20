@@ -53,13 +53,13 @@ module.exports = Vue.extend({
 			}
 			const fromIdx = parseInt(ix);
 			if (!isNaN(fromIdx) && toIdx !== fromIdx && fromIdx >= 0 && fromIdx < this.task.buttons.length) {
+				const buttons = [ ...this.task.buttons ];
 				const insertIdx = toIdx > fromIdx ? toIdx + 1 : toIdx;
-				this.task.buttons.splice(insertIdx, 0, this.task.buttons[fromIdx]);
-
+				buttons.splice(insertIdx, 0, buttons[fromIdx]);
 				const removeIdx = toIdx > fromIdx ? fromIdx : fromIdx + 1;
-				this.task.buttons.splice(removeIdx, 1);
+				buttons.splice(removeIdx, 1);
+				this.task.buttons = buttons;
 
-				this.$dispatch('gui-changed');
 				if (this.selection >= 0) {
 					this.setSelection(toIdx);
 				}
@@ -94,7 +94,6 @@ module.exports = Vue.extend({
 		},
 		onDelete(index) {
 			this.task.buttons.splice(index, 1);
-			this.$dispatch('gui-changed');
 			if (index === this.selection) {
 				this.setSelection(index);
 			}
@@ -113,31 +112,26 @@ module.exports = Vue.extend({
 		onChangeLabel(event) {
 			if (this.selection >= 0) {
 				this.task.buttons[this.selection].label = this.$els.label.value;
-				this.$dispatch('gui-changed');
 			}
 		},
 		onChangeLink(event) {
 			if (this.selection >= 0) {
 				this.task.buttons[this.selection].link = this.$els.link.value;
-				this.$dispatch('gui-changed');
 			}
 		},
 		onChangeFunc(event) {
 			if (this.selection >= 0) {
 				this.task.buttons[this.selection].func = this.$els.func.value;
-				this.$dispatch('gui-changed');
 			}
 		},
 		onChangeClass(event) {
 			if (this.selection >= 0) {
 				this.task.buttons[this.selection].attributes['classname'] = this.$els.class.value;
-				this.$dispatch('gui-changed');
 			}
 		},
 		onChangeAction(event) {
 			if (this.selection >= 0) {
 				this.task.buttons[this.selection].action = this.$els.action.checked;
-				this.$dispatch('gui-changed');
 			}
 		},
 	},

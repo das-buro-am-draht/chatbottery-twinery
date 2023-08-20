@@ -21,7 +21,7 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
-		this.load();
+		this.options = this.task.opt || [];
 		/* Vue.nextTick(() => {
 			Array.from(this.$el.children).forEach(child => {
 				const ta = child.getElementsByTagName('textarea');
@@ -38,16 +38,7 @@ module.exports = Vue.extend({
 		},
 	},
 
-	watch: {
-		'task.opt'() {
-			this.load();
-		}
-	},
-
 	methods: {
-		load() {
-			this.options = this.task.opt || [];
-		},
 		onChange(index, event) {
 			this.synchronize();
 			// event.target.style.height = `${event.target.scrollHeight}px`;
@@ -76,7 +67,6 @@ module.exports = Vue.extend({
 		},
 		synchronize() {
 			this.task.opt = this.options; // .length > 1 ? this.options.filter(option => !!option) : this.options;
-			this.$dispatch('gui-changed');
 		},
 		onOpenai(event, index) {
 			this.$dispatch('openai-suggest', this, this.options[index]);

@@ -29,22 +29,14 @@ module.exports = Vue.extend({
 				.sort()
 				// .concat(Object.values(specialPassages));
 		}
-		this.load();
-	},
 
-	watch: {
-		'task.attributes.passage'() {
-			this.load();
-		},
+		const passage = this.task.attributes['passage'] || '';
+		if (passage !== this.passage) {
+			this.passage = passage;
+		}
 	},
 
 	methods: {
-		load() {
-			const passage = this.task.attributes['passage'] || '';
-			if (passage !== this.passage) {
-				this.passage = passage;
-			}
-		},
 		onChange(event) {
 			const passage = this.passage;
 			if (passage) {
@@ -52,7 +44,6 @@ module.exports = Vue.extend({
 			} else {
 				delete this.task.attributes['passage'];
 			}
-			this.$dispatch('gui-changed');
 		},
 	},
 });

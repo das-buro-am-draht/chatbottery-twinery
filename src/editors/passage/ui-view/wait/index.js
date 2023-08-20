@@ -30,7 +30,9 @@ module.exports = Vue.extend({
 				.filter(([k, v]) => v.type !== 'function')
 				.map(([k]) => k.substring(1));
 		}
-		this.load();
+		this.loadVariable();
+		this.loadValidate();
+		this.loadAutocomplete();
 	},
 
 	watch: {
@@ -52,11 +54,6 @@ module.exports = Vue.extend({
 	},
 
 	methods: {
-		load() {
-			this.loadVariable();
-			this.loadValidate();
-			this.loadAutocomplete();
-		},
 		loadVariable() {
 			const variable = (this.task.attributes['var'] || '').substring(1);
 			if (variable !== this.variable) {
@@ -83,7 +80,6 @@ module.exports = Vue.extend({
 			} else {
 				delete this.task.attributes['var'];
 			}
-			this.$dispatch('gui-changed');
 		},
 		onChangeValidate(event) {
 			const validate = trim(this.validate);
@@ -92,11 +88,9 @@ module.exports = Vue.extend({
 			} else {
 				delete this.task.attributes['validate'];
 			}
-			this.$dispatch('gui-changed');
 		},
 		onChangeAutocomplete(event) {
 			this.task.autocomplete = this.autocomplete.split('\n');
-			this.$dispatch('gui-changed');
 		},
 		onShowAutocomplete() {
 			this.showAutocomplete = true;

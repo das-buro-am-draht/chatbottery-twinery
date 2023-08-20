@@ -4,18 +4,19 @@ A single passage in the story map.
 
 const escape = require('lodash.escape');
 const Vue = require('vue');
-const PassageEditor = require('../../editors/passage');
-const { confirm } = require('../../dialogs/confirm');
-const domEvents = require('../../vue/mixins/dom-events');
-const locale = require('../../locale');
-const { hasPrimaryTouchUI } = require('../../ui');
+const PassageEditor = require('../../../editors/passage');
+const { confirm } = require('../../../dialogs/confirm');
+const domEvents = require('../../../vue/mixins/dom-events');
+const locale = require('../../../locale');
+const { hasPrimaryTouchUI } = require('../../../ui');
+const { isLiveChat } = require('../../../data/link-parser');
 const {
 	createNewlyLinkedPassages,
 	deletePassage,
 	selectPassages,
 	updatePassage
 } =
-	require('../../data/actions/passage');
+	require('../../../data/actions/passage');
 
 require('./index.less');
 
@@ -85,6 +86,10 @@ module.exports = Vue.extend({
 		will be doing that itself.
 		*/
 
+		container() {
+			return this.$parent.$el.parentNode;
+		},
+
 		linkPosition() {
 			let result = {
 				top: this.passage.top,
@@ -106,7 +111,7 @@ module.exports = Vue.extend({
 		},
 
 		isLiveChat() {
-			return this.passage.tags.some(passage => passage === "chat");
+			return isLiveChat(this.passage.text);
 		},
 
 		cssPosition() {
@@ -263,9 +268,9 @@ module.exports = Vue.extend({
 			/* Begin tracking a potential drag. */
 
 			const srcPoint = (e.type === 'mousedown') ? e : e.touches[0];
-
-			this.screenDragStartX = srcPoint.clientX + window.pageXOffset;
-			this.screenDragStartY = srcPoint.clientY + window.pageYOffset;
+			
+			this.screenDragStartX = srcPoint.clientX + this.container.scrollLeft;
+			this.screenDragStartY = srcPoint.clientY + this.container.scrollTop;
 
 			if (hasPrimaryTouchUI()) {
 				this.on(window, 'touchmove', this.followDrag, { passive: false });
@@ -283,8 +288,8 @@ module.exports = Vue.extend({
 
 			this.$dispatch(
 				'passage-drag',
-				srcPoint.clientX + window.pageXOffset - this.screenDragStartX,
-				srcPoint.clientY + window.pageYOffset - this.screenDragStartY
+				srcPoint.clientX + this.container.scrollLeft - this.screenDragStartX,
+				srcPoint.clientY + this.container.scrollTop - this.screenDragStartY
 			);
 
 			/*
@@ -339,8 +344,8 @@ module.exports = Vue.extend({
 				if (e.type === 'mouseup') {
 					this.$dispatch(
 						'passage-drag-complete',
-						e.clientX + window.pageXOffset - this.screenDragStartX,
-						e.clientY + window.pageYOffset - this.screenDragStartY,
+						e.clientX + this.container.scrollLeft - this.screenDragStartX,
+						e.clientY + this.container.scrollTop - this.screenDragStartY,
 						this
 					);
 				} else {

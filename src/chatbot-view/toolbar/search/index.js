@@ -4,8 +4,8 @@ show the search modal dialog.
 */
 
 const Vue = require('vue');
-const SearchDialog = require('../../dialogs/story-search');
-const { regularExpression } = require('../../utils/common');
+const SearchDialog = require('../../../dialogs/story-search');
+const { regularExpression } = require('../../../utils/common');
 
 require('./index.less');
 

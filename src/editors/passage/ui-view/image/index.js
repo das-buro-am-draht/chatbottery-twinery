@@ -25,25 +25,16 @@ module.exports = Vue.extend({
 				this.assetBaseUrl = settings.assetBaseUrl;
 			}
 		}
-		this.load();
-	},
-
-	watch: {
-		'task.attributes.img'() {
-			this.load();
-		},
+		
+		const image = this.task.attributes['img'] || '';
+		if (image !== this.image) {
+			this.image = image;
+		}
 	},
 
 	methods: {
-		load() {
-			const image = this.task.attributes['img'] || '';
-			if (image !== this.image) {
-				this.image = image;
-			}
-		},
 		onChange(event) {
 			this.task.attributes['img'] = this.image;
-			this.$dispatch('gui-changed');
 		},
 	},
 
