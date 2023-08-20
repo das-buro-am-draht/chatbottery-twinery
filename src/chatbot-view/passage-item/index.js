@@ -106,7 +106,7 @@ module.exports = Vue.extend({
 		},
 
 		isLiveChat() {
-			return /<chat[^>]*>/i.test(this.passage.text);
+			return /<chat[^<>]*>/i.test(this.passage.text);
 		},
 
 		cssPosition() {
