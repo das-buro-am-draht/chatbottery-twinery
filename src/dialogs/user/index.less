@@ -1,9 +1,8 @@
 #userModal .modal-dialog {
 
     .user {
-        &__row {
+        &__content {
             margin-bottom: 20px;
-            display: flex;
             & .user__input {
                 width: 100%;
             }
@@ -54,14 +53,11 @@
             }
             & .user__list-btn {
                 flex: 1;
-                background-image: url('../../common/img/minus.png');
+                background-image: url('../../common/img/delete.svg');
                 background-size: contain;
                 background-repeat: no-repeat;
                 background-position: center;
                 margin: 5px 0;
-            }
-            &:first-child .user__list-btn {
-                background-image: url('../../common/img/plus.png');
             }
         }
         &__checkbox {
