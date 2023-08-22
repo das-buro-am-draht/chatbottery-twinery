@@ -1,7 +1,7 @@
 <div class="passageUI-buttons">
 	<div class="passageUI-buttons-list">
 		<div v-show="task.buttons.length > 0" class="passageUI-buttons-listbox" v-el:list>
-			<div :class="['passageUI-button', selection === $index ? 'selected' : '']" v-for="button in task.buttons" track-by="$index" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)" @click="onSelect($index)">
+			<div :class="['passageUI-button', selection === $index ? 'selected' : '']" v-for="(index, button) in task.buttons" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)" @click="onSelect($index)">
 				<div class="passageUI-button-gripper"></div>
 				<div class="passageUI-button-label">{{ button.label }}</div>
 				<div class="passageUI-button-delete" @click.stop="onDelete($index)"></div>

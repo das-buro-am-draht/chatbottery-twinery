@@ -101,6 +101,28 @@ module.exports = Vue.extend({
 
 	methods: {
 
+		drag(index, event) {
+			event.dataTransfer.setData('cb/user-data', index);
+		},
+		dragenter(event) {
+			if (event.dataTransfer.types.includes('cb/user-data')) {
+				event.preventDefault(); // is allowed
+			}
+		},
+		drop(index, event) {
+			const toIdx = index;
+			const fromIdx = parseInt(event.dataTransfer.getData('cb/user-data'), 10);
+			event.dataTransfer.clearData('cb/user-data');
+			if (toIdx !== fromIdx && fromIdx >= 0 && fromIdx < this.userData.length) {
+				const userData = [ ...this.userData ];
+				const insertIdx = toIdx > fromIdx ? toIdx + 1 : toIdx;
+				userData.splice(insertIdx, 0, userData[fromIdx]);
+				const removeIdx = toIdx > fromIdx ? fromIdx : fromIdx + 1;
+				userData.splice(removeIdx, 1);
+				this.userData.splice(0, this.userData.length, ...userData);
+			}
+		},
+
 		onDialogClicked(e) {
 			if (this.searchDropdown && !this.searchDropdown.$el.contains(e.target)) {
 				this.closeSearchDropdown();

@@ -1,9 +1,9 @@
 <div class="passageUI">
 	<div class="passageUI-container">
 		<div class="passageUI-tasks" v-el:tasks>
-			<div :class="['passageUI-task', 'task-' + task.type]" v-for="(index, task) in tasks" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)" @click="onTaskClicked($index)">
+			<div :class="['passageUI-task', 'task-' + task.type]" v-for="(index, task) in tasks" @click="onTaskClicked($index)">
 				<div class="passageUI-task-header">
-					<div class="passageUI-task-gripper"></div>
+					<div class="passageUI-task-gripper" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)"></div>
 					<!-- <button type="button" class="passageUI-task-collapse" @click.stop="toggleCollapse($index)" title="{{ 'Expand / Collapse' | say }}"></button> -->
 					<span class="passageUI-task-caption">{{ caption(task) }}</span>
 					<button type="button" class="passageUI-task-props" @click="onSettings($index)" :style="settingsStyle($index)" title="Settings (Condition / Class name)"></button>
@@ -57,7 +57,7 @@
 			<div v-if="openai.loading" class="passageUI-openai--loader">
 				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
 			</div>
-			<div class="passageUI-openai--suggestions" v-for="suggestion in openai.suggestions" track-by="$index">
+			<div class="passageUI-openai--suggestions" v-for="(index, suggestion) in openai.suggestions">
 				<button class="passageUI-openai--add" @click="addSuggestion($index)"></button>
 				<p class="passageUI-openai--suggestion">{{suggestion}}</p>
 			</div>
