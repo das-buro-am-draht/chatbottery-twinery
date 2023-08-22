@@ -3,9 +3,10 @@
 	<!-- <p>{{ 'Enter Field Names without leading \'$\'' | say }}</p> -->
 	<div class="user__content">
 		<div class="user__input">
-			<template v-for="item in userData" track-by="$index">
+			<div class="user__list user-entry" v-for="item in userData" track-by="$index">
+				<div class="user-gripper" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)"></div>
 				<div class="user__list user-field">
-					<input type="text" class="user__list-field" v-model="item[0]" placeholder="Name" title="{{ 'Variable Name' | say }}">
+					<input type="text" class="user__list-field" v-model="item[0]" placeholder="Variable new" title="{{ 'Variable Name' | say }}">
 					<button class="user__list-search" @click.stop="search(item, $event)" :disabled="isEmptyUserEntry(item)" title="{{ 'Find in Passages' | say }}"></button>
 					<select class="user__list-type" name="types" v-model="item[1].type">
 						<option value="string">{{ 'String' | say }}</option>
@@ -24,7 +25,7 @@
 				</div>
 				<p class="error" v-show="!isUserEntrySet(item)">{{ 'Name must be set' | say }}</p>
 				<p class="error" v-show="!isValidUserEntry(item)">{{ 'User Field Name must not start with \'$\'' | say }}</p>
-			</template>
+			</div>
 		</div>
 		<div class="append">
 			<div></div>

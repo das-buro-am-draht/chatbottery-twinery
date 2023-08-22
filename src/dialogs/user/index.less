@@ -59,8 +59,23 @@
                 background-position: center;
                 margin: 5px 0;
             }
-        }
-        &__checkbox {
+				&.user-entry {
+					display: flex;
+					& .user-gripper {
+						flex: 0 0 20px;
+						cursor: grab;
+						margin-right: 5px;
+						background-image: url('../../common/img/ui-drag.svg');
+						background-size: cover;
+						background-repeat: no-repeat;
+						background-position: center;
+					}
+			  	}
+			  	&.user-field {
+					flex: 1;
+			  	}
+		  	}
+        	&__checkbox {
             font-weight: 700;
             padding: 10px 0;
         }
