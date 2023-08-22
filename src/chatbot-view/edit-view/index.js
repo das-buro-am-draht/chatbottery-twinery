@@ -171,8 +171,8 @@ module.exports = Vue.extend({
 
 	methods: {
 		resize() {
-			this.winWidth = this.container.offsetWidth;
-			this.winHeight = this.container.offsetHeight;
+			this.winWidth = this.container.clientWidth;
+			this.winHeight = this.container.clientHeight;
 		},
 
 		zoomIn(wraparound) {
@@ -217,8 +217,8 @@ module.exports = Vue.extend({
 			const setPositions = (target) => {
 				const targetX = target.offsetLeft;
 				const targetY = target.offsetTop;
-				const windowHalfHeight = this.container.offsetHeight / 2;
-				const windowHalfWidth = this.container.offsetWidth / 2;
+				const windowHalfHeight = this.container.clientHeight / 2;
+				const windowHalfWidth = this.container.clientWidth / 2;
 				const calcX = targetX - windowHalfWidth;
 				const calcY = targetY - windowHalfHeight;
 				const x = calcX > 0 ? calcX : 0;
@@ -256,15 +256,15 @@ module.exports = Vue.extend({
 			*/
 
 			if (!left) {
-				left = (this.container.scrollLeft + this.container.offsetWidth / 2)
-					/ this.story.zoom;
-				left -= passageDefaults.width;
+				left  = (this.container.scrollLeft
+						+ (this.container.clientWidth - passageDefaults.width) / 2) 
+						/  this.story.zoom;
 			}
 
 			if (!top) {
-				top = (this.container.scrollTop + this.container.offsetHeight / 2)
-					/ this.story.zoom;
-				top -= passageDefaults.height;
+				top   = (this.container.scrollTop 
+						+ (this.container.clientHeight - passageDefaults.height) / 2) 
+						/  this.story.zoom;
 			}
 
 			/*

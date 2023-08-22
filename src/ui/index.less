@@ -103,6 +103,27 @@ ul.plain {
 	opacity: 0.5;
 }
 
+.append {
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 5px 0;
+	div {
+	  flex: 1;
+	  border-top: dashed 1px;
+	}
+	button {
+	  flex: 0 0 20px;
+	  height: 20px;
+	  margin: 0 5px;
+	  background-image: url('../common/img/plus.svg');
+	  background-repeat: no-repeat;
+	  background-size: contain;
+	  background-position: center;
+	}
+}
+
 @import './badges.less';
 @import './buttons.less';
 @import './forms.less';

@@ -1,7 +1,7 @@
 <modal-dialog id="userModal" :origin="origin" :can-widen="true" v-ref:modal @click.stop="onDialogClicked($event)">
 	<span slot="title">{{ 'User data' | say }}</span>
 	<!-- <p>{{ 'Enter Field Names without leading \'$\'' | say }}</p> -->
-	<div class="user__row">
+	<div class="user__content">
 		<div class="user__input">
 			<template v-for="item in userData" track-by="$index">
 				<div class="user__list user-field">
@@ -20,12 +20,16 @@
 					</select>
 					<input v-if="item[1].type === 'number'" type="number" class="user__list-input" v-model="item[1].value" placeholder="{{ 'Default Value' | say }}" title="{{ 'Number' | say }}">
 					<input v-if="item[1].type === 'date'" type="date" class="user__list-input" v-model="item[1].value" placeholder="{{ 'Default Value' | say }}" title="{{ 'Date' | say }}">
-					<button v-if="$index === 0" class="user__list-btn" @click="add($index, $event)"></button>
-					<button v-else class="user__list-btn" @click="remove($index, $event)"></button>
+					<button class="user__list-btn" @click="remove($index)"></button>
 				</div>
 				<p class="error" v-show="!isUserEntrySet(item)">{{ 'Name must be set' | say }}</p>
 				<p class="error" v-show="!isValidUserEntry(item)">{{ 'User Field Name must not start with \'$\'' | say }}</p>
 			</template>
+		</div>
+		<div class="append">
+			<div></div>
+			<button type="button" title="{{ 'Add new Task' | say }}" @click="add"></button>
+			<div></div>
 		</div>
 	</div>
 	<input name="storeInLocalStorage" type="checkbox" v-model="storeInLocalStorage">

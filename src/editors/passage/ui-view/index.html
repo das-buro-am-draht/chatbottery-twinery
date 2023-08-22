@@ -1,7 +1,7 @@
 <div class="passageUI">
 	<div class="passageUI-container">
 		<div class="passageUI-tasks" v-el:tasks>
-			<div :class="['passageUI-task', 'task-' + task.type]" v-for="task in tasks" track-by="$index" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)" @click="onTaskClicked($index)">
+			<div :class="['passageUI-task', 'task-' + task.type]" v-for="(index, task) in tasks" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)" @click="onTaskClicked($index)">
 				<div class="passageUI-task-header">
 					<div class="passageUI-task-gripper"></div>
 					<!-- <button type="button" class="passageUI-task-collapse" @click.stop="toggleCollapse($index)" title="{{ 'Expand / Collapse' | say }}"></button> -->
@@ -63,7 +63,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="passageUI-append">
+	<div class="append">
 		<div></div>
 		<button type="button" title="{{ 'Add new Task' | say }}">
 			<ui-menu :story="story"></ui-menu>
