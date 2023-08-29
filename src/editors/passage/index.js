@@ -12,7 +12,6 @@ const { changeLinksInStory, updatePassage } = require('../../data/actions/passag
 const parseVariables = require('../../data/variables-parser');
 const { loadFormat } = require('../../data/actions/story-format');
 const { passageDefaults } = require('../../data/store/story');
-const SettingsDialog = require('./settings');
 const notify = require('../../ui/notify');
 
 require('codemirror/addon/display/placeholder');
@@ -296,17 +295,6 @@ module.exports = Vue.extend({
 					notify(e.message, 'danger');
 				}
 			}
-		},
-
-		properties() {
-			new SettingsDialog({
-				data: {
-					storyId: this.storyId,
-					passage: this.passage,
-					origin: null, // this.$refs.modal.$el,
-				},
-				store: this.$store,
-			}).$mountTo(document.body); // this.$refs.modal.$el);
 		},
 	},
 

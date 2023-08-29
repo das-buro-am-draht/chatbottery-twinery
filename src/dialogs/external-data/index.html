@@ -1,0 +1,60 @@
+<modal-dialog id="externaldata" :class="'externaldata'" :origin="origin" :can-widen="true" v-ref:modal>
+	<span slot="title">{{ 'External data' | say }}</span>
+	<div class="externaldata-lists">
+		<div :class="['externaldata-list', list === $index ? 'selected' : '']" v-for="(index) in data" draggable="true" @dragstart.stop="dragList($index, $event)" @dragenter="dragenterList($event)" @dragover="dragenterList($event)" @drop.prevent="dropList($index, $event)" @click="onSelectList($index)">
+			<div class="externaldata-list--gripper">
+				<img src="../../common/img/ui-drag.svg">
+			</div>
+			<div class="externaldata-list--text">{{ data[$index].name || 'List ' + ($index + 1) }}</div>
+			<div class="externaldata-list--delete" @click.stop="onDeleteList($index)" title="Delete List">
+				<img src="../../common/img/ui-delete.svg">
+			</div>
+		</div>
+		<div class="externaldata-list externaldata-list--add">
+			<img src="../../common/img/plus.svg" @click="onAddList">
+		</div>
+	</div>
+	<div v-if="list >= 0" class="externaldata-content">
+		<div class="externaldata-listview">
+			<div class="externaldata-items">
+				<div :class="['externaldata-item', selection === $index ? 'selected' : '']" v-for="(index, item) in data[list].items">
+					<div class="externaldata-item--gripper" draggable="true" @dragstart.stop="dragItem($index, $event)" @dragenter="dragenterItem($event)" @dragover="dragenterItem($event)" @drop.prevent="dropItem($index, $event)">
+						<img src="../../common/img/ui-drag.svg">
+					</div>
+					<div class="externaldata-item--input">
+						<input type="text" v-model="item.url" placeholder="Web Page URL" :disabled="item.processed" @click.stop>
+						<p class="error" v-show="!!item.url && !isValid(item)">{{ 'Web Page URL is invalid!' | say }}</p>
+						<p class="error" v-show="!!item.error">{{ item.error }}</p>
+					</div>
+					<button class="externaldata-item--delete" @click.stop="onDeleteItem($index)" title="Delete Entry">
+						<img src="../../common/img/ui-delete.svg">
+					</button>
+					<button v-if="item.processed" class="externaldata-item--process" @click.stop="onSelectItem($index)" title="Show Analysis">
+						<img src="../../common/img/message.svg">
+					</button>
+					<button v-else class="externaldata-item--process" @click.stop="onProcessItem($index)" title="Analyse URL" :disabled="!isValid(item)">
+						<img src="../../common/img/suggestions.svg">
+					</button>
+				</div>
+			</div>
+			<div class="append">
+				<div></div>
+				<button type="button" @click="onAddEntry" title="{{ 'Add new Entry' | say }}">
+				</button>
+				<div></div>
+			</div>
+		</div>
+		<div v-if="selection >= 0" class="externaldata-detailview">
+			<div class="externaldata-detailview--caption">
+				<h2>{{ data[list].items[selection].url }}</h2>
+				<button type="button" @click.stop="onSelectItem(-1)" title="{{ 'Close Detail View' | say }}"></button>
+			</div>
+			<div v-if="processing" class="externaldata-detailview--loader">
+				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
+			</div>
+		</div>
+	</div>
+	<div class="externaldata-save">
+		<button class="create" @click="save">{{ 'Save' | say }}</button>
+	</div>
+</modal-dialog>
