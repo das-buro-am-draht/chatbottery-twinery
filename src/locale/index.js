@@ -124,5 +124,9 @@ const Locale = (module.exports = {
 
 			return sourcePlural.replace(/%d/g, count);
 		}
+	},
+
+	date(time, format) {
+		return moment(time).format(format);
 	}
 });

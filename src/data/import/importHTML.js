@@ -22,8 +22,12 @@ const selectors =  {
   stylesheet: '[role=stylesheet]',
   storyData: 'tw-storydata',
   tagColors: 'tw-tag',
+  externalData: 'tw-externaldata',
+  externalItem: 'tw-externalitem',
   passageData: 'tw-passagedata',
 };
+
+const parse = (element) => element && element.value ? JSON.parse(unescape(element.value)) : undefined;
 
 module.exports = (html, lastUpdate) => {
   const nodes = document.createElement('div');
@@ -71,14 +75,11 @@ module.exports = (html, lastUpdate) => {
 				storyEl.attributes.zoom ?
 					parseFloat(storyEl.attributes.zoom.value) : 1,
 			settings:
-				storyEl.attributes.settings && storyEl.attributes.settings.value ? 
-					JSON.parse(unescape(storyEl.attributes.settings.value)) : undefined,
+				parse(storyEl.attributes.settings),
 			plugins:
-				storyEl.attributes.plugins && storyEl.attributes.plugins.value ? 
-					JSON.parse(unescape(storyEl.attributes.plugins.value)) : undefined,
+				parse(storyEl.attributes.plugins),
 			userData:
-				storyEl.attributes.userData && storyEl.attributes.userData.value ? 
-					JSON.parse(unescape(storyEl.attributes.userData.value)) : undefined,
+				parse(storyEl.attributes.userData),
 			tagColors:
 				Array.from(storyEl.querySelectorAll(selectors.tagColors))
 					.reduce(
@@ -86,9 +87,15 @@ module.exports = (html, lastUpdate) => {
 							src[el.attributes.name.value] =
 								el.attributes.color.value;
 							return src;
-						},
-						{}
+						}, {}
 					),
+			externalData: 
+				Array.from(storyEl.querySelectorAll(selectors.externalData))
+					.map((listEl) => ({
+						name: listEl.attributes.name || '',
+						items: Array.from(listEl.querySelectorAll(selectors.externalItem))
+							.map((itemEl) => parse(itemEl.attributes.data)),
+					})),
 			passages:
 				Array.from(storyEl.querySelectorAll(selectors.passageData))
 					.map(passageEl => {
@@ -135,9 +142,6 @@ module.exports = (html, lastUpdate) => {
 								passageEl.attributes.name.value,
 							text:
 								passageEl.textContent,
-							title: passageEl.hasAttribute('title') ? passageEl.getAttribute('title') : undefined,
-							image: passageEl.hasAttribute('image') ? passageEl.getAttribute('image') : undefined,
-							summary: passageEl.hasAttribute('summary') ? passageEl.getAttribute('summary') : undefined,
 						};
 					}),
 		}

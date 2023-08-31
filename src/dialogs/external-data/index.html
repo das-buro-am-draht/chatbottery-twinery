@@ -1,0 +1,73 @@
+<modal-dialog id="externaldata" :class="'externaldata'" :origin="origin" :can-close="canClose" :can-widen="true" v-ref:modal>
+	<span slot="title">{{ 'External data' | say }}</span>
+	<div class="externaldata-header">
+		<div :class="['externaldata-lists', processing ? 'disabled' : '']">
+			<div :class="['externaldata-list', list === $index ? 'selected' : '']" v-for="(index) in data" @click="onSelectList($index)">
+				<div class="externaldata-list--gripper" draggable="true" @dragstart.stop="dragList($index, $event)" @dragenter="dragenterList($event)" @dragover="dragenterList($event)" @drop.prevent="dropList($index, $event)">
+					<img src="../../common/img/ui-drag.svg">
+				</div>
+				<div class="externaldata-list--text">{{ data[$index].name || 'List ' + ($index + 1) }}</div>
+				<div class="externaldata-list--delete" @click.stop="onDeleteList($index)" title="Delete List">
+					<img src="../../common/img/ui-delete.svg">
+				</div>
+			</div>
+			<div class="externaldata-list externaldata-list--add">
+				<img src="../../common/img/plus.svg" @click="onAddList">
+			</div>
+		</div>
+		<button v-if="list >= 0" class="externaldata-process-all" @click.stop="onProcessAll()" title="Analyse all in List" :disabled="processing || !canAnalyse">
+			<img src="../../common/img/suggestions.svg">
+		</button>
+	</div>
+	<div v-if="list >= 0" class="externaldata-content">
+		<div :class="['externaldata-listview', processing ? 'disabled' : '']">
+			<div class="externaldata-items">
+				<div :class="['externaldata-item', selection === $index ? 'selected' : '']" v-for="(index, item) in data[list].items" @click="onSelectItem($index)">
+					<div class="externaldata-item--gripper" draggable="true" @dragstart.stop="dragItem($index, $event)" @dragenter="dragenterItem($event)" @dragover="dragenterItem($event)" @drop.prevent="dropItem($index, $event)" @click.stop>
+						<img src="../../common/img/ui-drag.svg">
+					</div>
+					<div class="externaldata-item--input">
+						<input type="text" v-model="item.url" placeholder="Web Page URL" :readonly="item.processed">
+						<p class="error" v-show="!!item.url && !isValid(item)">{{ 'Web Page URL is invalid!' | say }}</p>
+						<!-- <p class="error" v-show="!!item.error">{{ item.error }}</p> -->
+					</div>
+					<button class="externaldata-item--delete" @click.stop="onDeleteItem($index)" title="Delete Entry">
+						<img src="../../common/img/ui-delete.svg">
+					</button>
+					<button :class="['externaldata-item--process', item.processed ? 'processed' : item.error ? 'error' : '']" @click.stop="onProcessItem($index)" :title="processItemTitle(item, $index)" :disabled="!isValid(item)">
+						<img src="../../common/img/suggestions.svg">
+					</button>
+				</div>
+			</div>
+			<div :class="['append', processing ? 'disabled' : '']">
+				<div></div>
+				<button type="button" @click="onAddEntry" title="{{ 'Add new Entry' | say }}">
+				</button>
+				<div></div>
+			</div>
+		</div>
+		<div v-if="selection >= 0 && (processing || data[list].items[selection].processed || data[list].items[selection].error)" class="externaldata-detailview">
+			<div class="externaldata-detailview--caption">
+				<h2>{{ data[list].items[selection].url }}</h2>
+				<button type="button" @click.stop="onCloseDetail" title="{{ 'Close Detail View' | say }}"></button>
+			</div>
+			<div v-if="processing" class="externaldata-detailview--loader">
+				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
+			</div>
+			<template v-else>
+				<p class="error" v-show="data[list].items[selection].error">
+					{{ data[list].items[selection].error }}
+				</p>
+				<detail-view v-if="data[list].items[selection].processed" :item="data[list].items[selection]"></detail-view>
+			</template>
+		</div>
+	</div>
+	<div class="externaldata-controls">
+		<div class="externaldata-save">
+			<button class="primary" @click="save" :disabled="processing">{{ 'Save' | say }}</button>
+		</div>
+		<div class="externaldata-download">
+			<button class="create" @click="download" :disabled="processing || !processed.length">{{ 'Download' | say }}</button>
+		</div>
+	</div>
+</modal-dialog>

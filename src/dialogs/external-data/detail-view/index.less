@@ -1,0 +1,22 @@
+@import '../../../common/fonts.less';
+
+.externaldata-details {
+	overflow-y: auto;
+	div,h2,h3,h4,ol,ul {
+		margin: 0 0 5px;
+	}
+	.image-placeholder img {
+		width: 100% !important;
+	}
+	input,textarea {
+		font-family: @font-default;
+	}
+	textarea {
+		width: 100%;
+		resize: vertical;
+		&:not(:read-only) {
+			border:1px solid #000;
+			background-color: #fff;
+		}
+	}
+}

@@ -11,6 +11,7 @@ const PluginsDialog = require("../../../dialogs/plugins");
 const UserDataDialog = require("../../../dialogs/user");
 const SettingsDialog = require("../../../dialogs/settings");
 const FormatDialog = require('../../../dialogs/story-format');
+const ExternalDataDialog = require("../../../dialogs/external-data");
 const { updateStory } = require("../../../data/actions/story");
 const {proofStory} = require('../../../common/launch-story');
 
@@ -64,6 +65,12 @@ module.exports = Vue.extend({
 		},
 		userData(e) {
 			new UserDataDialog({
+				data: { storyId: this.story.id, origin: e.target },
+				store: this.$store,
+			}).$mountTo(document.body);
+		},
+		externalData(e) {
+			new ExternalDataDialog({
 				data: { storyId: this.story.id, origin: e.target },
 				store: this.$store,
 			}).$mountTo(document.body);

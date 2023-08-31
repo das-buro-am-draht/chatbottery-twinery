@@ -101,9 +101,6 @@ module.exports = (data, lastUpdate) => {
 		tags: passage.tags,
 		name: passage.name,
 		text: beautify(passage.tasks.map(taskToXml).join('')),
-		title: passage.title,
-		image: passage.image,
-		summary: passage.summary,
 	}));
 	return [{
 		startPassagePid: (passages.findIndex(passage => passage.name === story.startPassage) + 1).toString(),

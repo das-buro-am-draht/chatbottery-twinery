@@ -50,8 +50,8 @@
 		</div>
 		<div v-if="openai" class="passageUI-openai">
 			<div class="passageUI-openai--caption">
-				<h2 class="passageUI-openai--caption-title">{{ 'Suggestions' | say }}</h2>
-				<button type="button" @click="closeSuggestions" title="{{ 'Close Suggestions' | say }}"></button>
+				<h2>{{ 'Suggestions' | say }}</h2>
+				<button type="button" @click.stop="closeSuggestions" title="{{ 'Close Suggestions' | say }}"></button>
 			</div>
 			<p class="passageUI-openai--text">{{openai.text}}</p>
 			<div v-if="openai.loading" class="passageUI-openai--loader">

@@ -10,6 +10,17 @@
   input.code {
     font-size: 13px;
   }
+  .image-placeholder {
+	 flex: 0 1 30%; // flex: 0 0 245px;
+	 align-self: stretch;
+	 margin-right: 10px;
+	 img {
+	  display: inline-block;
+	  vertical-align: middle;
+	  width: 100%;
+	  max-height: 80px;
+	 }
+  }
   &-container {
     display: flex;
     min-height: 0;
@@ -66,7 +77,7 @@
     &--caption {
       display: flex;
       flex-direction: row;
-      &-title {
+      h2 {
         flex: 1;
         margin: 5px;
       }
@@ -195,17 +206,6 @@
   &-content {
     display: flex;
     align-items: flex-start;
-  }
-  &-placeholder {
-    flex: 0 1 30%; // flex: 0 0 245px;
-    align-self: stretch;
-    margin-right: 10px;
-    img {
-      display: inline-block;
-      vertical-align: middle;
-      width: 100%;
-      max-height: 80px;
-    }
   }
   &-items {
     display: flex;
