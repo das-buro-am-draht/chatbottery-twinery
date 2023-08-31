@@ -1,0 +1,38 @@
+<div class="externaldata-details">
+	<fieldset>
+		<legend>
+			{{ 'Last analysed: ' | say }} {{ item.processed | date 'LLL' }}
+		</legend>
+		<h3>{{ item.title }}</h3>
+		<image-placeholder :image-url="item.image_url"></image-placeholder>
+		<div>
+			<label for="keywords">Keywords:</label>
+			<ul name="keywords">
+				<li v-if="item.main_keyword" style="font-weight: 700; list-style-type: '#';">{{ item.main_keyword }}</li>
+				<li v-for="keyword in item.keywords">{{ keyword }}</li>
+			</ul>
+		</div>
+		<div>
+			<label for="keywords_custom">Additional Keywords (separate by comma):</label>
+			<textarea name="keywords_custom" v-model="keywords" @input="onChangeKeywords($event)"></textarea>
+		</div>
+		<div>
+			<label for="summary">Summary:</label>
+			<textarea name="summary" v-model="summary" @input="onChangeSummary($event)" rows="7"></textarea>
+		</div>
+		<div>
+			<label for="phrases">Phrases:</label>
+			<ul name="phrases">
+				<li v-for="phrase in item.phrases">{{ phrase }}</li>
+			</ul>
+		</div>
+		<div>
+			<label for="author">Author:</label>
+			<input type="text" name="author" v-model="item.author" readonly>
+		</div>
+		<div>
+			<label for="date">Date:</label>
+			<input type="text" name="date" v-model="item.date" readonly>
+		</div>
+	</fieldset>
+</div>

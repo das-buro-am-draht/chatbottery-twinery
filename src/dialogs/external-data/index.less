@@ -1,4 +1,5 @@
 @import '../../common/colors.less';
+@import '../../common/fonts.less';
 
 #externaldata {
 
@@ -14,10 +15,27 @@
 			left: calc(~"(100vw - 70em) / 2");
 		}
 
-		img {
-			width: 30px;
-			display: block;
+		&-header,&-content {
+			button {
+				padding: 5px;
+			}
+			img {
+				width: 30px;
+				display: block;
+			}
 		}
+
+		&-header {
+			display: flex;
+			justify-content: space-between;
+		}
+	
+		// &-lists,&-items {
+		// 	img {
+		// 		width: 30px;
+		// 		display: block;
+		// 	}
+		// }
 
 		&-lists {
 			display: flex;
@@ -61,6 +79,9 @@
 		&-content {
 			min-height: 0;
 			display: flex;
+			.error {
+				background-color: unset;
+			}
 		}
 
 		&-listview {
@@ -69,13 +90,52 @@
 			flex-direction: column;
 		}
 
+		&-items {
+			overflow-y: auto;
+		}
+
+		&-item {
+			display: flex;
+			align-items: flex-start;
+			&.selected {
+				background-color: #ddd;
+			} 
+			&--gripper {
+				cursor: grab;
+				margin-top: 5px;
+			}
+			&--delete:not(:disabled) {
+				cursor: pointer;
+			}
+			&--process {
+				&:not(:disabled) {
+					cursor: pointer;
+				}
+				&.processed img {
+					filter: invert(37%) sepia(99%) saturate(663%) hue-rotate(81deg) brightness(86%) contrast(88%);
+				}
+			}
+			&--input {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				input {
+					padding-top: 10px;
+				}
+			}
+		}
+
 		&-detailview {
 			flex: 1;
-			background-color: #ddd;
 			overflow-y: auto;
+			background-color: #ddd;
 			border-style: outset;
-			margin-left: 10px;
 			padding: 5px;
+			display: flex;
+			flex-direction: column;
+			img {
+				// max-height: 200px !important;
+			}
 			&--loader {
 				margin: 10px 0;
 				text-align: center;
@@ -83,6 +143,7 @@
 			&--caption {
 				display: flex;
 				flex-direction: row;
+				justify-content: space-between;
 				h2 {
 				  flex: 1;
 				  margin: 5px;
@@ -97,35 +158,9 @@
 				}
 			}
 		}
-
-		&-items {
-			overflow-y: auto;
-		}
-
-		&-item {
+		&-controls {
 			display: flex;
-			align-items: flex-start;
-			&.selected {
-				input {
-					color: #fff;
-					background-color: #3a51fa;
-					box-shadow: none;
-				}
-			} 
-			button {
-				padding: 5px;
-			}
-			&--gripper {
-				cursor: grab;
-			}
-			&--delete,&--process {
-				cursor: pointer;
-			}
-			&--input {
-				flex: 1;
-				display: flex;
-				flex-direction: column;
-			}
+			justify-content: space-between;
 		}
 	}
 }

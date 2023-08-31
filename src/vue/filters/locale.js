@@ -6,5 +6,6 @@ module.exports = {
 	addTo(Vue) {
 		Vue.filter('say', locale.say.bind(locale));
 		Vue.filter('sayPlural', locale.sayPlural.bind(locale));
+		Vue.filter('date', locale.date.bind(locale));
 	}
 };

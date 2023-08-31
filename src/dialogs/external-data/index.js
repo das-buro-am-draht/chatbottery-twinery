@@ -1,11 +1,14 @@
 // A component showing a modal dialog where a story's JavaSCript.
 
 const Vue = require('vue');
+const uuid = require('tiny-uuid');
 const { updateStory } = require("../../data/actions/story");
 const { 
 	trim, 
-	isValidUrl 
+	isValidUrl ,
 } = require("../../utils/common");
+const save = require('../../file/save');
+const { confirm } = require('../../dialogs/confirm');
 const locale = require("../../locale");
 const notify = require("../../ui/notify");
 const { pageAnalysis } = require('../../common/app/openai');
@@ -22,6 +25,7 @@ module.exports = Vue.extend({
 		list: -1,
 		selection: -1,
 		processing: false,
+		modified: false,
 	}),
 
 	ready() {
@@ -55,23 +59,21 @@ module.exports = Vue.extend({
 				keywords: [],
 				image_url: '',
 				summary: '',
-				keywords_custom: '',
+				keywords_custom: [],
 				summary_custom: '',
 				error: '',
 			};
 		},
 
-		valid() {
-			return this.data.map((list) => ({ 
-				...list,
-				items: list.items
-					.filter((item) => !!trim(item.url))
-					.map((item) => ({ ...item, error: undefined })),
-			})).filter((list) => list.items.length > 0);
+		canAnalyse() {
+			return this.data[this.list].items.filter((item) => this.canProcess(item)).length > 0;
 		},
 
 		processed() {
-			return this.valid.reduce((prev, list) => prev.concat(list.items), []).filter((entry) => entry.processed != null);
+			const processed = this.data.reduce((items, list) => {
+				return items.concat(list.items.filter((item) => item.processed))
+			}, []);
+			return processed;
 		},
 	},
 
@@ -100,24 +102,34 @@ module.exports = Vue.extend({
 				const removeIdx = toIdx > fromIdx ? fromIdx : fromIdx + 1;
 				data.splice(removeIdx, 1);
 				this.data = data;
-
 				this.onSelectList(toIdx);
 			}
 		},
 		
 		onSelectList(index) {
-			this.list = index;
 			this.selection = -1;
+			this.list = index;
 		},
 
 		onDeleteList(index) {
-			this.data.splice(index, 1);
-			if (this.list >= this.data.length) {
-				this.onSelectList(this.list - 1);
-			}
+			Promise.resolve(this.data[index].items.some((item) => !!item.processed)).then((processed) => {
+				if (processed) {
+					return confirm({
+						message: locale.say('Are you sure you want to delete the entire list that contains entries that were previously analyzed?'),
+						buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Delete list'),
+						buttonClass: 'danger'
+					}).then(() => this.modified = true);
+				}
+			}).then(() => {
+				this.data.splice(index, 1);
+				if (this.list >= this.data.length) {
+					this.onSelectList(this.list - 1);
+				}
+			});
 		},
 
 		onAddList() {
+			this.selection = -1;
 			this.data.push({
 				name: '',
 				items: [ { ...this.newItem } ],
@@ -148,26 +160,115 @@ module.exports = Vue.extend({
 				items.splice(insertIdx, 0, items[fromIdx]);
 				const removeIdx = toIdx > fromIdx ? fromIdx : fromIdx + 1;
 				items.splice(removeIdx, 1);
+				this.selection = -1;
 				this.data[this.list].items = items;
 			}
 		},
 
+		processItemTitle(item, index) {
+			let title;
+			if (!item.processed) {
+				title = item.error ? item.error : 'Analyse URL';
+			} else {
+				title = 'Last analysed: ' + locale.date(item.processed, 'LLL');
+			}
+			if (this.selection === index) {
+				title += ' - click to analyse again';
+			}
+			return title;
+		},
+
 		onSelectItem(index) {
-			this.selection = this.selection === index ? -1 : index;
+			if (index !== this.selection) {
+				this.selection = index;
+				if (index >= 0) {
+					this.getListElement(index).scrollIntoView({block: 'nearest', behavior: 'smooth'});
+				}
+			}
+		},
+
+		onCloseDetail() {
+			if (this.processing) {
+				confirm({
+					message: locale.say('Are you sure you want to abort the analysis process?'),
+					cancelLabel: ('<i class="fa fa-times"></i> ' + locale.say('Continue')),
+					buttonLabel: '<i class="fa fa-hand-stop-o"></i> ' + locale.say('Abort'),
+					buttonClass: 'danger'
+				}).then((result) => {
+					if (result) {
+						this.processing = false;
+						notify(locale.say('The analysing process was aborted.'), 'info');
+					}
+				});
+			} else {
+				this.onSelectItem(-1);
+			}
 		},
 
 		onDeleteItem(index) {
-			this.selection = -1;
-			this.data[this.list].items.splice(index, 1);
+			const item = this.data[this.list].items[index];
+			Promise.resolve(item.processed).then((processed) => {
+				if (processed) {
+					return confirm({
+						message: locale.say('Are you sure you want to delete the entry that was previously analyzed?'),
+						buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Delete entry'),
+						buttonClass: 'danger'
+					}).then(() => this.modified = true);
+				}
+			}).then(() => {
+				this.selection = -1;
+				this.data[this.list].items.splice(index, 1);
+			});
 		},
 
 		onProcessItem(index) {
-			this.onSelectItem(index);
-			this.processing = true;
 			const item = this.data[this.list].items[index];
-			item.error = '';
+			const selection = this.selection;
+			this.onSelectItem(index);
+			if (selection === index || !(item.processed || item.error)) {
+				this.processing = true;
+				this.analyzeItem(item).finally(() => {
+					this.processing = false;
+					this.onSelectItem(index);
+				});
+			}
+		},
+
+		onProcessAll() {
+			this.processing = true;
+			this.data[this.list].items
+				.map((item, index) => ([item, index]))
+				.filter(([item]) => this.canProcess(item))
+				.reduce((promise, [item, index]) => {
+					return promise.then((abort) => {
+						if (abort || !this.processing) {
+							return true;
+						} else if (item.processed || !this.isValid(item)) {
+							return false;
+						}
+						this.onSelectItem(index);
+						return this.analyzeItem(item).then(() => false);
+					});
+				}, Promise.resolve(false))
+				.finally(() => {
+					this.processing = false;
+				});
+		},
+		
+		onAddEntry() {
+			const index = this.data[this.list].items.length;
+			this.data[this.list].items.push({ ...this.newItem });
+			Vue.nextTick(() => {
+				const element = this.getListElement(index);
+				element.scrollIntoView({block: 'nearest', behavior: 'smooth'});
+				element.querySelector('.externaldata-item--input input').focus();
+			});
+		},
+
+		analyzeItem(item) {
 			const url = item.url;
-			fetch(url, { 
+			item.error = '';
+			return fetch(url, { 
 				method: 'GET',
 				headers: {
 					Accept: 'text/html',
@@ -190,45 +291,88 @@ module.exports = Vue.extend({
 				item.keywords = json.keywords || [];
 				item.image_url = json.image_url || '';
 				item.summary = json.summary || '';
-				item.processed = Date.now();			
-			})
+				// item.keywords_custom = [];
+				// item.summary_custom = '';
+				item.processed = Date.now();	
+				this.modified = true;	
+			}) 
 			.catch((error) => {
 				item.error = error.message;
 				notify(
 					locale.say(
 						'Error on analysing URL &ldquo;%1$s&rdquo; - %2$s.',
-						item.url,
-						error.message
+						url, error.message
 					),
 					'danger'
 				);
-				this.selection = -1;
-			})
-			.finally(() => this.processing = false);
-		},
-		
-		onAddEntry() {
-			const index = this.data[this.list].items.length;
-			this.data[this.list].items.push({ ...this.newItem });
-			Vue.nextTick(() => {
-				this.$refs.modal.$el.querySelectorAll('.externaldata-item')[index].scrollIntoView({block: 'nearest', behavior: 'smooth'});
 			});
+		},
+
+		getListElement(index) {
+			return this.$refs.modal.$el.querySelectorAll('.externaldata-item')[index];
 		},
 
 		isValid(item) {
 			return isValidUrl(item.url);
 		},
 
+		canProcess(item) {
+			return !item.processed && this.isValid(item);
+		},
+
+		canClose() {
+			if (this.processing) {
+				return false;
+			}
+			if (!this.modified) {
+				return true;
+			}
+			confirm({
+				message: locale.say('There were changes detected for the external data. Are you sure you want to discard those changes?'),
+				buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Discard changes'),
+				buttonClass: 'danger'
+			}).then(() => {
+				this.$refs.modal.$emit('close');
+			});
+			return false;
+		},
+
+		download() {
+			const processed = this.processed;
+			const name = this.story.name + '.json';
+			const json = {
+				data: this.processed.map((item) => ({
+					id: uuid(),
+					path: item.url,
+					title: item.title,
+					author: item.author,
+					url: item.url,
+					phrases: item.phrases.join(', '),
+					main_keyword: item.main_keyword,
+					keywords: item.keywords.join(', '),
+					image_url: item.image_url,
+					summary: item.summary,
+					date: item.date,
+					keywords_custom: item.keywords_custom,
+					summary_custom: item.summary_custom,		
+				})),
+			};
+			save(JSON.stringify(json), name);
+		},
+
 		save() {
-			const externalData = this.valid;
+			const externalData = this.data.map((list) => ({ 
+				...list,
+				items: list.items
+					.filter((item) => !!trim(item.url))
+					// .map((item) => ({ ...item, error: undefined })),
+			})).filter((list) => list.name || list.items.length > 0);
 			this.updateStory(this.storyId, { 
 				externalData: externalData.length > 0 ? externalData : undefined
 			});
+			this.modified = false;
 			this.$refs.modal.close();
 		},
-	},
-
-	events: {
 	},
 
 	vuex: {
@@ -244,6 +388,7 @@ module.exports = Vue.extend({
 
 	components: {
 		"modal-dialog": require("../../ui/modal-dialog"),
+		"detail-view": require("./detail-view"),
 	},
 
 });

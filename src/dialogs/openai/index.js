@@ -15,7 +15,7 @@ module.exports = Vue.extend({
 		openai: {
 		 	tag: {
 				pref: 'openaiTags',
-				label: 'Tag',
+				label: 'Tag Alternatives',
 				image: 'regular-tag.svg',
 				initial: openaiDefault.tags,
 				placeholder: placeholders.tag,
@@ -23,10 +23,18 @@ module.exports = Vue.extend({
 		 	},
 		 	phrase: {
 				pref: 'openaiPhrases',
-				label: 'Phrase',
+				label: 'Phrase Alternatives',
 				image: 'message.svg',
 				initial: openaiDefault.phrases,
 				placeholder: placeholders.phrase,
+				params: '',
+		 	},
+		 	page: {
+				pref: 'openaiPage',
+				label: 'Website Analysis',
+				image: 'element-iframepdf.svg',
+				initial: openaiDefault.page,
+				placeholder: placeholders.page,
 				params: '',
 		 	},
 		},
