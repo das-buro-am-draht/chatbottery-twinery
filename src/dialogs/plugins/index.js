@@ -38,10 +38,16 @@ module.exports = Vue.extend({
 			userVariables: [],
 		},
 		matomoHostToEnv: [],
+		userData: {},
 	}),
 
 	ready() {
-		const data = this.getPluginsData();
+		const { plugins: data, userData } = this.story;
+		if (userData) {
+			this.userData = Object.entries(userData || {})
+				.filter(([k, v]) => v.type !== 'function')
+				.map(([k]) => k.substring(1));
+		}
 		if (data) {
 			plugins.forEach((plugin => {
 				if (data[plugin]) {
@@ -60,6 +66,11 @@ module.exports = Vue.extend({
 	},
 
 	computed: {
+
+		story() {
+			return this.allStories.find((story) => story.id === this.storyId) || {};
+		},
+
 		isValidMatomoPHPUrl() {
 			return this.matomo.url && isValidUrl(this.matomo.url);
 		},
@@ -101,15 +112,6 @@ module.exports = Vue.extend({
 
 		isValidUserName(userName) {
 			return !userName || !userName.startsWith('$');
-		},
-
-		getStory() {
-			return this.allStories.find((story) => story.id === this.storyId) || {};
-		},
-
-		getPluginsData() {
-			const { plugins } = this.getStory() || {};
-			return plugins;
 		},
 
 		save() {
