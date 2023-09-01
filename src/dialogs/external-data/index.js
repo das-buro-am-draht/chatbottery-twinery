@@ -337,11 +337,15 @@ module.exports = Vue.extend({
 
 		download() {
 			const processed = this.processed;
+			const getPath = (url) => {
+				const index = url.indexOf('://');
+				return index >= 0 ? url.substring(index + 3) : url;
+			};
 			const name = this.story.name + '.json';
 			const json = {
 				data: this.processed.map((item) => ({
 					id: uuid(),
-					path: item.url,
+					path: getPath(item.url), // will be the name of the passage
 					title: item.title,
 					author: item.author,
 					url: item.url,
