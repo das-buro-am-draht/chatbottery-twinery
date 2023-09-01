@@ -243,8 +243,6 @@ module.exports = Vue.extend({
 					return promise.then((abort) => {
 						if (abort || !this.processing) {
 							return true;
-						} else if (item.processed || !this.isValid(item)) {
-							return false;
 						}
 						this.onSelectItem(index);
 						return this.analyzeItem(item).then(() => false);
