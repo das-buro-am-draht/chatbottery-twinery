@@ -24,6 +24,10 @@ module.exports = Vue.extend({
 			type: String,
 			required: false,
 		},
+		description: {
+			type: String,
+			required: false,
+		},
 	},
 
 	data: () => ({

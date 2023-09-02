@@ -80,8 +80,8 @@ const pageAnalysis = (params, url) => {
 			// .replace(/<style[^>]*>[^<]*<\/style>/g, '')
 			// .replace(/<script[^>]*>[^<]*<\/script>/g, '')
 			// .replace(/<!--.*-->/g, '')
-			.replace(/[\r\n]/g, '')
-			.replace(/\s\s+/g, ' ');
+			.replace(/[\r\n]/g, '')  // remove CR/LF
+			.replace(/\s\s+/g, ' '); // remove multiple white spaces
 			const data = getData(params, placeholders.page, htmlCode);
 			return openai(data).then((response) => {
 				if (response.choices) {
