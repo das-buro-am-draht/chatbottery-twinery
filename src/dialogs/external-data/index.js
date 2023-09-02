@@ -103,6 +103,7 @@ module.exports = Vue.extend({
 				data.splice(removeIdx, 1);
 				this.data = data;
 				this.onSelectList(toIdx);
+				this.modified = true;
 			}
 		},
 		
@@ -121,6 +122,9 @@ module.exports = Vue.extend({
 					}).then(() => this.modified = true);
 				}
 			}).then(() => {
+				if (this.data[index].items.some((item) => !!item.url)) {
+					this.modified = true;
+				}
 				this.data.splice(index, 1);
 				if (this.list >= this.data.length) {
 					this.onSelectList(this.list - 1);
@@ -162,6 +166,7 @@ module.exports = Vue.extend({
 				items.splice(removeIdx, 1);
 				this.selection = -1;
 				this.data[this.list].items = items;
+				this.modified = true;
 			}
 		},
 
@@ -217,6 +222,9 @@ module.exports = Vue.extend({
 				}
 			}).then(() => {
 				this.selection = -1;
+				if (!!item.url) {
+					this.modified = true;
+				}
 				this.data[this.list].items.splice(index, 1);
 			});
 		},
@@ -312,7 +320,7 @@ module.exports = Vue.extend({
 				return true;
 			}
 			confirm({
-				message: locale.say('There were changes detected for the external data. Are you sure you want to discard those changes?'),
+				message: locale.say('There were changes detected for the external data dialog. Are you sure you want to discard those changes?'),
 				buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Discard changes'),
 				buttonClass: 'danger'
 			}).then(() => {

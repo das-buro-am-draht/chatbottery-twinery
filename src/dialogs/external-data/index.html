@@ -27,7 +27,7 @@
 						<img src="../../common/img/ui-drag.svg">
 					</div>
 					<div class="externaldata-item--input">
-						<input type="text" v-model="item.url" placeholder="Web Page URL" :readonly="item.processed">
+						<input type="text" v-model="item.url" placeholder="Web Page URL" :readonly="item.processed" @input="modified = true">
 						<p class="error" v-show="!!item.url && !isValid(item)">{{ 'Web Page URL is invalid!' | say }}</p>
 						<!-- <p class="error" v-show="!!item.error">{{ item.error }}</p> -->
 					</div>
