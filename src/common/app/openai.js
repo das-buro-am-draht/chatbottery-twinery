@@ -1,10 +1,13 @@
-const apikey = 'RsCsGSeRfwlZYh21fhJNXrMsStRWRSyDBF8CjTNoLELL9';
+const apikey = {
+	fetch: 'gKo86o8F769Bfi879tzht87BRjhcg24cj1hcjvgv345109t3',
+	openai: 'RsCsGSeRfwlZYh21fhJNXrMsStRWRSyDBF8CjTNoLELL9',
+};
 const host = localStorage.getItem('DEV_ENV') === 'true'
            ? 'http://chatbot.proxy'
            : 'https://proxy.chatbottery.com';
 
 const openai = (data) => {
-  const url = host + '/openai?apikey=' + apikey;
+  const url = `${host}/openai?apikey=${apikey.openai}`;
   return fetch(url, {
     method: 'POST',
     body: JSON.stringify(data)
@@ -63,23 +66,33 @@ const suggestions = (params, placeholder, text, delimiter) => {
 	});
 };
 
-const pageAnalysis = (params, html) => {
-	const htmlCode = html
-	// .replace(/<style[^>]*>[^<]*<\/style>/g, '')
-	// .replace(/<script[^>]*>[^<]*<\/script>/g, '')
-	.replace(/<!--.*-->/g, '')
-	.replace(/[\r\n]/g, '')
-	.replace(/\s\s+/g, ' ');
-	const data = getData(params, placeholders.page, htmlCode);
-	return openai(data).then((response) => {
-		if (response.choices) {
-			const [choice] = response.choices;
-			if (choice.message && choice.message.content) {
-				return JSON.parse(choice.message.content);
+const pageAnalysis = (params, url) => {
+	const requestUrl = `${host}/fetch?apikey=${apikey.fetch}&url=${encodeURIComponent(url)}`;
+	return fetch(requestUrl)
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error(`Error on calling '${url} - HTTP-Status: ${response.status}`);
 			}
-		}
-		throw new Error('Unexpected result from openAI.');
-	});
+			return response.text();
+		})
+		.then((html) => {
+			const htmlCode = html
+			// .replace(/<style[^>]*>[^<]*<\/style>/g, '')
+			// .replace(/<script[^>]*>[^<]*<\/script>/g, '')
+			// .replace(/<!--.*-->/g, '')
+			.replace(/[\r\n]/g, '')
+			.replace(/\s\s+/g, ' ');
+			const data = getData(params, placeholders.page, htmlCode);
+			return openai(data).then((response) => {
+				if (response.choices) {
+					const [choice] = response.choices;
+					if (choice.message && choice.message.content) {
+						return JSON.parse(choice.message.content);
+					}
+				}
+				throw new Error('Unexpected result from openAI.');
+			});
+		});
 };
 
 module.exports = { 

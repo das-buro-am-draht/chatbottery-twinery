@@ -264,46 +264,32 @@ module.exports = Vue.extend({
 		},
 
 		analyzeItem(item) {
-			const url = item.url;
 			item.error = '';
-			return fetch(url, { 
-				method: 'GET',
-				headers: {
-					Accept: 'text/html',
-				},
-				cache: 'no-cache',
-			})
-			.then((response) => {
-				if (!response.ok) {
-					throw new Error(`Error on calling '${url} - HTTP-Status: ${response.status}`);
-				}
-				return response.text();
-			})
-			.then((html) => pageAnalysis(this.openaiPage, html))
-			.then((json) => {
-				item.title = json.title || '';
-				item.author = json.author || '';
-				item.date = json.date || '';
-				item.phrases = json.phrases || [];
-				item.main_keyword = json.main_keyword || '';
-				item.keywords = json.keywords || [];
-				item.image_url = json.image_url || '';
-				item.summary = json.summary || '';
-				// item.keywords_custom = [];
-				// item.summary_custom = '';
-				item.processed = Date.now();	
-				this.modified = true;	
-			}) 
-			.catch((error) => {
-				item.error = error.message;
-				notify(
-					locale.say(
-						'Error on analysing URL &ldquo;%1$s&rdquo; - %2$s.',
-						url, error.message
-					),
-					'danger'
-				);
-			});
+			return pageAnalysis(this.openaiPage, item.url)
+				.then((json) => {
+					item.title = json.title || '';
+					item.author = json.author || '';
+					item.date = json.date || '';
+					item.phrases = json.phrases || [];
+					item.main_keyword = json.main_keyword || '';
+					item.keywords = json.keywords || [];
+					item.image_url = json.image_url || '';
+					item.summary = json.summary || '';
+					// item.keywords_custom = [];
+					// item.summary_custom = '';
+					item.processed = Date.now();	
+					this.modified = true;	
+				}) 
+				.catch((error) => {
+					item.error = error.message;
+					notify(
+						locale.say(
+							'Error on analysing URL &ldquo;%1$s&rdquo; - %2$s.',
+							item.url, error.message
+						),
+						'danger'
+					);
+				});
 		},
 
 		getListElement(index) {
