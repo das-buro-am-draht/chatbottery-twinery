@@ -92,7 +92,7 @@ module.exports = (html, lastUpdate) => {
 			externalData: 
 				Array.from(storyEl.querySelectorAll(selectors.externalData))
 					.map((listEl) => ({
-						name: listEl.attributes.name || '',
+						name: listEl.attributes.name.value || '',
 						items: Array.from(listEl.querySelectorAll(selectors.externalItem))
 							.map((itemEl) => parse(itemEl.attributes.data)),
 					})),
