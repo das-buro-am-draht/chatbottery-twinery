@@ -15,6 +15,8 @@ const { pageAnalysis } = require('../../common/app/openai');
 
 require("./index.less");
 
+const listInputSelector = '.externaldata-list--text > input';
+
 module.exports = Vue.extend({
 	template: require("./index.html"),
 
@@ -40,6 +42,7 @@ module.exports = Vue.extend({
 			this.onAddList();
 		}
 		this.onSelectList(0);
+		Vue.nextTick(() => this.$refs.modal.$el.querySelectorAll(listInputSelector).forEach((element) => this.calcListInput(element)));
 	},
 
 	computed: {
@@ -106,6 +109,19 @@ module.exports = Vue.extend({
 				this.modified = true;
 			}
 		},
+
+		listPlaceholder(index) {
+			return 'List ' + (index + 1);
+		},
+
+		calcListInput(element) {
+			element.style.width = element.value ? element.value.length + 'ch' : '40px';
+		},
+
+		onChangeList(index, event) {
+			this.calcListInput(event.target);
+			this.modified = true;
+		},
 		
 		onSelectList(index) {
 			this.selection = -1;
@@ -122,7 +138,7 @@ module.exports = Vue.extend({
 					}).then(() => this.modified = true);
 				}
 			}).then(() => {
-				if (this.data[index].items.some((item) => !!item.url)) {
+				if (this.data[index].name || this.data[index].items.some((item) => !!item.url)) {
 					this.modified = true;
 				}
 				this.data.splice(index, 1);
@@ -138,7 +154,10 @@ module.exports = Vue.extend({
 				name: '',
 				items: [ { ...this.newItem } ],
 			});
-			this.onSelectList(this.data.length - 1);
+			const index = this.data.length - 1;
+			this.onSelectList(index);
+			Vue.nextTick(() => this.calcListInput(this.$refs.modal.$el.querySelectorAll(listInputSelector)[index]));
+
 		},
 
 		dragItem(index, event) {

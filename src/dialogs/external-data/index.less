@@ -47,6 +47,12 @@
 			&.selected {
 				color: #fff;
 				background-color: #3a51fa;
+				input {
+					color: #fff;
+					&::placeholder {
+						color: #fff;
+					}
+				}
 				img {
 					filter: invert(1);
 				}
@@ -55,7 +61,16 @@
 				cursor: grab;
 			}
 			&--text {
-				margin: 0 10px;
+				input {
+					font-family: @font-default;
+					box-shadow: none;
+					padding: 0;
+					cursor: default;
+					&::placeholder {
+						color: #000;
+						text-align: center;
+					}
+				}
 			}
 			&--delete {
 				cursor: pointer;
@@ -127,9 +142,6 @@
 			padding: 5px;
 			display: flex;
 			flex-direction: column;
-			img {
-				// max-height: 200px !important;
-			}
 			&--loader {
 				margin: 10px 0;
 				text-align: center;
@@ -141,6 +153,7 @@
 				h2 {
 				  flex: 1;
 				  margin: 5px;
+				  line-break: anywhere;
 				}
 				button {
 				  width: 30px;

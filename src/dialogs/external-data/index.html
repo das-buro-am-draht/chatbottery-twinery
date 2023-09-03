@@ -2,11 +2,13 @@
 	<span slot="title">{{ 'External data' | say }}</span>
 	<div class="externaldata-header">
 		<div :class="['externaldata-lists', processing ? 'disabled' : '']">
-			<div :class="['externaldata-list', list === $index ? 'selected' : '']" v-for="(index) in data" @click="onSelectList($index)">
+			<div :class="['externaldata-list', list === $index ? 'selected' : '']" v-for="(index, item) in data" @click="onSelectList($index)">
 				<div class="externaldata-list--gripper" draggable="true" @dragstart.stop="dragList($index, $event)" @dragenter="dragenterList($event)" @dragover="dragenterList($event)" @drop.prevent="dropList($index, $event)">
 					<img src="../../common/img/ui-drag.svg">
 				</div>
-				<div class="externaldata-list--text">{{ data[$index].name || 'List ' + ($index + 1) }}</div>
+				<div class="externaldata-list--text">
+					<input type="text" v-model="item.name" :placeholder="listPlaceholder($index)" @input="onChangeList($index, $event)">
+				</div>
 				<div class="externaldata-list--delete" @click.stop="onDeleteList($index)" title="Delete List">
 					<img src="../../common/img/ui-delete.svg">
 				</div>
