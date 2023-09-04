@@ -206,7 +206,10 @@ module.exports = Vue.extend({
 			if (index !== this.selection) {
 				this.selection = index;
 				if (index >= 0) {
-					this.getListElement(index).scrollIntoView({block: 'nearest', behavior: 'smooth'});
+					const element = this.getListElement(index);
+					if (element) {
+						this.getListElement(index).scrollIntoView({block: 'nearest', behavior: 'smooth'});
+					}
 				}
 			}
 		},
@@ -285,8 +288,10 @@ module.exports = Vue.extend({
 			this.data[this.list].items.push({ ...this.newItem });
 			Vue.nextTick(() => {
 				const element = this.getListElement(index);
-				element.scrollIntoView({block: 'nearest', behavior: 'smooth'});
-				element.querySelector('.externaldata-item--input input').focus();
+				if (element) {
+					element.scrollIntoView({block: 'nearest', behavior: 'smooth'});
+					element.querySelector('.externaldata-item--input input').focus();
+				}
 			});
 		},
 
