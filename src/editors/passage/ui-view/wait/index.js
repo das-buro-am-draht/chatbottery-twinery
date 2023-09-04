@@ -75,19 +75,10 @@ module.exports = Vue.extend({
 			if (variable && !variable.startsWith('$')) {
 				variable = '$' + variable;
 			}
-			if (variable) {
-				this.task.attributes['var'] = variable;
-			} else {
-				delete this.task.attributes['var'];
-			}
+			this.task.attributes['var'] = variable;
 		},
 		onChangeValidate(event) {
-			const validate = trim(this.validate);
-			if (validate) {
-				this.task.attributes['validate'] = validate;
-			} else {
-				delete this.task.attributes['validate'];
-			}
+			this.task.attributes['validate'] = trim(this.validate);
 		},
 		onChangeAutocomplete(event) {
 			this.task.autocomplete = this.autocomplete.split('\n');

@@ -66,12 +66,7 @@ module.exports = Vue.extend({
 
 	methods: {
 		onChange(event) {
-			const assignment = this.assignment;
-			if (assignment) {
-				this.task.attributes['eval'] = assignment;
-			} else {
-				delete this.task.attributes['eval'];
-			}
+			this.task.attributes['eval'] = this.assignment;
 		},
 	},
 });

@@ -37,12 +37,7 @@ module.exports = Vue.extend({
 			this.task.attributes['src'] = this.iframe;
 		},
 		onChangeHeight(event) {
-			const height = trim(this.height);
-			if (!height) {
-				delete this.task.attributes['height'];
-			} else {
-				this.task.attributes['height'] = height;
-			}
+			this.task.attributes['height'] = trim(this.height);
 		},
 	},
 });
