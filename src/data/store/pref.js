@@ -22,6 +22,7 @@ module.exports = {
 		welcomeSeen: false,
 		openaiTags: openai.tags,
 		openaiPhrases: openai.phrases,
+		openaiPage: openai.page,
 	},
 
 	mutations: {

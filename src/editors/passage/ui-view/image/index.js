@@ -39,7 +39,7 @@ module.exports = Vue.extend({
 	},
 
 	components: {
-		'image-placeholder': require('../image-placeholder'),
+		'image-placeholder': require('../../../../ui/image-placeholder'),
 		'task-options': require('../options'),
 	},
 });

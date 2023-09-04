@@ -1,11 +1,12 @@
 <div class="openai-dialog-params">
 	<h3>
 		<template v-if="image"><img :src="imageUrl"> </template>
-		{{ 'OpenAI ' + label + ' Alternatives' }}
+		{{ 'OpenAI ' + label }}
 	</h3>
 	<label :for="label">
 		<span>{{"Use '" + placeholder + "' as placeholder for " + label + " string" | say }}</span>
 	</label>
+	<p v-if="description">{{{ description }}}</p>
 	<textarea class="openai-dialog-params--data" :name="label" rows="7" v-model="params" v-el:params></textarea>
 	<button v-if="initial" type="button" class="openai-dialog-params--reset" @click="reset">{{ 'Reset to default' | say }}</button>
 	<p class="error" v-show="!!message">{{ message }}</p>

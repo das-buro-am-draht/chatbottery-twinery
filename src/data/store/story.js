@@ -50,6 +50,7 @@ const storyStore = (module.exports = {
 					settings: {},
 					plugins: {},
 					userData: {},
+					externalData: [],
 				},
 				storyStore.storyDefaults,
 				props

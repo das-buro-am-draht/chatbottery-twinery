@@ -121,7 +121,17 @@ const publish = (module.exports = {
 				`<tw-tag name="${escape(tag)}" color="${escape(
 					story.tagColors[tag]
 				)}"></tw-tag>`
-		);
+			).join('');
+
+		const externalData = (story.externalData || []).map((list) => 
+				`<tw-externaldata name="${escape(list.name)}">` +
+				(list.items || []).map((item) => 
+					`<tw-externalitem data="${escape(JSON.stringify(
+						item
+					))}"></tw-externalitem>`
+				).join('') +
+				`</tw-externaldata>`
+			).join('');
 
 		const script = story.script;
 
@@ -152,6 +162,7 @@ const publish = (module.exports = {
 			script +
 			`</script>` +
 			tagData +
+			externalData + 
 			passageData +
 			`</tw-storydata>`
 		);
@@ -168,9 +179,6 @@ const publish = (module.exports = {
 			`name="${escape(passage.name)}" ` +
 			`tags="${escape(passage.tags.map(tag => tag.trim().replace(/\s/g, '-')).join(' '))}" ` +
 			`tagsData="${escape(JSON.stringify(passage.tags))}"` +
-			`title="${escape(passage.title || '')}"` +
-			`image="${escape(passage.image || '')}"` +
-			`summary="${escape(passage.summary || '')}"` +
 			`position="${passage.left},${passage.top}" ` +
 			`size="${passage.width},${passage.height}">` +			
 			`${escape(passage.text)}</tw-passagedata>`

@@ -1,5 +1,7 @@
 const Vue = require('vue');
-const { isValidUrl } = require('../../../../utils/common');
+const { isValidUrl } = require('../../utils/common');
+
+require("./index.less");
 
 module.exports = Vue.extend({
 	template: require('./index.html'),
@@ -33,7 +35,7 @@ module.exports = Vue.extend({
 	methods: {
 		load() {
 			if (!this.imageUrl) {
-				this.src = require('../../../../common/img/element-image-white.svg');
+				this.src = require('../../common/img/element-image-white.svg');
 				this.$els.phold.style.backgroundColor = '#e2e2e2';
 			} else {
 				if (isValidUrl(this.imageUrl)) {
@@ -45,7 +47,7 @@ module.exports = Vue.extend({
 			}
 		},
 		onError(event) {
-			this.src = require('../../../../common/img/element-image.svg');
+			this.src = require('../../common/img/element-image.svg');
 			this.$els.phold.style.backgroundColor = '#e2e2e2';
 		},
 	},

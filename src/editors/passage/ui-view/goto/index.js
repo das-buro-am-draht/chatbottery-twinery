@@ -38,12 +38,7 @@ module.exports = Vue.extend({
 
 	methods: {
 		onChange(event) {
-			const passage = this.passage;
-			if (passage) {
-				this.task.attributes['passage'] = passage;
-			} else {
-				delete this.task.attributes['passage'];
-			}
+			this.task.attributes['passage'] = this.passage;
 		},
 	},
 });
