@@ -18,23 +18,23 @@
 		</div>
 		<div>
 			<label for="keywords">Keywords:</label>
-			<textarea name="keywords" @input="onChangeKeywords($event)" rows="3">{{ keywords }}</textarea>
+			<textarea name="keywords" v-model="item.keywords" @input="onChange($event)" rows="3"></textarea>
+		</div>
+		<div>
+			<label for="phrases">Phrases:</label>
+			<textarea name="phrases" v-model="item.phrases" @input="onChange($event)" rows="4">{{ phrases }}</textarea>
 		</div>
 		<div>
 			<label for="summary">Summary:</label>
 			<textarea name="summary" v-model="item.summary" @input="onChange($event)" rows="7"></textarea>
 		</div>
-		<div>
-			<label for="phrases">Phrases:</label>
-			<textarea name="keywords" @input="onChangePhrases($event)" rows="4">{{ phrases }}</textarea>
-		</div>
 		<div class="externaldata-details-input">
 			<label for="author">Author:</label>
-			<input type="text" name="author" v-model="item.author" readonly>
+			<input type="text" name="author" v-model="item.author" @input="onChange($event)">
 		</div>
 		<div class="externaldata-details-input">
 			<label for="date">Date:</label>
-			<input type="text" name="date" v-model="item.date" readonly>
+			<input type="text" name="date" v-model="item.date" @input="onChange($event)">
 		</div>
 	</fieldset>
 </div>
