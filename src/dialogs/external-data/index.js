@@ -62,8 +62,6 @@ module.exports = Vue.extend({
 				keywords: [],
 				image_url: '',
 				summary: '',
-				keywords_custom: [],
-				summary_custom: '',
 				error: '',
 			};
 		},
@@ -307,8 +305,6 @@ module.exports = Vue.extend({
 					item.keywords = json.keywords || [];
 					item.image_url = json.image_url || '';
 					item.summary = json.summary || '';
-					// item.keywords_custom = [];
-					// item.summary_custom = '';
 					item.processed = Date.now();	
 					this.modified = true;	
 				}) 
@@ -373,8 +369,6 @@ module.exports = Vue.extend({
 					image_url: item.image_url,
 					summary: item.summary,
 					date: item.date,
-					keywords_custom: item.keywords_custom,
-					summary_custom: item.summary_custom,		
 				})),
 			};
 			save(JSON.stringify(json), name);

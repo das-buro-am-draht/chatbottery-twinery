@@ -60,7 +60,7 @@
 				<p class="error" v-show="data[list].items[selection].error">
 					{{ data[list].items[selection].error }}
 				</p>
-				<detail-view v-if="data[list].items[selection].processed" :item="data[list].items[selection]"></detail-view>
+				<detail-view v-if="data[list].items[selection].processed" :item.sync="data[list].items[selection]"></detail-view>
 			</template>
 		</div>
 	</div>

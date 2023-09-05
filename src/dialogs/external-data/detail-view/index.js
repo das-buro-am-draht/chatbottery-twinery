@@ -16,22 +16,16 @@ module.exports = Vue.extend({
 	},
 
 	data: () => ({
-		keywords: '',
 		summary: '',
 	}),
 
 	ready() {
-		this.keywords = Array.isArray(this.item.keywords_custom) ? this.item.keywords_custom.join(',') : this.item.keywords_custom;
 		this.summary = this.item.summary_custom || this.item.summary;
 	},
 
 	methods: {
-		onChangeKeywords(event) {
-			this.item.keywords_custom = this.keywords.split(',').map((keyword) => trim(keyword)).filter((keyword) => keyword && !this.item.keywords.includes(keyword));
-			this.$parent.$parent.modified = true;
-		},
 		onChangeSummary(event) {
-			this.item.summary_custom = this.summary === this.item.summary ? '' : this.summary;
+			this.item.summary = this.summary;
 			this.$parent.$parent.modified = true;
 		},
 	},
