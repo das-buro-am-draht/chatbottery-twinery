@@ -16,6 +16,7 @@ const { pageAnalysis } = require('../../common/app/openai');
 require("./index.less");
 
 const listInputSelector = '.externaldata-list--text > input';
+const toString = (obj) => Array.isArray(obj) ? obj.join(', ') : obj;
 
 module.exports = Vue.extend({
 	template: require("./index.html"),
@@ -35,7 +36,12 @@ module.exports = Vue.extend({
 		if (story.externalData) {
 			this.data = story.externalData.map((data) => ({
 				name: data.name,
-				items: data.items.map((item) => ({...this.newItem, ...item}))
+				items: data.items.map((item) => ({
+					...this.newItem, 
+					...item,
+					keywords: (item.keywords || '').toString(),
+					phrases: (item.phrases || '').toString(),
+				}))
 			})); 
 		}
 		if (!this.data.length) {
@@ -57,9 +63,9 @@ module.exports = Vue.extend({
 				title: '',
 				author: '',
 				date: '',
-				phrases: [],
+				phrases: '',
 				main_keyword: '',
-				keywords: [],
+				keywords: '',
 				image_url: '',
 				summary: '',
 				error: '',
@@ -300,9 +306,9 @@ module.exports = Vue.extend({
 					item.title = json.title || '';
 					item.author = json.author || '';
 					item.date = json.date || '';
-					item.phrases = json.phrases || [];
+					item.phrases = toString(json.phrases || '');
 					item.main_keyword = json.main_keyword || '';
-					item.keywords = json.keywords || [];
+					item.keywords = toString(json.keywords || '');
 					item.image_url = json.image_url || '';
 					item.summary = json.summary || '';
 					item.processed = Date.now();	
@@ -363,9 +369,9 @@ module.exports = Vue.extend({
 					title: item.title,
 					author: item.author,
 					url: item.url,
-					phrases: item.phrases.join(', '),
+					phrases: item.phrases,
 					main_keyword: item.main_keyword,
-					keywords: item.keywords.join(', '),
+					keywords: item.keywords,
 					image_url: item.image_url,
 					summary: item.summary,
 					date: item.date,
