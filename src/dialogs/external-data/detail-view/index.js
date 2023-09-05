@@ -15,17 +15,8 @@ module.exports = Vue.extend({
 		},
 	},
 
-	data: () => ({
-		summary: '',
-	}),
-
-	ready() {
-		this.summary = this.item.summary_custom || this.item.summary;
-	},
-
 	methods: {
 		onChangeSummary(event) {
-			this.item.summary = this.summary;
 			this.$parent.$parent.modified = true;
 		},
 	},
