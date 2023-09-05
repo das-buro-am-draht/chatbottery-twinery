@@ -13,12 +13,8 @@
 			</ul>
 		</div>
 		<div>
-			<label for="keywords_custom">Additional Keywords (separate by comma):</label>
-			<textarea name="keywords_custom" v-model="keywords" @input="onChangeKeywords($event)"></textarea>
-		</div>
-		<div>
 			<label for="summary">Summary:</label>
-			<textarea name="summary" v-model="summary" @input="onChangeSummary($event)" rows="7"></textarea>
+			<textarea name="summary" v-model="item.summary" @input="onChangeSummary($event)" rows="7"></textarea>
 		</div>
 		<div>
 			<label for="phrases">Phrases:</label>
