@@ -2,14 +2,30 @@
 
 .externaldata-details {
 	overflow-y: auto;
+	&-input {
+		display: flex;
+		align-items: center;
+		label {
+			min-width: 80px;
+			margin-right: 5px;
+		}
+		input,textarea {
+			flex: 1;
+		}
+	}
 	div,h2,h3,h4,ol,ul {
 		margin: 0 0 5px;
 	}
 	.image-placeholder img {
+		// max-width: 300px;
+		// margin: 0 auto 5px;
 		width: 100% !important;
 	}
 	input,textarea {
+		padding: 5px;
+		background-color: #fff;
 		font-family: @font-default;
+		border: 1px solid #000;
 	}
 	textarea {
 		width: 100%;

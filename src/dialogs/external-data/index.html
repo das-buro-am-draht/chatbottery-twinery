@@ -50,7 +50,6 @@
 		</div>
 		<div v-if="selection >= 0 && (processing || data[list].items[selection].processed || data[list].items[selection].error)" class="externaldata-detailview">
 			<div class="externaldata-detailview--caption">
-				<h2>{{ data[list].items[selection].url }}</h2>
 				<button type="button" @click.stop="onCloseDetail" title="{{ 'Close Detail View' | say }}"></button>
 			</div>
 			<div v-if="processing" class="externaldata-detailview--loader">
