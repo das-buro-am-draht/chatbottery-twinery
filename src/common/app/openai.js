@@ -77,9 +77,9 @@ const pageAnalysis = (params, url) => {
 		})
 		.then((html) => {
 			const htmlCode = html
-			.replace(/<style[^>]*>[^<]*<\/style>/g, '')
-			.replace(/<script[^>]*>[^<]*<\/script>/g, '')
-			.replace(/<!--.*-->/g, '')
+			// .replace(/<style[^>]*>[^<]*<\/style>/g, '')
+			// .replace(/<script[^>]*>[^<]*<\/script>/g, '')
+			// .replace(/<!--[\s\S]*-->/g, '')
 			.replace(/[\r\n]/g, '')  // remove CR/LF
 			.replace(/\s\s+/g, ' '); // remove multiple white spaces
 			const data = getData(params, placeholders.page, htmlCode);
@@ -87,7 +87,11 @@ const pageAnalysis = (params, url) => {
 				if (response.choices) {
 					const [choice] = response.choices;
 					if (choice.message && choice.message.content) {
-						return JSON.parse(choice.message.content);
+						const start = choice.message.content.indexOf('{');
+						const end = choice.message.content.lastIndexOf('}');
+						if (start >= 0 && start < end) {
+							return JSON.parse(choice.message.content.substring(start, end + 1));
+						}
 					}
 				}
 				throw new Error('Unexpected result from openAI.');
