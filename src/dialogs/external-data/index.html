@@ -17,9 +17,9 @@
 				<img src="../../common/img/plus.svg" @click="onAddList">
 			</div>
 		</div>
-		<button v-if="list >= 0" class="externaldata-process-all" @click.stop="onProcessAll()" title="Analyse all in List" :disabled="processing || !canAnalyse">
+		<!-- <button v-if="list >= 0" class="externaldata-process-all" @click.stop="onProcessAll()" title="Analyse all in List" :disabled="processing || !canAnalyse">
 			<img src="../../common/img/suggestions.svg">
-		</button>
+		</button> -->
 	</div>
 	<div v-if="list >= 0" class="externaldata-content">
 		<div :class="['externaldata-listview', processing ? 'disabled' : '']">
@@ -50,7 +50,9 @@
 		</div>
 		<div v-if="selection >= 0 && (processing || data[list].items[selection].processed || data[list].items[selection].error)" class="externaldata-detailview">
 			<div class="externaldata-detailview--caption">
-				<button type="button" @click.stop="onCloseDetail" title="{{ 'Close Detail View' | say }}"></button>
+				<button type="button" @click.stop="onCloseDetail" title="{{ 'Close Detail View' | say }}">
+					<i class="fa fa-times"></i>
+				</button>
 			</div>
 			<div v-if="processing" class="externaldata-detailview--loader">
 				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
@@ -64,11 +66,12 @@
 		</div>
 	</div>
 	<div class="externaldata-controls">
-		<div class="externaldata-save">
-			<button class="primary" @click="save" :disabled="processing">{{ 'Save' | say }}</button>
-		</div>
 		<div class="externaldata-download">
-			<button class="create" @click="download" :disabled="processing || !processed.length">{{ 'Download' | say }}</button>
+			<button class="danger" @click="download" :disabled="processing || !processed.length">{{ 'Download file' | say }}</button>
+			<span>Don't forget to set the destination of this file in your <button type="text" @click="onSettings($event)">settings</button>.</span>
+		</div>
+		<div class="externaldata-save">
+			<button class="create" @click="save" :disabled="processing">{{ 'Save' | say }}</button>
 		</div>
 	</div>
 </modal-dialog>

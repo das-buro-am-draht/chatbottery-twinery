@@ -2,37 +2,58 @@
 
 .externaldata-details {
 	overflow-y: auto;
-	&-input {
-		display: flex;
-		align-items: center;
-		label {
-			min-width: 80px;
-			margin-right: 5px;
+	fieldset {
+		border: none;
+		legend {
+			text-align: right;
+			font-size: 75%;
 		}
-		input,textarea {
-			flex: 1;
+		> div {
+			margin: 0 0 5px;
 		}
 	}
-	div,h2,h3,h4,ol,ul {
-		margin: 0 0 5px;
-	}
-	.image-placeholder img {
-		// max-width: 300px;
-		// margin: 0 auto 5px;
-		width: 100% !important;
+	label {
+		display: block;
+		padding: 5px;
+		font-size: 80%;
+		text-transform: uppercase;
 	}
 	input,textarea {
+		display: block;
+		width: 100%;
 		padding: 5px;
 		background-color: #fff;
 		font-family: @font-default;
-		border: 1px solid #ccc;
+		// border: 1px solid #ccc;
+		&:not(:focus) {
+			box-shadow: none;
+		}
 	}
 	textarea {
 		width: 100%;
 		resize: vertical;
-		&:not(:read-only) {
-			border:1px solid #ccc;
-			background-color: #fff;
+	}
+	&-image {
+		display: flex;
+		> div {
+			flex: 1;
 		}
+		.image-placeholder {
+			margin-right: 10px;
+			img {
+				border-radius: 10%;
+				width: 100% !important;
+			}
+		}
+		textarea {
+			line-break: anywhere;
+		}
+	}
+	&-title input {
+		font-weight: 700;
+	}
+	&-author-date {
+		display: flex;
+		justify-content: space-between;
 	}
 }

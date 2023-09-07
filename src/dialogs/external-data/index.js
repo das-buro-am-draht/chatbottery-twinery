@@ -12,6 +12,7 @@ const { confirm } = require('../../dialogs/confirm');
 const locale = require("../../locale");
 const notify = require("../../ui/notify");
 const { pageAnalysis } = require('../../common/app/openai');
+const SettingsDialog = require("../settings");
 
 require("./index.less");
 
@@ -85,6 +86,14 @@ module.exports = Vue.extend({
 	},
 
 	methods: {
+		onSettings(event) {
+			new SettingsDialog({
+				data: { storyId: this.storyId, origin: event.target },
+				store: this.$store,
+			}).$mountTo(document.body);
+
+		},
+
 		dragList(index, event) {
 			const data = [this._uid, index].join();
 			event.dataTransfer.setData('cb/ed-list', data);

@@ -3,16 +3,22 @@
 		<legend>
 			{{ 'Last analysed: ' | say }} {{ item.processed | date 'LLL' }}
 		</legend>
-		<div class="externaldata-details-input">
+		<div class="externaldata-details-title">
 			<label for="title">Title:</label>
 			<input type="text" name="title" v-model="item.title" @input="onChange($event)">
 		</div>
-		<div class="externaldata-details-input">
-			<label for="image-url">Image URL:</label>
-			<input type="text" name="image-url" v-model="item.image_url" @input="onChange($event)">
+		<div class="externaldata-details-image">
+			<image-placeholder :image-url="item.image_url"></image-placeholder>
+			<div>
+				<label for="image-url">Image URL:</label>
+				<textarea name="image-url" v-model="item.image_url" @input="onChange($event)" rows="5"></textarea>
+			</div>
 		</div>
-		<image-placeholder :image-url="item.image_url"></image-placeholder>
-		<div class="externaldata-details-input">
+		<div>
+			<label for="summary">Summary:</label>
+			<textarea name="summary" v-model="item.summary" @input="onChange($event)" rows="5"></textarea>
+		</div>
+		<div>
 			<label for="main-keyword">Main Keyword:</label>
 			<input type="text" name="main-keyword" v-model="item.main_keyword" @input="onChange($event)">
 		</div>
@@ -24,17 +30,15 @@
 			<label for="phrases">Phrases:</label>
 			<textarea name="phrases" v-model="item.phrases" @input="onChange($event)" rows="4">{{ phrases }}</textarea>
 		</div>
-		<div>
-			<label for="summary">Summary:</label>
-			<textarea name="summary" v-model="item.summary" @input="onChange($event)" rows="7"></textarea>
-		</div>
-		<div class="externaldata-details-input">
-			<label for="author">Author:</label>
-			<input type="text" name="author" v-model="item.author" @input="onChange($event)">
-		</div>
-		<div class="externaldata-details-input">
-			<label for="date">Date:</label>
-			<input type="text" name="date" v-model="item.date" @input="onChange($event)">
+		<div class="externaldata-details-author-date">
+			<div>
+				<label for="author">Author:</label>
+				<input type="text" name="author" v-model="item.author" @input="onChange($event)">
+			</div>
+			<div>
+				<label for="date">Date:</label>
+				<input type="text" name="date" v-model="item.date" @input="onChange($event)">
+			</div>
 		</div>
 	</fieldset>
 </div>
