@@ -77,9 +77,9 @@ const pageAnalysis = (params, url) => {
 		})
 		.then((html) => {
 			const htmlCode = html
-			.replace(/<style[^>]*>[^<]*<\/style>/g, '')
-			.replace(/<script[^>]*>[^<]*<\/script>/g, '')
-			.replace(/<!--.*-->/g, '')
+			// .replace(/<style[^>]*>[^<]*<\/style>/g, '')
+			// .replace(/<script[^>]*>[^<]*<\/script>/g, '')
+			// .replace(/<!--[\s\S]*-->/g, '')
 			.replace(/[\r\n]/g, '')  // remove CR/LF
 			.replace(/\s\s+/g, ' '); // remove multiple white spaces
 			const data = getData(params, placeholders.page, htmlCode);
