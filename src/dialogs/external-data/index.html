@@ -56,7 +56,8 @@
 				</button>
 			</div>
 			<div v-if="processing" class="externaldata-detailview--loader">
-				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
+				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i>&nbsp;{{ 'Analysing the website...' | say }}
+				<p>{{ 'This may take a while' | say }}</p>
 			</div>
 			<template v-else>
 				<p class="error" v-show="data[list].items[selection].error">
