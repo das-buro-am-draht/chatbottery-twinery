@@ -96,6 +96,9 @@ const pageAnalysis = (params, url) => {
 			return openai(data).then((response) => {
 				if (response.choices) {
 					const [choice] = response.choices;
+					if (choice.finish_reason === 'length') {
+						throw new Error('Maximum number of tokens was reached.')
+					}
 					if (choice.message && choice.message.content) {
 						const start = choice.message.content.indexOf('{');
 						const end = choice.message.content.lastIndexOf('}');
