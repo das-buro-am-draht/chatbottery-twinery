@@ -13,6 +13,16 @@ const openai = (data) => {
     body: JSON.stringify(data)
   })
   .then((response) => {
+		if (!response.ok) {
+			switch (response.status) {
+				case 401:
+					throw new Error('Invalid authentication.');
+				case 429:
+					throw new Error('Rate limit reached - Please try again later.');
+				case 503:
+					throw new Error('The engine is currently overloaded, please try again later');
+			}
+		}
 		return response.json().then((json) => {
 	   	if (!response.ok) {
 				let message = 'Error on invoking openAI';
@@ -86,6 +96,9 @@ const pageAnalysis = (params, url) => {
 			return openai(data).then((response) => {
 				if (response.choices) {
 					const [choice] = response.choices;
+					if (choice.finish_reason === 'length') {
+						throw new Error('Maximum number of tokens was reached.')
+					}
 					if (choice.message && choice.message.content) {
 						const start = choice.message.content.indexOf('{');
 						const end = choice.message.content.lastIndexOf('}');

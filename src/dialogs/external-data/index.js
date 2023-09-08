@@ -270,10 +270,7 @@ module.exports = Vue.extend({
 			this.onSelectItem(index);
 			if (selection === index || !(item.processed || item.error)) {
 				this.processing = true;
-				this.analyzeItem(item).finally(() => {
-					this.processing = false;
-					this.onSelectItem(index);
-				});
+				this.analyzeItem(item).finally(() => this.processing = false);
 			}
 		},
 

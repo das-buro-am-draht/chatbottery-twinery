@@ -48,20 +48,22 @@
 				<div></div>
 			</div>
 		</div>
-		<div v-if="selection >= 0 && (processing || data[list].items[selection].processed || data[list].items[selection].error)" class="externaldata-detailview">
+		<div v-if="selection >= 0" class="externaldata-detailview">
 			<div class="externaldata-detailview--caption">
+				<span v-if="data[list].items[selection].processed">{{ 'Last analysed: ' | say }} {{ data[list].items[selection].processed | date 'LLL' }}</span>
 				<button type="button" @click.stop="onCloseDetail" title="{{ 'Close Detail View' | say }}">
 					<i class="fa fa-times"></i>
 				</button>
 			</div>
 			<div v-if="processing" class="externaldata-detailview--loader">
-				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
+				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i>&nbsp;{{ 'Analysing the website...' | say }}
+				<p>{{ 'This may take a while' | say }}</p>
 			</div>
 			<template v-else>
 				<p class="error" v-show="data[list].items[selection].error">
 					{{ data[list].items[selection].error }}
 				</p>
-				<detail-view v-if="data[list].items[selection].processed" :item.sync="data[list].items[selection]"></detail-view>
+				<detail-view :item.sync="data[list].items[selection]"></detail-view>
 			</template>
 		</div>
 	</div>

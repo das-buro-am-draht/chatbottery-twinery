@@ -5,6 +5,10 @@
 
 	.externaldata {
 
+		input,textarea {
+			font-family: @font-default;
+		}
+
 		.content {
 			display: flex;
 			flex-direction: column;
@@ -62,7 +66,6 @@
 			}
 			&--text {
 				input {
-					font-family: @font-default;
 					box-shadow: none;
 					padding: 0;
 					cursor: default;
@@ -141,15 +144,21 @@
 			padding: 5px;
 			display: flex;
 			flex-direction: column;
+			padding: 10px;
 			&--loader {
 				margin: 10px 0;
 				text-align: center;
 			}
 			&--caption {
+				span {
+					padding: 5px;
+					font-size: 80%;
+				}
 				button {
-				  width: 30px;
-				  height: 30px;
-				  float: right;
+					float: right;
+					width: 20px;
+					height: 20px;
+					padding: 0;
 				}
 			}	
 			&-input {
