@@ -78,10 +78,13 @@ module.exports = Vue.extend({
 		},
 
 		processed() {
-			const processed = this.data.reduce((items, list) => {
-				return items.concat(list.items.filter((item) => item.processed))
-			}, []);
-			return processed;
+			return this.data.reduce((items, list) => 
+				items.concat(list.items.filter((item) => item.processed)), []);
+		},
+
+		valid() {
+			return this.data.reduce((items, list) => 
+				items.concat(list.items.filter((item) => this.isValid(item))), []);
 		},
 	},
 
@@ -337,11 +340,15 @@ module.exports = Vue.extend({
 		},
 
 		isValid(item) {
+			return isValidUrl(item.url) && item.title && item.summary && (item.main_keyword || item.keywords.split(',').some((keyword) => trim(keyword)));
+		},
+
+		isValidUrl(item) {
 			return isValidUrl(item.url);
 		},
 
 		canProcess(item) {
-			return !item.processed && this.isValid(item);
+			return !item.processed && isValidUrl(item.url);
 		},
 
 		canClose() {
@@ -362,14 +369,13 @@ module.exports = Vue.extend({
 		},
 
 		download() {
-			const processed = this.processed;
 			const getPath = (url) => {
 				const index = url.indexOf('://');
 				return index >= 0 ? url.substring(index + 3) : url;
 			};
 			const name = this.story.name + '.json';
 			const json = {
-				data: this.processed.map((item) => ({
+				data: this.valid.map((item) => ({
 					id: uuid(),
 					path: getPath(item.url), // will be the name of the passage
 					title: item.title,
@@ -387,12 +393,12 @@ module.exports = Vue.extend({
 		},
 
 		save() {
-			const externalData = this.data.map((list) => ({ 
+			const externalData = this.data /*.map((list) => ({ 
 				...list,
 				items: list.items
 					.filter((item) => !!trim(item.url))
 					// .map((item) => ({ ...item, error: undefined })),
-			})).filter((list) => list.name || list.items.length > 0);
+			})).filter((list) => list.name || list.items.length > 0) */;
 			this.updateStory(this.storyId, { 
 				externalData: externalData.length > 0 ? externalData : undefined
 			});

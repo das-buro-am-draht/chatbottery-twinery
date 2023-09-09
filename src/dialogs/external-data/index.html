@@ -30,13 +30,13 @@
 					</div>
 					<div class="externaldata-item--input">
 						<input type="text" v-model="item.url" placeholder="Web Page URL" :readonly="item.processed" @input="modified = true">
-						<p class="error" v-show="!!item.url && !isValid(item)">{{ 'Web Page URL is invalid!' | say }}</p>
+						<p class="error" v-show="item.url && !isValidUrl(item)">{{ 'Web Page URL is invalid!' | say }}</p>
 						<!-- <p class="error" v-show="!!item.error">{{ item.error }}</p> -->
 					</div>
 					<button class="externaldata-item--delete" @click.stop="onDeleteItem($index)" title="Delete Entry">
 						<img src="../../common/img/ui-delete.svg">
 					</button>
-					<button :class="['externaldata-item--process', item.processed ? 'processed' : item.error ? 'error' : '']" @click.stop="onProcessItem($index)" :title="processItemTitle(item, $index)" :disabled="!isValid(item)">
+					<button :class="['externaldata-item--process', item.processed ? 'processed' : item.error ? 'error' : '']" @click.stop="onProcessItem($index)" :title="processItemTitle(item, $index)" :disabled="!isValidUrl(item)">
 						<img src="../../common/img/suggestions.svg">
 					</button>
 				</div>
@@ -48,9 +48,11 @@
 				<div></div>
 			</div>
 		</div>
-		<div v-if="selection >= 0" class="externaldata-detailview">
+		<div v-if="selection >= 0 && isValidUrl(data[list].items[selection])" class="externaldata-detailview">
 			<div class="externaldata-detailview--caption">
-				<span v-if="data[list].items[selection].processed">{{ 'Last analysed: ' | say }} {{ data[list].items[selection].processed | date 'LLL' }}</span>
+				<span v-if="data[list].items[selection].processed">
+					{{ 'Last analysed: ' | say }} {{ data[list].items[selection].processed | date 'LLL' }}
+				</span>
 				<button type="button" @click.stop="onCloseDetail" title="{{ 'Close Detail View' | say }}">
 					<i class="fa fa-times"></i>
 				</button>
@@ -63,13 +65,16 @@
 				<p class="error" v-show="data[list].items[selection].error">
 					{{ data[list].items[selection].error }}
 				</p>
+				<p class="error" v-show="!processing && !isValid(data[list].items[selection])">
+					{{ 'Title, Summary and at least one Keyword must be set' | say }}
+				</p>
 				<detail-view :item.sync="data[list].items[selection]"></detail-view>
 			</template>
 		</div>
 	</div>
 	<div class="externaldata-controls">
 		<div class="externaldata-download">
-			<button class="danger" @click="download" :disabled="processing || !processed.length">{{ 'Download file' | say }}</button>
+			<button class="danger" @click="download" :disabled="processing || !valid.length">{{ 'Download file' | say }}</button>
 			<span>Don't forget to set the destination of this file in your <button type="text" @click="onSettings($event)">settings</button>.</span>
 		</div>
 		<div class="externaldata-save">
