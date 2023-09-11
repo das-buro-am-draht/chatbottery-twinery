@@ -84,9 +84,6 @@ const absUrl = (host, path) => {
 	}
 	const url = new URL(host);
 	let uri = url.protocol + '//' + url.host;
-	if (url.port) {
-		uri += ':' + url.port;
-	}
 	if (path.startsWith('/')) {
 		return uri + path;
 	} else {
