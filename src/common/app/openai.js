@@ -83,7 +83,16 @@ const absUrl = (host, path) => {
 		return path;
 	}
 	const url = new URL(host);
-	return url.protocol + '//' + url.host + (path.startsWith('/') ? '' : '/') + path;
+	let uri = url.protocol + '//' + url.host;
+	if (url.port) {
+		uri += ':' + url.port;
+	}
+	if (path.startsWith('/')) {
+		return uri + path;
+	} else {
+		const pathname = String(url.pathname);
+		return uri + pathname.substring(0, pathname.lastIndexOf('/')) + '/' + path;
+	}
 };
 
 const pageAnalysis = (params, url) => {
@@ -130,7 +139,7 @@ const pageAnalysis = (params, url) => {
 										const src = image.getAttribute('src');
 										json.image_url = absUrl(url, src);
 										if (!ignore.some((type) => src.endsWith(`.${type}`))) {
-											i = images.length; // break loop
+											break;
 										}
 									}
 								}
