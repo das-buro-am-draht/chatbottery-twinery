@@ -1,4 +1,4 @@
-const { trim } = require('../../utils/common');
+const { isValidUrl, trim } = require('../../utils/common');
 
 const apikey = {
 	fetch: 'gKo86o8F769Bfi879tzht87BRjhcg24cj1hcjvgv345109t3',
@@ -79,10 +79,11 @@ const suggestions = (params, placeholder, text, delimiter) => {
 };
 
 const absUrl = (host, path) => {
-	if (!path.startsWith('/'))
+	if (isValidUrl(path)) {
 		return path;
+	}
 	const url = new URL(host);
-	return url.protocol + '//' + url.host + path;
+	return url.protocol + '//' + url.host + (path.startsWith('/') ? '' : '/') + path;
 };
 
 const pageAnalysis = (params, url) => {
@@ -95,14 +96,20 @@ const pageAnalysis = (params, url) => {
 			return response.text();
 		})
 		.then((html) => {
+			let text;
 			const doc = new DOMParser().parseFromString(html, 'text/html');
-			const htmlCode = trim(doc.body.innerText) // html
-			// .replace(/<style[^>]*>[^<]*<\/style>/g, '')
-			// .replace(/<script[^>]*>[^<]*<\/script>/g, '')
-			// .replace(/<!--[\s\S]*-->/g, '')
-			.replace(/[\r\n]/g, '')  // remove CR/LF
-			.replace(/\s\s+/g, ' '); // remove multiple white spaces
-			const data = getData(params, placeholders.page, htmlCode);
+			if (doc.body && doc.body.innerText) {
+				text = trim(doc.body.innerText);
+			}
+			if (!text) {
+				text = html
+				// .replace(/<style[^>]*>[^<]*<\/style>/g, '')
+				// .replace(/<script[^>]*>[^<]*<\/script>/g, '')
+				.replace(/<!--[\s\S]*-->/g, '')
+				.replace(/[\r\n]/g, '')  // remove CR/LF
+				.replace(/\s\s+/g, ' '); // remove multiple white spaces
+			}
+			const data = getData(params, placeholders.page, text);
 			return openai(data).then((response) => {
 				if (response.choices) {
 					const [choice] = response.choices;
@@ -115,11 +122,16 @@ const pageAnalysis = (params, url) => {
 						if (start >= 0 && start < end) {
 							const json = JSON.parse(choice.message.content.substring(start, end + 1));
 							if (!json.image_url && doc.body) {
+								const ignore = ['svg','ico'];
 								const images = doc.body.querySelectorAll('img');
-								for (let i = 0; !json.image_url && i < images.length; i++) {
+								for (let i = 0; i < images.length; i++) {
 									const image = images[i];
 									if (image.hasAttribute('src')) {
-										json.image_url = absUrl(url, image.getAttribute('src'));
+										const src = image.getAttribute('src');
+										json.image_url = absUrl(url, src);
+										if (!ignore.some((type) => src.endsWith(`.${type}`))) {
+											i = images.length; // break loop
+										}
 									}
 								}
 							}
