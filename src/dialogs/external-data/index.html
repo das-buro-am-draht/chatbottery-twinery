@@ -65,7 +65,7 @@
 				<p class="error" v-show="data[list].items[selection].error">
 					{{ data[list].items[selection].error }}
 				</p>
-				<p class="error" v-show="!processing && !isValid(data[list].items[selection])">
+				<p class="error" v-show="!isValid(data[list].items[selection])">
 					{{ 'Title, Summary and at least one Keyword must be set' | say }}
 				</p>
 				<detail-view :item.sync="data[list].items[selection]"></detail-view>

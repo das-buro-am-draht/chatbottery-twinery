@@ -1,3 +1,5 @@
+const { trim } = require('../../utils/common');
+
 const apikey = {
 	fetch: 'gKo86o8F769Bfi879tzht87BRjhcg24cj1hcjvgv345109t3',
 	openai: 'RsCsGSeRfwlZYh21fhJNXrMsStRWRSyDBF8CjTNoLELL9',
@@ -76,6 +78,13 @@ const suggestions = (params, placeholder, text, delimiter) => {
 	});
 };
 
+const absUrl = (host, path) => {
+	if (!path.startsWith('/'))
+		return path;
+	const url = new URL(host);
+	return url.protocol + '//' + url.host + path;
+};
+
 const pageAnalysis = (params, url) => {
 	const requestUrl = `${host}/fetch?apikey=${apikey.fetch}&url=${encodeURIComponent(url)}`;
 	return fetch(requestUrl)
@@ -86,7 +95,8 @@ const pageAnalysis = (params, url) => {
 			return response.text();
 		})
 		.then((html) => {
-			const htmlCode = html
+			const doc = new DOMParser().parseFromString(html, 'text/html');
+			const htmlCode = trim(doc.body.innerText) // html
 			// .replace(/<style[^>]*>[^<]*<\/style>/g, '')
 			// .replace(/<script[^>]*>[^<]*<\/script>/g, '')
 			// .replace(/<!--[\s\S]*-->/g, '')
@@ -103,7 +113,23 @@ const pageAnalysis = (params, url) => {
 						const start = choice.message.content.indexOf('{');
 						const end = choice.message.content.lastIndexOf('}');
 						if (start >= 0 && start < end) {
-							return JSON.parse(choice.message.content.substring(start, end + 1));
+							const json = JSON.parse(choice.message.content.substring(start, end + 1));
+							if (!json.image_url && doc.body) {
+								const images = doc.body.querySelectorAll('img');
+								for (let i = 0; !json.image_url && i < images.length; i++) {
+									const image = images[i];
+									if (image.hasAttribute('src')) {
+										json.image_url = absUrl(url, image.getAttribute('src'));
+									}
+								}
+							}
+							if (!json.title && doc.head) {
+								const element = doc.head.querySelector('title');
+								if (element) {
+									json.title = trim(element.innerText);
+								}
+							}
+							return json;
 						}
 					}
 				}
