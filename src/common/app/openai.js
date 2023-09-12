@@ -124,8 +124,9 @@ const pageAnalysis = (params, url) => {
 									const img = images[i];
 									if (img.hasAttribute('src')) {
 										const src = img.getAttribute('src');
+										const image_url = src.split('?')[0];
 										if (!ignore.some((type, index) => {
-											if (src.endsWith(`.${type}`)) {
+											if (image_url.endsWith(`.${type}`)) {
 												if (index > image.priority) {
 													image.priority = index;
 													image.url = src;
