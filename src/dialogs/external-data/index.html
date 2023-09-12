@@ -2,7 +2,7 @@
 	<span slot="title">{{ 'External data' | say }}</span>
 	<div class="externaldata-header">
 		<div :class="['externaldata-lists', processing ? 'disabled' : '']">
-			<div :class="['externaldata-list', list === $index ? 'selected' : '']" v-for="(index, item) in data" @click="onSelectList($index)">
+			<div :class="['externaldata-list', list === $index ? 'selected' : '']" v-for="item in data" track-by="$index" @click="onSelectList($index)">
 				<div class="externaldata-list--gripper" draggable="true" @dragstart.stop="dragList($index, $event)" @dragenter="dragenterList($event)" @dragover="dragenterList($event)" @drop.prevent="dropList($index, $event)">
 					<img src="../../common/img/ui-drag.svg">
 				</div>
@@ -24,7 +24,7 @@
 	<div v-if="list >= 0" class="externaldata-content">
 		<div :class="['externaldata-listview', processing ? 'disabled' : '']">
 			<div class="externaldata-items">
-				<div :class="['externaldata-item', selection === $index ? 'selected' : '']" v-for="(index, item) in data[list].items" @click="onSelectItem($index)">
+				<div :class="['externaldata-item', selection === $index ? 'selected' : '']" v-for="item in data[list].items" track-by="$index" @click="onSelectItem($index)">
 					<div class="externaldata-item--gripper" draggable="true" @dragstart.stop="dragItem($index, $event)" @dragenter="dragenterItem($event)" @dragover="dragenterItem($event)" @drop.prevent="dropItem($index, $event)" @click.stop>
 						<img src="../../common/img/ui-drag.svg">
 					</div>

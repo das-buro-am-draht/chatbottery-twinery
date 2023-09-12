@@ -1,6 +1,6 @@
 <div class="passageUI-carousel">
 	<div class="passageUI-items">
-		<div :class="['passageUI-item', selection === $index ? 'selected' : '']" v-for="(index, item) in task.items" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)" @click="onSelect($index)">
+		<div :class="['passageUI-item', selection === $index ? 'selected' : '']" v-for="item in task.items" track-by="$index" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)" @click="onSelect($index)">
 			<div class="passageUI-item-gripper">
 				<img src="../../../../common/img/ui-drag.svg">
 			</div>
