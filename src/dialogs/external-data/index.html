@@ -2,14 +2,14 @@
 	<span slot="title">{{ 'External data' | say }}</span>
 	<div class="externaldata-header">
 		<div :class="['externaldata-lists', processing ? 'disabled' : '']">
-			<div :class="['externaldata-list', list === $index ? 'selected' : '']" v-for="item in data" track-by="$index" @click="onSelectList($index)">
-				<div class="externaldata-list--gripper" draggable="true" @dragstart.stop="dragList($index, $event)" @dragenter="dragenterList($event)" @dragover="dragenterList($event)" @drop.prevent="dropList($index, $event)">
+			<div :class="['externaldata-list', list === index ? 'selected' : '']" v-for="(index, item) in data" @click="onSelectList(index)">
+				<div class="externaldata-list--gripper" draggable="true" @dragstart.stop="dragList(index, $event)" @dragenter="dragenterList($event)" @dragover="dragenterList($event)" @drop.prevent="dropList(index, $event)">
 					<img src="../../common/img/ui-drag.svg">
 				</div>
 				<div class="externaldata-list--text">
-					<input type="text" v-model="item.name" :placeholder="listPlaceholder($index)" @input="onChangeList($index, $event)">
+					<input type="text" v-model="item.name" :placeholder="listPlaceholder(index)" @input="onChangeList(index, $event)">
 				</div>
-				<div class="externaldata-list--delete" @click.stop="onDeleteList($index)" title="Delete List">
+				<div class="externaldata-list--delete" @click.stop="onDeleteList(index)" title="Delete List">
 					<img src="../../common/img/ui-delete.svg">
 				</div>
 			</div>
@@ -24,8 +24,8 @@
 	<div v-if="list >= 0" class="externaldata-content">
 		<div :class="['externaldata-listview', processing ? 'disabled' : '']">
 			<div class="externaldata-items">
-				<div :class="['externaldata-item', selection === $index ? 'selected' : '']" v-for="item in data[list].items" track-by="$index" @click="onSelectItem($index)">
-					<div class="externaldata-item--gripper" draggable="true" @dragstart.stop="dragItem($index, $event)" @dragenter="dragenterItem($event)" @dragover="dragenterItem($event)" @drop.prevent="dropItem($index, $event)" @click.stop>
+				<div :class="['externaldata-item', selection === index ? 'selected' : '']" v-for="(index, item) in data[list].items" @click="onSelectItem(index)">
+					<div class="externaldata-item--gripper" draggable="true" @dragstart.stop="dragItem(index, $event)" @dragenter="dragenterItem($event)" @dragover="dragenterItem($event)" @drop.prevent="dropItem(index, $event)" @click.stop>
 						<img src="../../common/img/ui-drag.svg">
 					</div>
 					<div class="externaldata-item--input">
@@ -33,10 +33,10 @@
 						<p class="error" v-show="item.url && !isValidUrl(item)">{{ 'Web Page URL is invalid!' | say }}</p>
 						<!-- <p class="error" v-show="!!item.error">{{ item.error }}</p> -->
 					</div>
-					<button class="externaldata-item--delete" @click.stop="onDeleteItem($index)" title="Delete Entry">
+					<button class="externaldata-item--delete" @click.stop="onDeleteItem(index)" title="Delete Entry">
 						<img src="../../common/img/ui-delete.svg">
 					</button>
-					<button :class="['externaldata-item--process', item.processed ? 'processed' : item.error ? 'error' : '']" @click.stop="onProcessItem($index)" :title="processItemTitle(item, $index)" :disabled="!isValidUrl(item)">
+					<button :class="['externaldata-item--process', item.processed ? 'processed' : item.error ? 'error' : '']" @click.stop="onProcessItem(index)" :title="processItemTitle(item, index)" :disabled="!isValidUrl(item)">
 						<img src="../../common/img/suggestions.svg">
 					</button>
 				</div>
