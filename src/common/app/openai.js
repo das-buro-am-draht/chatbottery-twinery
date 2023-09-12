@@ -1,3 +1,5 @@
+const { isValidUrl, trim } = require('../../utils/common');
+
 const apikey = {
 	fetch: 'gKo86o8F769Bfi879tzht87BRjhcg24cj1hcjvgv345109t3',
 	openai: 'RsCsGSeRfwlZYh21fhJNXrMsStRWRSyDBF8CjTNoLELL9',
@@ -76,6 +78,20 @@ const suggestions = (params, placeholder, text, delimiter) => {
 	});
 };
 
+const absUrl = (host, path) => {
+	if (isValidUrl(path)) {
+		return path;
+	}
+	const url = new URL(host);
+	let uri = url.protocol + '//' + url.host;
+	if (path.startsWith('/')) {
+		return uri + path;
+	} else {
+		const pathname = String(url.pathname);
+		return uri + pathname.substring(0, pathname.lastIndexOf('/')) + '/' + path;
+	}
+};
+
 const pageAnalysis = (params, url) => {
 	const requestUrl = `${host}/fetch?apikey=${apikey.fetch}&url=${encodeURIComponent(url)}`;
 	return fetch(requestUrl)
@@ -86,13 +102,20 @@ const pageAnalysis = (params, url) => {
 			return response.text();
 		})
 		.then((html) => {
-			const htmlCode = html
-			// .replace(/<style[^>]*>[^<]*<\/style>/g, '')
-			// .replace(/<script[^>]*>[^<]*<\/script>/g, '')
-			// .replace(/<!--[\s\S]*-->/g, '')
-			.replace(/[\r\n]/g, '')  // remove CR/LF
-			.replace(/\s\s+/g, ' '); // remove multiple white spaces
-			const data = getData(params, placeholders.page, htmlCode);
+			let text;
+			const doc = new DOMParser().parseFromString(html, 'text/html');
+			if (doc.body && doc.body.innerText) {
+				text = trim(doc.body.innerText);
+			}
+			if (!text) {
+				text = html
+				// .replace(/<style[^>]*>[^<]*<\/style>/g, '')
+				// .replace(/<script[^>]*>[^<]*<\/script>/g, '')
+				.replace(/<!--[\s\S]*-->/g, '')
+				.replace(/[\r\n]/g, '')  // remove CR/LF
+				.replace(/\s\s+/g, ' '); // remove multiple white spaces
+			}
+			const data = getData(params, placeholders.page, text);
 			return openai(data).then((response) => {
 				if (response.choices) {
 					const [choice] = response.choices;
@@ -103,7 +126,44 @@ const pageAnalysis = (params, url) => {
 						const start = choice.message.content.indexOf('{');
 						const end = choice.message.content.lastIndexOf('}');
 						if (start >= 0 && start < end) {
-							return JSON.parse(choice.message.content.substring(start, end + 1));
+							const json = JSON.parse(choice.message.content.substring(start, end + 1));
+							if (!json.image_url && doc.body) {
+								const image = {
+									priority: -1,
+									url: '',
+								};
+								const ignore = ['ico','svg','gif','png'];
+								const images = doc.body.querySelectorAll('img');
+								for (let i = 0; i < images.length; i++) {
+									const img = images[i];
+									if (img.hasAttribute('src')) {
+										const src = img.getAttribute('src');
+										if (!ignore.some((type, index) => {
+											if (src.endsWith(`.${type}`)) {
+												if (index > image.priority) {
+													image.priority = index;
+													image.url = src;
+												}
+												return true;
+											}
+											return false;
+										})) {
+											image.url = src;
+											break;
+										}
+									}
+								}
+								if (image.url) {
+									json.image_url = absUrl(url, image.url);
+								}
+							}
+							if (!json.title && doc.head) {
+								const element = doc.head.querySelector('title');
+								if (element) {
+									json.title = trim(element.innerText);
+								}
+							}
+							return json;
 						}
 					}
 				}

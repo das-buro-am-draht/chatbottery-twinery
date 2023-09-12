@@ -58,14 +58,15 @@
 				</button>
 			</div>
 			<div v-if="processing" class="externaldata-detailview--loader">
-				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i>&nbsp;{{ 'Analysing the website...' | say }}
+				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i>
+				<p>{{ 'Analysing the website...' | say }}</p>
 				<p>{{ 'This may take a while' | say }}</p>
 			</div>
 			<template v-else>
 				<p class="error" v-show="data[list].items[selection].error">
 					{{ data[list].items[selection].error }}
 				</p>
-				<p class="error" v-show="!processing && !isValid(data[list].items[selection])">
+				<p class="error" v-show="!isValid(data[list].items[selection])">
 					{{ 'Title, Summary and at least one Keyword must be set' | say }}
 				</p>
 				<detail-view :item.sync="data[list].items[selection]"></detail-view>
