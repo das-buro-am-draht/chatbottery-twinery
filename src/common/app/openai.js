@@ -128,17 +128,33 @@ const pageAnalysis = (params, url) => {
 						if (start >= 0 && start < end) {
 							const json = JSON.parse(choice.message.content.substring(start, end + 1));
 							if (!json.image_url && doc.body) {
-								const ignore = ['svg','ico'];
+								const image = {
+									priority: -1,
+									url: '',
+								};
+								const ignore = ['ico','svg','gif','png'];
 								const images = doc.body.querySelectorAll('img');
 								for (let i = 0; i < images.length; i++) {
-									const image = images[i];
-									if (image.hasAttribute('src')) {
-										const src = image.getAttribute('src');
-										json.image_url = absUrl(url, src);
-										if (!ignore.some((type) => src.endsWith(`.${type}`))) {
+									const img = images[i];
+									if (img.hasAttribute('src')) {
+										const src = img.getAttribute('src');
+										if (!ignore.some((type, index) => {
+											if (src.endsWith(`.${type}`)) {
+												if (index > image.priority) {
+													image.priority = index;
+													image.url = src;
+												}
+												return true;
+											}
+											return false;
+										})) {
+											image.url = src;
 											break;
 										}
 									}
+								}
+								if (image.url) {
+									json.image_url = absUrl(url, image.url);
 								}
 							}
 							if (!json.title && doc.head) {
