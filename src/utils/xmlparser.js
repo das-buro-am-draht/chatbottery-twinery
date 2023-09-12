@@ -27,9 +27,6 @@ const buttonToText = (button) => {
   const label = trim(button.label);
   const link  = trim(button.link);
   const func  = trim(button.func);
-  if (!link) {
-    return '';
-  }
   let text = `${label || ''}|${link || ''}`;
   if (func) {
     text += `|${func}`;

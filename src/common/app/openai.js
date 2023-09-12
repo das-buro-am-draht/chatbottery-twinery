@@ -1,4 +1,4 @@
-const { isValidUrl, trim } = require('../../utils/common');
+const { absoluteUrl, trim } = require('../../utils/common');
 
 const apikey = {
 	fetch: 'gKo86o8F769Bfi879tzht87BRjhcg24cj1hcjvgv345109t3',
@@ -78,20 +78,6 @@ const suggestions = (params, placeholder, text, delimiter) => {
 	});
 };
 
-const absUrl = (host, path) => {
-	if (isValidUrl(path)) {
-		return path;
-	}
-	const url = new URL(host);
-	let uri = url.protocol + '//' + url.host;
-	if (path.startsWith('/')) {
-		return uri + path;
-	} else {
-		const pathname = String(url.pathname);
-		return uri + pathname.substring(0, pathname.lastIndexOf('/')) + '/' + path;
-	}
-};
-
 const pageAnalysis = (params, url) => {
 	const requestUrl = `${host}/fetch?apikey=${apikey.fetch}&url=${encodeURIComponent(url)}`;
 	return fetch(requestUrl)
@@ -154,7 +140,7 @@ const pageAnalysis = (params, url) => {
 									}
 								}
 								if (image.url) {
-									json.image_url = absUrl(url, image.url);
+									json.image_url = absoluteUrl(url, image.url);
 								}
 							}
 							if (!json.title && doc.head) {

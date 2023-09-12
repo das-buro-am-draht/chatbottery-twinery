@@ -16,10 +16,13 @@
 		</div>
 		<div class="passageUI-row">
 			<label for="link">Link / Passage:</label>
-			<input type="text" list="passages" name="link" v-el:link @input="onChangeLink($event)" />
-			<datalist v-if="passages" id="passages">
-				<option v-for="passage in passages" :value="passage">
-			</datalist>
+			<div class="passageUI-row-input">
+				<input type="text" list="passages" name="link" v-el:link @input="onChangeLink($event)" />
+				<datalist v-if="passages" id="passages">
+					<option v-for="passage in passages" :value="passage">
+				</datalist>
+				<p class="error" v-show="task.buttons[selection] && !task.buttons[selection].link">{{ 'Button link must be set!' | say }}</p>
+			</div>
 		</div>
 		<div class="passageUI-row">
 			<label for="action">Action Button:</label>
