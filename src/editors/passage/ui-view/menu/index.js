@@ -60,9 +60,11 @@ module.exports = Vue.extend({
 								return item.getType(type).then((blob) => blob.text().then((text) => {
 									try {
 										const task = JSON.parse(text);
-										const index = this.$parent.tasks.length;
-										this.$parent.tasks.push(task);
-										Vue.nextTick(() => this.$parent.onTaskClicked(index));
+										if (task.type && types[task.type]) {
+											const index = this.$parent.tasks.length;
+											this.$parent.tasks.push(task);
+											Vue.nextTick(() => this.$parent.onTaskClicked(index));
+										}
 									} catch(e) { }
 								}));
 							}
