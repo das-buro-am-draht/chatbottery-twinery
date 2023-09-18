@@ -6,6 +6,7 @@
 					<div class="passageUI-task-gripper" draggable="true" @dragstart.stop="drag(index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop(index, $event)"></div>
 					<!-- <button type="button" class="passageUI-task-collapse" @click.stop="toggleCollapse(index)" title="{{ 'Expand / Collapse' | say }}"></button> -->
 					<span class="passageUI-task-caption">{{ caption(task) }}</span>
+					<button type="button" class="passageUI-task-copy" @click="onCopy(index)" title="Copy to Clipboard"></button>
 					<button type="button" class="passageUI-task-props" @click="onSettings(index)" :style="settingsStyle(index)" title="Settings (Condition / Class name)"></button>
 					<button type="button" class="passageUI-task-remove" @click.stop="onDelete(index)" title="{{'Delete entry' | say}}"></button>
 				</div>

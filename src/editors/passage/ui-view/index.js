@@ -77,6 +77,13 @@ module.exports = Vue.extend({
 		isCollapsed(index) {
 			return this.taskElements[index].classList.contains(CLASS_COLLAPSED);
 		},
+		onCopy(index) {
+			const objBlob = new Blob([JSON.stringify(this.tasks[index])], { type: 'text/plain'});
+			const item = new ClipboardItem({[objBlob.type]: objBlob});
+			navigator.clipboard.write([item])
+				.then(() => notify(locale.say('Task was written to clipboard.'), 'info'))
+				.catch((error) => notify(error.message, 'danger'));
+		},
 		onSettings(index) {
 			this.settings ^= 1 << index;
 		},
