@@ -32,7 +32,7 @@ module.exports = Vue.extend({
 	computed: {
 		types() {
 			const items = { };
-			items['clipboard'] = 'From Clipboard'
+			items['clipboard'] = 'Paste here'
 			Object.entries(types).forEach(([key, value]) => {
 				switch (key) {
 					case 'chat':
