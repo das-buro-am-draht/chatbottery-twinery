@@ -1,5 +1,11 @@
 <drop-down position="bottom left" class="tags">
 	<div class="menu">
+		<div class="menu__item" @click="paste">
+			<span class="menu__item--icon">
+				<img src="../../../../common/img/ui-paste.svg">
+			</span>
+			<span class="menu__item--text">{{ 'Paste here' | say }}</span>
+		</div>
 		<div class="menu__item" v-for="(type, text) in types" @click="addNew(type)">
 			<span class="menu__item--icon">
 				<img :src="image(type)">

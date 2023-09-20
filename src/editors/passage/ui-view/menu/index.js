@@ -12,27 +12,9 @@ module.exports = Vue.extend({
 		},
 	},
 
-	// data: () => ({
-	// 	clipboard: false,
-	// }),
-
-	// ready() {
-	// 	navigator.clipboard.read().then((items) => {
-	// 		for (const item of items) {
-	// 			for (const type of item.types) {
-	// 				if (type === 'text/plain') {
-	// 					this.clipboard = true;
-	// 					return;
-	// 				}
-	// 			}
-	// 		}
-	// 	});
-	// },
-
 	computed: {
 		types() {
 			const items = { };
-			items['clipboard'] = 'Paste here'
 			Object.entries(types).forEach(([key, value]) => {
 				switch (key) {
 					case 'chat':
@@ -51,36 +33,34 @@ module.exports = Vue.extend({
 	methods: {
 		label: (type) => label(type),
 
-		addNew(type) {
-			if (type === 'clipboard') {
-				navigator.clipboard.read().then((items) => { 
-					for (const item of items) {
-						for (const type of item.types) {
-							if (type === 'text/plain') {
-								return item.getType(type).then((blob) => blob.text().then((text) => {
-									try {
-										const task = JSON.parse(text);
-										if (task.type && types[task.type]) {
-											const index = this.$parent.tasks.length;
-											this.$parent.tasks.push(task);
-											Vue.nextTick(() => this.$parent.onTaskClicked(index));
-										}
-									} catch(e) { }
-								}));
-							}
+		paste() {
+			navigator.clipboard.read().then((items) => { 
+				for (const item of items) {
+					for (const type of item.types) {
+						if (type === 'text/plain') {
+							return item.getType(type).then((blob) => blob.text().then((text) => {
+								try {
+									const task = JSON.parse(text);
+									if (task.type && types[task.type]) {
+										const index = this.$parent.tasks.length;
+										this.$parent.tasks.push(task);
+										Vue.nextTick(() => this.$parent.onTaskClicked(index));
+									}
+								} catch(e) { }
+							}));
 						}
 					}
-				});
-			} else {
-				this.$parent.addTask(type);
-			}
+				}
+			});
+		},
+
+		addNew(type) {
+			this.$parent.addTask(type);
 		},
 		image(type) {
 			switch (type) {
 				default:
 					return require('../../../../common/img/element-textmessage.svg');
-				case 'clipboard':
-					return require('../../../../common/img/ui-paste.svg');
 				case 'buttons':
 					return require('../../../../common/img/element-buttons.svg');
 				case 'image':
