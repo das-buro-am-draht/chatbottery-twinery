@@ -1,4 +1,4 @@
-<modal-dialog id="userModal" :origin="origin" :can-widen="true" v-ref:modal @click.stop="onDialogClicked($event)">
+<modal-dialog id="userModal" :origin="origin" :can-close="canClose" :can-widen="true" v-ref:modal @click.stop="onDialogClicked($event)">
 	<span slot="title">{{ 'User data' | say }}</span>
 	<!-- <p>{{ 'Enter Field Names without leading \'$\'' | say }}</p> -->
 	<div class="user__content">
@@ -29,11 +29,11 @@
 		</div>
 		<div class="append">
 			<div></div>
-			<button type="button" title="{{ 'Add new Task' | say }}" @click="add"></button>
+			<button type="button" title="{{ 'Add new Field' | say }}" @click="add"></button>
 			<div></div>
 		</div>
 	</div>
-	<input name="storeInLocalStorage" type="checkbox" v-model="storeInLocalStorage">
+	<input name="storeInLocalStorage" type="checkbox" @change="modified = true" v-model="storeInLocalStorage">
 	<label for="storeInLocalStorage">{{ 'Store Data in Local Storage' | say }}</label>
 	<div class="user__save">
 		<button class="create" @click="save" :disabled="!isValid">{{ 'Save' | say }}</button>

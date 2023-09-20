@@ -9,6 +9,7 @@ const {
 } = require("../../utils/common");
 const locale = require("../../locale");
 const notify = require("../../ui/notify");
+const { confirm } = require('../../dialogs/confirm');
 const PassageEditor = require("../../editors/passage");
 const SearchDropdown = require('./search');
 const { createNewlyLinkedPassages } = require('../../data/actions/passage');
@@ -27,7 +28,8 @@ module.exports = Vue.extend({
 		origin: null,
 		userData: [],
 		newData: {},
-		storeInLocalStorage: false
+		storeInLocalStorage: false,
+		modified: false,
 	}),
 
 	ready() {
@@ -75,6 +77,7 @@ module.exports = Vue.extend({
 			});
 
 		if (Object.keys(this.newData).length > 0) {
+			this.modified = true;
 			this.userData = this.userData.concat(Object.entries(this.newData)
 				.filter(([k]) => k.startsWith('$'))
 				.map(([k,v]) => [k.substring(1), v]));
@@ -85,6 +88,7 @@ module.exports = Vue.extend({
 			this.add();
 		}
 
+		this.$watch('userData', () => this.modified = true, { deep: true });
 	},
 
 	computed: {
@@ -120,6 +124,7 @@ module.exports = Vue.extend({
 				const removeIdx = toIdx > fromIdx ? fromIdx : fromIdx + 1;
 				userData.splice(removeIdx, 1);
 				this.userData.splice(0, this.userData.length, ...userData);
+				this.modified = true;
 			}
 		},
 
@@ -135,6 +140,7 @@ module.exports = Vue.extend({
 
 		remove(index) {
 			this.userData.splice(index, 1);
+			this.modified = true;
 		},
 
 		closeSearchDropdown() {
@@ -251,7 +257,22 @@ module.exports = Vue.extend({
 			}
 
 			this.updateStory(this.storyId, { userData: data });
+			this.modified = false;
 			this.$refs.modal.close();
+		},
+
+		canClose() {
+			if (!this.modified) {
+				return true;
+			}
+			confirm({
+				message: locale.say('There were changes detected for the user data dialog. Are you sure you want to discard those changes?'),
+				buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Discard changes'),
+				buttonClass: 'danger'
+			}).then(() => {
+				this.$refs.modal.$emit('close');
+			});
+			return false;
 		},
 
 	},

@@ -14,7 +14,7 @@ module.exports = Vue.extend({
 
 	computed: {
 		types() {
-			const items = {};
+			const items = { };
 			Object.entries(types).forEach(([key, value]) => {
 				switch (key) {
 					case 'chat':
@@ -32,6 +32,27 @@ module.exports = Vue.extend({
 
 	methods: {
 		label: (type) => label(type),
+
+		paste() {
+			navigator.clipboard.read().then((items) => { 
+				for (const item of items) {
+					for (const type of item.types) {
+						if (type === 'text/plain') {
+							return item.getType(type).then((blob) => blob.text().then((text) => {
+								try {
+									const task = JSON.parse(text);
+									if (task.type && types[task.type]) {
+										const index = this.$parent.tasks.length;
+										this.$parent.tasks.push(task);
+										Vue.nextTick(() => this.$parent.onTaskClicked(index));
+									}
+								} catch(e) { }
+							}));
+						}
+					}
+				}
+			});
+		},
 
 		addNew(type) {
 			this.$parent.addTask(type);
