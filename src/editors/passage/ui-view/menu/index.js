@@ -1,5 +1,10 @@
 const Vue = require('vue');
-const { label, types } = require('../../../../utils/task');
+const { 
+	label, 
+	types, 
+	createTask, 
+	clipboardTask,
+} = require('../../../../utils/task');
 
 module.exports = Vue.extend({
 
@@ -9,6 +14,17 @@ module.exports = Vue.extend({
 		story: {
 			type: Object,
 			required: false,
+		},
+	},
+
+	data: () => ({
+		clipboard: false,
+	}),
+
+	events: {
+		'drop-down-opened'() {
+			this.clipboard = false;
+			clipboardTask().then((task) => this.clipboard = !!task);
 		},
 	},
 
@@ -27,35 +43,22 @@ module.exports = Vue.extend({
 				}
 			});
 			return items;
-		}
+		},
 	},
 
 	methods: {
 		label: (type) => label(type),
 
 		paste() {
-			navigator.clipboard.read().then((items) => { 
-				for (const item of items) {
-					for (const type of item.types) {
-						if (type === 'text/plain') {
-							return item.getType(type).then((blob) => blob.text().then((text) => {
-								try {
-									const task = JSON.parse(text);
-									if (task.type && types[task.type]) {
-										const index = this.$parent.tasks.length;
-										this.$parent.tasks.push(task);
-										Vue.nextTick(() => this.$parent.onTaskClicked(index));
-									}
-								} catch(e) { }
-							}));
-						}
-					}
+			clipboardTask().then((task) => {
+				if (task) {
+					this.$parent.addTask(task);
 				}
 			});
 		},
 
 		addNew(type) {
-			this.$parent.addTask(type);
+			this.$parent.addTask(createTask(type));
 		},
 		image(type) {
 			switch (type) {

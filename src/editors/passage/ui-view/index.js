@@ -4,7 +4,7 @@ const locale = require('../../../locale');
 const notify = require('../../../ui/notify');
 const { isEmpty } = require('../../../utils/common');
 const { phraseSuggestions } = require('../../../common/app/openai');
-const { label, createTask } = require('../../../utils/task');
+const { label } = require('../../../utils/task');
 
 require('./index.less');
 
@@ -207,9 +207,8 @@ module.exports = Vue.extend({
 				this.openai.component.$emit('openai-selected', suggestion);
 			}
 		},
-		addTask(type) {
+		addTask(task) {
 			const index = this.tasks.length;
-			const task = createTask(type);
 			this.tasks.push(task);
 			Vue.nextTick(() => this.onTaskClicked(index));
 		},

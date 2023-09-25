@@ -1,6 +1,6 @@
 <drop-down position="bottom left" class="tags">
 	<div class="menu">
-		<div class="menu__item" @click="paste">
+		<div v-if="clipboard" class="menu__item" @click="paste">
 			<span class="menu__item--icon">
 				<img src="../../../../common/img/ui-paste.svg">
 			</span>
