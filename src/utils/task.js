@@ -61,8 +61,27 @@ const createTask = (type, attributes = {}) => {
 			task.attributes['validate'] = task.attributes['validate'] || '';
 			task.autocomplete = [];
 			break; 
-		}
+	}
 	return task;
 };
 
-module.exports = { label, types, createTask };
+const clipboardTask = () => {
+	return navigator.clipboard.read().then((items) => { 
+		for (const item of items) {
+			for (const type of item.types) {
+				if (type === 'text/plain') {
+					return item.getType(type).then((blob) => blob.text().then((text) => {
+						try {
+							const task = JSON.parse(text);
+							if (task.type && types[task.type]) {
+								return task;
+							}
+						} catch(e) { }
+					}));
+				}
+			}
+		}
+	}) // .catch(() => { });
+};
+
+module.exports = { label, types, createTask, clipboardTask };

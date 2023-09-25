@@ -8,6 +8,7 @@ const linkParser = require('../../data/link-parser');
 const locale = require('../../locale');
 const notify = require('../../ui/notify');
 const { stringFromDate } = require('../../utils/common');
+const { proxy } = require('../../utils/proxy');
 
 require('./index.less');
 
@@ -53,7 +54,8 @@ module.exports = Vue.extend({
 					const queryString = Object.keys(params).map((key) => 
 						encodeURIComponent(key) + '=' + encodeURIComponent(params[key])
 					).join('&');
-					fetch(`${url}?${queryString}`)
+					const requestUrl = proxy.fetch() + '&url=' + encodeURIComponent(`${url}?${queryString}`);
+					fetch(requestUrl)
 						.then((response) => {
 							if (!response.ok) {
 								throw new Error(`HTTP-Status: ${response.status}`);
