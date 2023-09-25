@@ -1,15 +1,8 @@
 const { absoluteUrl, trim } = require('../../utils/common');
-
-const apikey = {
-	fetch: 'gKo86o8F769Bfi879tzht87BRjhcg24cj1hcjvgv345109t3',
-	openai: 'RsCsGSeRfwlZYh21fhJNXrMsStRWRSyDBF8CjTNoLELL9',
-};
-const host = localStorage.getItem('DEV_ENV') === 'true'
-           ? 'http://chatbot.proxy'
-           : 'https://proxy.chatbottery.com';
+const { proxy } = require('../../utils/proxy');
 
 const openai = (data) => {
-  const url = `${host}/openai?apikey=${apikey.openai}`;
+  const url = proxy.openai();
   return fetch(url, {
     method: 'POST',
     body: JSON.stringify(data)
@@ -79,7 +72,7 @@ const suggestions = (params, placeholder, text, delimiter) => {
 };
 
 const pageAnalysis = (params, url) => {
-	const requestUrl = `${host}/fetch?apikey=${apikey.fetch}&url=${encodeURIComponent(url)}`;
+	const requestUrl = proxy.fetch() + `&url=${encodeURIComponent(url)}`;
 	return fetch(requestUrl)
 		.then((response) => {
 			if (!response.ok) {
