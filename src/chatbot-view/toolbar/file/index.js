@@ -39,7 +39,8 @@ module.exports = Vue.extend({
 
 	computed: {
 		matomo() {
-			const { matomo } = this.story.plugins;
+			const story = this.allStories.find(story => story.id === this.story.id);
+			const { matomo } = story.plugins;
 			return matomo && matomo.url && matomo.authToken;
 		},
 	},
@@ -111,6 +112,9 @@ module.exports = Vue.extend({
 	},
 
 	vuex: {
+		getters: {
+			allStories: state => state.story.stories
+		},
 		actions: {
 			updateStory,
 		},

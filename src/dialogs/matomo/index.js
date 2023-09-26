@@ -84,8 +84,7 @@ module.exports = Vue.extend({
 
 	methods: {
 		loadMatomo() {
-			const story = this.allStories.find(story => story.id === this.storyId);
-			const matomo = story.plugins.matomo;
+			const { matomo } = this.story.plugins;
 			if (matomo && matomo.url && matomo.authToken) {
 				const url = matomo.url.replace(/(\S+\/)(\S+\.php\/?)?$/i, '$1');
 				if (url) {
