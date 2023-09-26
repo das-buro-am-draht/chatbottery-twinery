@@ -12,8 +12,11 @@
 		display: flex;
 		.matomo-visit {
 			padding: 0 10px;
-			width: 100px;
 			text-align: center;
+			min-width: 100px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 			&:not(:last-child) {
 				border-right: #888 1px solid;
 			}
@@ -24,6 +27,7 @@
 			&--label {
 				margin: 5px 0 0;
 				font-size: 9pt;
+				max-width: 80px;
 			} 
 		}
 	}
@@ -52,7 +56,7 @@
 			}
 		}
 		.matomo-items {
-			max-height: 80vh;
+			max-height: 65vh;
 			overflow-y: auto;
 			padding: 0 10px;
 			thead {
