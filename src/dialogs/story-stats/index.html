@@ -56,28 +56,4 @@
 		{{{ 'The IFID for this chatbot is &lt;span class="ifid"&gt;%s&lt;/span&gt;. (&lt;a href="http:\/\/ifdb.tads.org/help-ifid" target="_blank"&gt;What\'s an IFID?&lt;/a&gt;)' | say story.ifid }}}
 		</p> -->
 	</div>
-
-	<template v-if="matomo.items">
-		<div class="content">
-			<div class="stats-matomo">
-				<h4 class="stats-matomo--header">Matomo UNMATCHED</h4>
-				<input type="date" class="stats-matomo--date" @change="loadMatomo" v-model="matomo.from" placeholder="{{ 'From Date' | say }}" title="{{ 'From Date' | say }}">
-				<input type="date" class="stats-matomo--date" @change="loadMatomo" v-model="matomo.to" placeholder="{{ 'To Date' | say }}" title="{{ 'To Date' | say }}">
-			</div>
-			<table class="unlined">
-				<tbody>
-					<template v-for="item in matomo.items">
-					<tr>
-						<td>
-							{{ item.events }}
-						</td>
-						<td>
-							{{ item.label }}
-						</td>
-					</tr>
-				</template>
-				</tbody>
-			</table>
-		</div>
-	</template>
 </modal-dialog>
