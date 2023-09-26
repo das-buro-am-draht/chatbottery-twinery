@@ -1,0 +1,71 @@
+#matomoModal {
+	.content {
+		background-color: #eee;
+	}
+	.matomo-date {
+		display: flex;
+		justify-content: space-between;
+		margin: 12px 0;
+	}
+	.matomo-visits {
+		margin: 10px 0;
+		display: flex;
+		.matomo-visit {
+			padding: 0 10px;
+			width: 100px;
+			text-align: center;
+			&:not(:last-child) {
+				border-right: #888 1px solid;
+			}
+			&--value {
+				font-size: 20pt;
+				font-weight: 700;
+			} 
+			&--label {
+				margin: 5px 0 0;
+				font-size: 9pt;
+			} 
+		}
+	}
+	.matomo-stats {
+		background-color: #fff;
+	 	.matomo-tabs {
+			display: flex;
+			background-color: #eee;
+			.matomo-tab {
+				font-size: 12pt;
+				padding: 10px;
+				&.active {
+					color: #000;
+					background-color: #fff;
+					font-weight: 700;
+				}
+			}
+		}
+		.matomo-label {
+			padding: 10px;
+			font-style: italic;
+			.badge {
+				i {
+					font-style: italic;
+				}
+			}
+		}
+		.matomo-items {
+			max-height: 80vh;
+			overflow-y: auto;
+			padding: 0 10px;
+			thead {
+				color: #888;
+				font-size: 10pt;
+				text-transform: uppercase;
+			}
+			td:not(:last-child) {
+				padding-right: 0.5em;
+			}
+			td:last-child {
+				text-align: right;
+			}
+		}
+	}
+}
