@@ -40,6 +40,10 @@ const stringFromDate = (date) =>
 const regularExpression = (str, flags) => new RegExp(
   str.replace(/([.*+?^${}()|\[\]\/\\])/g, '\\$1'), flags
 );
+
+const queryParams = (obj) => Object.entries(obj).map(([key, value]) => 
+	encodeURIComponent(key) + '=' + encodeURIComponent(value)
+).join('&');
   
 module.exports = { 
   trim, 
@@ -49,4 +53,5 @@ module.exports = {
   camelToKebab,
   stringFromDate,
   regularExpression, 
+  queryParams,
 };

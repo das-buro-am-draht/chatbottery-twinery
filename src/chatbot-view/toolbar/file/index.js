@@ -12,8 +12,9 @@ const UserDataDialog = require("../../../dialogs/user");
 const SettingsDialog = require("../../../dialogs/settings");
 const FormatDialog = require('../../../dialogs/story-format');
 const ExternalDataDialog = require("../../../dialogs/external-data");
+const MatomoDialog = require("../../../dialogs/matomo");
 const { updateStory } = require("../../../data/actions/story");
-const {proofStory} = require('../../../common/launch-story');
+const { proofStory } = require('../../../common/launch-story');
 
 require("./index.less");
 
@@ -31,6 +32,17 @@ module.exports = Vue.extend({
 		active: false,
 		proofingFormat: null,
 	}),
+
+	ready() {
+		this.$data.proofingFormat = this.$store.state.storyFormat.formats.find(format => format.isReview);
+	},
+
+	computed: {
+		matomo() {
+			const { matomo } = this.story.plugins;
+			return matomo && matomo.url && matomo.authToken;
+		},
+	},
 
 	methods: {
 		toggleDropdown() {
@@ -53,6 +65,12 @@ module.exports = Vue.extend({
 		},
 		storyStats(e) {
 			new StatsDialog({
+				data: { storyId: this.story.id, origin: e.target },
+				store: this.$store,
+			}).$mountTo(document.body);
+		},
+		matomoStats(e) {
+			new MatomoDialog({
 				data: { storyId: this.story.id, origin: e.target },
 				store: this.$store,
 			}).$mountTo(document.body);
@@ -90,10 +108,6 @@ module.exports = Vue.extend({
 		review() {
 			proofStory(this.$store, this.story.id, this.proofingFormat.id);
 		}
-	},
-
-	ready() {
-		this.$data.proofingFormat = this.$store.state.storyFormat.formats.find(format => format.isReview);
 	},
 
 	vuex: {

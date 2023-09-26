@@ -128,5 +128,13 @@ const Locale = (module.exports = {
 
 	date(time, format) {
 		return moment(time).format(format);
+	},
+
+	time(seconds) {
+		const minutes = Math.floor(seconds / 60);
+		const hours = Math.floor(seconds / 3600);
+		return (hours > 0 ? ('0' + (hours       )).slice(-2) + ':' : '') 
+		                  + ('0' + (minutes % 60)).slice(-2) + ':'
+		                  + ('0' + (seconds % 60)).slice(-2);
 	}
 });

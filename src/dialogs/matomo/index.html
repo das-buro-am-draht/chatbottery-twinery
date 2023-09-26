@@ -1,0 +1,70 @@
+<modal-dialog id="matomoModal" :origin="origin">
+	<span slot="title">
+	{{ 'Matomo Analytics' | say }}
+	</span>
+	<div class="matomo-date">
+		<div>
+			<label for="from">{{ 'From' | say }}:</label>
+			<input type="date" name="from" @change="loadMatomo" v-model="date.from" placeholder="{{ 'From Date' | say }}" title="{{ 'From Date' | say }}">
+		</div>
+		<div>
+			<label for="from">{{ 'To' | say }}:</label>
+			<input type="date" name="to" @change="loadMatomo" v-model="date.to" placeholder="{{ 'To Date' | say }}" title="{{ 'To Date' | say }}">
+		</div>
+	</div>
+
+	<div class="matomo-visits" v-if="visits">
+		<div class="matomo-visit">
+			<div class="matomo-visit--value">{{ totalVisits }}</div>
+			<p class="matomo-visit--label">{{ 'User in total' | say }}</p>
+		</div>
+		<div class="matomo-visit">
+			<div class="matomo-visit--value">{{ timePerVisit | time }}</div>
+			<p class="matomo-visit--label">{{ 'Ø time per visit' | say }}</p>
+		</div>
+		<div class="matomo-visit">
+			<div class="matomo-visit--value">{{ actionsPerVisit }}</div>
+			<p class="matomo-visit--label">{{ 'Ø interactions per visit' | say }}</p>
+		</div>
+		<div class="matomo-visit">
+			<div class="matomo-visit--value">{{ passagesVisited }}</div>
+			<p class="matomo-visit--label">{{ 'passages visited' | say }}</p>
+		</div>
+	</div>
+
+	<div class="matomo-stats">
+		<div class="matomo-tabs">
+			<button type="button" class="matomo-tab" :class="{ 'active': tab === 0 }" @click="tab = 0">{{ 'Unmatched' | say }}</button>
+			<button type="button" class="matomo-tab" :class="{ 'active': tab === 1 }" @click="tab = 1">{{ 'Ambiguous' | say }}</button>
+			<button type="button" class="matomo-tab" :class="{ 'active': tab === 2 }" @click="tab = 2">{{ 'Passage usage' | say }}</button>
+		</div>
+		<div class="matomo-label">
+			<span class="badge">
+				<i class="fa fa-info"></i>
+			</span>
+			<span>{{ label }}</span>
+		</div>
+		<div class="matomo-items">
+			<table>
+				<thead>
+					<tr>
+						<td>{{ 'Name' | say }}</td>
+						<td>{{ 'Events' | say }}</td>
+					</tr>
+				</thead>
+				<tbody>
+					<template v-for="item in items[tab]">
+						<tr>
+							<td>
+								{{ item.label }}
+							</td>
+							<td>
+								{{ item.events }}
+							</td>
+						</tr>
+					</template>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</modal-dialog>
