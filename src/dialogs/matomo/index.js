@@ -24,6 +24,7 @@ module.exports = Vue.extend({
 		visits: null,
 		items: [[],[],[]],
 		tab: 0,
+		processing: false,
 	}),
 
 	ready() {
@@ -115,6 +116,7 @@ module.exports = Vue.extend({
 					};
 					const queryString = queryParams(params);
 					const requestUrl = proxy.fetch() + '&url=' + encodeURIComponent(`${url}?${queryString}`);
+					this.processing = true;
 					fetch(requestUrl)
 						.then((response) => {
 							if (!response.ok) {
@@ -142,7 +144,7 @@ module.exports = Vue.extend({
 										}										
 										break;
 								}
-							})
+							});
 							this.visits = visits;
 							this.items = items.map((list) => list = list.sort((a, b) => 
 							b.events !== a.events ? b.events - a.events : String(a.label).localeCompare(b.label)
@@ -150,7 +152,8 @@ module.exports = Vue.extend({
 						})
 						.catch((error) => {
 							notify(locale.say(`Error on loading Matomo data from '${url}: ${error.message}`), 'danger');
-						});
+						})
+						.finally(() => this.processing = false);
 				}
 			}
 		},
