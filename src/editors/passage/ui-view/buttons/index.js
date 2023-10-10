@@ -40,14 +40,14 @@ module.exports = Vue.extend({
 			event.dataTransfer.setData('cb/ui-button', data);
 		},		
 		dragenter(event) {
-			if (event.dataTransfer.types.includes('cb/ui-button')) {
+			if (event.dataTransfer && event.dataTransfer.types.includes('cb/ui-button')) {
 				event.preventDefault(); // is allowed
 			}
 		},
 		drop(index, event) {
 			const toIdx = index;
 			const [_uid, ix] = event.dataTransfer.getData('cb/ui-button').split(',');
-			event.dataTransfer.clearData('cb/ui-button');
+			// event.dataTransfer.clearData('cb/ui-button');
 			if (parseInt(_uid) !== this._uid) {
 				return; // don't allow other components
 			}
