@@ -109,14 +109,14 @@ module.exports = Vue.extend({
 			event.dataTransfer.setData('cb/user-data', index);
 		},
 		dragenter(event) {
-			if (event.dataTransfer.types.includes('cb/user-data')) {
+			if (event.dataTransfer && event.dataTransfer.types.includes('cb/user-data')) {
 				event.preventDefault(); // is allowed
 			}
 		},
 		drop(index, event) {
 			const toIdx = index;
 			const fromIdx = parseInt(event.dataTransfer.getData('cb/user-data'), 10);
-			event.dataTransfer.clearData('cb/user-data');
+			// event.dataTransfer.clearData('cb/user-data');
 			if (toIdx !== fromIdx && fromIdx >= 0 && fromIdx < this.userData.length) {
 				const userData = [ ...this.userData ];
 				const insertIdx = toIdx > fromIdx ? toIdx + 1 : toIdx;

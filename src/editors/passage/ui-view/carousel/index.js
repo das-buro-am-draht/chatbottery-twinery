@@ -47,14 +47,14 @@ module.exports = Vue.extend({
 			event.dataTransfer.setData('cb/ui-carousel', data);
 		},		
 		dragenter(event) {
-			if (event.dataTransfer.types.includes('cb/ui-carousel')) {
+			if (event.dataTransfer && event.dataTransfer.types.includes('cb/ui-carousel')) {
 				event.preventDefault(); // is allowed
 			}
 		},
 		drop(index, event) {
 			const toIdx = index;
 			const [_uid, ix] = event.dataTransfer.getData('cb/ui-carousel').split(',');
-			event.dataTransfer.clearData('cb/ui-carousel');
+			// event.dataTransfer.clearData('cb/ui-carousel');
 			if (parseInt(_uid) !== this._uid) {
 				return; // don't allow other components
 			}

@@ -49,14 +49,14 @@ module.exports = Vue.extend({
 			event.dataTransfer.setData('cb/ui-tiles', data);
 		},		
 		dragenter(event) {
-			if (event.dataTransfer.types.includes('cb/ui-tiles')) {
+			if (event.dataTransfer && event.dataTransfer.types.includes('cb/ui-tiles')) {
 				event.preventDefault(); // is allowed
 			}
 		},
 		drop(index, event) {
 			const toIdx = index;
 			const [_uid, ix] = event.dataTransfer.getData('cb/ui-tiles').split(',');
-			event.dataTransfer.clearData('cb/ui-tiles');
+			// event.dataTransfer.clearData('cb/ui-tiles');
 			if (parseInt(_uid) !== this._uid) {
 				return; // don't allow other components
 			}

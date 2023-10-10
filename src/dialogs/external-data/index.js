@@ -102,14 +102,14 @@ module.exports = Vue.extend({
 			event.dataTransfer.setData('cb/ed-list', data);
 		},		
 		dragenterList(event) {
-			if (event.dataTransfer.types.includes('cb/ed-list')) {
+			if (event.dataTransfer && event.dataTransfer.types.includes('cb/ed-list')) {
 				event.preventDefault(); // is allowed
 			}
 		},
 		dropList(index, event) {
 			const toIdx = index;
 			const [_uid, ix] = event.dataTransfer.getData('cb/ed-list').split(',');
-			event.dataTransfer.clearData('cb/ed-list');
+			// event.dataTransfer.clearData('cb/ed-list');
 			if (parseInt(_uid) !== this._uid) {
 				return; // don't allow other components
 			}
@@ -181,14 +181,14 @@ module.exports = Vue.extend({
 			event.dataTransfer.setData('cb/ed-items', data);
 		},		
 		dragenterItem(event) {
-			if (event.dataTransfer.types.includes('cb/ed-items')) {
+			if (event.dataTransfer && event.dataTransfer.types.includes('cb/ed-items')) {
 				event.preventDefault(); // is allowed
 			}
 		},
 		dropItem(index, event) {
 			const toIdx = index;
 			const [_uid, ix] = event.dataTransfer.getData('cb/ed-items').split(',');
-			event.dataTransfer.clearData('cb/ed-items');
+			// event.dataTransfer.clearData('cb/ed-items');
 			if (parseInt(_uid) !== this._uid) {
 				return; // don't allow other components
 			}

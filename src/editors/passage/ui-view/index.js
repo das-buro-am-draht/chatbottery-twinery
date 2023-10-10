@@ -154,14 +154,14 @@ module.exports = Vue.extend({
 			event.dataTransfer.setData('cb/ui-task', index);
 		},
 		dragenter(event) {
-			if (event.dataTransfer.types.includes('cb/ui-task')) {
+			if (event.dataTransfer && event.dataTransfer.types.includes('cb/ui-task')) {
 				event.preventDefault(); // is allowed
 			}
 		},
 		drop(index, event) {
 			const toIdx = index;
 			const fromIdx = parseInt(event.dataTransfer.getData('cb/ui-task'), 10);
-			event.dataTransfer.clearData('cb/ui-task');
+			// event.dataTransfer.clearData('cb/ui-task');
 			if (toIdx !== fromIdx && fromIdx >= 0 && fromIdx < this.tasks.length) {
 				const tasks = [ ...this.tasks ];
 				const insertIdx = toIdx > fromIdx ? toIdx + 1 : toIdx;
