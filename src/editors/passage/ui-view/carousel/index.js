@@ -54,7 +54,7 @@ module.exports = Vue.extend({
 		drop(index, event) {
 			const toIdx = index;
 			const [_uid, ix] = event.dataTransfer.getData('cb/ui-carousel').split(',');
-			// event.dataTransfer.clearData('cb/ui-carousel');
+			// event.dataTransfer.clearData('cb/ui-carousel'); // in Firefox 'clearData' cannot be used here
 			if (parseInt(_uid) !== this._uid) {
 				return; // don't allow other components
 			}

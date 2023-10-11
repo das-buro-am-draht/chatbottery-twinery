@@ -70,13 +70,15 @@ const clipboardTask = () => {
 		for (const item of items) {
 			for (const type of item.types) {
 				if (type === 'text/plain') {
-					return item.getType(type).then((blob) => blob.text().then((text) => {
-						try {
-							const task = JSON.parse(text);
-							if (task.type && types[task.type]) {
-								return task;
-							}
-						} catch(e) { }
+					return item.getType(type).then((blob) => blob.text && blob.text().then((text) => {
+						if (text) {
+							try {
+								const task = JSON.parse(text);
+								if (task.type && types[task.type]) {
+									return task;
+								}
+							} catch(e) { }
+						}
 					}));
 				}
 			}

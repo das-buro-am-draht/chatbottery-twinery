@@ -94,7 +94,6 @@ module.exports = Vue.extend({
 				data: { storyId: this.storyId, origin: event.target },
 				store: this.$store,
 			}).$mountTo(document.body);
-
 		},
 
 		dragList(index, event) {
@@ -109,7 +108,7 @@ module.exports = Vue.extend({
 		dropList(index, event) {
 			const toIdx = index;
 			const [_uid, ix] = event.dataTransfer.getData('cb/ed-list').split(',');
-			// event.dataTransfer.clearData('cb/ed-list');
+			// event.dataTransfer.clearData('cb/ed-list'); // in Firefox 'clearData' cannot be used here
 			if (parseInt(_uid) !== this._uid) {
 				return; // don't allow other components
 			}
@@ -188,7 +187,7 @@ module.exports = Vue.extend({
 		dropItem(index, event) {
 			const toIdx = index;
 			const [_uid, ix] = event.dataTransfer.getData('cb/ed-items').split(',');
-			// event.dataTransfer.clearData('cb/ed-items');
+			// event.dataTransfer.clearData('cb/ed-items'); // in Firefox 'clearData' cannot be used here
 			if (parseInt(_uid) !== this._uid) {
 				return; // don't allow other components
 			}
