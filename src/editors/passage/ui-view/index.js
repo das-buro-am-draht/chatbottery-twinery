@@ -161,7 +161,7 @@ module.exports = Vue.extend({
 		drop(index, event) {
 			const toIdx = index;
 			const fromIdx = parseInt(event.dataTransfer.getData('cb/ui-task'), 10);
-			// event.dataTransfer.clearData('cb/ui-task');
+			// event.dataTransfer.clearData('cb/ui-task'); // in Firefox 'clearData' cannot be used here
 			if (toIdx !== fromIdx && fromIdx >= 0 && fromIdx < this.tasks.length) {
 				const tasks = [ ...this.tasks ];
 				const insertIdx = toIdx > fromIdx ? toIdx + 1 : toIdx;

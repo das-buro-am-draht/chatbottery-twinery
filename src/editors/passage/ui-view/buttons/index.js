@@ -47,7 +47,7 @@ module.exports = Vue.extend({
 		drop(index, event) {
 			const toIdx = index;
 			const [_uid, ix] = event.dataTransfer.getData('cb/ui-button').split(',');
-			// event.dataTransfer.clearData('cb/ui-button');
+			// event.dataTransfer.clearData('cb/ui-button'); // in Firefox 'clearData' cannot be used here
 			if (parseInt(_uid) !== this._uid) {
 				return; // don't allow other components
 			}
