@@ -45,7 +45,7 @@ module.exports = Vue.extend({
 		},
 
 		totalVisits() {
-			return this.visits.nb_visits;
+			return this.visits.nb_uniq_visitors || this.visits.nb_visits;
 		},
 
 		timePerVisit() {
