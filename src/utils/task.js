@@ -14,6 +14,8 @@ const types = {
 	// 'call'    : 'Call Control (Voice Bot)',
 };
 
+const clipboardType = 'text/plain';
+
 const label = (type) => types[type] || type;
 
 /* NOTE: all attributes and properties must be initialized for Vue::watch of the GUI to take effect
@@ -69,7 +71,7 @@ const clipboardTask = () => {
 	return navigator.clipboard.read().then((items) => { 
 		for (const item of items) {
 			for (const type of item.types) {
-				if (type === 'text/plain') {
+				if (type === clipboardType) {
 					return item.getType(type).then((blob) => blob && blob.text()).then((text) => {
 						if (text) {
 							try {
@@ -86,4 +88,4 @@ const clipboardTask = () => {
 	}) // .catch(() => { });
 };
 
-module.exports = { label, types, createTask, clipboardTask };
+module.exports = { label, types, createTask, clipboardTask, clipboardType };

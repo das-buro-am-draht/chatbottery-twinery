@@ -7,7 +7,9 @@ const locale = require('../../locale');
 const notify = require('../../ui/notify');
 const { stringFromDate, queryParams } = require('../../utils/common');
 const { proxy } = require('../../utils/proxy');
+const PassageEditor = require("../../editors/passage");
 const specialPassages = require('../../data/special-passages');
+const { createNewlyLinkedPassages } = require('../../data/actions/passage');
 
 require('./index.less');
 
@@ -157,9 +159,46 @@ module.exports = Vue.extend({
 				}
 			}
 		},
+		onItemClicked(passageName) {
+			const story = this.story;
+			const passage = story.passages.find(passage => passageName === passage.name);
+			if (!passage) {
+				console.error(`Passage: ${passageName} not found.`);
+				return;
+			}
+			const oldText = passage.text;
+			const afterEdit = () => {
+				if (this.$refs.modal && this.$refs.modal.$els.dlg) {
+					this.$refs.modal.$els.dlg.focus();
+				}
+				this.createNewlyLinkedPassages(
+					story.id,
+					passage.id,
+					oldText,
+					this.gridSize
+				);
+			};
+			new PassageEditor({
+				data: {
+					passageId: passage.id,
+					storyId: story.id,
+				},
+				store: this.$store,
+				storyFormat: {
+					name: story.storyFormat,
+					version: story.storyFormatVersion
+				}
+			})
+			.$mountTo(document.body)
+			.then(afterEdit)
+			.catch(afterEdit);
+		},
 	},
 
 	vuex: {
+		actions: {
+			createNewlyLinkedPassages,
+		},
 		getters: {
 			allStories: state => state.story.stories
 		}

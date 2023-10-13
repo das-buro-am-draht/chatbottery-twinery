@@ -4,7 +4,7 @@ const locale = require('../../../locale');
 const notify = require('../../../ui/notify');
 const { isEmpty } = require('../../../utils/common');
 const { phraseSuggestions } = require('../../../common/app/openai');
-const { label } = require('../../../utils/task');
+const { label, clipboardType } = require('../../../utils/task');
 
 require('./index.less');
 
@@ -78,7 +78,7 @@ module.exports = Vue.extend({
 			return this.taskElements[index].classList.contains(CLASS_COLLAPSED);
 		},
 		onCopy(index) {
-			const objBlob = new Blob([JSON.stringify(this.tasks[index])], { type: 'text/plain'});
+			const objBlob = new Blob([JSON.stringify(this.tasks[index])], { type: clipboardType});
 			const item = new ClipboardItem({[objBlob.type]: objBlob});
 			navigator.clipboard.write([item])
 				.then(() => notify(locale.say('Task was written to clipboard.'), 'info'))

@@ -61,7 +61,8 @@
 						<template v-for="item in items[tab]">
 							<tr>
 								<td>
-									{{ item.label }}
+									<a v-if="tab === 2" @click="onItemClicked(item.label)">{{ item.label }}</a>
+									<template v-else>{{ item.label }}</template>
 								</td>
 								<td>
 									{{ item.events }}
