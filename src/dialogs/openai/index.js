@@ -20,6 +20,7 @@ module.exports = Vue.extend({
 				initial: openaiDefault.tags,
 				placeholder: placeholders.tag,
 				params: '',
+				description: 'These settings apply to the Tag (Buzzword) Suggestions.',
 		 	},
 		 	phrase: {
 				pref: 'openaiPhrases',
@@ -28,6 +29,7 @@ module.exports = Vue.extend({
 				initial: openaiDefault.phrases,
 				placeholder: placeholders.phrase,
 				params: '',
+				description: 'These settings apply to message Text Alternatives.',
 		 	},
 		 	page: {
 				pref: 'openaiPage',
@@ -36,7 +38,16 @@ module.exports = Vue.extend({
 				initial: openaiDefault.page,
 				placeholder: placeholders.page,
 				params: '',
-				description: 'The following fields must be returned in JSON format:<table><tr><th style="text-align: left">Field name</th><th style="text-align: left">Type</th></tr><tr><td>title</td><td>string</td></tr><tr><td>author</td><td>string</td></tr><tr><td>date</td><td>string</td></tr><tr><td>phrases</td><td>array</td></tr><tr><td>main_keyword</td><td>string</td></tr><tr><td>keywords</td><td>array</td></tr><tr><td>image_url</td><td>string</td></tr><tr><td>summary</td><td>string</td></tr></table>'
+				description: 'These settings apply to External Data Website Analysis.<br>The following fields must be returned in JSON format:<table><tr><th style="text-align: left">Field name</th><th style="text-align: left">Type</th></tr><tr><td>title</td><td>string</td></tr><tr><td>author</td><td>string</td></tr><tr><td>date</td><td>string</td></tr><tr><td>phrases</td><td>array</td></tr><tr><td>main_keyword</td><td>string</td></tr><tr><td>keywords</td><td>array</td></tr><tr><td>image_url</td><td>string</td></tr><tr><td>summary</td><td>string</td></tr></table>'
+		 	},
+		 	prompt: {
+				pref: 'openaiPrompt',
+				label: 'Prompt',
+				image: 'suggestions.svg',
+				initial: openaiDefault.prompt,
+				placeholder: placeholders.prompt,
+				params: '',
+				description: 'These settings apply to the AI Prompt Component.',
 		 	},
 		},
 	}),
