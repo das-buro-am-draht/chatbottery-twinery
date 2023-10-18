@@ -34,7 +34,7 @@
 							</div>
 						</fieldset>
 					</div>
-					<task-txt v-if="task.type === 'txt'" :task="task"></task-txt>
+					<task-txt v-if="task.type === 'txt' || task.type === 'ai'" :task="task"></task-txt>
 					<task-image v-if="task.type === 'image'" :task="task" :story="story"></task-image>
 					<task-video v-if="task.type === 'video'" :task="task"></task-video>
 					<task-iframe v-if="task.type === 'iframe'" :task="task"></task-iframe>

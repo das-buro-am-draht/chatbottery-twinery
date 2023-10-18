@@ -82,9 +82,11 @@ module.exports = Vue.extend({
 					return require('../../../../common/img/element-set-variable.svg');
 				case 'goto':
 					return require('../../../../common/img/element-goto.svg');
+				case 'ai':
+					return require('../../../../common/img/suggestions.svg');
 				case 'chat':
 					return require('../../../../common/img/livechat-icon.svg');
-			}
+				}
 		},
 	},
 

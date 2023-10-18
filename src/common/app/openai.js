@@ -1,11 +1,11 @@
 const { absoluteUrl, trim } = require('../../utils/common');
 const { proxy } = require('../../utils/proxy');
 
-const openai = (data) => {
+const openai = (body) => {
   const url = proxy.openai();
   return fetch(url, {
     method: 'POST',
-    body: JSON.stringify(data)
+    body,
   })
   .then((response) => {
 		if (!response.ok) {
@@ -35,20 +35,18 @@ const placeholders = {
 	tag: '%TAG%',
 	phrase: '%PHRASE%',
 	page: '%HTML%',
+	prompt: '%PROMPT%',
 };
 
 const getData = (params, placeholder, text) => {
-	const placeholders = { [placeholder]: text };
-	const data = JSON.parse(params);
-	if (data.messages && data.messages.length > 0) {
-		data.messages = data.messages.map(message => {
-			if (message.content) {
-				message.content = message.content.replace(/%\w+%/g, (placeholder) => placeholders[placeholder] || placeholder);
-			}
-			return message;
-		});
-	}
-	return data;
+	const escaped = text
+		.replace(/\n/g, "\\n")
+		.replace(/\"/g, '\\"')
+		.replace(/\r/g, "\\r")
+		.replace(/\t/g, "\\t")
+		.replace(/\f/g, "\\f");
+	const placeholders = { [placeholder]: escaped };
+	return params.replace(/%\w+%/g, (placeholder) => placeholders[placeholder] || placeholder);
 }
 
 const suggestions = (params, placeholder, text, delimiter) => {
@@ -153,7 +151,6 @@ const pageAnalysis = (params, url) => {
 };
 
 module.exports = { 
-	openai, 
 	placeholders,
 	tagSuggestions: (params, text, delimiter = ',\n') => suggestions(params, placeholders.tag, text, delimiter), 
 	phraseSuggestions: (params, text, delimiter = '\n') => suggestions(params, placeholders.phrase, text, delimiter),

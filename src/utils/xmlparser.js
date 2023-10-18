@@ -56,7 +56,7 @@ const parse = (text) => {
     const children = Array.from(el.children);
     const task = createTask(el.nodeName.toLowerCase(), getAttributes(el.attributes));
 
-    if (task.type === 'msg' || task.type === 'wait') {
+    if (task.type === 'msg' || task.type === 'wait' || task.type === 'ai') {
       // option texts
       task.opt = children.filter((item) => item.tagName.toLowerCase() === 'opt').map((item) => item.innerHTML.trim());
       if (task.type === 'wait') { 
@@ -184,6 +184,7 @@ const xmlValue = (task) => {
         }, '');
       }
     }
+    case 'ai':
     case 'txt':
     case 'image':
     case 'video':

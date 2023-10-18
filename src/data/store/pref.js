@@ -23,6 +23,7 @@ module.exports = {
 		openaiTags: openai.tags,
 		openaiPhrases: openai.phrases,
 		openaiPage: openai.page,
+		openaiPrompt: openai.prompt,
 	},
 
 	mutations: {

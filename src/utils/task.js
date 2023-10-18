@@ -9,6 +9,7 @@ const types = {
 	'wait'    : 'Record user input',
 	'eval'    : 'Set variable',
 	'goto'    : 'Goto',
+	'ai'      : 'AI prompt',
 	'chat'    : 'Live Chat',
 	// 'sms'     : 'SMS (Voice Bot)',
 	// 'call'    : 'Call Control (Voice Bot)',
@@ -27,6 +28,7 @@ const createTask = (type, attributes = {}) => {
 		content: '',
 	};
 	switch(type) {
+		case 'ai':
 		case 'txt':
 			task.opt = [];
 			break;
