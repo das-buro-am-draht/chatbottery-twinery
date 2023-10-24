@@ -63,6 +63,7 @@ const createTask = (type, attributes = {}) => {
 		case 'wait':
 			task.attributes['var'] = task.attributes['var'] || '';
 			task.attributes['validate'] = task.attributes['validate'] || '';
+			task.attributes['placeholder'] = task.attributes['placeholder'] || '';
 			task.autocomplete = [];
 			break; 
 	}
