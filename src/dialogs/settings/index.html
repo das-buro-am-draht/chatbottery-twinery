@@ -1,4 +1,4 @@
-<modal-dialog id="settingsModal" :origin="origin" :can-widen="true" v-ref:modal>
+<modal-dialog id="settingsModal" :origin="origin" :can-widen="true" :can-close="canClose" v-ref:modal>
 	<span slot="title">{{ 'Settings' | say }}</span>
 	<div class="setting__items">
 		<div class="setting__item">

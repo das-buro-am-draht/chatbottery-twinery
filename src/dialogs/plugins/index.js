@@ -4,6 +4,8 @@ const { trim } = require("lodash");
 const Vue = require("vue");
 const { updateStory } = require("../../data/actions/story");
 const { isValidUrl } = require("../../utils/common");
+const locale = require("../../locale");
+const { confirm } = require('../confirm');
 
 require("./index.less");
 
@@ -39,6 +41,7 @@ module.exports = Vue.extend({
 		},
 		matomoHostToEnv: [],
 		userData: {},
+		modified: false,
 	}),
 
 	ready() {
@@ -63,6 +66,10 @@ module.exports = Vue.extend({
 		if (!this.chat.userVariables.length) {
 			this.addUserVariable(this.chat.userVariables);
 		}
+		this.$watch('matomo', () => this.modified = true, { deep: true });
+		this.$watch('google', () => this.modified = true, { deep: true });
+		this.$watch('chat', () => this.modified = true, { deep: true });
+		this.$watch('matomoHostToEnv', () => this.modified = true, { deep: true });
 	},
 
 	computed: {
@@ -135,7 +142,22 @@ module.exports = Vue.extend({
 			}, {});
 
 			this.updateStory(this.storyId, { plugins: data });
+			this.modified = false;
 			this.$refs.modal.close();
+		},
+
+		canClose() {
+			if (!this.modified) {
+				return true;
+			}
+			confirm({
+				message: locale.say('There were changes detected for the plugins data dialog. Are you sure you want to discard those changes?'),
+				buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Discard changes'),
+				buttonClass: 'danger'
+			}).then(() => {
+				this.$refs.modal.$emit('close');
+			});
+			return false;
 		},
 	},
 

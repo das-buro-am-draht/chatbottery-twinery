@@ -9,7 +9,7 @@ const {
 } = require("../../utils/common");
 const locale = require("../../locale");
 const notify = require("../../ui/notify");
-const { confirm } = require('../../dialogs/confirm');
+const { confirm } = require('../confirm');
 const PassageEditor = require("../../editors/passage");
 const SearchDropdown = require('./search');
 const { createNewlyLinkedPassages } = require('../../data/actions/passage');

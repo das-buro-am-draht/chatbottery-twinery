@@ -1,4 +1,4 @@
-<modal-dialog id="pluginModal" :origin="origin" :can-widen="true" v-ref:modal>
+<modal-dialog id="pluginModal" :origin="origin" :can-close="canClose" :can-widen="true" v-ref:modal>
 	<span slot="title">{{ 'Plugins' | say }}</span>
 	<div class="plugin__items">
 		<div class="plugin__item">

@@ -65,6 +65,10 @@ module.exports = Vue.extend({
 	},
 
 	methods: {
+		onChange() {
+			this.$dispatch('onChangeOpenaiSettings');
+		},
+
 		reset() {
 			this.params = this.initial;
 		},

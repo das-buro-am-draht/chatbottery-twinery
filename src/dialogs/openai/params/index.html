@@ -7,7 +7,7 @@
 		<span>{{"Use '" + placeholder + "' as placeholder for " + label + " string" | say }}</span>
 	</label>
 	<p v-if="description">{{{ description | say }}}</p>
-	<textarea class="openai-dialog-params--data" :name="label" rows="7" v-model="params" v-el:params></textarea>
+	<textarea class="openai-dialog-params--data" :name="label" rows="7" v-model="params" v-el:params @input="onChange"></textarea>
 	<button v-if="initial" type="button" class="openai-dialog-params--reset" @click="reset">{{ 'Reset to default' | say }}</button>
 	<p class="error" v-show="!!message">{{ message }}</p>
 	<p class="warning" v-show="isValid && !isPlaceholderPresent">{{ 'Placeholder ' + placeholder + ' should be set.' |say }}</p>
