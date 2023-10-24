@@ -21,6 +21,10 @@
 				<label for="validate">{{ 'Validation' | say }}:</label>
 				<input type="text" class="code" name="validate" v-model="validate" @input="onChangeValidate($event)" title="Validation function - e.g. '$isEmail($msg)'">
 			</div>
+			<div class="passageUI-row">
+				<label for="placeholder">{{ 'Placeholder' | say }}:</label>
+				<input type="text" class="code" name="placeholder" v-model="placeholder" @input="onChangePlaceholder($event)" title="Input field placeholder">
+			</div>
 		</div>
 	</div>
 	<task-options :task="task" add-label="Add Validation Text"></task-options>

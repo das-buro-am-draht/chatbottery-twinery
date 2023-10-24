@@ -14,8 +14,8 @@ const prefix = process.env.NODE_ENV === 'development' ? 'develop.' : '';
 const defaultFormats = {
 	story: {
 		name: 'Chatbottery',
-		url: `https://${prefix}web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v11.js`,
-		version: '11.2.1',
+		url: `https://${prefix}web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v12.js`,
+		version: '12.0.0',
 	},
 	proof: {
 		name: 'Illume',

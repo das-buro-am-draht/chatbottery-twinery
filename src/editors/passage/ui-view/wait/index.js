@@ -19,6 +19,7 @@ module.exports = Vue.extend({
 	data: () => ({
 		variable: '',
 		validate: '',
+		placeholder: '',
 		autocomplete: '',
 		showAutocomplete: false,
 		userData: {},
@@ -32,6 +33,7 @@ module.exports = Vue.extend({
 		}
 		this.loadVariable();
 		this.loadValidate();
+		this.loadPlaceholder();
 		this.loadAutocomplete();
 	},
 
@@ -41,6 +43,9 @@ module.exports = Vue.extend({
 		},
 		'task.attributes.validate'() {
 			this.loadValidate();
+		},
+		'task.attributes.placeholder'() {
+			this.loadPlaceholder();
 		},
 		'task.autocomplete'() {
 			this.loadAutocomplete();
@@ -66,6 +71,12 @@ module.exports = Vue.extend({
 				this.validate = validate;
 			}
 		},
+		loadPlaceholder() {
+			const placeholder = this.task.attributes['placeholder'] || '';
+			if (placeholder !== this.placeholder) {
+				this.placeholder = placeholder;
+			}
+		},
 		loadAutocomplete() {
 			this.autocomplete = (this.task.autocomplete || []).join('\n');
 			this.showAutocomplete = this.autocomplete
@@ -79,6 +90,9 @@ module.exports = Vue.extend({
 		},
 		onChangeValidate(event) {
 			this.task.attributes['validate'] = trim(this.validate);
+		},
+		onChangePlaceholder(event) {
+			this.task.attributes['placeholder'] = trim(this.placeholder);
 		},
 		onChangeAutocomplete(event) {
 			this.task.autocomplete = this.autocomplete.split('\n');

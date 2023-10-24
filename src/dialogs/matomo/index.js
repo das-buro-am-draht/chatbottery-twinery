@@ -90,6 +90,10 @@ module.exports = Vue.extend({
 	},
 
 	methods: {
+		isPassage(name) {
+			return this.story.passages.some((passage) => name === passage.name);
+		},
+
 		loadMatomo() {
 			const { matomo } = this.story.plugins;
 			if (matomo && matomo.url && matomo.authToken) {

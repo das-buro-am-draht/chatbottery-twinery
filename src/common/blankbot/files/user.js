@@ -3,12 +3,7 @@
  * before function 'onChatbotteryRuntimeLoaded' is called
  * @param user user data object
  */
- function onInit(user) {
-
-  // Add some default user data
-  user.$name = "Nutzer";
-  user.$plz = undefined;
-  user.$mail = undefined;
+function onInit(user) {
 
 	user.$yesAnswers = ['Ja', 'Klar', 'yes','verstanden', 'okay', 'Yup', 'Jawohl', 'ja', 'sicher', 'Okay', 'alle klar', 'klar', 'einverstanden', 'Einverstanden', 'Alles verstanden', 'alles verstanden'];
 	user.$noAnswers = ['Nein', 'nein', 'ne', 'neeee', 'nope', 'no', 'neiän', 'neh', 'nicht einverstanden', 'Nicht einverstanden', 'Nicht Einverstanden'];
@@ -33,7 +28,7 @@
  * @param runtime Chatbottery Runtime Object
  */
  function onLoad(runtime) {
-
+	 
   // Get the user data object
   const user = runtime.userData;
 	
@@ -72,7 +67,7 @@
 		position: 'HEADER' 
 	};
   // Create a Menu in the Chatbot with configuration from above
-  runtime.createPersistentMenu(menuItems, config);
+  runtime.createMenu(menuItems, config);
 
   // Define a User Function that is shipped in the menu entry above and will close the Chatbot on invocation
   user.closeChatWindow = (app) => {
