@@ -1,13 +1,13 @@
-<modal-dialog class="openai-dialog" :origin="origin" :can-widen="true" v-ref:modal>
+<modal-dialog class="openai-dialog" :origin="origin" :can-widen="true" :can-close="canClose" v-ref:modal>
 	<span slot="title">
 		<img src="../../common/img/suggestions.svg">
 		{{ 'Open AI Settings' | say }}
 	</span>
-	<div class="openai-dialog-content">
-		<!-- Using a <form> allows the "required" attribute on the input to be usable. -->
-		<form @submit.prevent="save">
+	<!-- Using a <form> allows the "required" attribute on the input to be usable. -->
+	<form @submit.prevent="save">
+		<div class="openai-dialog-content">
 			<openai-params v-for="item in openai" v-ref:params :label="item.label" :params="item.params" :placeholder="item.placeholder" :initial="item.initial" :image="item.image" :description="item.description"></openai-params>
-			<button type="submit" class="create" :disabled="!canSave"><i class="fa fa-check"></i>{{ ' Save' | say }}</button>
-		</form>
-	</div>
+		</div>
+		<button type="submit" class="create" :disabled="!canSave"><i class="fa fa-check"></i>{{ ' Save' | say }}</button>
+	</form>
 </modal-dialog>

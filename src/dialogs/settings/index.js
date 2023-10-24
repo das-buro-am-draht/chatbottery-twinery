@@ -3,6 +3,8 @@
 const Vue = require("vue");
 const { updateStory } = require("../../data/actions/story");
 const { isValidUrl } = require("../../utils/common");
+const locale = require("../../locale");
+const { confirm } = require('../confirm');
 
 require("./index.less");
 
@@ -13,6 +15,7 @@ module.exports = Vue.extend({
 		storyId: null,
 		assetBaseUrl: '',
 		storyUrl: '',
+		modified: false,
 	}),
 
 	ready() {
@@ -21,6 +24,8 @@ module.exports = Vue.extend({
 			this.assetBaseUrl = data.assetBaseUrl || '';
 			this.storyUrl = data.storyUrl || '';
 		}
+		this.$watch('assetBaseUrl', () => this.modified = true);
+		this.$watch('storyUrl', () => this.modified = true);
 	},
 
 	computed: {
@@ -47,7 +52,22 @@ module.exports = Vue.extend({
 				assetBaseUrl: this.assetBaseUrl,
 			};
 			this.updateStory(this.storyId, { settings });
+			this.modified = false;
 			this.$refs.modal.close();
+		},
+
+		canClose() {
+			if (!this.modified) {
+				return true;
+			}
+			confirm({
+				message: locale.say('There were changes detected for the settings dialog. Are you sure you want to discard those changes?'),
+				buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Discard changes'),
+				buttonClass: 'danger'
+			}).then(() => {
+				this.$refs.modal.$emit('close');
+			});
+			return false;
 		},
 	},
 
