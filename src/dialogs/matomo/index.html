@@ -19,9 +19,13 @@
 	</div>
 	<template v-else>
 		<div class="matomo-visits" v-if="visits">
+			<div class="matomo-visit" v-if="visits.nb_uniq_visitors !== undefined">
+				<div class="matomo-visit--value">{{ visits.nb_uniq_visitors }}</div>
+				<p class="matomo-visit--label">{{ 'Users in total' | say }}</p>
+			</div>
 			<div class="matomo-visit">
-				<div class="matomo-visit--value">{{ totalVisits }}</div>
-				<p class="matomo-visit--label">{{ labelVisits | say }}</p>
+				<div class="matomo-visit--value">{{ visits.nb_visits }}</div>
+				<p class="matomo-visit--label">{{ 'Visits in total' | say }}</p>
 			</div>
 			<div class="matomo-visit">
 				<div class="matomo-visit--value">{{ timePerVisit | time }}</div>

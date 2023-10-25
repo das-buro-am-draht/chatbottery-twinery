@@ -46,14 +46,6 @@ module.exports = Vue.extend({
 			}
 		},
 
-		labelVisits() {
-			return (this.visits.nb_uniq_visitors !== undefined ? 'Users' : 'Visits') + ' in total';
-		},
-
-		totalVisits() {
-			return this.visits.nb_uniq_visitors !== undefined ? this.visits.nb_uniq_visitors : this.visits.nb_visits;
-		},
-
 		timePerVisit() {
 			if (this.visits.avg_time_on_site) {
 				return this.visits.avg_time_on_site;

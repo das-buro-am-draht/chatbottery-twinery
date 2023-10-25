@@ -97,7 +97,6 @@ module.exports = Vue.extend({
 	},
 
 	events: {
-
 		'onChangeOpenaiSettings'() {
 			this.modified = true;
 		},
