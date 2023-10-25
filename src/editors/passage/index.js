@@ -40,9 +40,9 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
-		if (process.env.NODE_ENV === 'development') {
-			this.toggleMode();
-		}
+		// if (process.env.NODE_ENV === 'development') {
+		// 	this.toggleMode();
+		// }
 		
 		this.userPassageName = this.passage.name;
 

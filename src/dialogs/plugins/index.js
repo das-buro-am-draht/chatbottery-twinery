@@ -69,7 +69,7 @@ module.exports = Vue.extend({
 		this.$watch('matomo', () => this.modified = true, { deep: true });
 		this.$watch('google', () => this.modified = true, { deep: true });
 		this.$watch('chat', () => this.modified = true, { deep: true });
-		this.$watch('matomoHostToEnv', () => this.modified = true, { deep: true });
+		this.$watch('matomoHostToEnv', () => this.modified = true);
 	},
 
 	computed: {
