@@ -186,10 +186,6 @@
     app.onChatWindowClose();
   };
 
-  // SET a base url to grab the images & videos
-  // (otherwise pics would not show in twine tool)
-  runtime.assetBaseUrl = "https://www.fb-berlin.de/projects/chatbottery/verdi/";
-
   // Fragefeld definieren
   runtime.i18n.de.inputFieldPlaceholder = ['']
   
@@ -198,11 +194,10 @@
   runtime.i18n.de.unmatchedIntent = ['Entschuldige. Das habe ich leider nicht verstanden.','Hmmm. Könntest Du das bitte anders formulieren?','Darauf habe ich leider keine Antwort.','Hmm. Ich weiß nicht, ob ich Dich da richtig verstanden habe','Dazu kann ich leider noch nichts sagen.','Tut mir leid, das verstehe ich so nicht. Kannst Du das bitte anders ausdrücken?','Entschuldige. Ich weiß gerade nicht was Du meinst.','Diese Formulierung habe ich leider nicht verstanden.','Ich bin nicht ganz sicher was Du meinst.']
 }
 
-</script><tw-tag name="#Chatbot-Version" color="red"></tw-tag><tw-tag name="Datenschutz" color="red"></tw-tag><tw-tag name="Impressum" color="red"></tw-tag><tw-tag name="#Start" color="red"></tw-tag><tw-tag name="#wait" color="green"></tw-tag><tw-passagedata pid="1" name="Version" tags="#Chatbot-Version Wasnn-wurde-der-Chatbot-zuletzt-aktualisiert? Aktualisierung-Bot Zeige-Version Bot-Version Chatbot-Aktualisierung Wie-aktuell-sind-die-Inhalte Versionsnummer zuletzt-aktualisiert Wie-aktuell-ist-der-Chatbot Chatbot" tagsData="[&quot;#Chatbot-Version&quot;,&quot;Wasnn-wurde-der-Chatbot-zuletzt-aktualisiert?&quot;,&quot;Aktualisierung-Bot&quot;,&quot;Zeige-Version&quot;,&quot;Bot-Version&quot;,&quot;Chatbot-Aktualisierung&quot;,&quot;Wie-aktuell-sind-die-Inhalte&quot;,&quot;Versionsnummer&quot;,&quot;zuletzt-aktualisiert&quot;,&quot;Wie-aktuell-ist-der-Chatbot&quot;,&quot;Chatbot&quot;]"position="2,3" size="150,100">&lt;msg&gt;Dies ist die Chatbotversion 1.0 des Blank Bots. Letztes Update: 27.09.2021, 18:07&lt;/msg&gt;
-Chatbottery-Version 7.4.2
-Das Storyformat: https://web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v7.js
-
-Die Webruntime: https://web-runtime.chatbottery.com/web-runtime/v7/chatbottery.js</tw-passagedata><tw-passagedata pid="2" name="Start" tags="starten Neu-starten Anfang #Start" tagsData="[&quot;starten&quot;,&quot;Neu-starten&quot;,&quot;Anfang&quot;,&quot;#Start&quot;]"position="901,62" size="150,100">&lt;msg&gt;Hallo! Willkommen beim &lt;b&gt;Beispielbot&lt;/b&gt;.&lt;/msg&gt;
+</script><tw-tag name="#Chatbot-Version" color="red"></tw-tag><tw-tag name="Datenschutz" color="red"></tw-tag><tw-tag name="Impressum" color="red"></tw-tag><tw-tag name="#Start" color="red"></tw-tag><tw-tag name="#wait" color="green"></tw-tag><tw-passagedata pid="1" name="Version" tags="#Chatbot-Version Wasnn-wurde-der-Chatbot-zuletzt-aktualisiert? Aktualisierung-Bot Zeige-Version Bot-Version Chatbot-Aktualisierung Wie-aktuell-sind-die-Inhalte Versionsnummer zuletzt-aktualisiert Wie-aktuell-ist-der-Chatbot Chatbot" tagsData="[&quot;#Chatbot-Version&quot;,&quot;Wasnn-wurde-der-Chatbot-zuletzt-aktualisiert?&quot;,&quot;Aktualisierung-Bot&quot;,&quot;Zeige-Version&quot;,&quot;Bot-Version&quot;,&quot;Chatbot-Aktualisierung&quot;,&quot;Wie-aktuell-sind-die-Inhalte&quot;,&quot;Versionsnummer&quot;,&quot;zuletzt-aktualisiert&quot;,&quot;Wie-aktuell-ist-der-Chatbot&quot;,&quot;Chatbot&quot;]"position="2,3" size="150,100">&lt;msg&gt;
+   Dies ist die Chatbotversion 2.0 des Blank Bots. Letztes Update: 27.10.2023, 18:07
+&lt;/msg&gt;
+</tw-passagedata><tw-passagedata pid="2" name="Start" tags="starten Neu-starten Anfang #Start" tagsData="[&quot;starten&quot;,&quot;Neu-starten&quot;,&quot;Anfang&quot;,&quot;#Start&quot;]"position="901,62" size="150,100">&lt;msg&gt;Hallo! Willkommen beim &lt;b&gt;Beispielbot&lt;/b&gt;.&lt;/msg&gt;
 
 &lt;msg&gt;
 &lt;act&gt;[[Thema 1|Thema 1]]&lt;/act&gt;
@@ -243,11 +238,12 @@ Die Webruntime: https://web-runtime.chatbottery.com/web-runtime/v7/chatbottery.j
 &lt;opt&gt;Dazu habe ich Folgendes gefunden:&lt;/opt&gt;
 &lt;opt&gt;Hmmm. Meinst Du das?&lt;/opt&gt;
 &lt;opt&gt;Darüber weiß ich Folgendes:&lt;/opt&gt;
-&lt;/msg&gt;</tw-passagedata><tw-passagedata pid="9" name="Impressum" tags="Impressum Impressum-ansehen Datenschutz?" tagsData="[&quot;Impressum&quot;,&quot;Impressum-ansehen&quot;,&quot;Datenschutz?&quot;]"position="189.33333333333334,232.66666666666666" size="150,100">&lt;msg&gt;Hier findest Du das Impressum:
-&lt;btn&gt;[[Impressum|https://www.google.de]]&lt;/btn&gt;
+&lt;/msg&gt;</tw-passagedata><tw-passagedata pid="9" name="Impressum" tags="Impressum Impressum-ansehen Datenschutz?" tagsData="[&quot;Impressum&quot;,&quot;Impressum-ansehen&quot;,&quot;Datenschutz?&quot;]"position="189,232" size="150,100">&lt;msg&gt;
+   Hier findest Du das Impressum:
 &lt;/msg&gt;
-
-
+&lt;msg&gt;
+   &lt;btn&gt;[[Impressum|https://chatbottery.com/impressum/]]&lt;/btn&gt;
+&lt;/msg&gt;
 </tw-passagedata><tw-passagedata pid="10" name="Begrüßung" tags="hallo hello hi hey Guten-Tag Grüß-Gott Tach Guten-morgen Tachchen Servus Huhu Salam-Aleikum Moin" tagsData="[&quot;hallo&quot;,&quot;hello&quot;,&quot;hi&quot;,&quot;hey&quot;,&quot;Guten-Tag&quot;,&quot;Grüß-Gott&quot;,&quot;Tach&quot;,&quot;Guten-morgen&quot;,&quot;Tachchen&quot;,&quot;Servus&quot;,&quot;Huhu&quot;,&quot;Salam-Aleikum&quot;,&quot;Moin&quot;]"position="0,338" size="150,100">&lt;msg&gt;
 &lt;opt&gt;Hallo! Schön, dass Du da bist.&lt;/opt&gt;
 &lt;opt&gt;Ich grüße Dich.&lt;/opt&gt;
@@ -275,11 +271,12 @@ Die Webruntime: https://web-runtime.chatbottery.com/web-runtime/v7/chatbottery.j
 
 &lt;msg&gt;
 &lt;btn&gt;[[Von Vorne|Start]]&lt;/btn&gt;
-&lt;/msg&gt;</tw-passagedata><tw-passagedata pid="14" name="Datenschutz" tags="Datenschutz" tagsData="[&quot;Datenschutz&quot;]"position="0,232" size="150,100">&lt;msg&gt;Hier findest Du Informationen zum Datenschutz:
-&lt;btn&gt;[[Impressum|https://www.google.de]]&lt;/btn&gt;
+&lt;/msg&gt;</tw-passagedata><tw-passagedata pid="14" name="Datenschutz" tags="Datenschutz" tagsData="[&quot;Datenschutz&quot;]"position="0,232" size="150,100">&lt;msg&gt;
+   Hier findest Du Informationen zum Datenschutz:
 &lt;/msg&gt;
-
-
+&lt;msg&gt;
+   &lt;btn&gt;[[Datenschutz|https://chatbottery.com/datenschutz/]]&lt;/btn&gt;
+&lt;/msg&gt;
 </tw-passagedata><tw-passagedata pid="15" name="Beispiele: Karussell" tags="" tagsData="[]"position="2,1033" size="150,100">&lt;msg&gt;
 Am Ende dieser Passage finden Sie ein Karussell mit zwei Items. Hier können pro Item ein Bild, ein Titel, ein kurzer Text und ein Button eingefügt werden.  
 &lt;/msg&gt;
@@ -356,11 +353,11 @@ Am Ende dieser Passage finden Sie zwei Action-Buttons. Sie verschwinden nach Aus
 &lt;msg&gt;
 &lt;act&gt;[[Was sind Standard-Buttons? |Beispiele: Standard Buttons]]&lt;/act&gt;
 &lt;act&gt;[[Wie legt man ein Karussell an? |Beispiele: Karussell]]&lt;/act&gt;
-&lt;/msg&gt;</tw-passagedata><tw-passagedata pid="23" name="Karussel Item 1" tags="" tagsData="[]"position="5.333333333333343,1155.3333333333333" size="150,100">&lt;msg&gt;
+&lt;/msg&gt;</tw-passagedata><tw-passagedata pid="23" name="Karussel Item 1" tags="" tagsData="[]"position="5,1155" size="150,100">&lt;msg&gt;
 Dies ist nur ein Beispiel.
-&lt;/msg&gt;</tw-passagedata><tw-passagedata pid="24" name="Karussel Item 2" tags="" tagsData="[]"position="178.33333333333337,1156.3333333333333" size="150,100">&lt;msg&gt;
+&lt;/msg&gt;</tw-passagedata><tw-passagedata pid="24" name="Karussel Item 2" tags="" tagsData="[]"position="178,1156" size="150,100">&lt;msg&gt;
 Dies ist nur ein Beispiel.
-&lt;/msg&gt;</tw-passagedata><tw-passagedata pid="25" name="BAD LANGUAGE" tags="Arschloch Arsch Archloch Wichser Ficken Kacke Du-bist-doof Fick-Dich Drecksack Fotze Votze Votzze scheiße Kuh Depp Miststück Leck-mich Leck-mich-am-Arsch Muschi Idiot Mistkerl Hurensohn hurensohn HUSO Blödmann Pillermann Ficker Hirni Geh-scheissen Du-kannst-mich-mal zieh-dich-aus mach-dich-nackig Was-hast-du-an? Bist-du-schwul? Kack Scheiß Trottel Sau Fitzpiepe dumm Du-bist-nutzlos Sex Scheiss-Roboter Schwanz Pimmel Fick-Dich-du-scheiss-Roboter SEX Lächerlich bumsen" tagsData="[&quot;Arschloch&quot;,&quot;Arsch&quot;,&quot;Archloch&quot;,&quot;Wichser&quot;,&quot;Ficken&quot;,&quot;Kacke&quot;,&quot;Du-bist-doof&quot;,&quot;Fick-Dich&quot;,&quot;Drecksack&quot;,&quot;Fotze&quot;,&quot;Votze&quot;,&quot;Votzze&quot;,&quot;scheiße&quot;,&quot;Kuh&quot;,&quot;Depp&quot;,&quot;Miststück&quot;,&quot;Leck-mich&quot;,&quot;Leck-mich-am-Arsch&quot;,&quot;Muschi&quot;,&quot;Idiot&quot;,&quot;Mistkerl&quot;,&quot;Hurensohn&quot;,&quot;hurensohn&quot;,&quot;HUSO&quot;,&quot;Blödmann&quot;,&quot;Pillermann&quot;,&quot;Ficker&quot;,&quot;Hirni&quot;,&quot;Geh-scheissen&quot;,&quot;Du-kannst-mich-mal&quot;,&quot;zieh-dich-aus&quot;,&quot;mach-dich-nackig&quot;,&quot;Was-hast-du-an?&quot;,&quot;Bist-du-schwul?&quot;,&quot;Kack&quot;,&quot;Scheiß&quot;,&quot;Trottel&quot;,&quot;Sau&quot;,&quot;Fitzpiepe&quot;,&quot;dumm&quot;,&quot;Du-bist-nutzlos&quot;,&quot;Sex&quot;,&quot;Scheiss-Roboter&quot;,&quot;Schwanz&quot;,&quot;Pimmel&quot;,&quot;Fick-Dich-du-scheiss-Roboter&quot;,&quot;SEX&quot;,&quot;Lächerlich&quot;,&quot;bumsen&quot;]"position="192.33333333333331,3.6666666666666288" size="150,100">&lt;msg&gt;
+&lt;/msg&gt;</tw-passagedata><tw-passagedata pid="25" name="BAD LANGUAGE" tags="Arschloch Arsch Archloch Wichser Ficken Kacke Du-bist-doof Fick-Dich Drecksack Fotze Votze Votzze scheiße Kuh Depp Miststück Leck-mich Leck-mich-am-Arsch Muschi Idiot Mistkerl Hurensohn hurensohn HUSO Blödmann Pillermann Ficker Hirni Geh-scheissen Du-kannst-mich-mal zieh-dich-aus mach-dich-nackig Was-hast-du-an? Bist-du-schwul? Kack Scheiß Trottel Sau Fitzpiepe dumm Du-bist-nutzlos Sex Scheiss-Roboter Schwanz Pimmel Fick-Dich-du-scheiss-Roboter SEX Lächerlich bumsen" tagsData="[&quot;Arschloch&quot;,&quot;Arsch&quot;,&quot;Archloch&quot;,&quot;Wichser&quot;,&quot;Ficken&quot;,&quot;Kacke&quot;,&quot;Du-bist-doof&quot;,&quot;Fick-Dich&quot;,&quot;Drecksack&quot;,&quot;Fotze&quot;,&quot;Votze&quot;,&quot;Votzze&quot;,&quot;scheiße&quot;,&quot;Kuh&quot;,&quot;Depp&quot;,&quot;Miststück&quot;,&quot;Leck-mich&quot;,&quot;Leck-mich-am-Arsch&quot;,&quot;Muschi&quot;,&quot;Idiot&quot;,&quot;Mistkerl&quot;,&quot;Hurensohn&quot;,&quot;hurensohn&quot;,&quot;HUSO&quot;,&quot;Blödmann&quot;,&quot;Pillermann&quot;,&quot;Ficker&quot;,&quot;Hirni&quot;,&quot;Geh-scheissen&quot;,&quot;Du-kannst-mich-mal&quot;,&quot;zieh-dich-aus&quot;,&quot;mach-dich-nackig&quot;,&quot;Was-hast-du-an?&quot;,&quot;Bist-du-schwul?&quot;,&quot;Kack&quot;,&quot;Scheiß&quot;,&quot;Trottel&quot;,&quot;Sau&quot;,&quot;Fitzpiepe&quot;,&quot;dumm&quot;,&quot;Du-bist-nutzlos&quot;,&quot;Sex&quot;,&quot;Scheiss-Roboter&quot;,&quot;Schwanz&quot;,&quot;Pimmel&quot;,&quot;Fick-Dich-du-scheiss-Roboter&quot;,&quot;SEX&quot;,&quot;Lächerlich&quot;,&quot;bumsen&quot;]"position="192,3" size="150,100">&lt;msg&gt;
 &lt;opt&gt;Ich muss doch sehr bitten!&lt;/opt&gt;
 &lt;opt&gt;Das ist aber nicht nett.&lt;/opt&gt;
 &lt;opt&gt;Ich werde ja ganz rot.&lt;/opt&gt;
