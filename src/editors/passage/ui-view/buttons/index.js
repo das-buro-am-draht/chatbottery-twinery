@@ -76,6 +76,7 @@ module.exports = Vue.extend({
 				this.$els.link.value = button.link || '';
 				this.$els.func.value = button.func || '';
 				this.$els.class.value = button.attributes.classname || '';
+				this.$els.target.value = button.attributes.target || '';
 				this.$els.action.checked = !!button.action;
 				Vue.nextTick(() => {
 					this.$els.label.focus();
@@ -101,7 +102,10 @@ module.exports = Vue.extend({
 		onAdd() {
 			const index = this.task.buttons.length;
 			this.task.buttons.push({
-				attributes: { },
+				attributes: { 
+					classname: '', 
+					target: '', 
+				},
 				label: '',
 				link: '',
 				func: '',
@@ -127,6 +131,11 @@ module.exports = Vue.extend({
 		onChangeClass(event) {
 			if (this.selection >= 0) {
 				this.task.buttons[this.selection].attributes['classname'] = this.$els.class.value;
+			}
+		},
+		onChangeTarget(event) {
+			if (this.selection >= 0) {
+				this.task.buttons[this.selection].attributes['target'] = this.$els.target.value;
 			}
 		},
 		onChangeAction(event) {
