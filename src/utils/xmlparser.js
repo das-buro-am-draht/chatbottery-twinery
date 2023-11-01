@@ -16,7 +16,11 @@ const getAttributes = (attributes) => {
 const textToButton = (element) => {
   [label, link, func] = removeEnclosingBrackets(trim(element.innerHTML)).split('|');
   return {
-    attributes: getAttributes(element.attributes),
+    attributes: {
+		classname: '',
+		target: '',
+		...getAttributes(element.attributes),
+	 },
     label: trim(label),
     link: trim(link),
     func: trim(func),
