@@ -70,7 +70,10 @@ module.exports = Vue.extend({
 		},
 
 		reset() {
-			this.params = this.initial;
+			if (this.params !== this.initial) {
+				this.params = this.initial;
+				this.$dispatch('onChangeOpenaiSettings');
+			}
 		},
 	},
 

@@ -62,7 +62,7 @@ module.exports = Vue.extend({
 			}
 		});
 		this.$watch('openai', () => this.modified = true, { deep: true });
-  },
+  	},
 
 	computed: {
 		canSave() {

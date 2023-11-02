@@ -144,7 +144,8 @@ module.exports = Vue.extend({
 		},
 
 		onDeleteList(index) {
-			Promise.resolve(this.data[index].items.some((item) => !!item.processed)).then((processed) => {
+			Promise.resolve(this.data[index].items.some((item) => !!item.processed))
+			.then((processed) => {
 				if (processed) {
 					return confirm({
 						message: locale.say('Are you sure you want to delete the entire list that contains entries that were previously analyzed?'),
@@ -152,7 +153,8 @@ module.exports = Vue.extend({
 						buttonClass: 'danger'
 					}).then(() => this.modified = true);
 				}
-			}).then(() => {
+			})
+			.then(() => {
 				if (this.data[index].name || this.data[index].items.some((item) => !!item.url)) {
 					this.modified = true;
 				}
