@@ -158,7 +158,7 @@ const publish = (module.exports = {
 		} catch(e) {}
 
 		return (
-			`<tw-storydata name="${escape(story.name)}" ` +
+			`<tw-storydata id="${escape(story.id)}" name="${escape(story.name)}" ` +
 			`startnode="${startLocalId || ""}" ` +
 			`creator="${escape(appInfo.name)}" ` +
 			`creator-version="${escape(appInfo.version)}" ` +
