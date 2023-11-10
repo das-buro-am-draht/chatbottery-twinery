@@ -43,7 +43,7 @@ msgstr ""
 
 #: src/chatbot-view/edit-view/passage-button/index.html
 msgid "Add a new passage"
-msgstr ""
+msgstr "Neu Passage hinzufügen"
 
 #: src/chatbot-view/edit-view/passage-item/passage-menu/index.html
 msgid "Start Chatbot Here"
