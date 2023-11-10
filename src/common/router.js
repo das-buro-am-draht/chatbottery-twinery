@@ -200,6 +200,8 @@ TwineRouter.beforeEach(transition => {
 		}
 	}
 
+	document.title = 'Chatbottery-Editor';
+
 	/*
 	If the user has never used the app before, point them to the welcome view
 	first. This has to come below any other logic, as calling transition.next()
