@@ -13,8 +13,7 @@
         >
 			<button
             class="asideNavigation--button"
-            v-link="'/home'"
-            :title="'Home' | say">
+            v-link="'/home'">
                 <div class="asideNavigation--icon"></div>
 				<div class="asideNavigation--text">
                     {{ 'Home' | say }}
@@ -29,8 +28,7 @@
         >
 			<button
             class="asideNavigation--button"
-            v-link="'/chatbots'"
-            title="Chatbots">
+            v-link="'/chatbots'">
                 <div class="asideNavigation--icon"></div>
                 <div class="asideNavigation--text">
                     {{ 'Chatbots' | say }}
@@ -42,8 +40,7 @@
         >
 			<button
             class="asideNavigation--button"
-            @click="openFormats"
-            :title="'Chatbot Formats' | say">
+            @click="openFormats">
                 <div class="asideNavigation--icon"></div>
                 <div class="asideNavigation--text">
                     {{ 'Chatbot Formats' | say }}
@@ -52,7 +49,7 @@
             <!-- ({{storiesLength}}) -->
 		</li>
         <li class="asideNavigation--item asideNavigation--item-livechat">
-			<button class="asideNavigation--button" @click="openRedirect('https://chatbot-moderator.chatbottery.com/')" :title="'Live chats' | say">
+			<button class="asideNavigation--button" @click="openRedirect('https://chatbot-moderator.chatbottery.com/')">
                 <div class="asideNavigation--icon"></div>
                 <div class="asideNavigation--text">
                     {{ 'Live chats' | say }}
@@ -61,7 +58,7 @@
 			</button>
 		</li>
         <li class="asideNavigation--item asideNavigation--item-documentation">
-			<button class="asideNavigation--button" @click="openRedirect('https://docu.chatbottery.com/')" :title="'Documentation' | say">
+			<button class="asideNavigation--button" @click="openRedirect('https://docu.chatbottery.com/')">
                 <div class="asideNavigation--icon"></div>
                 <div class="asideNavigation--text">
                     {{ 'Documentation' | say }}
@@ -70,7 +67,7 @@
 			</button>
 		</li>
         <li class="asideNavigation--item asideNavigation--item-help">
-			<button class="asideNavigation--button" @click="openRedirect('mailto:%22Chatbottery%20Support%22%3csupport@chatbottery.com%3e')" :title="'Help' | say">
+			<button class="asideNavigation--button" @click="openRedirect('mailto:%22Chatbottery%20Support%22%3csupport@chatbottery.com%3e')">
                 <div class="asideNavigation--icon"></div>
                 <div class="asideNavigation--text">
                     {{ 'Help' | say }}
