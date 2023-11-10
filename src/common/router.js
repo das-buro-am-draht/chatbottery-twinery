@@ -46,7 +46,7 @@ TwineRouter.map({
 
 			data() {
 				return {id: this.$route.params.id};
-			}
+			},
 		}
 	},
 
@@ -177,13 +177,26 @@ TwineRouter.beforeEach(transition => {
 	story that we were previously editing, so that it can display a zooming
 	transition back to the story.
 	*/
+	const getStoryId = (path) => {
+		const match = path.match(/^\/chatbots\/([^\/]+)$/i);
+		if (match)
+			return match[1];
+	}
+
+	if (transition.to.path) {
+		const storyId = getStoryId(transition.to.path);
+		if (storyId) {
+			const store = transition.to.router.app.$store;
+			if (!store.state.story.stories.some(story => story.id === storyId)) {
+				return transition.redirect('/chatbots');
+			}
+		}
+	}
 
 	if (transition.from.path && transition.to.path === '/chatbots') {
-		const editingId =
-			transition.from.path.match('^/chatbots/([^\/]+)$');
-
+		const editingId = getStoryId(transition.from.path);
 		if (editingId) {
-			transition.to.params.previouslyEditing = editingId[1];
+			transition.to.params.previouslyEditing = editingId;
 		}
 	}
 
