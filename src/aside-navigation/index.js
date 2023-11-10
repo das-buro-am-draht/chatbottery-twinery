@@ -16,7 +16,7 @@ module.exports = Vue.extend({
 			{label: 'English', code: 'en'},
 			{label: 'Deutsch', code: 'de'},
 			// {label: 'Castellano', code: 'es'},
-			// {label: 'Català;', code: 'ca'},
+			// {label: 'Català', code: 'ca'},
 			// {label: 'Čeština', code: 'cs'},
 			// {label: 'Chinese', code: 'zh-cn'},
 			// {label: 'Dansk', code: 'da'},
@@ -45,9 +45,12 @@ module.exports = Vue.extend({
 
 	computed: {
 		locales() {
-			const code = this.getPref.locale;
+			const code = this.locale;
 			return this.languages.filter((language) => language.code !== code);
 		},
+		locale() {
+			return this.getPref.locale;
+		}
 	},
 
 	methods: {

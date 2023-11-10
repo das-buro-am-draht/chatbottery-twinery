@@ -79,13 +79,13 @@
 		</li>
 	</ul>
 	<footer class="asideNavigation--footer">
-        <ul class="asideNavigation--locales">
-            <template v-for="locale in locales">
-                <li @click="setLocale(locale.code)" :title="locale.label">
-                    <img :src="'rsrc/flags/' + locale.code + '.svg'" :alt="locale.label">
-                </li>
+        <div class="asideNavigation--locales">
+            <template v-for="local in locales">
+                <button type="button" @click="setLocale(local.code)" :title="local.label" :disabled="local.code === locale">
+                    <img :src="'rsrc/flags/' + local.code + '.svg'" :alt="local.label">
+                </button>
             </template>
-        </ul>
+        </div>
         <div class="asideNavigation--twinery">
             <div class="asideNavigation--twinery-logo">
                 <img src="../common/img/logo.svg" />
