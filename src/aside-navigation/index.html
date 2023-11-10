@@ -14,7 +14,7 @@
 			<button
             class="asideNavigation--button"
             v-link="'/home'"
-            title="Home">
+            :title="'Home' | say">
                 <div class="asideNavigation--icon"></div>
 				<div class="asideNavigation--text">
                     {{ 'Home' | say }}
@@ -43,7 +43,7 @@
 			<button
             class="asideNavigation--button"
             @click="openFormats"
-            title="Chatbot Formats">
+            :title="'Chatbot Formats' | say">
                 <div class="asideNavigation--icon"></div>
                 <div class="asideNavigation--text">
                     {{ 'Chatbot Formats' | say }}
@@ -52,7 +52,7 @@
             <!-- ({{storiesLength}}) -->
 		</li>
         <li class="asideNavigation--item asideNavigation--item-livechat">
-			<button class="asideNavigation--button" @click="openRedirect('https://chatbot-moderator.chatbottery.com/')" title="Live chats">
+			<button class="asideNavigation--button" @click="openRedirect('https://chatbot-moderator.chatbottery.com/')" :title="'Live chats' | say">
                 <div class="asideNavigation--icon"></div>
                 <div class="asideNavigation--text">
                     {{ 'Live chats' | say }}
@@ -61,7 +61,7 @@
 			</button>
 		</li>
         <li class="asideNavigation--item asideNavigation--item-documentation">
-			<button class="asideNavigation--button" @click="openRedirect('https://docu.chatbottery.com/')" title="Documentation">
+			<button class="asideNavigation--button" @click="openRedirect('https://docu.chatbottery.com/')" :title="'Documentation' | say">
                 <div class="asideNavigation--icon"></div>
                 <div class="asideNavigation--text">
                     {{ 'Documentation' | say }}
@@ -70,7 +70,7 @@
 			</button>
 		</li>
         <li class="asideNavigation--item asideNavigation--item-help">
-			<button class="asideNavigation--button" @click="openRedirect('mailto:%22Chatbottery%20Support%22%3csupport@chatbottery.com%3e')" title="Help">
+			<button class="asideNavigation--button" @click="openRedirect('mailto:%22Chatbottery%20Support%22%3csupport@chatbottery.com%3e')" :title="'Help' | say">
                 <div class="asideNavigation--icon"></div>
                 <div class="asideNavigation--text">
                     {{ 'Help' | say }}
@@ -79,11 +79,18 @@
 		</li>
 	</ul>
 	<footer class="asideNavigation--footer">
+        <ul class="asideNavigation--locales">
+            <template v-for="locale in locales">
+                <li @click="setLocale(locale.code)" :title="locale.label">
+                    <img :src="'rsrc/flags/' + locale.code + '.svg'" :alt="locale.label">
+                </li>
+            </template>
+        </ul>
         <div class="asideNavigation--twinery">
             <div class="asideNavigation--twinery-logo">
                 <img src="../common/img/logo.svg" />
             </div>
-            <div class="asideNavigation--description">Chatbottery Editor {{ appInfo.version }} - Made with Twine, an open-source tool for telling interactive, nonlinear stories.</div>
+            <div class="asideNavigation--description">Chatbottery Editor {{ appInfo.version }} - {{ 'Made with Twine, an open-source tool for telling interactive, nonlinear stories' | say }}.</div>
         </div>
         <div class="asideNavigation--status">
             <div class="asideNavigation--gauge">

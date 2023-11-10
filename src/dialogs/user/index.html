@@ -6,7 +6,7 @@
 			<div class="user__list user-entry" v-for="item in userData" track-by="$index">
 				<div class="user-gripper" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)"></div>
 				<div class="user__list user-field">
-					<input type="text" class="user__list-field" v-model="item[0]" placeholder="Variable new" title="{{ 'Variable Name' | say }}">
+					<input type="text" class="user__list-field" v-model="item[0]" :placeholder="'variable' | say" title="{{ 'Variable Name' | say }}">
 					<button class="user__list-search" @click.stop="search(item, $event)" :disabled="isEmptyUserEntry(item)" title="{{ 'Find in Passages' | say }}"></button>
 					<select class="user__list-type" name="types" v-model="item[1].type">
 						<option value="string">{{ 'String' | say }}</option>
@@ -16,8 +16,8 @@
 					</select>
 					<input v-if="item[1].type === 'string'" type="text" class="user__list-input" v-model="item[1].value" placeholder="{{ 'Default Value' | say }}" title="{{ 'String' | say }}">
 					<select v-if="item[1].type === 'boolean'" class="user__list-input" v-model="item[1].value" placeholder="{{ 'Default Value' | say }}" title="{{ 'Boolean' | say }}">
-						<option value="true">true</option>	
-						<option value="false">false</option>	
+						<option value="true">{{ 'true' | say }}</option>	
+						<option value="false">{{ 'false' | say }}</option>	
 					</select>
 					<input v-if="item[1].type === 'number'" type="number" class="user__list-input" v-model="item[1].value" placeholder="{{ 'Default Value' | say }}" title="{{ 'Number' | say }}">
 					<input v-if="item[1].type === 'date'" type="date" class="user__list-input" v-model="item[1].value" placeholder="{{ 'Default Value' | say }}" title="{{ 'Date' | say }}">

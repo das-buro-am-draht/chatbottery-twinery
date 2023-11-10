@@ -8,10 +8,10 @@
     <!-- <img src="../../common/img/harddisk-icon.svg" /> -->
     <div class="localStorage--status"></div>
     <div class="localStorage--error" v-if="!localStorageActive && promtVisible">
-        <h4 class="localStorage--headline">Warning</h4>
+        <h4 class="localStorage--headline">{{ 'Warning' | say }}</h4>
         <div class="localStorage--close" @click="closePromt()">
             <img src="../../common/img/close-icon.svg" />
         </div>
-        <p class="localStorage--description">You have to turn on your locale storage in order to to make the editor work properly. <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank">Learn more</a></p>
+        <p class="localStorage--description">{{ 'You have to turn on your locale storage in order to make the editor work properly' | say }}. <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank">{{ 'Learn more' | say }}</a></p>
     </div>
 </div>

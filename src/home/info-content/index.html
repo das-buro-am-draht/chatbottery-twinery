@@ -2,10 +2,10 @@
     <div class="infoContent--hero">
 		<header class="infoContent--header">
 			<div class="infoContent--description">
-				Meet our award winning chatbot software. Made with <i class="fa fa-heart" aria-hidden="true"></i> and <a href="https://twinery.org/" target="_blank">Twinery</a>. 
+				{{ 'Meet our award winning chatbot software. Made with' | say }} <i class="fa fa-heart" aria-hidden="true"></i> + <a href="https://twinery.org/" target="_blank">Twinery</a>. 
 			</div>
-			<button class="infoContent--nav-item" title="New chatbot" @click="openRedirect('https://chatbottery.com/')">
-				<div class="infoContent--text">About us</div>
+			<button class="infoContent--nav-item" :title="'New chatbot' | say" @click="openRedirect('https://chatbottery.com/')">
+				<div class="infoContent--text">{{ 'About us' | say }}</div>
 				<div class="infoContent--redirect">
 					<img src="../../common/img/new-window-icon.svg" />
 				</div>
@@ -18,8 +18,8 @@
 			Editor version <span>{{ appInfo.version }}</span>
 		</div>
 		<footer class="infoContent--footer">
-			<button class="infoContent--new-chatbot" title="New chatbot" @click="createStoryPrompt">
-				<span>Create a chatbot</span>
+			<button class="infoContent--new-chatbot" :title="'New chatbot' | say" @click="createStoryPrompt">
+				<span>{{ 'Create a chatbot' | say }}</span>
 				<img class="icon" src="../../common/img/plus-icon.svg" />
 			</button>
 		</footer>

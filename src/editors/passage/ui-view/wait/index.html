@@ -8,7 +8,7 @@
 				<label for="variable">{{ 'Variable' | say }}:</label>
 				<div class="passageUI-row-input">
 					<div class="passageUI-wait-variable">
-						<input type="text" class="code" list="userData" name="variable" v-model="variable" @input="onChangeVariable($event)" required placeholder="User variable without '$' prefix">
+						<input type="text" class="code" list="userData" id="variable" v-model="variable" @input="onChangeVariable($event)" required placeholder="User variable without '$' prefix">
 						<datalist id="userData">
 							<option v-for="field in userData" :value="field">
 						</datalist>
@@ -19,11 +19,11 @@
 			</div>
 			<div class="passageUI-row">
 				<label for="validate">{{ 'Validation' | say }}:</label>
-				<input type="text" class="code" name="validate" v-model="validate" @input="onChangeValidate($event)" title="Validation function - e.g. '$isEmail($msg)'">
+				<input type="text" class="code" id="validate" v-model="validate" @input="onChangeValidate($event)" :title="'Validation function - e.g. \'$isEmail($msg)\'' | say">
 			</div>
 			<div class="passageUI-row">
 				<label for="placeholder">{{ 'Placeholder' | say }}:</label>
-				<input type="text" class="code" name="placeholder" v-model="placeholder" @input="onChangePlaceholder($event)" title="Input field placeholder">
+				<input type="text" class="code" id="placeholder" v-model="placeholder" @input="onChangePlaceholder($event)" :title="'Input field placeholder' | say">
 			</div>
 		</div>
 	</div>
@@ -34,7 +34,7 @@
 	<div v-else class="passageUI-options">
 		<label for="autocomplete">{{ 'User reply suggestions' || say }}:</label>
 		<div v-else class="passageUI-option">
-			<textarea class="passageUI-option-text" name="autocomplete" v-model="autocomplete" @input="onChangeAutocomplete($event)" rows="3"></textarea>
+			<textarea class="passageUI-option-text" id="autocomplete" v-model="autocomplete" @input="onChangeAutocomplete($event)" rows="3"></textarea>
 		</div>
 	</div>
 </div>

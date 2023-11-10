@@ -23,7 +23,7 @@ const Locale = (module.exports = {
 			prevent unnecessary requests, especially with the online build.
 			*/
 
-			if (locale === 'en' || locale === 'en-us' || locale === 'de') {
+			if (locale === 'en' || locale === 'en-us') {
 				Locale.loadDefault();
 				resolve();
 				return;

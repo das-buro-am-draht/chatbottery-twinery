@@ -7,7 +7,7 @@
 			<div class="passageUI-row">
 				<label for="assignment">{{ 'Code assignment' | say }}:</label>
 				<div class="passageUI-row-input">
-					<input type="text" class="code" list="assignments" name="assignment" v-model="assignment" @input="onChange($event)" required placeholder="JavaScript code assignment" title="JavaScript assign statement - e.g. '$chapter = 3'">
+					<input type="text" class="code" list="assignments" name="assignment" v-model="assignment" @input="onChange($event)" required :placeholder="'JavaScript code assignment' | say" :title="'JavaScript assign statement - e.g. \'$chapter = 3\'' | say">
 					<datalist id="assignments">
 						<option v-for="assignment in assignments" :value="assignment">
 					</datalist>

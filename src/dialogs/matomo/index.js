@@ -153,7 +153,7 @@ module.exports = Vue.extend({
 							));
 						})
 						.catch((error) => {
-							notify(locale.say(`Error on loading Matomo data from '${url}: ${error.message}`), 'danger');
+							notify(locale.say("Error on loading Matomo data from '" + url + "': " + error.message), 'danger');
 						})
 						.finally(() => this.processing = false);
 				}

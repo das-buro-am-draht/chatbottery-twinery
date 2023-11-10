@@ -1,6 +1,6 @@
 <div class="chatbot-search">
-	<input class="chatbot-search__input" type="search" placeholder="Browse Chatbot…" v-model="search">
-	<button class="chatbot-search__icon" title="{{ 'Find and replace across the entire chatbot' | say }}" @click="showModal">
+	<input class="chatbot-search__input" type="search" :placeholder="'Browse Chatbot…' | say" :title="'Search the entire Chatbot for specified String' | say" v-model="search">
+	<button class="chatbot-search__icon" :title="'Find and replace across the entire Chatbot' | say" @click="showModal">
 		<div class="dots">
 			<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 		</div>

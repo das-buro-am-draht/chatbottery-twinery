@@ -1,5 +1,5 @@
 <div class="chatbotsContent">
-    <h2 class="chatbotsContent--headline">Manage your Chatbots</h2>
+    <h2 class="chatbotsContent--headline">{{ 'Manage your Chatbots' | say }}</h2>
     <p v-if="stories.length === 0">
         {{ 'There are no chatbots saved in Chatbottery right now. To get started, you can either create a new chatbot or import an existing one from a file.' | say }}
     </p>
@@ -7,12 +7,12 @@
         <story-item v-for="story in sortedStories" :story="story" transition="grow-in-out" track-by="id"></story-item>
     </div>
     <footer class="chatbotsContent--footer">
-        <button class="chatbotsContent--import-chatbot" title="Import chatbot" @click="importFile">
-            <span>Import existing file</span>
+        <button class="chatbotsContent--import-chatbot" :title="'Import Chatbot' | say" @click="importFile">
+            <span>{{ 'Import existing file' | say }}</span>
             <i class="fa fa-upload" aria-hidden="true"></i>
         </button>
-        <button class="chatbotsContent--new-chatbot" title="New chatbot" @click="createStoryPrompt">
-            <span>Create new chatbot</span>
+        <button class="chatbotsContent--new-chatbot" :title="'New Chatbot' | say" @click="createStoryPrompt">
+            <span>{{ 'Create new chatbot' | say }}</span>
             <div class="icon"></div>
             <!-- <img class="icon" src="../../common/img/plus-icon.svg" /> -->
         </button>

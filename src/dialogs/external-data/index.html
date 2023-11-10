@@ -9,7 +9,7 @@
 				<div class="externaldata-list--text">
 					<input type="text" v-model="item.name" :placeholder="listPlaceholder(index)" @input="onChangeList(index, $event)">
 				</div>
-				<div class="externaldata-list--delete" @click.stop="onDeleteList(index)" title="Delete List">
+				<div class="externaldata-list--delete" @click.stop="onDeleteList(index)" :title="'Delete List' | say">
 					<img src="../../common/img/ui-delete.svg">
 				</div>
 			</div>
@@ -17,7 +17,7 @@
 				<img src="../../common/img/plus.svg" @click="onAddList">
 			</div>
 		</div>
-		<!-- <button v-if="list >= 0" class="externaldata-process-all" @click.stop="onProcessAll()" title="Analyse all in List" :disabled="processing || !canAnalyse">
+		<!-- <button v-if="list >= 0" class="externaldata-process-all" @click.stop="onProcessAll()" :title="'Analyse all in List' | say" :disabled="processing || !canAnalyse">
 			<img src="../../common/img/suggestions.svg">
 		</button> -->
 	</div>
@@ -29,11 +29,11 @@
 						<img src="../../common/img/ui-drag.svg">
 					</div>
 					<div class="externaldata-item--input">
-						<input type="text" v-model="item.url" placeholder="Web Page URL" :readonly="item.processed" @input="modified = true">
+						<input type="text" v-model="item.url" :placeholder="'Web Page URL' | say" :readonly="item.processed" @input="modified = true">
 						<p class="error" v-show="item.url && !isValidUrl(item)">{{ 'Web Page URL is invalid!' | say }}</p>
 						<!-- <p class="error" v-show="!!item.error">{{ item.error }}</p> -->
 					</div>
-					<button class="externaldata-item--delete" @click.stop="onDeleteItem(index)" title="Delete Entry">
+					<button class="externaldata-item--delete" @click.stop="onDeleteItem(index)" :title="'Delete Entry' | say">
 						<img src="../../common/img/ui-delete.svg">
 					</button>
 					<button :class="['externaldata-item--process', item.processed ? 'processed' : item.error ? 'error' : '']" @click.stop="onProcessItem(index)" :title="processItemTitle(item, index)" :disabled="!isValidUrl(item)">
@@ -75,8 +75,12 @@
 	</div>
 	<div class="externaldata-controls">
 		<div class="externaldata-download">
-			<button class="danger" @click="download" :disabled="processing || !valid.length">{{ 'Download file' | say }}</button>
-			<span>Don't forget to set the destination of this file in your <button type="text" @click="onSettings($event)">settings</button>.</span>
+			<button class="danger" @click="download" :disabled="processing || !valid.length">
+				{{ 'Download file' | say }}
+			</button>
+			<span>
+				{{ 'Don't forget to set the destination of this file in your' | say }} <button type="text" @click="onSettings($event)">{{ 'Settings' | say }}</button>.
+			</span>
 		</div>
 		<div class="externaldata-save">
 			<button class="create" @click="save" :disabled="processing">{{ 'Save' | say }}</button>
