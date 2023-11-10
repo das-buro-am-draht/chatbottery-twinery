@@ -21,7 +21,7 @@ module.exports = Vue.extend({
 			url: '',
 			siteId: '',
 			statisticalArea: '',
-			shouldStoreTrackingIdInCookies: false,
+			shouldStoreTrackingIdInCookies: true,
 			browserHostToEnvironmentMap: {},
 			authToken: '',
 		},
