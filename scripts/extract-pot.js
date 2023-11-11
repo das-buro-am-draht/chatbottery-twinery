@@ -59,7 +59,7 @@ Parse .html files for text in this format:
 {{ 'Singular string' | sayPlural 'Plural string' }} 
 */
 
-const templateRegexp = /(?:(?:=")|(?:{{{?))[\s]*'([^']+)'\s*\|\s*say(?:Plural)?\s*(?:'([^']+)')?[^"}]*(?:(?:}}}?\s*)|")/gm;
+const templateRegexp = /(?:(?::[a-zA-Z-]+=")|(?:{{{?))[\s]*'([^']+)'\s*\|\s*say(?:Plural)?\s*(?:'([^']+)')?[^"}]*(?:(?:}}}?\s*)|")/gm;
 
 glob.sync('src/**/*.html').forEach(fileName => {
 	const source = fs.readFileSync(fileName, { encoding: 'utf8' });
