@@ -293,7 +293,7 @@ module.exports = Vue.extend({
 				try {
 					this.gui = parse(this.passage.text);
 				} catch (e) {
-					notify(e.message, 'danger');
+					notify(escape(e.message), 'danger');
 				}
 			}
 		},

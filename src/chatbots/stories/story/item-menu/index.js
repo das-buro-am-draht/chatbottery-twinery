@@ -72,8 +72,8 @@ module.exports = Vue.extend({
 					locale.say(
 						'The chatbot &ldquo;%1$s&rdquo; could not ' +
 						'be published (%2$s).',
-						this.story.name,
-						e.message
+						escape(this.story.name),
+						escape(e.message)
 					),
 					'danger'
 				);
@@ -130,9 +130,7 @@ module.exports = Vue.extend({
 					'<i class="fa fa-copy"></i> ' + locale.say('Duplicate'),
 				response: locale.say('%s Copy', escape(this.story.name)),
 				blankTextError: locale.say('Please enter a name.')
-			}).then(name => {
-				this.duplicateStory(this.story.id, name);
-			});
+			}).then(name => this.duplicateStory(this.story.id, name));
 		}
 	},
 

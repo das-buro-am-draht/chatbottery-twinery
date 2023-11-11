@@ -13,6 +13,7 @@ const { confirm } = require('../confirm');
 const PassageEditor = require("../../editors/passage");
 const SearchDropdown = require('./search');
 const { createNewlyLinkedPassages } = require('../../data/actions/passage');
+const escape = require('lodash.escape');
 
 require("./index.less");
 
@@ -195,7 +196,7 @@ module.exports = Vue.extend({
 				notify(
 					locale.say(
 						"&ldquo;%1$s&rdquo; was not found", 
-						key
+						escape(key)
 					), 'info'
 				);
 			} else {

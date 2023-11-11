@@ -104,7 +104,7 @@ module.exports = Vue.extend({
 				if (importedStory.storyFormat !== story.storyFormat || importedStory.storyFormatVersion !== story.storyFormatVersion) {
 					notify(locale.say(
 						"Story format of imported story was changed to &ldquo;%s&rdquo;.",
-						importedStory.storyFormat + ' ' + importedStory.storyFormatVersion
+						escape(importedStory.storyFormat + ' ' + importedStory.storyFormatVersion)
 					));					
 				}
 			});

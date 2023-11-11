@@ -617,6 +617,7 @@ msgid "Authentication Token"
 msgstr ""
 
 #: src/dialogs/plugins/index.html
+#: src/utils/task.js:15
 msgid "Live Chat"
 msgstr ""
 
@@ -935,7 +936,7 @@ msgid "Change Tag Type"
 msgstr ""
 
 #: src/editors/passage/tag-editor/tag-menu/index.html
-#: src/chatbot-view/edit-view/index.js:391
+#: src/chatbot-view/edit-view/index.js:392
 #: src/chatbot-view/edit-view/passage-item/index.js:387
 #: src/editors/passage/ui-view/index.js:145
 msgid "Delete"
@@ -1305,12 +1306,12 @@ msgstr ""
 msgid "Go to the Story List"
 msgstr ""
 
-#: src/chatbot-view/edit-view/index.js:276
+#: src/chatbot-view/edit-view/index.js:277
 #: src/data/store/story.js:240
 msgid "Untitled Passage"
 msgstr ""
 
-#: src/chatbot-view/edit-view/index.js:382
+#: src/chatbot-view/edit-view/index.js:383
 msgid "Are you sure you want to delete &ldquo;%2$s&rdquo;? This cannot be undone."
 msgid_plural "Are you sure you want to delete %d passages? This cannot be undone."
 msgstr[0] ""
@@ -1325,7 +1326,7 @@ msgstr ""
 msgid "(Hold the Shift key when deleting to skip this message.)"
 msgstr ""
 
-#: src/chatbot-view/toolbar/download/index.js:50
+#: src/chatbot-view/toolbar/download/index.js:51
 #: src/chatbots/stories/story/item-menu/index.js:72
 msgid "The chatbot &ldquo;%1$s&rdquo; could not be published (%2$s)."
 msgstr ""
@@ -1389,15 +1390,15 @@ msgstr ""
 msgid "There is no chatbot with ID %s."
 msgstr ""
 
-#: src/data/actions/story-format.js:66
+#: src/data/actions/story-format.js:67
 msgid "this chatbot format is already installed"
 msgstr ""
 
-#: src/data/actions/story-format.js:90
+#: src/data/actions/story-format.js:91
 msgid "a more recent version of the chatbot format &ldquo;%s&rdquo; is already installed"
 msgstr ""
 
-#: src/data/actions/story-format.js:267
+#: src/data/actions/story-format.js:268
 msgid "Default Chatbot Format &ldquo;%1$s %2$s&rdquo; is not the latest (%3$s %4$s)."
 msgstr ""
 
@@ -1471,7 +1472,7 @@ msgstr ""
 #: src/dialogs/openai/index.js:90
 #: src/dialogs/plugins/index.js:155
 #: src/dialogs/settings/index.js:65
-#: src/dialogs/user/index.js:270
+#: src/dialogs/user/index.js:271
 msgid "Discard changes"
 msgstr ""
 
@@ -1548,7 +1549,7 @@ msgstr ""
 msgid "There were changes detected for the settings dialog. Are you sure you want to discard those changes?"
 msgstr ""
 
-#: src/dialogs/story-format/index.js:46
+#: src/dialogs/story-format/index.js:47
 msgid "The chatbot format &ldquo;%1$s&rdquo; could not be loaded (%2$s)."
 msgstr ""
 
@@ -1602,11 +1603,11 @@ msgid_plural "Broken Links"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/user/index.js:196
+#: src/dialogs/user/index.js:197
 msgid "&ldquo;%1$s&rdquo; was not found"
 msgstr ""
 
-#: src/dialogs/user/index.js:269
+#: src/dialogs/user/index.js:270
 msgid "There were changes detected for the user data dialog. Are you sure you want to discard those changes?"
 msgstr ""
 
@@ -1622,9 +1623,49 @@ msgstr ""
 msgid "Enter the body text of your passage here."
 msgstr ""
 
-#: src/editors/passage/tag-editor/index.js:102
+#: src/editors/passage/tag-editor/index.js:103
 #: src/editors/passage/ui-view/index.js:231
 msgid "No suggestions were found."
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.js:69
+msgid "Main Tag"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.js:70
+msgid "Main Tag will be shown to user in \"Did you mean...?\", when prompt is too vague"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.js:75
+msgid "Group Tag"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.js:76
+msgid "All passages that have this tag form a semantic context - improving identification in this context"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.js:81
+msgid "Suggestion Tag"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.js:82
+msgid "Tag-Phrase is autocompleted, when the user starts to type accordingly"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.js:87
+msgid "Conditional Tag"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.js:88
+msgid "Passage Content is only shown if a preset variable condition is met e.g. \"isGerman\""
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.js:93
+msgid "Regular Tag"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.js:94
+msgid "Passage content will be shown, when user submits the exact or a similar phrase"
 msgstr ""
 
 #: src/editors/passage/tag-editor/tag-dialog/index.js:127
@@ -1667,4 +1708,48 @@ msgstr ""
 
 #: src/ui/quota-gauge/index.js:29
 msgid "%d%% space available"
+msgstr ""
+
+#: src/utils/task.js:4
+msgid "Text message"
+msgstr ""
+
+#: src/utils/task.js:5
+msgid "Buttons"
+msgstr ""
+
+#: src/utils/task.js:6
+msgid "Image"
+msgstr ""
+
+#: src/utils/task.js:7
+msgid "Video"
+msgstr ""
+
+#: src/utils/task.js:8
+msgid "iFrame / PDF"
+msgstr ""
+
+#: src/utils/task.js:9
+msgid "Carousel"
+msgstr ""
+
+#: src/utils/task.js:10
+msgid "Tiles"
+msgstr ""
+
+#: src/utils/task.js:11
+msgid "Record user input"
+msgstr ""
+
+#: src/utils/task.js:12
+msgid "Set variable"
+msgstr ""
+
+#: src/utils/task.js:13
+msgid "Goto"
+msgstr ""
+
+#: src/utils/task.js:14
+msgid "AI prompt"
 msgstr ""

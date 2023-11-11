@@ -83,7 +83,7 @@ module.exports = Vue.extend({
 			const item = new ClipboardItem({[objBlob.type]: objBlob});
 			navigator.clipboard.write([item])
 				.then(() => notify(locale.say('Task was written to clipboard.'), 'info'))
-				.catch((error) => notify(error.message, 'danger'));
+				.catch((error) => notify(escape(error.message), 'danger'));
 		},
 		onSettings(index) {
 			this.settings ^= 1 << index;
@@ -235,7 +235,7 @@ module.exports = Vue.extend({
 					}
 				})
 				.catch((error) => {
-					notify(error.message, 'danger');
+					notify(escape(error.message), 'danger');
 					this.openai = null;
 				})
 				.finally(() => {

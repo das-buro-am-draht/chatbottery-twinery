@@ -17,6 +17,7 @@ const {
 	insertTag
 } = require('../../../utils/tags');
 const locale = require('../../../locale');
+const escape = require('lodash.escape');
 
 require('./index.less');
 
@@ -102,7 +103,7 @@ module.exports = Vue.extend({
 						notify(locale.say('No suggestions were found.'), 'info');
 					}
 				})
-				.catch((error) => notify(error.message, 'danger'))
+				.catch((error) => notify(escape(error.message), 'danger'))
 				.finally(() => {
 					this.loading = false;
 					Vue.nextTick(() => this.$els.suggestions.scrollIntoView());

@@ -1,18 +1,20 @@
+const locale = require('../locale');
+
 const types = {
-	'txt'     : 'Text message',
-	'buttons' : 'Buttons',
-	'image'   : 'Image',
-	'video'   : 'Video',
-	'iframe'  : 'iFrame / PDF',
-	'carousel': 'Carousel',
-	'tiles'   : 'Tiles',
-	'wait'    : 'Record user input',
-	'eval'    : 'Set variable',
-	'goto'    : 'Goto',
-	'ai'      : 'AI prompt',
-	'chat'    : 'Live Chat',
-	// 'sms'     : 'SMS (Voice Bot)',
-	// 'call'    : 'Call Control (Voice Bot)',
+	'txt'     : locale.say('Text message'),
+	'buttons' : locale.say('Buttons'),
+	'image'   : locale.say('Image'),
+	'video'   : locale.say('Video'),
+	'iframe'  : locale.say('iFrame / PDF'),
+	'carousel': locale.say('Carousel'),
+	'tiles'   : locale.say('Tiles'),
+	'wait'    : locale.say('Record user input'),
+	'eval'    : locale.say('Set variable'),
+	'goto'    : locale.say('Goto'),
+	'ai'      : locale.say('AI prompt'),
+	'chat'    : locale.say('Live Chat'),
+	// 'sms'     : locale.say('SMS (Voice Bot)'),
+	// 'call'    : locale.say('Call Control (Voice Bot)'),
 };
 
 const clipboardType = 'text/plain';
