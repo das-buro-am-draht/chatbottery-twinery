@@ -55,19 +55,21 @@ function addItem(location, string, pluralString, comment) {
 
 /*
 Parse .html files for text in this format: 
+:attribute="'Simple string' | say"
+:attribute="'Singular string' | sayPlural 'Plural string'"
 {{ 'Simple string' | say }}
 {{ 'Singular string' | sayPlural 'Plural string' }} 
 */
 
-const templateRegexp = /(?:(?::[a-zA-Z-]+=")|(?:{{{?))[\s]*'([^']+)'\s*\|\s*say(?:Plural)?\s*(?:'([^']+)')?[^"}]*(?:(?:}}}?\s*)|")/gm;
+const templateRegexp = /(?:(?::[a-zA-Z-]+=")|(?:{{{?))[\s]*'([^']+)'\s*\|\s*say(?:Plural)?\s*(?:'([^']+)')?[^"}]*(?:(?:}}}?)|")/gm;
 
 glob.sync('src/**/*.html').forEach(fileName => {
-	const source = fs.readFileSync(fileName, { encoding: 'utf8' });
 	let match;
+	const source = fs.readFileSync(fileName, { encoding: 'utf8' });
 	while (match = templateRegexp.exec(source)) {
 		/*
-		The first captured expression is a comment, if any.
-		The third is the plural form of the string, if any.
+		match[1]: singular form of the string 
+		match[2]: plural form of the string, if any.
 		*/
 
 		addItem(fileName, match[1], match[2]);

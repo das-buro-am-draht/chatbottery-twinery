@@ -139,7 +139,7 @@ msgstr "Importiere einen Chatbot"
 
 #: src/chatbots/stories/index.html
 msgid "Create new Chatbot"
-msgstr "Erzeuge einen neuen Chatbot"
+msgstr "Erstelle einen neuen Chatbot"
 
 #: src/chatbots/stories/index.html
 msgid "Drop a Chatbot file to import"
