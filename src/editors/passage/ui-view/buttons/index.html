@@ -47,8 +47,12 @@
 			</div>
 		</div>		
 		<div v-show="!hasEmpty" class="passageUI-action" >
-			<button type="button" @click="onShowAdvanced">
-				{{ showAdvanced ? 'Hide advanced Settings' | say : 'Advanced Settings' | say }}</button>
+			<button v-if="showAdvanced" type="button" @click="onShowAdvanced">
+				{{ 'Hide advanced Settings' | say }}
+			</button>
+			<button v-else type="button" @click="onShowAdvanced">
+				{{ 'Advanced Settings' | say }}
+			</button>
 		</div>
 	</div>
 </div>

@@ -1003,6 +1003,14 @@ msgstr ""
 msgid "New Tab"
 msgstr ""
 
+#: src/editors/passage/ui-view/buttons/index.html
+msgid "Hide advanced Settings"
+msgstr ""
+
+#: src/editors/passage/ui-view/buttons/index.html
+msgid "Advanced Settings"
+msgstr ""
+
 #: src/editors/passage/ui-view/carousel/index.html
 #: src/editors/passage/ui-view/tiles/index.html
 msgid "Item"
