@@ -30,7 +30,7 @@
 					</div>
 					<div class="externaldata-item--input">
 						<input type="text" v-model="item.url" :placeholder="'Web Page URL' | say" :readonly="item.processed" @input="modified = true">
-						<p class="error" v-show="item.url && !isValidUrl(item)">{{ 'Web Page URL is invalid!' | say }}</p>
+						<p class="error" v-show="item.url && !isValidUrl(item)">{{ 'Web Page URL is invalid' | say }}.</p>
 						<!-- <p class="error" v-show="!!item.error">{{ item.error }}</p> -->
 					</div>
 					<button class="externaldata-item--delete" @click.stop="onDeleteItem(index)" :title="'Delete Entry' | say">

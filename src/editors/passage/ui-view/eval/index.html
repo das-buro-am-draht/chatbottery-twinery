@@ -11,8 +11,8 @@
 					<datalist id="assignments">
 						<option v-for="assignment in assignments" :value="assignment">
 					</datalist>
-					<p class="error" v-show="!assignment">{{ 'Assign statement must be set!' | say }}</p>
-					<p class="error" v-show="!isValid">{{ 'User variables must start with \'$\'' | say }}</p>
+					<p class="error" v-show="!assignment">{{ 'Assign statement must be set' | say }}.</p>
+					<p class="error" v-show="!isValid">{{ 'User variables must start with \'$\'' | say }}.</p>
 				</div>
 			</div>
 		</div>

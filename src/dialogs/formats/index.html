@@ -7,7 +7,7 @@
 	-->
 	<tab-item name="Story Formats">
 		<p>
-		{{'Chatbot formats control the appearance and behavior of chatbots during play.' | say}}
+		{{'Chatbot formats control the appearance and behavior of chatbots during play' | say}}.
 		</p>
 
 		<table>
@@ -26,7 +26,7 @@
 
 	<tab-item name="Proofing Formats">
 		<p>
-		{{'Proofing formats create a versions of chatbots tailored for editing and proofreading.' | say}}
+		{{'Proofing formats create a versions of chatbots tailored for editing and proofreading' | say}}.
 		</p>
 
 		<table>
@@ -44,12 +44,7 @@
 	</tab-item>
 
 	<tab-item name="Add a New Format">
-		<p>
-		{{
-		/* L10n: Address in the sense of a URL. */
-		'To add a story format, enter its address below.' | say }}
-		</p>
-
+		<p>{{ 'To add a story format, enter its address below' | say }}.</p>
 		<form @submit.prevent="addFormat">
 			<p class="format-url">
 				<input type="text" name="newFormatUrl" v-model="newFormatUrl" required>
@@ -60,7 +55,7 @@
 </tabs-panel>
 
 <p v-if="working">
-<i class="fa fa-circle-o-notch fa-spin"></i> {{ 'Loading...' | say}}
+	<i class="fa fa-circle-o-notch fa-spin"></i> {{ 'Loading' | say }}...
 </p>
 
 <p class="error" v-if="error">

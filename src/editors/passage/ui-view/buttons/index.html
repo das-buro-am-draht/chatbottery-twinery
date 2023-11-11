@@ -21,7 +21,7 @@
 				<datalist v-if="passages" id="passages">
 					<option v-for="passage in passages" :value="passage">
 				</datalist>
-				<p class="error" v-show="task.buttons[selection] && !task.buttons[selection].link">{{ 'Button link must be set.' | say }}</p>
+				<p class="error" v-show="task.buttons[selection] && !task.buttons[selection].link">{{ 'Button link must be set' | say }}.</p>
 			</div>
 		</div>
 		<div class="passageUI-row">

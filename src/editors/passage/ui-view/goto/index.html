@@ -11,7 +11,7 @@
 					<datalist v-if="passages" id="passages">
 						<option v-for="passage in passages" :value="passage">
 					</datalist>
-					<p class="error" v-show="!passage">{{ 'Passage name must be set!' | say }}</p>
+					<p class="error" v-show="!passage">{{ 'Passage name must be set' | say }}.</p>
 				</div>
 			</div>
 		</div>

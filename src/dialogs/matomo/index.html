@@ -15,7 +15,7 @@
 
 	<div v-if="processing" class="matomo-loader">
 		<i class="fa fa-circle-o-notch fa-lg fa-spin"></i>
-		<p>{{ 'Loading Matomo Analytics data...' | say }}</p>
+		<p>{{ 'Loading' | say }}...</p>
 	</div>
 	<template v-else>
 		<div class="matomo-visits" v-if="visits">

@@ -52,7 +52,7 @@
 			</div>
 			<p class="passageUI-openai--text">{{openai.text}}</p>
 			<div v-if="openai.loading" class="passageUI-openai--loader">
-				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
+				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading' | say }}...
 			</div>
 			<div class="passageUI-openai--suggestions" v-for="(index, suggestion) in openai.suggestions">
 				<button class="passageUI-openai--add" @click="addSuggestion(index)"></button>

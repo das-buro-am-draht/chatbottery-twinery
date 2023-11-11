@@ -231,7 +231,7 @@ msgid "Manage your Chatbots"
 msgstr ""
 
 #: src/chatbots/stories/index.html
-msgid "There are no chatbots saved in Chatbottery right now. To get started, you can either create a new chatbot or import an existing one from a file."
+msgid "There are no chatbots saved in Chatbottery right now. To get started, you can either create a new chatbot or import an existing one from a file"
 msgstr ""
 
 #: src/chatbots/stories/index.html
@@ -281,7 +281,7 @@ msgstr ""
 #: src/dialogs/about/index.html
 msgid ""
 "Chatbottery is an open-source tool for telling interactive, nonlinear\n"
-"\t\tchatbots."
+"\t\tchatbots"
 msgstr ""
 
 #: src/dialogs/about/index.html
@@ -397,7 +397,7 @@ msgid "Web Page URL"
 msgstr ""
 
 #: src/dialogs/external-data/index.html
-msgid "Web Page URL is invalid!"
+msgid "Web Page URL is invalid"
 msgstr ""
 
 #: src/dialogs/external-data/index.html
@@ -444,7 +444,7 @@ msgid "Story Formats"
 msgstr ""
 
 #: src/dialogs/formats/index.html
-msgid "Chatbot formats control the appearance and behavior of chatbots during play."
+msgid "Chatbot formats control the appearance and behavior of chatbots during play"
 msgstr ""
 
 #: src/dialogs/formats/index.html
@@ -452,11 +452,15 @@ msgid "Use as Default"
 msgstr ""
 
 #: src/dialogs/formats/index.html
-msgid "Proofing formats create a versions of chatbots tailored for editing and proofreading."
+msgid "Proofing formats create a versions of chatbots tailored for editing and proofreading"
 msgstr ""
 
 #: src/dialogs/formats/index.html
 msgid "Use"
+msgstr ""
+
+#: src/dialogs/formats/index.html
+msgid "To add a story format, enter its address below"
 msgstr ""
 
 #: src/dialogs/formats/index.html
@@ -466,10 +470,13 @@ msgid "Add"
 msgstr ""
 
 #: src/dialogs/formats/index.html
+#: src/dialogs/matomo/index.html
 #: src/dialogs/story-format/index.html
+#: src/dialogs/story-import/index.html
 #: src/editors/passage/tag-editor/index.html
 #: src/editors/passage/ui-view/index.html
-msgid "Loading..."
+#: src/home/wordpress-news/index.html
+msgid "Loading"
 msgstr ""
 
 #: src/dialogs/formats/item.html
@@ -496,10 +503,6 @@ msgstr ""
 #: src/dialogs/matomo/index.html
 #: src/dialogs/matomo/index.html
 msgid "To Date"
-msgstr ""
-
-#: src/dialogs/matomo/index.html
-msgid "Loading Matomo Analytics data..."
 msgstr ""
 
 #: src/dialogs/matomo/index.html
@@ -700,7 +703,7 @@ msgid "URL for external Story data"
 msgstr ""
 
 #: src/dialogs/story-format/index.html
-msgid "A chatbot format controls the appearance and behavior of your chatbot during play."
+msgid "A chatbot format controls the appearance and behavior of your chatbot during play"
 msgstr ""
 
 #: src/dialogs/story-import/index.html
@@ -718,11 +721,7 @@ msgid "Cancel"
 msgstr ""
 
 #: src/dialogs/story-import/index.html
-msgid "Working..."
-msgstr ""
-
-#: src/dialogs/story-import/index.html
-msgid "Some chatbots you are importing already exist in your library. Please choose which to replace. Any other stories in your file will be imported as well."
+msgid "Some chatbots you are importing already exist in your library. Please choose which to replace. Any other stories in your file will be imported as well"
 msgstr ""
 
 #: src/dialogs/story-search/index.html
@@ -762,13 +761,13 @@ msgid "Replace All"
 msgstr ""
 
 #: src/dialogs/story-search/index.html
-msgid "%d passage matches."
-msgid_plural "%d passages match."
+msgid "%d passage matches"
+msgid_plural "%d passages match"
 msgstr[0] ""
 msgstr[1] ""
 
 #: src/dialogs/story-search/index.html
-msgid "Searching..."
+msgid "Searching"
 msgstr ""
 
 #: src/dialogs/story-search/result.html
@@ -786,7 +785,7 @@ msgid "Replace in Passage"
 msgstr ""
 
 #: src/dialogs/story-stats/index.html
-msgid "This chatbot was last changed at %s."
+msgid "This chatbot was last changed at %s"
 msgstr ""
 
 #: src/dialogs/user/index.html
@@ -844,7 +843,7 @@ msgid "JavaScript"
 msgstr ""
 
 #: src/editors/javascript/index.html
-msgid "Any JavaScript entered here will immediately run when your story is opened in a Web browser."
+msgid "Any JavaScript entered here will immediately run when your story is opened in a Web browser"
 msgstr ""
 
 #: src/editors/passage/index.html
@@ -852,7 +851,7 @@ msgid "Passage Name"
 msgstr ""
 
 #: src/editors/passage/index.html
-msgid "A passage already exists with this name."
+msgid "A passage already exists with this name"
 msgstr ""
 
 #: src/editors/passage/tag-editor/index.html
@@ -869,7 +868,7 @@ msgid "Tag or phrase"
 msgstr ""
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
-msgid "Tag name must be set."
+msgid "Tag name must be set"
 msgstr ""
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
@@ -916,7 +915,7 @@ msgid "Type"
 msgstr ""
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
-msgid "Only one Main Tag is allowed."
+msgid "Only one Main Tag is allowed"
 msgstr ""
 
 #: src/editors/passage/tag-editor/tag-menu/index.html
@@ -975,7 +974,7 @@ msgid "Link / Passage"
 msgstr ""
 
 #: src/editors/passage/ui-view/buttons/index.html
-msgid "Button link must be set."
+msgid "Button link must be set"
 msgstr ""
 
 #: src/editors/passage/ui-view/buttons/index.html
@@ -1078,7 +1077,7 @@ msgid "JavaScript code assignment"
 msgstr ""
 
 #: src/editors/passage/ui-view/eval/index.html
-msgid "Assign statement must be set!"
+msgid "Assign statement must be set"
 msgstr ""
 
 #. L10n: Word in the sense of individual words in a sentence. This does not actually include the count, as it is used in a table.
@@ -1088,7 +1087,7 @@ msgid "Passage"
 msgstr ""
 
 #: src/editors/passage/ui-view/goto/index.html
-msgid "Passage name must be set!"
+msgid "Passage name must be set"
 msgstr ""
 
 #: src/editors/passage/ui-view/iframe/index.html
@@ -1096,7 +1095,11 @@ msgid "URL"
 msgstr ""
 
 #: src/editors/passage/ui-view/iframe/index.html
-msgid "IFrame/PDF URL must be set!"
+msgid "Enter URL or PDF-Link you want to embed"
+msgstr ""
+
+#: src/editors/passage/ui-view/iframe/index.html
+msgid "IFrame/PDF URL must be set"
 msgstr ""
 
 #: src/editors/passage/ui-view/iframe/index.html
@@ -1108,7 +1111,11 @@ msgid "Height with unit"
 msgstr ""
 
 #: src/editors/passage/ui-view/image/index.html
-msgid "Image URL must be set!"
+msgid "Relative image URL"
+msgstr ""
+
+#: src/editors/passage/ui-view/image/index.html
+msgid "Image URL must be set"
 msgstr ""
 
 #: src/editors/passage/ui-view/index.html
@@ -1199,7 +1206,11 @@ msgid "Video URL"
 msgstr ""
 
 #: src/editors/passage/ui-view/video/index.html
-msgid "Video URL must be set!"
+msgid "Enter a valid youtube or vimeo link"
+msgstr ""
+
+#: src/editors/passage/ui-view/video/index.html
+msgid "Video URL must be set"
 msgstr ""
 
 #: src/editors/passage/ui-view/wait/index.html
@@ -1207,7 +1218,7 @@ msgid "Variable"
 msgstr ""
 
 #: src/editors/passage/ui-view/wait/index.html
-msgid "User variable must be set!"
+msgid "User variable must be set"
 msgstr ""
 
 #: src/editors/passage/ui-view/wait/index.html
@@ -1227,7 +1238,7 @@ msgid "Stylesheet"
 msgstr ""
 
 #: src/editors/stylesheet/index.html
-msgid "Any CSS entered here will override the default appearance of your story."
+msgid "Any CSS entered here will override the default appearance of your story"
 msgstr ""
 
 #: src/home/info-content/index.html
@@ -1246,12 +1257,8 @@ msgstr ""
 msgid "Create a Chatbot"
 msgstr ""
 
-#: src/home/wordpress-news/index.html
-msgid "Loading"
-msgstr ""
-
 #: src/locale/view/index.html
-msgid "Please choose which language you would like to use with Chatbottery."
+msgid "Please choose which language you would like to use with Chatbottery"
 msgstr ""
 
 #: src/welcome/index.html
@@ -1261,7 +1268,7 @@ msgstr ""
 #: src/welcome/index.html
 msgid ""
 "Twine is an open-source tool for telling interactive, nonlinear stories. There are a few things you should know\n"
-"\t\t\tbefore you get started."
+"\t\t\tbefore you get started"
 msgstr ""
 
 #: src/welcome/index.html
@@ -1280,7 +1287,7 @@ msgstr ""
 msgid ""
 "&lt;strong&gt;If you have used Twine 1 before,&lt;/strong&gt; the guide also has details on what has changed in\n"
 "\t\t\tthis version. Chief among them is a new default story format, Harlowe. But if you find you prefer the Twine 1\n"
-"\t\t\tscripting syntax, try using SugarCube instead."
+"\t\t\tscripting syntax, try using SugarCube instead"
 msgstr ""
 
 #: src/welcome/index.html
@@ -1291,15 +1298,15 @@ msgid "OK"
 msgstr ""
 
 #: src/welcome/index.html
-msgid "Your work is saved only in your browser."
+msgid "Your work is saved only in your browser"
 msgstr ""
 
 #: src/welcome/index.html
-msgid "Your work is automatically saved."
+msgid "Your work is automatically saved"
 msgstr ""
 
 #: src/welcome/index.html
-msgid "Thanks for reading, and have fun with Twine."
+msgid "Thanks for reading, and have fun with Twine"
 msgstr ""
 
 #: src/welcome/index.html
