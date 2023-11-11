@@ -5,6 +5,7 @@ const notify = require('../../../ui/notify');
 const { isEmpty } = require('../../../utils/common');
 const { phraseSuggestions } = require('../../../common/app/openai');
 const { label, clipboardType } = require('../../../utils/task');
+const escape = require('lodash.escape');
 
 require('./index.less');
 
@@ -140,7 +141,7 @@ module.exports = Vue.extend({
 			Promise.resolve(this.tasks[index]).then((task) => {
 				if (!this.isEmpty(task)) {
 					return confirm({
-						message: locale.say('Are you sure to delete &ldquo;%1$s&rdquo;?', this.caption(task)),
+						message: locale.say('Are you sure to delete &ldquo;%1$s&rdquo;?', escape(this.caption(task))),
 						buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Delete'),
 						buttonClass: 'danger'
 					});

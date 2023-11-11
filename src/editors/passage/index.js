@@ -13,6 +13,7 @@ const parseVariables = require('../../data/variables-parser');
 const { loadFormat } = require('../../data/actions/story-format');
 const { passageDefaults } = require('../../data/store/story');
 const notify = require('../../ui/notify');
+const escape = require('lodash.escape');
 
 require('codemirror/addon/display/placeholder');
 require('codemirror/addon/hint/show-hint');
@@ -123,7 +124,7 @@ module.exports = Vue.extend({
 				notify(
 					locale.say(
 						'New user variables found: &ldquo;%1$s&rdquo;',
-						keys.join(', ')
+						escape(keys.join(', '))
 					)
 				);
 				// 'UserDataDialog' must not be global due to circular dependencies

@@ -47,7 +47,7 @@ module.exports = Vue.extend({
 				initial: openaiDefault.page,
 				placeholder: placeholders.page,
 				params: '',
-				description: locale.say('These settings apply to External Data Website Analysis.<br>The following fields must be returned in JSON format:<table><tr><th style="text-align: left">Field name</th><th style="text-align: left">Type</th></tr><tr><td>title</td><td>string</td></tr><tr><td>author</td><td>string</td></tr><tr><td>date</td><td>string</td></tr><tr><td>phrases</td><td>array</td></tr><tr><td>main_keyword</td><td>string</td></tr><tr><td>keywords</td><td>array</td></tr><tr><td>image_url</td><td>string</td></tr><tr><td>summary</td><td>string</td></tr></table>'),
+				description: locale.say('These settings apply to External Data Website Analysis.<br>The following fields must be returned in JSON format') + ':<table><tr><th style="text-align: left">Field name</th><th style="text-align: left">Type</th></tr><tr><td>title</td><td>string</td></tr><tr><td>author</td><td>string</td></tr><tr><td>date</td><td>string</td></tr><tr><td>phrases</td><td>array</td></tr><tr><td>main_keyword</td><td>string</td></tr><tr><td>keywords</td><td>array</td></tr><tr><td>image_url</td><td>string</td></tr><tr><td>summary</td><td>string</td></tr></table>',
 		 	},
 		},
 		modified: false,

@@ -933,7 +933,7 @@ msgstr ""
 #: src/editors/passage/tag-editor/tag-menu/index.html
 #: src/chatbot-view/edit-view/index.js:391
 #: src/chatbot-view/edit-view/passage-item/index.js:387
-#: src/editors/passage/ui-view/index.js:144
+#: src/editors/passage/ui-view/index.js:145
 msgid "Delete"
 msgstr ""
 
@@ -1326,17 +1326,17 @@ msgstr ""
 msgid "The chatbot &ldquo;%1$s&rdquo; could not be published (%2$s)."
 msgstr ""
 
-#: src/chatbot-view/toolbar/file/index.js:57
+#: src/chatbot-view/toolbar/file/index.js:58
 #: src/chatbots/stories/story/item-menu/index.js:111
 msgid "What should &ldquo;%s&rdquo; be renamed to?"
 msgstr ""
 
-#: src/chatbot-view/toolbar/file/index.js:61
+#: src/chatbot-view/toolbar/file/index.js:62
 #: src/chatbots/stories/story/item-menu/index.js:115
 msgid "Rename"
 msgstr ""
 
-#: src/chatbot-view/toolbar/file/index.js:63
+#: src/chatbot-view/toolbar/file/index.js:64
 #: src/chatbots/stories/story/item-menu/index.js:117
 #: src/chatbots/stories/story/item-menu/index.js:132
 msgid "Please enter a name."
@@ -1348,7 +1348,7 @@ msgid "What should your chatbot be named?<br>(You can change this later.)"
 msgstr ""
 
 #: src/chatbots/stories/index.js:87
-#: src/home/info-content/index.js:43
+#: src/home/info-content/index.js:41
 msgid "A chatbot with this name already exists."
 msgstr ""
 
@@ -1455,11 +1455,11 @@ msgstr ""
 msgid "Error on analysing URL &ldquo;%1$s&rdquo; - %2$s."
 msgstr ""
 
-#: src/dialogs/external-data/index.js:363
+#: src/dialogs/external-data/index.js:364
 msgid "There were changes detected for the external data dialog. Are you sure you want to discard those changes?"
 msgstr ""
 
-#: src/dialogs/external-data/index.js:364
+#: src/dialogs/external-data/index.js:365
 #: src/dialogs/openai/index.js:90
 #: src/dialogs/plugins/index.js:155
 #: src/dialogs/settings/index.js:65
@@ -1492,6 +1492,10 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
+#: src/dialogs/matomo/index.js:157
+msgid "Error on loading Matomo data from &ldquo;%1$s&rdquo;: %2$s"
+msgstr ""
+
 #: src/dialogs/openai/index.js:18
 msgid "Prompt"
 msgstr ""
@@ -1521,7 +1525,7 @@ msgid "Website Analysis"
 msgstr ""
 
 #: src/dialogs/openai/index.js:50
-msgid "These settings apply to External Data Website Analysis.<br>The following fields must be returned in JSON format:<table><tr><th style=\"text-align: left\">Field name</th><th style=\"text-align: left\">Type</th></tr><tr><td>title</td><td>string</td></tr><tr><td>author</td><td>string</td></tr><tr><td>date</td><td>string</td></tr><tr><td>phrases</td><td>array</td></tr><tr><td>main_keyword</td><td>string</td></tr><tr><td>keywords</td><td>array</td></tr><tr><td>image_url</td><td>string</td></tr><tr><td>summary</td><td>string</td></tr></table>"
+msgid "These settings apply to External Data Website Analysis.<br>The following fields must be returned in JSON format"
 msgstr ""
 
 #: src/dialogs/openai/index.js:89
@@ -1540,26 +1544,26 @@ msgstr ""
 msgid "The chatbot format &ldquo;%1$s&rdquo; could not be loaded (%2$s)."
 msgstr ""
 
-#: src/dialogs/story-import/index.js:60
+#: src/dialogs/story-import/index.js:61
 msgid "Don't Replace Any Chatbots"
 msgstr ""
 
-#: src/dialogs/story-import/index.js:63
+#: src/dialogs/story-import/index.js:64
 msgid "Replace %d Chatbot"
 msgid_plural "Replace %d Chatbots"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/story-import/index.js:93
+#: src/dialogs/story-import/index.js:94
 msgid "Chatbottery format %s was loaded."
 msgstr ""
 
-#: src/dialogs/story-import/index.js:104
-msgid "Story format of imported story was changed to '%s'."
+#: src/dialogs/story-import/index.js:105
+msgid "Story format of imported story was changed to &ldquo;%s&rdquo;."
 msgstr ""
 
-#: src/dialogs/story-import/index.js:120
-msgid "Error on importing file '%1$s': %2$s"
+#: src/dialogs/story-import/index.js:121
+msgid "Error on importing file &ldquo;%1$s&rdquo;: %2$s"
 msgstr ""
 
 #. L10n: Character in the sense of individual letters in a word.  This does not actually include the count, as it is used in a table.
@@ -1598,32 +1602,32 @@ msgstr ""
 msgid "There were changes detected for the user data dialog. Are you sure you want to discard those changes?"
 msgstr ""
 
-#: src/editors/passage/index.js:52
+#: src/editors/passage/index.js:53
 msgid "Editing \\u201c%s\\u201d"
 msgstr ""
 
-#: src/editors/passage/index.js:124
+#: src/editors/passage/index.js:125
 msgid "New user variables found: &ldquo;%1$s&rdquo;"
 msgstr ""
 
-#: src/editors/passage/index.js:151
+#: src/editors/passage/index.js:152
 msgid "Enter the body text of your passage here."
 msgstr ""
 
 #: src/editors/passage/tag-editor/index.js:102
-#: src/editors/passage/ui-view/index.js:230
+#: src/editors/passage/ui-view/index.js:231
 msgid "No suggestions were found."
 msgstr ""
 
-#: src/editors/passage/tag-editor/tag-dialog/index.js:125
+#: src/editors/passage/tag-editor/tag-dialog/index.js:127
 msgid "Tag &ldquo;%1$s&rdquo; already exists."
 msgstr ""
 
-#: src/editors/passage/ui-view/index.js:84
+#: src/editors/passage/ui-view/index.js:85
 msgid "Task was written to clipboard."
 msgstr ""
 
-#: src/editors/passage/ui-view/index.js:143
+#: src/editors/passage/ui-view/index.js:144
 msgid "Are you sure to delete &ldquo;%1$s&rdquo;?"
 msgstr ""
 
@@ -1649,7 +1653,7 @@ msgid "An error occurred while renaming a chatbot."
 msgstr ""
 
 #. L10n: %1$s is a filename; %2$s is the error message.
-#: src/file/save.js:69
+#: src/file/save.js:70
 msgid "&ldquo;%1$s&rdquo; could not be saved (%2$s)."
 msgstr ""
 

@@ -10,6 +10,7 @@ const { TYPE_MAIN,
 			} = require('../../../../utils/tags');
 const notify = require('../../../../ui/notify');
 const locale = require('../../../../locale');
+const escape = require('lodash.escape');
 
 require('./index.less');
 
@@ -122,7 +123,13 @@ module.exports = Vue.extend({
 
 			const tag = this.edit.type + tagName;
 			if (tag != this.tag && this.passage.tags.includes(tag)) {
-				notify(locale.say('Tag &ldquo;%1$s&rdquo; already exists.', tag), 'info');
+				notify(
+					locale.say(
+						'Tag &ldquo;%1$s&rdquo; already exists.', 
+						escape(tag)
+					), 
+					'info'
+				);
 				return;
 			}
 

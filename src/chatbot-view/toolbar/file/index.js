@@ -4,6 +4,7 @@ show the search modal dialog.
 */
 
 const Vue = require("vue");
+const escape = require('lodash.escape');
 const locale = require("../../../locale");
 const { prompt } = require("../../../dialogs/prompt");
 const StatsDialog = require("../../../dialogs/story-stats");

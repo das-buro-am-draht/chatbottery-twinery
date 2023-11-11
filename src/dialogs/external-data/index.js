@@ -329,7 +329,8 @@ module.exports = Vue.extend({
 					notify(
 						locale.say(
 							'Error on analysing URL &ldquo;%1$s&rdquo; - %2$s.',
-							item.url, error.message
+							item.url,
+							error.message
 						),
 						'danger'
 					);

@@ -128,7 +128,7 @@ module.exports = Vue.extend({
 				message: locale.say('What should the duplicate be named?'),
 				buttonLabel:
 					'<i class="fa fa-copy"></i> ' + locale.say('Duplicate'),
-				response: locale.say('%s Copy', this.story.name),
+				response: locale.say('%s Copy', escape(this.story.name)),
 				blankTextError: locale.say('Please enter a name.')
 			}).then(name => {
 				this.duplicateStory(this.story.id, name);
