@@ -126,7 +126,7 @@ module.exports = Vue.extend({
 		},
 
 		listPlaceholder(index) {
-			return 'List ' + (index + 1);
+			return locale.say('List %d', index + 1);
 		},
 
 		calcListInput(element) {

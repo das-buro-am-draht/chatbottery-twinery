@@ -14,7 +14,7 @@
 			</div>
 			<div v-if="matomo.enabled">
 				<div class="plugin__row">
-					<label for="matomoPHPUrl">PHP URL</label>
+					<label for="matomoPHPUrl">{{ 'PHP URL' | say }}</label>
 					<div class="plugin__input">
 						<input type="text" id="matomoPHPUrl" v-model="matomo.url" :title="'Matomo PHP URL' | say">
 						<p class="error" v-show="!isValidMatomoPHPUrl">{{ 'Resource Locator must be a valid URL' | say }}</p>

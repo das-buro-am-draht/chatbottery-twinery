@@ -1,5 +1,5 @@
 <modal-dialog id="externaldata" :class="'externaldata'" :origin="origin" :can-close="canClose" :can-widen="true" v-ref:modal>
-	<span slot="title">{{ 'External data' | say }}</span>
+	<span slot="title">{{ 'External Data' | say }}</span>
 	<div class="externaldata-header">
 		<div :class="['externaldata-lists', processing ? 'disabled' : '']">
 			<div :class="['externaldata-list', list === index ? 'selected' : '']" v-for="(index, item) in data" @click="onSelectList(index)">
@@ -59,7 +59,7 @@
 			</div>
 			<div v-if="processing" class="externaldata-detailview--loader">
 				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i>
-				<p>{{ 'Analysing the website...' | say }}</p>
+				<p>{{ 'Analysing the website' | say }}...</p>
 				<p>{{ 'This may take a while' | say }}</p>
 			</div>
 			<template v-else>
@@ -79,7 +79,7 @@
 				{{ 'Download file' | say }}
 			</button>
 			<span>
-				{{ 'Don't forget to set the destination of this file in your' | say }} <button type="text" @click="onSettings($event)">{{ 'Settings' | say }}</button>.
+				{{ 'Don\'t forget to set the destination of this file in your' | say }} <button type="text" @click="onSettings($event)">{{ 'Settings' | say }}</button>.
 			</span>
 		</div>
 		<div class="externaldata-save">

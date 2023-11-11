@@ -39,6 +39,12 @@ msgid "Help"
 msgstr ""
 
 #: src/aside-navigation/index.html
+#: src/construction/index.html
+#: src/common/router.js:203
+msgid "Chatbottery Editor"
+msgstr ""
+
+#: src/aside-navigation/index.html
 msgid "Made with Twine, an open-source tool for telling interactive, nonlinear stories"
 msgstr ""
 
@@ -131,6 +137,7 @@ msgid "Chatbot User Data"
 msgstr ""
 
 #: src/chatbot-view/toolbar/file/index.html
+#: src/dialogs/user/index.html
 msgid "User Data"
 msgstr ""
 
@@ -139,6 +146,7 @@ msgid "Chatbot External Data"
 msgstr ""
 
 #: src/chatbot-view/toolbar/file/index.html
+#: src/dialogs/external-data/index.html
 msgid "External Data"
 msgstr ""
 
@@ -377,10 +385,6 @@ msgid "Date"
 msgstr ""
 
 #: src/dialogs/external-data/index.html
-msgid "External data"
-msgstr ""
-
-#: src/dialogs/external-data/index.html
 msgid "Delete List"
 msgstr ""
 
@@ -413,7 +417,7 @@ msgid "Close Detail View"
 msgstr ""
 
 #: src/dialogs/external-data/index.html
-msgid "Analysing the website..."
+msgid "Analysing the website"
 msgstr ""
 
 #: src/dialogs/external-data/index.html
@@ -544,6 +548,10 @@ msgstr ""
 
 #: src/dialogs/openai/params/index.html
 msgid "Reset to default"
+msgstr ""
+
+#: src/dialogs/plugins/index.html
+msgid "PHP URL"
 msgstr ""
 
 #: src/dialogs/plugins/index.html
@@ -778,10 +786,6 @@ msgstr ""
 
 #: src/dialogs/story-stats/index.html
 msgid "This chatbot was last changed at %s."
-msgstr ""
-
-#: src/dialogs/user/index.html
-msgid "User data"
 msgstr ""
 
 #: src/dialogs/user/index.html
@@ -1421,6 +1425,10 @@ msgstr ""
 #. L10n: A polite rejection of a request, in the sense that the answer may change in the future.
 #: src/dialogs/app-update/index.js:57
 msgid "Not Right Now"
+msgstr ""
+
+#: src/dialogs/external-data/index.js:129
+msgid "List %d"
 msgstr ""
 
 #: src/dialogs/external-data/index.js:151
