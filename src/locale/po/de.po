@@ -29,7 +29,7 @@ msgid "Chatbot Formats"
 msgstr "Chatbot Formate"
 
 msgid "Live Chats"
-msgstr ""
+msgstr "Live-Chats"
 
 msgid "Documentation"
 msgstr "Dokumentation"
@@ -138,11 +138,11 @@ msgid "Import existing file"
 msgstr "Importiere einen Chatbot"
 
 #: src/chatbots/stories/index.html
-msgid "Create new chatbot"
+msgid "Create new Chatbot"
 msgstr "Erzeuge einen neuen Chatbot"
 
 #: src/chatbots/stories/index.html
-msgid "Drop a chatbot file to import"
+msgid "Drop a Chatbot file to import"
 msgstr ""
 
 #: src/chatbots/stories/story/item-menu/index.html
@@ -869,7 +869,7 @@ msgid "About us"
 msgstr ""
 
 #: src/home/info-content/index.html
-msgid "Create a chatbot"
+msgid "Create a Chatbot"
 msgstr "Erstelle einen Chatbot"
 
 #: src/home/wordpress-news/index.html

@@ -27,7 +27,7 @@ msgid "Chatbot Formats"
 msgstr ""
 
 #: src/aside-navigation/index.html
-msgid "Live chats"
+msgid "Live Chats"
 msgstr ""
 
 #: src/aside-navigation/index.html
@@ -139,11 +139,11 @@ msgid "Import existing file"
 msgstr ""
 
 #: src/chatbots/stories/index.html
-msgid "Create new chatbot"
+msgid "Create new Chatbot"
 msgstr ""
 
 #: src/chatbots/stories/index.html
-msgid "Drop a chatbot file to import"
+msgid "Drop a Chatbot file to import"
 msgstr ""
 
 #: src/chatbots/stories/story/item-menu/index.html
@@ -870,7 +870,7 @@ msgid "About us"
 msgstr ""
 
 #: src/home/info-content/index.html
-msgid "Create a chatbot"
+msgid "Create a Chatbot"
 msgstr ""
 
 #: src/home/wordpress-news/index.html
