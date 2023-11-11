@@ -47,6 +47,22 @@ msgid "Add a new passage"
 msgstr ""
 
 #: src/chatbot-view/edit-view/passage-item/passage-menu/index.html
+msgid "Delete &ldquo;%s&rdquo;"
+msgstr ""
+
+#: src/chatbot-view/edit-view/passage-item/passage-menu/index.html
+msgid "Edit &ldquo;%s&rdquo;"
+msgstr ""
+
+#: src/chatbot-view/edit-view/passage-item/passage-menu/index.html
+msgid "Test chatbot starting here"
+msgstr ""
+
+#: src/chatbot-view/edit-view/passage-item/passage-menu/index.html
+msgid "More passage options"
+msgstr ""
+
+#: src/chatbot-view/edit-view/passage-item/passage-menu/index.html
 msgid "Start Chatbot Here"
 msgstr ""
 
@@ -67,7 +83,20 @@ msgid "Large"
 msgstr ""
 
 #: src/chatbot-view/toolbar/download/index.html
+#: src/dialogs/app-update/index.js:50
+msgid "Download"
+msgstr ""
+
+#: src/chatbot-view/toolbar/download/index.html
+msgid "Download HTML File"
+msgstr ""
+
+#: src/chatbot-view/toolbar/download/index.html
 msgid "Download HTML"
+msgstr ""
+
+#: src/chatbot-view/toolbar/download/index.html
+msgid "Download Proof PDF"
 msgstr ""
 
 #: src/chatbot-view/toolbar/download/index.html
@@ -75,19 +104,21 @@ msgid "Download PDF"
 msgstr ""
 
 #: src/chatbot-view/toolbar/download/index.html
-msgid "Proof Copy Default"
+msgid "Download Proof Default"
 msgstr ""
 
 #: src/chatbot-view/toolbar/download/index.html
-msgid "Browse Chatbot…"
-msgstr ""
-
-msgid "Search the entire Chatbot for specified String"
+msgid "Proof Copy Default"
 msgstr ""
 
 #: src/chatbot-view/toolbar/file/index.html
+#: src/chatbot-view/toolbar/file/index.html
 #: src/chatbots/stories/story/item-menu/index.html
 msgid "Rename Chatbot"
+msgstr ""
+
+#: src/chatbot-view/toolbar/file/index.html
+msgid "Chatbot Plugins"
 msgstr ""
 
 #: src/chatbot-view/toolbar/file/index.html
@@ -96,11 +127,23 @@ msgid "Plugins"
 msgstr ""
 
 #: src/chatbot-view/toolbar/file/index.html
+msgid "Chatbot User Data"
+msgstr ""
+
+#: src/chatbot-view/toolbar/file/index.html
 msgid "User Data"
 msgstr ""
 
 #: src/chatbot-view/toolbar/file/index.html
+msgid "Chatbot External Data"
+msgstr ""
+
+#: src/chatbot-view/toolbar/file/index.html
 msgid "External Data"
+msgstr ""
+
+#: src/chatbot-view/toolbar/file/index.html
+msgid "Chatbot Settings"
 msgstr ""
 
 #: src/chatbot-view/toolbar/file/index.html
@@ -110,12 +153,19 @@ msgid "Settings"
 msgstr ""
 
 #: src/chatbot-view/toolbar/file/index.html
+#: src/chatbot-view/toolbar/file/index.html
 msgid "Chatbot Review"
 msgstr ""
 
 #: src/chatbot-view/toolbar/file/index.html
+#: src/chatbot-view/toolbar/file/index.html
 #: src/dialogs/story-format/index.html
 msgid "Chatbot Format"
+msgstr ""
+
+#: src/chatbot-view/toolbar/file/index.html
+#: src/dialogs/story-stats/index.html
+msgid "Chatbot Statistics"
 msgstr ""
 
 #: src/chatbot-view/toolbar/file/index.html
@@ -123,7 +173,49 @@ msgid "Statistics"
 msgstr ""
 
 #: src/chatbot-view/toolbar/file/index.html
+#: src/dialogs/matomo/index.html
+msgid "Matomo Analytics"
+msgstr ""
+
+#: src/chatbot-view/toolbar/file/index.html
 msgid "Analytics"
+msgstr ""
+
+#: src/chatbot-view/toolbar/index.html
+msgid "Go to the Chatbot List"
+msgstr ""
+
+#: src/chatbot-view/toolbar/index.html
+msgid "Edit Style Sheet"
+msgstr ""
+
+#: src/chatbot-view/toolbar/index.html
+msgid "Edit JavaScript"
+msgstr ""
+
+#: src/chatbot-view/toolbar/index.html
+msgid "Adjust Zoom"
+msgstr ""
+
+#: src/chatbot-view/toolbar/index.html
+#: src/dialogs/openai/index.html
+msgid "Open AI Settings"
+msgstr ""
+
+#: src/chatbot-view/toolbar/index.html
+msgid "Play the Chatbot"
+msgstr ""
+
+#: src/chatbot-view/toolbar/search/index.html
+msgid "Browse Chatbot…"
+msgstr ""
+
+#: src/chatbot-view/toolbar/search/index.html
+msgid "Search the entire Chatbot for specified String"
+msgstr ""
+
+#: src/chatbot-view/toolbar/search/index.html
+msgid "Find and replace across the entire Chatbot"
 msgstr ""
 
 #: src/chatbots/stories/index.html
@@ -135,7 +227,15 @@ msgid "There are no chatbots saved in Chatbottery right now. To get started, you
 msgstr ""
 
 #: src/chatbots/stories/index.html
+msgid "Import Chatbot"
+msgstr ""
+
+#: src/chatbots/stories/index.html
 msgid "Import existing file"
+msgstr ""
+
+#: src/chatbots/stories/index.html
+msgid "New Chatbot"
 msgstr ""
 
 #: src/chatbots/stories/index.html
@@ -148,6 +248,10 @@ msgstr ""
 
 #: src/chatbots/stories/story/item-menu/index.html
 msgid "Play Chatbot"
+msgstr ""
+
+#: src/chatbots/stories/story/item-menu/index.html
+msgid "Test Chatbot"
 msgstr ""
 
 #: src/chatbots/stories/story/item-menu/index.html
@@ -201,11 +305,27 @@ msgid "Fonts"
 msgstr ""
 
 #: src/dialogs/about/index.html
+msgid ""
+"Source Sans Pro and Source Code Pro were designed by Paul D. Hunt\n"
+"\t\tunder the guidance of Robert Slimbach for \\x3ca\n"
+"\t\thref=\"http:\\/\\/adobe.com/\">Adobe\\x3c/a>\\x3cbr> Nunito was designed by\n"
+"\t\t\\x3ca href=\"http:\\/\\/code.newtypography.co.uk/\">Vernon Adams\\x3c/a>"
+msgstr ""
+
+#: src/dialogs/about/index.html
 msgid "Icons"
 msgstr ""
 
-#: src/dialogs/app-donation/index.html
-msgid "If you love Chatbottery as much as I do, please consider helping it grow with a donation. Chatbottery is an open source project that will always be free to use &mdash; and with your help, Chatbottery will continue to thrive."
+#: src/dialogs/about/index.html
+msgid "Document designed by Rob Gill from the Noun Project"
+msgstr ""
+
+#: src/dialogs/about/index.html
+msgid "Question designed by Henry Ryder from the Noun Project"
+msgstr ""
+
+#: src/dialogs/about/index.html
+msgid "Smile designed by jelio dimitrov from the Noun Project"
 msgstr ""
 
 #: src/dialogs/app-donation/index.html
@@ -220,15 +340,13 @@ msgstr ""
 msgid "Donate"
 msgstr ""
 
-#: src/dialogs/app-donation/index.html
-msgid "This message will only be shown to you once.&lt;br&gt;If you'd like to donate to Chatbottery development in the future, you can do so at &lt;a href=\\\"http:\\/\\/twinery.org/donate\\\" target=\\\"_blank\\\"&gt;http://twinery.org/donate&lt;/a&gt;."
-msgstr ""
-
 #: src/dialogs/external-data/detail-view/index.html
 msgid "Title"
 msgstr ""
 
 #: src/dialogs/external-data/detail-view/index.html
+#: src/editors/passage/ui-view/carousel/index.html
+#: src/editors/passage/ui-view/tiles/index.html
 msgid "Image URL"
 msgstr ""
 
@@ -254,6 +372,7 @@ msgstr ""
 
 #: src/dialogs/external-data/detail-view/index.html
 #: src/dialogs/user/index.html
+#: src/dialogs/user/index.html
 msgid "Date"
 msgstr ""
 
@@ -262,11 +381,35 @@ msgid "External data"
 msgstr ""
 
 #: src/dialogs/external-data/index.html
+msgid "Delete List"
+msgstr ""
+
+#: src/dialogs/external-data/index.html
+msgid "Analyse all in List"
+msgstr ""
+
+#: src/dialogs/external-data/index.html
+msgid "Web Page URL"
+msgstr ""
+
+#: src/dialogs/external-data/index.html
 msgid "Web Page URL is invalid!"
 msgstr ""
 
 #: src/dialogs/external-data/index.html
+msgid "Delete Entry"
+msgstr ""
+
+#: src/dialogs/external-data/index.html
+msgid "Add new Entry"
+msgstr ""
+
+#: src/dialogs/external-data/index.html
 msgid "Last analysed: "
+msgstr ""
+
+#: src/dialogs/external-data/index.html
+msgid "Close Detail View"
 msgstr ""
 
 #: src/dialogs/external-data/index.html
@@ -286,14 +429,14 @@ msgid "Download file"
 msgstr ""
 
 #: src/dialogs/external-data/index.html
-msgid "Don't forget to set the destination of this file in your"
-msgstr ""
-
-#: src/dialogs/external-data/index.html
 #: src/dialogs/plugins/index.html
 #: src/dialogs/settings/index.html
 #: src/dialogs/user/index.html
 msgid "Save"
+msgstr ""
+
+#: src/dialogs/formats/index.html
+msgid "Story Formats"
 msgstr ""
 
 #: src/dialogs/formats/index.html
@@ -326,11 +469,11 @@ msgid "Loading..."
 msgstr ""
 
 #: src/dialogs/formats/item.html
-msgid "The default chatbot format can\\'t be removed."
+msgid "Set this format as default for stories"
 msgstr ""
 
-#: src/dialogs/matomo/index.html
-msgid "Matomo Analytics"
+#: src/dialogs/formats/item.html
+msgid "Remove this format"
 msgstr ""
 
 #: src/dialogs/matomo/index.html
@@ -338,7 +481,17 @@ msgid "From"
 msgstr ""
 
 #: src/dialogs/matomo/index.html
+#: src/dialogs/matomo/index.html
+msgid "From Date"
+msgstr ""
+
+#: src/dialogs/matomo/index.html
 msgid "To"
+msgstr ""
+
+#: src/dialogs/matomo/index.html
+#: src/dialogs/matomo/index.html
+msgid "To Date"
 msgstr ""
 
 #: src/dialogs/matomo/index.html
@@ -386,23 +539,15 @@ msgid "Events"
 msgstr ""
 
 #: src/dialogs/openai/index.html
-msgid "Open AI Settings"
-msgstr ""
-
-#: src/dialogs/openai/index.html
 msgid " Save"
-msgstr ""
-
-#: src/dialogs/openai/params/index.html
-msgid "Use '\" + placeholder + \"' as placeholder for \" + label + \" string"
 msgstr ""
 
 #: src/dialogs/openai/params/index.html
 msgid "Reset to default"
 msgstr ""
 
-#: src/dialogs/openai/params/index.html
-msgid "Placeholder ' + placeholder + ' should be set."
+#: src/dialogs/plugins/index.html
+msgid "Matomo PHP URL"
 msgstr ""
 
 #: src/dialogs/plugins/index.html
@@ -417,6 +562,10 @@ msgid "Site ID"
 msgstr ""
 
 #: src/dialogs/plugins/index.html
+msgid "Matomo Site ID"
+msgstr ""
+
+#: src/dialogs/plugins/index.html
 msgid "Site ID must not be empty"
 msgstr ""
 
@@ -425,7 +574,15 @@ msgid "Statistical area"
 msgstr ""
 
 #: src/dialogs/plugins/index.html
+msgid "Matomo Statistical Area"
+msgstr ""
+
+#: src/dialogs/plugins/index.html
 msgid "Store Tracking ID in Cookies"
+msgstr ""
+
+#: src/dialogs/plugins/index.html
+msgid "Store Tracking User ID in Cookies"
 msgstr ""
 
 #: src/dialogs/plugins/index.html
@@ -433,9 +590,20 @@ msgid "Host to Environment Mapping"
 msgstr ""
 
 #: src/dialogs/plugins/index.html
+#: src/dialogs/plugins/index.html
+msgid "Host"
+msgstr ""
+
+#: src/dialogs/plugins/index.html
+#: src/dialogs/plugins/index.html
+msgid "Environment"
+msgstr ""
+
+#: src/dialogs/plugins/index.html
 msgid "Host and Environment must be set"
 msgstr ""
 
+#: src/dialogs/plugins/index.html
 #: src/dialogs/plugins/index.html
 msgid "Authentication Token"
 msgstr ""
@@ -449,11 +617,19 @@ msgid "Application ID"
 msgstr ""
 
 #: src/dialogs/plugins/index.html
+msgid "Chat Application ID"
+msgstr ""
+
+#: src/dialogs/plugins/index.html
 msgid "Application ID must not be empty"
 msgstr ""
 
 #: src/dialogs/plugins/index.html
 msgid "Authorization Key"
+msgstr ""
+
+#: src/dialogs/plugins/index.html
+msgid "Chat Authorization Key"
 msgstr ""
 
 #: src/dialogs/plugins/index.html
@@ -465,6 +641,10 @@ msgid "Authorization Secret"
 msgstr ""
 
 #: src/dialogs/plugins/index.html
+msgid "Chat Authorization Secret"
+msgstr ""
+
+#: src/dialogs/plugins/index.html
 msgid "Authorization Secret must not be empty"
 msgstr ""
 
@@ -473,21 +653,25 @@ msgid "Account Key"
 msgstr ""
 
 #: src/dialogs/plugins/index.html
+msgid "Chat Account Key"
+msgstr ""
+
+#: src/dialogs/plugins/index.html
 msgid "Account Key must not be empty"
 msgstr ""
 
 #: src/dialogs/plugins/index.html
-msgid "User\\'s Field Name"
+msgid "Chat User Field Name"
+msgstr ""
+
+#: src/dialogs/plugins/index.html
+msgid "Shared User Variables"
 msgstr ""
 
 #: src/dialogs/plugins/index.html
 #: src/dialogs/plugins/index.html
 #: src/dialogs/user/index.html
-msgid "User Field Name must not start with \\'$\\'"
-msgstr ""
-
-#: src/dialogs/plugins/index.html
-msgid "Shared User Variables"
+msgid "Variable Name"
 msgstr ""
 
 #: src/dialogs/settings/index.html
@@ -495,11 +679,15 @@ msgid "Asset Base URL"
 msgstr ""
 
 #: src/dialogs/settings/index.html
-msgid "Resource Locator must be a valid URL Path ending with slash (\\'/\\')"
+msgid "URL for Assets (Images, Videos, etc.)"
 msgstr ""
 
 #: src/dialogs/settings/index.html
 msgid "External Story URL"
+msgstr ""
+
+#: src/dialogs/settings/index.html
+msgid "URL for external Story data"
 msgstr ""
 
 #: src/dialogs/story-format/index.html
@@ -528,10 +716,6 @@ msgstr ""
 msgid "Some chatbots you are importing already exist in your library. Please choose which to replace. Any other stories in your file will be imported as well."
 msgstr ""
 
-#: src/dialogs/story-import/index.html
-msgid "Don't Import Any chatbots"
-msgstr ""
-
 #: src/dialogs/story-search/index.html
 msgid "Find and Replace"
 msgstr ""
@@ -557,6 +741,14 @@ msgid "Replace With"
 msgstr ""
 
 #: src/dialogs/story-search/index.html
+msgid "Expand all search results"
+msgstr ""
+
+#: src/dialogs/story-search/index.html
+msgid "Collapse all search results"
+msgstr ""
+
+#: src/dialogs/story-search/index.html
 msgid "Replace All"
 msgstr ""
 
@@ -577,11 +769,15 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/dialogs/story-search/result.html
+msgid "Replace in this passage"
+msgstr ""
+
+#: src/dialogs/story-search/result.html
 msgid "Replace in Passage"
 msgstr ""
 
 #: src/dialogs/story-stats/index.html
-msgid "Chatbot Statistics"
+msgid "This chatbot was last changed at %s."
 msgstr ""
 
 #: src/dialogs/user/index.html
@@ -589,15 +785,33 @@ msgid "User data"
 msgstr ""
 
 #: src/dialogs/user/index.html
+msgid "variable"
+msgstr ""
+
+#: src/dialogs/user/index.html
+msgid "Find in Passages"
+msgstr ""
+
+#: src/dialogs/user/index.html
+#: src/dialogs/user/index.html
 msgid "String"
 msgstr ""
 
+#: src/dialogs/user/index.html
 #: src/dialogs/user/index.html
 msgid "Boolean"
 msgstr ""
 
 #: src/dialogs/user/index.html
+#: src/dialogs/user/index.html
 msgid "Number"
+msgstr ""
+
+#: src/dialogs/user/index.html
+#: src/dialogs/user/index.html
+#: src/dialogs/user/index.html
+#: src/dialogs/user/index.html
+msgid "Default Value"
 msgstr ""
 
 #: src/dialogs/user/index.html
@@ -613,6 +827,10 @@ msgid "Name must be set"
 msgstr ""
 
 #: src/dialogs/user/index.html
+msgid "Add new Field"
+msgstr ""
+
+#: src/dialogs/user/index.html
 msgid "Store Data in Local Storage"
 msgstr ""
 
@@ -622,6 +840,10 @@ msgstr ""
 
 #: src/editors/javascript/index.html
 msgid "Any JavaScript entered here will immediately run when your story is opened in a Web browser."
+msgstr ""
+
+#: src/editors/passage/index.html
+msgid "Passage Name"
 msgstr ""
 
 #: src/editors/passage/index.html
@@ -638,11 +860,58 @@ msgid "Suggestions"
 msgstr ""
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
+msgid "Tag or phrase"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.html
+msgid "Tag name must be set."
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.html
 msgid "Color"
 msgstr ""
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
+#: src/editors/passage/tag-editor/tag-menu/tag-colors/index.html
+msgid "Set tag color to gray"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.html
+#: src/editors/passage/tag-editor/tag-menu/tag-colors/index.html
+msgid "Set tag color to red"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.html
+#: src/editors/passage/tag-editor/tag-menu/tag-colors/index.html
+msgid "Set tag color to orange"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.html
+#: src/editors/passage/tag-editor/tag-menu/tag-colors/index.html
+msgid "Set tag color to yellow"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.html
+#: src/editors/passage/tag-editor/tag-menu/tag-colors/index.html
+msgid "Set tag color to green"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.html
+#: src/editors/passage/tag-editor/tag-menu/tag-colors/index.html
+msgid "Set tag color to blue"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.html
+#: src/editors/passage/tag-editor/tag-menu/tag-colors/index.html
+msgid "Set tag color to purple"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.html
 msgid "Type"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.html
+msgid "Only one Main Tag is allowed."
 msgstr ""
 
 #: src/editors/passage/tag-editor/tag-menu/index.html
@@ -743,11 +1012,28 @@ msgstr ""
 
 #: src/editors/passage/ui-view/carousel/index.html
 #: src/editors/passage/ui-view/tiles/index.html
+msgid "Relative or absolute image URL"
+msgstr ""
+
+#: src/editors/passage/ui-view/carousel/index.html
+#: src/editors/passage/ui-view/tiles/index.html
 msgid "Headline"
 msgstr ""
 
 #: src/editors/passage/ui-view/carousel/index.html
+#: src/editors/passage/ui-view/carousel/index.html
+#: src/editors/passage/ui-view/tiles/index.html
+#: src/editors/passage/ui-view/tiles/index.html
+msgid "Title of the item"
+msgstr ""
+
+#: src/editors/passage/ui-view/carousel/index.html
 msgid "Text"
+msgstr ""
+
+#: src/editors/passage/ui-view/carousel/index.html
+#: src/editors/passage/ui-view/carousel/index.html
+msgid "A short description of the item"
 msgstr ""
 
 #: src/editors/passage/ui-view/carousel/index.html
@@ -756,7 +1042,26 @@ msgid "Description"
 msgstr ""
 
 #: src/editors/passage/ui-view/carousel/index.html
+#: src/editors/passage/ui-view/carousel/index.html
+#: src/editors/passage/ui-view/tiles/index.html
+#: src/editors/passage/ui-view/tiles/index.html
+msgid "Description of the item"
+msgstr ""
+
+#: src/editors/passage/ui-view/carousel/index.html
 msgid "Button label"
+msgstr ""
+
+#: src/editors/passage/ui-view/carousel/index.html
+#: src/editors/passage/ui-view/carousel/index.html
+msgid "Text on button"
+msgstr ""
+
+#: src/editors/passage/ui-view/carousel/index.html
+#: src/editors/passage/ui-view/carousel/index.html
+#: src/editors/passage/ui-view/tiles/index.html
+#: src/editors/passage/ui-view/tiles/index.html
+msgid "Passage name or external URL"
 msgstr ""
 
 #: src/editors/passage/ui-view/eval/index.html
@@ -764,11 +1069,11 @@ msgid "Code assignment"
 msgstr ""
 
 #: src/editors/passage/ui-view/eval/index.html
-msgid "Assign statement must be set!"
+msgid "JavaScript code assignment"
 msgstr ""
 
 #: src/editors/passage/ui-view/eval/index.html
-msgid "User variables must start with \\'$\\'"
+msgid "Assign statement must be set!"
 msgstr ""
 
 #. L10n: Word in the sense of individual words in a sentence. This does not actually include the count, as it is used in a table.
@@ -793,8 +1098,29 @@ msgstr ""
 msgid "Height"
 msgstr ""
 
+#: src/editors/passage/ui-view/iframe/index.html
+msgid "Height with unit"
+msgstr ""
+
 #: src/editors/passage/ui-view/image/index.html
 msgid "Image URL must be set!"
+msgstr ""
+
+#: src/editors/passage/ui-view/index.html
+msgid "Expand / Collapse"
+msgstr ""
+
+#: src/editors/passage/ui-view/index.html
+msgid "Copy to Clipboard"
+msgstr ""
+
+#: src/editors/passage/ui-view/index.html
+msgid "Settings (Condition / Class name)"
+msgstr ""
+
+#: src/editors/passage/ui-view/index.html
+#: src/dialogs/external-data/index.js:258
+msgid "Delete entry"
 msgstr ""
 
 #: src/editors/passage/ui-view/index.html
@@ -802,7 +1128,19 @@ msgid "Condition:"
 msgstr ""
 
 #: src/editors/passage/ui-view/index.html
+msgid "JavaScript condition to be evaluated to true for executing this task"
+msgstr ""
+
+#: src/editors/passage/ui-view/index.html
 msgid "User function:"
+msgstr ""
+
+#: src/editors/passage/ui-view/index.html
+msgid "User function being invoked on this task"
+msgstr ""
+
+#: src/editors/passage/ui-view/index.html
+msgid "Name of user function to invoke"
 msgstr ""
 
 #: src/editors/passage/ui-view/index.html
@@ -810,7 +1148,24 @@ msgid "CSS Class:"
 msgstr ""
 
 #: src/editors/passage/ui-view/index.html
+#: src/editors/passage/ui-view/index.html
+msgid "CSS class name"
+msgstr ""
+
+#: src/editors/passage/ui-view/index.html
 msgid "Typing animation time:"
+msgstr ""
+
+#: src/editors/passage/ui-view/index.html
+msgid "Typing animation Time in Milliseconds"
+msgstr ""
+
+#: src/editors/passage/ui-view/index.html
+msgid "Close Suggestions"
+msgstr ""
+
+#: src/editors/passage/ui-view/index.html
+msgid "Add new Task"
 msgstr ""
 
 #: src/editors/passage/ui-view/menu/index.html
@@ -822,7 +1177,16 @@ msgid "Caption"
 msgstr ""
 
 #: src/editors/passage/ui-view/tiles/index.html
+#: src/editors/passage/ui-view/tiles/index.html
+msgid "Caption before Tiles"
+msgstr ""
+
+#: src/editors/passage/ui-view/tiles/index.html
 msgid "Initial count"
+msgstr ""
+
+#: src/editors/passage/ui-view/tiles/index.html
+msgid "Limit initially visible item count"
 msgstr ""
 
 #: src/editors/passage/ui-view/video/index.html
@@ -842,15 +1206,15 @@ msgid "User variable must be set!"
 msgstr ""
 
 #: src/editors/passage/ui-view/wait/index.html
-msgid "\\'$\\' will be added automatically."
-msgstr ""
-
-#: src/editors/passage/ui-view/wait/index.html
 msgid "Validation"
 msgstr ""
 
 #: src/editors/passage/ui-view/wait/index.html
 msgid "Placeholder"
+msgstr ""
+
+#: src/editors/passage/ui-view/wait/index.html
+msgid "Input field placeholder"
 msgstr ""
 
 #: src/editors/stylesheet/index.html
@@ -867,6 +1231,10 @@ msgstr ""
 
 #: src/home/info-content/index.html
 msgid "About us"
+msgstr ""
+
+#: src/home/info-content/index.html
+msgid "New chatbot"
 msgstr ""
 
 #: src/home/info-content/index.html
@@ -905,14 +1273,6 @@ msgstr ""
 
 #: src/welcome/index.html
 msgid ""
-"&lt;strong&gt;If you've never used Twine before,&lt;/strong&gt; then welcome! The &lt;a\n"
-"\t\t\thref=\\\"http://twinery.org/2guide\\\" target=\\\"_blank\\\"&gt;Twine 2 Guide&lt;/a&gt; and the official wiki in general,\n"
-"\t\t\tare a great place to learn. Keep in mind that some articles on the wiki were written for Twine 1, which is a little\n"
-"\t\t\tbit different than this version. But most of the concepts are the same."
-msgstr ""
-
-#: src/welcome/index.html
-msgid ""
 "&lt;strong&gt;If you have used Twine 1 before,&lt;/strong&gt; the guide also has details on what has changed in\n"
 "\t\t\tthis version. Chief among them is a new default story format, Harlowe. But if you find you prefer the Twine 1\n"
 "\t\t\tscripting syntax, try using SugarCube instead."
@@ -930,46 +1290,7 @@ msgid "Your work is saved only in your browser."
 msgstr ""
 
 #: src/welcome/index.html
-msgid ""
-"That means you don't need to create an account to use Twine 2, and everything you create isn't stored on a\n"
-"\t\t\tserver somewhere else &mdash; it stays right in your browser."
-msgstr ""
-
-#: src/welcome/index.html
-msgid ""
-"Two &lt;b&gt;very important&lt;/b&gt; things to remember, though. Since your work is saved only in your\n"
-"\t\t\tbrowser, if you clear its saved data, then you'll lose your work! Not good. Remember to use that &lt;i class=\\\"fa\n"
-"\t\t\tfa-briefcase\\\"&gt;&lt;/i&gt;&nbsp;&lt;strong&gt;Archive&lt;/strong&gt; button often. You can also publish individual\n"
-"\t\t\tstories to files using the &lt;i class=\\\"fa fa-cog\\\"&gt;&lt;/i&gt; menu on each story in the story list. Both\n"
-"\t\t\tarchive and story files can always be re-imported into Twine."
-msgstr ""
-
-#: src/welcome/index.html
-msgid ""
-"Secondly, &lt;b&gt;anyone who can use this browser can see and make changes to your work&lt;/b&gt;. So if\n"
-"\t\t\tyou've got a nosy kid brother, look into setting up a separate profile for yourself."
-msgstr ""
-
-#: src/welcome/index.html
 msgid "Your work is automatically saved."
-msgstr ""
-
-#: src/welcome/index.html
-msgid ""
-"There's now a folder named Twine in your Documents folder. Inside that is a Stories folder, where all your work\n"
-"\t\t\twill be saved. Twine saves as you work, so you don't have to worry about remembering to save it yourself. You can\n"
-"\t\t\talways open the folder your stories are saved to by using the &lt;b&gt;Show Library&lt;/b&gt; item in the\n"
-"\t\t\t&lt;b&gt;Twine&lt;/b&gt; menu."
-msgstr ""
-
-#: src/welcome/index.html
-msgid ""
-"Because Twine is always saving your work, the files in your story library will be locked from editing while\n"
-"\t\t\tTwine is open."
-msgstr ""
-
-#: src/welcome/index.html
-msgid "That's it!"
 msgstr ""
 
 #: src/welcome/index.html
@@ -1097,10 +1418,6 @@ msgstr ""
 msgid "A new version of Chatbottery, <span class=\"version\"></span>, has been released."
 msgstr ""
 
-#: src/dialogs/app-update/index.js:50
-msgid "Download"
-msgstr ""
-
 #. L10n: A polite rejection of a request, in the sense that the answer may change in the future.
 #: src/dialogs/app-update/index.js:57
 msgid "Not Right Now"
@@ -1132,10 +1449,6 @@ msgstr ""
 
 #: src/dialogs/external-data/index.js:257
 msgid "Are you sure you want to delete the entry that was previously analyzed?"
-msgstr ""
-
-#: src/dialogs/external-data/index.js:258
-msgid "Delete entry"
 msgstr ""
 
 #: src/dialogs/external-data/index.js:330

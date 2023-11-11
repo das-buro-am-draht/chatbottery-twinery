@@ -59,40 +59,19 @@ Parse .html files for text in this format:
 {{ 'Singular string' | sayPlural 'Plural string' }} 
 */
 
-const templateRegexp = new RegExp(
-	/* Opening moustache. */
-	/{{{? */.source +
-
-	/* String to localize and say filter. */
-	/['"]([^}]*?)['"] *\| *say/.source +
-
-	/* Optional pluralization. */
-	/(?:Plural *['"](.+)['"].*)?/.source +
-
-	/* Closing moustache. */
-	/ *}}}?/.source,
-
-	'gm'
-);
+const templateRegexp = /(?:(?:=")|(?:{{{?))[\s]*'([^']+)'\s*\|\s*say(?:Plural)?\s*(?:'([^']+)')?[^"}]*(?:(?:}}}?\s*)|")/gm;
 
 glob.sync('src/**/*.html').forEach(fileName => {
 	const source = fs.readFileSync(fileName, { encoding: 'utf8' });
-	const parser = new htmlParser.Parser({
-		ontext(text) {
-			let match;
+	let match;
+	while (match = templateRegexp.exec(source)) {
+		/*
+		The first captured expression is a comment, if any.
+		The third is the plural form of the string, if any.
+		*/
 
-			while (match = templateRegexp.exec(text.trim())) {
-				/*
-				The first captured expression is a comment, if any.
-				The third is the plural form of the string, if any.
-				*/
-
-				addItem(fileName, match[1], match[2]);
-			}
-		}
-	});
-
-	parser.write(source);
+		addItem(fileName, match[1], match[2]);
+	}
 });
 
 /*
