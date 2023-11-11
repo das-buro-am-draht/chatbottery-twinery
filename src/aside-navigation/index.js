@@ -46,7 +46,7 @@ module.exports = Vue.extend({
 	computed: {
 		locales() {
 			const code = this.locale;
-			return this.languages.filter((language) => language.code !== code);
+			return this.languages; // .filter((language) => language.code !== code);
 		},
 		locale() {
 			return this.getPref.locale;
