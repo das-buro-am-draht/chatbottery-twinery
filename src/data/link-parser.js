@@ -23,7 +23,7 @@ const extractBtnLinkTags = (text) => extractLinks(/<btn.*>([^<]*)<\/btn>/g, text
 /* Links _not_ starting with a protocol, e.g. abcd://. */
 const internalLinks = (link) => !/^\w+:\/\/\/?\w/i.test(link);
 
-const nonEmptyLinks = (link) => link !== "";
+const nonEmptyLinks = (link) => link && link.split('|').some(part => !!part);
 
 /* Identifies values that appear only once in the array. */
 const uniques = (v, i, a) => a.indexOf(v) === i;

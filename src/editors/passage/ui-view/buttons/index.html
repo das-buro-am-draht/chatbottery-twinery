@@ -12,12 +12,12 @@
 	<div v-show="selection >= 0" class="passageUI-form">
 		<div class="passageUI-row">
 			<label for="label">{{ 'Label' | say }}:</label>
-			<input type="text" name="label" v-el:label @input="onChangeLabel($event)" />
+			<input type="text" id="label" v-el:label @input="onChangeLabel($event)" :title="'Button label' | say"/>
 		</div>
 		<div class="passageUI-row">
 			<label for="link">{{ 'Link / Passage' | say }}:</label>
 			<div class="passageUI-row-input">
-				<input type="text" list="passages" name="link" v-el:link @input="onChangeLink($event)" />
+				<input type="text" list="passages" id="link" v-el:link @input="onChangeLink($event)" :title="'Passage name or Link URL' | say" required/>
 				<datalist v-if="passages" id="passages">
 					<option v-for="passage in passages" :value="passage">
 				</datalist>
@@ -26,27 +26,27 @@
 		</div>
 		<div class="passageUI-row">
 			<label for="action">{{ 'Action Button' | say }}:</label>
-			<input type="checkbox" name="action" v-el:action @input="onChangeAction($event)" />
+			<input type="checkbox" id="action" v-el:action @input="onChangeAction($event)" :title="'Show as Action Button' | say"/>
 		</div>
 		<div v-show="showAdvanced">
 			<div class="passageUI-row">
 				<label for="classname">{{ 'Custom class' | say }}:</label>
-				<input type="text" name="classname" v-el:class @input="onChangeClass($event)" />
+				<input type="text" id="classname" v-el:class @input="onChangeClass($event)" :title="'Button custom CSS class' | say"/>
 			</div>
 			<div class="passageUI-row">
 				<label for="func">{{ 'User Function' | say }}:</label>
-				<input type="text" name="func" v-el:func @input="onChangeFunc($event)" />
+				<input type="text" id="func" v-el:func @input="onChangeFunc($event)" :title="'Button custom User function' | say"/>
 			</div>
 			<div class="passageUI-row">
 				<label for="target">{{ 'Target' | say }}:</label>
-				<input type="text" name="target" list="targets" v-el:target @input="onChangeTarget($event)" />
+				<input type="text" id="target" list="targets" v-el:target @input="onChangeTarget($event)" :title="'Window target of link (current / new tab)' | say"/>
 				<datalist id="targets">
 					<option value="_self">{{ 'Current Tab' | say }}</option>
 					<option value="_blank">{{ 'New Tab' | say }}</option>
 				</datalist>
 			</div>
 		</div>		
-		<div v-show="!hasEmpty" class="passageUI-action" >
+		<div v-show="!hasEmpty" class="passageUI-action">
 			<button v-if="showAdvanced" type="button" @click="onShowAdvanced">
 				{{ 'Hide advanced Settings' | say }}
 			</button>

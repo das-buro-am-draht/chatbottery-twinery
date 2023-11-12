@@ -17,7 +17,7 @@
 		<image-placeholder :image-url="imageUrl" :asset-base-url="assetBaseUrl"></image-placeholder>
 		<div v-show="selection >= 0" class="passageUI-form">
 			<div class="passageUI-row">
-				<label for="image">{{ 'Image link' | say }}:</label>
+				<label for="image">{{ 'Image' | say }}:</label>
 				<input type="text" id="image" v-el:image @input="onChangeImage($event)" :placeholder="'Image URL' | say" :title="'Relative or absolute image URL' | say" required />
 			</div>
 			<div class="passageUI-row">
@@ -37,7 +37,7 @@
 				<input type="text" id="label" v-el:label @input="onChangeLabel($event)" :placeholder="'Text on button' | say" :title="'Text on button' | say" required />
 			</div>
 			<div class="passageUI-row">
-				<label for="link">{{ 'Target' | say }}:</label>
+				<label for="link">{{ 'Link' | say }}:</label>
 				<input type="text" id="link" list="passages" v-el:link @input="onChangeLink($event)" :placeholder="'Passage name or external URL' | say" :title="'Passage name or external URL' | say" required />
 				<datalist v-if="passages" id="passages">
 					<option v-for="passage in passages" :value="passage">

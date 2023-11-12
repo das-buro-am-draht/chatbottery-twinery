@@ -354,6 +354,7 @@ msgstr ""
 
 #: src/dialogs/external-data/detail-view/index.html
 #: src/editors/passage/ui-view/carousel/index.html
+#: src/editors/passage/ui-view/image/index.html
 #: src/editors/passage/ui-view/tiles/index.html
 msgid "Image URL"
 msgstr ""
@@ -855,6 +856,10 @@ msgid "A passage already exists with this name"
 msgstr ""
 
 #: src/editors/passage/tag-editor/index.html
+msgid "Add new Tag"
+msgstr ""
+
+#: src/editors/passage/tag-editor/index.html
 msgid "Tag"
 msgstr ""
 
@@ -865,6 +870,10 @@ msgstr ""
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
 msgid "Tag or phrase"
+msgstr ""
+
+#: src/editors/passage/tag-editor/tag-dialog/index.html
+msgid "Tag label"
 msgstr ""
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
@@ -970,7 +979,16 @@ msgid "Label"
 msgstr ""
 
 #: src/editors/passage/ui-view/buttons/index.html
+#: src/editors/passage/ui-view/carousel/index.html
+msgid "Button label"
+msgstr ""
+
+#: src/editors/passage/ui-view/buttons/index.html
 msgid "Link / Passage"
+msgstr ""
+
+#: src/editors/passage/ui-view/buttons/index.html
+msgid "Passage name or Link URL"
 msgstr ""
 
 #: src/editors/passage/ui-view/buttons/index.html
@@ -982,7 +1000,15 @@ msgid "Action Button"
 msgstr ""
 
 #: src/editors/passage/ui-view/buttons/index.html
+msgid "Show as Action Button"
+msgstr ""
+
+#: src/editors/passage/ui-view/buttons/index.html
 msgid "Custom class"
+msgstr ""
+
+#: src/editors/passage/ui-view/buttons/index.html
+msgid "Button custom CSS class"
 msgstr ""
 
 #: src/editors/passage/ui-view/buttons/index.html
@@ -990,9 +1016,16 @@ msgid "User Function"
 msgstr ""
 
 #: src/editors/passage/ui-view/buttons/index.html
-#: src/editors/passage/ui-view/carousel/index.html
+msgid "Button custom User function"
+msgstr ""
+
+#: src/editors/passage/ui-view/buttons/index.html
 #: src/editors/passage/ui-view/tiles/index.html
 msgid "Target"
+msgstr ""
+
+#: src/editors/passage/ui-view/buttons/index.html
+msgid "Window target of link (current / new tab)"
 msgstr ""
 
 #: src/editors/passage/ui-view/buttons/index.html
@@ -1017,9 +1050,8 @@ msgid "Item"
 msgstr ""
 
 #: src/editors/passage/ui-view/carousel/index.html
-#: src/editors/passage/ui-view/image/index.html
-#: src/editors/passage/ui-view/tiles/index.html
-msgid "Image link"
+#: src/utils/task.js:6
+msgid "Image"
 msgstr ""
 
 #: src/editors/passage/ui-view/carousel/index.html
@@ -1061,12 +1093,14 @@ msgid "Description of the item"
 msgstr ""
 
 #: src/editors/passage/ui-view/carousel/index.html
-msgid "Button label"
-msgstr ""
-
-#: src/editors/passage/ui-view/carousel/index.html
 #: src/editors/passage/ui-view/carousel/index.html
 msgid "Text on button"
+msgstr ""
+
+#. L10n: Links in the sense of hypertext links. This does not actually include the count, as it is used in a table.
+#: src/editors/passage/ui-view/carousel/index.html
+#: src/dialogs/story-stats/index.js:105
+msgid "Link"
 msgstr ""
 
 #: src/editors/passage/ui-view/carousel/index.html
@@ -1095,6 +1129,10 @@ msgid "Passage"
 msgstr ""
 
 #: src/editors/passage/ui-view/goto/index.html
+msgid "Name of the passage to go to"
+msgstr ""
+
+#: src/editors/passage/ui-view/goto/index.html
 msgid "Passage name must be set"
 msgstr ""
 
@@ -1103,11 +1141,11 @@ msgid "URL"
 msgstr ""
 
 #: src/editors/passage/ui-view/iframe/index.html
-msgid "Enter URL or PDF-Link you want to embed"
+msgid "URL or PDF Link of embedded Resource"
 msgstr ""
 
 #: src/editors/passage/ui-view/iframe/index.html
-msgid "IFrame/PDF URL must be set"
+msgid "URL of IFrame / PDF must be set"
 msgstr ""
 
 #: src/editors/passage/ui-view/iframe/index.html
@@ -1119,7 +1157,8 @@ msgid "Height with unit"
 msgstr ""
 
 #: src/editors/passage/ui-view/image/index.html
-msgid "Relative image URL"
+#: src/editors/passage/ui-view/tiles/index.html
+msgid "Image link"
 msgstr ""
 
 #: src/editors/passage/ui-view/image/index.html
@@ -1192,6 +1231,18 @@ msgstr ""
 msgid "Paste here"
 msgstr ""
 
+#: src/editors/passage/ui-view/options/index.html
+msgid "Delete Message Option"
+msgstr ""
+
+#: src/editors/passage/ui-view/options/index.html
+msgid "Alternate Suggestions"
+msgstr ""
+
+#: src/editors/passage/ui-view/options/index.html
+msgid "Add Message Option"
+msgstr ""
+
 #: src/editors/passage/ui-view/tiles/index.html
 msgid "Caption"
 msgstr ""
@@ -1214,7 +1265,7 @@ msgid "Video URL"
 msgstr ""
 
 #: src/editors/passage/ui-view/video/index.html
-msgid "Enter a valid youtube or vimeo link"
+msgid "Youtube or Vimeo link"
 msgstr ""
 
 #: src/editors/passage/ui-view/video/index.html
@@ -1239,6 +1290,10 @@ msgstr ""
 
 #: src/editors/passage/ui-view/wait/index.html
 msgid "Input field placeholder"
+msgstr ""
+
+#: src/editors/passage/ui-view/wait/index.html
+msgid "Input options shown to the User"
 msgstr ""
 
 #: src/editors/stylesheet/index.html
@@ -1605,13 +1660,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. L10n: Links in the sense of hypertext links. This does not actually include the count, as it is used in a table.
-#: src/dialogs/story-stats/index.js:105
-msgid "Link"
-msgid_plural "Links"
-msgstr[0] ""
-msgstr[1] ""
-
-#. L10n: Links in the sense of hypertext links. This does not actually include the count, as it is used in a table.
 #: src/dialogs/story-stats/index.js:120
 msgid "Broken Link"
 msgid_plural "Broken Links"
@@ -1731,10 +1779,6 @@ msgstr ""
 
 #: src/utils/task.js:5
 msgid "Buttons"
-msgstr ""
-
-#: src/utils/task.js:6
-msgid "Image"
 msgstr ""
 
 #: src/utils/task.js:7

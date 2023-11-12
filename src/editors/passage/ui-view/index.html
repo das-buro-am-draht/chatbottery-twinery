@@ -15,18 +15,18 @@
 						<fieldset class="passageUI-form">
 							<div class="passageUI-row">
 								<label for="condition">{{ 'Condition:' | say }}</label>
-								<input type="text" class="code" name="condition" list="conditions" v-model="task.attributes['if']" :title="'JavaScript condition - e.g \'$chapter === 3\'' | say" :placeholder="'JavaScript condition to be evaluated to true for executing this task' | say">
+								<input type="text" class="code" id="condition" list="conditions" v-model="task.attributes['if']" :title="'JavaScript condition - e.g \'$chapter === 3\'' | say" :placeholder="'JavaScript condition to be evaluated to true for executing this task' | say">
 								<datalist id="conditions">
 									<option v-for="condition in conditions" :value="condition">
 								</datalist>
 								<label for="user-data">{{ 'User function:' | say }}</label>
-								<input type="text" class="code" name="user-data" v-model="task.attributes['user-data']" :title="'User function being invoked on this task' | say" :placeholder="'Name of user function to invoke' | say">
+								<input type="text" class="code" id="user-data" v-model="task.attributes['user-data']" :title="'User function being invoked on this task' | say" :placeholder="'Name of user function to invoke' | say">
 							</div>
 							<div v-show="!(task.type === 'wait' || task.type === 'eval' || task.type === 'goto' || task.type === 'chat')" class="passageUI-row">
 								<label for="classname">{{ 'CSS Class:' | say }}</label>
-								<input type="text" name="classname" v-model="task.attributes['classname']" :title="'CSS class name' | say" :placeholder="'CSS class name' | say">
+								<input type="text" id="classname" v-model="task.attributes['classname']" :title="'CSS class name' | say" :placeholder="'CSS class name' | say">
 								<label for="tat">{{ 'Typing animation time:' | say }}</label>
-								<input type="number" name="tat" v-model="task.attributes['typing-animation-time']" :title="'Typing animation Time in Milliseconds' | say" placeholder="ms">
+								<input type="number" id="tat" v-model="task.attributes['typing-animation-time']" :title="'Typing animation Time in Milliseconds' | say" placeholder="ms">
 							</div>
 						</fieldset>
 					</div>

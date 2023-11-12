@@ -5,7 +5,7 @@
 			<div class="passageUI-row">
 				<label for="imageUrl">{{ 'Image link' | say }}:</label>
 				<div class="passageUI-row-input">
-					<input type="text" name="imageUrl" v-model="image" @input="onChange($event)" required :placeholder="'Relative image URL' | say">
+					<input type="text" id="imageUrl" v-model="image" @input="onChange($event)" required :placeholder="'Image URL' | say">
 					<p class="error" v-show="!image">{{ 'Image URL must be set' | say }}.</p>
 				</div>
 			</div>

@@ -5,11 +5,11 @@
 	<div class="matomo-date" :class="{ 'disabled': processing }">
 		<div>
 			<label for="from">{{ 'From' | say }}:</label>
-			<input type="date" name="from" @change="loadMatomo" v-model="date.from" placeholder="{{ 'From Date' | say }}" title="{{ 'From Date' | say }}" required />
+			<input type="date" id="from" @change="loadMatomo" v-model="date.from" placeholder="{{ 'From Date' | say }}" title="{{ 'From Date' | say }}" required />
 		</div>
 		<div>
-			<label for="from">{{ 'To' | say }}:</label>
-			<input type="date" name="to" @change="loadMatomo" v-model="date.to" placeholder="{{ 'To Date' | say }}" title="{{ 'To Date' | say }}" required />
+			<label for="to">{{ 'To' | say }}:</label>
+			<input type="date" id="to" @change="loadMatomo" v-model="date.to" placeholder="{{ 'To Date' | say }}" title="{{ 'To Date' | say }}" required />
 		</div>
 	</div>
 

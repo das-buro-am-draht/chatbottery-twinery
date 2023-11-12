@@ -3,7 +3,7 @@
 		<!-- Using a <form> allows the "required" attribute on the input to be usable. -->
 		<form @submit.prevent="save">
 			<!-- L10n: A noun, i.e. what a tag is named. -->
-			<input class="tag__row" type="text" placeholder="{{ 'Tag or phrase' | say }}" required v-model="edit.tag" v-el:tag-name>
+			<input class="tag__row" type="text" placeholder="{{ 'Tag or phrase' | say }}" :title="'Tag label' | say" required v-model="edit.tag" v-el:tag-name>
 			<!-- <p class="error" v-show="!isValidTag">{{ 'Tag name must be set' | say }}.</p> -->
 			<div class="tag-color-types">
 				<div class="tag-colors">

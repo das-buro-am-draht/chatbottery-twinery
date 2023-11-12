@@ -8,7 +8,7 @@
 				<label for="variable">{{ 'Variable' | say }}:</label>
 				<div class="passageUI-row-input">
 					<div class="passageUI-wait-variable">
-						<input type="text" class="code" list="userData" id="variable" v-model="variable" @input="onChangeVariable($event)" required :placeholder="'User variable without \'$\' prefix' | say">
+						<input type="text" class="code" list="userData" id="variable" v-model="variable" @input="onChangeVariable($event)" :placeholder="'User variable without \'$\' prefix' | say" required>
 						<datalist id="userData">
 							<option v-for="field in userData" :value="field">
 						</datalist>
@@ -29,7 +29,7 @@
 	</div>
 	<task-options :task="task" add-label="Add Validation Text"></task-options>
 	<div v-if="!showAutocomplete" class="passageUI-action" >
-		<button type="button" @click="onShowAutocomplete">{{ 'User reply suggestions' || say }}</button>
+		<button type="button" @click="onShowAutocomplete" :title="'Input options shown to the User' | say">{{ 'User reply suggestions' || say }}</button>
 	</div>
 	<div v-else class="passageUI-options">
 		<label for="autocomplete">{{ 'User reply suggestions' || say }}:</label>
