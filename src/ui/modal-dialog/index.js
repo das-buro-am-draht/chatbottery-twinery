@@ -59,6 +59,7 @@ const ModalDialog = module.exports = Vue.extend({
 		
 		this.on(dialog, 'keyup', (e) => {
 			if (e.keyCode === 27) {
+				e.stopPropagation();
 				e.preventDefault();
 				this.close();
 			}
