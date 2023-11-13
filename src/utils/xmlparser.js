@@ -116,7 +116,10 @@ const parse = (text) => {
             }
           });
           return {
-            attributes: getAttributes(item.attributes),
+            attributes: {
+              img: '',
+              ...getAttributes(item.attributes),
+            },
             title: child.title,
             text: child.text,
             description: child.description,
@@ -137,7 +140,10 @@ const parse = (text) => {
             }
           });
           return {
-            attributes: getAttributes(item.attributes),
+            attributes: {
+              img: '',
+              ...getAttributes(item.attributes),
+            },
             title: child.title,
             description: child.description,
             link: child.link || {},

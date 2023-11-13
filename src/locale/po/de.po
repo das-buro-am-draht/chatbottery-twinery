@@ -1215,7 +1215,7 @@ msgstr "JavaScript-Bedingung - z.B. \'$kapitel === 3\'"
 
 #: src/editors/passage/ui-view/index.html
 msgid "JavaScript condition to be evaluated to true for executing this task"
-msgstr "Die JavaScript-Bedingung muss zu <i>true</i> evaluiert werden, damit das Passagenelement ausgeführt wird"
+msgstr "Die JavaScript-Bedingung muss zu \'true\' evaluiert werden, damit das Passagenelement ausgeführt wird"
 
 #: src/editors/passage/ui-view/index.html
 msgid "User function:"

@@ -101,12 +101,13 @@ module.exports = Vue.extend({
 		onAdd() {
 			const index = this.task.items.length;
 			this.task.items.push({
-				attributes: { },
+				attributes: {
+					img: '',
+				},
 				title: '',
 				text: '',
 				description: '',
 				button: { 
-					attributes: { },
 					label: '',
 					link: '',
 					func: '',
