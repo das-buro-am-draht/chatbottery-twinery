@@ -1184,6 +1184,10 @@ msgstr "Bildverweis"
 msgid "Image URL must be set"
 msgstr "URL des Bildes muss angegeben werden"
 
+#: src/editors/passage/ui-view/image/index.html
+msgid "Add Image Text"
+msgstr "Bildtext hinzufügen"
+
 #: src/editors/passage/ui-view/index.html
 msgid "Expand / Collapse"
 msgstr "Erweitern / zusammenziehen"

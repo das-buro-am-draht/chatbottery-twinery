@@ -1218,6 +1218,10 @@ msgstr ""
 msgid "Image URL must be set"
 msgstr ""
 
+#: src/editors/passage/ui-view/image/index.html
+msgid "Add Image Text"
+msgstr ""
+
 #: src/editors/passage/ui-view/index.html
 msgid "Expand / Collapse"
 msgstr ""
