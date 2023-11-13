@@ -211,10 +211,10 @@ module.exports = Vue.extend({
 			if (!item.processed) {
 				title = item.error ? item.error : 'Analyse URL';
 			} else {
-				title = 'Last analysed: ' + locale.date(item.processed, 'LLL');
+				title = locale.say('Last analysed:') + ' ' + locale.date(item.processed, 'LLL');
 			}
 			if (this.selection === index) {
-				title += ' - click to analyse again';
+				title += ' - ' + locale.say('click to analyse again');
 			}
 			return title;
 		},

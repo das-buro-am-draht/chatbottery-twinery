@@ -1596,6 +1596,14 @@ msgstr "Sicher, dass Du die gesamte Liste löschen möchtest, in der Einträge z
 msgid "Delete list"
 msgstr "Liste löschen"
 
+#: src/dialogs/external-data/index.js:214
+msgid "Last analysed:"
+msgstr "Zuletzt analysiert:"
+
+#: src/dialogs/external-data/index.js:217
+msgid "click to analyse again"
+msgstr "Klicke hier, um die Analyse zu wiederholen"
+
 #: src/dialogs/external-data/index.js:237
 msgid "Are you sure you want to abort the analysis process?"
 msgstr "Analyse-Prozess abbrechen?"

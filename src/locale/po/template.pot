@@ -1644,6 +1644,14 @@ msgstr ""
 msgid "Delete list"
 msgstr ""
 
+#: src/dialogs/external-data/index.js:214
+msgid "Last analysed:"
+msgstr ""
+
+#: src/dialogs/external-data/index.js:217
+msgid "click to analyse again"
+msgstr ""
+
 #: src/dialogs/external-data/index.js:237
 msgid "Are you sure you want to abort the analysis process?"
 msgstr ""
