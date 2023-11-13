@@ -43,7 +43,7 @@
 			<div class="tag__row tag-type-description" v-el:description>
 				<div class="tag-type-desc--arrow" v-el:desc-arrow hidden></div>
 				<div class="tag-type-desc--content" v-if="!!description">
-					<span>{{ description[0] | say }}:&nbsp;</span><p>{{ description[1] | say }}</p>
+					<span>{{ description[0] }}:&nbsp;</span><p>{{{ description[1] }}}</p>
 				</div>
 			</div>
 			<button type="submit" class="create" :disabled="!isValid"><i class="fa fa-check"></i> {{ label }}</button>
