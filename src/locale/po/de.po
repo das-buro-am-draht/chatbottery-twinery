@@ -1646,6 +1646,18 @@ msgstr "Bist Du sicher?"
 msgid "Remove"
 msgstr "Löschen"
 
+#: src/dialogs/matomo/index.js:44
+msgid "This list shows the user phrases that couldn\'t be resolved."
+msgstr "Diese Liste zeigt Benutzereingaben, die nicht erkannt wurden."
+
+#: src/dialogs/matomo/index.js:45
+msgid "This list shows the user phrases that led to different passage suggestions."
+msgstr "Diese Liste zeigt Benutzereingaben, die zu mehrdeutigen Passagenvorschlägen führten."
+
+#: src/dialogs/matomo/index.js:46
+msgid "This list shows the names of passages and the count of invocations."
+msgstr "Diese Liste zeigt Passagen und die Zahl ihrer Aufrufe."
+
 #: src/dialogs/matomo/index.js:157
 msgid "Error on loading Matomo data from &ldquo;%1$s&rdquo;: %2$s"
 msgstr "Fehler beim Laden der Matomo-Daten von &ldquo;%1$s&rdquo;: %2$s"
@@ -1833,6 +1845,10 @@ msgstr "Passagenelement wurde in die Zwischenablage kopiert."
 #: src/editors/passage/ui-view/index.js:144
 msgid "Are you sure to delete &ldquo;%1$s&rdquo;?"
 msgstr "Sicher, dass Du &ldquo;%1$s&rdquo; löschen möchtest?"
+
+#: src/editors/passage/ui-view/options/index.js:15
+msgid "Add Text alternative"
+msgstr "Textoption hinzufügen"
 
 #: src/electron/story-directory.js:16 src/electron/story-directory.js:101
 msgid "Chatbottery"

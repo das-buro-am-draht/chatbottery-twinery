@@ -41,9 +41,9 @@ module.exports = Vue.extend({
 
 		label() {
 			switch (this.tab) {
-				case 0: return 'This list shows the user phrases that couldn\'t be resolved.';
-				case 1: return 'This list shows the user phrases that let to different passage suggestions.';
-				case 2: return 'This list shows the names of passages and the count of invocations.';
+				case 0: return locale.say('This list shows the user phrases that couldn\'t be resolved.');
+				case 1: return locale.say('This list shows the user phrases that led to different passage suggestions.');
+				case 2: return locale.say('This list shows the names of passages and the count of invocations.');
 			}
 		},
 

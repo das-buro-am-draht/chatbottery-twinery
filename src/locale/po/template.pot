@@ -1696,6 +1696,18 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
+#: src/dialogs/matomo/index.js:44
+msgid "This list shows the user phrases that couldn\\'t be resolved."
+msgstr ""
+
+#: src/dialogs/matomo/index.js:45
+msgid "This list shows the user phrases that led to different passage suggestions."
+msgstr ""
+
+#: src/dialogs/matomo/index.js:46
+msgid "This list shows the names of passages and the count of invocations."
+msgstr ""
+
 #: src/dialogs/matomo/index.js:157
 msgid "Error on loading Matomo data from &ldquo;%1$s&rdquo;: %2$s"
 msgstr ""
@@ -1882,6 +1894,10 @@ msgstr ""
 
 #: src/editors/passage/ui-view/index.js:144
 msgid "Are you sure to delete &ldquo;%1$s&rdquo;?"
+msgstr ""
+
+#: src/editors/passage/ui-view/options/index.js:15
+msgid "Add Text alternative"
 msgstr ""
 
 #: src/electron/story-directory.js:16

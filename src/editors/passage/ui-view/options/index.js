@@ -1,4 +1,5 @@
 const Vue = require('vue');
+const locale = require('../../../../locale');
 
 require('./index.less');
 
@@ -11,7 +12,7 @@ module.exports = Vue.extend({
 		},
 		addLabel: {
 			type: String,
-			default: 'Add Text alternative',
+			default: locale.say('Add Text alternative'),
 			required: false,
 		},
 	},
