@@ -126,7 +126,7 @@ module.exports = Vue.extend({
 		},
 
 		listPlaceholder(index) {
-			return 'List ' + (index + 1);
+			return locale.say('List %d', index + 1);
 		},
 
 		calcListInput(element) {
@@ -211,10 +211,10 @@ module.exports = Vue.extend({
 			if (!item.processed) {
 				title = item.error ? item.error : 'Analyse URL';
 			} else {
-				title = 'Last analysed: ' + locale.date(item.processed, 'LLL');
+				title = locale.say('Last analysed:') + ' ' + locale.date(item.processed, 'LLL');
 			}
 			if (this.selection === index) {
-				title += ' - click to analyse again';
+				title += ' - ' + locale.say('click to analyse again');
 			}
 			return title;
 		},
@@ -329,7 +329,8 @@ module.exports = Vue.extend({
 					notify(
 						locale.say(
 							'Error on analysing URL &ldquo;%1$s&rdquo; - %2$s.',
-							item.url, error.message
+							item.url,
+							error.message
 						),
 						'danger'
 					);

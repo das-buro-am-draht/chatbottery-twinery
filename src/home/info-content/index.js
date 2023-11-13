@@ -37,12 +37,8 @@ module.exports = Vue.extend({
 				buttonLabel: '<i class="fa fa-plus"></i> ' + locale.say('Add'),
 				buttonClass: 'create',
 				validator: name => {
-					if (
-						this.existingStories.find(story => story.name === name)
-					) {
-						return locale.say(
-							'A chatbot with this name already exists.'
-						);
+					if (this.existingStories.find(story => story.name === name)) {
+						return locale.say('A chatbot with this name already exists.');
 					}
 				},
 

@@ -1,7 +1,7 @@
 <div class="passageTags">
 	<div class="passageTags-list">
 		<span class="tags"></span>
-		<button class="subtle" type="button" @click="newTag()"><i class="fa fa-plus"></i>
+		<button class="subtle" type="button" @click="newTag()" :title="'Add new Tag' | say"><i class="fa fa-plus"></i>
 		<!-- L10n: this is the noun form, as in tags you would apply to content. -->
 			{{ 'Tag' | say }}
 		</button>
@@ -36,7 +36,7 @@
 				</button>
 			</div>
 			<p v-if="loading">
-				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading...' | say }}
+				<i class="fa fa-circle-o-notch fa-lg fa-spin"></i> {{ 'Loading' | say }}...
 			</p>
 			<div v-else class="passageTags-suggestion-items">
 				<template v-for="suggestion in suggestions">

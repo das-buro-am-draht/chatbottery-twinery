@@ -3,6 +3,7 @@ const { loadFormat } = require('../../data/actions/story-format');
 const locale = require('../../locale');
 const notify = require('../../ui/notify');
 const semverUtils = require('semver-utils');
+const escape = require('lodash.escape');
 
 require('./index.less');
 
@@ -46,8 +47,8 @@ module.exports = Vue.extend({
 							locale.say(
 								'The chatbot format &ldquo;%1$s&rdquo; could not ' +
 								'be loaded (%2$s).',
-								format.name + ' ' + format.version,
-								e.message
+								escape(format.name + ' ' + format.version),
+								escape(e.message)
 							),
 							'danger'
 						);

@@ -20,7 +20,7 @@ const textToButton = (element) => {
 		classname: '',
 		target: '',
 		...getAttributes(element.attributes),
-	 },
+	  },
     label: trim(label),
     link: trim(link),
     func: trim(func),
@@ -28,10 +28,10 @@ const textToButton = (element) => {
 };
   
 const buttonToText = (button) => {
-  const label = trim(button.label);
-  const link  = trim(button.link);
-  const func  = trim(button.func);
-  let text = `${label || ''}|${link || ''}`;
+  const label = trim((button.label || '').replaceAll('|', ' '));
+  const link  = trim((button.link  || '').replaceAll('|', ' '));
+  const func  = trim((button.func  || '').replaceAll('|', ' '));
+  let text = `${label}|${link}`;
   if (func) {
     text += `|${func}`;
   }

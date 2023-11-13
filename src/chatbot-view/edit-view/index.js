@@ -10,6 +10,7 @@ const PassageEditor = require('../../editors/passage');
 const domEvents = require('../../vue/mixins/dom-events');
 const locale = require('../../locale');
 const zoomSettings = require('../zoom-settings');
+const escape = require('lodash.escape');
 
 require('./index.less');
 
@@ -380,10 +381,10 @@ module.exports = Vue.extend({
 					}
 
 					const message = locale.sayPlural(
-						`Are you sure you want to delete &ldquo;%2$s&rdquo;? This cannot be undone.`,
-						`Are you sure you want to delete %d passages? This cannot be undone.`,
+						'Are you sure you want to delete &ldquo;%2$s&rdquo;? This cannot be undone.',
+						'Are you sure you want to delete %d passages? This cannot be undone.',
 						toDelete.length,
-						toDelete[0].name
+						escape(toDelete[0].name)
 					);
 
 					confirm({

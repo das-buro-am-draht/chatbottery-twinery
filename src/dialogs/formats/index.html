@@ -5,9 +5,9 @@
 	Unfortunately, putting {{'Story Formats' | say}} in component attributes doesn't work for some reason.
 	So, <tab-item>s pass their name attributes through locale.say by themselves.
 	-->
-	<tab-item name="Story Formats">
+	<tab-item :name="'Story Formats' | say">
 		<p>
-		{{'Chatbot formats control the appearance and behavior of chatbots during play.' | say}}
+		{{'Chatbot formats control the appearance and behavior of chatbots during play' | say}}.
 		</p>
 
 		<table>
@@ -24,9 +24,9 @@
 		</table>
 	</tab-item>
 
-	<tab-item name="Proofing Formats">
+	<tab-item :name="'Proofing Formats' | say">
 		<p>
-		{{'Proofing formats create a versions of chatbots tailored for editing and proofreading.' | say}}
+		{{'Proofing formats create a versions of chatbots tailored for editing and proofreading' | say}}.
 		</p>
 
 		<table>
@@ -43,13 +43,8 @@
 		</table>
 	</tab-item>
 
-	<tab-item name="Add a New Format">
-		<p>
-		{{
-		/* L10n: Address in the sense of a URL. */
-		'To add a story format, enter its address below.' | say }}
-		</p>
-
+	<tab-item :name="'Add a New Format' | say">
+		<p>{{ 'To add a story format, enter its address below' | say }}.</p>
 		<form @submit.prevent="addFormat">
 			<p class="format-url">
 				<input type="text" name="newFormatUrl" v-model="newFormatUrl" required>
@@ -60,7 +55,7 @@
 </tabs-panel>
 
 <p v-if="working">
-<i class="fa fa-circle-o-notch fa-spin"></i> {{ 'Loading...' | say}}
+	<i class="fa fa-circle-o-notch fa-spin"></i> {{ 'Loading' | say }}...
 </p>
 
 <p class="error" v-if="error">

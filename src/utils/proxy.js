@@ -1,4 +1,6 @@
-const host = () => localStorage.getItem('DEV_ENV') === 'true' ? 'http://chatbot.proxy/' : 'https://proxy.chatbottery.com/';
+const { isLocal } = require("./common");
+
+const host = () => isLocal() ? 'http://chatbot.proxy/' : 'https://proxy.chatbottery.com/';
 
 module.exports = { 
 	proxy: {

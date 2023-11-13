@@ -3,6 +3,7 @@ A modal which shows aggregrate statistics for a story.
 */
 
 const Vue = require('vue');
+const escape = require('lodash.escape');
 const locale = require('../../locale');
 const notify = require('../../ui/notify');
 const { stringFromDate, queryParams } = require('../../utils/common');
@@ -40,9 +41,9 @@ module.exports = Vue.extend({
 
 		label() {
 			switch (this.tab) {
-				case 0: return 'This list shows the user phrases that couldn\'t be resolved.';
-				case 1: return 'This list shows the user phrases that let to different passage suggestions.';
-				case 2: return 'This list shows the names of passages and the count of invocations.';
+				case 0: return locale.say('This list shows the user phrases that couldn\'t be resolved.');
+				case 1: return locale.say('This list shows the user phrases that led to different passage suggestions.');
+				case 2: return locale.say('This list shows the names of passages and the count of invocations.');
 			}
 		},
 
@@ -153,7 +154,7 @@ module.exports = Vue.extend({
 							));
 						})
 						.catch((error) => {
-							notify(locale.say(`Error on loading Matomo data from '${url}: ${error.message}`), 'danger');
+							notify(locale.say("Error on loading Matomo data from &ldquo;%1$s&rdquo;: %2$s", escape(url), escape(error.message)), 'danger');
 						})
 						.finally(() => this.processing = false);
 				}

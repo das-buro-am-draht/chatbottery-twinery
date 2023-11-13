@@ -10,6 +10,7 @@ const { TYPE_MAIN,
 			} = require('../../../../utils/tags');
 const notify = require('../../../../ui/notify');
 const locale = require('../../../../locale');
+const escape = require('lodash.escape');
 
 require('./index.less');
 
@@ -41,6 +42,9 @@ module.exports = Vue.extend({
   },
 
 	computed: {
+		label() {
+			return this.tag ? locale.say('Change') : locale.say('Add');
+		},
 		tagColors() {
 			return this.getStory().tagColors;
 		},
@@ -65,32 +69,32 @@ module.exports = Vue.extend({
 			switch(type) {
 				case TYPE_MAIN:
 					this.description = [
-						'Main Tag', 
-						'Main Tag will be shown to user in "Did you mean...?"-selection, when prompt is too vague'
+						locale.say('Main Tag'), 
+						locale.say('Main Tag will be shown to user in "Did you mean...?", when prompt is too vague')
 					];
 					break;
 				case TYPE_GROUP:
 					this.description = [
-						'Group Tag', 
-						'All passages that have this tag form a semantic context - improving identification in this context'
+						locale.say('Group Tag'), 
+						locale.say('All passages that have this tag form a semantic context - improving identification in this context')
 					];
 					break;
 				case TYPE_SUGGESTION:
 					this.description = [
-						'Suggestion Tag', 
-						'Tag-Phrase is autocompleted, when the user starts to type accordingly'
+						locale.say('Suggestion Tag'), 
+						locale.say('Tag-Phrase is autocompleted, when the user starts to type accordingly')
 					];
 					break;
 				case TYPE_CONDITIONAL:
 					this.description = [
-						'Conditional Tag', 
-						'Passage Content is only shown if a preset variable condition is met e.g. "isGerman"'
+						locale.say('Conditional Tag'), 
+						locale.say('Passage Content is only shown if a preset variable condition is met e.g. "isGerman"')
 					];
 					break;
 				default:
 					this.description = [
-						'Regular Tag', 
-						'Passage content will be shown, when user submits the exact or a similar phrase'
+						locale.say('Regular Tag'), 
+						locale.say('Passage content will be shown, when user submits the exact or a similar phrase')
 					];
 					break;
 			}
@@ -122,7 +126,13 @@ module.exports = Vue.extend({
 
 			const tag = this.edit.type + tagName;
 			if (tag != this.tag && this.passage.tags.includes(tag)) {
-				notify(locale.say('Tag &ldquo;%1$s&rdquo; already exists.', tag), 'info');
+				notify(
+					locale.say(
+						'Tag &ldquo;%1$s&rdquo; already exists.', 
+						escape(tag)
+					), 
+					'info'
+				);
 				return;
 			}
 

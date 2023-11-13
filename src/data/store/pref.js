@@ -13,10 +13,10 @@ module.exports = {
 		lastUpdateSeen: '',
 		lastUpdateCheckTime: new Date().getTime(),
 		locale:
-			// window.navigator.userLanguage ||
-			// window.navigator.language ||
-			// window.navigator.browserLanguage ||
-			// window.navigator.systemLanguage ||
+			window.navigator.userLanguage ||
+			window.navigator.language ||
+			window.navigator.browserLanguage ||
+			window.navigator.systemLanguage ||
 			'en',
 		proofingFormat: 'Illume', // 'Paperthin',
 		welcomeSeen: false,

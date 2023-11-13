@@ -8,6 +8,6 @@
 		<div class="openai-dialog-content">
 			<openai-params v-for="item in openai" v-ref:params :label="item.label" :params="item.params" :placeholder="item.placeholder" :initial="item.initial" :image="item.image" :description="item.description"></openai-params>
 		</div>
-		<button type="submit" class="create" :disabled="!canSave"><i class="fa fa-check"></i>{{ ' Save' | say }}</button>
+		<button type="submit" class="create" :disabled="!canSave"><i class="fa fa-check"></i> {{ 'Save' | say }}</button>
 	</form>
 </modal-dialog>

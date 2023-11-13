@@ -4,7 +4,7 @@
 			<div class="passageUI-item-gripper">
 				<img src="../../../../common/img/ui-drag.svg">
 			</div>
-			<div class="passageUI-item-text">Item {{ index + 1 }}</div>
+			<div class="passageUI-item-text">{{ 'Item' | say }} {{ index + 1 }}</div>
 			<div class="passageUI-item-delete" @click.stop="onDelete(index)">
 				<img src="../../../../common/img/ui-delete.svg">
 			</div>
@@ -17,28 +17,28 @@
 		<image-placeholder :image-url="imageUrl" :asset-base-url="assetBaseUrl"></image-placeholder>
 		<div v-show="selection >= 0" class="passageUI-form">
 			<div class="passageUI-row">
-				<label for="image">Image link:</label>
-				<input type="text" name="image" v-el:image @input="onChangeImage($event)" placeholder="Image URL" title="Relative or absolute image URL" required />
+				<label for="image">{{ 'Image' | say }}:</label>
+				<input type="text" id="image" v-el:image @input="onChangeImage($event)" :placeholder="'Image URL' | say" :title="'Relative or absolute image URL' | say" required />
 			</div>
 			<div class="passageUI-row">
-				<label for="title">Headline:</label>
-				<input type="text" name="title" v-el:title @input="onChangeTitle($event)" placeholder="Title of the item" title="Title of the item" required />
+				<label for="title">{{ 'Headline' | say }}:</label>
+				<input type="text" id="title" v-el:title @input="onChangeTitle($event)" :placeholder="'Title of the item' | say" :title="'Title of the item' | say" required />
 			</div>
 			<div class="passageUI-row">
-				<label for="text">Text:</label>
-				<input type="text" name="text" v-el:text @input="onChangeText($event)" placeholder="A short description of the item" title="A short description of the item" required />
+				<label for="text">{{ 'Text' | say }}:</label>
+				<input type="text" id="text" v-el:text @input="onChangeText($event)" :placeholder="'A short description of the item' | say" :title="'A short description of the item' | say" required />
 			</div>
 			<div class="passageUI-row">
-				<label for="description">Description:</label>
-				<input type="text" name="description" v-el:description @input="onChangeDescription($event)" placeholder="Description of the item" title="Description of the item"/>
+				<label for="description">{{ 'Description' | say }}:</label>
+				<input type="text" id="description" v-el:description @input="onChangeDescription($event)" :placeholder="'Description of the item' | say" :title="'Description of the item' | say"/>
 			</div>
 			<div class="passageUI-row">
-				<label for="label">Button label:</label>
-				<input type="text" name="label" v-el:label @input="onChangeLabel($event)" placeholder="Text on button" title="Text on button" required />
+				<label for="label">{{ 'Button Label' | say }}:</label>
+				<input type="text" id="label" v-el:label @input="onChangeLabel($event)" :placeholder="'Text on button' | say" :title="'Text on button' | say" required />
 			</div>
 			<div class="passageUI-row">
-				<label for="link">Target:</label>
-				<input type="text" name="link" list="passages" v-el:link @input="onChangeLink($event)" placeholder="Passage name or external URL" title="Passage name or external URL" required />
+				<label for="link">{{ 'Link' | say }}:</label>
+				<input type="text" id="link" list="passages" v-el:link @input="onChangeLink($event)" :placeholder="'Passage name or external URL' | say" :title="'Passage name or external URL' | say" required />
 				<datalist v-if="passages" id="passages">
 					<option v-for="passage in passages" :value="passage">
 				</datalist>

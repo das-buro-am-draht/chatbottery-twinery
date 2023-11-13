@@ -10,6 +10,7 @@ const {publishStoryWithFormat} = require('../../../data/publish');
 const {proofStory} = require('../../../common/launch-story');
 const locale = require('../../../locale');
 const notify = require('../../../ui/notify');
+const escape = require('lodash.escape');
 
 require('./index.less');
 
@@ -50,8 +51,8 @@ module.exports = Vue.extend({
 					locale.say(
 						'The chatbot &ldquo;%1$s&rdquo; could not ' +
 						'be published (%2$s).',
-						this.story.name,
-						e.message
+						escape(this.story.name),
+						escape(e.message)
 					),
 					'danger'
 				);

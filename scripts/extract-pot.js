@@ -55,44 +55,25 @@ function addItem(location, string, pluralString, comment) {
 
 /*
 Parse .html files for text in this format: 
+:attribute="'Simple string' | say"
+:attribute="'Singular string' | sayPlural 'Plural string'"
 {{ 'Simple string' | say }}
 {{ 'Singular string' | sayPlural 'Plural string' }} 
 */
 
-const templateRegexp = new RegExp(
-	/* Opening moustache. */
-	/{{{? */.source +
-
-	/* String to localize and say filter. */
-	/['"]([^}]*?)['"] *\| *say/.source +
-
-	/* Optional pluralization. */
-	/(?:Plural *['"](.+)['"].*)?/.source +
-
-	/* Closing moustache. */
-	/ *}}}?/.source,
-
-	'gm'
-);
+const templateRegexp = /(?::[a-zA-Z-]+="\s*'([^"]+)(?<!\\)'\s*\|\s*say(?:Plural\s*(?:'(.+)(?<!\\)'))?)|(?:{{{?\s*'([^}]+)(?<!\\)'\s*\|\s*say(?:Plural\s*(?:'([^}]+)(?<!\\)'))?[^}]*}}}?)|(?:{{{?\s*"([^}]+)(?<!\\)"\s*\|\s*say(?:Plural\s*(?:"([^}]+)(?<!\\)"))?[^}]*}}}?)/gm;
 
 glob.sync('src/**/*.html').forEach(fileName => {
+	let match;
 	const source = fs.readFileSync(fileName, { encoding: 'utf8' });
-	const parser = new htmlParser.Parser({
-		ontext(text) {
-			let match;
+	while (match = templateRegexp.exec(source)) {
+		/*
+		match[1]: singular form of the string 
+		match[2]: plural form of the string, if any.
+		*/
 
-			while (match = templateRegexp.exec(text.trim())) {
-				/*
-				The first captured expression is a comment, if any.
-				The third is the plural form of the string, if any.
-				*/
-
-				addItem(fileName, match[1], match[2]);
-			}
-		}
-	});
-
-	parser.write(source);
+		addItem(fileName, match[1] || match[3] || match[5], match[2] || match[4] || match[6]);
+	}
 });
 
 /*
@@ -114,17 +95,13 @@ glob.sync('src/**/*.js').forEach(fileName => {
 				*/
 				
 				return node.raw.replace(/^['"]/, '').replace(/['"]$/, '');
-			break;
 
 			case 'BinaryExpression':
 				if (node.operator === '+') {
 					return parseValue(node.left) + parseValue(node.right);
 				}
 
-				throw new Error(
-					`Don't know how to parse operator ${node.operator}`
-				);
-			break;
+				throw new Error(`Don't know how to parse operator ${node.operator}`);
 
 			default:
 				throw new Error(`Don't know how to parse value of ${node.type}`);
@@ -132,59 +109,63 @@ glob.sync('src/**/*.js').forEach(fileName => {
 	}
 
 	let comments = [];
-	const ast = acorn.parse(
-		fs.readFileSync(fileName, { encoding: 'utf8' }),
-		{
-			ecmaVersion: 6,
-			locations: true,
-			onComment: comments
-		}
-	);
+	try {
+		const ast = acorn.parse(
+			fs.readFileSync(fileName, { encoding: 'utf8' }),
+			{
+				ecmaVersion: 9,
+				locations: true,
+				onComment: comments
+			}
+		);
 
-	estraverse.traverse(
-		ast,
-		{
-			enter: function(node, parent) {
-				if (node.type === 'CallExpression') {
-					let funcName;
+		estraverse.traverse(
+			ast,
+			{
+				enter: function(node, parent) {
+					if (node.type === 'CallExpression') {
+						let funcName;
 
-					if (node.callee.type === 'Identifier') {
-						funcName = node.callee.name;
-					}
-					else if (node.callee.type === 'MemberExpression') {
-						funcName = node.callee.property.name;
-					}
+						if (node.callee.type === 'Identifier') {
+							funcName = node.callee.name;
+						}
+						else if (node.callee.type === 'MemberExpression') {
+							funcName = node.callee.property.name;
+						}
 
-					/*
-					Check for a comment that ended 0-2 lines before this call.
-					*/
+						/*
+						Check for a comment that ended 0-2 lines before this call.
+						*/
 
-					const precedingComment = comments.find(comment =>
-						Math.abs(comment.loc.end.line - node.loc.start.line) < 3 &&
-						/^\s*L10n/.test(comment.value)
-					);
-
-					if (funcName === 'say') {
-						addItem(
-							fileName + ':' + node.loc.start.line,
-							parseValue(node.arguments[0]),
-							null,
-							precedingComment ? precedingComment.value : null
+						const precedingComment = comments.find(comment =>
+							Math.abs(comment.loc.end.line - node.loc.start.line) < 3 &&
+							/^\s*L10n/.test(comment.value)
 						);
-					}
 
-					if (funcName === 'sayPlural') {
-						addItem(
-							fileName + ':' + node.loc.start.line,
-							parseValue(node.arguments[0]),
-							parseValue(node.arguments[1]),
-							precedingComment ? precedingComment.value : null
-						);
+						if (funcName === 'say') {
+							addItem(
+								fileName + ':' + node.loc.start.line,
+								parseValue(node.arguments[0]),
+								null,
+								precedingComment ? precedingComment.value : null
+							);
+						}
+
+						if (funcName === 'sayPlural') {
+							addItem(
+								fileName + ':' + node.loc.start.line,
+								parseValue(node.arguments[0]),
+								parseValue(node.arguments[1]),
+								precedingComment ? precedingComment.value : null
+							);
+						}
 					}
 				}
 			}
-		}
-	);
+		);
+	} catch(e) {
+		console.error(`Could not parse file name ${fileName}: `, e.message);
+	}
 });
 
 fs.writeFileSync(

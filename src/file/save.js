@@ -17,6 +17,7 @@ const saveAs = require('browser-saveas');
 const { oniOS, onSafari } = require('../ui');
 const locale = require('../locale');
 const notify = require('../ui/notify');
+const escape = require('lodash.escape');
 
 require('blob-polyfill');
 
@@ -68,8 +69,8 @@ module.exports = (data, filename, success, failure) => {
 			notify(
 				locale.say(
 					'&ldquo;%1$s&rdquo; could not be saved (%2$s).',
-					filename,
-					e.message
+					escape(filename),
+					escape(e.message)
 				),
 				'danger'
 			);

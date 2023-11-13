@@ -31,14 +31,14 @@ module.exports = Vue.extend({
 	computed: {
 		types() {
 			const items = { };
-			Object.entries(types).forEach(([key, value]) => {
+			Object.entries(types).forEach(([key]) => {
 				switch (key) {
 					case 'chat':
 						if (!(this.story && this.story.plugins && this.story.plugins.chat)) {
 							break;
 						}
 					default:
-						items[key] = value;
+						items[key] = this.label(key);
 						break;
 				}
 			});

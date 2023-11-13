@@ -5,13 +5,13 @@
 		</div>		
 		<div class="passageUI-form">
 			<div class="passageUI-row">
-				<label for="Passage">{{ 'Passage' | say }}:</label>
+				<label for="passage">{{ 'Passage' | say }}:</label>
 				<div class="passageUI-row-input">
-					<input type="text" list="passages" name="passage" v-model="passage" @input="onChange($event)" required>
+					<input type="text" list="passages" id="passage" v-model="passage" @input="onChange($event)" :title="'Name of the passage to go to' | say" required>
 					<datalist v-if="passages" id="passages">
 						<option v-for="passage in passages" :value="passage">
 					</datalist>
-					<p class="error" v-show="!passage">{{ 'Passage name must be set!' | say }}</p>
+					<p class="error" v-show="!passage">{{ 'Passage name must be set' | say }}.</p>
 				</div>
 			</div>
 		</div>

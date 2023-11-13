@@ -7,14 +7,14 @@
 			<div class="passageUI-row">
 				<label for="iframeUrl">{{ 'URL' | say }}:</label>
 				<div class="passageUI-row-input">
-					<input type="text" name="iframeUrl" v-model="iframe" @input="onChangeUrl($event)" required placeholder="Enter URL or PDF-Link you want to embed">
-					<p class="error" v-show="!iframe">{{ 'IFrame/PDF URL must be set!' | say }}</p>
-					<p class="error" v-show="!isValid">{{ 'Resource Locator must be a valid URL' | say }}</p>
+					<input type="text" id="iframeUrl" v-model="iframe" @input="onChangeUrl($event)" :placeholder="'URL or PDF Link of embedded Resource' | say" required>
+					<p class="error" v-show="!iframe">{{ 'URL of IFrame / PDF must be set' | say }}.</p>
+					<p class="error" v-show="!isValid">{{ 'Resource Locator must be a valid URL' | say }}.</p>
 				</div>
 			</div>
 			<div class="passageUI-row">
 				<label for="height">{{ 'Height' | say }}:</label>
-				<input type="text" name="height" v-model="height" @input="onChangeHeight($event)" title="Height with unit">
+				<input type="text" id="height" v-model="height" @input="onChangeHeight($event)" :title="'Height with unit' | say">
 			</div>
 		</div>
 	</div>

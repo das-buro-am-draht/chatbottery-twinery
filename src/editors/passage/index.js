@@ -13,6 +13,7 @@ const parseVariables = require('../../data/variables-parser');
 const { loadFormat } = require('../../data/actions/story-format');
 const { passageDefaults } = require('../../data/store/story');
 const notify = require('../../ui/notify');
+const escape = require('lodash.escape');
 
 require('codemirror/addon/display/placeholder');
 require('codemirror/addon/hint/show-hint');
@@ -40,9 +41,7 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
-		/* if (process.env.NODE_ENV === 'development') */ {
-			this.toggleMode();
-		}
+		this.toggleMode();
 		
 		this.userPassageName = this.passage.name;
 
@@ -123,7 +122,7 @@ module.exports = Vue.extend({
 				notify(
 					locale.say(
 						'New user variables found: &ldquo;%1$s&rdquo;',
-						keys.join(', ')
+						escape(keys.join(', '))
 					)
 				);
 				// 'UserDataDialog' must not be global due to circular dependencies
@@ -292,7 +291,7 @@ module.exports = Vue.extend({
 				try {
 					this.gui = parse(this.passage.text);
 				} catch (e) {
-					notify(e.message, 'danger');
+					notify(escape(e.message), 'danger');
 				}
 			}
 		},

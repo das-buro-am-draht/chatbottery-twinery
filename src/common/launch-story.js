@@ -14,6 +14,7 @@ const {
 } = require('./story-html');
 const isElectron = require('../electron/is-electron');
 const locale = require('../locale');
+const escape = require('lodash.escape');
 
 const windows = {};
 
@@ -49,7 +50,7 @@ module.exports = {
 					window.alert(
 						locale.say(
 							'An error occurred while publishing your chatbot. (%s)',
-							e.message
+							escape(e.message)
 						)
 					);
 				});
@@ -72,7 +73,7 @@ module.exports = {
 					window.alert(
 						locale.say(
 							'An error occurred while publishing your chatbot. (%s)',
-							e.message
+							escape(e.message)
 						)
 					);
 				});

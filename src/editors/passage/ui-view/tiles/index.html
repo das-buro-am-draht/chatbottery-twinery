@@ -1,18 +1,18 @@
 <div class="passageUI-tiles">
 	<div class="passageUI-row">
-		<label for="caption">Caption:</label>
-		<input type="text" name="caption" v-el:caption @input="onChangeCaption($event)" placeholder="Caption before Tiles" title="Caption before Tiles"/>
+		<label for="caption">{{ 'Caption' | say }}:</label>
+		<input type="text" id="caption" v-el:caption @input="onChangeCaption($event)" :placeholder="'Caption before Tiles' | say" :title="'Caption before Tiles' | say"/>
 	</div>
 	<div class="passageUI-row">
-		<label for="initial">Initial count:</label>
-		<input type="number" name="initial" v-el:initial @input="onChangeInitial($event)" title="Limit initially visible item count" />
+		<label for="initial">{{ 'Initial count' | say }}:</label>
+		<input type="number" id="initial" v-el:initial @input="onChangeInitial($event)" :title="'Limit initially visible item count' | say" />
 	</div>
 	<div class="passageUI-items">
 		<div :class="['passageUI-item', selection === index ? 'selected' : '']" v-for="(index, item) in task.items" draggable="true" @dragstart.stop="drag(index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop(index, $event)" @click="onSelect(index)">
 			<div class="passageUI-item-gripper">
 				<img src="../../../../common/img/ui-drag.svg">
 			</div>
-			<div class="passageUI-item-text">Item {{ index + 1 }}</div>
+			<div class="passageUI-item-text">{{ 'Item' | say }} {{ index + 1 }}</div>
 			<div class="passageUI-item-delete" @click.stop="onDelete(index)">
 				<img src="../../../../common/img/ui-delete.svg">
 			</div>
@@ -25,20 +25,20 @@
 		<image-placeholder :image-url="imageUrl" :asset-base-url="assetBaseUrl"></image-placeholder>
 		<div v-show="selection >= 0" class="passageUI-form">
 			<div class="passageUI-row">
-				<label for="image">Image link:</label>
-				<input type="text" name="image" v-el:image @input="onChangeImage($event)" placeholder="Image URL" title="Relative or absolute image URL" required />
+				<label for="image">{{ 'Image link' | say }}:</label>
+				<input type="text" id="image" v-el:image @input="onChangeImage($event)" :placeholder="'Image URL' | say" :title="'Relative or absolute image URL' | say" required />
 			</div>
 			<div class="passageUI-row">
-				<label for="title">Headline:</label>
-				<input type="text" name="title" v-el:title @input="onChangeTitle($event)" placeholder="Title of the item" title="Title of the item" required />
+				<label for="title">{{ 'Headline' | say }}:</label>
+				<input type="text" id="title" v-el:title @input="onChangeTitle($event)" :placeholder="'Title of the item' | say" :title="'Title of the item' | say" required />
 			</div>
 			<div class="passageUI-row">
-				<label for="description">Description:</label>
-				<input type="text" name="description" v-el:description @input="onChangeDescription($event)" placeholder="Description of the item" title="Description of the item"/>
+				<label for="description">{{ 'Description' | say }}:</label>
+				<input type="text" id="description" v-el:description @input="onChangeDescription($event)" :placeholder="'Description of the item' | say" :title="'Description of the item' | say"/>
 			</div>
 			<div class="passageUI-row">
-				<label for="link">Target:</label>
-				<input type="text" name="link" list="passages" v-el:link @input="onChangeLink($event)" placeholder="Passage name or external URL" title="Passage name or external URL" required />
+				<label for="link">{{ 'Target' | say }}:</label>
+				<input type="text" id="link" list="passages" v-el:link @input="onChangeLink($event)" :placeholder="'Passage name or external URL' | say" :title="'Passage name or external URL' | say" required />
 				<datalist v-if="passages" id="passages">
 					<option v-for="passage in passages" :value="passage">
 				</datalist>

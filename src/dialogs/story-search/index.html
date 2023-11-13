@@ -46,12 +46,12 @@
 		</span>
 
 		<span class="matches">
-			{{ '%d passage matches.' | sayPlural '%d passages match.' passageMatches.length }}
+			{{ '%d passage matches' | sayPlural '%d passages match' passageMatches.length }}.
 		</span>
 	</p>
 
 	<p v-if="working" transition="fade-in-out">
-		<i class="fa fa-circle-o-notch fa-spin"></i> {{ 'Searching...' | say }}
+		<i class="fa fa-circle-o-notch fa-spin"></i> {{ 'Searching' | say }}...
 	</p>
 
 	<div class="results">

@@ -8,14 +8,16 @@ const { latestFormatVersions, formatVersion } = require('../format-versions');
 const locale = require('../../locale');
 const notify = require('../../ui/notify');
 const {setPref} = require('./pref');
+const escape = require('lodash.escape');
+const { isDev } = require('../../utils/common');
 
-const prefix = process.env.NODE_ENV === 'development' ? 'develop.' : '';
+const prefix = isDev() ? 'develop.' : '';
 
 const defaultFormats = {
 	story: {
 		name: 'Chatbottery',
 		url: `https://${prefix}web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v12.js`,
-		version: '12.1.0',
+		version: '12.2.0',
 	},
 	proof: {
 		name: 'Illume',
@@ -267,9 +269,9 @@ const actions = (module.exports = {
 				locale.say(
 					'Default Chatbot Format &ldquo;%1$s %2$s&rdquo; is not ' +
 					'the latest (%3$s %4$s).',
-					store.state.pref.defaultFormat.name,
+					escape(store.state.pref.defaultFormat.name),
 					store.state.pref.defaultFormat.version,
-					defaultFormats.story.name,
+					escape(defaultFormats.story.name),
 					defaultFormats.story.version,
 				)
 			);

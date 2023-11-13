@@ -1,3 +1,5 @@
+const locale = require('../locale');
+
 const types = {
 	'txt'     : 'Text message',
 	'buttons' : 'Buttons',
@@ -11,13 +13,13 @@ const types = {
 	'goto'    : 'Goto',
 	'ai'      : 'AI prompt',
 	'chat'    : 'Live Chat',
-	// 'sms'     : 'SMS (Voice Bot)',
-	// 'call'    : 'Call Control (Voice Bot)',
+	// 'sms'     : locale.say('SMS (Voice Bot)'),
+	// 'call'    : locale.say('Call Control (Voice Bot)'),
 };
 
 const clipboardType = 'text/plain';
 
-const label = (type) => types[type] || type;
+const label = (type) => locale.say(types[type]) || type;
 
 /* NOTE: all attributes and properties must be initialized for Vue::watch of the GUI to take effect
  */
