@@ -1281,6 +1281,11 @@ msgstr "Initialanzeige"
 msgid "Limit initially visible item count"
 msgstr "Zahl gibt die initial maximal anzuzeigenden Kachelelemente an"
 
+#: src/editors/passage/ui-view/txt/index.html
+#: src/editors/passage/ui-view/options/index.js:15
+msgid "Add Text alternative"
+msgstr "Textoption hinzufügen"
+
 #: src/editors/passage/ui-view/video/index.html
 msgid "Video URL"
 msgstr ""
@@ -1845,10 +1850,6 @@ msgstr "Passagenelement wurde in die Zwischenablage kopiert."
 #: src/editors/passage/ui-view/index.js:144
 msgid "Are you sure to delete &ldquo;%1$s&rdquo;?"
 msgstr "Sicher, dass Du &ldquo;%1$s&rdquo; löschen möchtest?"
-
-#: src/editors/passage/ui-view/options/index.js:15
-msgid "Add Text alternative"
-msgstr "Textoption hinzufügen"
 
 #: src/electron/story-directory.js:16 src/electron/story-directory.js:101
 msgid "Chatbottery"
