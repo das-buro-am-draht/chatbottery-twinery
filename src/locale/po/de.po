@@ -1700,8 +1700,8 @@ msgid "Website Analysis"
 msgstr "Webseiten-Analyse"
 
 #: src/dialogs/openai/index.js:50
-msgid "These settings apply to External Data Website Analysis.<br>The following fields must be returned in JSON format"
-msgstr "Diese Einstellungen betreffen die Webseiten-Analyse für die Externen Daten.<br>Die folgenden Felder müssen im JSON-Format zurückgegeben werden"
+msgid "These settings apply to External Data Website Analysis.<br>The following fields must be returned in JSON format:<table><tr><th style=\"text-align: left\">Field name</th><th style=\"text-align: left\">Type</th></tr><tr><td>title</td><td>string</td></tr><tr><td>author</td><td>string</td></tr><tr><td>date</td><td>string</td></tr><tr><td>phrases</td><td>array</td></tr><tr><td>main_keyword</td><td>string</td></tr><tr><td>keywords</td><td>array</td></tr><tr><td>image_url</td><td>string</td></tr><tr><td>summary</td><td>string</td></tr></table>"
+msgstr "Diese Einstellungen betreffen die Webseiten-Analyse für die Externen Daten.<br>Die folgenden Felder müssen im JSON-Format zurückgegeben werden:<table><tr><th style=\"text-align: left\">Feldname</th><th style=\"text-align: left\">Typ</th></tr><tr><td>title</td><td>string</td></tr><tr><td>author</td><td>string</td></tr><tr><td>date</td><td>string</td></tr><tr><td>phrases</td><td>array</td></tr><tr><td>main_keyword</td><td>string</td></tr><tr><td>keywords</td><td>array</td></tr><tr><td>image_url</td><td>string</td></tr><tr><td>summary</td><td>string</td></tr></table>"
 
 #: src/dialogs/openai/index.js:89
 msgid "There were changes detected for the OpenAI params dialog. Are you sure you want to discard those changes?"
