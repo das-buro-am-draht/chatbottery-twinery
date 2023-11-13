@@ -2,8 +2,8 @@
 	<span slot="title">{{ 'User Data' | say }}</span>
 	<!-- <p>{{ 'Enter Field Names without leading \'$\'' | say }}</p> -->
 	<div class="user__content">
-		<div class="user__input">
-			<div class="user__list user-entry" v-for="item in userData" track-by="$index">
+		<div class="user__input" v-for="item in userData" track-by="$index">
+			<div class="user__list user-entry">
 				<div class="user-gripper" draggable="true" @dragstart.stop="drag($index, $event)" @dragenter="dragenter($event)" @dragover="dragenter($event)" @drop.prevent="drop($index, $event)"></div>
 				<div class="user__list user-field">
 					<input type="text" class="user__list-field" v-model="item[0]" :placeholder="'variable' | say" title="{{ 'Variable Name' | say }}">
@@ -23,9 +23,9 @@
 					<input v-if="item[1].type === 'date'" type="date" class="user__list-input" v-model="item[1].value" placeholder="{{ 'Default Value' | say }}" title="{{ 'Date' | say }}">
 					<button class="user__list-btn" @click="remove($index)"></button>
 				</div>
-				<p class="error" v-show="!isUserEntrySet(item)">{{ 'Name must be set' | say }}</p>
-				<p class="error" v-show="!isValidUserEntry(item)">{{ 'User Field Name must not start with \'$\'' | say }}</p>
 			</div>
+			<p class="error" v-show="!isUserEntrySet(item)">{{ 'Name must be set' | say }}</p>
+			<p class="error" v-show="!isValidUserEntry(item)">{{ 'User Field Name must not start with \'$\'' | say }}</p>
 		</div>
 		<div class="append">
 			<div></div>

@@ -42,6 +42,9 @@ module.exports = Vue.extend({
   },
 
 	computed: {
+		label() {
+			return this.tag ? locale.say('Change') : locale.say('Add');
+		},
 		tagColors() {
 			return this.getStory().tagColors;
 		},

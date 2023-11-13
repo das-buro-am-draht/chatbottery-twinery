@@ -9,8 +9,9 @@ const locale = require('../../locale');
 const notify = require('../../ui/notify');
 const {setPref} = require('./pref');
 const escape = require('lodash.escape');
+const { isDev } = require('../../utils/common');
 
-const prefix = process.env.NODE_ENV === 'development' ? 'develop.' : '';
+const prefix = isDev() ? 'develop.' : '';
 
 const defaultFormats = {
 	story: {

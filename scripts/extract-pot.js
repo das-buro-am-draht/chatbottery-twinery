@@ -61,7 +61,7 @@ Parse .html files for text in this format:
 {{ 'Singular string' | sayPlural 'Plural string' }} 
 */
 
-const templateRegexp = /(?:(?::[a-zA-Z-]+=")|(?:{{{?))[\s]*'([^']+)'\s*\|\s*say(?:Plural)?\s*(?:'([^']+)')?[^"}]*(?:(?:}}}?)|")/gm;
+const templateRegexp = /(?::[a-zA-Z-]+="\s*'([^"]+)(?<!\\)'\s*\|\s*say(?:Plural\s*(?:'(.+)(?<!\\)'))?)|(?:{{{?\s*'([^}]+)(?<!\\)'\s*\|\s*say(?:Plural\s*(?:'([^}]+)(?<!\\)'))?[^}]*}}}?)|(?:{{{?\s*"([^}]+)(?<!\\)"\s*\|\s*say(?:Plural\s*(?:"([^}]+)(?<!\\)"))?[^}]*}}}?)/gm;
 
 glob.sync('src/**/*.html').forEach(fileName => {
 	let match;
@@ -72,7 +72,7 @@ glob.sync('src/**/*.html').forEach(fileName => {
 		match[2]: plural form of the string, if any.
 		*/
 
-		addItem(fileName, match[1], match[2]);
+		addItem(fileName, match[1] || match[3] || match[5], match[2] || match[4] || match[6]);
 	}
 });
 

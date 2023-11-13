@@ -46,7 +46,7 @@
 					<span>{{ description[0] | say }}:&nbsp;</span><p>{{ description[1] | say }}</p>
 				</div>
 			</div>
-			<button type="submit" class="create" :disabled="!isValid"><i class="fa fa-check"></i>{{ tag ? ' Change' : ' Add' }}</button>
+			<button type="submit" class="create" :disabled="!isValid"><i class="fa fa-check"></i> {{ label }}</button>
 		</form>
 	</div>
 </modal-dialog>

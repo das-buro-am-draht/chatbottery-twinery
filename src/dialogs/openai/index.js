@@ -15,7 +15,7 @@ module.exports = Vue.extend({
 		openai: {
 			prompt: {
 				pref: 'openaiPrompt',
-				label: locale.say('Prompt'),
+				label: locale.say('AI Prompt'),
 				image: 'suggestions.svg',
 				initial: openaiDefault.prompt,
 				placeholder: placeholders.prompt,

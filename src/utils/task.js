@@ -1,25 +1,25 @@
 const locale = require('../locale');
 
 const types = {
-	'txt'     : locale.say('Text message'),
-	'buttons' : locale.say('Buttons'),
-	'image'   : locale.say('Image'),
-	'video'   : locale.say('Video'),
-	'iframe'  : locale.say('iFrame / PDF'),
-	'carousel': locale.say('Carousel'),
-	'tiles'   : locale.say('Tiles'),
-	'wait'    : locale.say('Record user input'),
-	'eval'    : locale.say('Set variable'),
-	'goto'    : locale.say('Goto'),
-	'ai'      : locale.say('AI prompt'),
-	'chat'    : locale.say('Live Chat'),
+	'txt'     : 'Text message',
+	'buttons' : 'Buttons',
+	'image'   : 'Image',
+	'video'   : 'Video',
+	'iframe'  : 'iFrame / PDF',
+	'carousel': 'Carousel',
+	'tiles'   : 'Tiles',
+	'wait'    : 'Record user input',
+	'eval'    : 'Set variable',
+	'goto'    : 'Goto',
+	'ai'      : 'AI prompt',
+	'chat'    : 'Live Chat',
 	// 'sms'     : locale.say('SMS (Voice Bot)'),
 	// 'call'    : locale.say('Call Control (Voice Bot)'),
 };
 
 const clipboardType = 'text/plain';
 
-const label = (type) => types[type] || type;
+const label = (type) => locale.say(types[type]) || type;
 
 /* NOTE: all attributes and properties must be initialized for Vue::watch of the GUI to take effect
  */

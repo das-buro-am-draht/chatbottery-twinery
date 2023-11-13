@@ -1,4 +1,6 @@
 const Vue = require('vue');
+const locale = require('../../../locale');
+const escape = require('lodash.escape');
 
 module.exports = Vue.extend({
 	template: require('./index.html'),
@@ -32,9 +34,29 @@ module.exports = Vue.extend({
 
 	data: () => ({
 		message: '',
-  }),
+  	}),
 
 	computed: {
+		header() {
+			return locale.say(
+				'OpenAI %1$s',
+				escape(this.label)
+			);
+		},
+		advice() {
+			return locale.say(
+				'Use %1$s as placeholder for %2$s string',
+				escape(this.placeholder),
+				escape(this.label)
+			);
+		},
+		warning() {
+			return locale.say(
+				'Placeholder %1$s should be set.',
+				escape(this.placeholder),
+				escape(this.label)
+			);
+		},
 		imageUrl() {
 			return require('../../../common/img/' + this.image);
 		},

@@ -1,3 +1,7 @@
+const isDev = () => process.env.NODE_ENV === 'development';
+
+const isLocal = () => localStorage.getItem('DEV_ENV') === 'true';
+
 const trim = (str) => str && str.replace(/^[\n\r\s]+/, '').replace(/[\n\r\s]+$/, '');
 
 const isEmpty = (obj) => !Object.values(obj).some((value) => (typeof value === 'object') ? !isEmpty(value) : !!value);
@@ -46,7 +50,9 @@ const queryParams = (obj) => Object.entries(obj).map(([key, value]) =>
 ).join('&');
   
 module.exports = { 
-  trim, 
+  trim,
+  isDev,
+  isLocal,
   isEmpty,
   isValidUrl, 
   absoluteUrl,
