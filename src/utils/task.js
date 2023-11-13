@@ -54,6 +54,8 @@ const createTask = (type, attributes = {}) => {
 			task.items = [];
 			break;
 		case 'tiles':
+			task.attributes['caption'] = task.attributes['caption'] || '';
+			task.attributes['initial'] = task.attributes['initial'] || 0;
 			task.items = [];
 			break;
 		case 'goto':

@@ -25,7 +25,7 @@ module.exports = Vue.extend({
 
 	ready() {
 		this.$els.caption.value = this.task.attributes['caption'] || '';
-		this.$els.initial.value = this.task.attributes['initial'] || '';
+		this.$els.initial.value = this.task.attributes['initial'] || 0;
 		if (this.story) {
 			const { settings } = this.story;
 			if (settings && settings.assetBaseUrl) {
@@ -101,11 +101,12 @@ module.exports = Vue.extend({
 		onAdd() {
 			const index = this.task.items.length;
 			this.task.items.push({
-				attributes: { },
+				attributes: { 
+					img: '',
+				},
 				title: '',
 				description: '',
 				link: { 
-					attributes: { },
 					label: '',
 					link: '',
 					func: '',
