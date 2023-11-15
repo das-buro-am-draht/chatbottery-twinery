@@ -95,7 +95,7 @@ module.exports = Vue.extend({
 				),
 				buttonLabel:
 					'<i class="fa fa-trash-o"></i> ' +
-					locale.say('Delete Forever'),
+					locale.say('Delete Permanently'),
 				buttonClass: 'danger'
 			}).then(() => this.deleteStory(this.story.id));
 		},
@@ -125,7 +125,7 @@ module.exports = Vue.extend({
 
 		duplicate() {
 			prompt({
-				message: locale.say('What should the duplicate be named?'),
+				message: locale.say('How should the duplicate be named?'),
 				buttonLabel:
 					'<i class="fa fa-copy"></i> ' + locale.say('Duplicate'),
 				response: locale.say('%s Copy', escape(this.story.name)),

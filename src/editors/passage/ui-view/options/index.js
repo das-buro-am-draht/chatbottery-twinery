@@ -12,7 +12,7 @@ module.exports = Vue.extend({
 		},
 		addLabel: {
 			type: String,
-			default: locale.say('Add Text alternative'),
+			default: locale.say('Add alternative text'),
 			required: false,
 		},
 	},

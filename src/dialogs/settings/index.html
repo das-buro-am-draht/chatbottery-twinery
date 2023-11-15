@@ -12,7 +12,7 @@
 		</div>
 		<div class="setting__item">
 			<div class="setting__row">
-				<label for="storyUrl">{{ 'External Story URL' | say }}</label>
+				<label for="storyUrl">{{ 'URL for external chatbot-data' | say }}</label>
 				<div class="setting__input">
 					<input type="text" id="storyUrl" v-model="storyUrl" title="{{ 'URL for external Story data' | say }}">
 					<p class="error" v-show="!isValidUrl(storyUrl)">{{ 'Resource Locator must be a valid URL' | say }}</p>
