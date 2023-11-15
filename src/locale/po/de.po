@@ -17,8 +17,8 @@ msgid "Warning"
 msgstr "Warnung"
 
 #: src/aside-navigation/check-local-state/index.html
-msgid "You have to turn on your locale storage in order to make the editor work properly"
-msgstr "Du musst den lokalen Speicher (Local Storage) in den Browser-Einstellungen persistent aktivieren, damit der Editor korrekt arbeiten kann"
+msgid "You need to activate \'local storage\' in your browser settings, so that the editor works properly"
+msgstr "Du musst den lokalen Speicher (Local Storage) in den Browser-Einstellungen aktivieren, damit der Editor korrekt arbeiten kann"
 
 #: src/aside-navigation/check-local-state/index.html
 msgid "Learn more"
@@ -26,18 +26,18 @@ msgstr "Erfahre mehr"
 
 #: src/aside-navigation/index.html
 msgid "Home"
-msgstr "Start"
+msgstr "Home"
 
 #: src/aside-navigation/index.html src/electron/story-directory.js:17
 msgid "Chatbots"
-msgstr ""
+msgstr "Chatbots"
 
 #: src/aside-navigation/index.html
 msgid "Chatbot Formats"
 msgstr "Chatbot-Formate"
 
 #: src/aside-navigation/index.html
-msgid "Live Chats"
+msgid "Live-Chat"
 msgstr "Live-Chat"
 
 #: src/aside-navigation/index.html
@@ -51,7 +51,7 @@ msgstr "Hilfe"
 #: src/aside-navigation/index.html src/construction/index.html
 #: src/common/router.js:203
 msgid "Chatbottery Editor"
-msgstr ""
+msgstr "Chatbottery Editor"
 
 #: src/aside-navigation/index.html
 msgid "Made with Twine, an open-source tool for telling interactive, nonlinear stories"
@@ -59,7 +59,7 @@ msgstr "Erstellt mit Twine, eine Open-Source-Software zum Erstellen interaktiver
 
 #: src/chatbot-view/edit-view/passage-button/index.html
 msgid "Add a new passage"
-msgstr "Neue Passage"
+msgstr "Neue Passage hinzufügen"
 
 #: src/chatbot-view/edit-view/passage-item/passage-menu/index.html
 msgid "Delete &ldquo;%s&rdquo;"
@@ -70,7 +70,7 @@ msgid "Edit &ldquo;%s&rdquo;"
 msgstr "&ldquo;%s&rdquo; bearbeiten"
 
 #: src/chatbot-view/edit-view/passage-item/passage-menu/index.html
-msgid "Test chatbot starting here"
+msgid "Test Chatbot here"
 msgstr "Chatbot hier testen"
 
 #: src/chatbot-view/edit-view/passage-item/passage-menu/index.html
@@ -100,7 +100,7 @@ msgstr "Groß"
 #: src/chatbot-view/toolbar/download/index.html
 #: src/dialogs/app-update/index.js:50
 msgid "Download"
-msgstr ""
+msgstr "Download"
 
 #: src/chatbot-view/toolbar/download/index.html
 msgid "Download HTML File"
@@ -108,23 +108,23 @@ msgstr "HTML-Datei herunterladen"
 
 #: src/chatbot-view/toolbar/download/index.html
 msgid "Download HTML"
-msgstr ""
+msgstr "Download HTML"
 
 #: src/chatbot-view/toolbar/download/index.html
 msgid "Download Proof PDF"
-msgstr "Revision PDF herunterladen"
+msgstr "Korrekturabzug PDF herunterladen"
 
 #: src/chatbot-view/toolbar/download/index.html
 msgid "Download PDF"
-msgstr "Revision PDF"
+msgstr "Download PDF"
 
 #: src/chatbot-view/toolbar/download/index.html
 msgid "Download Proof Default"
-msgstr "Revision herunterladen"
+msgstr "Standard Korrekturabzug PDF herunterladen"
 
 #: src/chatbot-view/toolbar/download/index.html
 msgid "Proof Copy Default"
-msgstr "Revision"
+msgstr "Default Korrekturabzug"
 
 #: src/chatbot-view/toolbar/file/index.html
 #: src/chatbots/stories/story/item-menu/index.html
@@ -133,23 +133,23 @@ msgstr "Chatbot umbenennen"
 
 #: src/chatbot-view/toolbar/file/index.html
 msgid "Chatbot Plugins"
-msgstr "Plugins des Chatbots"
+msgstr "Chatbot Plugins"
 
 #: src/chatbot-view/toolbar/file/index.html src/dialogs/plugins/index.html
 msgid "Plugins"
-msgstr ""
+msgstr "Plugins"
 
 #: src/chatbot-view/toolbar/file/index.html
 msgid "Chatbot User Data"
-msgstr "Benutzerdaten des Chatbots"
+msgstr "Chatbot Nutzerdaten"
 
 #: src/chatbot-view/toolbar/file/index.html src/dialogs/user/index.html
 msgid "User Data"
-msgstr "Benutzerdaten"
+msgstr "Nutzerdaten"
 
 #: src/chatbot-view/toolbar/file/index.html
 msgid "Chatbot External Data"
-msgstr "Externe Daten im Chatbots"
+msgstr "Externe Daten im Chatbot"
 
 #: src/chatbot-view/toolbar/file/index.html
 #: src/dialogs/external-data/index.html
@@ -158,7 +158,7 @@ msgstr "Externe Daten"
 
 #: src/chatbot-view/toolbar/file/index.html
 msgid "Chatbot Settings"
-msgstr "Einstellungen des Chatbots"
+msgstr "Chatbot Einstellungen "
 
 #: src/chatbot-view/toolbar/file/index.html
 #: src/dialogs/external-data/index.html src/dialogs/settings/index.html
@@ -167,7 +167,7 @@ msgstr "Einstellungen"
 
 #: src/chatbot-view/toolbar/file/index.html
 msgid "Chatbot Review"
-msgstr "Chatbot-Revision"
+msgstr "Chatbot-Review"
 
 #: src/chatbot-view/toolbar/file/index.html src/dialogs/story-format/index.html
 msgid "Chatbot Format"
@@ -175,7 +175,7 @@ msgstr "Chatbot-Format"
 
 #: src/chatbot-view/toolbar/file/index.html src/dialogs/story-stats/index.html
 msgid "Chatbot Statistics"
-msgstr "Chatbot-Statistik"
+msgstr "Chatbot-Statistiken"
 
 #: src/chatbot-view/toolbar/file/index.html
 msgid "Statistics"
@@ -183,7 +183,7 @@ msgstr "Statistik"
 
 #: src/chatbot-view/toolbar/file/index.html src/dialogs/matomo/index.html
 msgid "Matomo Analytics"
-msgstr "Matomo-Analyse"
+msgstr "Matomo-Analysedaten"
 
 #: src/chatbot-view/toolbar/file/index.html
 msgid "Analytics"
@@ -191,7 +191,7 @@ msgstr "Analyse"
 
 #: src/chatbot-view/toolbar/index.html
 msgid "Go to the Chatbot List"
-msgstr "Zu den Chatbots"
+msgstr "Zur Chatbot-Liste"
 
 #: src/chatbot-view/toolbar/index.html
 msgid "Edit Style Sheet"
@@ -203,11 +203,11 @@ msgstr "JavaScript-Code bearbeiten"
 
 #: src/chatbot-view/toolbar/index.html
 msgid "Adjust Zoom"
-msgstr "Anzeigeskalierung"
+msgstr "Zoom-Einstellungen"
 
 #: src/chatbot-view/toolbar/index.html src/dialogs/openai/index.html
 msgid "Open AI Settings"
-msgstr "OpenAI-Einstellungen"
+msgstr "Open-AI-Einstellungen"
 
 #: src/chatbot-view/toolbar/index.html
 msgid "Play the Chatbot"
@@ -223,15 +223,15 @@ msgstr "Durchsucht den Chatbot nach der angegebenen Zeichenfolge"
 
 #: src/chatbot-view/toolbar/search/index.html
 msgid "Find and replace across the entire Chatbot"
-msgstr "Suche und Ersetzungen über den gesamten Chatbot"
+msgstr "Suchen und Ersetzen über den gesamten Chatbot"
 
 #: src/chatbots/stories/index.html
 msgid "Manage your Chatbots"
-msgstr "Bearbeite Deine Chatbots"
+msgstr "Chatbots verwalten"
 
 #: src/chatbots/stories/index.html
 msgid "There are no chatbots saved in Chatbottery right now. To get started, you can either create a new chatbot or import an existing one from a file"
-msgstr "Es wurden noch keine Chatbots in Chatbottery gespeichert. Du kannst einen neuen Chatbot erstellen oder einen bestehenden aus einer Datei importieren"
+msgstr "Es sind noch keine Chatbots gespeichert. Du kannst einen neuen Chatbot erstellen oder einen bestehenden aus einer Datei importieren."
 
 #: src/chatbots/stories/index.html
 msgid "Import Chatbot"
@@ -262,8 +262,8 @@ msgid "Test Chatbot"
 msgstr "Chatbot testen"
 
 #: src/chatbots/stories/story/item-menu/index.html
-msgid "Publish to File"
-msgstr "Chatbot speichern"
+msgid "Publish Chatbot to File"
+msgstr "Chatbot als Datei speichern"
 
 #: src/chatbots/stories/story/item-menu/index.html
 msgid "Duplicate Chatbot"
@@ -275,13 +275,12 @@ msgstr "Chatbot löschen"
 
 #: src/dialogs/about/index.html
 msgid "About Chatbottery"
-msgstr ""
+msgstr "Über Chatbottery"
 
 #: src/dialogs/about/index.html
 msgid ""
-"Chatbottery is an open-source tool for telling interactive, nonlinear\n"
-"\t\tchatbots"
-msgstr ""
+"Chatbottery is an open-source tool for creating great chatbots"
+msgstr "Chatbottery ist ein open-source Editor, um Chatbots zu bauen"
 
 #: src/dialogs/about/index.html
 msgid ""
@@ -290,6 +289,10 @@ msgid ""
 "\t\tbut any work created with it may be released under any terms, including\n"
 "\t\tcommercial ones."
 msgstr ""
+"Diese Anwendung ist veröffentlicht unter der \\x3ca\n"
+"\t\thref=„http:\\/\\/www.gnu.org/licenses/gpl-3.0.html“>GPL v3\\x3c/a> Lizenz,\n"
+"\t\tAber jedes mit der Anwendung erstellte Werk kann unter jeglichen Bedingungen veröffentlicht werden, einschließlich\n"
+"\t\tkommerzieller."
 
 #: src/dialogs/about/index.html
 msgid "Help Chatbottery Grow With A Donation"
@@ -297,19 +300,19 @@ msgstr ""
 
 #: src/dialogs/about/index.html
 msgid "Source Code Repository"
-msgstr ""
+msgstr "Source Code Repository"
 
 #: src/dialogs/about/index.html
 msgid "Translations"
-msgstr ""
+msgstr "Übersetzungen"
 
 #: src/dialogs/about/index.html
 msgid "Libraries"
-msgstr ""
+msgstr "Bibliotheken"
 
 #: src/dialogs/about/index.html
 msgid "Fonts"
-msgstr ""
+msgstr "Schriftarten"
 
 #: src/dialogs/about/index.html
 msgid ""
@@ -321,7 +324,7 @@ msgstr ""
 
 #: src/dialogs/about/index.html
 msgid "Icons"
-msgstr ""
+msgstr "Icons"
 
 #: src/dialogs/about/index.html
 msgid "Document designed by Rob Gill from the Noun Project"
@@ -333,10 +336,6 @@ msgstr ""
 
 #: src/dialogs/about/index.html
 msgid "Smile designed by jelio dimitrov from the Noun Project"
-msgstr ""
-
-#: src/dialogs/app-donation/index.html
-msgid "If you love Chatbottery as much as I do, please consider helping it grow with a donation. Chatbottery is an open source project that will always be free to use &mdash; and with your help, Chatbottery will continue to thrive."
 msgstr ""
 
 #: src/dialogs/app-donation/index.html
@@ -372,11 +371,11 @@ msgstr "Zusammenfassung"
 
 #: src/dialogs/external-data/detail-view/index.html
 msgid "Main Keyword"
-msgstr "Haupt-Schlüsselwörter"
+msgstr "Hauptschlagwort"
 
 #: src/dialogs/external-data/detail-view/index.html
 msgid "Keywords"
-msgstr "Schlüsselwörter"
+msgstr "Schlagwörter"
 
 #: src/dialogs/external-data/detail-view/index.html
 msgid "Phrases"
@@ -400,11 +399,11 @@ msgstr "Gesamte Liste analysieren"
 
 #: src/dialogs/external-data/index.html
 msgid "Web Page URL"
-msgstr "Webseiten-Adresse"
+msgstr "Webseiten-URL"
 
 #: src/dialogs/external-data/index.html
 msgid "Web Page URL is invalid"
-msgstr "Webseiten-Adresse ist ungültig"
+msgstr "Webseiten-URL ist ungültig"
 
 #: src/dialogs/external-data/index.html
 msgid "Delete Entry"
@@ -423,16 +422,16 @@ msgid "Close Detail View"
 msgstr "Detailansicht schließen"
 
 #: src/dialogs/external-data/index.html
-msgid "Analysing the website"
-msgstr "Analysiere die Webseite"
+msgid "Analysing website"
+msgstr "Webseite wird analysiert"
 
 #: src/dialogs/external-data/index.html
 msgid "This may take a while"
-msgstr "Das kann eine Weile dauern"
+msgstr "Das kann einen Moment dauern"
 
 #: src/dialogs/external-data/index.html
 msgid "Title, Summary and at least one Keyword must be set"
-msgstr "Titel, Zusammenfassung und mindestens ein Schlüsselwort müssen angegeben werden"
+msgstr "Titel, Zusammenfassung und mindestens ein Schlagwort muss angegeben werden"
 
 #: src/dialogs/external-data/index.html
 msgid "Download file"
@@ -454,19 +453,19 @@ msgstr "Chatbot-Formate"
 
 #: src/dialogs/formats/index.html
 msgid "Chatbot formats control the appearance and behavior of chatbots during play"
-msgstr "Chatbot-Formate steuern Darstellung und Verhalten des Chatbots während des Abspielens"
+msgstr "Chatbot-Formate bestimmen Darstellung und Verhalten des Chatbots beim Abspielen"
 
 #: src/dialogs/formats/index.html
 msgid "Use as Default"
-msgstr "Als Standard verwenden"
+msgstr "Als Default verwenden"
 
 #: src/dialogs/formats/index.html
 msgid "Proofing Formats"
-msgstr "Prüf-Formate"
+msgstr "Korrektur-Formate"
 
 #: src/dialogs/formats/index.html
 msgid "Proofing formats create a versions of chatbots tailored for editing and proofreading"
-msgstr "Prüf-Formate erlauben Analyse und Revision des Chatbots"
+msgstr "Korrektur-Formate erlauben Analyse und Revision des Chatbots"
 
 #: src/dialogs/formats/index.html
 msgid "Use"
@@ -474,11 +473,11 @@ msgstr "Verwenden"
 
 #: src/dialogs/formats/index.html
 msgid "Add a New Format"
-msgstr "Format hinzufügen"
+msgstr "Neues Format hinzufügen"
 
 #: src/dialogs/formats/index.html
 msgid "To add a story format, enter its address below"
-msgstr "Um ein Format hinzuzufügen, gib bitte die URL nachfolgend an"
+msgstr "Um ein Format hinzuzufügen, gib bitte nachfolgend eine URL an"
 
 #: src/dialogs/formats/index.html src/chatbots/stories/index.js:83
 #: src/home/info-content/index.js:37
@@ -498,7 +497,7 @@ msgstr "Dieses Format standardmäßig verwenden"
 
 #: src/dialogs/formats/item.html
 msgid "The default chatbot format can\'t be removed"
-msgstr "Das eingebaute Standard-Chatbot-Format kann nicht gelöscht werden"
+msgstr "Das Standard-Chatbot-Format kann nicht gelöscht werden"
 
 #: src/dialogs/formats/item.html
 msgid "Remove this format"
@@ -522,39 +521,39 @@ msgstr "Bis Datum"
 
 #: src/dialogs/matomo/index.html
 msgid "Users in total"
-msgstr "Benutzer gesamt"
+msgstr "Alle Nutzer"
 
 #: src/dialogs/matomo/index.html
 msgid "Visits in total"
-msgstr "Besuche gesamt"
+msgstr "Alle Visits"
 
 #: src/dialogs/matomo/index.html
 msgid "Ø time per visit"
-msgstr "Ø Zeit je Besuch"
+msgstr "Ø Zeit je Visit"
 
 #: src/dialogs/matomo/index.html
 msgid "Ø interactions per visit"
-msgstr "Ø Interaktionen je Besuch"
+msgstr "Ø Interaktionen je Visit"
 
 #: src/dialogs/matomo/index.html
 msgid "passages visited"
-msgstr "Passagen besucht"
+msgstr "besuchte Passagen"
 
 #: src/dialogs/matomo/index.html
 msgid "Unmatched"
-msgstr "Nicht gefunden"
+msgstr "Nicht aufgelöst"
 
 #: src/dialogs/matomo/index.html
-msgid "Ambiguous"
+msgid "Inconclusive"
 msgstr "Uneindeutig"
 
 #: src/dialogs/matomo/index.html
 msgid "Passage usage"
-msgstr "Passagenauswertung"
+msgstr "Passagennutzung"
 
 #: src/dialogs/matomo/index.html
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: src/dialogs/matomo/index.html
 msgid "Events"
@@ -562,21 +561,21 @@ msgstr "Ereignisse"
 
 #: src/dialogs/openai/params/index.html
 msgid "Reset to default"
-msgstr "Standard zurücksetzen"
+msgstr "Auf Default zurücksetzen"
 
 #: src/dialogs/plugins/index.html
 msgid "PHP URL"
-msgstr ""
+msgstr "PHP URL"
 
 #: src/dialogs/plugins/index.html
 msgid "Matomo PHP URL"
-msgstr ""
+msgstr "Matomo PHP URL"
 
 #: src/dialogs/plugins/index.html src/dialogs/settings/index.html
 #: src/editors/passage/ui-view/iframe/index.html
 #: src/editors/passage/ui-view/video/index.html
 msgid "Resource Locator must be a valid URL"
-msgstr "Der Verweis muss eine gültige URL sein"
+msgstr "Der Verweis (‚resource locator‘) muss eine gültige URL sein"
 
 #: src/dialogs/plugins/index.html
 msgid "Site ID"
@@ -584,11 +583,11 @@ msgstr "Seiten-ID (site ID)"
 
 #: src/dialogs/plugins/index.html
 msgid "Matomo Site ID"
-msgstr ""
+msgstr "Matomo Seiten ID"
 
 #: src/dialogs/plugins/index.html
 msgid "Site ID must not be empty"
-msgstr "Die Seiten-ID muss angegeben werden"
+msgstr "Eine Seiten-ID muss angegeben werden"
 
 #: src/dialogs/plugins/index.html
 msgid "Statistical area"
@@ -612,11 +611,11 @@ msgstr "Host zu Environment-Zuordnung"
 
 #: src/dialogs/plugins/index.html
 msgid "Host"
-msgstr ""
+msgstr "Host"
 
 #: src/dialogs/plugins/index.html
 msgid "Environment"
-msgstr ""
+msgstr "Environment"
 
 #: src/dialogs/plugins/index.html
 msgid "Host and Environment must be set"
@@ -640,7 +639,7 @@ msgstr "Anwendungs-ID des Chats"
 
 #: src/dialogs/plugins/index.html
 msgid "Application ID must not be empty"
-msgstr "Die Anwendungs-ID muss angegeben werden"
+msgstr "Eine Anwendungs-ID muss angegeben werden"
 
 #: src/dialogs/plugins/index.html
 msgid "Authorization Key"
@@ -652,19 +651,19 @@ msgstr "Authorisierungs-Kennung (Authorization Key) des Chats"
 
 #: src/dialogs/plugins/index.html
 msgid "Authorization Key must not be empty"
-msgstr "Der Authorisierungs-Schlüssel muss angegeben werden"
+msgstr "Ein Authorisierungs-Schlüssel muss angegeben werden"
 
 #: src/dialogs/plugins/index.html
 msgid "Authorization Secret"
-msgstr "Authorisierungs-Schlüssel"
+msgstr "Authorisierungs-Schlüssel (‚Authorization Secret‘)"
 
 #: src/dialogs/plugins/index.html
 msgid "Chat Authorization Secret"
-msgstr "Authorisierungs-Schlüssel (Authorization Secret) des Chats"
+msgstr "Authorisierungs-Schlüssel (Authorization Secret) für Chat"
 
 #: src/dialogs/plugins/index.html
 msgid "Authorization Secret must not be empty"
-msgstr "Der Authorisierungs-Schlüssel muss angegeben werden"
+msgstr "Ein Authorisierungs-Schlüssel muss angegeben werden"
 
 #: src/dialogs/plugins/index.html
 msgid "Account Key"
@@ -688,7 +687,7 @@ msgstr "Variablenname des Benutzers"
 
 #: src/dialogs/plugins/index.html src/dialogs/user/index.html
 msgid "User Field Name must not start with \'$\'"
-msgstr "Der Benutzer-Feldname darf nicht mit \'$\' beginnen"
+msgstr "Der Benutzer-Variablenname darf nicht mit \'$\' beginnen"
 
 #: src/dialogs/plugins/index.html
 msgid "Shared User Variables"
@@ -700,7 +699,7 @@ msgstr "Variablenname"
 
 #: src/dialogs/settings/index.html
 msgid "Asset Base URL"
-msgstr "Ressourcen-Basis-URL"
+msgstr "Basis-URL für Ressourcen"
 
 #: src/dialogs/settings/index.html
 msgid "URL for Assets (Images, Videos, etc.)"
@@ -711,8 +710,8 @@ msgid "Resource Locator must be a valid URL Path ending with slash (\'/\')"
 msgstr "Die angegebene URL muss ein gültiger URL-Pfad sein endend mit \'/\' (slash)"
 
 #: src/dialogs/settings/index.html
-msgid "External Story URL"
-msgstr "URL Externe Chatbot-Daten"
+msgid "URL for external chatbot-data"
+msgstr "URL für externe Chatbot-Daten"
 
 #: src/dialogs/settings/index.html
 msgid "URL for external Story data"
@@ -720,7 +719,7 @@ msgstr "URL für externe Chatbot-Daten"
 
 #: src/dialogs/story-format/index.html
 msgid "A chatbot format controls the appearance and behavior of your chatbot during play"
-msgstr "Ein Chatbot-Format steuert Darstellung und Verhalten Deines Chatbots während der Wiedergabe"
+msgstr "Das Chatbot-Format steuert Darstellung und Verhalten des Chatbots während der Wiedergabe"
 
 #: src/dialogs/story-import/index.html
 msgid "Import From File"
@@ -736,11 +735,11 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #: src/dialogs/story-import/index.html
-msgid "Some chatbots you are importing already exist in your library. Please choose which to replace. Any other stories in your file will be imported as well"
-msgstr "Einige der zu importierenden Chatbots existieren bereits unter diesem Namen in Deiner Bibliothek. Bitte wähle aus, welche überschrieben werden sollen"
+msgid "Some chatbots you are importing already exist in your library. Please choose which to replace."
+msgstr "Einige Chatbots, die Du zu Importieren versuchst gibt es bereits unter diesem Dateinamen. Bitte wähle aus, welche Chatbots überschrieben werden sollen."
 
 #: src/dialogs/story-import/index.html
-msgid "Don't Import Any chatbots"
+msgid "Do not import any chatbots"
 msgstr "Keinen Chatbot importieren"
 
 #: src/dialogs/story-search/index.html
@@ -796,7 +795,7 @@ msgstr[0] "%d Fundstelle"
 msgstr[1] "%d Fundstellen"
 
 #: src/dialogs/story-search/result.html
-msgid "Replace in this passage"
+msgid "Replace in this Passage"
 msgstr "In dieser Passage ersetzen"
 
 #: src/dialogs/story-search/result.html
@@ -809,7 +808,7 @@ msgstr "Der Chatbot wurde zuletzt am %s geändert"
 
 #: src/dialogs/story-stats/index.html
 msgid "The IFID for this chatbot is &lt;span class=\"ifid\"&gt;%s&lt;/span&gt;. (&lt;a href=\"http:\\/\\/ifdb.tads.org/help-ifid\" target=\"_blank\"&gt;What\'s an IFID?&lt;/a&gt;)"
-msgstr ""
+msgstr "Die IFID für diesen chatbot ist &lt;span class=„ifid“&gt;%s&lt;/span&gt;. (&lt;a href=„http:\\/\\/ifdb.tads.org/help-ifid“ target=„_blank“&gt;What’s an IFID?&lt;/a&gt;)"
 
 #: src/dialogs/user/index.html
 msgid "Enter Field Names without leading \'$\'"
@@ -829,7 +828,7 @@ msgstr "Zeichenfolge"
 
 #: src/dialogs/user/index.html
 msgid "Boolean"
-msgstr "Boolesch"
+msgstr "Boolean"
 
 #: src/dialogs/user/index.html
 msgid "Number"
@@ -861,11 +860,11 @@ msgstr "Daten im Browser (local storage) speichern"
 
 #: src/editors/javascript/index.html
 msgid "JavaScript"
-msgstr ""
+msgstr "JavaScript"
 
 #: src/editors/javascript/index.html
-msgid "Any JavaScript entered here will immediately run when your story is opened in a Web browser"
-msgstr "Das eingegebene JavaScript wird sofort ausgeführt, wenn der Chatbot im Browser geöffnet wird"
+msgid "Any JavaScript entered here will immediately run when your chatbot is opened in a Web browser"
+msgstr "Jedes eingegebene JavaScript wird sofort ausgeführt, wenn der Chatbot im Browser geöffnet wird"
 
 #: src/editors/passage/index.html
 msgid "Passage Name"
@@ -898,7 +897,7 @@ msgstr "Schlagwortbezeichnung"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
 msgid "Tag name must be set"
-msgstr "Schlagwortname muss angegeben werden"
+msgstr "Ein Schlagwort muss angegeben werden"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
 msgid "Color"
@@ -907,37 +906,37 @@ msgstr "Farbe"
 #: src/editors/passage/tag-editor/tag-dialog/index.html
 #: src/editors/passage/tag-editor/tag-menu/tag-colors/index.html
 msgid "Set tag color to gray"
-msgstr "Setzt die Farbe des Schlagworts zu grau"
+msgstr "Setzt die Farbe des Schlagworts auf grau"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
 #: src/editors/passage/tag-editor/tag-menu/tag-colors/index.html
 msgid "Set tag color to red"
-msgstr "Setzt die Farbe des Schlagworts zu rot"
+msgstr "Setzt die Farbe des Schlagworts auf rot"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
 #: src/editors/passage/tag-editor/tag-menu/tag-colors/index.html
 msgid "Set tag color to orange"
-msgstr "Setzt die Farbe des Schlagworts zu orange"
+msgstr "Setzt die Farbe des Schlagworts auf orange"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
 #: src/editors/passage/tag-editor/tag-menu/tag-colors/index.html
 msgid "Set tag color to yellow"
-msgstr "Setzt die Farbe des Schlagworts zu gelb"
+msgstr "Setzt die Farbe des Schlagworts auf gelb"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
 #: src/editors/passage/tag-editor/tag-menu/tag-colors/index.html
 msgid "Set tag color to green"
-msgstr "Setzt die Farbe des Schlagworts zu grün"
+msgstr "Setzt die Farbe des Schlagworts auf grün"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
 #: src/editors/passage/tag-editor/tag-menu/tag-colors/index.html
 msgid "Set tag color to blue"
-msgstr "Setzt die Farbe des Schlagworts zu blau"
+msgstr "Setzt die Farbe des Schlagworts auf blau"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
 #: src/editors/passage/tag-editor/tag-menu/tag-colors/index.html
 msgid "Set tag color to purple"
-msgstr "Setzt die Farbe des Schlagworts zu violett"
+msgstr "Setzt die Farbe des Schlagworts auf violett"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
 msgid "Type"
@@ -945,7 +944,7 @@ msgstr "Typ"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.html
 msgid "Only one Main Tag is allowed"
-msgstr "Nur ein Haupt-Schlagwort ist zulässig"
+msgstr "Bitte nur ein Haupt-Schlagwort vergeben"
 
 #: src/editors/passage/tag-editor/tag-menu/index.html
 msgid "Show alternatives"
@@ -957,11 +956,11 @@ msgstr "Bearbeiten"
 
 #: src/editors/passage/tag-editor/tag-menu/index.html
 msgid "Change Color"
-msgstr "Farbe"
+msgstr "Farbe ändern"
 
 #: src/editors/passage/tag-editor/tag-menu/index.html
 msgid "Change Tag Type"
-msgstr "Typ"
+msgstr "Schlagwort-Typ ändern"
 
 #: src/editors/passage/tag-editor/tag-menu/index.html
 #: src/chatbot-view/edit-view/index.js:392
@@ -975,9 +974,10 @@ msgid "Regular"
 msgstr "Normal"
 
 #: src/editors/passage/tag-editor/tag-menu/tag-types/index.html
-msgid "Main"
+msgid "Main-Tag"
 msgstr "Hauptschlagwort"
 
+# Group-Tag
 #: src/editors/passage/tag-editor/tag-menu/tag-types/index.html
 msgid "Group"
 msgstr "Gruppenschlagwort"
@@ -1017,11 +1017,11 @@ msgstr "Schaltflächenverweis muss angegeben werden"
 
 #: src/editors/passage/ui-view/buttons/index.html
 msgid "Action Button"
-msgstr "Aktionsschalter"
+msgstr "Action Button"
 
 #: src/editors/passage/ui-view/buttons/index.html
 msgid "Show as Action Button"
-msgstr "Als Aktionsschalter verwenden"
+msgstr "Als Action-Button anzeigen"
 
 #: src/editors/passage/ui-view/buttons/index.html
 msgid "Custom class"
@@ -1046,7 +1046,7 @@ msgstr "Ziel"
 
 #: src/editors/passage/ui-view/buttons/index.html
 msgid "Window target of link (current / new tab)"
-msgstr "Verweis im aktuellen oder neuen Browser-Tab"
+msgstr "Zielfenster des Links (aktueller oder neuer Browser-Tab)"
 
 #: src/editors/passage/ui-view/buttons/index.html
 msgid "Current Tab"
@@ -1090,7 +1090,7 @@ msgstr "Titel des Elements"
 
 #: src/editors/passage/ui-view/carousel/index.html
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: src/editors/passage/ui-view/carousel/index.html
 msgid "A short description of the item"
@@ -1145,7 +1145,7 @@ msgstr "Die Benutzervariable muss mit \'$\' beginnen"
 #: src/editors/passage/ui-view/goto/index.html
 #: src/dialogs/story-stats/index.js:87
 msgid "Passage"
-msgstr ""
+msgstr "Passage"
 
 #: src/editors/passage/ui-view/goto/index.html
 msgid "Name of the passage to go to"
@@ -1157,7 +1157,7 @@ msgstr "Passagenname muss angegeben werden"
 
 #: src/editors/passage/ui-view/iframe/index.html
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: src/editors/passage/ui-view/iframe/index.html
 msgid "URL or PDF Link of embedded Resource"
@@ -1165,7 +1165,7 @@ msgstr "URL oder PDF-Verweis auf die einzubindende Ressource"
 
 #: src/editors/passage/ui-view/iframe/index.html
 msgid "URL of IFrame / PDF must be set"
-msgstr "Die URL des IFrames / PDF muss angegeben werden"
+msgstr "Die URL des iFrames / PDF muss angegeben werden"
 
 #: src/editors/passage/ui-view/iframe/index.html
 msgid "Height"
@@ -1190,11 +1190,11 @@ msgstr "Bildtext hinzufügen"
 
 #: src/editors/passage/ui-view/index.html
 msgid "Expand / Collapse"
-msgstr "Erweitern / zusammenziehen"
+msgstr "Ausklappen / Einklappen"
 
 #: src/editors/passage/ui-view/index.html
 msgid "Copy to Clipboard"
-msgstr "In die Zwischenablage kopieren"
+msgstr "In Zwischenablage kopieren"
 
 #: src/editors/passage/ui-view/index.html
 msgid "Settings (Condition / Class name)"
@@ -1215,19 +1215,19 @@ msgstr "JavaScript-Bedingung - z.B. \'$kapitel === 3\'"
 
 #: src/editors/passage/ui-view/index.html
 msgid "JavaScript condition to be evaluated to true for executing this task"
-msgstr "Die JavaScript-Bedingung muss zu \'true\' evaluiert werden, damit das Passagenelement ausgeführt wird"
+msgstr "Die JavaScript-Bedingung muss zu \'true\' evaluiert werden, damit das Element ausgeführt wird"
 
 #: src/editors/passage/ui-view/index.html
 msgid "User function:"
-msgstr "Funktion:"
+msgstr "Nutzer-Funktion:"
 
 #: src/editors/passage/ui-view/index.html
 msgid "User function being invoked on this task"
-msgstr "Benutzerfunktion, die bei Ausführung des Elements ausgeführt wird"
+msgstr "Nutzerfunktion, die bei Aufruf des Elements ausgeführt wird"
 
 #: src/editors/passage/ui-view/index.html
 msgid "Name of user function to invoke"
-msgstr "Name der Benutzerfunktion, die aufgerufen werden soll"
+msgstr "Bezeichnung der Nutzerfunktion, die aufgerufen werden soll"
 
 #: src/editors/passage/ui-view/index.html
 msgid "CSS Class:"
@@ -1239,19 +1239,20 @@ msgstr "CSS-Klassename"
 
 #: src/editors/passage/ui-view/index.html
 msgid "Typing animation time:"
-msgstr "Dauer der Antwort-Simulation:"
+msgstr "Dauer der Antwort-Animation des Chatbots:"
 
 #: src/editors/passage/ui-view/index.html
 msgid "Typing animation Time in Milliseconds"
-msgstr "Dauer der Tastatur-Simulation des Chatbots in Millisekunden"
+msgstr "Dauer der Antwort-Animation des Chatbots in Millisekunden"
 
 #: src/editors/passage/ui-view/index.html
 msgid "Close Suggestions"
 msgstr "Vorschläge schließen"
 
+# Add new element
 #: src/editors/passage/ui-view/index.html
 msgid "Add new Task"
-msgstr "Neues Passagenelement"
+msgstr "Neues Element"
 
 #: src/editors/passage/ui-view/menu/index.html
 msgid "Paste here"
@@ -1274,25 +1275,25 @@ msgid "Caption"
 msgstr "Titel"
 
 #: src/editors/passage/ui-view/tiles/index.html
-msgid "Caption before Tiles"
+msgid "Caption above tiles"
 msgstr "Titel über den Kacheln"
 
 #: src/editors/passage/ui-view/tiles/index.html
 msgid "Initial count"
-msgstr "Initialanzeige"
+msgstr "Ausgangsanzahl"
 
 #: src/editors/passage/ui-view/tiles/index.html
 msgid "Limit initially visible item count"
-msgstr "Zahl gibt die initial maximal anzuzeigenden Kachelelemente an"
+msgstr "Maximale Anzahl der initial angezeigten Kachelelemente"
 
 #: src/editors/passage/ui-view/txt/index.html
 #: src/editors/passage/ui-view/options/index.js:15
-msgid "Add Text alternative"
+msgid "Add alternative text"
 msgstr "Textoption hinzufügen"
 
 #: src/editors/passage/ui-view/video/index.html
 msgid "Video URL"
-msgstr ""
+msgstr "Video URL"
 
 #: src/editors/passage/ui-view/video/index.html
 msgid "Youtube or Vimeo link"
@@ -1304,15 +1305,15 @@ msgstr "Video-URL muss angegeben werden"
 
 #: src/editors/passage/ui-view/wait/index.html
 msgid "Variable"
-msgstr ""
+msgstr "Variable"
 
 #: src/editors/passage/ui-view/wait/index.html
 msgid "User variable without \'$\' prefix"
-msgstr "Benutzervariable ohne Präfix \'$\'"
+msgstr "Nutzervariable ohne Präfix \'$\'"
 
 #: src/editors/passage/ui-view/wait/index.html
 msgid "User variable must be set"
-msgstr "Benutzervariable muss angegeben werden"
+msgstr "Nutzervariable muss angegeben werden"
 
 #: src/editors/passage/ui-view/wait/index.html
 msgid "\'$\' will be added automatically"
@@ -1332,7 +1333,7 @@ msgstr "Platzhalter"
 
 #: src/editors/passage/ui-view/wait/index.html
 msgid "Add Validation Text"
-msgstr "Validierungsnachricht hinzufügen"
+msgstr "Validierungstext hinzufügen"
 
 #: src/editors/passage/ui-view/wait/index.html
 msgid "Input field placeholder"
@@ -1340,7 +1341,7 @@ msgstr "Platzhalter im Chatbot-Eingabefeld"
 
 #: src/editors/passage/ui-view/wait/index.html
 msgid "Input options shown to the User"
-msgstr "Eingabeoptionen für den Benutzer"
+msgstr "Eingabeoptionen für den Nutzer"
 
 #: src/editors/passage/ui-view/wait/index.html
 msgid "User reply suggestions"
@@ -1348,15 +1349,15 @@ msgstr "Benutzer-Antwortvorschläge"
 
 #: src/editors/stylesheet/index.html
 msgid "Stylesheet"
-msgstr ""
+msgstr "Stylesheet"
 
 #: src/editors/stylesheet/index.html
-msgid "Any CSS entered here will override the default appearance of your story"
+msgid "Any CSS entered here will overwrite the default appearance of your chatbot"
 msgstr "CSS-Anweisungen überschreiben die Standard-Darstellung des Chatbots"
 
 #: src/home/info-content/index.html
 msgid "Meet our award winning chatbot software. Made with"
-msgstr "Erlebe unsere preisgekrönte Chatbot-Software. Erstellt mit"
+msgstr "Lernen Sie unsere mehrfach ausgezeichnete Chatbot-Software kennen. Erstellt mit"
 
 #: src/home/info-content/index.html
 msgid "About us"
@@ -1372,29 +1373,28 @@ msgstr "Erstelle einen Chatbot"
 
 #: src/locale/view/index.html
 msgid "Please choose which language you would like to use with Chatbottery"
-msgstr ""
+msgstr "Bitte wähle die Sprache, mit der Du Chatbottery benutzen möchtest"
 
 #: src/welcome/index.html
 msgid "Hi!"
-msgstr ""
+msgstr "Hallo!"
 
 #: src/welcome/index.html
-msgid ""
-"Twine is an open-source tool for telling interactive, nonlinear stories. There are a few things you should know\n"
+msgid "Twine is an open-source tool for telling interactive, nonlinear stories. There are a few things you should know\n"
 "\t\t\tbefore you get started"
 msgstr ""
 
 #: src/welcome/index.html
 msgid "Tell Me More"
-msgstr ""
+msgstr "Zeig mir mehr"
 
 #: src/welcome/index.html
 msgid "Skip"
-msgstr ""
+msgstr "Überspringen"
 
 #: src/welcome/index.html
 msgid "New here?"
-msgstr ""
+msgstr "Neu hier?"
 
 #: src/welcome/index.html
 msgid ""
@@ -1467,12 +1467,12 @@ msgid "Thanks for reading, and have fun with Twine"
 msgstr ""
 
 #: src/welcome/index.html
-msgid "Go to the Story List"
+msgid "Go to Chatbot List"
 msgstr "Zu den Chatbots"
 
 #: src/chatbot-view/edit-view/index.js:277 src/data/store/story.js:240
 msgid "Untitled Passage"
-msgstr ""
+msgstr "Unbenannte Passage"
 
 #: src/chatbot-view/edit-view/index.js:383
 msgid "Are you sure you want to delete &ldquo;%2$s&rdquo;? This cannot be undone."
@@ -1511,20 +1511,21 @@ msgid "Please enter a name."
 msgstr "Bitte gib einen Namen an."
 
 #: src/chatbots/stories/index.js:80 src/home/info-content/index.js:34
-msgid "What should your chatbot be named?<br>(You can change this later.)"
-msgstr "Wie soll der Chatbot benannt werden?<br>(Du kannst das nachher ändern.)"
+msgid "How should your chatbot be named?<br>(You can change this later.)"
+msgstr "Wie soll der Chatbot benannt werden?<br>(Du kannst das später ändern.)"
 
 #: src/chatbots/stories/index.js:87 src/home/info-content/index.js:41
 msgid "A chatbot with this name already exists."
-msgstr "Ein Chatbot diesen Namens existiert bereits."
+msgstr "Ein Chatbot mit diesem Namen existiert bereits."
 
 #: src/chatbots/stories/story/item-menu/index.js:98
-msgid "Delete Forever"
+msgid "Delete Permanently"
 msgstr "Endgültig löschen"
 
+# How should the duplicate be named?
 #: src/chatbots/stories/story/item-menu/index.js:128
-msgid "What should the duplicate be named?"
-msgstr "Wie soll das Duplikat genannt werden?"
+msgid "How should the duplicate be named?"
+msgstr "Wie soll die Kopie genannt werden?"
 
 #: src/chatbots/stories/story/item-menu/index.js:130
 msgid "Duplicate"
@@ -1532,8 +1533,9 @@ msgstr "Duplizieren"
 
 #: src/chatbots/stories/story/item-menu/index.js:131
 msgid "%s Copy"
-msgstr "%s Kopie"
+msgstr "%s Kopieren"
 
+# An error occurred while starting your chatbot. (%s)
 #: src/common/launch-story.js:50 src/common/launch-story.js:73
 #: src/common/launch-story.js:100 src/common/router.js:65
 #: src/common/router.js:86 src/common/router.js:107 src/common/router.js:128
@@ -1564,15 +1566,15 @@ msgstr "Es wurde keine Start-Passage für den Chatbot festgelegt."
 
 #: src/data/publish.js:112
 msgid "The passage set as starting point for this chatbot does not exist."
-msgstr "Die als Start festgelegte Passage existiert nicht."
+msgstr "Die als Startpunkt festgelegte Passage existiert nicht."
 
 #: src/data/store/story-format.js:7
 msgid "Untitled Chatbot Format"
-msgstr ""
+msgstr "Unbenanntes Chatbot Format"
 
 #: src/data/store/story.js:223
 msgid "Untitled Story"
-msgstr ""
+msgstr "Unbenannte Story"
 
 #. L10n: The <span> will have a version number, i.e. 2.0.6, interpolated into it.
 #: src/dialogs/app-update/index.js:46
@@ -1589,8 +1591,8 @@ msgid "List %d"
 msgstr "Liste %d"
 
 #: src/dialogs/external-data/index.js:151
-msgid "Are you sure you want to delete the entire list that contains entries that were previously analyzed?"
-msgstr "Sicher, dass Du die gesamte Liste löschen möchtest, in der Einträge zuvor analysiert wurden?"
+msgid "Are you sure you want to delete the entire list with all entries?"
+msgstr "Sicher, dass Du die gesamte Liste löschen mit allen Einträgen löschen möchtest?"
 
 #: src/dialogs/external-data/index.js:152
 msgid "Delete list"
@@ -1602,8 +1604,9 @@ msgstr "Zuletzt analysiert:"
 
 #: src/dialogs/external-data/index.js:217
 msgid "click to analyse again"
-msgstr "Klicke hier, um die Analyse zu wiederholen"
+msgstr "Hier klicken, um die Analyse zu wiederholen"
 
+# Are you sure you want to abort the analyzing process?
 #: src/dialogs/external-data/index.js:237
 msgid "Are you sure you want to abort the analysis process?"
 msgstr "Analyse-Prozess abbrechen?"
@@ -1621,16 +1624,16 @@ msgid "The analysing process was aborted."
 msgstr "Die Analyse wurde abgebrochen."
 
 #: src/dialogs/external-data/index.js:257
-msgid "Are you sure you want to delete the entry that was previously analyzed?"
-msgstr "Sicher, dass Du die den Eintrag löschen möchtest, der zuvor analysiert wurde?"
+msgid "Are you sure you want to delete the entry?"
+msgstr "Sicher, dass Du den Eintrag löschen möchtest?"
 
 #: src/dialogs/external-data/index.js:330
 msgid "Error on analysing URL &ldquo;%1$s&rdquo; - %2$s."
 msgstr "Fehler bei der Analyse der Webseiten-URL &ldquo;%1$s&rdquo; - %2$s."
 
 #: src/dialogs/external-data/index.js:364
-msgid "There were changes detected for the external data dialog. Are you sure you want to discard those changes?"
-msgstr "Es wurden Änderungen im Dialog der Externen Daten festgestellt. Änderungen trotzdem verwerfen?"
+msgid "There were changes detected for the external data dialogue. Are you sure you want to discard those changes?"
+msgstr "Es wurden Änderungen im Dialog „Externe Daten“ festgestellt. Änderungen trotzdem verwerfen?"
 
 #: src/dialogs/external-data/index.js:365 src/dialogs/openai/index.js:90
 #: src/dialogs/plugins/index.js:155 src/dialogs/settings/index.js:65
@@ -1668,11 +1671,11 @@ msgid "This list shows the user phrases that couldn\'t be resolved."
 msgstr "Diese Liste zeigt Benutzereingaben, die nicht erkannt wurden."
 
 #: src/dialogs/matomo/index.js:45
-msgid "This list shows the user phrases that led to different passage suggestions."
+msgid "This list shows user input phrases that led to various passage suggestions."
 msgstr "Diese Liste zeigt Benutzereingaben, die zu mehrdeutigen Passagenvorschlägen führten."
 
 #: src/dialogs/matomo/index.js:46
-msgid "This list shows the names of passages and the count of invocations."
+msgid "This list shows how often these Passages have been accessed."
 msgstr "Diese Liste zeigt Passagen und die Zahl ihrer Aufrufe."
 
 #: src/dialogs/matomo/index.js:157
@@ -1681,19 +1684,19 @@ msgstr "Fehler beim Laden der Matomo-Daten von &ldquo;%1$s&rdquo;: %2$s"
 
 #: src/dialogs/openai/index.js:18
 msgid "AI Prompt"
-msgstr "AI-Anfrage"
+msgstr "AI-Prompt"
 
 #: src/dialogs/openai/index.js:23
-msgid "These settings apply to the AI Prompt Component.<br><i>Story needs to be exported again for these settings to take effect.</i>"
-msgstr "Diese Einstellungen steuern die OpenAI-Aufrufparameter für das Passagenelement \'AI-Anfrage\'.<br>Chatbots müssen erneut exportiert werden, damit Änderungen daran wirksam werden."
+msgid "These settings apply to the AI Prompt Component.<br><i>The chatbot-file needs to be exported again for these settings to take effect.</i>"
+msgstr "Diese Einstellungen steuern die AI-Aufrufparameter für das Passagenelement \'AI-Anfrage\'.<br>Die Chatbot-Datei muss erneut exportiert werden, damit Änderungen wirksam werden."
 
 #: src/dialogs/openai/index.js:27
 msgid "Tag Alternatives"
-msgstr "Schlagwort-Alternativvorschläge"
+msgstr "Schlagwort-Alternativen"
 
 #: src/dialogs/openai/index.js:32
-msgid "These settings apply to the Tag (Buzzword) Suggestions."
-msgstr "Diese Einstellungen betreffen die Vorschläge für Schlagwortalternativen."
+msgid "These settings apply to the Keyword-Suggestions."
+msgstr "Diese Einstellungen betreffen Vorschläge für alternative Schlagworte."
 
 #: src/dialogs/openai/index.js:36
 msgid "Phrase Alternatives"
@@ -1709,15 +1712,15 @@ msgstr "Webseiten-Analyse"
 
 #: src/dialogs/openai/index.js:50
 msgid "These settings apply to External Data Website Analysis.<br>The following fields must be returned in JSON format:<table><tr><th style=\"text-align: left\">Field name</th><th style=\"text-align: left\">Type</th></tr><tr><td>title</td><td>string</td></tr><tr><td>author</td><td>string</td></tr><tr><td>date</td><td>string</td></tr><tr><td>phrases</td><td>array</td></tr><tr><td>main_keyword</td><td>string</td></tr><tr><td>keywords</td><td>array</td></tr><tr><td>image_url</td><td>string</td></tr><tr><td>summary</td><td>string</td></tr></table>"
-msgstr "Diese Einstellungen betreffen die Webseiten-Analyse für die Externen Daten.<br>Die folgenden Felder müssen im JSON-Format zurückgegeben werden:<table><tr><th style=\"text-align: left\">Feldname</th><th style=\"text-align: left\">Typ</th></tr><tr><td>title</td><td>string</td></tr><tr><td>author</td><td>string</td></tr><tr><td>date</td><td>string</td></tr><tr><td>phrases</td><td>array</td></tr><tr><td>main_keyword</td><td>string</td></tr><tr><td>keywords</td><td>array</td></tr><tr><td>image_url</td><td>string</td></tr><tr><td>summary</td><td>string</td></tr></table>"
+msgstr "Diese Einstellungen betreffen die Webseiten-Analyse für die externen Daten.<br>Die folgenden Felder müssen im JSON-Format zurückgegeben werden:<table><tr><th style=\"text-align: left\">Feldname</th><th style=\"text-align: left\">Typ</th></tr><tr><td>title</td><td>string</td></tr><tr><td>author</td><td>string</td></tr><tr><td>date</td><td>string</td></tr><tr><td>phrases</td><td>array</td></tr><tr><td>main_keyword</td><td>string</td></tr><tr><td>keywords</td><td>array</td></tr><tr><td>image_url</td><td>string</td></tr><tr><td>summary</td><td>string</td></tr></table>"
 
 #: src/dialogs/openai/index.js:89
-msgid "There were changes detected for the OpenAI params dialog. Are you sure you want to discard those changes?"
-msgstr "Es wurden Änderungen an den OpenAI-Einstellungen festgestellt. Sollen die Änderungen verworfen werden?"
+msgid "There were changes detected for the Open-AI-Settings. Are you sure you want to discard those changes?"
+msgstr "Es wurden Änderungen an den Open-AI-Einstellungen festgestellt. Sollen diese Änderungen wirklich verworfen werden?"
 
 #: src/dialogs/openai/params/index.js:41
 msgid "OpenAI %1$s"
-msgstr ""
+msgstr "OpenAI %1$s"
 
 #: src/dialogs/openai/params/index.js:47
 msgid "Use %1$s as placeholder for %2$s string"
@@ -1729,7 +1732,7 @@ msgstr "Der Platzhalter %1$s muss angegeben werden."
 
 #: src/dialogs/plugins/index.js:154
 msgid "There were changes detected for the plugins data dialog. Are you sure you want to discard those changes?"
-msgstr "Es wurden Änderungen an den Plugin-Einstellungen festgestellt. Sollen die Änderungen verworfen werden?"
+msgstr "Es wurden Änderungen an den Plugin-Einstellungen festgestellt. Sollen diese Änderungen verworfen werden?"
 
 #: src/dialogs/settings/index.js:64
 msgid "There were changes detected for the settings dialog. Are you sure you want to discard those changes?"
@@ -1751,7 +1754,7 @@ msgstr[1] "%d Chatbot ersetzen"
 
 #: src/dialogs/story-import/index.js:94
 msgid "Chatbottery format %s was loaded."
-msgstr "Chatbotter-Format %s wurde geladen."
+msgstr "Chatbottery-Format %s wurde geladen."
 
 #: src/dialogs/story-import/index.js:105
 msgid "Story format of imported story was changed to &ldquo;%s&rdquo;."
@@ -1779,8 +1782,8 @@ msgstr[1] "Wörter"
 #: src/dialogs/story-stats/index.js:120
 msgid "Broken Link"
 msgid_plural "Broken Links"
-msgstr[0] "Unaufgelöster Verweis"
-msgstr[1] "Unaufgelöste Verweise"
+msgstr[0] "Broken Link"
+msgstr[1] "Broken Links"
 
 #: src/dialogs/user/index.js:197
 msgid "&ldquo;%1$s&rdquo; was not found"
@@ -1792,15 +1795,15 @@ msgstr "Es wurden Änderungen an den Benutzer-Daten festgestellt. Sollen diese v
 
 #: src/editors/passage/index.js:53
 msgid "Editing \\u201c%s\\u201d"
-msgstr ""
+msgstr "Editing \\u201c%s\\u201d"
 
 #: src/editors/passage/index.js:125
 msgid "New user variables found: &ldquo;%1$s&rdquo;"
-msgstr "Es wurde eine neue Benutzer-Variable gefunden: &ldquo;%1$s&rdquo;"
+msgstr "Es wurde eine neue Nutzer-Variable gefunden: &ldquo;%1$s&rdquo;"
 
 #: src/editors/passage/index.js:152
 msgid "Enter the body text of your passage here."
-msgstr "Gib den Passagen-Inhalt hier ein!"
+msgstr "Hier Passagen-Inhalt eingeben."
 
 #: src/editors/passage/tag-editor/index.js:103
 #: src/editors/passage/ui-view/index.js:231
@@ -1816,7 +1819,7 @@ msgid "Change"
 msgstr "Ändern"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.js:70
-msgid "Main Tag will be shown to user in \"Did you mean...?\", when prompt is too vague"
+msgid "Main Keyword will be shown to the user in \"Did you mean...?\", when user input was too vague"
 msgstr "Das Haupt-Schlagwort wird dem Benutzer angezeigt in \"Meintest Du vielleicht...?\", wenn eine Passage nicht eindeutig gefunden wurde"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.js:75
@@ -1825,7 +1828,7 @@ msgstr "Gruppenkontext"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.js:76
 msgid "All passages that have this tag form a semantic context - improving identification in this context"
-msgstr "Passagen mit einem gemeinsamen Gruppenkontext formen eine semantische Einheit zur verbesserten Identifizierung"
+msgstr "Passagen mit einem gemeinsamen Gruppenkontext bilden eine semantische Einheit zur besseren Erkennung"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.js:81
 msgid "Suggestion Tag"
@@ -1833,7 +1836,7 @@ msgstr "Themenvorschläge"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.js:82
 msgid "Tag-Phrase is autocompleted, when the user starts to type accordingly"
-msgstr "Themenvorschläge werden dem Benutzer als auswählbare Listeneinträge angezeigt, wenn Passagen während der Benutzereingabe erkannt wurden"
+msgstr "Themenvorschläge werden dem Benutzer als wählbare Listeneinträge angezeigt, wenn Passagen während der Benutzereingabe erkannt wurden"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.js:87
 msgid "Conditional Tag"
@@ -1849,23 +1852,23 @@ msgstr "Normale Schlagwörter"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.js:94
 msgid "Passage content will be shown, when user submits the exact or a similar phrase"
-msgstr "Passagen werden ausgewählt, wenn die Benutzereingabe mit dem entsprechenden Schlagwort ausreichende Ähnlichkeit aufweist"
+msgstr "Passagen werden angezeigt, wenn eine Nutzereingabe ausreichende Ähnlichkeit mit dem entsprechenden Schlagwort aufweist"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.js:127
-msgid "Tag &ldquo;%1$s&rdquo; already exists."
+msgid "Keyword &ldquo;%1$s&rdquo; already exists."
 msgstr "Schlagwort &ldquo;%1$s&rdquo; existiert bereits."
 
 #: src/editors/passage/ui-view/index.js:85
-msgid "Task was written to clipboard."
-msgstr "Passagenelement wurde in die Zwischenablage kopiert."
+msgid "Element was copied to clipboard."
+msgstr "Das Passagenelement wurde in die Zwischenablage kopiert."
 
 #: src/editors/passage/ui-view/index.js:144
-msgid "Are you sure to delete &ldquo;%1$s&rdquo;?"
+msgid "Are you sure you want to delete &ldquo;%1$s&rdquo;?"
 msgstr "Sicher, dass Du &ldquo;%1$s&rdquo; löschen möchtest?"
 
 #: src/electron/story-directory.js:16 src/electron/story-directory.js:101
 msgid "Chatbottery"
-msgstr ""
+msgstr "Chatbottery"
 
 #: src/electron/story-directory.js:102
 msgid "Backups"
@@ -1894,7 +1897,7 @@ msgstr "%d%% Speicher verfügbar"
 
 #: src/utils/task.js:4
 msgid "Text message"
-msgstr "Text-Nachrichten"
+msgstr "Text-Nachricht"
 
 #: src/utils/task.js:5
 msgid "Buttons"
@@ -1902,11 +1905,11 @@ msgstr "Schaltflächen"
 
 #: src/utils/task.js:7
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: src/utils/task.js:8
 msgid "iFrame / PDF"
-msgstr ""
+msgstr "iFrame / PDF"
 
 #: src/utils/task.js:9
 msgid "Carousel"
@@ -1918,7 +1921,7 @@ msgstr "Kacheln"
 
 #: src/utils/task.js:11
 msgid "Record user input"
-msgstr "Benutzeranfrage"
+msgstr "Nutzer Eingabe aufzeichnen"
 
 #: src/utils/task.js:12
 msgid "Set variable"
@@ -1926,8 +1929,8 @@ msgstr "Variable setzen"
 
 #: src/utils/task.js:13
 msgid "Goto"
-msgstr "Verzweigung"
+msgstr "Weiterleitung"
 
 #: src/utils/task.js:14
 msgid "AI prompt"
-msgstr "AI-Anfrage"
+msgstr "AI-Prompt"

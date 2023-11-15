@@ -20,7 +20,7 @@ module.exports = Vue.extend({
 				initial: openaiDefault.prompt,
 				placeholder: placeholders.prompt,
 				params: '',
-				description: locale.say('These settings apply to the AI Prompt Component.<br><i>Story needs to be exported again for these settings to take effect.</i>'),
+				description: locale.say('These settings apply to the AI Prompt Component.<br><i>The chatbot-file needs to be exported again for these settings to take effect.</i>'),
 		 	},
 		 	tag: {
 				pref: 'openaiTags',
@@ -29,7 +29,7 @@ module.exports = Vue.extend({
 				initial: openaiDefault.tags,
 				placeholder: placeholders.tag,
 				params: '',
-				description: locale.say('These settings apply to the Tag (Buzzword) Suggestions.'),
+				description: locale.say('These settings apply to the Keyword-Suggestions.'),
 		 	},
 		 	phrase: {
 				pref: 'openaiPhrases',
@@ -86,7 +86,7 @@ module.exports = Vue.extend({
 				return true;
 			}
 			confirm({
-				message: locale.say('There were changes detected for the OpenAI params dialog. Are you sure you want to discard those changes?'),
+				message: locale.say('There were changes detected for the Open-AI-Settings. Are you sure you want to discard those changes?'),
 				buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Discard changes'),
 				buttonClass: 'danger'
 			}).then(() => {

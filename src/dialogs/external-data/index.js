@@ -86,6 +86,7 @@ module.exports = Vue.extend({
 			return this.data.reduce((items, list) => 
 				items.concat(list.items.filter((item) => this.isValid(item))), []);
 		},
+
 	},
 
 	methods: {
@@ -148,7 +149,7 @@ module.exports = Vue.extend({
 			.then((processed) => {
 				if (processed) {
 					return confirm({
-						message: locale.say('Are you sure you want to delete the entire list that contains entries that were previously analyzed?'),
+						message: locale.say('Are you sure you want to delete the entire list with all entries?'),
 						buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Delete list'),
 						buttonClass: 'danger'
 					}).then(() => this.modified = true);
@@ -254,7 +255,7 @@ module.exports = Vue.extend({
 			Promise.resolve(item.processed).then((processed) => {
 				if (processed) {
 					return confirm({
-						message: locale.say('Are you sure you want to delete the entry that was previously analyzed?'),
+						message: locale.say('Are you sure you want to delete the entry?'),
 						buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Delete entry'),
 						buttonClass: 'danger'
 					}).then(() => this.modified = true);
@@ -361,7 +362,7 @@ module.exports = Vue.extend({
 				return true;
 			}
 			confirm({
-				message: locale.say('There were changes detected for the external data dialog. Are you sure you want to discard those changes?'),
+				message: locale.say('There were changes detected for the external data dialogue. Are you sure you want to discard those changes?'),
 				buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Discard changes'),
 				buttonClass: 'danger'
 			}).then(() => {

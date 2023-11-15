@@ -70,7 +70,7 @@ module.exports = Vue.extend({
 				case TYPE_MAIN:
 					this.description = [
 						locale.say('Main Tag'), 
-						locale.say('Main Tag will be shown to user in "Did you mean...?", when prompt is too vague')
+						locale.say('Main Tag will be shown to user in \"Did you mean...?\", when prompt is too vague')
 					];
 					break;
 				case TYPE_GROUP:
@@ -128,7 +128,7 @@ module.exports = Vue.extend({
 			if (tag != this.tag && this.passage.tags.includes(tag)) {
 				notify(
 					locale.say(
-						'Tag &ldquo;%1$s&rdquo; already exists.', 
+						'Keyword &ldquo;%1$s&rdquo; already exists.', 
 						escape(tag)
 					), 
 					'info'

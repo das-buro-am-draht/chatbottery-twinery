@@ -82,7 +82,7 @@ module.exports = Vue.extend({
 			const objBlob = new Blob([JSON.stringify(this.tasks[index])], { type: clipboardType});
 			const item = new ClipboardItem({[objBlob.type]: objBlob});
 			navigator.clipboard.write([item])
-				.then(() => notify(locale.say('Task was written to clipboard.'), 'info'))
+				.then(() => notify(locale.say('Element was copied to clipboard.'), 'info'))
 				.catch((error) => notify(escape(error.message), 'danger'));
 		},
 		onSettings(index) {
@@ -141,7 +141,7 @@ module.exports = Vue.extend({
 			Promise.resolve(this.tasks[index]).then((task) => {
 				if (!this.isEmpty(task)) {
 					return confirm({
-						message: locale.say('Are you sure to delete &ldquo;%1$s&rdquo;?', escape(this.caption(task))),
+						message: locale.say('Are you sure you want to delete &ldquo;%1$s&rdquo;?', escape(this.caption(task))),
 						buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Delete'),
 						buttonClass: 'danger'
 					});

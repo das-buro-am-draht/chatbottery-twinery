@@ -6,7 +6,7 @@ msgid "Warning"
 msgstr ""
 
 #: src/aside-navigation/check-local-state/index.html
-msgid "You have to turn on your locale storage in order to make the editor work properly"
+msgid "You need to activate \'local storage\' in your browser settings, so that the editor works properly"
 msgstr ""
 
 #: src/aside-navigation/check-local-state/index.html
