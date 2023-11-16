@@ -14,6 +14,7 @@ const { loadFormat } = require('../../data/actions/story-format');
 const { passageDefaults } = require('../../data/store/story');
 const notify = require('../../ui/notify');
 const escape = require('lodash.escape');
+const { internalLink } = require('../../data/link-parser');
 
 require('codemirror/addon/display/placeholder');
 require('codemirror/addon/hint/show-hint');
@@ -177,10 +178,14 @@ module.exports = Vue.extend({
 		},
 
 		userPassageNameValid() {
-			return !(this.story.passages.some(
+			return internalLink(this.userPassageName);
+		},
+
+		userPassageNameExist() {
+			return this.story.passages.some(
 				passage => passage.name === this.userPassageName &&
 					passage.id !== this.passage.id
-			));
+			);
 		},
 
 		autocompletions() {
@@ -263,7 +268,7 @@ module.exports = Vue.extend({
 		},
 
 		canClose() {
-			if (!this.userPassageNameValid) {
+			if (!this.userPassageNameValid || this.userPassageNameExist) {
 				return false;
 			}
 			if (this.userPassageName !== this.passage.name) {
