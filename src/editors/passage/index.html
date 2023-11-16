@@ -6,8 +6,13 @@
 	<tag-editor :passage="passage" :story-id="storyId"></tag-editor>
 
 	<p class="error" v-if="!userPassageNameValid">
-		{{ 'A passage already exists with this name' | say }}.
+		{{ 'Invalid Passage name (must not be an URL or start with \'\/\')' | say }}.
 	</p>
+	<template v-else>
+		<p class="error" v-if="userPassageNameExist">
+			{{ 'A passage already exists with this name' | say }}.
+		</p>
+	</template>
 
 	<div class="passageMode">
 		<button @click="toggleMode" type="button" class="active" title="{{ gui ? 'XML' : 'GUI' }}">

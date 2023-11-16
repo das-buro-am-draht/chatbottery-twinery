@@ -21,9 +21,9 @@ const extractActLinkTags = (text) => extractLinks(/<act.*>([^<]*)<\/act>/g, text
 const extractBtnLinkTags = (text) => extractLinks(/<btn.*>([^<]*)<\/btn>/g, text);
 
 /* Links _not_ starting with a protocol, e.g. abcd://. */
-const internalLinks = (link) => !/^\w+:\/\/\/?\w/i.test(link);
+const internalLink = (link) => !/^(\w+:\/)?\//i.test(link);
 
-const nonEmptyLinks = (link) => link && link.split('|').some(part => !!part);
+const nonEmptyLink = (link) => link && link.split('|').some(part => !!part);
 
 /* Identifies values that appear only once in the array. */
 const uniques = (v, i, a) => a.indexOf(v) === i;
@@ -87,11 +87,11 @@ const links = (text, internalOnly) => {
 		.map(removeEnclosingBrackets)
 		.map(removeSetters)
 		.map(extractLink)
-		.filter(nonEmptyLinks)
+		.filter(nonEmptyLink)
 		.filter(uniques);
 
 	if (internalOnly) {
-		return result.filter(internalLinks);
+		return result.filter(internalLink);
 	} else {
 		return result;
 	}
@@ -102,10 +102,10 @@ const gotoLinks = (text, internalOnly) => {
 		.map(removeEnclosingBrackets)
 		.map(removeSetters)
 		.map(extractLink)
-		.filter(nonEmptyLinks)
+		.filter(nonEmptyLink)
 		.filter(uniques);
 	if (internalOnly) {
-		return result.filter(internalLinks);
+		return result.filter(internalLink);
 	} else {
 		return result;
 	}
@@ -117,10 +117,10 @@ const buttonLinks = (text, internalOnly) => {
 		.map(removeEnclosingBrackets)
 		.map(removeSetters)
 		.map(extractLink)
-		.filter(nonEmptyLinks)
+		.filter(nonEmptyLink)
 		.filter(uniques);
 	if (internalOnly) {
-		return result.filter(internalLinks);
+		return result.filter(internalLink);
 	} else {
 		return result;
 	}
@@ -132,6 +132,7 @@ module.exports = {
 	links,
 	gotoLinks,
 	buttonLinks,
+	internalLink,
 	isLiveChat,
 	removeEnclosingBrackets,
 };

@@ -871,6 +871,10 @@ msgid "Passage Name"
 msgstr "Passagenname"
 
 #: src/editors/passage/index.html
+msgid "Invalid Passage name (must not be an URL or start with \'\/\')"
+msgstr "Ungültiger Passagenname (darf keine URL sein oder mit \'\/\' beginnen)"
+
+#: src/editors/passage/index.html
 msgid "A passage already exists with this name"
 msgstr "Eine Passage dieses Namens existiert bereits"
 
