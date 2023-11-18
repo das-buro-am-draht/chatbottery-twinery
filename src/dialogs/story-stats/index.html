@@ -49,11 +49,11 @@
 		</table>
 
 		<p>
-		{{ 'This chatbot was last changed at %s' | say lastUpdate }}.
+			{{ 'This chatbot was last changed at %s' | say lastUpdate }}.
 		</p>
 
-		<!-- <p>
-		{{{ 'The IFID for this chatbot is &lt;span class="ifid"&gt;%s&lt;/span&gt;. (&lt;a href="http:\/\/ifdb.tads.org/help-ifid" target="_blank"&gt;What\'s an IFID?&lt;/a&gt;)' | say story.ifid }}}
-		</p> -->
+		<p>
+			{{ 'The IFID for this chatbot is' | say }} <span class="ifid">{{{ story.ifid }}}</span> (<a href="http://ifdb.tads.org/help-ifid" target="_blank">{{ 'What\'s an IFID?' | say }}</a>)
+		</p>
 	</div>
 </modal-dialog>

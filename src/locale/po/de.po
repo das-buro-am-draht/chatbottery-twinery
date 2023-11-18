@@ -17,7 +17,7 @@ msgid "Warning"
 msgstr "Warnung"
 
 #: src/aside-navigation/check-local-state/index.html
-msgid "You need to activate \'local storage\' in your browser settings, so that the editor works properly"
+msgid "You need to activate 'local storage' in your browser settings, so that the editor works properly"
 msgstr "Du musst den lokalen Speicher (Local Storage) in den Browser-Einstellungen aktivieren, damit der Editor korrekt arbeiten kann"
 
 #: src/aside-navigation/check-local-state/index.html
@@ -158,7 +158,7 @@ msgstr "Externe Daten"
 
 #: src/chatbot-view/toolbar/file/index.html
 msgid "Chatbot Settings"
-msgstr "Chatbot Einstellungen "
+msgstr "Chatbot Einstellungen"
 
 #: src/chatbot-view/toolbar/file/index.html
 #: src/dialogs/external-data/index.html src/dialogs/settings/index.html
@@ -273,87 +273,6 @@ msgstr "Chatbot duplizieren"
 msgid "Delete Chatbot"
 msgstr "Chatbot löschen"
 
-#: src/dialogs/about/index.html
-msgid "About Chatbottery"
-msgstr "Über Chatbottery"
-
-#: src/dialogs/about/index.html
-msgid ""
-"Chatbottery is an open-source tool for creating great chatbots"
-msgstr "Chatbottery ist ein open-source Editor, um Chatbots zu bauen"
-
-#: src/dialogs/about/index.html
-msgid ""
-"This application is released under the \\x3ca\n"
-"\t\thref=\"http:\\/\\/www.gnu.org/licenses/gpl-3.0.html\">GPL v3\\x3c/a> license,\n"
-"\t\tbut any work created with it may be released under any terms, including\n"
-"\t\tcommercial ones."
-msgstr ""
-"Diese Anwendung ist veröffentlicht unter der \\x3ca\n"
-"\t\thref=„http:\\/\\/www.gnu.org/licenses/gpl-3.0.html“>GPL v3\\x3c/a> Lizenz,\n"
-"\t\tAber jedes mit der Anwendung erstellte Werk kann unter jeglichen Bedingungen veröffentlicht werden, einschließlich\n"
-"\t\tkommerzieller."
-
-#: src/dialogs/about/index.html
-msgid "Help Chatbottery Grow With A Donation"
-msgstr ""
-
-#: src/dialogs/about/index.html
-msgid "Source Code Repository"
-msgstr "Source Code Repository"
-
-#: src/dialogs/about/index.html
-msgid "Translations"
-msgstr "Übersetzungen"
-
-#: src/dialogs/about/index.html
-msgid "Libraries"
-msgstr "Bibliotheken"
-
-#: src/dialogs/about/index.html
-msgid "Fonts"
-msgstr "Schriftarten"
-
-#: src/dialogs/about/index.html
-msgid ""
-"Source Sans Pro and Source Code Pro were designed by Paul D. Hunt\n"
-"\t\tunder the guidance of Robert Slimbach for \\x3ca\n"
-"\t\thref=\"http:\\/\\/adobe.com/\">Adobe\\x3c/a>\\x3cbr> Nunito was designed by\n"
-"\t\t\\x3ca href=\"http:\\/\\/code.newtypography.co.uk/\">Vernon Adams\\x3c/a>"
-msgstr ""
-
-#: src/dialogs/about/index.html
-msgid "Icons"
-msgstr "Icons"
-
-#: src/dialogs/about/index.html
-msgid "Document designed by Rob Gill from the Noun Project"
-msgstr ""
-
-#: src/dialogs/about/index.html
-msgid "Question designed by Henry Ryder from the Noun Project"
-msgstr ""
-
-#: src/dialogs/about/index.html
-msgid "Smile designed by jelio dimitrov from the Noun Project"
-msgstr ""
-
-#: src/dialogs/app-donation/index.html
-msgid "Chris Klimas, Twine creator"
-msgstr ""
-
-#: src/dialogs/app-donation/index.html
-msgid "No Thanks"
-msgstr ""
-
-#: src/dialogs/app-donation/index.html
-msgid "Donate"
-msgstr ""
-
-#: src/dialogs/app-donation/index.html
-msgid "This message will only be shown to you once.&lt;br&gt;If you'd like to donate to Chatbottery development in the future, you can do so at &lt;a href=\\\"http:\\/\\/twinery.org/donate\\\" target=\\\"_blank\\\"&gt;http://twinery.org/donate&lt;/a&gt;."
-msgstr ""
-
 #: src/dialogs/external-data/detail-view/index.html
 msgid "Title"
 msgstr "Titel"
@@ -431,15 +350,15 @@ msgstr "Das kann einen Moment dauern"
 
 #: src/dialogs/external-data/index.html
 msgid "Title, Summary and at least one Keyword must be set"
-msgstr "Titel, Zusammenfassung und mindestens ein Schlagwort muss angegeben werden"
+msgstr "Titel, Zusammenfassung und mindestens ein Schlagwort müssen angegeben werden"
 
 #: src/dialogs/external-data/index.html
 msgid "Download file"
 msgstr "Datei herunterladen"
 
 #: src/dialogs/external-data/index.html
-msgid "Don\'t forget to set the destination of this file in your"
-msgstr "Vergiss nicht, die URL der veröffentlichten Datei in den Einstellungen anzugeben"
+msgid "Don't forget to set the destination of this file in your"
+msgstr "Vergiss nicht, die URL der veröffentlichten Datei anzugeben in den"
 
 #: src/dialogs/external-data/index.html src/dialogs/openai/index.html
 #: src/dialogs/plugins/index.html src/dialogs/settings/index.html
@@ -496,7 +415,7 @@ msgid "Set this format as default for stories"
 msgstr "Dieses Format standardmäßig verwenden"
 
 #: src/dialogs/formats/item.html
-msgid "The default chatbot format can\'t be removed"
+msgid "The default chatbot format can't be removed"
 msgstr "Das Standard-Chatbot-Format kann nicht gelöscht werden"
 
 #: src/dialogs/formats/item.html
@@ -575,7 +494,7 @@ msgstr "Matomo PHP URL"
 #: src/editors/passage/ui-view/iframe/index.html
 #: src/editors/passage/ui-view/video/index.html
 msgid "Resource Locator must be a valid URL"
-msgstr "Der Verweis (‚resource locator‘) muss eine gültige URL sein"
+msgstr "Der Verweis ('Resource Locator') muss eine gültige URL sein"
 
 #: src/dialogs/plugins/index.html
 msgid "Site ID"
@@ -655,7 +574,7 @@ msgstr "Ein Authorisierungs-Schlüssel muss angegeben werden"
 
 #: src/dialogs/plugins/index.html
 msgid "Authorization Secret"
-msgstr "Authorisierungs-Schlüssel (‚Authorization Secret‘)"
+msgstr "Authorisierungs-Schlüssel ('Authorization Secret')"
 
 #: src/dialogs/plugins/index.html
 msgid "Chat Authorization Secret"
@@ -678,7 +597,7 @@ msgid "Account Key must not be empty"
 msgstr "Der Konto-Schlüssel muss angegeben werden"
 
 #: src/dialogs/plugins/index.html
-msgid "User\'s Field Name"
+msgid "User's Field Name"
 msgstr "Variablenname Benutzer"
 
 #: src/dialogs/plugins/index.html
@@ -686,8 +605,8 @@ msgid "Chat User Field Name"
 msgstr "Variablenname des Benutzers"
 
 #: src/dialogs/plugins/index.html src/dialogs/user/index.html
-msgid "User Field Name must not start with \'$\'"
-msgstr "Der Benutzer-Variablenname darf nicht mit \'$\' beginnen"
+msgid "User Field Name must not start with '$'"
+msgstr "Der Benutzer-Variablenname darf nicht mit '$' beginnen"
 
 #: src/dialogs/plugins/index.html
 msgid "Shared User Variables"
@@ -706,8 +625,8 @@ msgid "URL for Assets (Images, Videos, etc.)"
 msgstr "Basis-URL für Ressourcen (Bilder, Videos, etc.)"
 
 #: src/dialogs/settings/index.html
-msgid "Resource Locator must be a valid URL Path ending with slash (\'/\')"
-msgstr "Die angegebene URL muss ein gültiger URL-Pfad sein endend mit \'/\' (slash)"
+msgid "Resource Locator must be a valid URL Path ending with slash ('/')"
+msgstr "Die angegebene URL muss ein gültiger URL-Pfad sein endend mit '/' (slash)"
 
 #: src/dialogs/settings/index.html
 msgid "URL for external chatbot-data"
@@ -807,12 +726,16 @@ msgid "This chatbot was last changed at %s"
 msgstr "Der Chatbot wurde zuletzt am %s geändert"
 
 #: src/dialogs/story-stats/index.html
-msgid "The IFID for this chatbot is &lt;span class=\"ifid\"&gt;%s&lt;/span&gt;. (&lt;a href=\"http:\\/\\/ifdb.tads.org/help-ifid\" target=\"_blank\"&gt;What\'s an IFID?&lt;/a&gt;)"
-msgstr "Die IFID für diesen chatbot ist &lt;span class=„ifid“&gt;%s&lt;/span&gt;. (&lt;a href=„http:\\/\\/ifdb.tads.org/help-ifid“ target=„_blank“&gt;What’s an IFID?&lt;/a&gt;)"
+msgid "The IFID for this chatbot is"
+msgstr "Die IFID für diesen Chatbot ist"
+
+#: src/dialogs/story-stats/index.html
+msgid "What's an IFID?"
+msgstr "Was ist eine IFID?"
 
 #: src/dialogs/user/index.html
-msgid "Enter Field Names without leading \'$\'"
-msgstr "Benutzer-Feldnamen müssen ohne führendes \'$\' angegeben werden"
+msgid "Enter Field Names without leading '$'"
+msgstr "Benutzer-Feldnamen müssen ohne führendes '$' angegeben werden"
 
 #: src/dialogs/user/index.html
 msgid "variable"
@@ -871,8 +794,8 @@ msgid "Passage Name"
 msgstr "Passagenname"
 
 #: src/editors/passage/index.html
-msgid "Invalid Passage name (must not be an URL or start with \'\/\')"
-msgstr "Ungültiger Passagenname (darf keine URL sein oder mit \'\/\' beginnen)"
+msgid "Invalid Passage name (must not be an URL or start with '/')"
+msgstr "Ungültiger Passagenname (darf keine URL sein oder mit '/' beginnen)"
 
 #: src/editors/passage/index.html
 msgid "A passage already exists with this name"
@@ -1134,16 +1057,16 @@ msgid "JavaScript code assignment"
 msgstr "JavaScript Code-Anweisung"
 
 #: src/editors/passage/ui-view/eval/index.html
-msgid "JavaScript assign statement - e.g. \'$chapter = 3\'"
-msgstr "JavaScript Code-Anweisung - z.B. \'$kapitel = 3\'"
+msgid "JavaScript assign statement - e.g. '$chapter = 3'"
+msgstr "JavaScript Code-Anweisung - z.B. '$kapitel = 3'"
 
 #: src/editors/passage/ui-view/eval/index.html
 msgid "Assign statement must be set"
 msgstr "Code-Anweisung muss gesetzt werden"
 
 #: src/editors/passage/ui-view/eval/index.html
-msgid "User variables must start with \'$\'"
-msgstr "Die Benutzervariable muss mit \'$\' beginnen"
+msgid "User variables must start with '$'"
+msgstr "Die Benutzervariable muss mit '$' beginnen"
 
 #. L10n: Word in the sense of individual words in a sentence. This does not actually include the count, as it is used in a table.
 #: src/editors/passage/ui-view/goto/index.html
@@ -1214,12 +1137,12 @@ msgid "Condition:"
 msgstr "Bedingung:"
 
 #: src/editors/passage/ui-view/index.html
-msgid "JavaScript condition - e.g \'$chapter === 3\'"
-msgstr "JavaScript-Bedingung - z.B. \'$kapitel === 3\'"
+msgid "JavaScript condition - e.g '$chapter === 3'"
+msgstr "JavaScript-Bedingung - z.B. '$kapitel === 3'"
 
 #: src/editors/passage/ui-view/index.html
 msgid "JavaScript condition to be evaluated to true for executing this task"
-msgstr "Die JavaScript-Bedingung muss zu \'true\' evaluiert werden, damit das Element ausgeführt wird"
+msgstr "Die JavaScript-Bedingung muss zu 'true' evaluiert werden, damit das Element ausgeführt wird"
 
 #: src/editors/passage/ui-view/index.html
 msgid "User function:"
@@ -1261,6 +1184,10 @@ msgstr "Neues Element"
 #: src/editors/passage/ui-view/menu/index.html
 msgid "Paste here"
 msgstr "Hier einfügen"
+
+#: src/editors/passage/ui-view/options/index.html
+msgid "Text Option"
+msgstr "Text-Option"
 
 #: src/editors/passage/ui-view/options/index.html
 msgid "Delete Message Option"
@@ -1312,24 +1239,24 @@ msgid "Variable"
 msgstr "Variable"
 
 #: src/editors/passage/ui-view/wait/index.html
-msgid "User variable without \'$\' prefix"
-msgstr "Nutzervariable ohne Präfix \'$\'"
+msgid "User variable without '$' prefix"
+msgstr "Nutzervariable ohne Präfix '$'"
 
 #: src/editors/passage/ui-view/wait/index.html
 msgid "User variable must be set"
 msgstr "Nutzervariable muss angegeben werden"
 
 #: src/editors/passage/ui-view/wait/index.html
-msgid "\'$\' will be added automatically"
-msgstr "\'$\' wird automatisch hinzugefügt"
+msgid "'$' will be added automatically"
+msgstr "'$' wird automatisch hinzugefügt"
 
 #: src/editors/passage/ui-view/wait/index.html
 msgid "Validation"
 msgstr "Validierung"
 
 #: src/editors/passage/ui-view/wait/index.html
-msgid "Validation function - e.g. \'$isEmail($msg)\'"
-msgstr "Validierungsfunktion - z.B. \'$isEmail($msg)\'"
+msgid "Validation function - e.g. '$isEmail($msg)'"
+msgstr "Validierungsfunktion - z.B. '$isEmail($msg)'"
 
 #: src/editors/passage/ui-view/wait/index.html
 msgid "Placeholder"
@@ -1379,119 +1306,28 @@ msgstr "Erstelle einen Chatbot"
 msgid "Please choose which language you would like to use with Chatbottery"
 msgstr "Bitte wähle die Sprache, mit der Du Chatbottery benutzen möchtest"
 
-#: src/welcome/index.html
-msgid "Hi!"
-msgstr "Hallo!"
-
-#: src/welcome/index.html
-msgid "Twine is an open-source tool for telling interactive, nonlinear stories. There are a few things you should know\n"
-"\t\t\tbefore you get started"
-msgstr ""
-
-#: src/welcome/index.html
-msgid "Tell Me More"
-msgstr "Zeig mir mehr"
-
-#: src/welcome/index.html
-msgid "Skip"
-msgstr "Überspringen"
-
-#: src/welcome/index.html
-msgid "New here?"
-msgstr "Neu hier?"
-
-#: src/welcome/index.html
-msgid ""
-"&lt;strong&gt;If you've never used Twine before,&lt;/strong&gt; then welcome! The &lt;a\n"
-"\t\t\thref=\\\"http://twinery.org/2guide\\\" target=\\\"_blank\\\"&gt;Twine 2 Guide&lt;/a&gt; and the official wiki in general,\n"
-"\t\t\tare a great place to learn. Keep in mind that some articles on the wiki were written for Twine 1, which is a little\n"
-"\t\t\tbit different than this version. But most of the concepts are the same."
-msgstr ""
-
-#: src/welcome/index.html
-msgid ""
-"&lt;strong&gt;If you have used Twine 1 before,&lt;/strong&gt; the guide also has details on what has changed in\n"
-"\t\t\tthis version. Chief among them is a new default story format, Harlowe. But if you find you prefer the Twine 1\n"
-"\t\t\tscripting syntax, try using SugarCube instead"
-msgstr ""
-
-#: src/welcome/index.html src/dialogs/formats/item.js:57
+#: src/dialogs/formats/item.js:57
 msgid "OK"
 msgstr ""
-
-#: src/welcome/index.html
-msgid "Your work is saved only in your browser"
-msgstr ""
-
-#: src/welcome/index.html
-msgid ""
-"That means you don't need to create an account to use Twine 2, and everything you create isn't stored on a\n"
-"\t\t\tserver somewhere else &mdash; it stays right in your browser."
-msgstr ""
-
-#: src/welcome/index.html
-msgid ""
-"Two &lt;b&gt;very important&lt;/b&gt; things to remember, though. Since your work is saved only in your\n"
-"\t\t\tbrowser, if you clear its saved data, then you'll lose your work! Not good. Remember to use that &lt;i class=\\\"fa\n"
-"\t\t\tfa-briefcase\\\"&gt;&lt;/i&gt;&nbsp;&lt;strong&gt;Archive&lt;/strong&gt; button often. You can also publish individual\n"
-"\t\t\tstories to files using the &lt;i class=\\\"fa fa-cog\\\"&gt;&lt;/i&gt; menu on each story in the story list. Both\n"
-"\t\t\tarchive and story files can always be re-imported into Twine."
-msgstr ""
-
-#: src/welcome/index.html
-msgid ""
-"Secondly, &lt;b&gt;anyone who can use this browser can see and make changes to your work&lt;/b&gt;. So if\n"
-"\t\t\tyou've got a nosy kid brother, look into setting up a separate profile for yourself."
-msgstr ""
-
-#: src/welcome/index.html
-msgid "Your work is automatically saved"
-msgstr ""
-
-#: src/welcome/index.html
-msgid ""
-"There's now a folder named Twine in your Documents folder. Inside that is a Stories folder, where all your work\n"
-"\t\t\twill be saved. Twine saves as you work, so you don't have to worry about remembering to save it yourself. You can\n"
-"\t\t\talways open the folder your stories are saved to by using the &lt;b&gt;Show Library&lt;/b&gt; item in the\n"
-"\t\t\t&lt;b&gt;Twine&lt;/b&gt; menu."
-msgstr ""
-
-#: src/welcome/index.html
-msgid ""
-"Because Twine is always saving your work, the files in your story library will be locked from editing while\n"
-"\t\t\tTwine is open."
-msgstr ""
-
-#: src/welcome/index.html
-msgid "That's it!"
-msgstr ""
-
-#: src/welcome/index.html
-msgid "Thanks for reading, and have fun with Twine"
-msgstr ""
-
-#: src/welcome/index.html
-msgid "Go to Chatbot List"
-msgstr "Zu den Chatbots"
 
 #: src/chatbot-view/edit-view/index.js:277 src/data/store/story.js:240
 msgid "Untitled Passage"
 msgstr "Unbenannte Passage"
 
-#: src/chatbot-view/edit-view/index.js:383
-msgid "Are you sure you want to delete &ldquo;%2$s&rdquo;? This cannot be undone."
-msgid_plural "Are you sure you want to delete %d passages? This cannot be undone."
-msgstr[0] "Sicher, dass Du &ldquo;%2$s&rdquo; löschen möchtest?"
-msgstr[1] "Sicher, dass Du %d Passagen löschen möchtest?"
-
 #: src/chatbot-view/edit-view/passage-item/index.js:372
 #: src/chatbots/stories/story/item-menu/index.js:91
-msgid "Are you sure you want to delete &ldquo;%s&rdquo;? This cannot be undone."
-msgstr "Sicher, dass Du &ldquo;%s&rdquo; löschen möchtest?"
+msgid "Are you sure you want to delete &ldquo;%s&rdquo;?<br>This cannot be undone."
+msgstr "Sicher, dass Du &ldquo;%s&rdquo; löschen möchtest?<br>Dies kann nicht rückgängig gemacht werden."
+
+#: src/chatbot-view/edit-view/index.js:383
+msgid "Are you sure you want to delete &ldquo;%2$s&rdquo;?<br>This cannot be undone."
+msgid_plural "Are you sure you want to delete %d passages?<br>This cannot be undone."
+msgstr[0] "Sicher, dass Du &ldquo;%2$s&rdquo; löschen möchtest?<br>Dies kann nicht rückgängig gemacht werden."
+msgstr[1] "Sicher, dass Du %d Passagen löschen möchtest?<br>Dies kann nicht rückgängig gemacht werden."
 
 #: src/chatbot-view/edit-view/passage-item/index.js:379
-msgid "(Hold the Shift key when deleting to skip this message.)"
-msgstr "(Halte die Umschalttaste (Shift) beim Löschen gedrückt, um diese Nachricht zu überspringen)"
+msgid "Hold the Shift key when deleting to skip this message"
+msgstr "Halte die Umschalttaste (Shift) beim Löschen gedrückt, um diese Nachricht zu überspringen"
 
 #: src/chatbot-view/toolbar/download/index.js:51
 #: src/chatbots/stories/story/item-menu/index.js:72
@@ -1557,7 +1393,7 @@ msgid "this chatbot format is already installed"
 msgstr "das Chatbot-Format ist bereits installiert"
 
 #: src/data/actions/story-format.js:91
-msgid "a more recent version of the chatbot format &ldquo;%s&rdquo; is already installed"
+msgid "A more recent version of the chatbot format &ldquo;%s&rdquo; is already installed"
 msgstr "Eine neuere Version des Chatbot-Formats &ldquo;%s&rdquo; ist bereits installiert"
 
 #: src/data/actions/story-format.js:268
@@ -1671,7 +1507,7 @@ msgid "Remove"
 msgstr "Löschen"
 
 #: src/dialogs/matomo/index.js:44
-msgid "This list shows the user phrases that couldn\'t be resolved."
+msgid "This list shows the user phrases that couldn't be resolved."
 msgstr "Diese Liste zeigt Benutzereingaben, die nicht erkannt wurden."
 
 #: src/dialogs/matomo/index.js:45
@@ -1692,7 +1528,7 @@ msgstr "AI-Prompt"
 
 #: src/dialogs/openai/index.js:23
 msgid "These settings apply to the AI Prompt Component.<br><i>The chatbot-file needs to be exported again for these settings to take effect.</i>"
-msgstr "Diese Einstellungen steuern die AI-Aufrufparameter für das Passagenelement \'AI-Anfrage\'.<br>Die Chatbot-Datei muss erneut exportiert werden, damit Änderungen wirksam werden."
+msgstr "Diese Einstellungen steuern die AI-Aufrufparameter für das Passagenelement 'AI-Anfrage'.<br>Die Chatbot-Datei muss erneut exportiert werden, damit Änderungen wirksam werden."
 
 #: src/dialogs/openai/index.js:27
 msgid "Tag Alternatives"
@@ -1798,8 +1634,8 @@ msgid "There were changes detected for the user data dialog. Are you sure you wa
 msgstr "Es wurden Änderungen an den Benutzer-Daten festgestellt. Sollen diese verworfen werden?"
 
 #: src/editors/passage/index.js:53
-msgid "Editing \\u201c%s\\u201d"
-msgstr "Editing \\u201c%s\\u201d"
+msgid "Editing \"%s\""
+msgstr "Editiere \"%s\""
 
 #: src/editors/passage/index.js:125
 msgid "New user variables found: &ldquo;%1$s&rdquo;"
@@ -1823,7 +1659,7 @@ msgid "Change"
 msgstr "Ändern"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.js:70
-msgid "Main Keyword will be shown to the user in \"Did you mean...?\", when user input was too vague"
+msgid "Main Tag will be shown to user in \"Did you mean...?\" when prompt is too vague"
 msgstr "Das Haupt-Schlagwort wird dem Benutzer angezeigt in \"Meintest Du vielleicht...?\", wenn eine Passage nicht eindeutig gefunden wurde"
 
 #: src/editors/passage/tag-editor/tag-dialog/index.js:75
@@ -1938,3 +1774,295 @@ msgstr "Weiterleitung"
 #: src/utils/task.js:14
 msgid "AI prompt"
 msgstr "AI-Prompt"
+
+# ----------------- story format --------------------
+msgid "Download file"
+msgstr "Datei herunterladen"
+
+msgid "Publish to Website"
+msgstr "Chatbot veröffentlichen"
+
+msgid "Copy HTML Snippet"
+msgstr "HTML-Snippet kopieren"
+
+msgid "Copy Story JSON"
+msgstr "Story-JSON kopieren"
+
+msgid "Story JSON was copied to clipboard."
+msgstr "Die Story-JSON wurde in die Zwischenablage kopiert"
+
+msgid "Currently active"
+msgstr "Aktuell aktiv"
+
+msgid "Max. Difference between Phrases"
+msgstr "Max. Abweichung zwischen Ausdrücken"
+
+msgid "Maximal difference between similarities of tags in selected passages to the user input; value between 0 and 1 (e.g. Say tag A is the best match and has similarity 0.9 to the given user message and tag F has a similarity 0.734. If you wanted both to be selected as options you would need to set this value at least to 0.166 (0.9 - 0.734))"
+msgstr "Maximale Abweichung zwischen den Ähnlichkeiten der Schlagwörter ausgewählter Passagen zur Nutzereingabe; Wert zwischen 0 und 1 (z.B. angenommen, Schlagwort A (bester Treffer) hat eine Ähnlichkeit von 0,9 zur Nutzeranfrage und Schlagwort F eine von 0,734. Wenn beide angezeigt werden sollen, muss dieser Wert wenigstens 0,166 (0,9 - 0,734) sein)"
+
+msgid "Min. Similarity for Phrases"
+msgstr "Min. Ähnlichkeit für Ausdrücke"
+
+msgid "Minimal similarity between a user message and a passage tag for selecting the passage; value between 0 and 1 (only passages with main tags may be selected)"
+msgstr "Mindest-Ähnlichkeit von Schlagwörtern mit der Benutzereingabe zur Auswahl von Passagen; Wert zwischen 0 und 1 (nur Passagen mit Haupt-Schlagwörtern werden zur Auswahl in Betracht gezogen)"
+
+msgid "Min. Similarity for direct Jump"
+msgstr "Min. Ähnlichkeit für Direktsprung"
+
+msgid "Minimal similarity between a passage tag and the user input for jumping directly into a passage even though more passages with similar tags had been found; value between 0 and 1"
+msgstr "Mindest-Ähnlichkeit eines Schlagwortes zur Nutzereingabe für den direkten Sprung in eine Passage, auch wenn mehrere Passagen mit ähnlichen Schlagwörtern gefunden wurden; Wert zwischen 0 und 1"
+
+msgid "Boost for grouped Passages"
+msgstr "Verstärkung für Gruppen-Passagen"
+
+msgid "Boost of hit probability for passages within the same group of the previously shown passage; value between 0 and 1"
+msgstr "Verstärkung der Trefferwahrscheinlichkeit von Schlagwörtern zur Nutzereingabe für Passagen in der selben Gruppe wie die zuvor angezeigte Passage; Wert zwischen 0 und 1"
+
+msgid "Boost for Passages within Group"
+msgstr "Verstärkung für gruppierte Passagen"
+
+msgid "Boost of hit probability for passages within the same group of the currently shown passage; value between 0 and 1"
+msgstr "Verstärkung der Trefferwahrscheinlichkeit von Schlagwörtern zur Nutzereingabe für Passagen in der selben Gruppe wie die momentan angezeigte Passage; Wert zwischen 0 und 1"
+
+msgid "Max. Passages to choose"
+msgstr "Max. Passagen zur Auswahl"
+
+msgid "Maximal number of options in 'CHOOSE PASSAGE' passage"
+msgstr "Maximale Anzahl von Optionen zur Anzeige in der Passage 'CHOOSE PASSAGE'"
+
+msgid "Max. Passages for Suggestions"
+msgstr "Max. Passagen für Vorschläge"
+
+msgid "Maximum number of Passage Suggestions to be shown while the user is typing"
+msgstr "Maximale Zahl von Passagen-Vorschlägen während der Nutzereingabe"
+
+msgid "Typing Speed in ms/word"
+msgstr "Anzeigegeschwindigkeit in ms/Wort"
+
+msgid "Chatbot typing speed in milliseconds per word"
+msgstr "Anzeigegeschwindigkeit des Chatbots in Millisekunden je Wort"
+
+msgid "Enable Facebook Errors and Warnings"
+msgstr "Anzeige von Fehlern und Warnungen in Facebook"
+
+msgid "Log errors and warnings specific for the Facebook runtime environment"
+msgstr "Zeigt Fehler und Warnungen in der Facebook-Laufzeitumgebung an"
+
+msgid "Min. characters for Auto Completion"
+msgstr "Min. Zeichen für Autovervollständigung"
+
+msgid "Minimun number of typed characters to trigger auto completion search"
+msgstr "Minimale Anzahl eingegebener Zeichen zur Aktivierung der Autovervollständigung"
+
+msgid "Max. Difference between Suggestions"
+msgstr "Max. Abweichung zwischen Vorschlägen"
+
+msgid "Maximal difference between similarities of tags in selected passages to the user input while showing suggested passages; value between 0 and 1 (e.g. Say tag A is the best match and has similarity 0.9 to the given user message and tag F has a similarity 0.734. If you wanted both to be shown as suggestions you would need to set this value at least to 0.166 (0.9 - 0.734))"
+msgstr "Maximale Abweichung zwischen den Ähnlichkeiten der Schlagwörter vorgeschlagener Passagen zur Nutzereingabe; Wert zwischen 0 und 1 (z.B. angenommen, Schlagwort A (bester Treffer) hat eine Ähnlichkeit von 0,9 zur Nutzeranfrage und Schlagwort F eine von 0,734. Wenn beide vorgeschlagen werden sollen, muss dieser Wert wenigstens 0,166 (0,9 - 0,734) sein)"
+
+msgid "Min. Similarity for Suggestions"
+msgstr "Min. Ähnlichkeit für Vorschläge"
+
+msgid "Minimal similarity between a user message and a passage tag for suugesting the passage; value between 0 and 1 (only passages with main tags may be suggested)"
+msgstr "Mindest-Ähnlichkeit von Schlagwörtern mit der Benutzereingabe zum Vorschlagen von Passagen; Wert zwischen 0 und 1 (nur Passagen mit Haupt-Schlagwörtern werden vorgeschlagen)"
+
+msgid "Number of unmatched Phrases for Live Chat"
+msgstr "Anzahl nicht erkannter Eingaben für Live-Chat"
+
+msgid "Start Live Chat after this count of unmatched User phrases"
+msgstr "Startet den Live-Chats, wenn die entsprechende Anzahl nicht gefundener Passagen erreicht wurde"
+
+msgid "Min. Characters for Live Chat"
+msgstr "Min. Zeichen für Live-Chat"
+
+msgid "Minimum Number of characters from an unmatched user phrase that triggers the Live Chat"
+msgstr "Mindestzahl der eingegebenen Zeichen bei nicht erkannter Eingabe zum Starten des Live-Chats"
+
+msgid "Restore defaults"
+msgstr "Standardwerte zurücksetzen"
+
+msgid "HTML Snippet"
+msgstr "HTML-Snippet"
+
+msgid "Open on load"
+msgstr "Öffnen beim Laden"
+
+msgid "Specify how the Chatbot will be shown when the page is loaded."
+msgstr "Legt fest, wann der Chatbot auf einer geladenen Seite angezeigt wird."
+
+msgid "Initially closed, show previous state when page is loaded afterwards."
+msgstr "Anfangs geschlossen, bei nachfolgendem Laden im zuletzt angezeigten Status."
+
+msgid "Always open the Chatbot when page is loaded."
+msgstr "Chatbot wird beim Laden der Seite geöffnet angezeigt."
+
+msgid "Never open the Chatbot when page is loaded."
+msgstr "Chatbot ist beim Laden der Seite geschlossen."
+
+msgid "Open the Chatbot on Desktop only when page is loaded."
+msgstr "Chatbot wird beim Laden der Seite auf Desktop-Geräten geöffnet angezeigt."
+
+msgid "Open the Chatbot on Mobile only when page is loaded."
+msgstr "Chatbot wird beim Laden der Seite auf Mobil-Geräten geöffnet angezeigt."
+
+msgid "Remember"
+msgstr "Merken"
+
+msgid "Always"
+msgstr "Immer"
+
+msgid "Never"
+msgstr "Nie"
+
+msgid "Desktop only"
+msgstr "Nur Desktop"
+
+msgid "Mobile only"
+msgstr "Nur Mobilgeräte"
+
+msgid "Delay in ms"
+msgstr "Startverzögerung"
+
+msgid "Time in ms on initial page load after the Chatbot will open if closed."
+msgstr "Zeit in ms, nachdem ein anfangs geschlossener Chatbot erstmalig geöffnet wird"
+
+msgid "Open Chatbot after the specified time in milliseconds on first page load (Wake-up)."
+msgstr "Öffnet den Chatbot nach der angegebenen Zeit in Millisekunden beim ersten Laden der Seite (Wake-Up)."
+
+msgid "Start Passage"
+msgstr "Start-Passage"
+
+msgid "Specify the Chatbot passage that will be shown when the page is loaded."
+msgstr "Legt die Passage fest, die beim Laden der Seite angezeigt wird."
+
+msgid "Story default"
+msgstr "Wie im Editor angegeben"
+
+msgid "Begin Story with passage &ldquo;%s&ldquo;."
+msgstr "Starte Chatbot mit Passage &ldquo;%s&ldquo;."
+
+msgid "Begin Story with passage specified in Story Editor."
+msgstr "Starte Chatbot mit der im Editor angegebenen Startpassage."
+
+msgid "Render position"
+msgstr "Anzeigeposition"
+
+msgid "Position of the Chatbot within the page."
+msgstr "Position des Chatbots auf der Seite."
+
+msgid "Position the Chatbot on the bottom left corner of the page."
+msgstr "Positioniert den Chatbot am unteren linken Rand der Seite."
+
+msgid "Position the Chatbot on the bottom right corner of the page."
+msgstr "Positioniert den Chatbot am unteren rechten Rand der Seite."
+
+msgid "Position the Chatbot where the HTML snippet is placed within the page."
+msgstr "Positioniert den Chatbot, wo das HTML-Snippet in die Seite eingebunden ist."
+
+msgid "Bottom left"
+msgstr "Unten links"
+
+msgid "Bottom right"
+msgstr "Unten rechts"
+
+msgid "In place"
+msgstr "An der Stelle"
+
+msgid "Story URL"
+msgstr "Story-URL"
+
+msgid "Uniform Resource Locator or server file path of the Story data."
+msgstr "URL-Adresse oder Server-Datepfad der Chatbot-Daten."
+
+msgid "HTML Snippet"
+msgstr "HTML-Snippet"
+
+msgid "HTML code snippet that must be inserted into the page's HTML content."
+msgstr "HTML-Code-Snippet, das in die HTML-Struktur eingebunden werden muss."
+
+msgid "Copy Snippet to Clipboard"
+msgstr "Snippet in Zwischenablage kopieren"
+
+msgid "Script snippet was copied to clipboard."
+msgstr "Skript-Snippet wurde in die Zwischenablage kopiert."
+
+msgid "Story URL must be set."
+msgstr "Story-URL muss angegeben werden."
+
+msgid "Publish Chatbot via FTP"
+msgstr "Chatbot via FTP veröffentlichen"
+
+msgid "FTP Server"
+msgstr "FTP-Server"
+
+msgid "Remote FTP Server name"
+msgstr "Name des FTP-Servers"
+
+msgid "Port"
+msgstr ""
+
+msgid "FTP port"
+msgstr "FTP-Port"
+
+msgid "User"
+msgstr "Benutzer"
+
+msgid "FTP user ID"
+msgstr "FTP-Benutzer-ID"
+
+msgid "Password"
+msgstr "Kennwort"
+
+msgid "User's FTP password"
+msgstr "Kennwort des FTP-Benutzers"
+
+msgid "File path"
+msgstr "Datei-Pfad"
+
+msgid "Do you want to replace the Chatbot on your website?"
+msgstr "Soll der Chatbot auf der Webseite überschrieben werden?"
+
+msgid "This cannot be undone"
+msgstr "Dies kann nicht rückgängig gemacht werden"
+
+msgid "No"
+msgstr "Nein"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "Publish Chatbot"
+msgstr "Chatbot veröffentlichen"
+
+msgid "Update Chatbot"
+msgstr "Chatbot überschreiben"
+
+msgid "Last published:"
+msgstr "Zuletzt veröffentlicht"
+
+msgid "last published on %s"
+msgstr "zuletzt am %s veröffentlicht"
+
+msgid "Entry '%s' in local storage could not be parsed."
+msgstr "Eintrag '%s' im Local Storage konnte nicht gelesen werden."
+
+msgid "FTP Server must be set."
+msgstr "Der FTP-Server muss angegeben werden."
+
+msgid "Port must be set."
+msgstr "Der Port muss angegeben werden."
+
+msgid "File path is not a valid path name."
+msgstr "Der Dateipfad ist ungültig."
+
+msgid "User ID must be set."
+msgstr "Die Benutzer-ID muss angegeben werden."
+
+msgid "Password must be set."
+msgstr "Das Kennwort muss angegeben werden."
+
+msgid "Error on uploading to host '%1$s': %2$s."
+msgstr "Fehler beim Hochladen zum Host '%1$s': %2$s."
+
+msgid "Story was uploaded to '%s'."
+msgstr "Der Chatbot wurde hochgeladen zu '%s'."

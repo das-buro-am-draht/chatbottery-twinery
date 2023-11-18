@@ -70,8 +70,7 @@ module.exports = Vue.extend({
 			.catch(e => {
 				notify(
 					locale.say(
-						'The chatbot &ldquo;%1$s&rdquo; could not ' +
-						'be published (%2$s).',
+						'The chatbot &ldquo;%1$s&rdquo; could not be published (%2$s).',
 						escape(this.story.name),
 						escape(e.message)
 					),
@@ -89,8 +88,7 @@ module.exports = Vue.extend({
 		delete() {
 			confirm({
 				message: locale.say(
-					'Are you sure you want to delete &ldquo;%s&rdquo;? ' +
-						'This cannot be undone.',
+					'Are you sure you want to delete &ldquo;%s&rdquo;?<br>This cannot be undone.',
 					escape(this.story.name)
 				),
 				buttonLabel:

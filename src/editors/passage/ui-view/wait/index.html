@@ -8,7 +8,8 @@
 				<label for="variable">{{ 'Variable' | say }}:</label>
 				<div class="passageUI-row-input">
 					<div class="passageUI-wait-variable">
-						<input type="text" class="code" list="userData" id="variable" v-model="variable" @input="onChangeVariable($event)" :placeholder="'User variable without \'$\' prefix' | say" required>
+						<input type="text" class="code" list="userData" id="variable" v-model="variable" @input="onChangeVariable($event)" 
+						:title="'User variable without \'$\' prefix' | say" :placeholder="'User variable without \'$\' prefix' | say" required>
 						<datalist id="userData">
 							<option v-for="field in userData" :value="field">
 						</datalist>
@@ -23,7 +24,7 @@
 			</div>
 			<div class="passageUI-row">
 				<label for="placeholder">{{ 'Placeholder' | say }}:</label>
-				<input type="text" class="code" id="placeholder" v-model="placeholder" @input="onChangePlaceholder($event)" :title="'Input field placeholder' | say">
+				<input type="text" id="placeholder" v-model="placeholder" @input="onChangePlaceholder($event)" :title="'Input field placeholder' | say">
 			</div>
 		</div>
 	</div>

@@ -45,8 +45,7 @@ module.exports = Vue.extend({
 					.catch(e => {
 						notify(
 							locale.say(
-								'The chatbot format &ldquo;%1$s&rdquo; could not ' +
-								'be loaded (%2$s).',
+								'The chatbot format &ldquo;%1$s&rdquo; could not be loaded (%2$s).',
 								escape(format.name + ' ' + format.version),
 								escape(e.message)
 							),

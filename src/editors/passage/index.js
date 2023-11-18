@@ -49,7 +49,7 @@ module.exports = Vue.extend({
 		/* Update the window title. */
 
 		this.oldWindowTitle = document.title;
-		document.title = locale.say('Editing \u201c%s\u201d', this.passage.name);
+		document.title = locale.say('Editing \"%s\"', this.passage.name);
 
 		/*
 		Load the story's format and see if it offers a CodeMirror mode.

@@ -110,8 +110,7 @@ const publish = (module.exports = {
 			if (!story.passages.find((p) => p.id === startId)) {
 				throw new Error(
 					locale.say(
-						"The passage set as starting point for this chatbot does " +
-							"not exist."
+						"The passage set as starting point for this chatbot does not exist."
 					)
 				);
 			}

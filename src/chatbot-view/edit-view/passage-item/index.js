@@ -370,15 +370,14 @@ module.exports = Vue.extend({
 				this.delete();
 			} else {
 				let message = locale.say(
-					'Are you sure you want to delete &ldquo;%s&rdquo;? ' +
-					'This cannot be undone.',
+					'Are you sure you want to delete &ldquo;%s&rdquo;?<br>This cannot be undone.',
 					escape(this.passage.name)
 				);
 
 				if (!hasPrimaryTouchUI()) {
-					message += '<br><br>' + locale.say(
-						'(Hold the Shift key when deleting to skip this message.)'
-					);
+					message += '<br><br>(' + locale.say(
+						'Hold the Shift key when deleting to skip this message'
+					) + '.)';
 				}
 
 				confirm({

@@ -90,7 +90,7 @@ const actions = (module.exports = {
 					reject(
 						new Error(
 							locale.say(
-								'a more recent version of the chatbot format &ldquo;%s&rdquo; is already installed',
+								'A more recent version of the chatbot format &ldquo;%s&rdquo; is already installed',
 								data.name
 							)
 						)
@@ -267,8 +267,7 @@ const actions = (module.exports = {
 							&& semverUtils.parse(store.state.pref.defaultFormat.version).major === semverUtils.parse(defaultFormats.story.version).major)) {
 			notify(
 				locale.say(
-					'Default Chatbot Format &ldquo;%1$s %2$s&rdquo; is not ' +
-					'the latest (%3$s %4$s).',
+					'Default Chatbot Format &ldquo;%1$s %2$s&rdquo; is not the latest (%3$s %4$s).',
 					escape(store.state.pref.defaultFormat.name),
 					store.state.pref.defaultFormat.version,
 					escape(defaultFormats.story.name),

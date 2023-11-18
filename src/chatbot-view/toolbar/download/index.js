@@ -49,8 +49,7 @@ module.exports = Vue.extend({
 			.catch(e => {
 				notify(
 					locale.say(
-						'The chatbot &ldquo;%1$s&rdquo; could not ' +
-						'be published (%2$s).',
+						'The chatbot &ldquo;%1$s&rdquo; could not be published (%2$s).',
 						escape(this.story.name),
 						escape(e.message)
 					),
