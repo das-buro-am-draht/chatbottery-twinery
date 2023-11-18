@@ -7,7 +7,7 @@
 			<div class="passageUI-row">
 				<label for="iframeUrl">{{ 'URL' | say }}:</label>
 				<div class="passageUI-row-input">
-					<input type="text" id="iframeUrl" v-model="iframe" @input="onChangeUrl($event)" :placeholder="'URL or PDF Link of embedded Resource' | say" required>
+					<input type="text" id="iframeUrl" v-model="iframe" @input="onChangeUrl($event)" :title="'URL or PDF Link of embedded Resource' | say" :placeholder="'URL or PDF Link of embedded Resource' | say" required>
 					<p class="error" v-show="!iframe">{{ 'URL of IFrame / PDF must be set' | say }}.</p>
 					<p class="error" v-show="!isValid">{{ 'Resource Locator must be a valid URL' | say }}.</p>
 				</div>

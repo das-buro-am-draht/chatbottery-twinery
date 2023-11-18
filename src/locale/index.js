@@ -74,7 +74,7 @@ const Locale = (module.exports = {
 		/* Set locale in MomentJS. */
 
 		moment.locale(locale);
-		i18n = new Jed(data);
+		window.i18n = i18n = new Jed({ locale, ...data });
 	},
 
 	/*

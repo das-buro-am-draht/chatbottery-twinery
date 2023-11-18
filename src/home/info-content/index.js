@@ -32,7 +32,7 @@ module.exports = Vue.extend({
 
 			prompt({
 				message: locale.say(
-					'What should your chatbot be named?<br>(You can change this later.)'
+					'How should your chatbot be named?<br>(You can change this later.)'
 				),
 				buttonLabel: '<i class="fa fa-plus"></i> ' + locale.say('Add'),
 				buttonClass: 'create',

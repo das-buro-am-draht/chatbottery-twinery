@@ -70,7 +70,7 @@ module.exports = Vue.extend({
 				case TYPE_MAIN:
 					this.description = [
 						locale.say('Main Tag'), 
-						locale.say('Main Tag will be shown to user in \"Did you mean...?\", when prompt is too vague')
+						locale.say('Main Tag will be shown to user in \"Did you mean...?\" when prompt is too vague')
 					];
 					break;
 				case TYPE_GROUP:
