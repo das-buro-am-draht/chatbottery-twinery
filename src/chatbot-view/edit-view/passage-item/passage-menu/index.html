@@ -1,11 +1,11 @@
 <drop-down open-on="hover" :show-now="true" position="bottom center" class="passage">
 	<!-- L10n: %s is the name of the thing to be deleted. -->
-	<button @click="delete" class="danger subtle" title="{{{ 'Delete &ldquo;%s&rdquo;' | say passage.name }}}">
+	<button @click="delete" class="danger subtle" title="{{ 'Delete \'%s\'' | say passage.name }}">
 		<i class="fa fa-trash-o"></i>
 	</button>
 
 	<!-- L10n: %s is the name of the thing to be edited. -->
-	<button @click="edit" title="{{{ 'Edit &ldquo;%s&rdquo;' | say passage.name }}}">
+	<button @click="edit" title="{{ 'Edit \'%s\'' | say passage.name }}">
 		<i class="fa fa-pencil"></i>
 	</button>
 

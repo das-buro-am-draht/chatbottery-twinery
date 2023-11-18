@@ -62,12 +62,12 @@ msgid "Add a new passage"
 msgstr "Neue Passage hinzufügen"
 
 #: src/chatbot-view/edit-view/passage-item/passage-menu/index.html
-msgid "Delete &ldquo;%s&rdquo;"
-msgstr "&ldquo;%s&rdquo; löschen"
+msgid "Delete '%s'"
+msgstr "'%s' löschen"
 
 #: src/chatbot-view/edit-view/passage-item/passage-menu/index.html
-msgid "Edit &ldquo;%s&rdquo;"
-msgstr "&ldquo;%s&rdquo; bearbeiten"
+msgid "Edit '%s'"
+msgstr "'%s' bearbeiten"
 
 #: src/chatbot-view/edit-view/passage-item/passage-menu/index.html
 msgid "Test Chatbot here"
