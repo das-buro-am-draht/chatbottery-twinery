@@ -1791,6 +1791,12 @@ msgstr "Story-JSON kopieren"
 msgid "Story JSON was copied to clipboard."
 msgstr "Die Story-JSON wurde in die Zwischenablage kopiert"
 
+msgid "Performance Settings"
+msgstr "Performanz-Einstellungen"
+
+msgid "Errors and Warnings"
+msgstr "Fehler und Warnungen"
+
 msgid "Currently active"
 msgstr "Aktuell aktiv"
 
