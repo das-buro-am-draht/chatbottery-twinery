@@ -1840,7 +1840,7 @@ msgid "Max. Passages for Suggestions"
 msgstr "Max. Passagen für Vorschläge"
 
 msgid "Maximum number of Passage Suggestions to be shown while the user is typing"
-msgstr "Maximale Zahl von Passagen-Vorschlägen während der Nutzereingabe"
+msgstr "Maximale Zahl von Themen-Vorschlägen während der Nutzereingabe"
 
 msgid "Typing Speed in ms/word"
 msgstr "Anzeigegeschwindigkeit in ms/Wort"
@@ -1876,7 +1876,7 @@ msgid "Number of unmatched Phrases for Live Chat"
 msgstr "Anzahl nicht erkannter Eingaben für Live-Chat"
 
 msgid "Start Live Chat after this count of unmatched User phrases"
-msgstr "Startet den Live-Chats, wenn die entsprechende Anzahl nicht gefundener Passagen erreicht wurde"
+msgstr "Startet den Live-Chat, wenn die entsprechende Anzahl nicht gefundener Passagen erreicht wurde"
 
 msgid "Min. Characters for Live Chat"
 msgstr "Min. Zeichen für Live-Chat"
