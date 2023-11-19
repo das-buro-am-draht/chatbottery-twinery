@@ -1779,14 +1779,26 @@ msgstr "AI-Prompt"
 msgid "Download file"
 msgstr "Datei herunterladen"
 
+msgid "Downloads the Chatbot's Story Data to local Download Folder."
+msgstr "Speichert die Chatbot Daten im lokalen Download-Verzeichnis."
+
 msgid "Publish to Website"
 msgstr "Chatbot veröffentlichen"
+
+msgid "Sends the Chatbot's Story Data to a Server via FTP."
+msgstr "Sendet die Chatbot Daten zu einem Server via FTP."
 
 msgid "Copy HTML Snippet"
 msgstr "HTML-Snippet kopieren"
 
+msgid "Copies the HTML-Snippet that must be embedded into the web page to the Clipboard."
+msgstr "Kopiert das auf einer Webseite einzubindende HTML-Snippet in die Zwischenablage."
+
 msgid "Copy Story JSON"
 msgstr "Story-JSON kopieren"
+
+msgid "Copies the Chatbot's Story Data to the Clipboard."
+msgstr "Kopiert die Chatbot Daten in die Zwischenablage."
 
 msgid "Story JSON was copied to clipboard."
 msgstr "Die Story-JSON wurde in die Zwischenablage kopiert"
@@ -1932,8 +1944,8 @@ msgstr "Startverzögerung"
 msgid "Time in ms on initial page load after the Chatbot will open if closed."
 msgstr "Zeit in ms, nachdem ein anfangs geschlossener Chatbot erstmalig geöffnet wird"
 
-msgid "Open Chatbot after the specified time in milliseconds on first page load (Wake-up)."
-msgstr "Öffnet den Chatbot nach der angegebenen Zeit in Millisekunden beim ersten Laden der Seite (Wake-Up)."
+msgid "Open Chatbot after the specified time in milliseconds on first load (Wake-up)."
+msgstr "Öffnet den Chatbot nach der angegebenen Zeit in Millisekunden beim erstmaligen Laden (Wake-Up)."
 
 msgid "Start Passage"
 msgstr "Start-Passage"
