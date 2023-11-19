@@ -68,16 +68,16 @@ module.exports = Vue.extend({
 		},
 
 		passagesVisited() {
-			const passages = this.story.passages.length;
-			if (!passages) {
+			const passages = this.story.passages;
+			if (!passages.length) {
 				return '';
 			} else {
 				return Math.floor((this.items[2].reduce((prev, item) => {
-					if (item.events > 0) {
+					if (item.events > 0 && passages.find((passage) => passage.name === item.label)) {
 						prev += 1;
 					}
 					return prev;
-				}, 0) / passages) * 100) + '%';
+				}, 0) / passages.length) * 100) + '%';
 			}
 		},
 	},
