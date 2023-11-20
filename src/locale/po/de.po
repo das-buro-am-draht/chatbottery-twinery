@@ -231,7 +231,7 @@ msgstr "Chatbots verwalten"
 
 #: src/chatbots/stories/index.html
 msgid "There are no chatbots saved in Chatbottery right now. To get started, you can either create a new chatbot or import an existing one from a file"
-msgstr "Es sind noch keine Chatbots gespeichert. Du kannst einen neuen Chatbot erstellen oder einen bestehenden aus einer Datei importieren."
+msgstr "Es sind noch keine Chatbots gespeichert. Du kannst einen neuen Chatbot erstellen oder einen bestehenden aus einer Datei importieren"
 
 #: src/chatbots/stories/index.html
 msgid "Import Chatbot"
@@ -1495,7 +1495,7 @@ msgid "by %s"
 msgstr "von %s"
 
 #: src/dialogs/formats/item.js:55
-msgid "You may not remove the default chatbot format. Please choose another one first."
+msgid "You may not remove the default chatbot format. Please choose another one first!"
 msgstr "Das Standard-Format kann nicht entfernt werden. Wähle bitte ein anderes aus!"
 
 #: src/dialogs/formats/item.js:65
@@ -1528,7 +1528,7 @@ msgstr "AI-Prompt"
 
 #: src/dialogs/openai/index.js:23
 msgid "These settings apply to the AI Prompt Component.<br><i>The chatbot-file needs to be exported again for these settings to take effect.</i>"
-msgstr "Diese Einstellungen steuern die AI-Aufrufparameter für das Passagenelement 'AI-Anfrage'.<br>Die Chatbot-Datei muss erneut exportiert werden, damit Änderungen wirksam werden."
+msgstr "Diese Einstellungen steuern die AI-Aufrufparameter für das Passagenelement 'AI-Anfrage'.<br><i>Die Chatbot-Datei muss erneut exportiert werden, damit Änderungen wirksam werden.</i>"
 
 #: src/dialogs/openai/index.js:27
 msgid "Tag Alternatives"
@@ -1776,9 +1776,6 @@ msgid "AI prompt"
 msgstr "AI-Prompt"
 
 # ----------------- story format --------------------
-msgid "Download file"
-msgstr "Datei herunterladen"
-
 msgid "Downloads the Chatbot's Story Data to local Download Folder."
 msgstr "Speichert die Chatbot Daten im lokalen Download-Verzeichnis."
 
@@ -1801,7 +1798,7 @@ msgid "Copies the Chatbot's Story Data to the Clipboard."
 msgstr "Kopiert die Chatbot Daten in die Zwischenablage."
 
 msgid "Story JSON was copied to clipboard."
-msgstr "Die Story-JSON wurde in die Zwischenablage kopiert"
+msgstr "Die Story-JSON wurde in die Zwischenablage kopiert."
 
 msgid "Performance Settings"
 msgstr "Performanz-Einstellungen"
@@ -1942,7 +1939,7 @@ msgid "Delay in ms"
 msgstr "Startverzögerung"
 
 msgid "Time in ms on initial page load after the Chatbot will open if closed."
-msgstr "Zeit in ms, nachdem ein anfangs geschlossener Chatbot erstmalig geöffnet wird"
+msgstr "Zeit in ms, nachdem ein anfangs geschlossener Chatbot erstmalig geöffnet wird."
 
 msgid "Open Chatbot after the specified time in milliseconds on first load (Wake-up)."
 msgstr "Öffnet den Chatbot nach der angegebenen Zeit in Millisekunden beim erstmaligen Laden (Wake-Up)."
@@ -1991,9 +1988,6 @@ msgstr "Story-URL"
 
 msgid "Uniform Resource Locator or server file path of the Story data."
 msgstr "URL-Adresse oder Server-Datepfad der Chatbot-Daten."
-
-msgid "HTML Snippet"
-msgstr "HTML-Snippet"
 
 msgid "HTML code snippet that must be inserted into the page's HTML content."
 msgstr "HTML-Code-Snippet, das in die HTML-Struktur eingebunden werden muss."
@@ -2056,7 +2050,7 @@ msgid "Update Chatbot"
 msgstr "Chatbot überschreiben"
 
 msgid "Last published:"
-msgstr "Zuletzt veröffentlicht"
+msgstr "Zuletzt veröffentlicht:"
 
 msgid "last published on %s"
 msgstr "zuletzt am %s veröffentlicht"
