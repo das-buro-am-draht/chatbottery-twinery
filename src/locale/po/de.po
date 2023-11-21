@@ -59,7 +59,7 @@ msgstr "Erstellt mit Twine, eine Open-Source-Software zum Erstellen interaktiver
 
 #: src/chatbot-view/edit-view/passage-button/index.html
 msgid "Add a new passage"
-msgstr "Neue Passage hinzufügen"
+msgstr "Passage hinzufügen"
 
 #: src/chatbot-view/edit-view/passage-item/passage-menu/index.html
 msgid "Delete '%s'"

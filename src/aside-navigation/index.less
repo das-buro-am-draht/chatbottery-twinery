@@ -1,9 +1,9 @@
 .asideNavigation {
     background: #4c4c4c;
-    flex: 282px;
-    max-width: 282px;
+    flex: 0 0 260px;
     height: 100vh;
     display: flex;
+    overflow-y: auto;
     flex-direction: column;
     border-right: 1px solid #70727c;
     position: relative;
@@ -123,6 +123,7 @@
         align-items: center;
         padding: 0 10px;
         font-size: 14px;
+        text-align: left;
     }
     &--redirect {
         height: 55px;
@@ -140,8 +141,7 @@
         mask-repeat: no-repeat;
     }
     &--footer {
-        position: absolute;
-        bottom: 0px;
+        margin-top: auto;
     }
     &--locales {
         display: flex;
