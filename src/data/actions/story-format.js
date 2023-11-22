@@ -17,7 +17,7 @@ const defaultFormats = {
 	story: {
 		name: 'Chatbottery',
 		url: `https://${prefix}web-runtime.chatbottery.com/editor/chatbotteryStoryFormat.v12.js`,
-		version: '12.2.1',
+		version: '12.2.2',
 	},
 	proof: {
 		name: 'Illume',
