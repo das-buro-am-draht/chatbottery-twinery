@@ -1133,8 +1133,8 @@ msgid "Delete entry"
 msgstr "Eintrag löschen"
 
 #: src/editors/passage/ui-view/index.html
-msgid "Condition:"
-msgstr "Bedingung:"
+msgid "Condition"
+msgstr "Bedingung"
 
 #: src/editors/passage/ui-view/index.html
 msgid "JavaScript condition - e.g '$chapter === 3'"
@@ -1145,8 +1145,8 @@ msgid "JavaScript condition to be evaluated to true for executing this task"
 msgstr "Die JavaScript-Bedingung muss zu 'true' evaluiert werden, damit das Element ausgeführt wird"
 
 #: src/editors/passage/ui-view/index.html
-msgid "User function:"
-msgstr "Nutzer-Funktion:"
+msgid "User function"
+msgstr "Nutzer-Funktion"
 
 #: src/editors/passage/ui-view/index.html
 msgid "User function being invoked on this task"
@@ -1157,16 +1157,32 @@ msgid "Name of user function to invoke"
 msgstr "Bezeichnung der Nutzerfunktion, die aufgerufen werden soll"
 
 #: src/editors/passage/ui-view/index.html
-msgid "CSS Class:"
-msgstr "CSS-Klasse:"
+msgid "Context"
+msgstr "Kontext"
+
+#: src/editors/passage/ui-view/index.html
+msgid "Set or clear Context"
+msgstr "Kontext setzen oder löschen"
+
+#: src/editors/passage/ui-view/index.html
+msgid "Sets or clears the Context"
+msgstr "Setzt oder löscht den Kontext"
+
+#: src/editors/passage/ui-view/index.html
+msgid "Name of Context to set"
+msgstr "Name des zu setzenden Kontexts"
+
+#: src/editors/passage/ui-view/index.html
+msgid "CSS Class"
+msgstr "CSS-Klasse"
 
 #: src/editors/passage/ui-view/index.html
 msgid "CSS class name"
 msgstr "CSS-Klassename"
 
 #: src/editors/passage/ui-view/index.html
-msgid "Typing animation time:"
-msgstr "Dauer der Antwort-Animation des Chatbots:"
+msgid "Typing animation time"
+msgstr "Dauer der Antwort-Animation des Chatbots"
 
 #: src/editors/passage/ui-view/index.html
 msgid "Typing animation Time in Milliseconds"
@@ -1473,7 +1489,7 @@ msgstr "Fehler bei der Analyse der Webseiten-URL &ldquo;%1$s&rdquo; - %2$s."
 
 #: src/dialogs/external-data/index.js:364
 msgid "There were changes detected for the external data dialogue. Are you sure you want to discard those changes?"
-msgstr "Es wurden Änderungen im Dialog „Externe Daten“ festgestellt. Änderungen trotzdem verwerfen?"
+msgstr "Es wurden Änderungen am Dialog 'Externe Daten' festgestellt. Sollen diese Änderungen verworfen werden?"
 
 #: src/dialogs/external-data/index.js:365 src/dialogs/openai/index.js:90
 #: src/dialogs/plugins/index.js:155 src/dialogs/settings/index.js:65
@@ -1576,7 +1592,7 @@ msgstr "Es wurden Änderungen an den Plugin-Einstellungen festgestellt. Sollen d
 
 #: src/dialogs/settings/index.js:64
 msgid "There were changes detected for the settings dialog. Are you sure you want to discard those changes?"
-msgstr "Es wurden Änderungen an den Einstellungen festgestellt. Sollen diese verworfen werden?"
+msgstr "Es wurden Änderungen an den Einstellungen festgestellt. Sollen diese Änderungen verworfen werden?"
 
 #: src/dialogs/story-format/index.js:47
 msgid "The chatbot format &ldquo;%1$s&rdquo; could not be loaded (%2$s)."
@@ -1631,7 +1647,7 @@ msgstr "&ldquo;%1$s&rdquo; wurde gefunden"
 
 #: src/dialogs/user/index.js:270
 msgid "There were changes detected for the user data dialog. Are you sure you want to discard those changes?"
-msgstr "Es wurden Änderungen an den Benutzer-Daten festgestellt. Sollen diese verworfen werden?"
+msgstr "Es wurden Änderungen an den Benutzer-Daten festgestellt. Sollen diese Änderungen verworfen werden?"
 
 #: src/editors/passage/index.js:53
 msgid "Editing \"%s\""
@@ -1694,9 +1710,13 @@ msgstr "Normale Schlagwörter"
 msgid "Passage content will be shown, when user submits the exact or a similar phrase"
 msgstr "Passagen werden angezeigt, wenn eine Nutzereingabe ausreichende Ähnlichkeit mit dem entsprechenden Schlagwort aufweist"
 
-#: src/editors/passage/tag-editor/tag-dialog/index.js:127
+#: src/editors/passage/tag-editor/tag-dialog/index.js:131
 msgid "Keyword &ldquo;%1$s&rdquo; already exists."
 msgstr "Schlagwort &ldquo;%1$s&rdquo; existiert bereits."
+
+#: src/editors/passage/tag-editor/tag-dialog/index.js:160
+msgid "There were changes detected for the Tag Settings. Are you sure you want to discard those changes?"
+msgstr "Es wurden Änderungen an den Schlagwort-Einstellungen festgestellt. Sollen diese Änderungen verworfen werden?"
 
 #: src/editors/passage/ui-view/index.js:85
 msgid "Element was copied to clipboard."

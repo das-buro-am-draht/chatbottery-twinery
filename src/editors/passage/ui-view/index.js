@@ -137,6 +137,9 @@ module.exports = Vue.extend({
 			}
 			return empty;
 		},
+		onContext(index, event) {
+			this.tasks[index].attributes['context'] = event.target.checked ? '' : null;
+		},
 		onDelete(index) {
 			Promise.resolve(this.tasks[index]).then((task) => {
 				if (!this.isEmpty(task)) {

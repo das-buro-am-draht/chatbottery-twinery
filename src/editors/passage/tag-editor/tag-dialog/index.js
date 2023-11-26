@@ -2,27 +2,28 @@ const Vue = require('vue');
 const { typeFromTag, nameFromTag } = require('../../../../utils/tags')
 const { setTagColorInStory } = require('../../../../data/actions/story');
 const { updatePassage } = require('../../../../data/actions/passage');
-const { TYPE_MAIN,
-				TYPE_GROUP,
-				TYPE_SUGGESTION,
-				TYPE_CONDITIONAL,
-				insertTag,
-			} = require('../../../../utils/tags');
+const { 
+	TYPE_MAIN,
+	TYPE_GROUP,
+	TYPE_SUGGESTION,
+	TYPE_CONDITIONAL,
+	insertTag,
+} = require('../../../../utils/tags');
 const notify = require('../../../../ui/notify');
 const locale = require('../../../../locale');
+const { confirm } = require('../../../../dialogs/confirm');
 const escape = require('lodash.escape');
 
 require('./index.less');
-
 
 module.exports = Vue.extend({
 	
 	template: require('./index.html'),
 
 	data: () => ({
-    storyId: '',
-    passage: null,
-    origin: null,
+		storyId: '',
+		passage: null,
+		origin: null,
 		tag: null,
 		edit: {
 			tag: '',
@@ -30,16 +31,18 @@ module.exports = Vue.extend({
 			color: null,
 		},
 		description: null,
+		modified: false,
 	}),
 
-  ready() {
-    this.edit.color = this.getStory().tagColors[this.tag];
-    if (this.tag) {
+	ready() {
+		this.edit.color = this.getStory().tagColors[this.tag];
+		if (this.tag) {
 			this.edit.tag = nameFromTag(this.tag);
 			this.edit.type = typeFromTag(this.tag);
-    }
+		}
+		this.$watch('edit', () => this.modified = true, { deep: true });
 		Vue.nextTick(() => this.$els.tagName.focus());
-  },
+	},
 
 	computed: {
 		label() {
@@ -98,8 +101,7 @@ module.exports = Vue.extend({
 					];
 					break;
 			}
-			const pos = this.$els.description.getBoundingClientRect().right 
-								- event.target.getBoundingClientRect().right + 4;
+			const pos = this.$els.description.getBoundingClientRect().right - event.target.getBoundingClientRect().right + 4;
 			this.$els.descArrow.style.right = String(pos) + 'px';
 			this.$els.descArrow.hidden = false;
 		},
@@ -120,9 +122,9 @@ module.exports = Vue.extend({
 		save() {
 			const tagName = this.edit.tag.trim(); 
 
-      if (!tagName) {
-        return;
-      }
+			if (!tagName) {
+				return;
+			}
 
 			const tag = this.edit.type + tagName;
 			if (tag != this.tag && this.passage.tags.includes(tag)) {
@@ -147,9 +149,22 @@ module.exports = Vue.extend({
 			if (this.edit.color) {
 				this.setTagColorInStory(this.storyId, tag, this.edit.color)
 			}
-
+			
+			this.modified = false;
 			this.$refs.modal.close();
-		}
+		},
+
+		canClose() {
+			if (!this.modified) {
+				return true;
+			}
+			confirm({
+				message: locale.say('There were changes detected for the Tag Settings. Are you sure you want to discard those changes?'),
+				buttonLabel: '<i class="fa fa-trash-o"></i> ' + locale.say('Discard changes'),
+				buttonClass: 'danger'
+			}).then(() => this.$refs.modal.$emit('close'));
+			return false;
+		},
 	},
 
 	vuex: {

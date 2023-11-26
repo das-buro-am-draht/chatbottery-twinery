@@ -1,4 +1,4 @@
-<modal-dialog :origin="origin" v-ref:modal :class="'tag-dialog'">
+<modal-dialog :origin="origin" :can-close="canClose" v-ref:modal :class="'tag-dialog'">
 	<div class="tag-dialog-content">
 		<!-- Using a <form> allows the "required" attribute on the input to be usable. -->
 		<form @submit.prevent="save">
@@ -42,7 +42,7 @@
 			<!-- <p class="error" v-show="!isMainValid">{{ 'Only one Main Tag is allowed' | say }}.</p> -->
 			<div class="tag__row tag-type-description" v-el:description>
 				<div class="tag-type-desc--arrow" v-el:desc-arrow hidden></div>
-				<div class="tag-type-desc--content" v-if="!!description">
+				<div class="tag-type-desc--content" v-if="description">
 					<span>{{ description[0] }}:&nbsp;</span><p>{{{ description[1] }}}</p>
 				</div>
 			</div>

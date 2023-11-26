@@ -14,20 +14,31 @@
 					<div v-show="settings & (1 << index)" class="passageUI-task-settings">
 						<fieldset class="passageUI-form">
 							<div class="passageUI-row">
-								<label for="condition">{{ 'Condition:' | say }}</label>
+								<label for="condition">{{ 'Condition' | say }}:</label>
 								<input type="text" class="code" id="condition" list="conditions" v-model="task.attributes['if']" :title="'JavaScript condition - e.g \'$chapter === 3\'' | say" :placeholder="'JavaScript condition to be evaluated to true for executing this task' | say">
 								<datalist id="conditions">
 									<option v-for="condition in conditions" :value="condition">
 								</datalist>
-								<label for="user-data">{{ 'User function:' | say }}</label>
+							</div>
+							<div class="passageUI-row">
+								<label for="user-data">{{ 'User function' | say }}:</label>
 								<input type="text" class="code" id="user-data" v-model="task.attributes['user-data']" :title="'User function being invoked on this task' | say" :placeholder="'Name of user function to invoke' | say">
 							</div>
-							<div v-show="!(task.type === 'wait' || task.type === 'eval' || task.type === 'goto' || task.type === 'chat')" class="passageUI-row">
-								<label for="classname">{{ 'CSS Class:' | say }}</label>
-								<input type="text" id="classname" v-model="task.attributes['classname']" :title="'CSS class name' | say" :placeholder="'CSS class name' | say">
-								<label for="tat">{{ 'Typing animation time:' | say }}</label>
-								<input type="number" id="tat" v-model="task.attributes['typing-animation-time']" :title="'Typing animation Time in Milliseconds' | say" placeholder="ms">
+							<div class="passageUI-row">
+								<label for="context">{{ 'Context' | say }}:</label>
+								<input type="checkbox" :checked="task.attributes['context'] != null" @change="onContext(index, $event)" title="Set or clear Context">
+								<input type="text" v-show="task.attributes['context'] != null" id="context" v-model="task.attributes['context']" :title="'Sets or clears the Context' | say" :placeholder="'Name of Context to set' | say">
 							</div>
+							<template v-if="!(task.type === 'wait' || task.type === 'eval' || task.type === 'goto' || task.type === 'chat')">
+								<div class="passageUI-row">
+									<label for="classname">{{ 'CSS Class' | say }}:</label>
+									<input type="text" id="classname" v-model="task.attributes['classname']" :title="'CSS class name' | say" :placeholder="'CSS class name' | say">
+								</div>
+								<div class="passageUI-row">
+									<label for="tat">{{ 'Typing animation time' | say }}:</label>
+									<input type="number" id="tat" v-model="task.attributes['typing-animation-time']" :title="'Typing animation Time in Milliseconds' | say" placeholder="ms">
+								</div>
+							</template> 
 						</fieldset>
 					</div>
 					<task-txt v-if="task.type === 'txt' || task.type === 'ai'" :task="task"></task-txt>

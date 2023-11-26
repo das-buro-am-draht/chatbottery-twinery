@@ -4,7 +4,7 @@ const isLocal = () => localStorage.getItem('DEV_ENV') === 'true';
 
 const trim = (str) => str && str.replace(/^[\n\r\s]+/, '').replace(/[\n\r\s]+$/, '');
 
-const isEmpty = (obj) => !Object.values(obj).some((value) => (typeof value === 'object') ? !isEmpty(value) : !!value);
+const isEmpty = (obj) => !Object.values(obj).some((value) => (value != null && typeof value === 'object') ? !isEmpty(value) : !!value);
 
 
 const isValidUrl = (url) => {

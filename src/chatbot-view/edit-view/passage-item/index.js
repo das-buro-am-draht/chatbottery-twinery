@@ -147,6 +147,7 @@ module.exports = Vue.extend({
 
 			if (this.highlightRegexp && (
 				this.highlightRegexp.test(this.passage.name) ||
+				this.passage.tags.some((tag) => this.highlightRegexp.test(tag)) ||
 				this.highlightRegexp.test(this.passage.text))) {
 				result.push('highlighted');
 			}
