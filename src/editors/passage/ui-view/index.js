@@ -6,6 +6,8 @@ const { isEmpty } = require('../../../utils/common');
 const { phraseSuggestions } = require('../../../common/app/openai');
 const { label, clipboardType } = require('../../../utils/task');
 const escape = require('lodash.escape');
+const { nameFromTag, typeFromTag, TYPE_GROUP } = require('../../../utils/tags');
+const uniq = require('lodash.uniq');
 
 require('./index.less');
 
@@ -28,6 +30,7 @@ module.exports = Vue.extend({
 		openai: null,
 		settings: 0,
 		userData: {},
+		contexts: [],
 	}),
 
 	ready() {
@@ -37,6 +40,12 @@ module.exports = Vue.extend({
 				prev[data[0]] = data[1].type;
 				return prev;
 			}, {});
+
+		this.contexts = uniq(
+			this.story.passages.map((passage) => 
+				passage.tags.filter((tag) => typeFromTag(tag) === TYPE_GROUP).map((tag) => nameFromTag(tag))
+			).flat()
+		).sort();
 
 		Array.from(this.taskElements).forEach((element) => element.classList.add(CLASS_COLLAPSED));
 	},
@@ -136,6 +145,9 @@ module.exports = Vue.extend({
 				}
 			}
 			return empty;
+		},
+		onContext(index, event) {
+			this.tasks[index].attributes['context'] = event.target.checked ? '' : null;
 		},
 		onDelete(index) {
 			Promise.resolve(this.tasks[index]).then((task) => {

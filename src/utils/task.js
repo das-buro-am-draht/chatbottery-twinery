@@ -26,7 +26,10 @@ const label = (type) => locale.say(types[type]) || type;
 const createTask = (type, attributes = {}) => {
 	const task = {
 		type,
-		attributes: { ...attributes },
+		attributes: { 
+			context: null, 
+			...attributes 
+		},
 		content: '',
 	};
 	switch(type) {

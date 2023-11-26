@@ -115,8 +115,8 @@ module.exports = (html, lastUpdate) => {
 							? []
 							: passageEl.attributes.tags.value.split(/\s+/);
 						try {
-							if (passageEl.attributes.tagsData && passageEl.attributes.tagsData.value) {
-								tags = JSON.parse(passageEl.attributes.tagsData.value);
+							if (passageEl.attributes.tagsdata && passageEl.attributes.tagsdata.value) {
+								tags = JSON.parse(passageEl.attributes.tagsdata.value);
 							}
 						} catch(e) {
 							console.error(`Error loading tags for passage '${passageEl.attributes.name.value}'.`, e);

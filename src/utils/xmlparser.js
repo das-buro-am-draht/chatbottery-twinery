@@ -45,6 +45,7 @@ const parse = (text) => {
       ...task,
       attributes: {
         'if': '',
+        'context': null,
         'user-data': '',
         'classname': '',
         'typing-animation-time': '',
@@ -176,7 +177,7 @@ const HtmlEncode = (text) => text
 
 const xmlElement = (tag, content, attributes = null) => {
   const attr = Object.entries(attributes || {})
-    .filter(([k,v]) => !!v)
+    .filter(([k,v]) => (k === 'context') ? v != null : !!v)
     .map(([k,v]) => `${k}="${String(v).replace(/"/g, '\'')}"`).join(' ');
   return `<${tag}${attr ? ' ' + attr : ''}>${content || ''}</${tag}>\n`;
 }
