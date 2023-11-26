@@ -26,7 +26,7 @@
 							</div>
 							<div class="passageUI-row">
 								<label for="context">{{ 'Context' | say }}:</label>
-								<input type="checkbox" :checked="task.attributes['context'] != null" @change="onContext(index, $event)" title="Set or clear Context">
+								<input type="checkbox" :checked="task.attributes['context'] != null" @change="onContext(index, $event)" :title="'Set or clear Context' | say">
 								<input type="text" v-show="task.attributes['context'] != null" id="context" list="contexts" v-model="task.attributes['context']" :title="'Sets or clears the Context' | say" :placeholder="'Name of Context to set' | say">
 								<datalist id="contexts">
 									<option v-for="context in contexts" :value="context"></datalist>
