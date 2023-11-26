@@ -23,12 +23,10 @@ module.exports = Vue.extend({
 	}),
 
 	ready() {
-		if (this.story) {
-			this.passages = this.story.passages
-				.map((passage) => passage.name)
-				.sort()
-				// .concat(Object.values(specialPassages));
-		}
+		this.passages = this.story.passages
+			.map((passage) => passage.name)
+			.sort()
+			// .concat(Object.values(specialPassages));
 
 		const passage = this.task.attributes['passage'] || '';
 		if (passage !== this.passage) {
