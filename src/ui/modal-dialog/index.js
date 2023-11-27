@@ -117,6 +117,9 @@ const ModalDialog = module.exports = Vue.extend({
 	events: {
 		close(message) {
 			this[resolve](message);
+			if (this.origin) {
+				this.origin.focus();
+			}
 			this.$destroy(true);
 		},
 

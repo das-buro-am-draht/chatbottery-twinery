@@ -29,7 +29,7 @@ module.exports = Vue.extend({
 			);
 		},
 		change() {
-			this.$parent.newTag(this.tag);
+			this.$parent.changeTag(this.tag);
 		},
 		suggestions() {
 			this.$parent.getSuggestions(this.tag);
