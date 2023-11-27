@@ -200,7 +200,7 @@ module.exports = Vue.extend({
 			if (this.settings & (1 << index)) {
 				color = '#c9cef4';
 				// image = 'white';
-			} else if (this.tasks[index] && this.tasks[index].attributes['if']) {
+			} else if (this.tasks[index] && (this.tasks[index].attributes['if'] || this.tasks[index].attributes['context'] != null)) {
 				image = 'red';
 			}
 			const imageUrl = require(`../../../common/img/ui-settings-${image}.svg`);
