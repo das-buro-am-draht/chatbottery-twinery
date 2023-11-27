@@ -802,8 +802,8 @@ msgid "A passage already exists with this name"
 msgstr "Eine Passage dieses Namens existiert bereits"
 
 #: src/editors/passage/tag-editor/index.html
-msgid "Add new Tag"
-msgstr "Neues Schlagwort hinzufügen"
+msgid "Add new Tag (ALT+T)"
+msgstr "Neues Schlagwort hinzufügen (ALT+T)"
 
 #: src/editors/passage/tag-editor/index.html
 msgid "Tag"
@@ -1898,8 +1898,8 @@ msgstr "Maximale Abweichung zwischen den Ähnlichkeiten der Schlagwörter vorges
 msgid "Min. Similarity for Suggestions"
 msgstr "Min. Ähnlichkeit für Vorschläge"
 
-msgid "Minimal similarity between a user message and a passage tag for suugesting the passage; value between 0 and 1 (only passages with main tags may be suggested)"
-msgstr "Mindest-Ähnlichkeit von Schlagwörtern mit der Benutzereingabe zum Vorschlagen von Passagen; Wert zwischen 0 und 1 (nur Passagen mit Haupt-Schlagwörtern werden vorgeschlagen)"
+msgid "Minimal similarity between a user message and a passage tag for suggesting the passage; value between 0 and 1"
+msgstr "Mindest-Ähnlichkeit von Schlagwörtern mit der Benutzereingabe zum Vorschlagen von Passagen; Wert zwischen 0 und 1"
 
 msgid "Number of unmatched Phrases for Live Chat"
 msgstr "Anzahl nicht erkannter Eingaben für Live-Chat"

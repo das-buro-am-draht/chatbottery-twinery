@@ -18,6 +18,7 @@ const {
 } = require('../../../utils/tags');
 const locale = require('../../../locale');
 const escape = require('lodash.escape');
+const domEvents = require('../../../vue/mixins/dom-events');
 
 require('./index.less');
 
@@ -29,6 +30,15 @@ module.exports = Vue.extend({
 		loading: false,
 		suggestions: [],
 	}),
+
+	ready() {
+		this.on(this.$parent.$els.dlg, 'keydown', (e) => {
+			if (e.keyCode === 84 && e.altKey) {
+				e.stopPropagation();
+				this.changeTag();
+			}
+		});
+	},
 
 	computed: {
 		tagColors() {
@@ -77,12 +87,12 @@ module.exports = Vue.extend({
 			this.suggestions = [];
 		},
 
-		newTag(tag) {
+		changeTag(tag = null) {
 			new TagDialog({
 				data: {
 					storyId: this.storyId,
 					passage: this.passage,
-					origin: this.$el,
+					origin: this.$parent.$els.dlg,
 					tag,
 				},
 				store: this.$store,
@@ -132,5 +142,7 @@ module.exports = Vue.extend({
 
 	components: {
 		'tag-menu': require('./tag-menu')
-	}
+	},
+
+	mixins: [domEvents]
 });
