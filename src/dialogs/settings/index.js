@@ -15,6 +15,7 @@ module.exports = Vue.extend({
 		storyId: null,
 		assetBaseUrl: '',
 		storyUrl: '',
+		searchUrl: '',
 		modified: false,
 	}),
 
@@ -23,9 +24,11 @@ module.exports = Vue.extend({
 		if (data) {
 			this.assetBaseUrl = data.assetBaseUrl || '';
 			this.storyUrl = data.storyUrl || '';
+			this.searchUrl = data.searchUrl || '';
 		}
 		this.$watch('assetBaseUrl', () => this.modified = true);
 		this.$watch('storyUrl', () => this.modified = true);
+		this.$watch('searchUrl', () => this.modified = true);
 	},
 
 	computed: {
@@ -34,7 +37,7 @@ module.exports = Vue.extend({
 			return settings;
 		},
 		isValid() {
-			return this.isValidUrl(this.storyUrl) && this.isValidBaseUrl(this.assetBaseUrl);
+			return this.isValidUrl(this.storyUrl) && this.isValidUrl(this.searchUrl) && this.isValidBaseUrl(this.assetBaseUrl);
 		},
 	},
 
@@ -49,6 +52,7 @@ module.exports = Vue.extend({
 			const settings = { 
 				...this.settingsData,
 				storyUrl: this.storyUrl,
+				searchUrl: this.searchUrl,
 				assetBaseUrl: this.assetBaseUrl,
 			};
 			this.updateStory(this.storyId, { settings });
