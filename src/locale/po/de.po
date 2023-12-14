@@ -625,6 +625,10 @@ msgid "URL for Assets (Images, Videos, etc.)"
 msgstr "Basis-URL für Ressourcen (Bilder, Videos, etc.)"
 
 #: src/dialogs/settings/index.html
+msgid "Site URL for AI on unmatched passages"
+msgstr "Seiten-URL für KI-Suche bei nicht gefundenen Passagen"
+
+#: src/dialogs/settings/index.html
 msgid "Resource Locator must be a valid URL Path ending with slash ('/')"
 msgstr "Die angegebene URL muss ein gültiger URL-Pfad sein endend mit '/' (slash)"
 
@@ -1542,10 +1546,6 @@ msgstr "Fehler beim Laden der Matomo-Daten von &ldquo;%1$s&rdquo;: %2$s"
 msgid "AI Prompt"
 msgstr "AI-Prompt"
 
-#: src/dialogs/openai/index.js:23
-msgid "These settings apply to the AI Prompt Component.<br><i>The chatbot-file needs to be exported again for these settings to take effect.</i>"
-msgstr "Diese Einstellungen steuern die AI-Aufrufparameter für das Passagenelement 'AI-Anfrage'.<br><i>Die Chatbot-Datei muss erneut exportiert werden, damit Änderungen wirksam werden.</i>"
-
 #: src/dialogs/openai/index.js:27
 msgid "Tag Alternatives"
 msgstr "Schlagwort-Alternativen"
@@ -1912,6 +1912,12 @@ msgstr "Min. Zeichen für Live-Chat"
 
 msgid "Minimum Number of characters from an unmatched user phrase that triggers the Live Chat"
 msgstr "Mindestzahl der eingegebenen Zeichen bei nicht erkannter Eingabe zum Starten des Live-Chats"
+
+msgid "Enable AI for unmatched passages"
+msgstr "KI-Suche bei nicht gefundenen Passagen"
+
+msgid "In case no passage was found enable AI to search main tags for user prompt"
+msgstr "Ermöglicht die Suche mittels KI, wenn keine zur Benutzereingabe passende Passage gefunden wurde"
 
 msgid "Restore defaults"
 msgstr "Standardwerte zurücksetzen"

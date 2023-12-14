@@ -151,10 +151,6 @@ const publish = (module.exports = {
 		console.log("script", script);
 
 		const storyData = getStoryData(story);
-		const openai = { };
-		try {
-			openai.prompt = JSON.parse(getPref('openaiPrompt'));
-		} catch(e) {}
 
 		return (
 			`<tw-storydata id="${escape(story.id)}" name="${escape(story.name)}" ` +
@@ -169,7 +165,6 @@ const publish = (module.exports = {
 			`format="${escape(story.storyFormat)}" ` +
 			`format-version="${escape(story.storyFormatVersion)}" ` +
 			`options="${escape(formatOptions)}" ` + 
-			`openai="${escape(JSON.stringify(openai))}" ` +
 			`hidden>` +
 			`<style role="stylesheet" id="twine-user-stylesheet" ` +
 			`type="text/twine-css">` +

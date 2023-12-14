@@ -13,15 +13,6 @@ module.exports = Vue.extend({
 	data: () => ({
 		origin: null,
 		openai: {
-			prompt: {
-				pref: 'openaiPrompt',
-				label: locale.say('AI Prompt'),
-				image: 'suggestions.svg',
-				initial: openaiDefault.prompt,
-				placeholder: placeholders.prompt,
-				params: '',
-				description: locale.say('These settings apply to the AI Prompt Component.<br><i>The chatbot-file needs to be exported again for these settings to take effect.</i>'),
-		 	},
 		 	tag: {
 				pref: 'openaiTags',
 				label: locale.say('Tag Alternatives'),
