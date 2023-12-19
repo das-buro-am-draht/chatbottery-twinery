@@ -37,7 +37,7 @@ module.exports = Vue.extend({
 			return settings;
 		},
 		isValid() {
-			return this.isValidUrl(this.storyUrl) && this.isValidUrl(this.searchUrl) && this.isValidBaseUrl(this.assetBaseUrl);
+			return this.isValidUrl(this.storyUrl) && this.isValidBaseUrl(this.assetBaseUrl);
 		},
 	},
 
