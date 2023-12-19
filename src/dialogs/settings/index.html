@@ -24,7 +24,6 @@
 				<label for="searchUrl">{{ 'Site URL for AI on unmatched passages' | say }}</label>
 				<div class="setting__input">
 					<input type="text" id="searchUrl" v-model="searchUrl" title="{{ 'Site URL for AI on unmatched passages' | say }}">
-					<p class="error" v-show="!isValidUrl(searchUrl)">{{ 'Resource Locator must be a valid URL' | say }}</p>
 				</div>
 			</div>
 		</div>
