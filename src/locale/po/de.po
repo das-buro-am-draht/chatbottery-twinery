@@ -1916,6 +1916,9 @@ msgstr "Mindestzahl der eingegebenen Zeichen bei nicht erkannter Eingabe zum Sta
 msgid "Enable AI for unmatched passages"
 msgstr "KI-Suche bei nicht gefundenen Passagen"
 
+msgid "Max. Entries from site search result"
+msgstr "Max. Anzahl von Webseiten-Suchergebnissen"
+
 msgid "In case no passage was found enable AI to search main tags for user prompt"
 msgstr "Ermöglicht die Suche mittels KI, wenn keine zur Benutzereingabe passende Passage gefunden wurde"
 
