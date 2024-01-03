@@ -46,12 +46,21 @@ const story = module.exports = {
 		/*
 		We have to remove the passages property before serializing the story,
 		as those are serialized under separate keys.
+		Story configuration settings may be changed by the story format - don't overwrite!
 		*/
 
+		let config = story.config;
+		const key = 'twine-stories-' + story.id;
+		const storageData = window.localStorage.getItem(key);
+		if (storageData) {
+			try {
+				config = (JSON.parse(storageData) || {}).config;
+			} catch(e) { }
+		}
 		window.localStorage.setItem(
-			'twine-stories-' + story.id,
+			key,
 			JSON.stringify(
-				Object.assign({}, story, { passages: undefined })
+				Object.assign({}, story, { config, passages: undefined })
 			)
 		);
 	},
