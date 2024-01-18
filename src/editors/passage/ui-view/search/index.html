@@ -20,6 +20,12 @@
 					<input type="text" id="query" v-model="query" @input="onChangeQuery($event)" required :title="'Query text to search for (if not set last user input or passage\'s main tag is used)' | say" :placeholder="'Query text' | say">
 				</div>
 			</div>
+			<div class="passageUI-row">
+				<label for="template">{{ 'Prompt template' | say }}:</label>
+				<div class="passageUI-row-input">
+					<input type="text" id="template" v-model="template" @input="onChangeTemplate($event)" required :title="'Name of template to compose search request (defaults to \'aiPrompt\')' | say" :placeholder="'Name of search prompt template' | say">
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

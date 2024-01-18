@@ -17,6 +17,7 @@ module.exports = Vue.extend({
 		label: '',
 		site: '',
 		query: '',
+		template: '',
 	}),
 
 	ready() {
@@ -32,6 +33,10 @@ module.exports = Vue.extend({
 		if (query !== this.query) {
 			this.query = query;
 		}
+		const template = this.task.attributes['template'] || '';
+		if (template !== this.template) {
+			this.template = template;
+		}
 	},
 
 	methods: {
@@ -43,6 +48,9 @@ module.exports = Vue.extend({
 		},
 		onChangeQuery(event) {
 			this.task.attributes['query'] = this.query;
+		},
+		onChangeTemplate(event) {
+			this.task.attributes['template'] = this.template;
 		},
 	},
 

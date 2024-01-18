@@ -66,9 +66,10 @@ const createTask = (type, attributes = {}) => {
 			task.attributes['passage'] = task.attributes['passage'] || '';
 			break; 
 		case 'search':
+			task.opt = [];
 			task.attributes['site'] = task.attributes['site'] || '';
 			task.attributes['query'] = task.attributes['query'] || '';
-			task.opt = [];
+			task.attributes['template'] = task.attributes['template'] || '';
 			break;
 		case 'eval':
 			task.attributes['eval'] = task.attributes['eval'] || '';

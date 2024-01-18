@@ -1143,6 +1143,18 @@ msgstr "Suchzeichenfolge"
 msgid "Query text to search for (if not set last user input or passage's main tag is used)"
 msgstr "Zeichenfolge, nach der gesucht werden soll (wenn nicht angegeben, wird die letzte Nutzereingabe oder das Haupt-Schlagwort der Passage verwendet)"
 
+#: src/editors/passage/ui-view/search/index.html
+msgid "Prompt template"
+msgstr "Vorlage Suchanfrage"
+
+#: src/editors/passage/ui-view/search/index.html
+msgid "Name of template to compose search request (defaults to 'aiPrompt')"
+msgstr "Vorlagenname zur Generierung der Suchanfrage (Standard ist 'aiPrompt')"
+
+#: src/editors/passage/ui-view/search/index.html
+msgid "Name of search prompt template"
+msgstr "Name der Vorlage für die Suchanfrage"
+
 #: src/editors/passage/ui-view/index.html
 msgid "Expand / Collapse"
 msgstr "Ausklappen / Einklappen"
