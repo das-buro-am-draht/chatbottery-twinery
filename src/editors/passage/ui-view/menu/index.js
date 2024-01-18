@@ -76,6 +76,8 @@ module.exports = Vue.extend({
 					return require('../../../../common/img/element-carousel.svg');
 				case 'tiles':
 					return require('../../../../common/img/element-tiles.svg');
+				case 'search':
+					return require('../../../../common/img/search-icon.svg');
 				case 'wait':
 					return require('../../../../common/img/element-record-variable.svg');
 				case 'eval':

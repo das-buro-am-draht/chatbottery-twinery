@@ -52,6 +52,7 @@
 					<task-xml v-if="task.type === 'msg'" :task="task"></task-xml>
 					<task-carousel v-if="task.type === 'carousel'" :task="task" :story="story"></task-carousel>
 					<task-tiles v-if="task.type === 'tiles'" :task="task" :story="story"></task-tiles>
+					<task-search v-if="task.type === 'search'" :task="task" :story="story"></task-search>
 					<task-wait v-if="task.type === 'wait'" :task="task" :story="story"></task-wait>
 					<task-goto v-if="task.type === 'goto'" :task="task" :story="story"></task-goto>
 					<task-eval v-if="task.type === 'eval'" :task="task" :story="story"></task-eval>

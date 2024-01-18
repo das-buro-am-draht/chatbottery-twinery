@@ -1,0 +1,25 @@
+<div class="passageUI-search">
+	<div class="passageUI-content">
+		<div class="passageUI-form">
+			<div class="passageUI-row">
+				<label for="label">{{ 'Button label' | say }}:</label>
+				<div class="passageUI-row-input">
+					<input type="text" id="label" v-model="label" @input="onChangeLabel($event)" required :title="'Button label' | say" :placeholder="'Button label' | say">
+				</div>
+			</div>
+			<div class="passageUI-row">
+				<label for="site">{{ 'Site URL' | say }}:</label>
+				<div class="passageUI-row-input">
+					<input type="text" id="site" v-model="site" @input="onChangeSite($event)" required :title="'Site URL to search in' | say" :placeholder="'Site URL' | say">
+					<p class="error" v-show="!site">{{ 'Site URL must be set' | say }}.</p>
+				</div>
+			</div>
+			<div class="passageUI-row">
+				<label for="query">{{ 'Query text' | say }}:</label>
+				<div class="passageUI-row-input">
+					<input type="text" id="query" v-model="query" @input="onChangeQuery($event)" required :title="'Query text to search for (if not set user input or passage\'s main tag is used)' | say" :placeholder="'Query text' | say">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

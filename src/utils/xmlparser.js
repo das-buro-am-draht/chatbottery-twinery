@@ -61,7 +61,7 @@ const parse = (text) => {
     const children = Array.from(el.children);
     const task = createTask(el.nodeName.toLowerCase(), getAttributes(el.attributes));
 
-    if (task.type === 'msg' || task.type === 'wait' || task.type === 'ai') {
+    if (task.type === 'msg' || task.type === 'wait' || task.type === 'ai' || task.type === 'search') {
       // option texts
       task.opt = children.filter((item) => item.tagName.toLowerCase() === 'opt').map((item) => item.innerHTML.trim());
       if (task.type === 'wait') { 
@@ -197,6 +197,7 @@ const xmlValue = (task) => {
     }
     case 'ai':
     case 'txt':
+    case 'search':
     case 'image':
     case 'video':
     case 'iframe': {
@@ -290,6 +291,10 @@ const stringify = (arr) => {
           break;
         case 'iframe':
           if (!task.attributes['src'])
+            return xml;
+          break;
+        case 'search':
+          if (!task.attributes['site'])
             return xml;
           break;
         case 'goto':
