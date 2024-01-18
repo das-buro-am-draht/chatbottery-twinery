@@ -1140,8 +1140,8 @@ msgid "Query text"
 msgstr "Suchzeichenfolge"
 
 #: src/editors/passage/ui-view/search/index.html
-msgid "Query text to search for (if not set user input or passage's main tag is used)"
-msgstr "Zeichenfolge, nach der gesucht werden soll (wenn nicht angegeben, werden Nutzereingabe oder Haupt-Schlagwort der Passage verwendet)"
+msgid "Query text to search for (if not set last user input or passage's main tag is used)"
+msgstr "Zeichenfolge, nach der gesucht werden soll (wenn nicht angegeben, wird die letzte Nutzereingabe oder das Haupt-Schlagwort der Passage verwendet)"
 
 #: src/editors/passage/ui-view/index.html
 msgid "Expand / Collapse"

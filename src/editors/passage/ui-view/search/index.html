@@ -17,7 +17,7 @@
 			<div class="passageUI-row">
 				<label for="query">{{ 'Query text' | say }}:</label>
 				<div class="passageUI-row-input">
-					<input type="text" id="query" v-model="query" @input="onChangeQuery($event)" required :title="'Query text to search for (if not set user input or passage\'s main tag is used)' | say" :placeholder="'Query text' | say">
+					<input type="text" id="query" v-model="query" @input="onChangeQuery($event)" required :title="'Query text to search for (if not set last user input or passage\'s main tag is used)' | say" :placeholder="'Query text' | say">
 				</div>
 			</div>
 		</div>
