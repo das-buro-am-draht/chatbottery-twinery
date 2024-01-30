@@ -11,6 +11,7 @@ const types = {
 	'wait'    : 'Record user input',
 	'eval'    : 'Set variable',
 	'goto'    : 'Goto',
+	'search'  : 'Search',
 	'ai'      : 'AI prompt',
 	'chat'    : 'Live Chat',
 	// 'sms'     : locale.say('SMS (Voice Bot)'),
@@ -64,6 +65,12 @@ const createTask = (type, attributes = {}) => {
 		case 'goto':
 			task.attributes['passage'] = task.attributes['passage'] || '';
 			break; 
+		case 'search':
+			task.opt = [];
+			task.attributes['site'] = task.attributes['site'] || '';
+			task.attributes['query'] = task.attributes['query'] || '';
+			task.attributes['template'] = task.attributes['template'] || '';
+			break;
 		case 'eval':
 			task.attributes['eval'] = task.attributes['eval'] || '';
 			break; 

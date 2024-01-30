@@ -133,6 +133,7 @@ module.exports = Vue.extend({
 				switch (task.type) {
 					case 'txt':
 					case 'image':
+					case 'search':
 						empty = isEmpty(task.opt);
 						break;
 					case 'buttons':
@@ -277,6 +278,7 @@ module.exports = Vue.extend({
 		'task-buttons': require('./buttons'),
 		'task-carousel': require('./carousel'),
 		'task-tiles': require('./tiles'),
+		'task-search': require('./search'),
 		'task-chat': require('./chat'),
 	},
 });

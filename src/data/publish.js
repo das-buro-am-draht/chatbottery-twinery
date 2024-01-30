@@ -18,20 +18,6 @@ const getStoryData = (story) => {
 	}
 }
 
-const getPref = (name) => {
-	const serialized = window.localStorage.getItem('twine-prefs');
-	for (const id of serialized.split(',')) {
-		try {
-			const item = JSON.parse(
-				window.localStorage.getItem('twine-prefs-' + id)
-			);
-			if (item.name === name) {
-				return item.value;
-			}
-		} catch(e) { }
-	}
-}
-
 const publish = (module.exports = {
 	/*
 	Publishes a story with a story format. The format *must* be loaded before

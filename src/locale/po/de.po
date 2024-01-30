@@ -1119,6 +1119,42 @@ msgstr "URL des Bildes muss angegeben werden"
 msgid "Add Image Text"
 msgstr "Bildtext hinzufügen"
 
+#: src/editors/passage/ui-view/search/index.html
+msgid "Button label"
+msgstr "Schaltflächentext"
+
+#: src/editors/passage/ui-view/search/index.html
+msgid "Site URL"
+msgstr "Seiten-URL"
+
+#: src/editors/passage/ui-view/search/index.html
+msgid "Site URL to search in"
+msgstr "Seiten-URL, in der gesucht wird"
+
+#: src/editors/passage/ui-view/search/index.html
+msgid "Site URL must be set"
+msgstr "Seiten-URL muss angegeben werden"
+
+#: src/editors/passage/ui-view/search/index.html
+msgid "Query text"
+msgstr "Suchzeichenfolge"
+
+#: src/editors/passage/ui-view/search/index.html
+msgid "Query text to search for (if not set last user input or passage's main tag is used)"
+msgstr "Zeichenfolge, nach der gesucht werden soll (wenn nicht angegeben, wird die letzte Nutzereingabe oder das Haupt-Schlagwort der Passage verwendet)"
+
+#: src/editors/passage/ui-view/search/index.html
+msgid "Prompt template"
+msgstr "Vorlage Suchanfrage"
+
+#: src/editors/passage/ui-view/search/index.html
+msgid "Name of template to compose search request (defaults to 'aiPrompt')"
+msgstr "Vorlagenname zur Generierung der Suchanfrage (Standard ist 'aiPrompt')"
+
+#: src/editors/passage/ui-view/search/index.html
+msgid "Name of search prompt template"
+msgstr "Name der Vorlage für die Suchanfrage"
+
 #: src/editors/passage/ui-view/index.html
 msgid "Expand / Collapse"
 msgstr "Ausklappen / Einklappen"
@@ -1792,6 +1828,10 @@ msgid "Goto"
 msgstr "Weiterleitung"
 
 #: src/utils/task.js:14
+msgid "Search"
+msgstr "Suche"
+
+#: src/utils/task.js:15
 msgid "AI prompt"
 msgstr "AI-Prompt"
 
