@@ -1,76 +1,61 @@
-## twinejs
+# Chatbottery Editor
 
-by Chris Klimas, Andrew Plotkin, Leon Arnott, Daithi O Crualaoich, Ingrid
-Cheung, Thomas Michael Edwards, Micah Fitch, HiEv, Juhana Leinonen, Michael Savich,
-and Ross Smith
+Editor for creating stories used by [Chatbottery](https://chatbottery.com).
 
-### SYNOPSIS
+This project depends on Story Formats, NPC- and Web-Runtime as well as Proxy Functionality in the [Chatbottery Project](https://github.com/das-buro-am-draht/chatbottery-web-runtime).
 
-This is a port of Twine to a browser and Electron app. See
-[twinery.org](https://twinery.org) for more info.
+The Editor uses a Proxy Server (https://proxy.chatbottery.com/) for Helper funtions to enable Browser's CORS compliance and OpenAI invocation of Chat GPT.
 
-The story formats in minified format under `story-formats/` exist in separate
-repositories:
+The Editor was created by forking [Twinery](https://twinery.org) on [Github](https://github.com/klembot/twinejs). See [twinejs](./twine.md).
 
--   [Chapbook](https://github.com/klembot/chapbook)
--   [Harlowe](https://foss.heptapod.net/games/harlowe)
--   [Paperthin](https://github.com/klembot/paperthin)
--   [Snowman](https://github.com/videlais/snowman)
--   [SugarCube](https://github.com/tmedwards/sugarcube-2)
+> **Note**
+> - Only Web build is used - no `Electron` or `CDN` deployment.
+> - Tests are partially broken.
 
-### INSTALL
+## Local setup 
 
-Run `npm install` at the top level of the directory to install all goodies.
+### Setup local PHP Proxy
 
-### BUILDING
+Local Proxy Server Functions require Apache web server and PHP (see https://proxy.chatbottery.com/info.php) being installed.
 
-Run `npm start` to begin serving a development version of Twine to
-http://localhost:8080. This server will automatically update with changes you
-make.
+1. Setup a Virtual Host `chatbot.proxy` with declaration in `/etc/hosts` and definition in `/etc/apache2/sites-available` and `/etc/apache2/sites-enabled` pointing to your local Document Root Folder [php/proxy](https://github.com/das-buro-am-draht/chatbottery-web-runtime/tree/master/php/proxy).
+```xml
+<VirtualHost *:80>
+	ServerName chatbot.proxy
 
-To create a release, run `npm run build`. Finished files will be found under
-`dist/`. In order to build Windows apps on OS X or Linux, you will need to have
-[Wine](https://www.winehq.org/) and [makensis](http://nsis.sourceforge.net/)
-installed. A file named `2.json` is created under `dist/` which contains
-information relevant to the autoupdater process, and is currently posted to
-https://twinery.org/latestversion/2.json.
+	ServerAdmin proxy@dasburo.com
+	DocumentRoot /home/{user}/chatbottery-web-runtime/php/proxy
 
-To run the app in an Electron context, run `npm run electron`. `npm run electron-dev` is a bit faster as it skips minification.
+	<Directory /home/{user}/chatbottery-web-runtime/php/proxy>
+	        Options -Indexes +FollowSymLinks
+	        AllowOverride All
+	        Require all granted
+	</Directory>
 
-`npm run lint` and `npm test` will lint and test the source code respectively.
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-`npm run pot` will create a POT template file for localization at
-`src/locale/po/template.pot`. See Localization below for more information.
+</VirtualHost>
+```
 
-`npm run clean` will delete existing files in `build/` and `dist/`.
+2. Start Aache Web Server with `service apache2 start`
 
-### LOCALIZATION
+### Setup Editor with NPM / YARN
 
-Would you like to help localize Twine for another language? Awesome! You don't
-need to know JavaScript to do so. Here's how it works:
+1. Run `npm install` / `yarn install` for setup of dependency packages
 
-1. Download
-   [template.pot](https://github.com/klembot/twinejs/blob/master/src/locale/po/template.pot)
-   from the repository.
+2. Start Server by `npm run start` / `yarn start` listening on port 8080
 
-2. Use a translation application like [Poedit](http://poedit.net/) to create a
-   .po file with the source text translated. If you are using Poedit, get started
-   by choosing **New from POT/PO File** from the **File** menu. Make sure to name
-   your po file according to the [IETF locale naming
-   convention](https://en.wikipedia.org/wiki/IETF_language_tag) -- Poedit can help
-   suggest that as well. For example, a generic French translation should be named
-   `fr.po`, while an Australian English one would be named `en-au.po`.
+3. Open Browser on `http://localhost:8080`
 
-3. Finally, two other things are needed: an SVG-formatted image of the flag
-   that should be associated with your language, and what native speakers call the
-   language you are localizing to (e.g. Fran&ccedil;ais for French speakers).
-   [Wikimedia
-   Commons](https://commons.wikimedia.org/wiki/Category:SVG_flags_by_country) is
-   your best bet for nice-looking SVG flags. Obviously, whatever image you provide
-   must either be in the public domain or otherwise OK to use in Twine without any
-   compensation.
+4. Set Variable `DEV_ENV` to `true` in Browser's Local Storage.<br>
+   - This causes Proxy calls to adress the Local Host `chatbot.proxy`
+   - The Variable has also an effect in the [Story Format and Chatbot](https://github.com/das-buro-am-draht/chatbottery-web-runtime)
 
-4. If you're comfortable using Git, then you can open a pull request to have
-   your localization added. Please place it in the `src/locale/po` directory. If
-   you aren't, you can instead open a bug tracker issue and attach your PO file,
-   flag image, and language name and we'll take it from there.
+5. In case you run the [Story Format](https://github.com/das-buro-am-draht/chatbottery-web-runtime/tree/master/twine2npc) locally you have to add the JS to the Editor's story formats (e.g. `http://localhost:8081/chatbotteryStoryFormat.v12.js`). The Url is stored in the Local Storage within a stringified JSON in variable `twine-storyformats-...`.
+
+## Deployment
+
+Changes are deployed by using [Github Workflows](https://docs.github.com/en/actions/using-workflows) whenever pushed to either Branch `develop` ([Staging](https://develop.editor.chatbottery.com/)) or `master` ([Production](https://editor.chatbottery.com/)).
+
+Workflows create Build and transfer Files via FTP to the Deployment Server.
