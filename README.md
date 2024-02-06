@@ -12,6 +12,12 @@ The Editor was created by forking [Twinery](https://twinery.org) on [Github](htt
 > - Only Web build is used - no `Electron` or `CDN` deployment.
 > - Tests are partially broken.
 
+## Story Format
+
+The Story Format is used to test Chatbot stories and create the storie's JSON file as a data object within a `script` element that starts the Chatbot's runtime and application `chatbottery.js` - see https://docu.chatbottery.com/#/setup/index?id=seiteneinbindung-des-chatbot.
+
+The Story Format is fetched by the [Editor](https://github.com/das-buro-am-draht/chatbottery-twinery) whenever a story is played and thus a new tab is created using [JSON Padding](http://jsonp.eu/) to avoid CORS issues (`chatbotteryStoryFormat.v12.js?callback=storyFormat`). The invoked JS calls the JSONP callback function `storyFormat` with an JS Object as a parameter that is stored in file `storyFormat.ts` which has in its `source` parameter the HTML code for the newly created tab. The Editor replaces `{{STORY_NAME}}` with the storie's name and `{{STORY_DATA}}` with the story data within the HTML code to create the `window.story` object which contains all necessary data for constructing the NPC Runtime object within the story format code.
+
 ## Local setup 
 
 ### Setup local PHP Proxy
